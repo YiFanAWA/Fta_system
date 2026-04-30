@@ -1,0 +1,1 @@
+{"system":"E2E_Test_System","top_event":"E2E_TOP_EVENT","source":"manual","manual_failures":[{"name":"MainPumpFailure","probability":0.12,"gate":"OR","causes":[{"name":"PowerLoss","probability":0.03},{"name":"BearingWear","probability":0.08}]}],"use_knowledge_graph":true,"run_analysis_report":false,"run_draft_review":false,"output_prefix":"e2e_kg_check"}
