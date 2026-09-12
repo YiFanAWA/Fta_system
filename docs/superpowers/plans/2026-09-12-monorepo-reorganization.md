@@ -33,7 +33,7 @@
 - Create: `.gitignore`
 - Create: `scripts/verify_repo_layout.py`
 
-- [ ] **Step 1: 写入忽略规则**
+- [x] **Step 1: 写入忽略规则**
 
 ```gitignore
 # Secrets and local configuration
@@ -67,7 +67,7 @@ Thumbs.db
 ~$*
 ```
 
-- [ ] **Step 2: 创建跨平台布局检查脚本**
+- [x] **Step 2: 创建跨平台布局检查脚本**
 
 ```python
 from __future__ import annotations
@@ -138,13 +138,13 @@ if __name__ == "__main__":
     raise SystemExit(main())
 ```
 
-- [ ] **Step 3: 运行门禁并确认它在迁移前失败**
+- [x] **Step 3: 运行门禁并确认它在迁移前失败**
 
 Run: `python scripts/verify_repo_layout.py`
 
 Expected: FAIL，明确报告缺失的 `backend-python/`、`frontend/`、`evaluation/` 和当前仍被跟踪的 `.env`，而不是脚本异常退出。
 
-- [ ] **Step 4: 提交门禁**
+- [x] **Step 4: 提交门禁**
 
 ```powershell
 git add -- .gitignore scripts/verify_repo_layout.py
@@ -167,7 +167,7 @@ git commit -m "build: add monorepo layout guard"
 - Modify: `backend-python/api_server.py`
 - Modify: `backend-python/restart_api.ps1`
 
-- [ ] **Step 1: 创建目标目录并移动运行源码**
+- [x] **Step 1: 创建目标目录并移动运行源码**
 
 ```powershell
 New-Item -ItemType Directory -Force backend-python, backend-python/examples, docs/archive | Out-Null
@@ -179,13 +179,13 @@ git mv DOCKER_DEPLOYMENT.md docs/archive/legacy-docker-deployment.md
 git mv pppppp docs/project-overview.md
 ```
 
-- [ ] **Step 2: 停止跟踪密钥、生成物和空临时文件**
+- [x] **Step 2: 停止跟踪密钥、生成物和空临时文件**
 
 ```powershell
 git rm -- .env '(s' cd curl fault_tree.dot fault_tree.xml
 ```
 
-- [ ] **Step 3: 让输出目录归属于 Python 服务**
+- [x] **Step 3: 让输出目录归属于 Python 服务**
 
 Modify `backend-python/api_server.py` around the existing `OUTPUT_DIR` declaration:
 
@@ -195,7 +195,7 @@ OUTPUT_DIR = BASE_DIR / "outputs"
 OUTPUT_DIR.mkdir(exist_ok=True)
 ```
 
-- [ ] **Step 4: 让重启脚本从自身目录启动应用**
+- [x] **Step 4: 让重启脚本从自身目录启动应用**
 
 Modify `backend-python/restart_api.ps1` so the Uvicorn arguments contain:
 
@@ -213,7 +213,7 @@ $uvicornArgs = @(
 
 Use `$uvicornArgs` for both logging and invocation; do not reuse PowerShell's automatic `$args` variable.
 
-- [ ] **Step 5: 验证目录移动没有改变 Python 语法和基线结果**
+- [x] **Step 5: 验证目录移动没有改变 Python 语法和基线结果**
 
 Run: `python -m compileall -q backend-python`
 
@@ -223,7 +223,7 @@ Run: `$env:PYTHONUTF8='1'; python backend-python/fta_regression_check.py`
 
 Expected baseline: 4 cases total，Hydraulic、E-Drive、Narrative pass，AOCS remains the known failing case. Any different result blocks migration.
 
-- [ ] **Step 6: 提交后端迁移**
+- [x] **Step 6: 提交后端迁移**
 
 ```powershell
 git add -- backend-python docs/api-usage.md docs/archive/legacy-docker-deployment.md docs/project-overview.md
@@ -248,7 +248,7 @@ git commit -m "refactor: move Python service into backend directory"
 - Modify: `frontend/src/components/Workbench.vue`
 - Modify: `frontend/vue.config.js`
 
-- [ ] **Step 1: 校验旧工作区来源**
+- [x] **Step 1: 校验旧工作区来源**
 
 The executor sets `FTA_LEGACY_ROOT` to the audited legacy project root outside this repository. Then run:
 
@@ -262,7 +262,7 @@ if (Test-Path -LiteralPath (Join-Path $legacyFrontend 'node_modules')) {
 }
 ```
 
-- [ ] **Step 2: 只复制构建所需内容**
+- [x] **Step 2: 只复制构建所需内容**
 
 ```powershell
 New-Item -ItemType Directory -Force frontend | Out-Null
@@ -276,7 +276,7 @@ Copy-Item -LiteralPath (Join-Path $legacyFrontend 'src') -Destination 'frontend/
 
 Do not copy `dist/`, `node_modules/`, `.vscode/` or `webpack.inspect.js`. The five media files imported by `IndexLight.vue`, including the background MP4, are source dependencies and remain local-branch candidates pending the final public-license review.
 
-- [ ] **Step 3: 将 API 地址改成环境配置加开发代理**
+- [x] **Step 3: 将 API 地址改成环境配置加开发代理**
 
 Replace the current host-selection function in `frontend/src/components/Workbench.vue` with the following implementation, which preserves the user-saved override and uses the environment value as the deploy-time default:
 
@@ -326,7 +326,7 @@ module.exports = defineConfig({
 })
 ```
 
-- [ ] **Step 4: 安装锁定依赖并构建**
+- [x] **Step 4: 安装锁定依赖并构建**
 
 Run: `npm ci --prefix frontend`
 
@@ -336,7 +336,7 @@ Run: `npm run build --prefix frontend`
 
 Expected: exit 0 and `frontend/dist/` remains ignored.
 
-- [ ] **Step 5: 提交前端恢复**
+- [x] **Step 5: 提交前端恢复**
 
 ```powershell
 git add -- frontend
@@ -360,7 +360,7 @@ git commit -m "feat: restore Vue frontend source"
 - Modify: `evaluation/data_correction/ai_quality_evaluator.py`
 - Modify: `evaluation/quality_eval/build_eval_dataset.py`
 
-- [ ] **Step 1: 复制评测程序、数据集和精选基线**
+- [x] **Step 1: 复制评测程序、数据集和精选基线**
 
 ```powershell
 $legacyEval = Join-Path $env:FTA_LEGACY_ROOT 'evaluation'
@@ -374,7 +374,7 @@ Copy-Item -LiteralPath "$legacyEval\quality_eval\datasets\fta_eval_seed.json" -D
 Copy-Item -LiteralPath "$legacyEval\quality_eval\runs\metric_report_20260331_122935.json", "$legacyEval\quality_eval\runs\metric_report_20260331_122935_chart_refined.png", "$legacyEval\quality_eval\runs\event_logic_report_20260331_134338.json", "$legacyEval\quality_eval\runs\event_logic_report_20260331_134338_chart.png" -Destination evaluation/quality_eval/runs/
 ```
 
-- [ ] **Step 2: 修复评测脚本对 Python 后端的导入路径**
+- [x] **Step 2: 修复评测脚本对 Python 后端的导入路径**
 
 At the top of `evaluation/data_correction/ai_quality_evaluator.py`, use:
 
@@ -391,7 +391,7 @@ In `evaluation/quality_eval/build_eval_dataset.py`, change the optional runtime-
 output_dir = ROOT / "backend-python" / "outputs"
 ```
 
-- [ ] **Step 3: 运行无模型调用的评测入口检查**
+- [x] **Step 3: 运行无模型调用的评测入口检查**
 
 Run: `python evaluation/data_correction/apply_data_corrections.py --help`
 
@@ -405,7 +405,7 @@ Run: `python evaluation/quality_eval/event_logic_eval.py --help`
 
 Expected: exit 0 and usage text.
 
-- [ ] **Step 4: 扫描数据集中的敏感模式**
+- [x] **Step 4: 扫描数据集中的敏感模式**
 
 Run:
 
@@ -415,7 +415,7 @@ rg -n -i "api[_-]?key|secret|token|password|BEGIN (RSA |OPENSSH |EC )?PRIVATE KE
 
 Expected: no credential or personal-email matches. Domain words such as model `token` counts must be manually classified and recorded as non-secret.
 
-- [ ] **Step 5: 提交评测资产**
+- [x] **Step 5: 提交评测资产**
 
 ```powershell
 git add -- evaluation
@@ -433,7 +433,7 @@ git commit -m "test: restore FTA evaluation assets"
 - Modify: `docs/project-overview.md`
 - Modify: `docs/archive/legacy-docker-deployment.md`
 
-- [ ] **Step 1: 在隔离环境安装实际依赖并生成快照**
+- [x] **Step 1: 在隔离环境安装实际依赖并生成快照**
 
 ```powershell
 python -m venv .venv
@@ -444,7 +444,7 @@ python -m venv .venv
 
 Expected: all commands exit 0; `.venv/` remains ignored.
 
-- [ ] **Step 2: 验证干净环境能够导入 API**
+- [x] **Step 2: 验证干净环境能够导入 API**
 
 Run:
 
@@ -454,7 +454,7 @@ Run:
 
 Expected: prints `AI FTA API` without contacting the model or requiring Neo4j to be online.
 
-- [ ] **Step 3: 写根 README 的真实启动闭环**
+- [x] **Step 3: 写根 README 的真实启动闭环**
 
 `README.md` must contain these commands and explain that Graphviz and Neo4j are optional runtime integrations:
 
@@ -469,11 +469,11 @@ npm run serve --prefix frontend
 
 The README must label historical evaluation metrics as archived evidence and link to the exact selected JSON reports.
 
-- [ ] **Step 4: 修正文档漂移**
+- [x] **Step 4: 修正文档漂移**
 
 Update `docs/api-usage.md` to use `backend-python/` and remove the machine-specific Conda path. Mark `docs/archive/legacy-docker-deployment.md` as non-current because the repository has no verified Docker configuration. Update `docs/project-overview.md` so every referenced evaluation path exists after migration.
 
-- [ ] **Step 5: 提交依赖和文档**
+- [x] **Step 5: 提交依赖和文档**
 
 ```powershell
 git add -- README.md backend-python/requirements.txt docs
@@ -487,7 +487,7 @@ git commit -m "docs: add reproducible monorepo setup"
 **Files:**
 - Modify only if a verification failure identifies a migration regression.
 
-- [ ] **Step 1: 运行结构与漂移门禁**
+- [x] **Step 1: 运行结构与漂移门禁**
 
 Run: `python scripts/verify_repo_layout.py`
 
@@ -497,7 +497,7 @@ Run: `rg -n "C:[\\/]|/Users/|app\.py|vue/vue-1/vue-demo" README.md docs backend-
 
 Expected: no active-document or source-code matches. Matches in sample fault text must be manually classified.
 
-- [ ] **Step 2: 运行 Python 验收**
+- [x] **Step 2: 运行 Python 验收**
 
 Run: `& .\.venv\Scripts\python.exe -m compileall -q backend-python evaluation`
 
@@ -511,7 +511,7 @@ Run: `& .\.venv\Scripts\python.exe -c "import sys; sys.path.insert(0, 'backend-p
 
 Expected: a positive route count and exit 0.
 
-- [ ] **Step 3: 运行 Vue 验收**
+- [x] **Step 3: 运行 Vue 验收**
 
 Run: `npm run build --prefix frontend`
 
@@ -521,7 +521,7 @@ Run: `git status --short --ignored | Select-String 'frontend/(node_modules|dist)
 
 Expected: both directories appear only as ignored entries.
 
-- [ ] **Step 4: 运行 Git 与敏感信息审计**
+- [x] **Step 4: 运行 Git 与敏感信息审计**
 
 Run: `git status --short`
 
@@ -539,7 +539,7 @@ git grep -n -I -E "(sk-[A-Za-z0-9_-]{20,}|BEGIN (RSA |OPENSSH |EC )?PRIVATE KEY|
 
 Expected: no secret matches.
 
-- [ ] **Step 5: 检查分支差异和提交边界**
+- [x] **Step 5: 检查分支差异和提交边界**
 
 Run: `git diff --check main...HEAD`
 
@@ -554,6 +554,8 @@ Run: `git log --oneline --decorate main..HEAD`
 Expected: small commits corresponding to design, guard, backend move, frontend recovery, evaluation recovery and docs.
 
 ## Task 7：用户复核与远程边界
+
+**执行记录（2026-09-12）：** Task 1-6 已在 `refactor/v2-monorepo` 本地分支闭合。结构门禁、隔离依赖、Python 编译/API 导入、手工无外部依赖生成、Vue 构建、生产依赖审计和 Git/敏感信息审计通过；FTA 回归保持迁移前的 3/4 基线，AOCS 仍失败。完整 Vue 开发依赖审计、构建体积告警、在线模型/Neo4j、真实浏览器和部署验收仍按 `docs/known-issues.md` 记录，不作为已通过事实。尚未推送远程。
 
 **学习检查点：** 解释本地分支、远程分支、Pull Request 和 `main` 的关系，让用户能够说清楚代码何时真正对外可见。
 
