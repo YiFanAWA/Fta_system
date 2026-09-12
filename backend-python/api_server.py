@@ -119,7 +119,8 @@ app.add_middleware(
 )
 
 
-OUTPUT_DIR = Path("outputs")
+BASE_DIR = Path(__file__).resolve().parent
+OUTPUT_DIR = BASE_DIR / "outputs"
 OUTPUT_DIR.mkdir(exist_ok=True)
 
 

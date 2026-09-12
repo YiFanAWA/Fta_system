@@ -6,13 +6,17 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-$repoRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
-$pythonExe = "E:/Miniconda/envs/NLP/python.exe"
-if (-not (Test-Path $pythonExe)) {
-    $pythonExe = "python"
+$appDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$projectRoot = Split-Path -Parent $appDir
+$venvPython = Join-Path $projectRoot ".venv\Scripts\python.exe"
+$pythonExe = if (Test-Path -LiteralPath $venvPython) {
+    $venvPython
+}
+else {
+    "python"
 }
 
-Write-Host "[restart_api] repoRoot=$repoRoot"
+Write-Host "[restart_api] appDir=$appDir"
 Write-Host "[restart_api] python=$pythonExe"
 Write-Host "[restart_api] target=$BindHost`:$Port"
 
@@ -34,19 +38,19 @@ else {
     Write-Host "[restart_api] no listener on port $Port"
 }
 
-Set-Location $repoRoot
+Set-Location $projectRoot
 
-$args = @(
+$uvicornArgs = @(
     "-m", "uvicorn",
     "api_server:app",
     "--host", $BindHost,
     "--port", $Port.ToString(),
-    "--app-dir", $repoRoot
+    "--app-dir", $appDir
 )
 
 if ($Reload) {
-    $args += "--reload"
+    $uvicornArgs += "--reload"
 }
 
-Write-Host "[restart_api] starting: $pythonExe $($args -join ' ')"
-& $pythonExe @args
+Write-Host "[restart_api] starting: $pythonExe $($uvicornArgs -join ' ')"
+& $pythonExe @uvicornArgs
