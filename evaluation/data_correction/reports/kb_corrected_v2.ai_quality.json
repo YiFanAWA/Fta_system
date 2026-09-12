@@ -1,0 +1,63 @@
+{
+  "input": "evaluation\\data_correction\\outputs\\kb_corrected_v2.json",
+  "generated_at": "2026-03-27T09:57:55Z",
+  "model": "qwen-plus",
+  "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+  "rule_metrics": {
+    "record_count": 30,
+    "completeness_rate": 1.0,
+    "records_with_causes_rate": 1.0,
+    "avg_causes_per_record": 2.4333,
+    "avg_parameters_per_record": 3.5,
+    "noise_cause_rate": 0.0,
+    "fault_code_format_rate": 1.0
+  },
+  "ai_assessment": {
+    "overall_score": 92,
+    "dimension_scores": {
+      "completeness": 100,
+      "consistency": 88,
+      "noise": 95,
+      "usability": 85
+    },
+    "key_issues": [
+      {
+        "severity": "medium",
+        "issue": "Inconsistent component naming: '控制单元（CU）' vs '编码器及控制单元' vs 'DRIVE-CLiQ组件及编码器模块' — violates taxonomy standardization",
+        "evidence": "'编码器及控制单元' (F01012) and 'DRIVE-CLiQ组件及编码器模块' (A01006) are overly specific or conflated; '控制单元（CU）' appears 10× but other variants break uniformity",
+        "suggestion": "Normalize to canonical component ontology: e.g., '控制单元（CU）', '编码器模块', 'DRIVE-CLiQ接口', '液压模块', '安全集成接口（SI CU）' — disambiguate compound names"
+      },
+      {
+        "severity": "medium",
+        "issue": "Parameter list bloat in F01002 (13 parameters) lacks causality mapping, reducing diagnostic precision",
+        "evidence": "F01002 lists 13 parameters but only 3 causes; no indication which parameter links to which cause (e.g., 'RAM controller abnormal' → p0976? p1215?)",
+        "suggestion": "Add cause-parameter alignment via structured subfields or annotated tags (e.g., 'causes_with_parameters': [{'cause': 'RAM controller abnormal', 'parameters': ['p0976', 'p1215']}, ...])"
+      },
+      {
+        "severity": "low",
+        "issue": "Redundant 'updated_at' timestamps — all identical, suggesting batch ingestion without per-record freshness",
+        "evidence": "All 20 records share identical '2026-03-27T09:57:33Z'; no temporal variance despite different fault lifecycles",
+        "suggestion": "Populate realistic, staggered timestamps or omit if not operationally maintained"
+      }
+    ],
+    "high_value_corrections": [
+      {
+        "fault_code": "F01012",
+        "action": "Split component field into 'component': '控制单元（CU）' and 'affected_subsystem': '编码器参数'",
+        "reason": "'编码器及控制单元' is a hybrid label violating component hierarchy — CU and encoder modules are distinct replaceable units with separate diagnostics"
+      },
+      {
+        "fault_code": "F01632",
+        "action": "Remove '断流阀或液压模块损坏' from causes (duplicate root cause)",
+        "reason": "'断流阀损坏' and '液压模块损坏' are already listed separately; '断流阀或液压模块损坏' is logically redundant and introduces ambiguity"
+      },
+      {
+        "fault_code": "F01002",
+        "action": "Prune parameters to top 5 most diagnostic (r0949, p0976, p1215, p3961, p9799) and annotate causal relevance",
+        "reason": "Excessive parameter count (13) dilutes usability; r0949 appears in 14/20 records and is non-discriminative — retain only high-specificity parameters per cause"
+      }
+    ],
+    "summary": "Data is highly complete and noise-free but suffers from moderate inconsistency in component taxonomy and parameter-cause alignment, impacting diagnostic precision and ontology scalability."
+  },
+  "ai_error": ""
+}

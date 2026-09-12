@@ -13,7 +13,7 @@ __pycache__/
 venv/
 
 # Runtime artifacts
-outputs/
+/outputs/
 backend-python/outputs/
 *.log
 

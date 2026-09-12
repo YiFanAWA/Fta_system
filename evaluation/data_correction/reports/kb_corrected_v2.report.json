@@ -1,0 +1,12 @@
+{
+  "input": "outputs\\kb_cleaned.json",
+  "output": "evaluation\\data_correction\\outputs\\kb_corrected_v2.json",
+  "rules": "evaluation\\data_correction\\rules\\correction_rules.v2.json",
+  "stats": {
+    "input_records": 30,
+    "dropped_records": 0,
+    "changed_records": 30,
+    "merged_records": 0,
+    "output_records": 30
+  }
+}

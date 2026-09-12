@@ -1,0 +1,42 @@
+{
+  "drop_fault_codes": [
+    "F00000"
+  ],
+  "merge_fault_codes": {
+    "F01002-OLD": "F01002"
+  },
+  "global_replacements": {
+    "component": {
+      "unknown": "未知组件"
+    },
+    "description": {
+      "hardware fault": "硬件故障"
+    },
+    "causes": {
+      "参数配置有误": "参数配置错误",
+      "控制单元固件问题": "控制单元固件异常"
+    },
+    "parameters": {
+      "P0977": "p0977",
+      "R0949": "r0949"
+    }
+  },
+  "record_overrides": {
+    "F01002": {
+      "component": "控制单元",
+      "description": "驱动系统硬件异常",
+      "remove_causes": [
+        "见手册"
+      ],
+      "add_causes": [
+        "控制单元固件异常",
+        "参数配置错误"
+      ],
+      "set_parameters": [
+        "p0977",
+        "p9602",
+        "r0949"
+      ]
+    }
+  }
+}

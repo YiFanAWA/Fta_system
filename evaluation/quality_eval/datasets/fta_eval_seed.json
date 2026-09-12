@@ -1,0 +1,4245 @@
+{
+  "dataset_info": {
+    "name": "fta_eval_seed",
+    "version": "1.0.0",
+    "language": "zh-CN",
+    "task": "fault_extraction_and_fta_generation",
+    "description": "Auto-collected seed dataset from handbook and extracted outputs",
+    "created_at": "2026-03-31",
+    "owner": "auto_builder",
+    "warning": "Contains silver labels; complete evidence_spans and verify gold labels before formal benchmark."
+  },
+  "label_schema": {
+    "record_fields": [
+      "fault_code",
+      "component",
+      "description",
+      "causes",
+      "parameters"
+    ],
+    "required_fields": [
+      "description",
+      "causes"
+    ],
+    "fta_min_requirements": {
+      "must_have_top_event": true,
+      "min_first_level_causes": 1,
+      "allow_gate": [
+        "OR",
+        "AND"
+      ]
+    }
+  },
+  "stats": {
+    "total": 87,
+    "kb_corrected": 30,
+    "extracted_output": 55,
+    "manual_text": 1,
+    "request_text": 1,
+    "split": {
+      "train": 50,
+      "dev": 17,
+      "test": 20
+    }
+  },
+  "samples": [
+    {
+      "sample_id": "S00001",
+      "split": "train",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：A01006。组件：DRIVE-CLiQ组件及编码器模块。故障描述：DRIVE-CLiQ组件的固件需要升级（含编码器模块）。可能原因：DRIVE-CLiQ链路固件版本不一致。相关参数：r2124、p7828、p7829。",
+      "gold_top_event": "DRIVE-CLiQ组件的固件需要升级（含编码器模块）",
+      "gold_records": [
+        {
+          "fault_code": "A01006",
+          "component": "DRIVE-CLiQ组件及编码器模块",
+          "description": "DRIVE-CLiQ组件的固件需要升级（含编码器模块）",
+          "causes": [
+            "DRIVE-CLiQ链路固件版本不一致"
+          ],
+          "parameters": [
+            "r2124",
+            "p7828",
+            "p7829"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "DRIVE-CLiQ链路固件版本不一致",
+          "effect": "DRIVE-CLiQ组件的固件需要升级（含编码器模块）",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00002",
+      "split": "train",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：A01007。组件：DRIVE-CLiQ组件及编码器模块。故障描述：DRIVE-CLiQ组件需要重新上电（含编码器模块）。可能原因：DRIVE-CLiQ组件热重启后通信初始化失败。相关参数：r2124。",
+      "gold_top_event": "DRIVE-CLiQ组件需要重新上电（含编码器模块）",
+      "gold_records": [
+        {
+          "fault_code": "A01007",
+          "component": "DRIVE-CLiQ组件及编码器模块",
+          "description": "DRIVE-CLiQ组件需要重新上电（含编码器模块）",
+          "causes": [
+            "DRIVE-CLiQ组件热重启后通信初始化失败"
+          ],
+          "parameters": [
+            "r2124"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "DRIVE-CLiQ组件热重启后通信初始化失败",
+          "effect": "DRIVE-CLiQ组件需要重新上电（含编码器模块）",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00003",
+      "split": "dev",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：A01013。组件：控制单元（CU）。故障描述：控制单元：达到或超过风扇的使用寿命。可能原因：冷却风扇寿命到期导致散热能力下降。相关参数：r2124、p3961。",
+      "gold_top_event": "控制单元：达到或超过风扇的使用寿命",
+      "gold_records": [
+        {
+          "fault_code": "A01013",
+          "component": "控制单元（CU）",
+          "description": "控制单元：达到或超过风扇的使用寿命",
+          "causes": [
+            "冷却风扇寿命到期导致散热能力下降"
+          ],
+          "parameters": [
+            "r2124",
+            "p3961"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "冷却风扇寿命到期导致散热能力下降",
+          "effect": "控制单元：达到或超过风扇的使用寿命",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00004",
+      "split": "dev",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：A01016。组件：控制单元（CU）。故障描述：固件被修改。可能原因：固件文件损坏、存储器损坏。相关参数：r2124、p0977、r9925。",
+      "gold_top_event": "固件被修改",
+      "gold_records": [
+        {
+          "fault_code": "A01016",
+          "component": "控制单元（CU）",
+          "description": "固件被修改",
+          "causes": [
+            "固件文件损坏",
+            "存储器损坏"
+          ],
+          "parameters": [
+            "r2124",
+            "p0977",
+            "r9925"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "固件文件损坏",
+          "effect": "固件被修改",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "存储器损坏",
+          "effect": "固件被修改",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00005",
+      "split": "dev",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：A01017。组件：控制单元（CU）。故障描述：组件列表被更改。可能原因：组件列表变更后未执行安全确认。相关参数：r2124、p0977。",
+      "gold_top_event": "组件列表被更改",
+      "gold_records": [
+        {
+          "fault_code": "A01017",
+          "component": "控制单元（CU）",
+          "description": "组件列表被更改",
+          "causes": [
+            "组件列表变更后未执行安全确认"
+          ],
+          "parameters": [
+            "r2124",
+            "p0977"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "组件列表变更后未执行安全确认",
+          "effect": "组件列表被更改",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00006",
+      "split": "dev",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：A01032。组件：控制单元（CU）。故障描述：ACX：需要存储所有参数。可能原因：未执行完整备份。相关参数：r2124、p0977。",
+      "gold_top_event": "ACX：需要存储所有参数",
+      "gold_records": [
+        {
+          "fault_code": "A01032",
+          "component": "控制单元（CU）",
+          "description": "ACX：需要存储所有参数",
+          "causes": [
+            "未执行完整备份"
+          ],
+          "parameters": [
+            "r2124",
+            "p0977"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "未执行完整备份",
+          "effect": "ACX：需要存储所有参数",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00007",
+      "split": "train",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：A01631。组件：电机模块。故障描述：SI P1（CU）：电机抱闸/SBC配置无意义。可能原因：p1215=0且p9602=1（配置不匹配）、p1215=3且p9602=1（接线或配置不匹配）。相关参数：p1215、p9602、p9802。",
+      "gold_top_event": "SI P1（CU）：电机抱闸/SBC配置无意义",
+      "gold_records": [
+        {
+          "fault_code": "A01631",
+          "component": "电机模块",
+          "description": "SI P1（CU）：电机抱闸/SBC配置无意义",
+          "causes": [
+            "p1215=0且p9602=1（配置不匹配）",
+            "p1215=3且p9602=1（接线或配置不匹配）"
+          ],
+          "parameters": [
+            "p1215",
+            "p9602",
+            "p9802"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "p1215=0且p9602=1（配置不匹配）",
+          "effect": "SI P1（CU）：电机抱闸/SBC配置无意义",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "p1215=3且p9602=1（接线或配置不匹配）",
+          "effect": "SI P1（CU）：电机抱闸/SBC配置无意义",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00008",
+      "split": "train",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01000。组件：控制单元（CU）。故障描述：硬件/软件故障。可能原因：控制单元内部硬件状态异常。相关参数：r0949。",
+      "gold_top_event": "硬件/软件故障",
+      "gold_records": [
+        {
+          "fault_code": "F01000",
+          "component": "控制单元（CU）",
+          "description": "硬件/软件故障",
+          "causes": [
+            "控制单元内部硬件状态异常"
+          ],
+          "parameters": [
+            "r0949"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "控制单元内部硬件状态异常",
+          "effect": "硬件/软件故障",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00009",
+      "split": "test",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01002。组件：控制单元（CU）。故障描述：硬件/软件故障。可能原因：RAM控制器异常、固件升级过程中写入损坏、写入周期内供电不稳定。相关参数：r0949、p0976、p3961、p9601、p9602、p9799、p9802、p1215、p1278、p9650、p9702、p9501、p9503。",
+      "gold_top_event": "硬件/软件故障",
+      "gold_records": [
+        {
+          "fault_code": "F01002",
+          "component": "控制单元（CU）",
+          "description": "硬件/软件故障",
+          "causes": [
+            "RAM控制器异常",
+            "固件升级过程中写入损坏",
+            "写入周期内供电不稳定"
+          ],
+          "parameters": [
+            "r0949",
+            "p0976",
+            "p3961",
+            "p9601",
+            "p9602",
+            "p9799",
+            "p9802",
+            "p1215",
+            "p1278",
+            "p9650",
+            "p9702",
+            "p9501",
+            "p9503"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "RAM控制器异常",
+          "effect": "硬件/软件故障",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "固件升级过程中写入损坏",
+          "effect": "硬件/软件故障",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "写入周期内供电不稳定",
+          "effect": "硬件/软件故障",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00010",
+      "split": "dev",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01003。组件：控制单元（CU）。故障描述：访问存储器时出现应答延迟。可能原因：存储器总线负载过高导致访问延迟。相关参数：r0949。",
+      "gold_top_event": "访问存储器时出现应答延迟",
+      "gold_records": [
+        {
+          "fault_code": "F01003",
+          "component": "控制单元（CU）",
+          "description": "访问存储器时出现应答延迟",
+          "causes": [
+            "存储器总线负载过高导致访问延迟"
+          ],
+          "parameters": [
+            "r0949"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "存储器总线负载过高导致访问延迟",
+          "effect": "访问存储器时出现应答延迟",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00011",
+      "split": "test",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01005。组件：DRIVE-CLiQ组件及编码器模块。故障描述：下载DRIVE-CLiQ组件的固件失败（含编码器模块）。可能原因：校验和错误、组件不支持固件内容、固件版本过旧、固件与硬件版本不兼容、通讯无应答、仅载入引导程序、无固件文件、固件文件长度不一致、无法进入下载模式、固件校验失败、校验超时、组件不存在。相关参数：r0949、p7828。",
+      "gold_top_event": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+      "gold_records": [
+        {
+          "fault_code": "F01005",
+          "component": "DRIVE-CLiQ组件及编码器模块",
+          "description": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+          "causes": [
+            "校验和错误",
+            "组件不支持固件内容",
+            "固件版本过旧",
+            "固件与硬件版本不兼容",
+            "通讯无应答",
+            "仅载入引导程序",
+            "无固件文件",
+            "固件文件长度不一致",
+            "无法进入下载模式",
+            "固件校验失败",
+            "校验超时",
+            "组件不存在"
+          ],
+          "parameters": [
+            "r0949",
+            "p7828"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "校验和错误",
+          "effect": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "组件不支持固件内容",
+          "effect": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "固件版本过旧",
+          "effect": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "固件与硬件版本不兼容",
+          "effect": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "通讯无应答",
+          "effect": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "仅载入引导程序",
+          "effect": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "无固件文件",
+          "effect": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "固件文件长度不一致",
+          "effect": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "无法进入下载模式",
+          "effect": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "固件校验失败",
+          "effect": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "校验超时",
+          "effect": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "组件不存在",
+          "effect": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00012",
+      "split": "dev",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01009。组件：控制单元（CU）。故障描述：CU：控制单元过热（间接影响编码器信号处理）。可能原因：控制单元散热不足导致温度超限。",
+      "gold_top_event": "CU：控制单元过热（间接影响编码器信号处理）",
+      "gold_records": [
+        {
+          "fault_code": "F01009",
+          "component": "控制单元（CU）",
+          "description": "CU：控制单元过热（间接影响编码器信号处理）",
+          "causes": [
+            "控制单元散热不足导致温度超限"
+          ],
+          "parameters": []
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "控制单元散热不足导致温度超限",
+          "effect": "CU：控制单元过热（间接影响编码器信号处理）",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00013",
+      "split": "test",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01010。组件：电机模块及编码器。故障描述：驱动类型不明。可能原因：驱动对象参数配置与实际硬件不匹配。相关参数：r0949、p0101、p0107。",
+      "gold_top_event": "驱动类型不明",
+      "gold_records": [
+        {
+          "fault_code": "F01010",
+          "component": "电机模块及编码器",
+          "description": "驱动类型不明",
+          "causes": [
+            "驱动对象参数配置与实际硬件不匹配"
+          ],
+          "parameters": [
+            "r0949",
+            "p0101",
+            "p0107"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "驱动对象参数配置与实际硬件不匹配",
+          "effect": "驱动类型不明",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00014",
+      "split": "train",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01012。组件：编码器及控制单元。故障描述：项目转化出错（含编码器相关参数）。可能原因：参数集版本不一致导致项目转换失败。相关参数：r0949、p0600、p0187、p0188、p0189。",
+      "gold_top_event": "项目转化出错（含编码器相关参数）",
+      "gold_records": [
+        {
+          "fault_code": "F01012",
+          "component": "编码器及控制单元",
+          "description": "项目转化出错（含编码器相关参数）",
+          "causes": [
+            "参数集版本不一致导致项目转换失败"
+          ],
+          "parameters": [
+            "r0949",
+            "p0600",
+            "p0187",
+            "p0188",
+            "p0189"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "参数集版本不一致导致项目转换失败",
+          "effect": "项目转化出错（含编码器相关参数）",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00015",
+      "split": "train",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01014。组件：控制单元（CU）。故障描述：拓扑：DRIVE-CLiQ组件属性变化。可能原因：DRIVE-CLiQ拓扑发生变化且未重新确认。相关参数：r0949。",
+      "gold_top_event": "拓扑：DRIVE-CLiQ组件属性变化",
+      "gold_records": [
+        {
+          "fault_code": "F01014",
+          "component": "控制单元（CU）",
+          "description": "拓扑：DRIVE-CLiQ组件属性变化",
+          "causes": [
+            "DRIVE-CLiQ拓扑发生变化且未重新确认"
+          ],
+          "parameters": [
+            "r0949"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "DRIVE-CLiQ拓扑发生变化且未重新确认",
+          "effect": "拓扑：DRIVE-CLiQ组件属性变化",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00016",
+      "split": "test",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01015。组件：控制单元（CU）。故障描述：内部软件错误。可能原因：控制单元内部任务调度异常。相关参数：r0949。",
+      "gold_top_event": "内部软件错误",
+      "gold_records": [
+        {
+          "fault_code": "F01015",
+          "component": "控制单元（CU）",
+          "description": "内部软件错误",
+          "causes": [
+            "控制单元内部任务调度异常"
+          ],
+          "parameters": [
+            "r0949"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "控制单元内部任务调度异常",
+          "effect": "内部软件错误",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00017",
+      "split": "test",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01020。组件：控制单元（CU）。故障描述：写RAM失败。可能原因：RAM硬件老化、电源纹波超出允许范围、RAM ECC错误检测触发。相关参数：r0949、p0976、p1215。",
+      "gold_top_event": "写RAM失败",
+      "gold_records": [
+        {
+          "fault_code": "F01020",
+          "component": "控制单元（CU）",
+          "description": "写RAM失败",
+          "causes": [
+            "RAM硬件老化",
+            "电源纹波超出允许范围",
+            "RAM ECC错误检测触发"
+          ],
+          "parameters": [
+            "r0949",
+            "p0976",
+            "p1215"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "RAM硬件老化",
+          "effect": "写RAM失败",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "电源纹波超出允许范围",
+          "effect": "写RAM失败",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "RAM ECC错误检测触发",
+          "effect": "写RAM失败",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00018",
+      "split": "train",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01023。组件：控制单元（CU）。故障描述：内部软件超时。可能原因：瞬时电压波动、启用了过多的驱动功能，导致软件运行负载过大。相关参数：r0949。",
+      "gold_top_event": "内部软件超时",
+      "gold_records": [
+        {
+          "fault_code": "F01023",
+          "component": "控制单元（CU）",
+          "description": "内部软件超时",
+          "causes": [
+            "瞬时电压波动",
+            "启用了过多的驱动功能，导致软件运行负载过大"
+          ],
+          "parameters": [
+            "r0949"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "瞬时电压波动",
+          "effect": "内部软件超时",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "启用了过多的驱动功能，导致软件运行负载过大",
+          "effect": "内部软件超时",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00019",
+      "split": "train",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01033。组件：编码器及传感器。故障描述：单位转换：参考参数无效。可能原因：参考参数越界或单位缩放系数设置错误。相关参数：r0949、p0304、p0305、p0310、p0596、p2000、p0349、p0005、p0595。",
+      "gold_top_event": "单位转换：参考参数无效",
+      "gold_records": [
+        {
+          "fault_code": "F01033",
+          "component": "编码器及传感器",
+          "description": "单位转换：参考参数无效",
+          "causes": [
+            "参考参数越界或单位缩放系数设置错误"
+          ],
+          "parameters": [
+            "r0949",
+            "p0304",
+            "p0305",
+            "p0310",
+            "p0596",
+            "p2000",
+            "p0349",
+            "p0005",
+            "p0595"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "参考参数越界或单位缩放系数设置错误",
+          "effect": "单位转换：参考参数无效",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00020",
+      "split": "test",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01034。组件：编码器及传感器。故障描述：单位转换：参考值更改后参数值计算失败。可能原因：参考值变更后相关参数未同步重计算。相关参数：r0949、p0304、p0305、p0310、p0596、p2000、p0349、p0005、p0595。",
+      "gold_top_event": "单位转换：参考值更改后参数值计算失败",
+      "gold_records": [
+        {
+          "fault_code": "F01034",
+          "component": "编码器及传感器",
+          "description": "单位转换：参考值更改后参数值计算失败",
+          "causes": [
+            "参考值变更后相关参数未同步重计算"
+          ],
+          "parameters": [
+            "r0949",
+            "p0304",
+            "p0305",
+            "p0310",
+            "p0596",
+            "p2000",
+            "p0349",
+            "p0005",
+            "p0595"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "参考值变更后相关参数未同步重计算",
+          "effect": "单位转换：参考值更改后参数值计算失败",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00021",
+      "split": "train",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01600。组件：安全集成接口（SI CU）。故障描述：SI CU:STOP A被触发。可能原因：交叉比较数据编号参数设置不一致、控制定时器届满、PROFIsafe控制故障。相关参数：r0949、p9601、p9602、p9610、p9612、p9650、p9850。",
+      "gold_top_event": "SI CU:STOP A被触发",
+      "gold_records": [
+        {
+          "fault_code": "F01600",
+          "component": "安全集成接口（SI CU）",
+          "description": "SI CU:STOP A被触发",
+          "causes": [
+            "交叉比较数据编号参数设置不一致",
+            "控制定时器届满",
+            "PROFIsafe控制故障"
+          ],
+          "parameters": [
+            "r0949",
+            "p9601",
+            "p9602",
+            "p9610",
+            "p9612",
+            "p9650",
+            "p9850"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "交叉比较数据编号参数设置不一致",
+          "effect": "SI CU:STOP A被触发",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "控制定时器届满",
+          "effect": "SI CU:STOP A被触发",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "PROFIsafe控制故障",
+          "effect": "SI CU:STOP A被触发",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00022",
+      "split": "test",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01611。组件：液压模块。故障描述：SI P1（CU）：某一监控通道故障。可能原因：STO端子布线问题、接触问题。相关参数：r0949、r9772。",
+      "gold_top_event": "SI P1（CU）：某一监控通道故障",
+      "gold_records": [
+        {
+          "fault_code": "F01611",
+          "component": "液压模块",
+          "description": "SI P1（CU）：某一监控通道故障",
+          "causes": [
+            "STO端子布线问题",
+            "接触问题"
+          ],
+          "parameters": [
+            "r0949",
+            "r9772"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "STO端子布线问题",
+          "effect": "SI P1（CU）：某一监控通道故障",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "接触问题",
+          "effect": "SI P1（CU）：某一监控通道故障",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00023",
+      "split": "dev",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01612。组件：并联功率单元。故障描述：SI P1（CU）：并联功率单元上STO输入不同。可能原因：F-DI切换公差时间不足、F-DI接线不牢固、接触不良、并联功率单元配置参数不一致。相关参数：r0949、p9650、p7015。",
+      "gold_top_event": "SI P1（CU）：并联功率单元上STO输入不同",
+      "gold_records": [
+        {
+          "fault_code": "F01612",
+          "component": "并联功率单元",
+          "description": "SI P1（CU）：并联功率单元上STO输入不同",
+          "causes": [
+            "F-DI切换公差时间不足",
+            "F-DI接线不牢固",
+            "接触不良",
+            "并联功率单元配置参数不一致"
+          ],
+          "parameters": [
+            "r0949",
+            "p9650",
+            "p7015"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "F-DI切换公差时间不足",
+          "effect": "SI P1（CU）：并联功率单元上STO输入不同",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "F-DI接线不牢固",
+          "effect": "SI P1（CU）：并联功率单元上STO输入不同",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "接触不良",
+          "effect": "SI P1（CU）：并联功率单元上STO输入不同",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "并联功率单元配置参数不一致",
+          "effect": "SI P1（CU）：并联功率单元上STO输入不同",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00024",
+      "split": "train",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01630。组件：制动绕组。故障描述：SI P1（CU）：制动控制出错。可能原因：p1278设置错误、电机抱闸装置连接异常、电缆断开、制动绕组接地、制动绕组短路、制动装置功能异常、控制单元与电机模块间DRIVE-CLiQ通讯故障。相关参数：r0949、p1278。",
+      "gold_top_event": "SI P1（CU）：制动控制出错",
+      "gold_records": [
+        {
+          "fault_code": "F01630",
+          "component": "制动绕组",
+          "description": "SI P1（CU）：制动控制出错",
+          "causes": [
+            "p1278设置错误",
+            "电机抱闸装置连接异常",
+            "电缆断开",
+            "制动绕组接地",
+            "制动绕组短路",
+            "制动装置功能异常",
+            "控制单元与电机模块间DRIVE-CLiQ通讯故障"
+          ],
+          "parameters": [
+            "r0949",
+            "p1278"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "p1278设置错误",
+          "effect": "SI P1（CU）：制动控制出错",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "电机抱闸装置连接异常",
+          "effect": "SI P1（CU）：制动控制出错",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "电缆断开",
+          "effect": "SI P1（CU）：制动控制出错",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "制动绕组接地",
+          "effect": "SI P1（CU）：制动控制出错",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "制动绕组短路",
+          "effect": "SI P1（CU）：制动控制出错",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "制动装置功能异常",
+          "effect": "SI P1（CU）：制动控制出错",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "控制单元与电机模块间DRIVE-CLiQ通讯故障",
+          "effect": "SI P1（CU）：制动控制出错",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00025",
+      "split": "train",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01632。组件：断流阀。故障描述：SI P1（CU）：断流阀控制/反馈出错。可能原因：断流阀连接错误、断流阀反馈连接异常、断流阀损坏、反馈信号异常、断流阀机械卡滞、EMC不合规、屏蔽层未接地、断流阀或液压模块损坏、p9626/p9826参数配置错误。相关参数：r0949、p9626、p9826、x272、x281、x282。",
+      "gold_top_event": "SI P1（CU）：断流阀控制/反馈出错",
+      "gold_records": [
+        {
+          "fault_code": "F01632",
+          "component": "断流阀",
+          "description": "SI P1（CU）：断流阀控制/反馈出错",
+          "causes": [
+            "断流阀连接错误",
+            "断流阀反馈连接异常",
+            "断流阀损坏",
+            "反馈信号异常",
+            "断流阀机械卡滞",
+            "EMC不合规",
+            "屏蔽层未接地",
+            "断流阀或液压模块损坏",
+            "p9626/p9826参数配置错误"
+          ],
+          "parameters": [
+            "r0949",
+            "p9626",
+            "p9826",
+            "x272",
+            "x281",
+            "x282"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "断流阀连接错误",
+          "effect": "SI P1（CU）：断流阀控制/反馈出错",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "断流阀反馈连接异常",
+          "effect": "SI P1（CU）：断流阀控制/反馈出错",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "断流阀损坏",
+          "effect": "SI P1（CU）：断流阀控制/反馈出错",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "反馈信号异常",
+          "effect": "SI P1（CU）：断流阀控制/反馈出错",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "断流阀机械卡滞",
+          "effect": "SI P1（CU）：断流阀控制/反馈出错",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "EMC不合规",
+          "effect": "SI P1（CU）：断流阀控制/反馈出错",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "屏蔽层未接地",
+          "effect": "SI P1（CU）：断流阀控制/反馈出错",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "断流阀或液压模块损坏",
+          "effect": "SI P1（CU）：断流阀控制/反馈出错",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "p9626/p9826参数配置错误",
+          "effect": "SI P1（CU）：断流阀控制/反馈出错",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00026",
+      "split": "test",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01640。组件：控制单元（CU）。故障描述：SI P1（CU）：识别出组件更换并需应答/保存。可能原因：控制单元更换、电机模块更换、液压模块更换。相关参数：r0949、p9702、p0977、p0971、p2103、p9799、p9899、p9501、p9503。",
+      "gold_top_event": "SI P1（CU）：识别出组件更换并需应答/保存",
+      "gold_records": [
+        {
+          "fault_code": "F01640",
+          "component": "控制单元（CU）",
+          "description": "SI P1（CU）：识别出组件更换并需应答/保存",
+          "causes": [
+            "控制单元更换",
+            "电机模块更换",
+            "液压模块更换"
+          ],
+          "parameters": [
+            "r0949",
+            "p9702",
+            "p0977",
+            "p0971",
+            "p2103",
+            "p9799",
+            "p9899",
+            "p9501",
+            "p9503"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "控制单元更换",
+          "effect": "SI P1（CU）：识别出组件更换并需应答/保存",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "电机模块更换",
+          "effect": "SI P1（CU）：识别出组件更换并需应答/保存",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "液压模块更换",
+          "effect": "SI P1（CU）：识别出组件更换并需应答/保存",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00027",
+      "split": "dev",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01641。组件：传感器。故障描述：SI P1（CU）：识别出组件更换并需保存。可能原因：传感器更换。相关参数：r0949、r9776、p0977。",
+      "gold_top_event": "SI P1（CU）：识别出组件更换并需保存",
+      "gold_records": [
+        {
+          "fault_code": "F01641",
+          "component": "传感器",
+          "description": "SI P1（CU）：识别出组件更换并需保存",
+          "causes": [
+            "传感器更换"
+          ],
+          "parameters": [
+            "r0949",
+            "r9776",
+            "p0977"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "传感器更换",
+          "effect": "SI P1（CU）：识别出组件更换并需保存",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00028",
+      "split": "test",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01649。组件：控制单元（CU）。故障描述：SI P1（CU）：内部软件错误（安全功能相关）。可能原因：安全软件漏洞。相关参数：p9799。",
+      "gold_top_event": "SI P1（CU）：内部软件错误（安全功能相关）",
+      "gold_records": [
+        {
+          "fault_code": "F01649",
+          "component": "控制单元（CU）",
+          "description": "SI P1（CU）：内部软件错误（安全功能相关）",
+          "causes": [
+            "安全软件漏洞"
+          ],
+          "parameters": [
+            "p9799"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "安全软件漏洞",
+          "effect": "SI P1（CU）：内部软件错误（安全功能相关）",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00029",
+      "split": "dev",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01650。组件：控制单元（CU）。故障描述：SI P1（CU）：必须进行验收测试。可能原因：p9503中安全通道2配置缺失、参数下载后p9799校验和不一致、CU与SI模块硬件版本不匹配。相关参数：r0949、p9799、p9899、p9501、p9503。",
+      "gold_top_event": "SI P1（CU）：必须进行验收测试",
+      "gold_records": [
+        {
+          "fault_code": "F01650",
+          "component": "控制单元（CU）",
+          "description": "SI P1（CU）：必须进行验收测试",
+          "causes": [
+            "p9503中安全通道2配置缺失",
+            "参数下载后p9799校验和不一致",
+            "CU与SI模块硬件版本不匹配"
+          ],
+          "parameters": [
+            "r0949",
+            "p9799",
+            "p9899",
+            "p9501",
+            "p9503"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "p9503中安全通道2配置缺失",
+          "effect": "SI P1（CU）：必须进行验收测试",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "参数下载后p9799校验和不一致",
+          "effect": "SI P1（CU）：必须进行验收测试",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "CU与SI模块硬件版本不匹配",
+          "effect": "SI P1（CU）：必须进行验收测试",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00030",
+      "split": "train",
+      "source_type": "kb_corrected",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01651。组件：安全集成接口（SI CU）。故障描述：SI P1（CU）：安全时间片同步失败。可能原因：热启动导致同步失败、PROFIBUS主站同步故障。相关参数：r0949、p9510。",
+      "gold_top_event": "SI P1（CU）：安全时间片同步失败",
+      "gold_records": [
+        {
+          "fault_code": "F01651",
+          "component": "安全集成接口（SI CU）",
+          "description": "SI P1（CU）：安全时间片同步失败",
+          "causes": [
+            "热启动导致同步失败",
+            "PROFIBUS主站同步故障"
+          ],
+          "parameters": [
+            "r0949",
+            "p9510"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "热启动导致同步失败",
+          "effect": "SI P1（CU）：安全时间片同步失败",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "PROFIBUS主站同步故障",
+          "effect": "SI P1（CU）：安全时间片同步失败",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "silver label from corrected KB"
+    },
+    {
+      "sample_id": "S00031",
+      "split": "test",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：A01006。组件：未知。故障描述：DRIVE-CLiQ组件的固件需要升级（含编码器模块）。可能原因：DRIVE-CLiQ组件固件版本过旧。相关参数：r2124、p7828、p7829。",
+      "gold_top_event": "DRIVE-CLiQ组件的固件需要升级（含编码器模块）",
+      "gold_records": [
+        {
+          "fault_code": "A01006",
+          "component": "",
+          "description": "DRIVE-CLiQ组件的固件需要升级（含编码器模块）",
+          "causes": [
+            "DRIVE-CLiQ组件固件版本过旧"
+          ],
+          "parameters": [
+            "r2124",
+            "p7828",
+            "p7829"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "DRIVE-CLiQ组件固件版本过旧",
+          "effect": "DRIVE-CLiQ组件的固件需要升级（含编码器模块）",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_upload_latest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00032",
+      "split": "dev",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：A01007。组件：未知。故障描述：DRIVE-CLiQ组件需要重新上电（含编码器模块）。可能原因：DRIVE-CLiQ组件未正确初始化、上电顺序异常导致通讯异常。相关参数：r2124。",
+      "gold_top_event": "DRIVE-CLiQ组件需要重新上电（含编码器模块）",
+      "gold_records": [
+        {
+          "fault_code": "A01007",
+          "component": "",
+          "description": "DRIVE-CLiQ组件需要重新上电（含编码器模块）",
+          "causes": [
+            "DRIVE-CLiQ组件未正确初始化",
+            "上电顺序异常导致通讯异常"
+          ],
+          "parameters": [
+            "r2124"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "DRIVE-CLiQ组件未正确初始化",
+          "effect": "DRIVE-CLiQ组件需要重新上电（含编码器模块）",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "上电顺序异常导致通讯异常",
+          "effect": "DRIVE-CLiQ组件需要重新上电（含编码器模块）",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_upload_latest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00033",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：A01013。组件：控制单元（CU）。故障描述：控制单元：达到或超过风扇的使用寿命。可能原因：风扇运行时间超限、散热通道堵塞。相关参数：r2124。",
+      "gold_top_event": "控制单元：达到或超过风扇的使用寿命",
+      "gold_records": [
+        {
+          "fault_code": "A01013",
+          "component": "控制单元（CU）",
+          "description": "控制单元：达到或超过风扇的使用寿命",
+          "causes": [
+            "风扇运行时间超限",
+            "散热通道堵塞"
+          ],
+          "parameters": [
+            "r2124"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "风扇运行时间超限",
+          "effect": "控制单元：达到或超过风扇的使用寿命",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "散热通道堵塞",
+          "effect": "控制单元：达到或超过风扇的使用寿命",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_upload_latest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00034",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：A01016（F）。组件：未知。故障描述：固件被修改。可能原因：文件校验和出错、固件文件缺失或过多、固件版本错误、备份文件校验和出错。相关参数：r2124。",
+      "gold_top_event": "固件被修改",
+      "gold_records": [
+        {
+          "fault_code": "A01016（F）",
+          "component": "",
+          "description": "固件被修改",
+          "causes": [
+            "文件校验和出错",
+            "固件文件缺失或过多",
+            "固件版本错误",
+            "备份文件校验和出错"
+          ],
+          "parameters": [
+            "r2124"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "文件校验和出错",
+          "effect": "固件被修改",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "固件文件缺失或过多",
+          "effect": "固件被修改",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "固件版本错误",
+          "effect": "固件被修改",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "备份文件校验和出错",
+          "effect": "固件被修改",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_upload_latest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00035",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：A01017。组件：控制单元（CU）。故障描述：组件列表被更改。可能原因：手动修改组件配置、固件升级导致配置不一致。相关参数：r2124。",
+      "gold_top_event": "组件列表被更改",
+      "gold_records": [
+        {
+          "fault_code": "A01017",
+          "component": "控制单元（CU）",
+          "description": "组件列表被更改",
+          "causes": [
+            "手动修改组件配置",
+            "固件升级导致配置不一致"
+          ],
+          "parameters": [
+            "r2124"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "手动修改组件配置",
+          "effect": "组件列表被更改",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "固件升级导致配置不一致",
+          "effect": "组件列表被更改",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_upload_latest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00036",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：A01032（F）。组件：控制单元（CU）。故障描述：ACX：需要存储所有参数。可能原因：参数修改后未保存、热启动或复位操作未触发参数持久化。相关参数：r2124。",
+      "gold_top_event": "ACX：需要存储所有参数",
+      "gold_records": [
+        {
+          "fault_code": "A01032（F）",
+          "component": "控制单元（CU）",
+          "description": "ACX：需要存储所有参数",
+          "causes": [
+            "参数修改后未保存",
+            "热启动或复位操作未触发参数持久化"
+          ],
+          "parameters": [
+            "r2124"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "参数修改后未保存",
+          "effect": "ACX：需要存储所有参数",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "热启动或复位操作未触发参数持久化",
+          "effect": "ACX：需要存储所有参数",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_upload_latest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00037",
+      "split": "test",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01000。组件：控制单元（CU）。故障描述：硬件/软件故障，故障反应为OFF2，信息值格式为“模块:%1,行:%2”，访问存储器时出现应答延迟。可能原因：控制单元内部软件错误、存储器连接不良或损坏。相关参数：r0949。",
+      "gold_top_event": "硬件/软件故障，故障反应为OFF2，信息值格式为“模块:%1,行:%2”，访问存储器时出现应答延迟",
+      "gold_records": [
+        {
+          "fault_code": "F01000",
+          "component": "控制单元（CU）",
+          "description": "硬件/软件故障，故障反应为OFF2，信息值格式为“模块:%1,行:%2”，访问存储器时出现应答延迟",
+          "causes": [
+            "控制单元内部软件错误",
+            "存储器连接不良或损坏"
+          ],
+          "parameters": [
+            "r0949"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "控制单元内部软件错误",
+          "effect": "硬件/软件故障，故障反应为OFF2，信息值格式为“模块:%1,行:%2”，访问存储器时出现应答延迟",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "存储器连接不良或损坏",
+          "effect": "硬件/软件故障，故障反应为OFF2，信息值格式为“模块:%1,行:%2”，访问存储器时出现应答延迟",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_upload_latest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00038",
+      "split": "dev",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01002。组件：控制单元（CU）。故障描述：硬件/软件故障，故障反应为OFF2，信息值格式为“%1”。可能原因：内部软件异常、固件缺陷或版本不兼容。相关参数：r0949。",
+      "gold_top_event": "硬件/软件故障，故障反应为OFF2，信息值格式为“%1”",
+      "gold_records": [
+        {
+          "fault_code": "F01002",
+          "component": "控制单元（CU）",
+          "description": "硬件/软件故障，故障反应为OFF2，信息值格式为“%1”",
+          "causes": [
+            "内部软件异常",
+            "固件缺陷或版本不兼容"
+          ],
+          "parameters": [
+            "r0949"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "内部软件异常",
+          "effect": "硬件/软件故障，故障反应为OFF2，信息值格式为“%1”",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "固件缺陷或版本不兼容",
+          "effect": "硬件/软件故障，故障反应为OFF2，信息值格式为“%1”",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_upload_latest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00039",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01003。组件：控制单元（CU）。故障描述：访问存储器时出现应答延迟。可能原因：内部存储器接触不良、存储器硬件损坏。相关参数：r0949。",
+      "gold_top_event": "访问存储器时出现应答延迟",
+      "gold_records": [
+        {
+          "fault_code": "F01003",
+          "component": "控制单元（CU）",
+          "description": "访问存储器时出现应答延迟",
+          "causes": [
+            "内部存储器接触不良",
+            "存储器硬件损坏"
+          ],
+          "parameters": [
+            "r0949"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "内部存储器接触不良",
+          "effect": "访问存储器时出现应答延迟",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "存储器硬件损坏",
+          "effect": "访问存储器时出现应答延迟",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_upload_latest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00040",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "medium",
+      "input_text": "故障代码：F01005。组件：未知。故障描述：下载DRIVE-CLiQ组件的固件失败（含编码器模块）。可能原因：校验和错误（r0949低16位=000B）、组件不支持固件内容（r0949低16位=000F）、固件版本过旧（r0949低16位=0012）、固件与硬件版本不兼容（r0949低16位=0013）、通讯无应答（r0949低16位=0065）、仅载入引导程序（r0949低16位=008B）、无固件文件（r0949低16位=008C）、固件文件长度不一致（r0949低16位=008D）、无法进入下载模式（r0949低16位=008F）、固件校验失败（r0949低16位=0090）、校验超时（r0949低16位=0091）、组件不存在（r0949低16位=009C）。相关参数：r0949、p7828。",
+      "gold_top_event": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+      "gold_records": [
+        {
+          "fault_code": "F01005",
+          "component": "",
+          "description": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+          "causes": [
+            "校验和错误（r0949低16位=000B）",
+            "组件不支持固件内容（r0949低16位=000F）",
+            "固件版本过旧（r0949低16位=0012）",
+            "固件与硬件版本不兼容（r0949低16位=0013）",
+            "通讯无应答（r0949低16位=0065）",
+            "仅载入引导程序（r0949低16位=008B）",
+            "无固件文件（r0949低16位=008C）",
+            "固件文件长度不一致（r0949低16位=008D）",
+            "无法进入下载模式（r0949低16位=008F）",
+            "固件校验失败（r0949低16位=0090）",
+            "校验超时（r0949低16位=0091）",
+            "组件不存在（r0949低16位=009C）"
+          ],
+          "parameters": [
+            "r0949",
+            "p7828"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "校验和错误（r0949低16位=000B）",
+          "effect": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "组件不支持固件内容（r0949低16位=000F）",
+          "effect": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "固件版本过旧（r0949低16位=0012）",
+          "effect": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "固件与硬件版本不兼容（r0949低16位=0013）",
+          "effect": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "通讯无应答（r0949低16位=0065）",
+          "effect": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "仅载入引导程序（r0949低16位=008B）",
+          "effect": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "无固件文件（r0949低16位=008C）",
+          "effect": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "固件文件长度不一致（r0949低16位=008D）",
+          "effect": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "无法进入下载模式（r0949低16位=008F）",
+          "effect": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "固件校验失败（r0949低16位=0090）",
+          "effect": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "校验超时（r0949低16位=0091）",
+          "effect": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "组件不存在（r0949低16位=009C）",
+          "effect": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_upload_latest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00041",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01009。组件：控制单元（CU）。故障描述：CU：控制单元过热（间接影响编码器信号处理）。可能原因：散热通道堵塞、风扇损坏或运行异常、电柜通风不良或环境温度过高。",
+      "gold_top_event": "CU：控制单元过热（间接影响编码器信号处理）",
+      "gold_records": [
+        {
+          "fault_code": "F01009",
+          "component": "控制单元（CU）",
+          "description": "CU：控制单元过热（间接影响编码器信号处理）",
+          "causes": [
+            "散热通道堵塞",
+            "风扇损坏或运行异常",
+            "电柜通风不良或环境温度过高"
+          ],
+          "parameters": []
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "散热通道堵塞",
+          "effect": "CU：控制单元过热（间接影响编码器信号处理）",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "风扇损坏或运行异常",
+          "effect": "CU：控制单元过热（间接影响编码器信号处理）",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "电柜通风不良或环境温度过高",
+          "effect": "CU：控制单元过热（间接影响编码器信号处理）",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_upload_latest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00042",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01010。组件：未知。故障描述：驱动类型不明。可能原因：电机模块及编码器配置错误、功率模块损坏、固件与驱动类型不兼容。相关参数：r0949、p0101、p0107。",
+      "gold_top_event": "驱动类型不明",
+      "gold_records": [
+        {
+          "fault_code": "F01010",
+          "component": "",
+          "description": "驱动类型不明",
+          "causes": [
+            "电机模块及编码器配置错误",
+            "功率模块损坏",
+            "固件与驱动类型不兼容"
+          ],
+          "parameters": [
+            "r0949",
+            "p0101",
+            "p0107"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "电机模块及编码器配置错误",
+          "effect": "驱动类型不明",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "功率模块损坏",
+          "effect": "驱动类型不明",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "固件与驱动类型不兼容",
+          "effect": "驱动类型不明",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_upload_latest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00043",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01012。组件：未知。故障描述：项目转化出错（含编码器相关参数）。可能原因：温度检测分配错误（r0949=600）、内部编码器信号转换与接口分配不匹配、旧版本固件存在项目转化漏洞。相关参数：r0949、p0600、p0187、p0188、p0189。",
+      "gold_top_event": "项目转化出错（含编码器相关参数）",
+      "gold_records": [
+        {
+          "fault_code": "F01012",
+          "component": "",
+          "description": "项目转化出错（含编码器相关参数）",
+          "causes": [
+            "温度检测分配错误（r0949=600）",
+            "内部编码器信号转换与接口分配不匹配",
+            "旧版本固件存在项目转化漏洞"
+          ],
+          "parameters": [
+            "r0949",
+            "p0600",
+            "p0187",
+            "p0188",
+            "p0189"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "温度检测分配错误（r0949=600）",
+          "effect": "项目转化出错（含编码器相关参数）",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "内部编码器信号转换与接口分配不匹配",
+          "effect": "项目转化出错（含编码器相关参数）",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "旧版本固件存在项目转化漏洞",
+          "effect": "项目转化出错（含编码器相关参数）",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_upload_latest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00044",
+      "split": "test",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01014。组件：未知。故障描述：拓扑：DRIVE-CLiQ组件属性变化。可能原因：DRIVE-CLiQ电缆连接松动、DRIVE-CLiQ组件更换或配置变更。相关参数：r0949。",
+      "gold_top_event": "拓扑：DRIVE-CLiQ组件属性变化",
+      "gold_records": [
+        {
+          "fault_code": "F01014",
+          "component": "",
+          "description": "拓扑：DRIVE-CLiQ组件属性变化",
+          "causes": [
+            "DRIVE-CLiQ电缆连接松动",
+            "DRIVE-CLiQ组件更换或配置变更"
+          ],
+          "parameters": [
+            "r0949"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "DRIVE-CLiQ电缆连接松动",
+          "effect": "拓扑：DRIVE-CLiQ组件属性变化",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "DRIVE-CLiQ组件更换或配置变更",
+          "effect": "拓扑：DRIVE-CLiQ组件属性变化",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_upload_latest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00045",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01015。组件：控制单元（CU）。故障描述：内部软件错误。可能原因：固件漏洞、参数配置冲突、软件运行异常。相关参数：r0949。",
+      "gold_top_event": "内部软件错误",
+      "gold_records": [
+        {
+          "fault_code": "F01015",
+          "component": "控制单元（CU）",
+          "description": "内部软件错误",
+          "causes": [
+            "固件漏洞",
+            "参数配置冲突",
+            "软件运行异常"
+          ],
+          "parameters": [
+            "r0949"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "固件漏洞",
+          "effect": "内部软件错误",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "参数配置冲突",
+          "effect": "内部软件错误",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "软件运行异常",
+          "effect": "内部软件错误",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_upload_latest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00046",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01020。组件：控制单元（CU）。故障描述：写RAM失败。可能原因：RAM空间不足、RAM芯片接触不良、RAM硬件损坏。",
+      "gold_top_event": "写RAM失败",
+      "gold_records": [
+        {
+          "fault_code": "F01020",
+          "component": "控制单元（CU）",
+          "description": "写RAM失败",
+          "causes": [
+            "RAM空间不足",
+            "RAM芯片接触不良",
+            "RAM硬件损坏"
+          ],
+          "parameters": []
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "RAM空间不足",
+          "effect": "写RAM失败",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "RAM芯片接触不良",
+          "effect": "写RAM失败",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "RAM硬件损坏",
+          "effect": "写RAM失败",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_upload_latest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00047",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01023。组件：控制单元（CU）。故障描述：内部软件超时。可能原因：瞬时电压波动、软件负载过高、固件存在超时缺陷。相关参数：r0949。",
+      "gold_top_event": "内部软件超时",
+      "gold_records": [
+        {
+          "fault_code": "F01023",
+          "component": "控制单元（CU）",
+          "description": "内部软件超时",
+          "causes": [
+            "瞬时电压波动",
+            "软件负载过高",
+            "固件存在超时缺陷"
+          ],
+          "parameters": [
+            "r0949"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "瞬时电压波动",
+          "effect": "内部软件超时",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "软件负载过高",
+          "effect": "内部软件超时",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "固件存在超时缺陷",
+          "effect": "内部软件超时",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_upload_latest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00048",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01033。组件：未知。故障描述：单位转换：参考参数无效。可能原因：参考参数取值为0.0、单位制配置不一致（如p0349、p005、p0595设置冲突）。相关参数：r0949、p0304、p0305、p0310、p0596、p2000、p0349、p005、p0595。",
+      "gold_top_event": "单位转换：参考参数无效",
+      "gold_records": [
+        {
+          "fault_code": "F01033",
+          "component": "",
+          "description": "单位转换：参考参数无效",
+          "causes": [
+            "参考参数取值为0.0",
+            "单位制配置不一致（如p0349、p005、p0595设置冲突）"
+          ],
+          "parameters": [
+            "r0949",
+            "p0304",
+            "p0305",
+            "p0310",
+            "p0596",
+            "p2000",
+            "p0349",
+            "p005",
+            "p0595"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "参考参数取值为0.0",
+          "effect": "单位转换：参考参数无效",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "单位制配置不一致（如p0349、p005、p0595设置冲突）",
+          "effect": "单位转换：参考参数无效",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_upload_latest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00049",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01034。组件：未知。故障描述：单位转换：参考值更改后参数值计算失败。可能原因：参考参数更改导致目标参数无法重新按百分比计算、参考参数与目标参数匹配性差，导致目标参数超出合理取值范围。相关参数：r0949、p0304、p0305、p0310、p0596、p2000、p0349、p005、p0595。",
+      "gold_top_event": "单位转换：参考值更改后参数值计算失败",
+      "gold_records": [
+        {
+          "fault_code": "F01034",
+          "component": "",
+          "description": "单位转换：参考值更改后参数值计算失败",
+          "causes": [
+            "参考参数更改导致目标参数无法重新按百分比计算",
+            "参考参数与目标参数匹配性差，导致目标参数超出合理取值范围"
+          ],
+          "parameters": [
+            "r0949",
+            "p0304",
+            "p0305",
+            "p0310",
+            "p0596",
+            "p2000",
+            "p0349",
+            "p005",
+            "p0595"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "参考参数更改导致目标参数无法重新按百分比计算",
+          "effect": "单位转换：参考值更改后参数值计算失败",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "参考参数与目标参数匹配性差，导致目标参数超出合理取值范围",
+          "effect": "单位转换：参考值更改后参数值计算失败",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_upload_latest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00050",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01630。组件：未知。故障描述：SI P1（CU）：制动控制出错。。可能原因：打开制动过程出错（r0949=10或11）、制动绕组短路（r0949=20）、闭合制动过程出错（r0949=30或31）、控制单元制动控制故障（r0949=50）、安全制动模块或适配器连接异常。相关参数：p1278、r0949。",
+      "gold_top_event": "SI P1（CU）：制动控制出错。",
+      "gold_records": [
+        {
+          "fault_code": "F01630",
+          "component": "",
+          "description": "SI P1（CU）：制动控制出错。",
+          "causes": [
+            "打开制动过程出错（r0949=10或11）",
+            "制动绕组短路（r0949=20）",
+            "闭合制动过程出错（r0949=30或31）",
+            "控制单元制动控制故障（r0949=50）",
+            "安全制动模块或适配器连接异常"
+          ],
+          "parameters": [
+            "p1278",
+            "r0949"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "打开制动过程出错（r0949=10或11）",
+          "effect": "SI P1（CU）：制动控制出错。",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "制动绕组短路（r0949=20）",
+          "effect": "SI P1（CU）：制动控制出错。",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "闭合制动过程出错（r0949=30或31）",
+          "effect": "SI P1（CU）：制动控制出错。",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "控制单元制动控制故障（r0949=50）",
+          "effect": "SI P1（CU）：制动控制出错。",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "安全制动模块或适配器连接异常",
+          "effect": "SI P1（CU）：制动控制出错。",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_upload_latest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00051",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01650。组件：未知。故障描述：必须进行验收测试。可能原因：无监控通道2安全参数（故障值r0949=130）、校验和不一致（故障值r0949=1000或2000）、参数或硬件更改（故障值r0949=2003、2004、2005、3003、3005）、其他安全故障后续反应（故障值r0949=9999）。相关参数：r0949、p9799、p9899、p9501、p9503。",
+      "gold_top_event": "必须进行验收测试",
+      "gold_records": [
+        {
+          "fault_code": "F01650",
+          "component": "",
+          "description": "必须进行验收测试",
+          "causes": [
+            "无监控通道2安全参数（故障值r0949=130）",
+            "校验和不一致（故障值r0949=1000或2000）",
+            "参数或硬件更改（故障值r0949=2003、2004、2005、3003、3005）",
+            "其他安全故障后续反应（故障值r0949=9999）"
+          ],
+          "parameters": [
+            "r0949",
+            "p9799",
+            "p9899",
+            "p9501",
+            "p9503"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "无监控通道2安全参数（故障值r0949=130）",
+          "effect": "必须进行验收测试",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "校验和不一致（故障值r0949=1000或2000）",
+          "effect": "必须进行验收测试",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "参数或硬件更改（故障值r0949=2003、2004、2005、3003、3005）",
+          "effect": "必须进行验收测试",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "其他安全故障后续反应（故障值r0949=9999）",
+          "effect": "必须进行验收测试",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_upload_latest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00052",
+      "split": "dev",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01651。组件：未知。故障描述：安全时间片同步失败。可能原因：热启动导致（故障值r0949=121）、PROFIBUS主站同步故障（故障值r0949=150）。相关参数：r0949、p9510。",
+      "gold_top_event": "安全时间片同步失败",
+      "gold_records": [
+        {
+          "fault_code": "F01651",
+          "component": "",
+          "description": "安全时间片同步失败",
+          "causes": [
+            "热启动导致（故障值r0949=121）",
+            "PROFIBUS主站同步故障（故障值r0949=150）"
+          ],
+          "parameters": [
+            "r0949",
+            "p9510"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "热启动导致（故障值r0949=121）",
+          "effect": "安全时间片同步失败",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "PROFIBUS主站同步故障（故障值r0949=150）",
+          "effect": "安全时间片同步失败",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_upload_latest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00053",
+      "split": "dev",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01000。组件：控制单元（CU）。故障描述：硬件/软件故障，故障反应为OFF2，信息值格式为“模块:%1,行:%2”。可能原因：内部软件错误、存储器访问异常、固件缺陷。相关参数：r0949。",
+      "gold_top_event": "硬件/软件故障，故障反应为OFF2，信息值格式为“模块:%1,行:%2”",
+      "gold_records": [
+        {
+          "fault_code": "F01000",
+          "component": "控制单元（CU）",
+          "description": "硬件/软件故障，故障反应为OFF2，信息值格式为“模块:%1,行:%2”",
+          "causes": [
+            "内部软件错误",
+            "存储器访问异常",
+            "固件缺陷"
+          ],
+          "parameters": [
+            "r0949"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "内部软件错误",
+          "effect": "硬件/软件故障，故障反应为OFF2，信息值格式为“模块:%1,行:%2”",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "存储器访问异常",
+          "effect": "硬件/软件故障，故障反应为OFF2，信息值格式为“模块:%1,行:%2”",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "固件缺陷",
+          "effect": "硬件/软件故障，故障反应为OFF2，信息值格式为“模块:%1,行:%2”",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_upload_accuracy_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00054",
+      "split": "test",
+      "source_type": "extracted_output",
+      "difficulty_tag": "medium",
+      "input_text": "故障代码：F01002。组件：控制单元（CU）。故障描述：硬件/软件故障，故障反应为OFF2，应答方式为立即，信息值格式为“%1”。可能原因：内部软件错误、瞬时电压波动、固件缺陷、: %1  bin”、关联故障值r0949（二进制、控制单元数字输入端的二进制映像）、r0949对应的组件号、检查该DRIVECLiQ组件的连接状态、重新插拔DRIVE-CLiQ电缆。相关参数：r0949、P0009、P0976、P3961、P0977、P9601、P9602、P9621、P9622、P9625、P9626、P9650、P9651、P9652、P9658、P9697、P9799、P9802、P9826、P1215、P1278、P7015、P9850、P9702、P9501、P9503、P0107、P0187、P0188、P0189、P0600、P0349、P0595、P0304、P0305、P0310、P2000、P2001、P7828、P7829、P0596。",
+      "gold_top_event": "硬件/软件故障，故障反应为OFF2，应答方式为立即，信息值格式为“%1”",
+      "gold_records": [
+        {
+          "fault_code": "F01002",
+          "component": "控制单元（CU）",
+          "description": "硬件/软件故障，故障反应为OFF2，应答方式为立即，信息值格式为“%1”",
+          "causes": [
+            "内部软件错误",
+            "瞬时电压波动",
+            "固件缺陷",
+            ": %1  bin”",
+            "关联故障值r0949（二进制",
+            "控制单元数字输入端的二进制映像）",
+            "r0949对应的组件号",
+            "检查该DRIVECLiQ组件的连接状态",
+            "重新插拔DRIVE-CLiQ电缆"
+          ],
+          "parameters": [
+            "r0949",
+            "P0009",
+            "P0976",
+            "P3961",
+            "P0977",
+            "P9601",
+            "P9602",
+            "P9621",
+            "P9622",
+            "P9625",
+            "P9626",
+            "P9650",
+            "P9651",
+            "P9652",
+            "P9658",
+            "P9697",
+            "P9799",
+            "P9802",
+            "P9826",
+            "P1215",
+            "P1278",
+            "P7015",
+            "P9850",
+            "P9702",
+            "P9501",
+            "P9503",
+            "P0107",
+            "P0187",
+            "P0188",
+            "P0189",
+            "P0600",
+            "P0349",
+            "P0595",
+            "P0304",
+            "P0305",
+            "P0310",
+            "P2000",
+            "P2001",
+            "P7828",
+            "P7829",
+            "P0596"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "内部软件错误",
+          "effect": "硬件/软件故障，故障反应为OFF2，应答方式为立即，信息值格式为“%1”",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "瞬时电压波动",
+          "effect": "硬件/软件故障，故障反应为OFF2，应答方式为立即，信息值格式为“%1”",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "固件缺陷",
+          "effect": "硬件/软件故障，故障反应为OFF2，应答方式为立即，信息值格式为“%1”",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": ": %1  bin”",
+          "effect": "硬件/软件故障，故障反应为OFF2，应答方式为立即，信息值格式为“%1”",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "关联故障值r0949（二进制",
+          "effect": "硬件/软件故障，故障反应为OFF2，应答方式为立即，信息值格式为“%1”",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "控制单元数字输入端的二进制映像）",
+          "effect": "硬件/软件故障，故障反应为OFF2，应答方式为立即，信息值格式为“%1”",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "r0949对应的组件号",
+          "effect": "硬件/软件故障，故障反应为OFF2，应答方式为立即，信息值格式为“%1”",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "检查该DRIVECLiQ组件的连接状态",
+          "effect": "硬件/软件故障，故障反应为OFF2，应答方式为立即，信息值格式为“%1”",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "重新插拔DRIVE-CLiQ电缆",
+          "effect": "硬件/软件故障，故障反应为OFF2，应答方式为立即，信息值格式为“%1”",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_upload_accuracy_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00055",
+      "split": "dev",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：A01013。组件：控制单元（CU）。故障描述：故障现象为控制单元：达到或超过风扇的使用寿命。相关参数：r2124、p3961。",
+      "gold_top_event": "故障现象为控制单元：达到或超过风扇的使用寿命",
+      "gold_records": [
+        {
+          "fault_code": "A01013",
+          "component": "控制单元（CU）",
+          "description": "故障现象为控制单元：达到或超过风扇的使用寿命",
+          "causes": [],
+          "parameters": [
+            "r2124",
+            "p3961"
+          ]
+        }
+      ],
+      "gold_relations": [],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_handbook_ingest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00056",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：A01016。组件：控制单元（CU）。故障描述：故障现象为固件被修改。可能原因：固件文件损坏、存储器损坏。相关参数：r2124、p0977、r9925。",
+      "gold_top_event": "故障现象为固件被修改",
+      "gold_records": [
+        {
+          "fault_code": "A01016",
+          "component": "控制单元（CU）",
+          "description": "故障现象为固件被修改",
+          "causes": [
+            "固件文件损坏",
+            "存储器损坏"
+          ],
+          "parameters": [
+            "r2124",
+            "p0977",
+            "r9925"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "固件文件损坏",
+          "effect": "故障现象为固件被修改",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "存储器损坏",
+          "effect": "故障现象为固件被修改",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_handbook_ingest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00057",
+      "split": "dev",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：A01017。组件：控制单元（CU）。故障描述：故障现象为组件列表被更改。相关参数：r2124、p0977。",
+      "gold_top_event": "故障现象为组件列表被更改",
+      "gold_records": [
+        {
+          "fault_code": "A01017",
+          "component": "控制单元（CU）",
+          "description": "故障现象为组件列表被更改",
+          "causes": [],
+          "parameters": [
+            "r2124",
+            "p0977"
+          ]
+        }
+      ],
+      "gold_relations": [],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_handbook_ingest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00058",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：A01032。组件：控制单元（CU）。故障描述：故障现象为ACX：需要存储所有参数。可能原因：未执行完整备份。相关参数：r2124、p0977。",
+      "gold_top_event": "故障现象为ACX：需要存储所有参数",
+      "gold_records": [
+        {
+          "fault_code": "A01032",
+          "component": "控制单元（CU）",
+          "description": "故障现象为ACX：需要存储所有参数",
+          "causes": [
+            "未执行完整备份"
+          ],
+          "parameters": [
+            "r2124",
+            "p0977"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "未执行完整备份",
+          "effect": "故障现象为ACX：需要存储所有参数",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_handbook_ingest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00059",
+      "split": "dev",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：A01631。组件：电机模块。故障描述：SI P1（CU）：电机抱闸/SBC配置无意义。可能原因：p1215=0且p9602=1（配置不匹配）、p1215=3且p9602=1（接线或配置不匹配）。相关参数：p1215、p9602、p9802。",
+      "gold_top_event": "SI P1（CU）：电机抱闸/SBC配置无意义",
+      "gold_records": [
+        {
+          "fault_code": "A01631",
+          "component": "电机模块",
+          "description": "SI P1（CU）：电机抱闸/SBC配置无意义",
+          "causes": [
+            "p1215=0且p9602=1（配置不匹配）",
+            "p1215=3且p9602=1（接线或配置不匹配）"
+          ],
+          "parameters": [
+            "p1215",
+            "p9602",
+            "p9802"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "p1215=0且p9602=1（配置不匹配）",
+          "effect": "SI P1（CU）：电机抱闸/SBC配置无意义",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "p1215=3且p9602=1（接线或配置不匹配）",
+          "effect": "SI P1（CU）：电机抱闸/SBC配置无意义",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_handbook_ingest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00060",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01000。组件：控制单元（CU）。故障描述：故障现象为硬件/软件故障。相关参数：r0949。",
+      "gold_top_event": "故障现象为硬件/软件故障",
+      "gold_records": [
+        {
+          "fault_code": "F01000",
+          "component": "控制单元（CU）",
+          "description": "故障现象为硬件/软件故障",
+          "causes": [],
+          "parameters": [
+            "r0949"
+          ]
+        }
+      ],
+      "gold_relations": [],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_handbook_ingest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00061",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "medium",
+      "input_text": "故障代码：F01002。组件：控制单元（CU）。故障描述：故障现象为硬件/软件故障。可能原因：: %1  bin”、关联故障值r0949（二进制、控制单元数字输入端的二进制映像）、r0949对应的组件号、检查该DRIVECLiQ组件的连接状态、重新插拔DRIVE-CLiQ电缆。相关参数：r0949、P0009、P0976、P3961、P0977、P9601、P9602、P9621、P9622、P9625、P9626、P9650、P9651、P9652、P9658、P9697、P9799、P9802、P9826、P1215、P1278、P7015、P9850、P9702、P9501、P9503、P0107、P0187、P0188、P0189、P0600、P0349、P0595、P0304、P0305、P0310、P2000、P2001、P7828、P7829、P0596。",
+      "gold_top_event": "故障现象为硬件/软件故障",
+      "gold_records": [
+        {
+          "fault_code": "F01002",
+          "component": "控制单元（CU）",
+          "description": "故障现象为硬件/软件故障",
+          "causes": [
+            ": %1  bin”",
+            "关联故障值r0949（二进制",
+            "控制单元数字输入端的二进制映像）",
+            "r0949对应的组件号",
+            "检查该DRIVECLiQ组件的连接状态",
+            "重新插拔DRIVE-CLiQ电缆"
+          ],
+          "parameters": [
+            "r0949",
+            "P0009",
+            "P0976",
+            "P3961",
+            "P0977",
+            "P9601",
+            "P9602",
+            "P9621",
+            "P9622",
+            "P9625",
+            "P9626",
+            "P9650",
+            "P9651",
+            "P9652",
+            "P9658",
+            "P9697",
+            "P9799",
+            "P9802",
+            "P9826",
+            "P1215",
+            "P1278",
+            "P7015",
+            "P9850",
+            "P9702",
+            "P9501",
+            "P9503",
+            "P0107",
+            "P0187",
+            "P0188",
+            "P0189",
+            "P0600",
+            "P0349",
+            "P0595",
+            "P0304",
+            "P0305",
+            "P0310",
+            "P2000",
+            "P2001",
+            "P7828",
+            "P7829",
+            "P0596"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": ": %1  bin”",
+          "effect": "故障现象为硬件/软件故障",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "关联故障值r0949（二进制",
+          "effect": "故障现象为硬件/软件故障",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "控制单元数字输入端的二进制映像）",
+          "effect": "故障现象为硬件/软件故障",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "r0949对应的组件号",
+          "effect": "故障现象为硬件/软件故障",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "检查该DRIVECLiQ组件的连接状态",
+          "effect": "故障现象为硬件/软件故障",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "重新插拔DRIVE-CLiQ电缆",
+          "effect": "故障现象为硬件/软件故障",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_handbook_ingest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00062",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01003。组件：控制单元（CU）。故障描述：故障现象为访问存储器时出现应答延迟。相关参数：r0949。",
+      "gold_top_event": "故障现象为访问存储器时出现应答延迟",
+      "gold_records": [
+        {
+          "fault_code": "F01003",
+          "component": "控制单元（CU）",
+          "description": "故障现象为访问存储器时出现应答延迟",
+          "causes": [],
+          "parameters": [
+            "r0949"
+          ]
+        }
+      ],
+      "gold_relations": [],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_handbook_ingest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00063",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01014。组件：控制单元（CU）。故障描述：故障现象为拓扑：DRIVE-CLiQ组件属性变化。相关参数：r0949。",
+      "gold_top_event": "故障现象为拓扑：DRIVE-CLiQ组件属性变化",
+      "gold_records": [
+        {
+          "fault_code": "F01014",
+          "component": "控制单元（CU）",
+          "description": "故障现象为拓扑：DRIVE-CLiQ组件属性变化",
+          "causes": [],
+          "parameters": [
+            "r0949"
+          ]
+        }
+      ],
+      "gold_relations": [],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_handbook_ingest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00064",
+      "split": "test",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01015。组件：控制单元（CU）。故障描述：故障现象为内部软件错误。相关参数：r0949。",
+      "gold_top_event": "故障现象为内部软件错误",
+      "gold_records": [
+        {
+          "fault_code": "F01015",
+          "component": "控制单元（CU）",
+          "description": "故障现象为内部软件错误",
+          "causes": [],
+          "parameters": [
+            "r0949"
+          ]
+        }
+      ],
+      "gold_relations": [],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_handbook_ingest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00065",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01020。组件：控制单元（CU）。故障描述：故障现象为写RAM失败。",
+      "gold_top_event": "故障现象为写RAM失败",
+      "gold_records": [
+        {
+          "fault_code": "F01020",
+          "component": "控制单元（CU）",
+          "description": "故障现象为写RAM失败",
+          "causes": [],
+          "parameters": []
+        }
+      ],
+      "gold_relations": [],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_handbook_ingest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00066",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01023。组件：控制单元（CU）。故障描述：故障现象为内部软件超时。可能原因：瞬时电压波动、启用了过多的驱动功能，导致软件运行负载过大。相关参数：r0949。",
+      "gold_top_event": "故障现象为内部软件超时",
+      "gold_records": [
+        {
+          "fault_code": "F01023",
+          "component": "控制单元（CU）",
+          "description": "故障现象为内部软件超时",
+          "causes": [
+            "瞬时电压波动",
+            "启用了过多的驱动功能，导致软件运行负载过大"
+          ],
+          "parameters": [
+            "r0949"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "瞬时电压波动",
+          "effect": "故障现象为内部软件超时",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "启用了过多的驱动功能，导致软件运行负载过大",
+          "effect": "故障现象为内部软件超时",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_handbook_ingest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00067",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01600。组件：未知。故障描述：SI CU:STOP A被触发。可能原因：交叉比较数据编号参数设置不一致、控制定时器届满、PROFIsafe控制故障。相关参数：r0949、p9601、p9602、p9610、p9612、p9650、p9850。",
+      "gold_top_event": "SI CU:STOP A被触发",
+      "gold_records": [
+        {
+          "fault_code": "F01600",
+          "component": "",
+          "description": "SI CU:STOP A被触发",
+          "causes": [
+            "交叉比较数据编号参数设置不一致",
+            "控制定时器届满",
+            "PROFIsafe控制故障"
+          ],
+          "parameters": [
+            "r0949",
+            "p9601",
+            "p9602",
+            "p9610",
+            "p9612",
+            "p9650",
+            "p9850"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "交叉比较数据编号参数设置不一致",
+          "effect": "SI CU:STOP A被触发",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "控制定时器届满",
+          "effect": "SI CU:STOP A被触发",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "PROFIsafe控制故障",
+          "effect": "SI CU:STOP A被触发",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_handbook_ingest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00068",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01611。组件：液压模块。故障描述：SI P1（CU）：某一监控通道故障。可能原因：STO端子布线问题、接触问题。相关参数：r0949、r9772。",
+      "gold_top_event": "SI P1（CU）：某一监控通道故障",
+      "gold_records": [
+        {
+          "fault_code": "F01611",
+          "component": "液压模块",
+          "description": "SI P1（CU）：某一监控通道故障",
+          "causes": [
+            "STO端子布线问题",
+            "接触问题"
+          ],
+          "parameters": [
+            "r0949",
+            "r9772"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "STO端子布线问题",
+          "effect": "SI P1（CU）：某一监控通道故障",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "接触问题",
+          "effect": "SI P1（CU）：某一监控通道故障",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_handbook_ingest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00069",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01612。组件：并联功率单元。故障描述：SI P1（CU）：并联功率单元上STO输入不同。可能原因：F-DI切换公差时间不足、F-DI接线不牢固、接触不良、并联功率单元配置参数不一致。相关参数：r0949、p9650、p7015。",
+      "gold_top_event": "SI P1（CU）：并联功率单元上STO输入不同",
+      "gold_records": [
+        {
+          "fault_code": "F01612",
+          "component": "并联功率单元",
+          "description": "SI P1（CU）：并联功率单元上STO输入不同",
+          "causes": [
+            "F-DI切换公差时间不足",
+            "F-DI接线不牢固",
+            "接触不良",
+            "并联功率单元配置参数不一致"
+          ],
+          "parameters": [
+            "r0949",
+            "p9650",
+            "p7015"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "F-DI切换公差时间不足",
+          "effect": "SI P1（CU）：并联功率单元上STO输入不同",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "F-DI接线不牢固",
+          "effect": "SI P1（CU）：并联功率单元上STO输入不同",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "接触不良",
+          "effect": "SI P1（CU）：并联功率单元上STO输入不同",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "并联功率单元配置参数不一致",
+          "effect": "SI P1（CU）：并联功率单元上STO输入不同",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_handbook_ingest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00070",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01630。组件：制动绕组。故障描述：SI P1（CU）：制动控制出错。可能原因：p1278设置错误、电机抱闸装置连接异常、电缆断开、制动绕组接地、制动绕组短路、制动装置功能异常、控制单元与电机模块间DRIVE-CLiQ通讯故障。相关参数：r0949、p1278。",
+      "gold_top_event": "SI P1（CU）：制动控制出错",
+      "gold_records": [
+        {
+          "fault_code": "F01630",
+          "component": "制动绕组",
+          "description": "SI P1（CU）：制动控制出错",
+          "causes": [
+            "p1278设置错误",
+            "电机抱闸装置连接异常",
+            "电缆断开",
+            "制动绕组接地",
+            "制动绕组短路",
+            "制动装置功能异常",
+            "控制单元与电机模块间DRIVE-CLiQ通讯故障"
+          ],
+          "parameters": [
+            "r0949",
+            "p1278"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "p1278设置错误",
+          "effect": "SI P1（CU）：制动控制出错",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "电机抱闸装置连接异常",
+          "effect": "SI P1（CU）：制动控制出错",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "电缆断开",
+          "effect": "SI P1（CU）：制动控制出错",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "制动绕组接地",
+          "effect": "SI P1（CU）：制动控制出错",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "制动绕组短路",
+          "effect": "SI P1（CU）：制动控制出错",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "制动装置功能异常",
+          "effect": "SI P1（CU）：制动控制出错",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "控制单元与电机模块间DRIVE-CLiQ通讯故障",
+          "effect": "SI P1（CU）：制动控制出错",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_handbook_ingest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00071",
+      "split": "test",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01632。组件：断流阀。故障描述：SI P1（CU）：断流阀控制/反馈出错。可能原因：断流阀连接错误、断流阀反馈连接异常、断流阀损坏、反馈信号异常、断流阀机械卡滞、EMC不合规、屏蔽层未接地、断流阀或液压模块损坏、p9626/p9826参数配置错误。相关参数：r0949、p9626、p9826、X272、X281、X282。",
+      "gold_top_event": "SI P1（CU）：断流阀控制/反馈出错",
+      "gold_records": [
+        {
+          "fault_code": "F01632",
+          "component": "断流阀",
+          "description": "SI P1（CU）：断流阀控制/反馈出错",
+          "causes": [
+            "断流阀连接错误",
+            "断流阀反馈连接异常",
+            "断流阀损坏",
+            "反馈信号异常",
+            "断流阀机械卡滞",
+            "EMC不合规",
+            "屏蔽层未接地",
+            "断流阀或液压模块损坏",
+            "p9626/p9826参数配置错误"
+          ],
+          "parameters": [
+            "r0949",
+            "p9626",
+            "p9826",
+            "X272",
+            "X281",
+            "X282"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "断流阀连接错误",
+          "effect": "SI P1（CU）：断流阀控制/反馈出错",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "断流阀反馈连接异常",
+          "effect": "SI P1（CU）：断流阀控制/反馈出错",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "断流阀损坏",
+          "effect": "SI P1（CU）：断流阀控制/反馈出错",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "反馈信号异常",
+          "effect": "SI P1（CU）：断流阀控制/反馈出错",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "断流阀机械卡滞",
+          "effect": "SI P1（CU）：断流阀控制/反馈出错",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "EMC不合规",
+          "effect": "SI P1（CU）：断流阀控制/反馈出错",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "屏蔽层未接地",
+          "effect": "SI P1（CU）：断流阀控制/反馈出错",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "断流阀或液压模块损坏",
+          "effect": "SI P1（CU）：断流阀控制/反馈出错",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "p9626/p9826参数配置错误",
+          "effect": "SI P1（CU）：断流阀控制/反馈出错",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_handbook_ingest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00072",
+      "split": "test",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01640。组件：控制单元。故障描述：SI P1（CU）：识别出组件更换并需应答/保存。可能原因：控制单元更换、电机模块更换、液压模块更换。相关参数：r0949、p9702、p0977、p0971、p2103、p9799、p9899、p9501、p9503。",
+      "gold_top_event": "SI P1（CU）：识别出组件更换并需应答/保存",
+      "gold_records": [
+        {
+          "fault_code": "F01640",
+          "component": "控制单元",
+          "description": "SI P1（CU）：识别出组件更换并需应答/保存",
+          "causes": [
+            "控制单元更换",
+            "电机模块更换",
+            "液压模块更换"
+          ],
+          "parameters": [
+            "r0949",
+            "p9702",
+            "p0977",
+            "p0971",
+            "p2103",
+            "p9799",
+            "p9899",
+            "p9501",
+            "p9503"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "控制单元更换",
+          "effect": "SI P1（CU）：识别出组件更换并需应答/保存",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "电机模块更换",
+          "effect": "SI P1（CU）：识别出组件更换并需应答/保存",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "液压模块更换",
+          "effect": "SI P1（CU）：识别出组件更换并需应答/保存",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_handbook_ingest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00073",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01641。组件：传感器。故障描述：SI P1（CU）：识别出组件更换并需保存。可能原因：传感器更换。相关参数：r0949、r9776、p0977。",
+      "gold_top_event": "SI P1（CU）：识别出组件更换并需保存",
+      "gold_records": [
+        {
+          "fault_code": "F01641",
+          "component": "传感器",
+          "description": "SI P1（CU）：识别出组件更换并需保存",
+          "causes": [
+            "传感器更换"
+          ],
+          "parameters": [
+            "r0949",
+            "r9776",
+            "p0977"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "传感器更换",
+          "effect": "SI P1（CU）：识别出组件更换并需保存",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_handbook_ingest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00074",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01649。组件：控制单元。故障描述：SI P1（CU）：内部软件错误（安全功能相关）。可能原因：安全软件漏洞。",
+      "gold_top_event": "SI P1（CU）：内部软件错误（安全功能相关）",
+      "gold_records": [
+        {
+          "fault_code": "F01649",
+          "component": "控制单元",
+          "description": "SI P1（CU）：内部软件错误（安全功能相关）",
+          "causes": [
+            "安全软件漏洞"
+          ],
+          "parameters": []
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "安全软件漏洞",
+          "effect": "SI P1（CU）：内部软件错误（安全功能相关）",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_handbook_ingest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00075",
+      "split": "test",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01650。组件：控制单元。故障描述：SI P1（CU）：必须进行验收测试。可能原因：无监控通道2安全参数、监控通道1校验和不一致、参数或硬件更改、校验和不一致、其他安全故障后续反应。相关参数：r0949、p9799、p9899、p9501、p9503。",
+      "gold_top_event": "SI P1（CU）：必须进行验收测试",
+      "gold_records": [
+        {
+          "fault_code": "F01650",
+          "component": "控制单元",
+          "description": "SI P1（CU）：必须进行验收测试",
+          "causes": [
+            "无监控通道2安全参数",
+            "监控通道1校验和不一致",
+            "参数或硬件更改",
+            "校验和不一致",
+            "其他安全故障后续反应"
+          ],
+          "parameters": [
+            "r0949",
+            "p9799",
+            "p9899",
+            "p9501",
+            "p9503"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "无监控通道2安全参数",
+          "effect": "SI P1（CU）：必须进行验收测试",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "监控通道1校验和不一致",
+          "effect": "SI P1（CU）：必须进行验收测试",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "参数或硬件更改",
+          "effect": "SI P1（CU）：必须进行验收测试",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "校验和不一致",
+          "effect": "SI P1（CU）：必须进行验收测试",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "其他安全故障后续反应",
+          "effect": "SI P1（CU）：必须进行验收测试",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_handbook_ingest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00076",
+      "split": "test",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01651。组件：未知。故障描述：SI P1（CU）：安全时间片同步失败。可能原因：热启动导致同步失败、PROFIBUS主站同步故障、热启动导致。相关参数：r0949、p9510。",
+      "gold_top_event": "SI P1（CU）：安全时间片同步失败",
+      "gold_records": [
+        {
+          "fault_code": "F01651",
+          "component": "",
+          "description": "SI P1（CU）：安全时间片同步失败",
+          "causes": [
+            "热启动导致同步失败",
+            "PROFIBUS主站同步故障",
+            "热启动导致"
+          ],
+          "parameters": [
+            "r0949",
+            "p9510"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "热启动导致同步失败",
+          "effect": "SI P1（CU）：安全时间片同步失败",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "PROFIBUS主站同步故障",
+          "effect": "SI P1（CU）：安全时间片同步失败",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "热启动导致",
+          "effect": "SI P1（CU）：安全时间片同步失败",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_handbook_ingest_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00077",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F01000。组件：控制单元（CU）。故障描述：故障现象为访问存储器时出现应答延迟。相关参数：r0949。",
+      "gold_top_event": "故障现象为访问存储器时出现应答延迟",
+      "gold_records": [
+        {
+          "fault_code": "F01000",
+          "component": "控制单元（CU）",
+          "description": "故障现象为访问存储器时出现应答延迟",
+          "causes": [],
+          "parameters": [
+            "r0949"
+          ]
+        }
+      ],
+      "gold_relations": [],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_handbook_ingest_cleaned_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00078",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "medium",
+      "input_text": "故障代码：F01002。组件：控制单元（CU）。故障描述：故障现象为访问存储器时出现应答延迟。可能原因：: %1  bin”、关联故障值r0949（二进制、控制单元数字输入端的二进制映像）、r0949对应的组件号、检查该DRIVECLiQ组件的连接状态、重新插拔DRIVE-CLiQ电缆。相关参数：r0949、P0009、P0976、P3961、P0977、P9601、P9602、P9621、P9622、P9625、P9626、P9650、P9651、P9652、P9658、P9697、P9799、P9802、P9826、P1215、P1278、P7015、P9850、P9702、P9501、P9503、P0107、P0187、P0188、P0189、P0600、P0349、P0595、P0304、P0305、P0310、P2000、P2001、P7828、P7829、P0596。",
+      "gold_top_event": "故障现象为访问存储器时出现应答延迟",
+      "gold_records": [
+        {
+          "fault_code": "F01002",
+          "component": "控制单元（CU）",
+          "description": "故障现象为访问存储器时出现应答延迟",
+          "causes": [
+            ": %1  bin”",
+            "关联故障值r0949（二进制",
+            "控制单元数字输入端的二进制映像）",
+            "r0949对应的组件号",
+            "检查该DRIVECLiQ组件的连接状态",
+            "重新插拔DRIVE-CLiQ电缆"
+          ],
+          "parameters": [
+            "r0949",
+            "P0009",
+            "P0976",
+            "P3961",
+            "P0977",
+            "P9601",
+            "P9602",
+            "P9621",
+            "P9622",
+            "P9625",
+            "P9626",
+            "P9650",
+            "P9651",
+            "P9652",
+            "P9658",
+            "P9697",
+            "P9799",
+            "P9802",
+            "P9826",
+            "P1215",
+            "P1278",
+            "P7015",
+            "P9850",
+            "P9702",
+            "P9501",
+            "P9503",
+            "P0107",
+            "P0187",
+            "P0188",
+            "P0189",
+            "P0600",
+            "P0349",
+            "P0595",
+            "P0304",
+            "P0305",
+            "P0310",
+            "P2000",
+            "P2001",
+            "P7828",
+            "P7829",
+            "P0596"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": ": %1  bin”",
+          "effect": "故障现象为访问存储器时出现应答延迟",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "关联故障值r0949（二进制",
+          "effect": "故障现象为访问存储器时出现应答延迟",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "控制单元数字输入端的二进制映像）",
+          "effect": "故障现象为访问存储器时出现应答延迟",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "r0949对应的组件号",
+          "effect": "故障现象为访问存储器时出现应答延迟",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "检查该DRIVECLiQ组件的连接状态",
+          "effect": "故障现象为访问存储器时出现应答延迟",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "重新插拔DRIVE-CLiQ电缆",
+          "effect": "故障现象为访问存储器时出现应答延迟",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from manual_handbook_ingest_cleaned_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00079",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "medium",
+      "input_text": "故障代码：F01002。组件：控制单元。故障描述：SI CU:STOP A被触发。可能原因：: %1  bin”、关联故障值r0949（二进制、控制单元数字输入端的二进制映像）、r0949对应的组件号、检查该DRIVECLiQ组件的连接状态、重新插拔DRIVE-CLiQ电缆。相关参数：P0009、P0976、P3961、P0977、P9601、P9602、P9621、P9622、P9625、P9626、P9650、P9651、P9652、P9658、P9697、P9799、P9802、P9826、P1215、P1278、P7015、P9850、P9702、P9501、P9503、P0107、P0187、P0188、P0189、P0600、P0349、P0595、P0304、P0305、P0310、P2000、P2001、P7828、P7829、P0596。",
+      "gold_top_event": "SI CU:STOP A被触发",
+      "gold_records": [
+        {
+          "fault_code": "F01002",
+          "component": "控制单元",
+          "description": "SI CU:STOP A被触发",
+          "causes": [
+            ": %1  bin”",
+            "关联故障值r0949（二进制",
+            "控制单元数字输入端的二进制映像）",
+            "r0949对应的组件号",
+            "检查该DRIVECLiQ组件的连接状态",
+            "重新插拔DRIVE-CLiQ电缆"
+          ],
+          "parameters": [
+            "P0009",
+            "P0976",
+            "P3961",
+            "P0977",
+            "P9601",
+            "P9602",
+            "P9621",
+            "P9622",
+            "P9625",
+            "P9626",
+            "P9650",
+            "P9651",
+            "P9652",
+            "P9658",
+            "P9697",
+            "P9799",
+            "P9802",
+            "P9826",
+            "P1215",
+            "P1278",
+            "P7015",
+            "P9850",
+            "P9702",
+            "P9501",
+            "P9503",
+            "P0107",
+            "P0187",
+            "P0188",
+            "P0189",
+            "P0600",
+            "P0349",
+            "P0595",
+            "P0304",
+            "P0305",
+            "P0310",
+            "P2000",
+            "P2001",
+            "P7828",
+            "P7829",
+            "P0596"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": ": %1  bin”",
+          "effect": "SI CU:STOP A被触发",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "关联故障值r0949（二进制",
+          "effect": "SI CU:STOP A被触发",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "控制单元数字输入端的二进制映像）",
+          "effect": "SI CU:STOP A被触发",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "r0949对应的组件号",
+          "effect": "SI CU:STOP A被触发",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "检查该DRIVECLiQ组件的连接状态",
+          "effect": "SI CU:STOP A被触发",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "重新插拔DRIVE-CLiQ电缆",
+          "effect": "SI CU:STOP A被触发",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from fta_20260326_172115_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00080",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F90001。组件：驱动系统。故障描述：硬件异常。可能原因：控制单元固件异常、=控制单元固件异常。相关参数：p0977、P0977。",
+      "gold_top_event": "硬件异常",
+      "gold_records": [
+        {
+          "fault_code": "F90001",
+          "component": "驱动系统",
+          "description": "硬件异常",
+          "causes": [
+            "控制单元固件异常",
+            "=控制单元固件异常"
+          ],
+          "parameters": [
+            "p0977",
+            "P0977"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "控制单元固件异常",
+          "effect": "硬件异常",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "=控制单元固件异常",
+          "effect": "硬件异常",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from fta_20260326_163848_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00081",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F90002。组件：驱动系统。故障描述：中断。可能原因：信号线路异常。相关参数：r0949、R0949。",
+      "gold_top_event": "中断",
+      "gold_records": [
+        {
+          "fault_code": "F90002",
+          "component": "驱动系统",
+          "description": "中断",
+          "causes": [
+            "信号线路异常"
+          ],
+          "parameters": [
+            "r0949",
+            "R0949"
+          ]
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "信号线路异常",
+          "effect": "中断",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from fta_20260326_163848_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00082",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码：F07910。组件：驱动器。故障描述：报出 'OverCurrent' (过流) 故障代码。可能原因：电机侧 U/V/W 三相电缆存在绝缘破损，导致相间短路、驱动器内部的 IGBT 功率模块因长期过热出现老化，击穿阈值降低、控制板上的电流采样电阻 R52 发生漂移，导致反馈电流值虚高，触发了硬件保护逻辑、为电机侧 U/V/W 三相电缆存在绝缘破损、导致相间短路、同时。",
+      "gold_top_event": "报出 'OverCurrent' (过流) 故障代码",
+      "gold_records": [
+        {
+          "fault_code": "F07910",
+          "component": "驱动器",
+          "description": "报出 'OverCurrent' (过流) 故障代码",
+          "causes": [
+            "电机侧 U/V/W 三相电缆存在绝缘破损，导致相间短路",
+            "驱动器内部的 IGBT 功率模块因长期过热出现老化，击穿阈值降低",
+            "控制板上的电流采样电阻 R52 发生漂移，导致反馈电流值虚高，触发了硬件保护逻辑",
+            "为电机侧 U/V/W 三相电缆存在绝缘破损",
+            "导致相间短路",
+            "同时"
+          ],
+          "parameters": []
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "电机侧 U/V/W 三相电缆存在绝缘破损，导致相间短路",
+          "effect": "报出 'OverCurrent' (过流) 故障代码",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "驱动器内部的 IGBT 功率模块因长期过热出现老化，击穿阈值降低",
+          "effect": "报出 'OverCurrent' (过流) 故障代码",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "控制板上的电流采样电阻 R52 发生漂移，导致反馈电流值虚高，触发了硬件保护逻辑",
+          "effect": "报出 'OverCurrent' (过流) 故障代码",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "为电机侧 U/V/W 三相电缆存在绝缘破损",
+          "effect": "报出 'OverCurrent' (过流) 故障代码",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "导致相间短路",
+          "effect": "报出 'OverCurrent' (过流) 故障代码",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "同时",
+          "effect": "报出 'OverCurrent' (过流) 故障代码",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from fta_20260318_103305_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00083",
+      "split": "test",
+      "source_type": "extracted_output",
+      "difficulty_tag": "medium",
+      "input_text": "故障代码：AUTO-FAULT-001。组件：传感器。故障描述：系统容错算法未能在规定的50毫秒窗口内识别并隔离该传感器故障，错误地信任了失效数据。可能原因：故障演化过程： 飞控律据此计算出错误的修正指令，驱动升降舵向下偏转至极限...、由于主控制总线发生瞬时拥堵，备用飞控计算机未能及时接管控制权、无人机随即进入不可改出的高速俯冲状态，高度在15秒内急剧下降800米，触...、机体结构过载受损并坠毁于非预定区域、初步判定原因： 单点传感器硬件漂移故障叠加软件容错逻辑缺陷及通信总线时序...。",
+      "gold_top_event": "系统容错算法未能在规定的50毫秒窗口内识别并隔离该传感器故障，错误地信任了失效数据",
+      "gold_records": [
+        {
+          "fault_code": "AUTO-FAULT-001",
+          "component": "传感器",
+          "description": "系统容错算法未能在规定的50毫秒窗口内识别并隔离该传感器故障，错误地信任了失效数据",
+          "causes": [
+            "故障演化过程： 飞控律据此计算出错误的修正指令，驱动升降舵向下偏转至极限...",
+            "由于主控制总线发生瞬时拥堵，备用飞控计算机未能及时接管控制权",
+            "无人机随即进入不可改出的高速俯冲状态，高度在15秒内急剧下降800米，触...",
+            "机体结构过载受损并坠毁于非预定区域",
+            "初步判定原因： 单点传感器硬件漂移故障叠加软件容错逻辑缺陷及通信总线时序..."
+          ],
+          "parameters": []
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "故障演化过程： 飞控律据此计算出错误的修正指令，驱动升降舵向下偏转至极限...",
+          "effect": "系统容错算法未能在规定的50毫秒窗口内识别并隔离该传感器故障，错误地信任了失效数据",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "由于主控制总线发生瞬时拥堵，备用飞控计算机未能及时接管控制权",
+          "effect": "系统容错算法未能在规定的50毫秒窗口内识别并隔离该传感器故障，错误地信任了失效数据",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "无人机随即进入不可改出的高速俯冲状态，高度在15秒内急剧下降800米，触...",
+          "effect": "系统容错算法未能在规定的50毫秒窗口内识别并隔离该传感器故障，错误地信任了失效数据",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "机体结构过载受损并坠毁于非预定区域",
+          "effect": "系统容错算法未能在规定的50毫秒窗口内识别并隔离该传感器故障，错误地信任了失效数据",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "初步判定原因： 单点传感器硬件漂移故障叠加软件容错逻辑缺陷及通信总线时序...",
+          "effect": "系统容错算法未能在规定的50毫秒窗口内识别并隔离该传感器故障，错误地信任了失效数据",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from fta_20260317_141230_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00084",
+      "split": "train",
+      "source_type": "extracted_output",
+      "difficulty_tag": "medium",
+      "input_text": "故障代码：SAT-2026-0317-AOCS-04。组件：未知。故障描述：故障编号： SAT-2026-0317-AOCS-04 发生时间： 2026-03-17 08:...。可能原因：地面测控中心接收到“天枢-X”卫星遥测数据异常报警、数据显示，卫星星敏感器（Star Tracker）A与B的输出数据出现不...、反作用飞轮组转速异常饱和，卫星本体开始绕Y轴非受控缓慢旋转、高增益天线指向偏离预定地面站超过0.6度、下行遥测信号强度骤降15dB，业务通信链路中断。",
+      "gold_top_event": "故障编号： SAT-2026-0317-AOCS-04 发生时间： 2026-03-17 08:...",
+      "gold_records": [
+        {
+          "fault_code": "SAT-2026-0317-AOCS-04",
+          "component": "",
+          "description": "故障编号： SAT-2026-0317-AOCS-04 发生时间： 2026-03-17 08:...",
+          "causes": [
+            "地面测控中心接收到“天枢-X”卫星遥测数据异常报警",
+            "数据显示，卫星星敏感器（Star Tracker）A与B的输出数据出现不...",
+            "反作用飞轮组转速异常饱和，卫星本体开始绕Y轴非受控缓慢旋转",
+            "高增益天线指向偏离预定地面站超过0.6度",
+            "下行遥测信号强度骤降15dB，业务通信链路中断"
+          ],
+          "parameters": []
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "地面测控中心接收到“天枢-X”卫星遥测数据异常报警",
+          "effect": "故障编号： SAT-2026-0317-AOCS-04 发生时间： 2026-03-17 08:...",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "数据显示，卫星星敏感器（Star Tracker）A与B的输出数据出现不...",
+          "effect": "故障编号： SAT-2026-0317-AOCS-04 发生时间： 2026-03-17 08:...",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "反作用飞轮组转速异常饱和，卫星本体开始绕Y轴非受控缓慢旋转",
+          "effect": "故障编号： SAT-2026-0317-AOCS-04 发生时间： 2026-03-17 08:...",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "高增益天线指向偏离预定地面站超过0.6度",
+          "effect": "故障编号： SAT-2026-0317-AOCS-04 发生时间： 2026-03-17 08:...",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "下行遥测信号强度骤降15dB，业务通信链路中断",
+          "effect": "故障编号： SAT-2026-0317-AOCS-04 发生时间： 2026-03-17 08:...",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from fta_20260317_100536_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00085",
+      "split": "test",
+      "source_type": "extracted_output",
+      "difficulty_tag": "medium",
+      "input_text": "故障代码：SAT-2026-0317-AOCS-04。组件：星敏感器（Star Tracker）A与B、姿态确定滤波器、反作用飞轮组、高增益天线。故障描述：星敏感器A与B输出数据不一致，姿态确定滤波器发散；反作用飞轮组转速异常饱和；卫星本体绕Y轴非受控缓慢旋转；高增益天线指向偏离预定地面站超过0.6度，下行遥测信号强度骤降15dB，业务通信链路中断。可能原因：地面测控中心接收到“天枢-X”卫星遥测数据异常报警、数据显示，卫星星敏感器（Star Tracker）A与B的输出数据出现不...、反作用飞轮组转速异常饱和，卫星本体开始绕Y轴非受控缓慢旋转、高增益天线指向偏离预定地面站超过0.6度、下行遥测信号强度骤降15dB，业务通信链路中断。",
+      "gold_top_event": "星敏感器A与B输出数据不一致，姿态确定滤波器发散；反作用飞轮组转速异常饱和；卫星本体绕Y轴非受控缓慢旋转；高增益天线指向偏离预定地面站超过0.6度，下行遥测信号强度骤降15dB，业务通信链路中断",
+      "gold_records": [
+        {
+          "fault_code": "SAT-2026-0317-AOCS-04",
+          "component": "星敏感器（Star Tracker）A与B、姿态确定滤波器、反作用飞轮组、高增益天线",
+          "description": "星敏感器A与B输出数据不一致，姿态确定滤波器发散；反作用飞轮组转速异常饱和；卫星本体绕Y轴非受控缓慢旋转；高增益天线指向偏离预定地面站超过0.6度，下行遥测信号强度骤降15dB，业务通信链路中断",
+          "causes": [
+            "地面测控中心接收到“天枢-X”卫星遥测数据异常报警",
+            "数据显示，卫星星敏感器（Star Tracker）A与B的输出数据出现不...",
+            "反作用飞轮组转速异常饱和，卫星本体开始绕Y轴非受控缓慢旋转",
+            "高增益天线指向偏离预定地面站超过0.6度",
+            "下行遥测信号强度骤降15dB，业务通信链路中断"
+          ],
+          "parameters": []
+        }
+      ],
+      "gold_relations": [
+        {
+          "cause": "地面测控中心接收到“天枢-X”卫星遥测数据异常报警",
+          "effect": "星敏感器A与B输出数据不一致，姿态确定滤波器发散；反作用飞轮组转速异常饱和；卫星本体绕Y轴非受控缓慢旋转；高增益天线指向偏离预定地面站超过0.6度，下行遥测信号强度骤降15dB，业务通信链路中断",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "数据显示，卫星星敏感器（Star Tracker）A与B的输出数据出现不...",
+          "effect": "星敏感器A与B输出数据不一致，姿态确定滤波器发散；反作用飞轮组转速异常饱和；卫星本体绕Y轴非受控缓慢旋转；高增益天线指向偏离预定地面站超过0.6度，下行遥测信号强度骤降15dB，业务通信链路中断",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "反作用飞轮组转速异常饱和，卫星本体开始绕Y轴非受控缓慢旋转",
+          "effect": "星敏感器A与B输出数据不一致，姿态确定滤波器发散；反作用飞轮组转速异常饱和；卫星本体绕Y轴非受控缓慢旋转；高增益天线指向偏离预定地面站超过0.6度，下行遥测信号强度骤降15dB，业务通信链路中断",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "高增益天线指向偏离预定地面站超过0.6度",
+          "effect": "星敏感器A与B输出数据不一致，姿态确定滤波器发散；反作用飞轮组转速异常饱和；卫星本体绕Y轴非受控缓慢旋转；高增益天线指向偏离预定地面站超过0.6度，下行遥测信号强度骤降15dB，业务通信链路中断",
+          "relation": "CAUSES"
+        },
+        {
+          "cause": "下行遥测信号强度骤降15dB，业务通信链路中断",
+          "effect": "星敏感器A与B输出数据不一致，姿态确定滤波器发散；反作用飞轮组转速异常饱和；卫星本体绕Y轴非受控缓慢旋转；高增益天线指向偏离预定地面站超过0.6度，下行遥测信号强度骤降15dB，业务通信链路中断",
+          "relation": "CAUSES"
+        }
+      ],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": true,
+        "count_for_fta_productivity": true
+      },
+      "notes": "from fta_20260317_100024_extracted_faults.json"
+    },
+    {
+      "sample_id": "S00086",
+      "split": "dev",
+      "source_type": "manual_text",
+      "difficulty_tag": "hard",
+      "input_text": "通用型 驱动系统故障数据汇总 一、故障分析基础数据 1.1 核心组件说明 本数据汇总涵盖通用型系列驱动系统各类核心组件，相关组件的基础功能及故障关联范围如下，为故 障树分析提供组件维度的基础支撑： 控制单元（CU）：作为驱动系统的核心控制模块，负责接收上位控制器指令、处理故障诊断信号、协 调各组件间通讯，关联软件运行、参数配置、安全监控等各类故障，是故障树分析中核心的中间事件 节点，涉及内部软件运行、外部通讯交互、安全通道监控等多个故障分支。 功率单元：承担电能转换与传输功能，为电机、液压模块等执行机构提供适配功率，关联过流、过 热、过载、功率电子元器件损坏等硬件故障，是硬件故障树的关键底事件关联组件，其故障可能引发 驱动系统停机、输出异常等上层故障现象。 电机模块（MM）：连接控制单元与电机，负责电机转速、转矩的精准控制，关联电机过载、接地/相 位短路、制动控制故障等，同时参与安全功能（如STO、SS1）的执行，故障可能传导至安全监控系 统，触发安全停止响应。 液压模块（HLA）：适配液压驱动场景，负责断流阀控制、压力调节等功能，关联断流阀连接故障、 反馈信号异常等，仅存在于特定液压驱动配置中，其故障会导致液压执行机构动作异常。 编码器及传感器：包括通道1、通道2编码器模块及各类传感器，负责采集转速、位置、温度等实际 值，为闭环控制提供数据支撑，关联实际值错误、信号丢失等故障，直接影响控制精度及系统稳定 性。 端子模块（TM54F/TM31等）：负责数字量/模拟量信号的输入输出，尤其是TM54F作为故障安全数字 输入模块，关联安全功能的信号传输，其故障会导致安全指令无法正常触发或反馈。 通讯组件：包括DRIVE-CLiQ集线器、通讯板、PROFIBUS/PROFINET接口等，负责组件间及与上位控 制器的通讯，关联通讯中断、数据传输错误等故障，影响系统协同运行。 辅助组件：包括制动模块、电源滤波器、冷却装置、风扇等，负责系统制动、电磁兼容滤波、温度控 制等辅助功能，关联制动故障、过热、滤波异常等，间接影响系统正常运行。 1.2 常用参数及故障值说明 驱动系统故障诊断及处理过程中，涉及多个核心参数及故障值（故障缓冲器r0949、报警缓冲器r2124 等），其取值及含义是故障树分析的关键数据，以下为核心参数及故障值的通用说明（未直接关联具 体故障，仅呈现基础含义及取值范围）： 故障值存储参数：r0949[0...63]（十六进制/十进制），用于记录各类故障的补充信息，不同故障代码 对应的r0949取值不同，可用于定位故障具体原因，取值范围为0~65535，部分取值为设备内部诊断专 用，外部仅需关注公开取值含义。 报警值存储参数：r2124[0...7]（十进制），用于记录各类报警的补充信息，主要关联组件编号、故障 等级等，取值范围为0~999，部分取值对应特定组件的状态异常。 安全功能参数：p9500（安全运动监控的监控周期）、p9501（安全运动监控使能）、p9601（SI安全 功能使能）、p9602（SI安全制动控制使能）、p9610（SI PROFIsafe地址）、p9799（SI参数设定校 验和-控制单元）、p9899（SI参数设定校验和-电机模块）等，参数取值错误或不一致会触发安全类故 障，取值范围需符合设备配置要求，如p9601取值为0（禁用）或1（使能）。 通讯参数：p9510（SI运动等时同步PROFIBUS主站）、p9612（SI PROFIsafe总线故障响应）等，关 联通讯同步、故障处理策略，取值需匹配上位控制器及总线配置，避免通讯失步。 参数备份及复位参数：p0971（存储驱动对象参数）、p0977（保存所有参数）、p0976（热启动/复 位）、p9702（SI确认组件更换）等，参数操作不当可能导致参数丢失或配置异常，如p0977取值为1 时执行所有参数保存操作。 电机及负载参数：p0115（电流控制器采样时间）、p0304（电机额定电压）、p0305（电机额定电 流）、p0310（电机额定转速）、p1215（电机抱闸配置）、p1278（制动控制设置）等，参数与实际 电机及负载不匹配会触发过载、控制异常等故障，取值需严格遵循电机铭牌及负载需求。 系统日志参数：p9930（激活系统日志），用于记录系统运行及故障信息，取值为0（禁用）或1（激 活），激活后可辅助定位隐性故障，日志文件大小可通过该参数调整。 1.3 诊断接口及协议基础 驱动系统支持多种诊断接口及协议，不同接口对应不同类型的故障诊断数据，是故障树分析中通讯故 障分支的核心数据支撑，以下为各类接口及协议的基础信息： PROFINET接口（PN，十六进制编码）：用于PROFINET通道诊断，通过“Channel Error Type”标 识故障类型，诊断激活时可通过GSDML文件显示故障文本，关联故障编码为9000~9013等十六进制 值，对应不同类型的通道异常。 SIMATIC S7诊断接口（DS1，十进制编码）：用于SIMATIC S7诊断报警数据组DS1的位编号识别，诊 断激活时显示对应故障文本，关联故障编码为0~19等十进制值，对应硬件、软件、通讯等各类故障。 PROFIBUS接口（DP，十进制编码）：用于PROFIBUS通道诊断，通过“Error Type”标识故障类 型，诊断激活时显示标准文件及GSD文件中的故障文本，关联故障编码为16~31等十进制值，对应总线 通讯、通道故障等。 ET 200接口（ET 200，十进制编码）：用于SIMATIC ET 200pro FC-2设备通道诊断，通过“Error Type”标识故障类型，诊断激活时显示标准文件及GSD文件中的故障文本，关联故障编码为9~31等十 进制值，对应设备通道异常。 NAMUR接口（NAMUR，r3113.x位编号）：通过参数r3113的位编号识别故障，关联DP、ET 200接口 的部分故障信息，位编号对应不同的故障类型，取值为0~15等，用于补充诊断细节。 DRIVE-CLiQ协议：用于通用型组件间的内部通讯，连接控制单元、电机模块、编码器模块等核心组 件，通讯故障会导致组件间数据传输中断，触发内部通讯故障代码，协议支持热插拔及固件下载功 能。 PROFIsafe协议：用于安全功能的通讯，关联安全指令的传输及反馈，支持SIL2安全等级，通讯故障会 触发安全停止（STOP A/STOP F），协议参数包括目标地址、源地址、看门狗时间等，需与上位安全 控制器匹配。 二、硬件故障树所需数据 硬件故障树以“驱动系统硬件异常”为顶事件，底事件涵盖控制单元、功率单元、编码器及传感器、 辅助组件等各类硬件的故障，核心数据包括硬件故障代码、故障现象、涉及组件、关联参数、故障值 含义、处理细则等，以下为分类汇总数据（数据碎片化呈现，不直接体现逻辑关联）： 2.1 控制单元（CU）硬件故障数据 2.1.1 故障代码及基础信息 故障代码F01000：故障类别为硬件/软件故障（PROFIdrive编号1），驱动对象为所有目标，组件为控 制单元（CU），传播方式为GLOBAL，故障反应为OFF2，应答方式为上电，信息值格式为“模块:%1, 行:%2”，关联故障值r0949（十六进制，设备内部诊断专用）。 故障代码F01002：故障类别为硬件/软件故障（PROFIdrive编号1），驱动对象为所有目标，组件为控 制单元（CU），传播方式为GLOBAL，故障反应为OFF2，应答方式为立即，信息值格式为“%1”， 关联故障值r0949（十六进制，设备内部诊断专用）。 故障代码F01003：故障类别为硬件/软件故障（PROFIdrive编号1），驱动对象为所有目标，组件为控 制单元（CU），传播方式为GLOBAL，故障反应为OFF2，应答方式为立即，信息值格式为“%1”， 关联故障值r0949（十六进制，设备内部诊断专用），故障现象为访问存储器时出现应答延迟。 故障代码F01014：故障类别为硬件/软件故障（PROFIdrive编号1），驱动对象为所有目标，组件为无 （关联控制单元），传播方式为LOCAL，故障反应为无，应答方式为立即，信息值格式为“组件 号:%1”，关联故障值r0949（十六进制，对应组件号），故障现象为拓扑：DRIVE-CLiQ组件属性变 化。 故障代码F01015：故障类别为硬件/软件故障（PROFIdrive编号1），驱动对象为所有目标，组件为控 制单元（CU），传播方式为GLOBAL，故障反应为OFF2，应答方式为上电，信息值格式为“%1”， 关联故障值r0949（十进制，设备内部诊断专用），故障现象为内部软件错误。 故障代码F01020：故障类别为硬件/软件故障（PROFIdrive编号1），驱动对象为所有目标，组件为控 制单元（CU），传播方式为LOCAL，故障反应为无，应答方式为无，无信息值，无关联故障值（或关 联r0949，设备内部专用），故障现象为写RAM失败。 故障代码F01023：故障类别为硬件/软件故障（PROFIdrive编号1），驱动对象为所有目标，组件为控 制单元（CU），传播方式为GLOBAL，故障反应为无，应答方式为立即，信息值格式为“%1”，关联 故障值r0949（十进制，设备内部诊断专用），故障现象为内部软件超时。 故障代码A01013：故障类别为一般驱动故障（PROFIdrive编号19），驱动对象涵盖A_INF、B_INF、 CU_LINK等多种目标，组件为控制单元（CU），传播方式为LOCAL，故障反应为无，应答方式为无， 信息值格式为“%1”，关联报警值r2124（十进制，0表示500小时后达到风扇使用寿命，1表示超过 50000小时使用寿命），故障现象为控制单元：达到或超过风扇的使用寿命。 故障代码A01016（F）：故障类别为未明确（关联硬件固件），驱动对象为所有目标，组件为无（关 联控制单元存储器），传播方式为未明确，故障反应为无，应答方式为无，信息值格式为“%1”，关 联报警值r2124（十进制，0表示文件校验和出错，1表示文件缺失，2表示文件过多，3表示固件版本错 误，4表示备份文件校验和出错），故障现象为固件被修改。 故障代码A01017：故障类别为硬件/软件故障（PROFIdrive编号1），驱动对象为所有目标，组件为控 制单元（CU），传播方式为LOCAL，故障反应为无，应答方式为无，信息值格式为“%1”，关联报 警值r2124（十进制，xyz格式，x为问题类型，y为目录，z为文件名），故障现象为组件列表被更改。 故障代码A01032（F）：故障类别为硬件/软件故障（PROFIdrive编号1），驱动对象为所有目标，组 件为控制单元（CU），传播方式为LOCAL，故障反应为无，应答方式为无，信息值格式为“%1”， 关联报警值r2124（十进制，设备内部诊断专用），故障现象为ACX：需要存储所有参数。 2.1.2 关联组件及参数 涉及组件：控制单元主板、内部存储器、风扇、通讯接口（DRIVE-CLiQ、PROFIBUS/PROFINET）、 固件存储模块（存储卡/设备存储器）、RAM芯片等，组件损坏或接触不良会触发对应故障。 关联参数：p0976（热启动/复位）、p0977（保存所有参数）、p9930（激活系统日志）、p9702（SI 确认组件更换）、r0945（故障缓冲器）、r9925（固件文件出错）、r9926（固件检查状态）、r9999 （内部软件错误附加信息）等，参数异常或操作不当会加剧故障或导致故障无法恢复。 关联接口：DRIVE-CLiQ接口（连接其他组件）、PROFIBUS/PROFINET接口（连接上位控制器）、存 储卡接口（存储固件及参数），接口松动或损坏会导致数据传输失败或固件读取异常。 2.1.3 故障处理细则（碎片化补充） 针对F01000、F01002、F01015等内部软件错误类故障，需先读取故障缓冲器r0945的详细信息，记录 故障发生时的系统状态（如是否正在执行参数修改、固件升级等操作）；随后重新为所有组件上电 （断电等待3-5分钟，避免残余电压影响），优先断开控制单元电源，再断开其他组件电源，重新接通 时顺序相反；若故障重复出现，需检查控制单元主板是否存在电容鼓包、芯片烧毁等硬件损坏，必要 时更换控制单元；同时将固件升级至最新版本，避免旧版本固件存在的漏洞导致故障。 针对F01003（存储器访问应答延迟）故障，需检查控制单元内部存储器的连接状态，若为可插拔存储 器，需拔出后重新插入，确保接触良好；同时检查存储器是否存在损坏，可通过替换存储卡的方式排 查；若故障仍存在，需联系技术支持，进行存储器故障诊断及修复，避免数据丢失。 针对F01014（DRIVE-CLiQ组件属性变化）故障，需根据故障值r0949对应的组件号，检查该DRIVECLiQ组件的连接状态，重新插拔DRIVE-CLiQ电缆，确保布线符合EMC准则（屏蔽层接地良好，远离强 电电缆）；随后执行热启动（p0009=30，p0976=2或3），重新加载组件配置；若组件属性仍异常， 需检查组件是否损坏，必要时更换对应组件。 针对F01020（写RAM失败）故障，需调整内部RAM上系统日志的文件大小（通过p9930参数），减小 日志文件占用的RAM空间；若调整后仍无法解决，需检查RAM芯片的连接状态，排查是否存在接触不 良或芯片损坏，必要时更换控制单元主板。 针对F01023（内部软件超时）故障，需重新为所有组件上电，排查是否为瞬时电压波动导致；同时检 查是否启用了过多的驱动功能，导致软件运行负载过大，可暂时禁用不必要的功能（如非必要的安全 功能、扩展工艺功能），减少软件运行压力；若故障频繁出现，需将固件升级至最新版本，修复软件 超时漏洞，必要时联系技术支持获取专项解决方案。 针对A01013（风扇使用寿命到期）故障，需及时更换控制单元的风扇，更换后将工作时间计数器复位 为0（p3961=0）；更换过程中需注意风扇的型号匹配，确保散热能力符合控制单元的工作要求，同时 检查控制单元的散热通道是否堵塞，清理灰尘及杂物，避免因散热不良导致二次故障。 针对A01016（固件被修改）故障，需在写入固件的非易失性存储器（存储卡/设备存储器）上恢复出厂 设置，恢复前需备份重要参数（通过p0977=1保存所有参数）；恢复后检查r9925参数，确认出错文 件，重新加载正确的固件文件；若固件文件损坏，需从官方渠道获取匹配型号的固件，重新安装；同 时检查存储器是否存在损坏，必要时更换存储卡或设备存储器。 针对A01017（组件列表被更改）故障，需将存储卡上的出错文件恢复为出厂设置，首先定位出错的目 录及文件（根据r2124参数的xyz取值），从备份文件中提取对应文件进行替换，或重新安装驱动系统 的基础配置文件；替换后保存所有参数（p0977=1），重新上电，检查组件列表是否恢复正常；若无 法恢复，需格式化存储卡后重新加载配置及固件。 针对A01032（需要存储所有参数）故障，需执行完整的参数备份操作（p0977=1或“从RAM向ROM复 制”），确保所有驱动对象的参数都被保存；若未执行完整备份，下次启动时部分驱动对象的参数可 能无法载入，导致系统运行异常；备份完成后，重新上电，检查参数是否正常加载，故障是否消除。 2.2 功率单元及电机模块（MM）硬件故障数据 2.2.1 故障代码及基础信息 故障代码F01600：故障类别为安全监控通道发现一处故障（PROFIdrive编号10），驱动对象为 SERVO、SERVO_AC等多种目标，组件为无（关联控制单元及电机模块），传播方式为GLOBAL，故 障反应为无（OFF1、OFF2、OFF3），应答方式为立即（上电），无信息值，关联故障值r0949（十 进制，0表示另一个监控通道发出停止请求，1~999表示交叉比较数据编号，6000~6999表示 PROFIsafe控制故障等），故障现象为SI CU:STOP A被触发。 故障代码F01611（A）：故障类别为安全监控通道发现一处故障（PROFIdrive编号10），驱动对象为 HLA，组件为无（关联控制单元及液压模块），传播方式为GLOBAL，故障反应为无（OFF1、OFF2、 OFF3），应答方式为立即（上电），信息值格式为“%1”，关联故障值r0949（十进制，与F01600 故障值取值规则一致，新增HLA相关交叉比较数据编号），故障现象为SI P1（CU）：某一监控通道故 障。 故障代码F01612：故障类别为安全监控通道发现一处故障（PROFIdrive编号10），驱动对象为 SERVO、SERVO_AC等多种目标，组件为无（关联控制单元及功率单元），传播方式为GLOBAL，故 障反应为无（OFF1、OFF2、OFF3），应答方式为立即（上电），信息值格式为“故障原因: %1 bin”，关联故障值r0949（二进制，控制单元数字输入端的二进制映像），故障现象为SI P1（CU）： 并联功率单元上STO输入不同。 故障代码F01630：故障类别为安全监控通道发现一处故障（PROFIdrive编号10），驱动对象为 SERVO、SERVO_AC等多种目标，组件为无（关联控制单元及电机模块），传播方式为GLOBAL，故 障反应为OFF2，应答方式为立即（上电），信息值格式为“%1”，关联故障值r0949（十进制，10、 11表示打开制动过程出错，20表示制动绕组短路，30、31表示闭合制动过程出错等），故障现象为SI P1（CU）：制动控制出错。 故障代码F01632：故障类别为安全监控通道发现一处故障（PROFIdrive编号10），驱动对象为HLA， 组件为无（关联控制单元及液压模块），传播方式为GLOBAL，故障反应为OFF2，应答方式为立即 （上电），信息值格式为“%1”，关联故障值r0949（十进制，10、11表示打开断流阀过程出错，20 表示断流阀已打开状态出错等），故障现象为SI P1（CU）：断流阀控制/反馈出错。 故障代码A01631（F，N）：故障类别为未明确（关联制动控制配置），驱动对象为SERVO、 SERVO_AC等多种目标，组件为无（关联电机模块及制动组件），传播方式为未明确，故障反应为无 （OFF1、OFF2、OFF3），应答方式为无，无信息值，无明确关联故障值，故障现象为SI P1 （CU）：电机抱闸/SBC配置无意义。 故障代码F01640（N，A）：故障类别为一般驱动故障（PROFIdrive编号19），驱动对象为HLA、 SERVO等多种目标，组件为控制单元（CU），传播方式为LOCAL，故障反应为无，应答方式为立即， 信息值格式为“故障原因: %1”，关联故障值r0949（二进制，位0表示控制单元更换，位1表示电机模 块/液压模块更换等），故障现象为SI P1（CU）：识别出组件更换并需应答/保存。 故障代码F01641（N，A）：故障类别为一般驱动故障（PROFIdrive编号19），驱动对象为A_INF、 B_INF等多种目标，组件为控制单元（CU），传播方式为LOCAL，故障反应为无，应答方式为立即， 信息值格式为“故障原因: %1”，关联故障值r0949（二进制，与F01640取值规则一致，新增传感器 更换标识），故障现象为SI P1（CU）：识别出组件更换并需保存。 故障代码F01649：故障类别为硬件/软件故障（PROFIdrive编号1），驱动对象为未明确，组件为控制 单元（CU），传播方式为未明确，故障反应为未明确，应答方式为未明确，信息值格式为“%1”，关 联故障值r0949（十六进制，设备内部诊断专用），故障现象为SI P1（CU）：内部软件错误（安全功 能相关）。 故障代码F01650：故障类别为安全监控通道发现一处故障（PROFIdrive编号10），驱动对象为HLA， 组件为控制单元（CU），传播方式为LOCAL，故障反应为OFF2，应答方式为立即（上电），信息值 格式为“%1”，关联故障值r0949（十进制，130表示无监控通道2安全参数，1000表示监控通道1校 验和不一致等），故障现象为SI P1（CU）：必须进行验收测试。 故障代码F01651：故障类别为硬件/软件故障（PROFIdrive编号1），驱动对象为SERVO、SERVO_AC 等多种目标，组件为无（关联控制单元及电机模块），传播方式为GLOBAL，故障反应为OFF2，应答 方式为立即（上电），信息值格式为“%1”，关联故障值r0949（十进制，121表示热启动导致同步失 败，150表示PROFIBUS主站同步故障等），故障现象为SI P1（CU）：安全时间片同步失败。 2.2.2 关联组件及参数 涉及组件：功率单元、电机模块（MM）、液压模块（HLA）、制动模块、安全制动适配器、断流阀、 F-DI（故障安全数字输入）端子、并联功率单元、制动绕组等，组件的连接、损坏、配置不当均会触 发对应故障。 关联参数：p9601（SI安全功能使能）、p9602（SI安全制动控制使能）、p9621（SI安全制动适配器 模式）、p9622（SI安全制动适配器继电器时间）、p9625（SI HLA断流阀等待时间）、p9626（SI HLA断流阀反馈触点配置）、p9650（SI SGE转换差异时间）、p9651（SI STO/SBC/SS1反跳时 间）、p9652（SI SS1时STO延迟时间）、p9658（SI STOP F到STOP A过渡时间）、p9697（SI ESR 时STO延迟时间）、p9799（SI参数设定校验和-控制单元）、p9802（SI安全制动控制使能-电机模 块）、p9826（SI HLA断流阀反馈触点配置-电机模块）、p1215（电机抱闸配置）、p1278（制动控 制设置）、p7015（并联抱闸控制功率单元数据组）等，参数取值不一致或错误会触发安全类及制动类 故障。 关联接口：DRIVE-CLiQ接口（控制单元与电机模块/液压模块通讯）、X272（断流阀连接接口）、 X281/X282（断流阀反馈接口）、EP（脉冲使能）端子、STO（安全断路转矩）端子等，接口松动、 接线错误会导致信号传输异常。 2.2.3 故障处理细则（碎片化补充） 针对F01600（SI CU:STOP A被触发）故障，需先根据故障值r0949判断故障类型：若故障值为1~999 （交叉比较数据编号），需检查对应交叉比较数据的参数设置（如p9601、p9602等），确保两个监控 通道的参数一致，重新为所有组件上电，升级电机模块及控制单元的软件；若故障值为1000（控制定 时器届满），需检查电机模块EP端子的布线，排查接触问题，检查TM54F上F-DI的连接，必要时提高 差异时间（p9650/p9850）；若故障值为6000~6999（PROFIsafe控制故障），需检查PROFIsafe参数 配置（如p9610、p9612等），确保目标地址、源地址、看门狗时间等参数正确，检查 PROFIBUS/PROFINET通讯连接，重新加载F参数并校验CRC值。 针对F01611（A）（监控通道故障）故障，处理逻辑与F01600类似，需结合故障值r0949对应的交叉 比较数据编号，检查液压模块的STO端子布线，排查接触问题，升级液压模块及控制单元的软件；若 故障值为2000~2003（STO状态不一致），需检查F-DI的连接，检查r9772中STO选择的原因，必要时 更换液压模块，排除故障后重新选择/撤销STO应答故障。 针对F01612（并联功率单元STO输入不同）故障，需检查F-DI切换的公差时间，必要时提高该值 （p9650），检查F-DI的接线是否牢固，排查接触不良问题，确保并联功率单元的STO输入信号同步； 若故障仍存在，需检查并联功率单元的配置参数（如p7015），确保参数一致，重新校准并联功率单元 的信号同步性。 针对F01630（制动控制出错）故障，需根据故障值r0949判断具体故障场景：若故障值为10、11（打 开制动过程出错），需检查参数p1278的设置（使用SBC时仅允许p1278=0），检查电机抱闸装置的连 接，排查电缆是否断开，检查制动绕组是否接地；若故障值为20（制动绕组短路），需更换制动绕组 或电机模块；若故障值为30、31（闭合制动过程出错），需检查制动装置的功能，排查制动绕组短路 问题；若故障值为50（控制单元制动控制故障），需检查控制单元与电机模块间的DRIVE-CLiQ通讯， 排查通讯故障，必要时更换电机模块；若使用安全制动模块或适配器，需检查其连接状态，必要时更 换。 针对F01632（断流阀控制/反馈出错）故障，需根据故障值r0949定位故障场景：若故障值为10、11 （打开断流阀过程出错），需检查断流阀的连接（X272接口），确保接线正确，检查断流阀反馈的连 接（X281/X282接口）；若故障值为20（断流阀已打开状态出错），需检查断流阀是否损坏，排查反 馈信号是否正常；若故障值为30、31（闭合断流阀过程出错），需检查断流阀的机械结构，排查是否 卡滞；若故障值为50、80（控制/反馈或通讯故障），需检查电柜结构及电缆敷设是否符合EMC准则， 使用屏蔽电缆并确保屏蔽层接地，必要时更换断流阀或液压模块，同时检查p9626/p9826参数（断流 阀反馈配置）是否正确。 针对A01631（电机抱闸/SBC配置无意义）故障，需检查电机抱闸配置参数p1215及SBC使能参数 p9602/p9802，若p1215=0（不存在电机抱闸）且p9602=1（SBC使能），需修改参数使配置匹配， 要么启用电机抱闸（p1215设为对应值），要么禁用SBC功能（p9602=0）；若p1215=3（电机抱闸控 制，B）且p9602=1，需检查抱闸控制的接线及配置，确保参数与硬件匹配。 针对F01640（组件更换需应答/保存）故障，需先根据故障值r0949（二进制）判断更换的组件类型， 然后执行组件更换应答操作（p9702=29），保存所有参数（p0977=1或p0971=1或“从RAM复制到 ROM”），最后应答故障（如通过二进制互联输入p2103）；若为控制单元更换，需重新执行安全功 能调试及验收测试；若为电机模块/液压模块更换，需检查组件的固件版本，确保与控制单元匹配，重 新加载配置参数。 针对F01641（组件更换需保存）故障，处理流程与F01640类似，重点执行参数保存操作，确保更换组 件后的参数被正确存储，避免下次启动时参数丢失；同时检查r9776参数（SI诊断），确认组件更换后 的状态，必要时重新执行安全功能的简化验收测试。 针对F01649（安全功能内部软件错误）故障，需重新为所有组件上电，重复“Safety Integrated”功 能的调试并执行上电，将功率单元的固件升级至最新版本；若故障重复出现，需联系技术支持，排查 安全软件漏洞，必要时更换控制单元。 针对F01650（必须进行验收测试）故障，需根据故障值r0949判断具体原因：若故障值为130（无监控 通道2安全参数），需重新执行安全功能调试，配置监控通道2的安全参数；若故障值为1000、2000 （校验和不一致），需检查p9799、p9899参数，确保设定校验和与实际校验和一致，删除未禁用的安 全功能参数（p9501、p9503）；若故障值为2003、2004、2005、3003、3005（参数或硬件更 改），需执行验收测试并完成验收报告，验收测试步骤参考相关功能手册，排除故障后取消STO功 能，应答故障；若故障值为9999（其他安全故障后续反应），需先诊断并排除其他SI故障，再执行验 收测试。 针对F01651（安全时间片同步失败）故障，需根据故障值r0949判断具体原因：若故障值为121（热启 动导致），需重新给上级控制系统和通用型上电（热启动）；若故障值为150（PROFIBUS主站同步故 障），需检查p9510参数设置，调整同步参数，确保与PROFIBUS主站匹配；通用处理措施包括重新上 电、升级电机模块/液压模块及控制单元、上级控制系统的软件，检查DRIVE-CLiQ通讯是否正常，确保 安全时间片同步。 2.3 编码器及传感器硬件故障数据 2.3.1 故障代码及基础信息 故障代码F01034：故障类别为参数设置/配置/调试过程出错（PROFIdrive编号18），驱动对象为 A_INF、B_INF等多种目标，组件为无（关联编码器及传感器），传播方式为GLOBAL，故障反应为 无，应答方式为立即，信息值格式为“参数:%1”，关联故障值r0949（参数，无法重新计算的参数 值），故障现象为单位转换：参考值更改后参数值计算失败。 故障代码F01033：故障类别为参数设置/配置/调试过程出错（PROFIdrive编号18），驱动对象为 A_INF、B_INF等多种目标，组件为无（关联编码器及传感器），传播方式为GLOBAL，故障反应为 无，应答方式为立即，信息值格式为“参数:%1”，关联故障值r0949（参数，值为0.0的参考参数）， 故障现象为单位转换：参考参数无效。 故障代码F01010：故障类别为参数设置/配置/调试过程出错（PROFIdrive编号18），驱动对象为所有 目标，组件为无（关联电机模块及编码器），传播方式为GLOBAL，故障反应为无，应答方式为立即， 信息值格式为“%1”，关联故障值r0949（十进制，驱动对象序号，参考p0101、p0107），故障现象 为驱动类型不明。 故障代码F01005：故障类别为硬件/软件故障（PROFIdrive编号1），驱动对象为所有目标，组件为无 （关联DRIVE-CLiQ组件及编码器模块），传播方式为LOCAL，故障反应为无，应答方式为立即，信息 值格式为“组件号:%1,故障原因:%2”，关联故障值r0949（十六进制，yyxxxx格式，yy为组件编号， xxxx为故障原因），故障现象为下载DRIVE-CLiQ组件的固件失败（含编码器模块）。 故障代码A01006：故障类别为未明确（关联固件升级），驱动对象为无（关联DRIVE-CLiQ组件及编码 器模块），传播方式为LOCAL，故障反应为无，应答方式为无，无信息值，关联报警值r2124（十进 制，DRIVE-CLiQ组件的组件号），故障现象为DRIVE-CLiQ组件的固件需要升级（含编码器模块）。 故障代码A01007：故障类别为一般驱动故障（PROFIdrive编号19），驱动对象为所有目标，组件为无 （关联DRIVE-CLiQ组件及编码器模块），传播方式为LOCAL，故障反应为无，应答方式为无，信息值 格式为“组件号: %1”，关联报警值r2124（十进制，DRIVE-CLiQ组件的组件号），故障现象为 DRIVE-CLiQ组件需要重新上电（含编码器模块）。 故障代码F01012（N）：故障类别为硬件/软件故障（PROFIdrive编号1），驱动对象为SERVO、 VECTOR等多种目标，组件为无（关联编码器及控制单元），传播方式为GLOBAL，故障反应为OFF2 （无），应答方式为立即，信息值格式为“%1”，关联故障值r0949（十进制，引发错误的参数 号），故障现象为项目转化出错（含编码器相关参数）。 故障代码F01009（N）：故障类别为电子组件过热（PROFIdrive编号6），驱动对象为所有目标，组件 为控制单元（CU），传播方式为GLOBAL，故障反应为无，应答方式为无，无信息值，无明确关联故 障值，故障现象为CU：控制单元过热（间接影响编码器信号处理）。 2.3.2 关联组件及参数 涉及组件：编码器模块（通道1、通道2、通道3）、编码器传感器、位置传感器、温度传感器、DRIVECLiQ编码器接口、信号转换模块等，组件损坏、信号丢失、固件不匹配均会触发对应故障。 关联参数：p0187（内部编码器信号转换分配至编码器接口1）、p0188（分配至接口2）、p0189（分 配至接口3）、p0600（内部编码器信号转换分配模式）、p0349（电机等效电路图数据单位制）、 p005（单位制选择）、p0595（工艺单位的选择）、p0304、p0305、p0310（电机参数，关联编码器 单位转换）、p2000、p2001（工艺参数，关联单位转换）、p7828（固件下载组件号）、p7829（固 件下载启动）等，参数设置错误或分配不当会导致编码器信号处理异常、单位转换失败。 关联接口：DRIVE-CLiQ接口（编码器模块与控制单元通讯）、编码器信号接口（采集转速、位置信 号），接口松动、信号干扰会导致编码器信号错误或丢失。 2.3.3 故障处理细则（碎片化补充） 针对F01033（单位转换：参考参数无效）故障，需检查故障值r0949对应的参考参数，确保该参数取 值不为0.0，参考参数包括p0304、p0305、p0310、p0596、p2000等，根据实际电机及工艺需求调整 参数值；同时检查p0349、p005、p0595参数（单位制相关），确保单位制配置一致，避免单位转换 冲突。 针对F01034（单位转换：参考值更改后参数值计算失败）故障，需检查故障值r0949对应的参数，该 参数因参考参数更改无法重新按百分比计算，需恢复该参数的初始值，或调整参考参数至合理范围， 重新计算参数值；同时检查参考参数与目标参数的匹配性，确保参考参数更改后不会导致目标参数超 出合理取值范围。 针对F01010（驱动类型不明）故障，需根据故障值r0949对应的驱动对象序号（参考p0101、 p0107），检查对应的电机模块及编码器配置，更换损坏的功率模块，重新为所有组件上电；若故障仍 存在，需将固件升级至最新版本，排查固件与驱动类型的兼容性，必要时联系技术支持。 针对F01005（编码器模块固件下载失败）故障，需根据故障值r0949的xxxx部分（故障原因）采取对 应措施：xxxx=000B（校验和错误），需重新获取固件文件，确保文件完整；xxxx=000F（组件不支持 固件内容），需更换适配的编码器模块；xxxx=0012（固件版本过旧）、xxxx=0013（固件与硬件版本 不兼容），需获取匹配硬件版本的最新固件；xxxx=0065（通讯无应答），需检查DRIVE-CLiQ布线， 确保通讯正常，增加通讯尝试次数；xxxx=008B（仅载入引导程序），需重新上电后再次下载固件； xxxx=008C（无固件文件），需将固件文件存入存储卡的“/device/drive/code/sac”目录； xxxx=008D（固件文件长度不一致），需检查固件文件完整性，避免下载过程中通讯中断；xxxx=008F （无法进入下载模式），需排查编码器模块是否损坏，必要时更换；xxxx=0090（固件校验失败），需 更换存储卡，重新获取固件文件；xxxx=0091（校验超时），需检查通讯速度，降低通讯负载； xxxx=009C（组件不存在），需检查p7828参数（组件号）是否正确。 针对A01006（编码器模块固件需升级）故障，需通过调试工具或参数执行固件升级：调试工具升级需 在项目导航器的“配置-版本概述”中查看编码器模块的固件版本，下载匹配的固件进行升级；参数升 级需将故障值r2124对应的组件号填入p7828，设置p7829=1启动固件下载，下载完成后重新上电，确 认固件升级成功。 针对A01007（编码器模块需重新上电）故障，需根据报警值r2124对应的组件号，重新给该编码器模 块上电，若组件号为1，需重新上电控制单元；若使用数控系统，自动调试可能受阻，需对所有组件执 行上电，重新启动自动调试。 针对F01012（N）（项目转化出错）故障，需重点检查故障值r0949对应的参数号，若故障值为600 （温度检测分配错误），需根据内部编码器信号转换和编码器接口的分配情况，将p0600设为1、2或3 （1对应接口1，2对应接口2，3对应接口3），通过p0187、p0188、p0189参数将内部编码器信号转 （注：文档部分内容可能由 AI 生成） 换分配给对应的编码器接口；同时将固件升级至最新版本，避免旧版本固件的项目转化漏洞；注意此 时电机温度监控功能可能失效，需检查相关参数并设置正确值。 针对F01009（N）（控制单元过热）故障，需检查控制单元的送风情况，清理散热通道的灰尘及杂 物，检查控制单元的风扇是否正常运行，若风扇损坏需及时更换；同时检查电柜的通风条件，避免环 境温度过高导致控制单元过热，进而影响编码器信号的处理精度，温度低于极限值后",
+      "gold_top_event": "待标注",
+      "gold_records": [],
+      "gold_relations": [],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": false,
+        "count_for_fta_productivity": true
+      },
+      "notes": "raw handbook chunk; needs annotation"
+    },
+    {
+      "sample_id": "S00087",
+      "split": "train",
+      "source_type": "request_text",
+      "difficulty_tag": "easy",
+      "input_text": "故障代码F01630。故障现象：制动控制出错。故障值20：制动绕组短路。组件：电机模块。参数：p1278。",
+      "gold_top_event": "待标注",
+      "gold_records": [],
+      "gold_relations": [],
+      "evidence_spans": [],
+      "expected_metrics_tags": {
+        "count_for_legality": true,
+        "count_for_hallucination": false,
+        "count_for_fta_productivity": true
+      },
+      "notes": "raw_text from request payload"
+    }
+  ]
+}

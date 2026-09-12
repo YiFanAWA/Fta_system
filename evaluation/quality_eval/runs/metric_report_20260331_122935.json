@@ -1,0 +1,239 @@
+{
+  "summary": {
+    "samples_evaluated": 20,
+    "predict_mode": "api",
+    "split_filter": "test",
+    "legality_rate": 1.0,
+    "hallucination_rate": 0.003115,
+    "fta_productivity_rate": 1.0,
+    "counts": {
+      "legal_ok": 20,
+      "hallucination_bad_fields": 1,
+      "hallucination_total_fields": 321,
+      "fta_ok": 20
+    },
+    "avg_latency_ms": 3661.6
+  },
+  "details": [
+    {
+      "sample_id": "S00009",
+      "split": "test",
+      "source_type": "kb_corrected",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 31,
+      "hallucinated_fields": 0,
+      "latency_ms": 4515,
+      "error": ""
+    },
+    {
+      "sample_id": "S00011",
+      "split": "test",
+      "source_type": "kb_corrected",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 20,
+      "hallucinated_fields": 0,
+      "latency_ms": 7169,
+      "error": ""
+    },
+    {
+      "sample_id": "S00013",
+      "split": "test",
+      "source_type": "kb_corrected",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 11,
+      "hallucinated_fields": 0,
+      "latency_ms": 3569,
+      "error": ""
+    },
+    {
+      "sample_id": "S00016",
+      "split": "test",
+      "source_type": "kb_corrected",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 8,
+      "hallucinated_fields": 0,
+      "latency_ms": 1963,
+      "error": ""
+    },
+    {
+      "sample_id": "S00017",
+      "split": "test",
+      "source_type": "kb_corrected",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 12,
+      "hallucinated_fields": 0,
+      "latency_ms": 2268,
+      "error": ""
+    },
+    {
+      "sample_id": "S00020",
+      "split": "test",
+      "source_type": "kb_corrected",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 23,
+      "hallucinated_fields": 0,
+      "latency_ms": 6097,
+      "error": ""
+    },
+    {
+      "sample_id": "S00022",
+      "split": "test",
+      "source_type": "kb_corrected",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 11,
+      "hallucinated_fields": 0,
+      "latency_ms": 2332,
+      "error": ""
+    },
+    {
+      "sample_id": "S00026",
+      "split": "test",
+      "source_type": "kb_corrected",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 25,
+      "hallucinated_fields": 0,
+      "latency_ms": 3496,
+      "error": ""
+    },
+    {
+      "sample_id": "S00028",
+      "split": "test",
+      "source_type": "kb_corrected",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 8,
+      "hallucinated_fields": 0,
+      "latency_ms": 2074,
+      "error": ""
+    },
+    {
+      "sample_id": "S00031",
+      "split": "test",
+      "source_type": "extracted_output",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 12,
+      "hallucinated_fields": 0,
+      "latency_ms": 3004,
+      "error": ""
+    },
+    {
+      "sample_id": "S00037",
+      "split": "test",
+      "source_type": "extracted_output",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 10,
+      "hallucinated_fields": 1,
+      "latency_ms": 2685,
+      "error": ""
+    },
+    {
+      "sample_id": "S00044",
+      "split": "test",
+      "source_type": "extracted_output",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 8,
+      "hallucinated_fields": 0,
+      "latency_ms": 2410,
+      "error": ""
+    },
+    {
+      "sample_id": "S00054",
+      "split": "test",
+      "source_type": "extracted_output",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 48,
+      "hallucinated_fields": 0,
+      "latency_ms": 8737,
+      "error": ""
+    },
+    {
+      "sample_id": "S00064",
+      "split": "test",
+      "source_type": "extracted_output",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 5,
+      "hallucinated_fields": 0,
+      "latency_ms": 1688,
+      "error": ""
+    },
+    {
+      "sample_id": "S00071",
+      "split": "test",
+      "source_type": "extracted_output",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 21,
+      "hallucinated_fields": 0,
+      "latency_ms": 4270,
+      "error": ""
+    },
+    {
+      "sample_id": "S00072",
+      "split": "test",
+      "source_type": "extracted_output",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 25,
+      "hallucinated_fields": 0,
+      "latency_ms": 3571,
+      "error": ""
+    },
+    {
+      "sample_id": "S00075",
+      "split": "test",
+      "source_type": "extracted_output",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 18,
+      "hallucinated_fields": 0,
+      "latency_ms": 3234,
+      "error": ""
+    },
+    {
+      "sample_id": "S00076",
+      "split": "test",
+      "source_type": "extracted_output",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 11,
+      "hallucinated_fields": 0,
+      "latency_ms": 2424,
+      "error": ""
+    },
+    {
+      "sample_id": "S00083",
+      "split": "test",
+      "source_type": "extracted_output",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 7,
+      "hallucinated_fields": 0,
+      "latency_ms": 2774,
+      "error": ""
+    },
+    {
+      "sample_id": "S00085",
+      "split": "test",
+      "source_type": "extracted_output",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 7,
+      "hallucinated_fields": 0,
+      "latency_ms": 4952,
+      "error": ""
+    }
+  ]
+}
