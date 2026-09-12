@@ -1,122 +1,81 @@
-# Vue 对接接口说明
+# API 使用说明
 
-## 1. 安装依赖
+## 启动
 
-```bash
-pip install fastapi uvicorn pydantic
+在仓库根目录创建环境并安装锁定依赖：
+
+```powershell
+python -m venv .venv
+& .\.venv\Scripts\python.exe -m pip install -r backend-python/requirements.txt
+Copy-Item backend-python/.env.example backend-python/.env
 ```
 
-## 2. 启动服务
+配置 `backend-python/.env` 后启动服务：
 
-```bash
-uvicorn api_server:app --host 0.0.0.0 --port 8000 --reload
+```powershell
+& .\.venv\Scripts\python.exe -m uvicorn api_server:app --app-dir backend-python --host 127.0.0.1 --port 8000 --reload
 ```
 
-若在项目父目录启动，建议使用（避免模块路径错误）：
+健康检查：
 
-```bash
-E:/Miniconda/envs/NLP/python.exe -m uvicorn api_server:app --host 127.0.0.1 --port 8000 --app-dir "c:/Users/2/Desktop/AI_FTA_System(2)/AI_FTA_System" --reload
+```powershell
+Invoke-RestMethod http://127.0.0.1:8000/api/health
 ```
 
-启动后先检查健康接口，确认已命中新版本：
+当前健康响应包含 `status=ok` 和构建标识 `2026-04-15-template-parser-v12`。FastAPI 交互文档位于 `http://127.0.0.1:8000/docs`。
 
-```bash
-curl http://127.0.0.1:8000/api/health
-```
+## 接口
 
-预期返回包含：`"build": "2026-04-15-template-parser-v12"`。
+- `GET /api/health`：健康检查。
+- `POST /api/fta/build_dot`：从结构化条目构建 DOT。
+- `POST /api/fta/full_generate`：从文本生成 DOT，支持 `hybrid`、`llm`、`deterministic`。
+- `POST /api/fta/generate`：通过 `ai`、`manual` 或 `text` 输入生成完整故障树及导出文件。
+- `POST /api/fta/review`：生成分析报告和初稿审查。
+- `POST /api/kg/query`：执行 Neo4j 查询。
+- `POST /api/chat`：结合本地记录、树上下文和可选图谱进行问答。
+- `POST /api/fta/generate_agent`：执行现有的分阶段生成工作流。
+- `POST /api/fta/generate_from_file`：上传单个文档并生成。
+- `POST /api/fta/generate_from_files`：合并多个上传文档并生成。
 
-## 3. 接口列表
-
-- `GET /api/health`
-- `POST /api/fta/generate`
-- `POST /api/fta/review`
-
-## 4. 生成故障树接口
-
-### 请求体
+## 完整生成示例
 
 ```json
 {
   "system": "Drone",
   "top_event": "Drone Crash",
-  "source": "ai",
-  "manual_failures": [],
-  "use_knowledge_graph": true,
-  "run_analysis_report": true,
-  "run_draft_review": true,
+  "source": "manual",
+  "manual_failures": [
+    {
+      "name": "动力系统失效",
+      "probability": 0.12,
+      "gate": "OR",
+      "causes": [
+        {"name": "电机过热停转", "probability": 0.07, "gate": "OR", "causes": []},
+        {"name": "电调故障", "probability": 0.03, "gate": "OR", "causes": []}
+      ]
+    }
+  ],
+  "use_knowledge_graph": false,
+  "run_analysis_report": false,
+  "run_draft_review": false,
   "output_prefix": "demo_run"
 }
 ```
 
-- `source=ai` 时，系统自动调用AI生成故障事件。
-- `source=manual` 时，需要传 `manual_failures`。
-- `source=text` 时，需要传 `raw_text`（长文本故障手册），后端会分块抽取并自动合并结构化故障记录。
+该请求可在没有模型密钥和 Neo4j 的情况下检查基础生成链路。`source=ai` 会调用模型；`source=text` 需要提供 `raw_text`，并可通过 `text_chunk_size_chars` 和 `text_chunk_overlap_chars` 调整分块。
 
-### `source=text` 示例（推荐用于工业手册）
+返回值根据接口包含 `tree`、`events`、`dot_content`、`extracted_faults`、`analysis_report`、`draft_review` 和 `files` 等字段。运行时文件统一写入 `backend-python/outputs/`。
 
-```json
-{
-  "system": "通用型驱动系统",
-  "top_event": "驱动系统硬件异常",
-  "source": "text",
-  "raw_text": "故障代码F01630...（可粘贴长文档）",
-  "text_chunk_size_chars": 6000,
-  "text_chunk_overlap_chars": 300,
-  "use_knowledge_graph": true,
-  "run_analysis_report": true,
-  "run_draft_review": true,
-  "output_prefix": "drive_manual_run"
-}
-```
+## 前端连接
 
-说明：
-- `text_chunk_size_chars` 控制每次送入模型的分块长度（字符）。
-- `text_chunk_overlap_chars` 控制相邻分块重叠长度，减少跨块信息丢失。
-- 返回中新增 `extracted_faults` 字段，`files.extracted_json` 会保存抽取结果文件路径。
-
-### manual_failures 示例
-
-```json
-[
-  {
-    "name": "动力系统失效",
-    "probability": 0.12,
-    "gate": "OR",
-    "causes": [
-      { "name": "电机过热停转", "probability": 0.07, "gate": "OR", "causes": [] },
-      { "name": "电调故障", "probability": 0.03, "gate": "OR", "causes": [] }
-    ]
-  }
-]
-```
-
-## 5. Vue 调用示例
+开发模式默认通过 Vue 代理请求 `/api`，不需要在前端硬编码主机地址：
 
 ```javascript
-const res = await fetch('http://localhost:8000/api/fta/generate', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-    system: 'Drone',
-    top_event: 'Drone Crash',
-    source: 'ai',
-    use_knowledge_graph: true,
-    run_analysis_report: true,
-    run_draft_review: true
-  })
-});
-
-const data = await res.json();
-console.log(data);
+const response = await fetch('/api/health')
+const data = await response.json()
 ```
 
-## 6. 返回结果
+可用环境变量覆盖：
 
-返回包含：
-- `tree`: 构建好的故障树 JSON
-- `dot_content`: DOT文本（前端可直接渲染为故障树图）
-- `extracted_faults`: 文本抽取得到的结构化故障记录（仅 `source=text`）
-- `analysis_report`: AI 分项分析
-- `draft_review`: AI 初稿检验（不足项）
-- `files`: 生成文件路径（xml/dot/png/报告）
+- `VUE_APP_API_PROXY_TARGET`：Vue 开发服务器的代理目标。
+- `VUE_APP_API_BASE_URL`：构建时写入的 API 根地址。

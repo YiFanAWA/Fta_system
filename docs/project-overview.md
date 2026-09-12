@@ -1,5 +1,7 @@
 # 基于大语言模型和知识图谱的驱动系统故障树自动生成与可视化平台
 
+> 文档状态：产品背景与演进设想。涉及“已落地”“当前指标”或上线能力的内容必须以当前源码、自动化门禁和带时间戳的报告为准；未在代码中实现的 LoRA、反馈回流和部署描述均属于后续方向。
+
 ## 1. 项目说明
 ### 1.1 项目背景
 #### 1.1.1 项目行业背景
@@ -207,7 +209,7 @@ flowchart TD
 - 文档结果：analysis_report、draft_review 及对应 TXT/JSON。
 - 文件结果：XML、DOT、PNG、分析与审查文件路径。
 
-当前阶段（2026-03-31）已完成实测结果如下：
+以下数值来自 2026-03-31 保存的历史报告，仅作为迁移后的基线材料；本次仓库整理没有重新运行在线模型、Neo4j 或 API 模式评测，因此不能视为当前提交的质量结论：
 - 通用评估（API 模式，test 集）：
   - 结构合法率：100.00%
   - 幻觉率：0.31%
@@ -222,20 +224,15 @@ flowchart TD
   - AI 平均逻辑分：0.4375
   - 平均时延：3693.9 ms
 
-对应成果文件：
-- 通用评测报告：evaluation/quality_eval/runs/metric_report_20260331_122935.json
-- 事件逻辑评测报告（正常口径）：evaluation/quality_eval/runs/event_logic_report_20260331_134338.json
-- 通用评测可视化：evaluation/quality_eval/runs/metric_report_20260331_122935_chart_refined.png
-- 事件逻辑可视化（正常口径）：evaluation/quality_eval/runs/event_logic_report_20260331_134338_chart.png
-- 优化前后对比模板图（v2）：evaluation/quality_eval/runs/optimization_compare_template_chart_v2.png
+对应历史成果文件：
+- [通用评测报告](../evaluation/quality_eval/runs/metric_report_20260331_122935.json)
+- [事件逻辑评测报告](../evaluation/quality_eval/runs/event_logic_report_20260331_134338.json)
+- [通用评测可视化](../evaluation/quality_eval/runs/metric_report_20260331_122935_chart_refined.png)
+- [事件逻辑可视化](../evaluation/quality_eval/runs/event_logic_report_20260331_134338_chart.png)
 
-图 1 事件与逻辑评估图（当前指标）：
+图 1 事件与逻辑评估图（历史指标）：
 
-![事件与逻辑评估图](evaluation/quality_eval/runs/event_logic_report_20260331_134338_chart.png)
-
-图 2 优化前后对比图模板（当前 vs 目标）：
-
-![优化前后对比图模板](evaluation/quality_eval/runs/optimization_compare_template_chart_v2.png)
+![事件与逻辑评估图](../evaluation/quality_eval/runs/event_logic_report_20260331_134338_chart.png)
 
 ### 4.6 智能交互平台搭建
 - 对外接口：REST API（FastAPI）。
@@ -282,13 +279,13 @@ flowchart TD
 3. 第三阶段：质量测试（专家盲评、抽取准确率评测）。
 4. 第四阶段：上线验证（灰度发布、回滚演练）。
 
-当前测试结论（阶段性）：
-- 工程结构稳定性已满足上线前门槛（树合法率、门合法率、FTA 生产率均为 100%）。
-- 抽取语义质量和逻辑语义一致性仍有提升空间（基本事件 F1 69.23%，严格逻辑一致率 15.00%）。
+历史测试结论（阶段性，不代表当前上线门槛）：
+- 2026-03-31 的报告记录了树合法率、门合法率和 FTA 生产率均为 100%。
+- 同一次历史评测显示抽取语义质量和逻辑语义一致性仍有提升空间（基本事件 F1 69.23%，严格逻辑一致率 15.00%）。
 - 下一阶段重点：
   1) 扩充金标数据集并补齐 evidence_spans；
   2) 针对低分样本做 Prompt/规则优化与 LoRA 微调；
-  3) 用“当前 vs 目标”模板图跟踪迭代收益。
+  3) 重新执行统一基线并用版本化报告跟踪迭代收益。
 
 ---
 
