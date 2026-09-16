@@ -1,0 +1,415 @@
+import json
+import sys
+import unittest
+from dataclasses import asdict
+from datetime import datetime, timezone
+from pathlib import Path
+
+
+BACKEND_DIR = Path(__file__).resolve().parents[1]
+if str(BACKEND_DIR) not in sys.path:
+    sys.path.insert(0, str(BACKEND_DIR))
+
+from extraction_contract import (  # noqa: E402
+    EvidenceField,
+    EvidenceSpan,
+    ExtractionDiagnostic,
+    ExtractionResult,
+    ExtractionStatus,
+    FaultRecord,
+)
+from fault_extractor import RemoteLLMFaultExtractor  # noqa: E402
+from model_client import (  # noqa: E402
+    CallableModelClient,
+    ModelClientError,
+    RetryingModelClient,
+)
+from review_contract import (  # noqa: E402
+    FaultRecordReview,
+    ReviewStatus,
+    ReviewableExtractionResult,
+)
+from review_decision_service import ReviewDecisionService  # noqa: E402
+from review_preparation_service import ReviewPreparationService  # noqa: E402
+from review_repository import InMemoryReviewRepository  # noqa: E402
+from text_extraction_adapter import TextExtractionAdapter  # noqa: E402
+
+
+class ExtractionContractTests(unittest.TestCase):
+    def test_fault_record_allows_missing_code_and_empty_repeated_fields(self):
+        record = FaultRecord(description="pump stopped")
+
+        self.assertIsNone(record.fault_code)
+        self.assertEqual(record.causes, ())
+        self.assertEqual(record.parameters, ())
+        with self.assertRaises((AttributeError, TypeError)):
+            record.description = "changed"
+
+    def test_failed_result_requires_diagnostics(self):
+        with self.assertRaises(ValueError):
+            ExtractionResult(status=ExtractionStatus.FAILED)
+
+    def test_result_can_be_serialized_without_mutating_the_contract(self):
+        result = ExtractionResult(
+            status=ExtractionStatus.SUCCESS,
+            records=(FaultRecord(description="pump stopped"),),
+        )
+
+        encoded = json.dumps(asdict(result))
+
+        self.assertIn('"status": "success"', encoded)
+        self.assertIn('"description": "pump stopped"', encoded)
+
+    def test_evidence_span_matches_its_source_offsets(self):
+        span = EvidenceSpan(
+            record_id="record-1",
+            field=EvidenceField.DESCRIPTION,
+            source_id="manual-1",
+            quote="pump stopped",
+            start=0,
+            end=12,
+        )
+
+        self.assertTrue(span.matches("pump stopped in bay A"))
+
+
+class FaultExtractorTests(unittest.TestCase):
+    def _extractor(self, response: str) -> RemoteLLMFaultExtractor:
+        return RemoteLLMFaultExtractor(
+            CallableModelClient(lambda prompt: response),
+            lambda text: f"extract: {text}",
+        )
+
+    def test_invalid_json_is_failed(self):
+        result = self._extractor("not-json").extract("source")
+
+        self.assertEqual(result.status, ExtractionStatus.FAILED)
+        self.assertEqual(result.diagnostics[0].code, "invalid_json")
+
+    def test_mixed_records_are_partial(self):
+        response = (
+            '{"items":[{"description":"pump stopped"},'
+            '{"description":null}]}'
+        )
+        result = self._extractor(response).extract("source")
+
+        self.assertEqual(result.status, ExtractionStatus.PARTIAL)
+        self.assertEqual(len(result.records), 1)
+        self.assertEqual(result.diagnostics[0].code, "invalid_record")
+
+
+class TextExtractionAdapterTests(unittest.TestCase):
+    def test_model_failure_is_not_masked_by_fallback(self):
+        def failing(prompt: str) -> str:
+            raise ModelClientError(
+                "provider_auth_failed",
+                "invalid credentials",
+                retryable=False,
+            )
+
+        adapter = TextExtractionAdapter(
+            CallableModelClient(failing),
+            lambda text, index, total: text,
+            fallback_builder=lambda text: [
+                {"description": "fallback record"},
+            ],
+        )
+        result = adapter.extract("source text")
+
+        self.assertEqual(result.status, ExtractionStatus.FAILED)
+        self.assertEqual(result.diagnostics[0].code, "provider_auth_failed")
+        self.assertEqual(len(result.records), 0)
+
+    def test_fallback_records_are_partial(self):
+        adapter = TextExtractionAdapter(
+            CallableModelClient(lambda prompt: '{"items":[]}'),
+            lambda text, index, total: text,
+            fallback_builder=lambda text: [
+                {"description": "fallback record"},
+            ],
+        )
+
+        result = adapter.extract("source text")
+
+        self.assertEqual(result.status, ExtractionStatus.PARTIAL)
+        self.assertEqual(result.diagnostics[0].code, "fallback_used")
+        self.assertEqual(len(result.records), 1)
+
+    def test_successful_model_record_is_normalized(self):
+        response = (
+            '{"items":[{"fault_code":null,"description":"pump stopped",'
+            '"causes":[],"parameters":[],"confidence":0.8}]}'
+        )
+        adapter = TextExtractionAdapter(
+            CallableModelClient(lambda prompt: response),
+            lambda text, index, total: text,
+        )
+        result = adapter.extract("source text")
+
+        self.assertEqual(result.status, ExtractionStatus.SUCCESS)
+        self.assertIsNone(result.records[0].fault_code)
+        self.assertEqual(result.records[0].causes, ())
+
+    def test_chunk_overlap_only_removes_exact_duplicates(self):
+        response = '{"items":[{"description":"same fault"}]}'
+        adapter = TextExtractionAdapter(
+            CallableModelClient(lambda prompt: response),
+            lambda text, index, total: text,
+            chunk_size_chars=5,
+            overlap_chars=1,
+        )
+
+        result = adapter.extract("abcdefghij")
+
+        self.assertEqual(result.status, ExtractionStatus.SUCCESS)
+        self.assertEqual(len(result.records), 1)
+        self.assertEqual(len(adapter.last_chunk_reports), 3)
+
+
+class RetryingModelClientTests(unittest.TestCase):
+    def test_retryable_error_has_bounded_retries(self):
+        calls = []
+
+        def failing(prompt: str) -> str:
+            calls.append(prompt)
+            raise ModelClientError("timeout", "temporary timeout", retryable=True)
+
+        client = RetryingModelClient(
+            CallableModelClient(failing),
+            max_retries=2,
+            delay_seconds=0,
+            sleep_fn=lambda seconds: None,
+        )
+
+        with self.assertRaises(ModelClientError):
+            client.complete("prompt")
+        self.assertEqual(len(calls), 3)
+
+
+class ReviewContractTests(unittest.TestCase):
+    def test_pending_review_has_no_reviewer_and_is_immutable(self):
+        review = FaultRecordReview(
+            record_id="record-1",
+            status=ReviewStatus.PENDING,
+            reason="fallback was used",
+        )
+
+        self.assertEqual(review.status, ReviewStatus.PENDING)
+        self.assertIsNone(review.reviewer)
+        self.assertEqual(review.created_at.tzinfo, timezone.utc)
+        with self.assertRaises((AttributeError, TypeError)):
+            review.status = ReviewStatus.APPROVED
+
+    def test_approved_review_requires_reviewer(self):
+        with self.assertRaises(ValueError):
+            FaultRecordReview(
+                record_id="record-1",
+                status=ReviewStatus.APPROVED,
+                created_at=datetime.now(timezone.utc),
+            )
+
+    def test_rejected_review_keeps_reason_and_reviewer(self):
+        review = FaultRecordReview(
+            record_id="record-1",
+            status=ReviewStatus.REJECTED,
+            reason="description is not supported by source text",
+            reviewer="reviewer-1",
+            created_at=datetime.now(timezone.utc),
+        )
+
+        self.assertEqual(review.reviewer, "reviewer-1")
+        self.assertIn("not supported", review.reason)
+
+
+class ReviewPreparationServiceTests(unittest.TestCase):
+    def setUp(self):
+        self.service = ReviewPreparationService()
+
+    def test_success_creates_pending_review_for_each_record(self):
+        records = (
+            FaultRecord(description="first fault"),
+            FaultRecord(description="second fault"),
+        )
+        result = ExtractionResult(
+            status=ExtractionStatus.SUCCESS,
+            records=records,
+        )
+
+        reviews = self.service.prepare(result)
+
+        self.assertEqual(len(reviews), 2)
+        self.assertEqual(
+            {review.record_id for review in reviews},
+            {record.record_id for record in records},
+        )
+        self.assertTrue(all(review.status is ReviewStatus.PENDING for review in reviews))
+
+    def test_partial_review_reason_contains_diagnostic_codes(self):
+        result = ExtractionResult(
+            status=ExtractionStatus.PARTIAL,
+            records=(FaultRecord(description="fault"),),
+            diagnostics=(
+                ExtractionDiagnostic(
+                    code="fallback_used",
+                    message="manual review required",
+                    stage="fallback",
+                ),
+            ),
+        )
+
+        reviews = self.service.prepare(result)
+
+        self.assertEqual(len(reviews), 1)
+        self.assertIn("fallback_used", reviews[0].reason)
+
+    def test_high_confidence_record_with_evidence_is_not_required(self):
+        record = FaultRecord(
+            description="pump stopped",
+            confidence=0.95,
+        )
+        result = ExtractionResult(
+            status=ExtractionStatus.SUCCESS,
+            records=(record,),
+            evidence_spans=(
+                EvidenceSpan(
+                    record_id=record.record_id,
+                    field=EvidenceField.DESCRIPTION,
+                    source_id="manual-1",
+                    quote="pump stopped",
+                    start=0,
+                    end=12,
+                ),
+            ),
+        )
+
+        reviews = ReviewPreparationService(confidence_threshold=0.8).prepare(result)
+
+        self.assertEqual(reviews[0].status, ReviewStatus.NOT_REQUIRED)
+        self.assertEqual(reviews[0].reason, "automatic_review_not_required")
+
+    def test_empty_or_failed_result_creates_no_reviews(self):
+        empty_result = ExtractionResult(status=ExtractionStatus.EMPTY)
+        failed_result = ExtractionResult(
+            status=ExtractionStatus.FAILED,
+            diagnostics=(
+                ExtractionDiagnostic(
+                    code="provider_failed",
+                    message="provider unavailable",
+                    stage="provider",
+                ),
+            ),
+        )
+
+        self.assertEqual(self.service.prepare(empty_result), ())
+        self.assertEqual(self.service.prepare(failed_result), ())
+
+    def test_prepare_result_keeps_extraction_and_current_reviews_together(self):
+        result = ExtractionResult(
+            status=ExtractionStatus.SUCCESS,
+            records=(FaultRecord(description="fault"),),
+        )
+
+        bundle = self.service.prepare_result(result)
+
+        self.assertIsInstance(bundle, ReviewableExtractionResult)
+        self.assertIs(bundle.extraction, result)
+        self.assertEqual(len(bundle.reviews), 1)
+        self.assertEqual(bundle.reviews[0].record_id, result.records[0].record_id)
+
+    def test_reviewable_result_rejects_orphan_review(self):
+        result = ExtractionResult(
+            status=ExtractionStatus.SUCCESS,
+            records=(FaultRecord(description="fault"),),
+        )
+        orphan = FaultRecordReview(
+            record_id="not-in-result",
+            status=ReviewStatus.PENDING,
+        )
+
+        with self.assertRaises(ValueError):
+            ReviewableExtractionResult(extraction=result, reviews=(orphan,))
+
+
+class ReviewRepositoryTests(unittest.TestCase):
+    def test_latest_review_is_current_but_history_is_preserved(self):
+        repository = InMemoryReviewRepository()
+        created_at = datetime(2026, 9, 16, 12, 0, tzinfo=timezone.utc)
+        pending = FaultRecordReview(
+            record_id="record-1",
+            status=ReviewStatus.PENDING,
+            created_at=created_at,
+        )
+        approved = FaultRecordReview(
+            record_id="record-1",
+            status=ReviewStatus.APPROVED,
+            reviewer="reviewer-1",
+            created_at=created_at,
+        )
+
+        repository.append(pending)
+        repository.append(approved)
+
+        self.assertIs(repository.get_current("record-1"), approved)
+        self.assertEqual(repository.history("record-1"), (pending, approved))
+        self.assertEqual(repository.list_pending(), ())
+
+    def test_revision_is_returned_as_pending_work(self):
+        repository = InMemoryReviewRepository()
+        revision = FaultRecordReview(
+            record_id="record-2",
+            status=ReviewStatus.REVISION,
+            reason="add supporting evidence",
+            reviewer="reviewer-1",
+        )
+
+        repository.append(revision)
+
+        self.assertEqual(repository.list_pending(), (revision,))
+
+    def test_same_review_cannot_be_appended_twice(self):
+        repository = InMemoryReviewRepository()
+        review = FaultRecordReview(
+            record_id="record-1",
+            status=ReviewStatus.PENDING,
+        )
+        repository.append(review)
+
+        with self.assertRaises(ValueError):
+            repository.append(review)
+
+
+class ReviewDecisionServiceTests(unittest.TestCase):
+    def setUp(self):
+        self.repository = InMemoryReviewRepository()
+        self.repository.append(
+            FaultRecordReview(
+                record_id="record-1",
+                status=ReviewStatus.PENDING,
+            )
+        )
+        self.service = ReviewDecisionService(self.repository)
+
+    def test_approve_appends_new_decision(self):
+        decision = self.service.approve(
+            record_id="record-1",
+            reviewer="reviewer-1",
+            reason="source evidence is sufficient",
+        )
+
+        self.assertEqual(decision.status, ReviewStatus.APPROVED)
+        self.assertIs(self.repository.get_current("record-1"), decision)
+        self.assertEqual(len(self.repository.history("record-1")), 2)
+
+    def test_reject_requires_a_reason(self):
+        with self.assertRaises(ValueError):
+            self.service.reject("record-1", "reviewer-1", "")
+
+        self.assertEqual(self.repository.history("record-1")[0].status, ReviewStatus.PENDING)
+
+    def test_decision_requires_existing_review_history(self):
+        with self.assertRaises(ValueError):
+            self.service.approve("missing-record", "reviewer-1")
+
+
+if __name__ == "__main__":
+    unittest.main()

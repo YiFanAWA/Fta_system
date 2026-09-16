@@ -3,7 +3,6 @@ import re
 import time
 from typing import Any, Dict, List, Optional
 
-import openai
 from config import (
     OPENAI_API_BASE,
     OPENAI_API_KEY,
@@ -11,43 +10,37 @@ from config import (
     OPENAI_MODEL,
     OPENAI_TIMEOUT_SECONDS,
 )
+from extraction_contract import (
+    ExtractionDiagnostic,
+    ExtractionResult,
+    ExtractionStatus,
+)
+from model_client import ModelClient, RetryingModelClient
+from openai_model_client import OpenAICompatibleModelClient
 from prompt_templates import (
     build_analysis_report_prompt,
     build_draft_review_prompt,
     build_failure_generation_prompt,
     build_text_extraction_prompt,
 )
+from text_extraction_adapter import TextExtractionAdapter
 from utils import log
 
-if OPENAI_API_KEY:
-    openai.api_key = OPENAI_API_KEY
 
-if OPENAI_API_BASE:
-    openai.api_base = OPENAI_API_BASE
-
+_MODEL_CLIENT = OpenAICompatibleModelClient(
+    api_key=OPENAI_API_KEY,
+    base_url=OPENAI_API_BASE,
+    model=OPENAI_MODEL,
+    timeout_seconds=OPENAI_TIMEOUT_SECONDS,
+)
+_TEXT_MODEL_CLIENT = RetryingModelClient(
+    _MODEL_CLIENT,
+    max_retries=OPENAI_MAX_RETRIES,
+    delay_seconds=2.0,
+)
 
 def _chat_completion_request(prompt: str) -> str:
-    # Modern SDK (openai>=1): use client.chat.completions.create
-    if hasattr(openai, "OpenAI"):
-        kwargs = {"api_key": OPENAI_API_KEY}
-        if OPENAI_API_BASE:
-            kwargs["base_url"] = OPENAI_API_BASE
-        client = openai.OpenAI(**kwargs)
-        response = client.chat.completions.create(
-            model=OPENAI_MODEL,
-            messages=[{"role": "user", "content": prompt}],
-            timeout=OPENAI_TIMEOUT_SECONDS,
-        )
-        content = response.choices[0].message.content if response.choices else ""
-        return (content or "").strip()
-
-    # Legacy SDK (openai<1): use ChatCompletion.create
-    response = openai.ChatCompletion.create(
-        model=OPENAI_MODEL,
-        messages=[{"role": "user", "content": prompt}],
-        request_timeout=OPENAI_TIMEOUT_SECONDS,
-    )
-    return response["choices"][0]["message"]["content"].strip()
+    return _MODEL_CLIENT.complete(prompt)
 
 
 def _extract_json_array(text):
@@ -300,35 +293,6 @@ def generate_failure_events(
     return _normalize_failures(payload)
 
 
-def _split_text_chunks(text: str, chunk_size_chars: int = 6000, overlap_chars: int = 300) -> List[str]:
-    if not isinstance(text, str):
-        return []
-
-    cleaned = text.strip()
-    if not cleaned:
-        return []
-
-    if chunk_size_chars <= 0:
-        chunk_size_chars = 6000
-    if overlap_chars < 0:
-        overlap_chars = 0
-    if overlap_chars >= chunk_size_chars:
-        overlap_chars = max(0, chunk_size_chars // 5)
-
-    chunks: List[str] = []
-    start = 0
-    length = len(cleaned)
-
-    while start < length:
-        end = min(start + chunk_size_chars, length)
-        chunks.append(cleaned[start:end])
-        if end >= length:
-            break
-        start = end - overlap_chars
-
-    return chunks
-
-
 def _normalize_text_fault_item(item: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     if not isinstance(item, dict):
         return None
@@ -336,7 +300,9 @@ def _normalize_text_fault_item(item: Dict[str, Any]) -> Optional[Dict[str, Any]]
     fault_code = item.get("fault_code")
     description = item.get("description")
 
-    if not isinstance(fault_code, str) or not fault_code.strip():
+    if fault_code is not None and (
+        not isinstance(fault_code, str) or not fault_code.strip()
+    ):
         return None
     if not isinstance(description, str) or not description.strip():
         return None
@@ -374,7 +340,7 @@ def _normalize_text_fault_item(item: Dict[str, Any]) -> Optional[Dict[str, Any]]
         parameters.append(name)
 
     return {
-        "fault_code": fault_code.strip().upper(),
+        "fault_code": fault_code.strip().upper() if fault_code else None,
         "component": component.strip(),
         "description": description.strip(),
         "causes": causes,
@@ -383,7 +349,7 @@ def _normalize_text_fault_item(item: Dict[str, Any]) -> Optional[Dict[str, Any]]
 
 
 def _merge_fault_records(records: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    merged: Dict[str, Dict[str, Any]] = {}
+    merged: Dict[tuple, Dict[str, Any]] = {}
 
     for item in records:
         normalized = _normalize_text_fault_item(item)
@@ -391,9 +357,17 @@ def _merge_fault_records(records: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
             continue
 
         code = normalized["fault_code"]
-        entry = merged.get(code)
+        key = (
+            "code",
+            code,
+        ) if code else (
+            "fact",
+            normalized.get("component", ""),
+            normalized.get("description", ""),
+        )
+        entry = merged.get(key)
         if not entry:
-            merged[code] = normalized
+            merged[key] = normalized
             continue
 
         if not entry.get("description") and normalized.get("description"):
@@ -497,7 +471,7 @@ def _extract_records_without_standard_codes(source_text: str) -> List[Dict[str, 
 
     incident_code_pattern = re.compile(r"\b([A-Z]{2,}-\d{4}-\d{4}-[A-Z0-9]+-\d+)\b")
     incident_match = incident_code_pattern.search(text)
-    fault_code = incident_match.group(1).upper() if incident_match else "AUTO-FAULT-001"
+    fault_code = incident_match.group(1).upper() if incident_match else None
 
     normalized = re.sub(r"\s+", " ", text)
 
@@ -542,6 +516,74 @@ def _extract_records_without_standard_codes(source_text: str) -> List[Dict[str, 
     ]
 
 
+def _build_text_extraction_adapter(
+    chunk_size_chars: int,
+    overlap_chars: int,
+    prompt_profile: Optional[str],
+    custom_instructions: Optional[str],
+    model_client: Optional[ModelClient] = None,
+    fallback_builder=None,
+) -> TextExtractionAdapter:
+    def prompt_builder(chunk_text: str, index: int, total: int) -> str:
+        return build_text_extraction_prompt(
+            chunk_text=chunk_text,
+            index=index + 1,
+            total=total,
+            profile=prompt_profile,
+            custom_instructions=custom_instructions,
+        )
+
+    return TextExtractionAdapter(
+        model_client if model_client is not None else _TEXT_MODEL_CLIENT,
+        prompt_builder,
+        chunk_size_chars=chunk_size_chars,
+        overlap_chars=overlap_chars,
+        fallback_builder=fallback_builder,
+    )
+
+
+def extract_fault_result_from_text(
+    source_text: str,
+    chunk_size_chars: int = 6000,
+    overlap_chars: int = 300,
+    prompt_profile: Optional[str] = None,
+    custom_instructions: Optional[str] = None,
+    model_client: Optional[ModelClient] = None,
+) -> ExtractionResult:
+    """Return the new structured extraction contract for one source text."""
+    adapter = _build_text_extraction_adapter(
+        chunk_size_chars=chunk_size_chars,
+        overlap_chars=overlap_chars,
+        prompt_profile=prompt_profile,
+        custom_instructions=custom_instructions,
+        model_client=model_client,
+    )
+    return adapter.extract(source_text)
+
+
+def _record_to_legacy_dict(record) -> Dict[str, Any]:
+    result: Dict[str, Any] = {
+        "record_id": record.record_id,
+        "fault_code": record.fault_code,
+        "component": record.component or "",
+        "description": record.description,
+        "causes": list(record.causes),
+        "parameters": list(record.parameters),
+    }
+    if record.confidence is not None:
+        result["confidence"] = record.confidence
+    return result
+
+
+def _diagnostic_to_dict(diagnostic: ExtractionDiagnostic) -> Dict[str, Any]:
+    return {
+        "code": diagnostic.code,
+        "message": diagnostic.message,
+        "stage": diagnostic.stage,
+        "retryable": diagnostic.retryable,
+    }
+
+
 def extract_fault_records_from_text(
     source_text: str,
     chunk_size_chars: int = 6000,
@@ -549,78 +591,45 @@ def extract_fault_records_from_text(
     prompt_profile: Optional[str] = None,
     custom_instructions: Optional[str] = None,
 ) -> Dict[str, Any]:
-    if not isinstance(source_text, str) or not source_text.strip():
-        raise ValueError("source_text不能为空")
+    """Compatibility projection for existing API and Agent callers.
 
-    if not OPENAI_API_KEY:
-        raise RuntimeError("未配置OPENAI_API_KEY环境变量")
+    New code should consume extract_fault_result_from_text instead.
+    """
+    adapter = _build_text_extraction_adapter(
+        chunk_size_chars=chunk_size_chars,
+        overlap_chars=overlap_chars,
+        prompt_profile=prompt_profile,
+        custom_instructions=custom_instructions,
+        fallback_builder=_extract_records_by_rules,
+    )
+    result = adapter.extract(source_text)
 
-    chunks = _split_text_chunks(source_text, chunk_size_chars, overlap_chars)
-    if not chunks:
-        raise ValueError("输入文本为空")
-
-    all_records: List[Dict[str, Any]] = []
-    chunk_outputs: List[Dict[str, Any]] = []
-
-    for idx, chunk in enumerate(chunks, start=1):
-        prompt = build_text_extraction_prompt(
-            chunk_text=chunk,
-            index=idx,
-            total=len(chunks),
-            profile=prompt_profile,
-            custom_instructions=custom_instructions,
-        )
-
-        result = _chat_with_retry(prompt)
-        try:
-            payload = json.loads(result)
-        except json.JSONDecodeError:
-            payload = json.loads(_extract_json_object(result))
-
-        raw_items = payload.get("items", []) if isinstance(payload, dict) else []
-        if not isinstance(raw_items, list):
-            raw_items = []
-
-        normalized_items = []
-        for item in raw_items:
-            normalized = _normalize_text_fault_item(item)
-            if normalized:
-                normalized_items.append(normalized)
-                all_records.append(normalized)
-
-        chunk_outputs.append(
-            {
-                "chunk_index": idx,
-                "raw_count": len(raw_items),
-                "accepted_count": len(normalized_items),
-                "items": normalized_items,
-            }
-        )
-
-    llm_merged = _merge_fault_records(all_records)
-    rule_merged = _extract_records_by_rules(source_text)
-    merged = _merge_fault_records(llm_merged + rule_merged)
-
-    if rule_merged:
-        chunk_outputs.append(
-            {
-                "chunk_index": 0,
-                "raw_count": len(rule_merged),
-                "accepted_count": len(rule_merged),
-                "items": rule_merged,
-                "source": "rule_fallback",
-            }
-        )
-
-    if not merged:
+    if result.status is ExtractionStatus.FAILED:
+        diagnostic = result.diagnostics[0]
+        raise RuntimeError(f"{diagnostic.code}: {diagnostic.message}")
+    if result.status is ExtractionStatus.EMPTY:
         raise ValueError("未从文本中抽取到有效故障记录")
 
+    chunk_reports = [
+        {
+            **report,
+            "diagnostic_codes": list(report.get("diagnostic_codes", ())),
+        }
+        for report in adapter.last_chunk_reports
+    ]
+    model_chunk_count = sum(
+        1 for report in chunk_reports if report.get("source") == "model"
+    )
     return {
-        "chunk_count": len(chunks),
+        "chunk_count": model_chunk_count,
         "chunk_size_chars": chunk_size_chars,
         "overlap_chars": overlap_chars,
-        "records": merged,
-        "chunks": chunk_outputs,
+        "records": [_record_to_legacy_dict(record) for record in result.records],
+        "chunks": chunk_reports,
+        "status": result.status.value,
+        "diagnostics": [
+            _diagnostic_to_dict(diagnostic) for diagnostic in result.diagnostics
+        ],
     }
 
 
@@ -658,7 +667,9 @@ def convert_fault_records_to_failures(records: List[Dict[str, Any]]) -> List[Dic
             " ".join(normalized.get("causes", []) or []),
         ])
 
-        is_incident_code = bool(re.match(r"^[A-Z]{2,}-\d{4}-\d{4}-[A-Z0-9]+-\d+$", code))
+        is_incident_code = bool(
+            re.match(r"^[A-Z]{2,}-\d{4}-\d{4}-[A-Z0-9]+-\d+$", code or "")
+        )
         has_aocs_keywords = any(k in text for k in ["星敏感器", "滤波器", "飞轮", "姿态", "天线", "链路"])
         if not (is_incident_code or has_aocs_keywords):
             return None
@@ -698,7 +709,7 @@ def convert_fault_records_to_failures(records: List[Dict[str, Any]]) -> List[Dic
             return None
 
         return {
-            "name": f"{code} 姿态控制链故障",
+            "name": f"{code + ' ' if code else ''}姿态控制链故障",
             "probability": None,
             "gate": "OR",
             "causes": branches,
@@ -724,7 +735,7 @@ def convert_fault_records_to_failures(records: List[Dict[str, Any]]) -> List[Dic
 
         code = normalized["fault_code"]
         desc = normalized["description"]
-        name = f"{code} {_shorten_text(desc)}".strip()
+        name = f"{code + ' ' if code else ''}{_shorten_text(desc)}".strip()
         if name in seen:
             continue
 

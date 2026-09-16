@@ -139,6 +139,35 @@ flowchart TD
 - 文件层：/api/fta/generate_from_file 和 /api/fta/generate_from_files。
 - 快速模式：/api/fta/full_generate 支持 hybrid/llm/deterministic。
 
+自由文本抽取的当前内部链路为：
+
+```text
+原始文本 -> ModelClient -> TextExtractionAdapter -> ExtractionResult
+                                  -> FaultRecord[]
+                                  -> diagnostics / evidence_spans
+```
+
+其中 `ModelClient` 只负责模型调用，`TextExtractionAdapter` 负责分块、JSON
+解析、字段校验、记录聚合和错误分级；`ExtractionResult` 是抽取阶段的统一
+结果合同。旧的 `extract_fault_records_from_text` 仍作为兼容投影保留，新的
+内部代码应优先消费结构化结果。
+
+抽取记录与人工审核分离：每条 `FaultRecord` 初始可关联 `pending` 审核状态；
+人工批准、否决或要求修改时新增不可变的 `FaultRecordReview`，不修改原始
+抽取事实。`review_id` 标识一次审核动作，`record_id` 关联故障记录，审核
+时间使用带时区的 UTC 时间；后续查询可根据同一记录的最新审核动作得到当前状态。
+
+`ReviewPreparationService` 接收完整的 `ExtractionResult`：低置信度、缺少证据
+或任务处于 `partial` 的记录生成 `pending` 审核实体；满足当前阈值且有证据的
+记录标记为 `not_required`；`empty` 和 `failed` 不生成审核实体。
+其组合入口返回 `ReviewableExtractionResult`，将抽取结果与当前审核状态放在
+同一个编排对象中，但不修改原始抽取合同。
+
+审核历史通过 `ReviewRepository` 保存和查询；当前先使用内存实现验证接口，
+真实数据库适配器应按 `record_id` 查询历史，并以时间和数据库序号确定最新状态。
+人工批准、否决或要求修改由 `ReviewDecisionService` 创建新的审核实体，
+再交给仓储保存，不能直接覆盖旧审核记录。
+
 2. 增强流程（可演进）
 - 数据闭环：低置信度样本与人工审查修订回流到训练集。
 - 模型迭代：Prompt 优化 -> LoRA 微调 -> A/B 验证 -> 灰度上线。
@@ -146,7 +175,8 @@ flowchart TD
 
 3. 稳定性策略
 - 图谱降级：Neo4j 异常时回退本地事件建树。
-- 输出兜底：抽取不足时触发 fallback causes 保证可生成。
+- 输出兜底：兼容路径可在模型未抽到记录时使用规则兜底，但结果标记为
+  `partial` 并要求人工复核；模型调用失败时不允许兜底掩盖失败。
 - 可追踪：返回 stages、knowledge_graph 状态、中间文件路径。
 
 ### 4.3 效果评价准则
