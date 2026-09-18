@@ -21,7 +21,7 @@ class ReviewRepository(Protocol):
         ...
 
     def list_pending(self) -> tuple[FaultRecordReview, ...]:
-        """Return current records that still need human review."""
+        """Return current records whose ordinary review state is pending."""
         ...
 
 
@@ -67,7 +67,7 @@ class InMemoryReviewRepository:
                 entries,
                 key=lambda entry: (entry[1].created_at, entry[0]),
             )
-            if review.status in {ReviewStatus.PENDING, ReviewStatus.REVISION}:
+            if review.status is ReviewStatus.PENDING:
                 pending.append((sequence, review))
 
         pending.sort(key=lambda entry: entry[0])

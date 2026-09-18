@@ -29,10 +29,13 @@ Invoke-RestMethod http://127.0.0.1:8000/api/health
 - `GET /api/health`：健康检查。
 - `POST /api/fta/build_dot`：从结构化条目构建 DOT。
 - `POST /api/fta/extract`：抽取文本并创建待审核的结构化故障记录，不生成故障树。
+- `GET /api/fta/reviews/pending`：按故障记录查询当前处于 `pending` 状态的审核项。
 - `POST /api/fta/reviews/approve`：记录人工批准决定。
 - `POST /api/fta/reviews/reject`：记录人工拒绝决定，必须提供原因。
 - `POST /api/fta/reviews/revision`：记录要求修改决定，必须提供原因。
 - `POST /api/fta/release`：按最新审核状态放行可进入 FTA 建树的故障记录。
+- `POST /api/fta/build_released`：对一个已保存的放行快照尝试建树，并追加一条建树尝试记录。
+- `GET /api/fta/build_attempts/{release_id}`：查询某个放行快照的全部建树尝试历史。
 - `POST /api/fta/full_generate`：从文本生成 DOT，支持 `hybrid`、`llm`、`deterministic`。
 - `POST /api/fta/generate`：通过 `ai`、`manual` 或 `text` 输入生成完整故障树及导出文件。
 - `POST /api/fta/review`：生成分析报告和初稿审查。
@@ -41,6 +44,93 @@ Invoke-RestMethod http://127.0.0.1:8000/api/health
 - `POST /api/fta/generate_agent`：执行现有的分阶段生成工作流。
 - `POST /api/fta/generate_from_file`：上传单个文档并生成。
 - `POST /api/fta/generate_from_files`：合并多个上传文档并生成。
+
+抽取与审核工作流默认使用 SQLite 持久化，数据库文件默认位于
+`backend-python/outputs/extraction_workflow.sqlite3`。可以通过环境变量
+`EXTRACTION_DB_PATH` 指定其他路径；该配置只影响后端仓储，不改变 API 合同或前端界面。
+当前 SQLite schema 版本为 2；默认仓储按单机应用设计，SQLite 的备份由后端仓储提供，
+不建议把同一个数据库文件放在网络文件系统上供多个服务实例同时写入。
+
+待审核查询以单条故障记录为一个审核项，返回结果 ID、抽取状态、故障记录、证据和当前审核信息：
+
+```json
+{
+  "items": [
+    {
+      "result_id": "...",
+      "extraction_status": "success",
+      "diagnostics": [],
+      "record": {},
+      "evidence_spans": [],
+      "review": {}
+    }
+  ],
+  "count": 1
+}
+```
+
+只有当前审核状态为 `pending` 的故障记录会出现在列表中；`revision` 保留在后台审核历史中，但暂不进入普通待审核列表。批准、拒绝或没有人工审核要求的记录不会出现在列表中。失败抽取结果会保留在仓储中，但不会创建审核任务。
+
+## 放行与建树
+
+审核列表完成后，调用放行接口。放行接口每次都会创建一个新的 `release_id`，将当时的
+最新审核结果保存成不可变的放行快照。默认只有 `approved` 可以进入快照的 `records`；
+`pending`、`revision`、`rejected` 和缺少审核状态的记录进入 `blocked`。`not_required`
+默认也会被拦截，只有后端配置 `ALLOW_AUTOMATIC_NOT_REQUIRED_RELEASE=true` 时才允许
+自动放行，不需要改前端布局或增加 UI 组件。
+
+```json
+POST /api/fta/release
+{
+  "result_id": "<extraction-result-id>"
+}
+```
+
+典型响应：
+
+```json
+{
+  "release_id": "<release-id>",
+  "source_result_id": "<extraction-result-id>",
+  "records": [{"record_id": "...", "description": "pump stopped"}],
+  "review_decisions": [{"status": "approved", "reviewer": "reviewer-1"}],
+  "blocked": []
+}
+```
+
+只有 `records` 会交给建树层；`blocked` 只用于解释为什么某条记录没有进入本次快照。
+原始抽取结果、证据和审核历史不会被删除或覆盖。
+
+对放行快照尝试建树：
+
+```json
+POST /api/fta/build_released
+{
+  "release_id": "<release-id>",
+  "top_event": "system failure"
+}
+```
+
+成功时返回 `status=succeeded` 和 `tree`；输入不适合建树或构建器拒绝时返回
+`status=rejected`、`reason` 和 `retryable`。这两种结果都是 HTTP 成功响应中的业务结果，
+因为“建树被拒绝”本身需要进入审计历史，而不是被当成没有记录的接口异常。
+
+每次调用都会新增一个 `attempt_id`，不会覆盖上一次结果：
+
+```json
+GET /api/fta/build_attempts/<release-id>
+{
+  "items": [
+    {"attempt_id": "...", "status": "rejected", "reason": "..."},
+    {"attempt_id": "...", "status": "succeeded", "tree": {}}
+  ],
+  "count": 2
+}
+```
+
+因此，建树失败时保留原审核结果和放行快照，只新增一条拒绝的建树记录；下一次重试
+再新增一条记录。查询结果按尝试发生顺序返回，最后一条可作为当前最近一次建树结果，
+但前面的失败记录仍然可用于排查和审计。
 
 ## 完整生成示例
 

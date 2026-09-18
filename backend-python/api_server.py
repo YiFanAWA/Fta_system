@@ -20,11 +20,19 @@ from ai_module import (
     review_fault_tree_draft,
 )
 from extraction_application_service import ExtractionApplicationService
-from extraction_repository import InMemoryExtractionWorkflowRepository
 from extraction_contract import EvidenceSpan, FaultRecord
+from build_contract import FaultTreeBuildAttempt
+from config import ALLOW_AUTOMATIC_NOT_REQUIRED_RELEASE, EXTRACTION_DB_PATH
+from fault_tree_build_service import FaultTreeBuildService
+from sqlite_extraction_repository import SQLiteExtractionWorkflowRepository
 from release_contract import ReleaseBlock, ReleasedExtractionResult
 from release_service import FaultRecordReleaseService
-from review_contract import FaultRecordReview, ReviewableExtractionResult
+from review_contract import (
+    FaultRecordReview,
+    PendingReviewItem,
+    ReviewStatus,
+    ReviewableExtractionResult,
+)
 from review_decision_service import ReviewDecisionService
 from fta_llm_pipeline import extract_fta_structure, generate_dot
 from fta_dot_builder import (
@@ -139,6 +147,13 @@ class ReleaseExtractionRequest(BaseModel):
     result_id: str = Field(..., min_length=1)
 
 
+class BuildReleasedExtractionRequest(BaseModel):
+    """Request to build a tree from one persisted release projection."""
+
+    release_id: str = Field(..., min_length=1)
+    top_event: str = Field(..., min_length=1)
+
+
 app = FastAPI(title="AI FTA API", version="1.0.0")
 
 # Allow Vue dev server and configurable origins.
@@ -150,9 +165,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Transitional process-local storage. A database-backed workflow repository
-# will replace this composition-root dependency later.
-app.state.extraction_workflow_repository = InMemoryExtractionWorkflowRepository()
+# SQLite provides process-restart persistence while keeping the repository
+# contract independent from the database implementation.
+app.state.extraction_workflow_repository = SQLiteExtractionWorkflowRepository(
+    EXTRACTION_DB_PATH
+)
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -237,6 +254,27 @@ def _reviewable_extraction_to_api_dict(
     }
 
 
+def _pending_review_item_to_api_dict(item: PendingReviewItem) -> Dict[str, Any]:
+    return {
+        "result_id": item.result_id,
+        "extraction_status": item.extraction_status.value,
+        "diagnostics": [
+            {
+                "code": diagnostic.code,
+                "message": diagnostic.message,
+                "stage": diagnostic.stage,
+                "retryable": diagnostic.retryable,
+            }
+            for diagnostic in item.diagnostics
+        ],
+        "record": _fault_record_to_api_dict(item.record),
+        "evidence_spans": [
+            _evidence_span_to_api_dict(span) for span in item.evidence_spans
+        ],
+        "review": _review_to_api_dict(item.review),
+    }
+
+
 def _release_block_to_api_dict(block: ReleaseBlock) -> Dict[str, Any]:
     return {
         "record_id": block.record_id,
@@ -261,6 +299,20 @@ def _released_extraction_to_api_dict(
         "blocked": [
             _release_block_to_api_dict(block) for block in released.blocked
         ],
+    }
+
+
+def _build_attempt_to_api_dict(attempt: FaultTreeBuildAttempt) -> Dict[str, Any]:
+    return {
+        "attempt_id": attempt.attempt_id,
+        "release_id": attempt.release_id,
+        "source_result_id": attempt.source_result_id,
+        "top_event": attempt.top_event,
+        "status": attempt.status.value,
+        "reason": attempt.reason,
+        "retryable": attempt.retryable,
+        "tree": attempt.tree,
+        "created_at": attempt.created_at.isoformat(),
     }
 
 
@@ -1578,6 +1630,21 @@ def extract_text_for_review(req: ExtractTextRequest) -> Dict[str, Any]:
         raise HTTPException(status_code=500, detail="extraction workflow failed") from exc
 
 
+@app.get("/api/fta/reviews/pending")
+def list_pending_review_tasks() -> Dict[str, Any]:
+    """List individual fault records that currently need human review."""
+    try:
+        pending_items = (
+            app.state.extraction_workflow_repository.list_pending_review_items()
+        )
+        items = [_pending_review_item_to_api_dict(item) for item in pending_items]
+        return {"items": items, "count": len(items)}
+    except (TypeError, ValueError) as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail="pending review query failed") from exc
+
+
 def _apply_review_decision(
     req: ReviewDecisionRequest,
     action: str,
@@ -1646,7 +1713,14 @@ def release_extraction(req: ReleaseExtractionRequest) -> Dict[str, Any]:
             extraction=extraction,
             reviews=tuple(current_reviews),
         )
-        released = FaultRecordReleaseService(repository).release(reviewable)
+        allowed_statuses = [ReviewStatus.APPROVED]
+        if ALLOW_AUTOMATIC_NOT_REQUIRED_RELEASE:
+            allowed_statuses.append(ReviewStatus.NOT_REQUIRED)
+        released = FaultRecordReleaseService(
+            repository,
+            allowed_statuses=allowed_statuses,
+        ).release(reviewable)
+        repository.save_release(released)
         return _released_extraction_to_api_dict(released)
     except HTTPException:
         raise
@@ -1654,6 +1728,48 @@ def release_extraction(req: ReleaseExtractionRequest) -> Dict[str, Any]:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
     except Exception as exc:
         raise HTTPException(status_code=500, detail="extraction release failed") from exc
+
+
+@app.post("/api/fta/build_released")
+def build_released_extraction(
+    req: BuildReleasedExtractionRequest,
+) -> Dict[str, Any]:
+    """Build one persisted release and append exactly one attempt record."""
+    repository = app.state.extraction_workflow_repository
+    try:
+        release = repository.get_release(req.release_id)
+        if release is None:
+            raise HTTPException(status_code=404, detail="release not found")
+
+        attempt = FaultTreeBuildService(repository).build(
+            release,
+            req.top_event,
+        )
+        return _build_attempt_to_api_dict(attempt)
+    except HTTPException:
+        raise
+    except (TypeError, ValueError) as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail="fault tree build failed") from exc
+
+
+@app.get("/api/fta/build_attempts/{release_id}")
+def list_build_attempts(release_id: str) -> Dict[str, Any]:
+    """Return the append-only build history for one release."""
+    repository = app.state.extraction_workflow_repository
+    try:
+        if repository.get_release(release_id) is None:
+            raise HTTPException(status_code=404, detail="release not found")
+        attempts = repository.list_build_attempts(release_id)
+        items = [_build_attempt_to_api_dict(attempt) for attempt in attempts]
+        return {"items": items, "count": len(items)}
+    except HTTPException:
+        raise
+    except (TypeError, ValueError) as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail="build attempt query failed") from exc
 
 
 @app.post("/api/fta/build_dot")

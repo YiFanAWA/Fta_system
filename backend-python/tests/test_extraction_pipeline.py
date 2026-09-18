@@ -4,6 +4,7 @@ import unittest
 from dataclasses import asdict
 from datetime import datetime, timezone
 from pathlib import Path
+from tempfile import TemporaryDirectory
 
 
 BACKEND_DIR = Path(__file__).resolve().parents[1]
@@ -18,12 +19,14 @@ from extraction_contract import (  # noqa: E402
     ExtractionStatus,
     FaultRecord,
 )
+from build_contract import BuildAttemptStatus  # noqa: E402
 from extraction_application_service import ExtractionApplicationService  # noqa: E402
 from extraction_repository import (  # noqa: E402
     InMemoryExtractionRepository,
     InMemoryExtractionWorkflowRepository,
 )
 from fault_extractor import RemoteLLMFaultExtractor  # noqa: E402
+from fault_tree_build_service import FaultTreeBuildService  # noqa: E402
 from model_client import (  # noqa: E402
     CallableModelClient,
     ModelClientError,
@@ -37,7 +40,9 @@ from review_contract import (  # noqa: E402
 from review_decision_service import ReviewDecisionService  # noqa: E402
 from review_preparation_service import ReviewPreparationService  # noqa: E402
 from review_repository import InMemoryReviewRepository  # noqa: E402
+from release_contract import ReleasedExtractionResult  # noqa: E402
 from release_service import FaultRecordReleaseService  # noqa: E402
+from sqlite_extraction_repository import SQLiteExtractionWorkflowRepository  # noqa: E402
 from text_extraction_adapter import TextExtractionAdapter  # noqa: E402
 
 
@@ -142,6 +147,198 @@ class ExtractionRepositoryTests(unittest.TestCase):
 
         self.assertIsNone(repository.get(result.result_id))
         self.assertIsNone(repository.get_current(record.record_id))
+
+    def test_workflow_repository_lists_pending_records_not_entire_tasks(self):
+        repository = InMemoryExtractionWorkflowRepository()
+        pending_record = FaultRecord(description="pump stopped")
+        approved_record = FaultRecord(description="valve blocked")
+        result = ExtractionResult(
+            status=ExtractionStatus.SUCCESS,
+            records=(pending_record, approved_record),
+        )
+        pending = FaultRecordReview(
+            record_id=pending_record.record_id,
+            status=ReviewStatus.PENDING,
+        )
+        initially_pending = FaultRecordReview(
+            record_id=approved_record.record_id,
+            status=ReviewStatus.PENDING,
+        )
+
+        repository.save_extraction_with_reviews(result, (pending, initially_pending))
+        approved = FaultRecordReview(
+            record_id=approved_record.record_id,
+            status=ReviewStatus.APPROVED,
+            reviewer="reviewer-1",
+        )
+        repository.append(approved)
+
+        listed = repository.list_pending_review_items()
+
+        self.assertEqual(len(listed), 1)
+        self.assertEqual(listed[0].result_id, result.result_id)
+        self.assertIs(listed[0].record, pending_record)
+        self.assertIs(listed[0].review, pending)
+
+    def test_workflow_repository_excludes_revision_from_pending_record_list(self):
+        repository = InMemoryExtractionWorkflowRepository()
+        record = FaultRecord(description="pump stopped")
+        result = ExtractionResult(
+            status=ExtractionStatus.SUCCESS,
+            records=(record,),
+        )
+        revision = FaultRecordReview(
+            record_id=record.record_id,
+            status=ReviewStatus.REVISION,
+            reviewer="reviewer-1",
+            reason="add supporting evidence",
+        )
+
+        repository.save_extraction_with_reviews(result, (revision,))
+
+        self.assertEqual(repository.list_pending_review_items(), ())
+
+
+class SQLiteExtractionRepositoryTests(unittest.TestCase):
+    def setUp(self):
+        self.temp_dir = TemporaryDirectory()
+        self.addCleanup(self.temp_dir.cleanup)
+        self.database_path = Path(self.temp_dir.name) / "workflow.sqlite3"
+        self.repository = SQLiteExtractionWorkflowRepository(self.database_path)
+
+    def test_reopened_repository_preserves_extraction_and_review_history(self):
+        record = FaultRecord(
+            description="pump stopped",
+            component="pump",
+            causes=("motor overheated",),
+            confidence=0.72,
+        )
+        result = ExtractionResult(
+            status=ExtractionStatus.SUCCESS,
+            records=(record,),
+            evidence_spans=(
+                EvidenceSpan(
+                    record_id=record.record_id,
+                    field=EvidenceField.DESCRIPTION,
+                    source_id="source-1",
+                    quote="pump stopped",
+                    start=0,
+                    end=12,
+                ),
+            ),
+        )
+        pending = FaultRecordReview(
+            record_id=record.record_id,
+            status=ReviewStatus.PENDING,
+        )
+
+        self.repository.save_extraction_with_reviews(result, (pending,))
+        reopened = SQLiteExtractionWorkflowRepository(self.database_path)
+
+        loaded = reopened.get(result.result_id)
+        self.assertIsNotNone(loaded)
+        self.assertEqual(loaded.result_id, result.result_id)
+        self.assertEqual(loaded.records[0].record_id, record.record_id)
+        self.assertEqual(loaded.records[0].causes, ("motor overheated",))
+        self.assertEqual(loaded.evidence_spans[0].quote, "pump stopped")
+        self.assertEqual(reopened.get_current(record.record_id).status, ReviewStatus.PENDING)
+        self.assertEqual(len(reopened.list_pending_review_items()), 1)
+
+        approved = FaultRecordReview(
+            record_id=record.record_id,
+            status=ReviewStatus.APPROVED,
+            reviewer="reviewer-1",
+        )
+        reopened.append(approved)
+
+        self.assertEqual(
+            [review.status for review in reopened.history(record.record_id)],
+            [ReviewStatus.PENDING, ReviewStatus.APPROVED],
+        )
+        self.assertEqual(reopened.list_pending_review_items(), ())
+
+    def test_schema_version_and_backup_preserve_the_database_contract(self):
+        record = FaultRecord(description="pump stopped")
+        result = ExtractionResult(
+            status=ExtractionStatus.SUCCESS,
+            records=(record,),
+        )
+        pending = FaultRecordReview(
+            record_id=record.record_id,
+            status=ReviewStatus.PENDING,
+        )
+        self.repository.save_extraction_with_reviews(result, (pending,))
+
+        self.assertEqual(self.repository.schema_version, 2)
+        backup_path = Path(self.temp_dir.name) / "backup.sqlite3"
+        self.repository.backup_to(backup_path)
+
+        backup_repository = SQLiteExtractionWorkflowRepository(backup_path)
+        self.assertEqual(backup_repository.schema_version, 2)
+        self.assertIsNotNone(backup_repository.get(result.result_id))
+        self.assertEqual(len(backup_repository.list_pending_review_items()), 1)
+
+        with self.assertRaises(FileExistsError):
+            self.repository.backup_to(backup_path)
+
+    def test_mismatched_initial_reviews_roll_back_the_sqlite_transaction(self):
+        record = FaultRecord(description="pump stopped")
+        result = ExtractionResult(
+            status=ExtractionStatus.SUCCESS,
+            records=(record,),
+        )
+        orphan_review = FaultRecordReview(
+            record_id="other-record",
+            status=ReviewStatus.PENDING,
+        )
+
+        with self.assertRaises(ValueError):
+            self.repository.save_extraction_with_reviews(result, (orphan_review,))
+
+        self.assertIsNone(self.repository.get(result.result_id))
+        self.assertIsNone(self.repository.get_current(record.record_id))
+
+    def test_release_and_build_attempts_survive_repository_reopen(self):
+        record = FaultRecord(
+            description="pump stopped",
+            causes=("motor overheated",),
+            confidence=0.72,
+        )
+        result = ExtractionResult(
+            status=ExtractionStatus.SUCCESS,
+            records=(record,),
+        )
+        pending = FaultRecordReview(
+            record_id=record.record_id,
+            status=ReviewStatus.PENDING,
+        )
+        self.repository.save_extraction_with_reviews(result, (pending,))
+        approved = FaultRecordReview(
+            record_id=record.record_id,
+            status=ReviewStatus.APPROVED,
+            reviewer="reviewer-1",
+        )
+        self.repository.append(approved)
+
+        prepared = ReviewableExtractionResult(
+            extraction=result,
+            reviews=(approved,),
+        )
+        release = FaultRecordReleaseService(self.repository).release(prepared)
+        self.repository.save_release(release)
+        attempt = FaultTreeBuildService(self.repository).build(
+            release,
+            "system failure",
+        )
+
+        reopened = SQLiteExtractionWorkflowRepository(self.database_path)
+        loaded_release = reopened.get_release(release.release_id)
+        self.assertIsNotNone(loaded_release)
+        self.assertEqual(loaded_release.records[0].record_id, record.record_id)
+        loaded_attempts = reopened.list_build_attempts(release.release_id)
+        self.assertEqual(len(loaded_attempts), 1)
+        self.assertEqual(loaded_attempts[0].attempt_id, attempt.attempt_id)
+        self.assertEqual(loaded_attempts[0].status, BuildAttemptStatus.SUCCEEDED)
 
 
 class ExtractionApplicationServiceTests(unittest.TestCase):
@@ -485,7 +682,7 @@ class ReviewRepositoryTests(unittest.TestCase):
         self.assertEqual(repository.history("record-1"), (pending, approved))
         self.assertEqual(repository.list_pending(), ())
 
-    def test_revision_is_returned_as_pending_work(self):
+    def test_revision_is_kept_out_of_pending_work(self):
         repository = InMemoryReviewRepository()
         revision = FaultRecordReview(
             record_id="record-2",
@@ -496,7 +693,7 @@ class ReviewRepositoryTests(unittest.TestCase):
 
         repository.append(revision)
 
-        self.assertEqual(repository.list_pending(), (revision,))
+        self.assertEqual(repository.list_pending(), ())
 
     def test_same_review_cannot_be_appended_twice(self):
         repository = InMemoryReviewRepository()
@@ -651,6 +848,76 @@ class FaultRecordReleaseServiceTests(unittest.TestCase):
 
         self.assertEqual(blocked.records, ())
         self.assertEqual(released.records, (record,))
+
+
+class FaultTreeBuildServiceTests(unittest.TestCase):
+    def _release(self, *records: FaultRecord) -> ReleasedExtractionResult:
+        decisions = tuple(
+            FaultRecordReview(
+                record_id=record.record_id,
+                status=ReviewStatus.APPROVED,
+                reviewer="reviewer-1",
+            )
+            for record in records
+        )
+        return ReleasedExtractionResult(
+            source_result_id="result-1",
+            records=tuple(records),
+            review_decisions=decisions,
+        )
+
+    def test_successful_build_appends_a_succeeded_attempt(self):
+        repository = InMemoryExtractionWorkflowRepository()
+        release = self._release(FaultRecord(description="pump stopped"))
+        repository.save_release(release)
+
+        attempt = FaultTreeBuildService(repository).build(release, "system failure")
+
+        self.assertEqual(attempt.status, BuildAttemptStatus.SUCCEEDED)
+        self.assertEqual(attempt.tree["top"], "system failure")
+        self.assertEqual(repository.list_build_attempts(release.release_id), (attempt,))
+
+    def test_failed_build_preserves_release_and_appends_each_retry(self):
+        repository = InMemoryExtractionWorkflowRepository()
+        empty_release = self._release()
+        repository.save_release(empty_release)
+
+        first = FaultTreeBuildService(repository).build(
+            empty_release,
+            "system failure",
+        )
+        second = FaultTreeBuildService(repository).build(
+            empty_release,
+            "system failure",
+        )
+
+        self.assertEqual(first.status, BuildAttemptStatus.REJECTED)
+        self.assertIn("没有可用于构建故障树的事件", first.reason)
+        self.assertEqual(second.status, BuildAttemptStatus.REJECTED)
+        self.assertNotEqual(first.attempt_id, second.attempt_id)
+        self.assertIs(repository.get_release(empty_release.release_id), empty_release)
+        self.assertEqual(
+            repository.list_build_attempts(empty_release.release_id),
+            (first, second),
+        )
+
+    def test_unexpected_builder_failure_is_also_recorded_as_retryable(self):
+        repository = InMemoryExtractionWorkflowRepository()
+        release = self._release(FaultRecord(description="pump stopped"))
+        repository.save_release(release)
+
+        def fail_unexpectedly(top_event, failures):
+            raise RuntimeError("builder unavailable")
+
+        attempt = FaultTreeBuildService(repository, builder=fail_unexpectedly).build(
+            release,
+            "system failure",
+        )
+
+        self.assertEqual(attempt.status, BuildAttemptStatus.REJECTED)
+        self.assertEqual(attempt.reason, "builder unavailable")
+        self.assertTrue(attempt.retryable)
+        self.assertEqual(repository.list_build_attempts(release.release_id), (attempt,))
 
 
 if __name__ == "__main__":

@@ -5,7 +5,13 @@ from datetime import datetime, timezone
 from enum import Enum
 from uuid import uuid4
 
-from extraction_contract import ExtractionResult
+from extraction_contract import (
+    EvidenceSpan,
+    ExtractionDiagnostic,
+    ExtractionResult,
+    ExtractionStatus,
+    FaultRecord,
+)
 
 
 class ReviewStatus(str, Enum):
@@ -105,3 +111,58 @@ class ReviewableExtractionResult:
             )
 
         object.__setattr__(self, "reviews", reviews)
+
+
+@dataclass(frozen=True)
+class PendingReviewItem:
+    """One fault record currently waiting for human review."""
+
+    result_id: str
+    extraction_status: ExtractionStatus
+    diagnostics: tuple[ExtractionDiagnostic, ...]
+    record: FaultRecord
+    evidence_spans: tuple[EvidenceSpan, ...]
+    review: FaultRecordReview
+
+    def __post_init__(self) -> None:
+        if not isinstance(self.result_id, str) or not self.result_id.strip():
+            raise ValueError("result_id must be a non-empty string")
+        object.__setattr__(self, "result_id", self.result_id.strip())
+
+        if isinstance(self.extraction_status, str):
+            try:
+                normalized_status = ExtractionStatus(self.extraction_status)
+            except ValueError as exc:
+                raise ValueError(
+                    f"unsupported extraction status: {self.extraction_status}"
+                ) from exc
+            object.__setattr__(self, "extraction_status", normalized_status)
+        elif not isinstance(self.extraction_status, ExtractionStatus):
+            raise TypeError("extraction_status must be an ExtractionStatus")
+
+        diagnostics = tuple(self.diagnostics)
+        if not all(
+            isinstance(diagnostic, ExtractionDiagnostic)
+            for diagnostic in diagnostics
+        ):
+            raise TypeError(
+                "diagnostics must contain only ExtractionDiagnostic values"
+            )
+        object.__setattr__(self, "diagnostics", diagnostics)
+
+        if not isinstance(self.record, FaultRecord):
+            raise TypeError("record must be a FaultRecord")
+
+        evidence_spans = tuple(self.evidence_spans)
+        if not all(isinstance(span, EvidenceSpan) for span in evidence_spans):
+            raise TypeError("evidence_spans must contain only EvidenceSpan values")
+        if any(span.record_id != self.record.record_id for span in evidence_spans):
+            raise ValueError("evidence spans must reference the pending record")
+        object.__setattr__(self, "evidence_spans", evidence_spans)
+
+        if not isinstance(self.review, FaultRecordReview):
+            raise TypeError("review must be a FaultRecordReview")
+        if self.review.record_id != self.record.record_id:
+            raise ValueError("review must reference the pending record")
+        if self.review.status is not ReviewStatus.PENDING:
+            raise ValueError("pending review item must have a pending review")

@@ -17,8 +17,8 @@
   -> 审核准备与持久化
   -> 人工审核决定
   -> FaultRecordReleaseService
-  -> ReleasedExtractionResult
-  -> 后续 FTA 建树
+  -> ReleasedExtractionResult（放行快照）
+  -> FaultTreeBuildAttempt（每次建树尝试追加一条）
 ```
 
 已经确认的边界：
@@ -63,7 +63,7 @@
 - `backend-python/extraction_repository.py`
   - `ExtractionRepository`：保存和查询完整 `ExtractionResult`
   - `ExtractionWorkflowRepository`：抽取结果和初始审核记录的整体保存边界
-  - 当前实现是内存仓储，重启后数据会丢失
+  - 默认应用实现是 SQLite 仓储，内存仓储只用于隔离测试
 - `backend-python/extraction_application_service.py`
   - 编排文本抽取、审核准备和整体保存
   - 不负责模型调用、JSON 解析或建树
@@ -85,6 +85,18 @@
   - `ReleasedExtractionResult`
 - `backend-python/release_service.py`
   - 只按当前审核状态生成下游安全投影
+- `backend-python/build_contract.py`
+  - `FaultTreeBuildAttempt`
+  - 建树尝试状态：`SUCCEEDED`、`REJECTED`
+- `backend-python/fault_tree_build_service.py`
+  - 只消费已保存的放行快照
+  - 每次调用都追加建树记录
+  - 建树失败不修改审核历史或放行快照
+- `backend-python/build_attempt_repository.py`、`backend-python/release_repository.py`
+  - 分别定义建树尝试和放行快照的持久化边界
+- `backend-python/sqlite_extraction_repository.py`
+  - SQLite schema v2
+  - 保存放行快照、blocked 原因和建树尝试历史
 
 ### API
 
@@ -92,6 +104,12 @@
   - 抽取文本并保存待审核结果
   - 返回 `result_id`、记录、证据、诊断和审核状态
   - 不生成 DOT，不建树
+- `GET /api/fta/reviews/pending`
+  - 按单条 `FaultRecord` 查询当前处于 `PENDING` 的审核项
+  - 返回所属结果 ID、抽取状态、故障记录、证据和当前审核信息
+  - `REVISION` 保留为后台审核状态，但暂不进入普通待审核列表
+  - `APPROVED`、`REJECTED`、`NOT_REQUIRED` 和 `FAILED` 记录不会进入列表
+  - 当前实现查询 SQLite 仓储；默认文件位于 `backend-python/outputs/extraction_workflow.sqlite3`
 - `POST /api/fta/reviews/approve`
   - 记录人工批准
 - `POST /api/fta/reviews/reject`
@@ -100,7 +118,13 @@
   - 记录要求修改，必须有原因
 - `POST /api/fta/release`
   - 根据 `result_id` 查询最新审核状态
-  - 只返回允许下游消费的故障记录
+  - 保存并返回本次不可变放行快照
+- `POST /api/fta/build_released`
+  - 根据 `release_id` 对放行快照尝试建树
+  - 返回 `succeeded` 或 `rejected` 业务结果
+  - 无论成功或失败都追加一条建树尝试记录
+- `GET /api/fta/build_attempts/{release_id}`
+  - 查询指定放行快照的全部建树尝试，按发生顺序返回
 
 相关 API 代码在 `backend-python/api_server.py`，使用说明在 `docs/api-usage.md`。
 
@@ -121,6 +145,12 @@ POST /api/fta/reviews/approve
 
 POST /api/fta/release
   -> 返回该 FaultRecord
+
+POST /api/fta/build_released
+  -> 只消费 release.records
+  -> 成功：追加 succeeded 建树记录
+  -> 失败：追加 rejected 建树记录，保留审核和放行结果
+  -> 再次重试：追加新的 attempt_id，不覆盖旧记录
 ```
 
 `FAILED` 结果会保存诊断信息，但不创建审核任务，也不生成可放行记录。`PARTIAL` 结果可以包含故障记录，但会进入人工审核。`ExtractionResult` 中的审核快照不能覆盖仓储中的最新审核决定。
@@ -150,11 +180,13 @@ git diff --check
 
 当前结果：
 
-- 45 个测试全部通过；
+- 60 个测试全部通过；
 - Python 编译通过；
 - 仓库布局检查通过；
 - HTTP 路由实际验证通过：抽取返回 `pending`，未审核时放行记录数为 0，批准后放行记录数为 1；
 - 故意传入不匹配的审核记录时，抽取结果和审核记录都没有写入。
+- SQLite 仓储重启后能读回抽取结果、证据和审核历史；不匹配的初始审核记录不会留下半成品。
+- SQLite schema 版本为 2，仓储支持生成不覆盖已有目标文件的数据库备份；放行快照和建树尝试可在仓储重启后读回。
 
 HTTP 测试环境有一个来自 Starlette/httpx 版本组合的弃用警告，暂不影响接口行为，后续需要统一测试依赖版本。
 
@@ -162,10 +194,12 @@ HTTP 测试环境有一个来自 Starlette/httpx 版本组合的弃用警告，�
 
 ## 6. 未闭合风险
 
-- 当前仓储是 `InMemory` 实现，进程重启会丢失数据。
-- 真实数据库事务、失败日志、失败任务、重试和补偿机制尚未设计；这些属于后续专题。
+- 默认仓储已切换为 SQLite；当前按单机、单文件设计，数据库迁移版本 1 和基础备份能力已具备。
+- 多进程部署、网络文件系统和并发容量边界仍未作为支持场景验收。
+- 数据库本身不可写时，建树尝试无法追加，接口会返回服务错误；这属于持久化故障，不能伪造审计记录。
+- 当前建树重试记录已经落地，但更细的失败分类、任务队列和补偿调度仍属于后续专题。
 - 前端仍调用旧的 `/api/fta/full_generate`，会直接自动渲染故障树，尚未切换到审核优先流程。
-- 目前没有完整的前端人工审核页面和待审核列表查询接口。
+- 后端待审核列表接口已存在，但前端尚未连接，也没有新增审核 UI 组件。
 - 真实在线模型、证据质量、标注数据、Precision/Recall/F1 和微调链路尚未完成评测。
 - `full_generate`、旧规则路径和新审核式抽取路径并存，后续迁移时要明确入口，不要把两种合同混用。
 
@@ -173,12 +207,9 @@ HTTP 测试环境有一个来自 Starlette/httpx 版本组合的弃用警告，�
 
 推荐顺序：
 
-1. 先读取本交接文档和当前 `git status --short`。
-2. 为审核页面增加“查询待审核任务”的只读 API，保证人工可以从持久化数据恢复工作，而不是依赖一次抽取响应。
-3. 再增加前端审核列表、批准、拒绝和要求修改操作。
-4. 前端只在 `/api/fta/release` 返回记录后，才把记录交给 FTA 建树。
-5. 之后再设计真实数据库仓储和事务边界。
-6. 最后再进入 NLP 评测、错误分析和微调数据闭环。
+1. 需要前端时再连接现有审核列表，不改变布局和样式；前端只在 `/api/fta/release` 返回记录后才交给 FTA 建树，并可按需读取建树尝试历史。
+2. 之后再进入 NLP 评测、错误分析和微调数据闭环。
+3. 如果要部署多实例，再单独设计数据库并发、任务队列和备份恢复验收。
 
 禁止的捷径：
 

@@ -163,24 +163,27 @@ flowchart TD
 其组合入口返回 `ReviewableExtractionResult`，将抽取结果与当前审核状态放在
 同一个编排对象中，但不修改原始抽取合同。
 
-审核历史通过 `ReviewRepository` 保存和查询；当前先使用内存实现验证接口，
-真实数据库适配器应按 `record_id` 查询历史，并以时间和数据库序号确定最新状态。
+审核历史通过 `ReviewRepository` 保存和查询；默认应用组合根使用 SQLite 适配器，schema
+版本当前为 2，
+按 `record_id` 查询历史，并以审核时间和 SQLite 序号确定最新状态。内存实现仍保留
+用于快速的合同和服务测试。
 人工批准、否决或要求修改由 `ReviewDecisionService` 创建新的审核实体，
 再交给仓储保存，不能直接覆盖旧审核记录。
 
 完整的抽取任务由 `ExtractionRepository` 持久化，保存对象是整个
 `ExtractionResult`，包括结果 ID、故障记录、证据和诊断信息，而不是只保存某一条
-`FaultRecord`。当前使用 `InMemoryExtractionRepository` 学习保存与查询合同；它拒绝
-覆盖已有 `result_id`，真实数据库实现需要把该 ID 作为唯一约束的一部分。
+`FaultRecord`。默认 SQLite 仓储保存完整抽取结果，并以唯一的 `result_id` 拒绝覆盖；
+内存仓储仍用于不依赖文件系统的单元测试。
 
 `ExtractionApplicationService` 负责应用层编排：接收文本、调用 `FaultExtractor`、
 生成初始审核状态，并通过 `ExtractionWorkflowRepository` 一次保存抽取结果和审核
-记录。当前内存实现先完成全部校验再提交两类数据，避免应用服务分别写两个仓储。真实
-数据库适配器应把同一过程放进数据库事务；日志、失败任务和补偿机制属于后续专题。
+记录。SQLite 实现先完成全部校验，再在同一个事务中提交两类数据，避免应用服务分别写
+两个仓储；失败日志、失败任务和补偿机制属于后续专题。
 
 API 层通过 `POST /api/fta/extract` 暴露这一审核优先的抽取用例；人工通过审核动作
-接口新增不可变审核决定，`POST /api/fta/release` 再根据仓储中的最新审核状态生成
-下游安全投影。该接口链不直接复用旧的 `full_generate`，因为后者仍负责多种解析、
+接口新增不可变审核决定，`GET /api/fta/reviews/pending` 提供当前仓储中的故障记录级待审核列表，
+`POST /api/fta/release` 再根据仓储中的最新审核状态生成下游安全投影。该接口链不直接
+复用旧的 `full_generate`，因为后者仍负责多种解析、
 Fallback、DOT 生成和前端渲染。
 
 抽取结果不能直接进入后续 FTA 建树。`FaultRecordReleaseService` 是审核放行门：
@@ -190,6 +193,12 @@ Fallback、DOT 生成和前端渲染。
 包含可供下游消费的故障记录，被拦截记录只保留编号、状态和原因，不携带可消费的
 `FaultRecord` 数据。`not_required` 是否允许自动放行必须通过显式策略配置，不能
 隐式混入人工批准结果。
+
+放行快照会保存到 SQLite，后续建树只接收 `ReleasedExtractionResult`，不直接消费原始
+`ExtractionResult`。`FaultTreeBuildService` 每次调用都会追加一条 `FaultTreeBuildAttempt`；
+成功记录故障树，失败记录原因和是否可重试。建树失败不回滚审核决定或放行快照，重复尝试
+继续追加新记录，以便保留完整排查与审计历程。对应接口为 `POST /api/fta/build_released`
+和 `GET /api/fta/build_attempts/{release_id}`；本轮后端已提供合同和持久化，但前端暂不接入。
 
 2. 增强流程（可演进）
 - 数据闭环：低置信度样本与人工审查修订回流到训练集。
@@ -321,7 +330,7 @@ Fallback、DOT 生成和前端渲染。
 
 ### 5.2 系统所用技术工具说明书
 - 开发框架：FastAPI、Pydantic、Vue。
-- 数据库：Neo4j。
+- 抽取审核持久化：SQLite；知识图谱：Neo4j（可选）。
 - 可视化：Graphviz。
 - 评测工具：自定义评测脚本 + 标注对比工具。
 - 日志工具：应用日志 + 阶段状态日志。

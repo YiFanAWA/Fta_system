@@ -2,8 +2,15 @@
 
 from typing import Protocol
 
+from build_attempt_repository import BuildAttemptRepository, InMemoryBuildAttemptRepository
 from extraction_contract import ExtractionResult
-from review_contract import FaultRecordReview, ReviewableExtractionResult
+from release_repository import InMemoryReleaseRepository, ReleaseRepository
+from review_contract import (
+    FaultRecordReview,
+    PendingReviewItem,
+    ReviewStatus,
+    ReviewableExtractionResult,
+)
 from review_repository import InMemoryReviewRepository, ReviewRepository
 
 
@@ -19,7 +26,13 @@ class ExtractionRepository(Protocol):
         ...
 
 
-class ExtractionWorkflowRepository(ExtractionRepository, ReviewRepository, Protocol):
+class ExtractionWorkflowRepository(
+    ExtractionRepository,
+    ReviewRepository,
+    ReleaseRepository,
+    BuildAttemptRepository,
+    Protocol,
+):
     """Atomic persistence boundary for extraction plus initial reviews."""
 
     def save_extraction_with_reviews(
@@ -28,6 +41,10 @@ class ExtractionWorkflowRepository(ExtractionRepository, ReviewRepository, Proto
         reviews: tuple[FaultRecordReview, ...],
     ) -> ReviewableExtractionResult:
         """Persist both parts or expose neither as a completed workflow."""
+        ...
+
+    def list_pending_review_items(self) -> tuple[PendingReviewItem, ...]:
+        """Return one item for each record with a current pending review."""
         ...
 
 
@@ -54,12 +71,16 @@ class InMemoryExtractionRepository:
 class InMemoryExtractionWorkflowRepository(
     InMemoryExtractionRepository,
     InMemoryReviewRepository,
+    InMemoryReleaseRepository,
+    InMemoryBuildAttemptRepository,
 ):
     """In-memory implementation of the combined workflow boundary."""
 
     def __init__(self) -> None:
         InMemoryExtractionRepository.__init__(self)
         InMemoryReviewRepository.__init__(self)
+        InMemoryReleaseRepository.__init__(self)
+        InMemoryBuildAttemptRepository.__init__(self)
 
     def save_extraction_with_reviews(
         self,
@@ -99,3 +120,29 @@ class InMemoryExtractionWorkflowRepository(
                 (self._next_sequence, review)
             )
         return bundle
+
+    def list_pending_review_items(self) -> tuple[PendingReviewItem, ...]:
+        """Return pending records without exposing unrelated records in the task."""
+        pending: list[PendingReviewItem] = []
+
+        for result in self._results.values():
+            for record in result.records:
+                review = self.get_current(record.record_id)
+                if review is None or review.status is not ReviewStatus.PENDING:
+                    continue
+                pending.append(
+                    PendingReviewItem(
+                        result_id=result.result_id,
+                        extraction_status=result.status,
+                        diagnostics=result.diagnostics,
+                        record=record,
+                        evidence_spans=tuple(
+                            span
+                            for span in result.evidence_spans
+                            if span.record_id == record.record_id
+                        ),
+                        review=review,
+                    )
+                )
+
+        return tuple(pending)

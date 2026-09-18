@@ -52,3 +52,13 @@ NEO4J_USER = os.getenv("NEO4J_USER", "neo4j")
 NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD", "password")
 
 OPENFTA_PATH = os.getenv("OPENFTA_PATH", r"C:\Program Files\OpenFTA\openfta.exe")
+
+EXTRACTION_DB_PATH = os.getenv(
+	"EXTRACTION_DB_PATH",
+	str(Path(__file__).with_name("outputs") / "extraction_workflow.sqlite3"),
+)
+
+ALLOW_AUTOMATIC_NOT_REQUIRED_RELEASE = os.getenv(
+	"ALLOW_AUTOMATIC_NOT_REQUIRED_RELEASE",
+	"false",
+).strip().lower() in {"1", "true", "yes", "on"}
