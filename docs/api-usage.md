@@ -115,6 +115,10 @@ POST /api/fta/build_released
 `status=rejected`、`reason` 和 `retryable`。这两种结果都是 HTTP 成功响应中的业务结果，
 因为“建树被拒绝”本身需要进入审计历史，而不是被当成没有记录的接口异常。
 
+成功树的事件节点包含 `source_record_ids`，用于回指本次放行快照中的审核记录；重复描述
+被合并时，该数组会保留所有来源记录 ID。原文证据可通过 `source_result_id` 回到抽取结果
+和 `evidence_spans` 查询。
+
 每次调用都会新增一个 `attempt_id`，不会覆盖上一次结果：
 
 ```json

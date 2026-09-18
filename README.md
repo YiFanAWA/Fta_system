@@ -28,7 +28,7 @@ python -m venv .venv
 Copy-Item backend-python/.env.example backend-python/.env
 ```
 
-按需编辑 `backend-python/.env`。调用 AI 路径需要配置有效的 OpenAI 兼容 API；使用 Neo4j 或本地图形工具时，还需要配置对应服务或程序路径。`.env` 已被 Git 忽略。
+按需编辑 `backend-python/.env`。调用 AI 路径需要配置有效的 OpenAI 兼容 API；当前模板默认按 DeepSeek 配置，填写 `DEEPSEEK_API_KEY` 即可，也可以继续使用 `OPENAI_API_KEY` 或 `QWEN_API_KEY`。使用 Neo4j 或本地图形工具时，还需要配置对应服务或程序路径。`.env` 已被 Git 忽略。
 
 启动后端：
 

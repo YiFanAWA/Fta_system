@@ -198,7 +198,10 @@ Fallback、DOT 生成和前端渲染。
 `ExtractionResult`。`FaultTreeBuildService` 每次调用都会追加一条 `FaultTreeBuildAttempt`；
 成功记录故障树，失败记录原因和是否可重试。建树失败不回滚审核决定或放行快照，重复尝试
 继续追加新记录，以便保留完整排查与审计历程。对应接口为 `POST /api/fta/build_released`
-和 `GET /api/fta/build_attempts/{release_id}`；本轮后端已提供合同和持久化，但前端暂不接入。
+和 `GET /api/fta/build_attempts/{release_id}`。树节点保留 `source_record_ids`，重复故障描述
+合并时不丢失来源记录；建树结果写入尝试历史前会经过树结构合同校验。本轮后端已提供合同
+和持久化，现有前端入口已接入抽取—审核—放行—建树顺序。建树应用编排、记录映射、树合同
+和具体建树器已经分开，替换建树实现不需要触碰审核和持久化层。
 
 2. 增强流程（可演进）
 - 数据闭环：低置信度样本与人工审查修订回流到训练集。

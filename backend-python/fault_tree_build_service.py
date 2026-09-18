@@ -5,7 +5,9 @@ from typing import Any
 
 from build_attempt_repository import BuildAttemptRepository
 from build_contract import BuildAttemptStatus, FaultTreeBuildAttempt
-from fta_generator import build_fault_tree
+from extraction_contract import FaultRecord
+from fault_record_tree_mapper import fault_record_to_tree_input
+from fta_tree_contract import validate_fault_tree
 from release_contract import ReleasedExtractionResult
 
 
@@ -15,10 +17,16 @@ class FaultTreeBuildService:
     def __init__(
         self,
         repository: BuildAttemptRepository,
-        builder: Callable[[str, list[dict[str, Any]]], dict[str, Any]] = build_fault_tree,
+        builder: Callable[[str, list[dict[str, Any]]], dict[str, Any]],
+        mapper: Callable[[FaultRecord], dict[str, Any]] = fault_record_to_tree_input,
     ) -> None:
+        if not callable(builder):
+            raise TypeError("builder must be callable")
+        if not callable(mapper):
+            raise TypeError("mapper must be callable")
         self._repository = repository
         self._builder = builder
+        self._mapper = mapper
 
     def build(
         self,
@@ -30,26 +38,10 @@ class FaultTreeBuildService:
         if not isinstance(top_event, str) or not top_event.strip():
             raise ValueError("top_event must be a non-empty string")
 
-        failures = [
-            {
-                "name": record.description,
-                "probability": record.confidence,
-                "gate": "OR",
-                "causes": [
-                    {
-                        "name": cause,
-                        "probability": None,
-                        "gate": "OR",
-                        "causes": [],
-                    }
-                    for cause in record.causes
-                ],
-            }
-            for record in release.records
-        ]
+        failures = [self._mapper(record) for record in release.records]
 
         try:
-            tree = self._builder(top_event.strip(), failures)
+            tree = validate_fault_tree(self._builder(top_event.strip(), failures))
         except (TypeError, ValueError) as exc:
             attempt = FaultTreeBuildAttempt(
                 release_id=release.release_id,

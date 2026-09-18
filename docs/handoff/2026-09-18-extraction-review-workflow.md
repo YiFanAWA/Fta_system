@@ -90,8 +90,16 @@
   - 建树尝试状态：`SUCCEEDED`、`REJECTED`
 - `backend-python/fault_tree_build_service.py`
   - 只消费已保存的放行快照
+  - 生成节点时保留 `source_record_ids`，重复故障描述合并来源 ID
+  - 在保存成功尝试前校验树结构合同
   - 每次调用都追加建树记录
   - 建树失败不修改审核历史或放行快照
+- `backend-python/fault_record_tree_mapper.py`
+  - 独立负责 `FaultRecord -> tree input` 映射
+- `backend-python/fta_tree_contract.py`
+  - 独立负责树结构校验和来源 ID 合并
+- `backend-python/fault_tree_build_application_service.py`
+  - 独立负责按 `release_id` 读取放行快照和查询建树历史
 - `backend-python/build_attempt_repository.py`、`backend-python/release_repository.py`
   - 分别定义建树尝试和放行快照的持久化边界
 - `backend-python/sqlite_extraction_repository.py`
@@ -125,6 +133,7 @@
   - 无论成功或失败都追加一条建树尝试记录
 - `GET /api/fta/build_attempts/{release_id}`
   - 查询指定放行快照的全部建树尝试，按发生顺序返回
+  - 成功树节点包含来源故障记录 ID，便于回查抽取证据
 
 相关 API 代码在 `backend-python/api_server.py`，使用说明在 `docs/api-usage.md`。
 
@@ -180,7 +189,8 @@ git diff --check
 
 当前结果：
 
-- 60 个测试全部通过；
+- 63 个测试全部通过；
+- 建树合同测试覆盖来源 ID、重复描述合并、非法树拒绝和运行时失败重试标记；
 - Python 编译通过；
 - 仓库布局检查通过；
 - HTTP 路由实际验证通过：抽取返回 `pending`，未审核时放行记录数为 0，批准后放行记录数为 1；
@@ -198,16 +208,19 @@ HTTP 测试环境有一个来自 Starlette/httpx 版本组合的弃用警告，�
 - 多进程部署、网络文件系统和并发容量边界仍未作为支持场景验收。
 - 数据库本身不可写时，建树尝试无法追加，接口会返回服务错误；这属于持久化故障，不能伪造审计记录。
 - 当前建树重试记录已经落地，但更细的失败分类、任务队列和补偿调度仍属于后续专题。
-- 前端仍调用旧的 `/api/fta/full_generate`，会直接自动渲染故障树，尚未切换到审核优先流程。
-- 后端待审核列表接口已存在，但前端尚未连接，也没有新增审核 UI 组件。
+- 前端两个现有入口已切换到审核优先流程：抽取后读取 pending，审核完成后放行并建树；
+  现有布局和样式保持不变，新增状态与动作投影位于原“抽取结果”区域。
+- 前端只在 `/api/fta/release` 返回未被拦截的记录后调用 `/api/fta/build_released`，
+  建树 JSON 只在展示层转换成现有画布可消费的 DOT。
 - 真实在线模型、证据质量、标注数据、Precision/Recall/F1 和微调链路尚未完成评测。
-- `full_generate`、旧规则路径和新审核式抽取路径并存，后续迁移时要明确入口，不要把两种合同混用。
+- `full_generate`、旧规则路径和新审核式抽取路径仍在后端并存；当前前端主入口不再调用
+  `full_generate`，后续删除旧接口仍需单独评估调用方和迁移窗口。
 
 ## 7. 下一步最安全动作
 
 推荐顺序：
 
-1. 需要前端时再连接现有审核列表，不改变布局和样式；前端只在 `/api/fta/release` 返回记录后才交给 FTA 建树，并可按需读取建树尝试历史。
+1. 继续做浏览器端真实数据验收，覆盖抽取、pending、批准、放行、建树成功和建树拒绝展示。
 2. 之后再进入 NLP 评测、错误分析和微调数据闭环。
 3. 如果要部署多实例，再单独设计数据库并发、任务队列和备份恢复验收。
 

@@ -943,6 +943,52 @@
                 </button>
               </div>
               <div v-if="aiSuccessInfo" class="ai-success">{{ aiSuccessInfo }}</div>
+              <div v-if="aiError" class="error">{{ aiError }}</div>
+              <details v-if="workflowResultId" class="ai-debug-panel" open>
+                <summary>审核、放行与建树</summary>
+                <div class="ai-input-group">
+                  <label>审核人</label>
+                  <input v-model="reviewerName" class="ai-input" placeholder="请输入审核人姓名..." />
+                </div>
+                <div v-if="!reviewItems.length" class="ai-success">本次抽取没有可处理的故障记录。</div>
+                <div v-for="item in reviewItems" :key="item.record.record_id" class="ai-input-group">
+                  <label>
+                    {{ item.record.description || item.record.fault_code || item.record.record_id }}
+                    · {{ reviewStatusText(item.review && item.review.status) }}
+                  </label>
+                  <div>故障编号：{{ item.record.fault_code || '未提供' }}</div>
+                  <div>组件：{{ item.record.component || '未提供' }}</div>
+                  <div>原因：{{ item.record.causes && item.record.causes.length ? item.record.causes.join('、') : '未提供' }}</div>
+                  <div v-if="item.evidenceSpans && item.evidenceSpans.length">
+                    证据：<span v-for="evidence in item.evidenceSpans" :key="`${evidence.record_id}-${evidence.field}-${evidence.start}`">{{ evidence.quote }}</span>
+                  </div>
+                  <input
+                    v-if="item.review && item.review.status === 'pending'"
+                    v-model="reviewReasons[item.record.record_id]"
+                    class="ai-input"
+                    placeholder="拒绝或要求补充时填写原因；批准可选..."
+                  />
+                  <div v-if="item.review && item.review.status === 'pending'" class="action-row">
+                    <button class="secondary small" :disabled="reviewBusyRecordId === item.record.record_id" @click="submitReviewDecision(item, 'approve')">批准</button>
+                    <button class="secondary small" :disabled="reviewBusyRecordId === item.record.record_id" @click="submitReviewDecision(item, 'reject')">拒绝</button>
+                    <button class="secondary small" :disabled="reviewBusyRecordId === item.record.record_id" @click="submitReviewDecision(item, 'revision')">要求补充</button>
+                  </div>
+                </div>
+                <div v-if="workflowReleaseId" class="ai-success">已生成放行快照：{{ workflowReleaseId }}</div>
+                <div v-if="workflowBlocked.length" class="error">
+                  放行被拦截：{{ workflowBlocked.map(item => item.reason || item.status || item.record_id).join('；') }}
+                </div>
+                <div v-if="workflowError" class="error">{{ workflowError }}</div>
+                <div class="section-actions">
+                  <button
+                    class="primary"
+                    :disabled="releaseBusy || buildBusy || pendingReviewCount > 0 || !reviewItems.length"
+                    @click="releaseAndBuild"
+                  >
+                    {{ releaseBusy || buildBusy ? '处理中...' : '放行并建树' }}
+                  </button>
+                </div>
+              </details>
               <details v-if="aiItemsDebug && aiItemsDebug.length" class="ai-debug-panel">
                 <summary>抽取结果</summary>
                 <pre>{{ JSON.stringify(aiItemsDebug, null, 2) }}</pre>
@@ -999,7 +1045,7 @@
                     <div class="dot-preview-tips">
                       <h4>使用建议</h4>
                       <ul>
-                        <li>可输入原始故障描述文本或 DOT 文本，再点击“后端抽取并生成”。</li>
+                    <li>可输入原始故障描述文本，再点击“后端抽取并生成”，完成审核后才会进入画布。</li>
                         <li>如果画布已有内容，可先导出当前结构进行对照。</li>
                         <li>解析成功后可继续在画布中拖拽、调整、缩放并保存图片。</li>
                       </ul>
@@ -1010,7 +1056,7 @@
                 <button @click="parseAndRenderViaBackend" class="primary" :disabled="dotSyncBusy">
                   {{ dotSyncBusy ? '后端抽取中...' : '后端抽取并生成' }}
                 </button>
-                <span class="dot-hint">后端不可用时会自动回退到前端解析。</span>
+                <span class="dot-hint">后端流程会先保存抽取、证据和审核状态；仅前端解析仍可用于查看已有 DOT。</span>
                 <div class="action-row">
                   <button @click="parseAndRender" class="secondary small">仅前端解析</button>
                   <button @click="loadExample" class="secondary small">加载示例</button>
@@ -1434,6 +1480,17 @@ export default {
       aiError: '',
       aiSuccessInfo: '',
       aiItemsDebug: [],
+      reviewerName: '',
+      reviewItems: [],
+      reviewReasons: {},
+      reviewBusyRecordId: '',
+      workflowResultId: '',
+      workflowReleaseId: '',
+      workflowBlocked: [],
+      workflowBuildAttempt: null,
+      workflowError: '',
+      releaseBusy: false,
+      buildBusy: false,
       nodes: [],
       edges: [],
       pathEdges: [],
@@ -1559,6 +1616,9 @@ export default {
     // 是否有打开的小组件面板
     hasOpenWidget() {
       return this.activeWidgetPanel !== null
+    },
+    pendingReviewCount() {
+      return this.reviewItems.filter(item => item.review && item.review.status === 'pending').length
     }
   },
 
@@ -2697,56 +2757,180 @@ export default {
 
       this.aiBusy = true
       try {
-        const response = await fetch(`${API_BASE}/api/fta/full_generate`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            text: raw,
-            system: String(this.aiSystem || '').trim() || '生产系统',
-            top_event: String(this.aiTopEvent || '').trim() || undefined,
-            mode: 'hybrid'
-          })
-        })
-
-        const payload = await response.json()
-        if (!response.ok) {
-          throw new Error(payload.detail || '抽取失败，请检查后端日志')
-        }
-
-        if (!payload.dot) {
-          throw new Error('后端未返回dot，无法渲染故障树')
-        }
-
-        const items = Array.isArray(payload.items) ? payload.items : []
-        this.aiItemsDebug = items
-
-        this.inputData = payload.dot
-        this.dotRenderInfo = `当前渲染来源：后端返回DOT（模式: ${payload?.debug?.mode || 'unknown'}）`
-        this.parseAndRender()
-        this.saveHistory()
-        this.$nextTick(() => {
-          const el = this.$refs.threeColArea
-          if (el) {
-            el.scrollIntoView({ behavior: "smooth", block: "start" })
-          }
-        })
-
-        const structItems = payload?.debug?.structure?.intermediate_events
-        const fallbackCount = Array.isArray(structItems) ? structItems.length : 0
-        const effectiveCount = items.length || fallbackCount
-        const activeMode = payload?.debug?.mode || 'unknown'
-        this.aiSuccessInfo = `抽取完成：${effectiveCount} 条故障记录，已自动渲染故障树（模式: ${activeMode}）。`
-
-        const chatAdvice = await this.fetchChatAdvice()
-        if (chatAdvice) {
-          this.aiSuccessInfo += ` 智能建议：${chatAdvice}`
-          this.aiChatMessages.push({ role: 'assistant', text: chatAdvice })
-          this.$nextTick(() => this.scrollAiChatToBottom())
-        }
+        await this.startReviewFirstExtraction(raw)
       } catch (err) {
         this.aiError = err.message || '请求失败，请确认后端服务可用'
       } finally {
         this.aiBusy = false
+      }
+    },
+
+    async requestWorkflowJson(path, options = {}) {
+      const token = this.getAuthToken()
+      const headers = {
+        'Content-Type': 'application/json',
+        ...(options.headers || {})
+      }
+      if (token) {
+        headers.Authorization = token.startsWith('Bearer ') ? token : `Bearer ${token}`
+      }
+
+      const response = await fetch(`${API_BASE}${path}`, {
+        ...options,
+        headers
+      })
+
+      let payload = null
+      try {
+        payload = await response.json()
+      } catch (error) {
+        payload = null
+      }
+
+      if (!response.ok) {
+        const detail = payload?.detail
+        const message = typeof detail === 'string'
+          ? detail
+          : detail?.message || JSON.stringify(detail || {})
+        throw new Error(message || `请求失败：${response.status}`)
+      }
+      return payload || {}
+    },
+
+    async startReviewFirstExtraction(raw) {
+      this.workflowResultId = ''
+      this.workflowReleaseId = ''
+      this.workflowBlocked = []
+      this.workflowBuildAttempt = null
+      this.workflowError = ''
+      this.reviewItems = []
+      this.reviewReasons = {}
+      this.reviewBusyRecordId = ''
+      this.inputData = ''
+      this.dotRenderInfo = ''
+
+      const payload = await this.requestWorkflowJson('/api/fta/extract', {
+        method: 'POST',
+        body: JSON.stringify({
+          text: raw,
+          text_chunk_size_chars: 6000,
+          text_chunk_overlap_chars: 300,
+          prompt_profile: 'balanced'
+        })
+      })
+
+      const records = Array.isArray(payload.records) ? payload.records : []
+      const reviews = Array.isArray(payload.reviews) ? payload.reviews : []
+      const evidenceSpans = Array.isArray(payload.evidence_spans) ? payload.evidence_spans : []
+      const reviewByRecordId = Object.fromEntries(
+        reviews.map(review => [review.record_id, review])
+      )
+
+      this.workflowResultId = String(payload.result_id || '')
+      this.aiItemsDebug = records
+      this.reviewItems = records.map(record => ({
+        record,
+        review: reviewByRecordId[record.record_id] || {
+          record_id: record.record_id,
+          status: 'pending',
+          reason: 'missing_initial_review_state'
+        },
+        evidenceSpans: evidenceSpans.filter(span => span.record_id === record.record_id)
+      }))
+
+      if (!this.workflowResultId) {
+        throw new Error('后端未返回抽取结果 ID，无法继续审核')
+      }
+
+      const pendingPayload = await this.requestWorkflowJson('/api/fta/reviews/pending')
+      const pendingIds = new Set(
+        (Array.isArray(pendingPayload.items) ? pendingPayload.items : [])
+          .filter(item => item.result_id === this.workflowResultId)
+          .map(item => item.record?.record_id)
+      )
+      this.reviewItems.forEach(item => {
+        if (pendingIds.has(item.record.record_id)) {
+          item.review = { ...item.review, status: 'pending' }
+        }
+      })
+
+      const count = this.reviewItems.length
+      this.aiSuccessInfo = `抽取完成：${count} 条故障记录，其中 ${this.pendingReviewCount} 条需要人工审核。`
+
+      if (!count) {
+        this.workflowError = '本次抽取没有形成可审核的故障记录。'
+        return
+      }
+
+      if (this.pendingReviewCount === 0) {
+        await this.releaseAndBuild()
+      } else {
+        this.dotRenderInfo = '当前等待人工审核，审核通过后才会生成故障树。'
+      }
+    },
+
+    reviewStatusText(status) {
+      const statusMap = {
+        pending: '待审核',
+        not_required: '规则判断无需审核',
+        approved: '已批准',
+        rejected: '已拒绝',
+        revision: '待补充'
+      }
+      return statusMap[status] || status || '未知状态'
+    },
+
+    async submitReviewDecision(item, action) {
+      const recordId = item?.record?.record_id
+      if (!recordId) return
+
+      const reviewer = String(this.reviewerName || '').trim()
+      if (!reviewer) {
+        this.workflowError = '请先填写审核人。'
+        return
+      }
+
+      const reason = String(this.reviewReasons[recordId] || '').trim()
+      if ((action === 'reject' || action === 'revision') && !reason) {
+        this.workflowError = action === 'reject' ? '拒绝审核必须填写原因。' : '要求补充必须填写原因。'
+        return
+      }
+
+      const endpoint = {
+        approve: '/api/fta/reviews/approve',
+        reject: '/api/fta/reviews/reject',
+        revision: '/api/fta/reviews/revision'
+      }[action]
+      if (!endpoint) return
+
+      this.reviewBusyRecordId = recordId
+      this.workflowError = ''
+      try {
+        const decision = await this.requestWorkflowJson(endpoint, {
+          method: 'POST',
+          body: JSON.stringify({
+            record_id: recordId,
+            reviewer,
+            reason: reason || undefined
+          })
+        })
+        item.review = decision
+        this.aiSuccessInfo = `已记录审核：${item.record.description || recordId} → ${this.reviewStatusText(decision.status)}。`
+
+        if (this.pendingReviewCount === 0) {
+          const allAccepted = this.reviewItems.every(({ review }) => {
+            return review && (review.status === 'approved' || review.status === 'not_required')
+          })
+          if (allAccepted) {
+            await this.releaseAndBuild()
+          } else {
+            this.workflowError = '审核记录已保存，但存在未批准的故障记录，暂不自动建树。'
+          }
+        }
+      } catch (err) {
+        this.workflowError = err.message || '审核提交失败'
+      } finally {
+        this.reviewBusyRecordId = ''
       }
     },
 
@@ -2777,42 +2961,148 @@ export default {
 
       this.dotSyncBusy = true
       try {
-        const token = this.getAuthToken()
-        const headers = { 'Content-Type': 'application/json' }
-        if (token) {
-          headers.Authorization = token.startsWith('Bearer ') ? token : `Bearer ${token}`
-        }
-
-        const response = await fetch(`${API_BASE}/api/fta/full_generate`, {
-          method: 'POST',
-          headers,
-          body: JSON.stringify({
-            text: raw,
-            system: String(this.aiSystem || '').trim() || '生产系统',
-            top_event: String(this.aiTopEvent || '').trim() || undefined,
-            mode: 'hybrid'
-          })
-        })
-
-        const payload = await response.json()
-        if (!response.ok) {
-          throw new Error(payload.detail || '后端规范化失败')
-        }
-
-        if (!payload?.dot) {
-          throw new Error('后端未返回 dot 字段')
-        }
-
-        this.inputData = String(payload.dot)
-        this.parseAndRender()
-        this.saveHistory()
-        this.dotRenderInfo = `当前渲染来源：后端抽取结果（模式: ${payload?.debug?.mode || 'unknown'}）`
+        await this.startReviewFirstExtraction(raw)
+        this.dotRenderInfo = this.pendingReviewCount
+          ? '后端抽取完成，等待审核；审核通过并建树后才会更新画布。'
+          : this.dotRenderInfo
       } catch (err) {
-        this.parseAndRender()
-        this.dotRenderInfo = '后端抽取失败，已回退到前端本地解析'
         this.parseError = err?.message || '后端请求失败'
       } finally {
         this.dotSyncBusy = false
+      }
+    },
+
+    treeToDot(tree) {
+      if (!tree || typeof tree !== 'object') {
+        throw new Error('建树接口未返回有效树结构')
+      }
+
+      let sequence = 0
+      const lines = [
+        'digraph FaultTree {',
+        `  rankdir=${this.layoutDirection === 'horizontal' ? 'LR' : 'TB'};`,
+        '  node [shape=box];'
+      ]
+      const nodeId = () => `n${++sequence}`
+      const escapeLabel = (value) => String(value ?? '')
+        .replace(/\\/g, '\\\\')
+        .replace(/"/g, '\\"')
+        .replace(/\r?\n/g, '\\n')
+      const addNode = (label, shape) => {
+        const id = nodeId()
+        lines.push(`  ${id} [label="${escapeLabel(label)}", shape=${shape}];`)
+        return id
+      }
+      const addEdge = (from, to) => lines.push(`  ${from} -> ${to};`)
+      const labelWithProbability = (node) => {
+        const name = String(node?.name || '未命名事件')
+        const probability = node?.probability
+        return probability === null || probability === undefined
+          ? name
+          : `${name}\\nP=${probability}`
+      }
+
+      const topId = addNode(tree.top || '故障树顶事件', 'doubleoctagon')
+      const topGateId = addNode(tree.gate || 'OR', 'diamond')
+      addEdge(topId, topGateId)
+
+      const appendEvent = (node) => {
+        const children = Array.isArray(node?.children) ? node.children : []
+        const eventId = addNode(
+          labelWithProbability(node),
+          children.length ? 'box' : 'ellipse'
+        )
+        if (children.length) {
+          const gateId = addNode(node.gate || 'OR', 'diamond')
+          addEdge(eventId, gateId)
+          children.forEach(child => addEdge(gateId, appendEvent(child)))
+        }
+        return eventId
+      }
+
+      const children = Array.isArray(tree.children) ? tree.children : []
+      children.forEach(child => addEdge(topGateId, appendEvent(child)))
+      lines.push('}')
+      return lines.join('\n')
+    },
+
+    renderReleasedTree(tree) {
+      const dot = this.treeToDot(tree)
+      this.inputData = dot
+      this.parseAndRender()
+      if (this.parseError) {
+        throw new Error(this.parseError)
+      }
+      this.saveHistory()
+      const title = String(this.aiTopEvent || this.aiSystem || tree?.top || '故障树').trim() || '故障树'
+      this.faultTreeHistory.unshift({
+        id: Date.now(),
+        title,
+        dot,
+        time: new Date().toLocaleString('zh-CN')
+      })
+      if (this.faultTreeHistory.length > 20) this.faultTreeHistory.pop()
+      this.dotRenderInfo = '当前渲染来源：已审核放行后的建树结果'
+      this.$nextTick(() => {
+        const el = this.$refs.threeColArea
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      })
+    },
+
+    async releaseAndBuild() {
+      if (!this.workflowResultId || !this.reviewItems.length) return
+      if (this.pendingReviewCount > 0) {
+        this.workflowError = '仍有待审核故障记录，不能放行建树。'
+        return
+      }
+
+      this.releaseBusy = true
+      this.buildBusy = false
+      this.workflowError = ''
+      this.workflowBlocked = []
+      try {
+        const released = await this.requestWorkflowJson('/api/fta/release', {
+          method: 'POST',
+          body: JSON.stringify({ result_id: this.workflowResultId })
+        })
+        this.workflowReleaseId = String(released.release_id || '')
+        this.workflowBlocked = Array.isArray(released.blocked) ? released.blocked : []
+
+        if (this.workflowBlocked.length || !this.workflowReleaseId) {
+          this.aiSuccessInfo = '审核结果已保存，但当前放行快照被拦截，暂未建树。'
+          return
+        }
+
+        this.releaseBusy = false
+        this.buildBusy = true
+        const topEvent = String(this.aiTopEvent || '').trim() || String(this.aiSystem || '').trim() || '系统故障'
+        const attempt = await this.requestWorkflowJson('/api/fta/build_released', {
+          method: 'POST',
+          body: JSON.stringify({
+            release_id: this.workflowReleaseId,
+            top_event: topEvent
+          })
+        })
+        this.workflowBuildAttempt = attempt
+
+        if (attempt.status !== 'succeeded' || !attempt.tree) {
+          this.workflowError = attempt.reason || '建树被拒绝，已保留本次建树尝试记录。'
+          return
+        }
+
+        this.renderReleasedTree(attempt.tree)
+        this.aiSuccessInfo = `审核、放行和建树完成：${this.nodes.length} 个节点。`
+        const chatAdvice = await this.fetchChatAdvice()
+        if (chatAdvice) {
+          this.aiSuccessInfo += ` 智能建议：${chatAdvice}`
+          this.aiChatMessages.push({ role: 'assistant', text: chatAdvice })
+          this.$nextTick(() => this.scrollAiChatToBottom())
+        }
+      } catch (err) {
+        this.workflowError = err.message || '放行或建树失败'
+      } finally {
+        this.releaseBusy = false
+        this.buildBusy = false
       }
     },
 

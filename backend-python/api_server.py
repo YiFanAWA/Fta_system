@@ -23,6 +23,10 @@ from extraction_application_service import ExtractionApplicationService
 from extraction_contract import EvidenceSpan, FaultRecord
 from build_contract import FaultTreeBuildAttempt
 from config import ALLOW_AUTOMATIC_NOT_REQUIRED_RELEASE, EXTRACTION_DB_PATH
+from fault_tree_build_application_service import (
+    FaultTreeBuildApplicationService,
+    ReleaseNotFoundError,
+)
 from fault_tree_build_service import FaultTreeBuildService
 from sqlite_extraction_repository import SQLiteExtractionWorkflowRepository
 from release_contract import ReleaseBlock, ReleasedExtractionResult
@@ -1737,17 +1741,20 @@ def build_released_extraction(
     """Build one persisted release and append exactly one attempt record."""
     repository = app.state.extraction_workflow_repository
     try:
-        release = repository.get_release(req.release_id)
-        if release is None:
-            raise HTTPException(status_code=404, detail="release not found")
-
-        attempt = FaultTreeBuildService(repository).build(
-            release,
+        application_service = FaultTreeBuildApplicationService(
+            repository,
+            repository,
+            FaultTreeBuildService(repository, build_fault_tree),
+        )
+        attempt = application_service.build(
+            req.release_id,
             req.top_event,
         )
         return _build_attempt_to_api_dict(attempt)
     except HTTPException:
         raise
+    except ReleaseNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
     except (TypeError, ValueError) as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
     except Exception as exc:
@@ -1759,13 +1766,18 @@ def list_build_attempts(release_id: str) -> Dict[str, Any]:
     """Return the append-only build history for one release."""
     repository = app.state.extraction_workflow_repository
     try:
-        if repository.get_release(release_id) is None:
-            raise HTTPException(status_code=404, detail="release not found")
-        attempts = repository.list_build_attempts(release_id)
+        application_service = FaultTreeBuildApplicationService(
+            repository,
+            repository,
+            FaultTreeBuildService(repository, build_fault_tree),
+        )
+        attempts = application_service.list_attempts(release_id)
         items = [_build_attempt_to_api_dict(attempt) for attempt in attempts]
         return {"items": items, "count": len(items)}
     except HTTPException:
         raise
+    except ReleaseNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
     except (TypeError, ValueError) as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
     except Exception as exc:

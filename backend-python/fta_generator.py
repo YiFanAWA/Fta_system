@@ -1,3 +1,11 @@
+from fta_tree_contract import (
+    attach_source_record_ids,
+    merge_source_record_ids,
+    normalize_source_record_ids,
+    validate_fault_tree,
+)
+
+
 def _to_probability(value):
     if value is None:
         return None
@@ -16,12 +24,15 @@ def _to_probability(value):
     return prob
 
 
-def _build_basic_node(name, probability=None):
-    return {
-        "name": name,
-        "type": "basic",
-        "probability": _to_probability(probability)
-    }
+def _build_basic_node(name, probability=None, source_record_ids=None):
+    return attach_source_record_ids(
+        {
+            "name": name,
+            "type": "basic",
+            "probability": _to_probability(probability),
+        },
+        source_record_ids,
+    )
 
 
 def _build_intermediate_node(item):
@@ -40,38 +51,44 @@ def _build_intermediate_node(item):
 
     name = raw_name.strip()
     probability = _to_probability(item.get("probability"))
+    source_record_ids = normalize_source_record_ids(item.get("source_record_ids"))
+    if not source_record_ids and item.get("record_id") is not None:
+        source_record_ids = normalize_source_record_ids(item.get("record_id"))
 
     causes_raw = item.get("causes", [])
     if not isinstance(causes_raw, list):
         causes_raw = []
 
     children = []
-    seen = set()
+    seen = {}
     for cause in causes_raw:
         child = _build_intermediate_node(cause)
         if not child:
             continue
         child_name = child["name"]
         if child_name in seen:
+            merge_source_record_ids(seen[child_name], child)
             continue
-        seen.add(child_name)
+        seen[child_name] = child
         children.append(child)
 
     if not children:
-        return _build_basic_node(name, probability)
+        return _build_basic_node(name, probability, source_record_ids)
 
     gate = item.get("gate", "OR")
     if not isinstance(gate, str) or gate.upper() not in {"AND", "OR"}:
         gate = "OR"
 
-    return {
-        "name": name,
-        "type": "intermediate",
-        "probability": probability,
-        "gate": gate.upper(),
-        "children": children
-    }
-
+    return attach_source_record_ids(
+        {
+            "name": name,
+            "type": "intermediate",
+            "probability": probability,
+            "gate": gate.upper(),
+            "children": children,
+        },
+        source_record_ids,
+    )
 
 def build_fault_tree(top_event, failures):
     if not isinstance(top_event, str) or not top_event.strip():
@@ -81,7 +98,7 @@ def build_fault_tree(top_event, failures):
         raise ValueError("failures必须是列表")
 
     children = []
-    seen = set()
+    seen = {}
 
     for item in failures:
         node = _build_intermediate_node(item)
@@ -90,9 +107,10 @@ def build_fault_tree(top_event, failures):
 
         name = node["name"]
         if name in seen:
+            merge_source_record_ids(seen[name], node)
             continue
 
-        seen.add(name)
+        seen[name] = node
         children.append(node)
 
     if not children:
@@ -104,4 +122,4 @@ def build_fault_tree(top_event, failures):
         "children": children
     }
 
-    return tree
+    return validate_fault_tree(tree)

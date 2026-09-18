@@ -27,6 +27,7 @@ from extraction_repository import (  # noqa: E402
 )
 from fault_extractor import RemoteLLMFaultExtractor  # noqa: E402
 from fault_tree_build_service import FaultTreeBuildService  # noqa: E402
+from fta_generator import build_fault_tree  # noqa: E402
 from model_client import (  # noqa: E402
     CallableModelClient,
     ModelClientError,
@@ -326,7 +327,7 @@ class SQLiteExtractionRepositoryTests(unittest.TestCase):
         )
         release = FaultRecordReleaseService(self.repository).release(prepared)
         self.repository.save_release(release)
-        attempt = FaultTreeBuildService(self.repository).build(
+        attempt = FaultTreeBuildService(self.repository, build_fault_tree).build(
             release,
             "system failure",
         )
@@ -868,25 +869,90 @@ class FaultTreeBuildServiceTests(unittest.TestCase):
 
     def test_successful_build_appends_a_succeeded_attempt(self):
         repository = InMemoryExtractionWorkflowRepository()
-        release = self._release(FaultRecord(description="pump stopped"))
+        record = FaultRecord(
+            description="pump stopped",
+            causes=("motor overheated",),
+        )
+        release = self._release(record)
         repository.save_release(release)
 
-        attempt = FaultTreeBuildService(repository).build(release, "system failure")
+        attempt = FaultTreeBuildService(repository, build_fault_tree).build(
+            release,
+            "system failure",
+        )
 
         self.assertEqual(attempt.status, BuildAttemptStatus.SUCCEEDED)
         self.assertEqual(attempt.tree["top"], "system failure")
+        self.assertEqual(
+            attempt.tree["children"][0]["source_record_ids"],
+            [record.record_id],
+        )
+        self.assertEqual(
+            attempt.tree["children"][0]["children"][0]["name"],
+            "motor overheated",
+        )
         self.assertEqual(repository.list_build_attempts(release.release_id), (attempt,))
+
+    def test_duplicate_fault_descriptions_keep_all_source_record_ids(self):
+        repository = InMemoryExtractionWorkflowRepository()
+        first = FaultRecord(description="pump stopped")
+        second = FaultRecord(description="pump stopped")
+        release = self._release(first, second)
+        repository.save_release(release)
+
+        attempt = FaultTreeBuildService(repository, build_fault_tree).build(
+            release,
+            "system failure",
+        )
+
+        self.assertEqual(attempt.status, BuildAttemptStatus.SUCCEEDED)
+        self.assertEqual(len(attempt.tree["children"]), 1)
+        self.assertEqual(
+            set(attempt.tree["children"][0]["source_record_ids"]),
+            {first.record_id, second.record_id},
+        )
+
+    def test_builder_and_record_mapper_are_independently_injectable(self):
+        repository = InMemoryExtractionWorkflowRepository()
+        record = FaultRecord(description="pump stopped")
+        release = self._release(record)
+        repository.save_release(release)
+        mapped_record_ids = []
+
+        def mapper(value):
+            mapped_record_ids.append(value.record_id)
+            return {
+                "name": "mapped pump event",
+                "source_record_ids": [value.record_id],
+                "causes": [],
+            }
+
+        def builder(top_event, failures):
+            return build_fault_tree(top_event, failures)
+
+        attempt = FaultTreeBuildService(
+            repository,
+            builder=builder,
+            mapper=mapper,
+        ).build(release, "system failure")
+
+        self.assertEqual(attempt.status, BuildAttemptStatus.SUCCEEDED)
+        self.assertEqual(mapped_record_ids, [record.record_id])
+        self.assertEqual(
+            attempt.tree["children"][0]["name"],
+            "mapped pump event",
+        )
 
     def test_failed_build_preserves_release_and_appends_each_retry(self):
         repository = InMemoryExtractionWorkflowRepository()
         empty_release = self._release()
         repository.save_release(empty_release)
 
-        first = FaultTreeBuildService(repository).build(
+        first = FaultTreeBuildService(repository, build_fault_tree).build(
             empty_release,
             "system failure",
         )
-        second = FaultTreeBuildService(repository).build(
+        second = FaultTreeBuildService(repository, build_fault_tree).build(
             empty_release,
             "system failure",
         )
@@ -917,6 +983,24 @@ class FaultTreeBuildServiceTests(unittest.TestCase):
         self.assertEqual(attempt.status, BuildAttemptStatus.REJECTED)
         self.assertEqual(attempt.reason, "builder unavailable")
         self.assertTrue(attempt.retryable)
+        self.assertEqual(repository.list_build_attempts(release.release_id), (attempt,))
+
+    def test_invalid_builder_output_is_rejected_and_recorded(self):
+        repository = InMemoryExtractionWorkflowRepository()
+        release = self._release(FaultRecord(description="pump stopped"))
+        repository.save_release(release)
+
+        def return_invalid_tree(top_event, failures):
+            return {"top": top_event, "children": []}
+
+        attempt = FaultTreeBuildService(
+            repository,
+            builder=return_invalid_tree,
+        ).build(release, "system failure")
+
+        self.assertEqual(attempt.status, BuildAttemptStatus.REJECTED)
+        self.assertEqual(attempt.reason, "tree.children必须是非空列表")
+        self.assertFalse(attempt.retryable)
         self.assertEqual(repository.list_build_attempts(release.release_id), (attempt,))
 
 

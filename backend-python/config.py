@@ -22,6 +22,13 @@ def _load_local_env() -> None:
 _load_local_env()
 
 
+DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY", "")
+DEEPSEEK_BASE_URL = os.getenv(
+	"DEEPSEEK_BASE_URL",
+	"https://api.deepseek.com",
+)
+DEEPSEEK_MODEL = os.getenv("DEEPSEEK_MODEL", "deepseek-v4-flash")
+
 QWEN_API_KEY = os.getenv("QWEN_API_KEY", "")
 QWEN_BASE_URL = os.getenv(
 	"QWEN_BASE_URL",
@@ -37,13 +44,21 @@ def _first_non_empty(*values: str) -> str:
 	return ""
 
 
-OPENAI_API_KEY = _first_non_empty(os.getenv("OPENAI_API_KEY", ""), QWEN_API_KEY)
+OPENAI_API_KEY = _first_non_empty(
+	os.getenv("OPENAI_API_KEY", ""),
+	DEEPSEEK_API_KEY,
+	QWEN_API_KEY,
+)
 OPENAI_API_BASE = _first_non_empty(
 	os.getenv("OPENAI_API_BASE", ""),
 	os.getenv("OPENAI_BASE_URL", ""),
-	QWEN_BASE_URL,
+	DEEPSEEK_BASE_URL if DEEPSEEK_API_KEY else QWEN_BASE_URL,
 )
-OPENAI_MODEL = _first_non_empty(os.getenv("OPENAI_MODEL", ""), QWEN_MODEL, "qwen-plus")
+OPENAI_MODEL = _first_non_empty(
+	os.getenv("OPENAI_MODEL", ""),
+	DEEPSEEK_MODEL if DEEPSEEK_API_KEY else QWEN_MODEL,
+	"qwen-plus",
+)
 OPENAI_TIMEOUT_SECONDS = int(os.getenv("OPENAI_TIMEOUT_SECONDS", "120"))
 OPENAI_MAX_RETRIES = int(os.getenv("OPENAI_MAX_RETRIES", "2"))
 
