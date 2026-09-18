@@ -542,6 +542,23 @@ def _build_text_extraction_adapter(
     )
 
 
+def build_text_extraction_adapter(
+    chunk_size_chars: int = 6000,
+    overlap_chars: int = 300,
+    prompt_profile: Optional[str] = None,
+    custom_instructions: Optional[str] = None,
+    model_client: Optional[ModelClient] = None,
+) -> TextExtractionAdapter:
+    """Build the configured text extractor for application-layer injection."""
+    return _build_text_extraction_adapter(
+        chunk_size_chars=chunk_size_chars,
+        overlap_chars=overlap_chars,
+        prompt_profile=prompt_profile,
+        custom_instructions=custom_instructions,
+        model_client=model_client,
+    )
+
+
 def extract_fault_result_from_text(
     source_text: str,
     chunk_size_chars: int = 6000,

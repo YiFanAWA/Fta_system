@@ -13,11 +13,16 @@ from ai_module import (
     analyze_fault_tree_report,
     answer_general_question,
     answer_question_with_context,
+    build_text_extraction_adapter,
     convert_fault_records_to_failures,
     extract_fault_records_from_text,
     generate_failure_events,
     review_fault_tree_draft,
 )
+from extraction_application_service import ExtractionApplicationService
+from extraction_repository import InMemoryExtractionWorkflowRepository
+from extraction_contract import EvidenceSpan, FaultRecord
+from review_contract import FaultRecordReview, ReviewableExtractionResult
 from fta_llm_pipeline import extract_fta_structure, generate_dot
 from fta_dot_builder import (
     build_dot_from_fta,
@@ -107,6 +112,16 @@ class FullGenerateRequest(BaseModel):
     text_chunk_overlap_chars: int = 300
 
 
+class ExtractTextRequest(BaseModel):
+    """Request for the review-first text extraction use case."""
+
+    text: str = Field(..., min_length=1)
+    text_chunk_size_chars: int = Field(default=6000, ge=1, le=100000)
+    text_chunk_overlap_chars: int = Field(default=300, ge=0, le=99999)
+    prompt_profile: Optional[Literal["balanced", "strict", "exploratory"]] = "balanced"
+    custom_instructions: Optional[str] = None
+
+
 app = FastAPI(title="AI FTA API", version="1.0.0")
 
 # Allow Vue dev server and configurable origins.
@@ -117,6 +132,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Transitional process-local storage. A database-backed workflow repository
+# will replace this composition-root dependency later.
+app.state.extraction_workflow_repository = InMemoryExtractionWorkflowRepository()
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -139,6 +158,66 @@ def _failure_models_to_dict(items: List[FailureInput]) -> List[Dict[str, Any]]:
         else:
             payload.append(item.dict())
     return payload
+
+
+def _fault_record_to_api_dict(record: FaultRecord) -> Dict[str, Any]:
+    return {
+        "record_id": record.record_id,
+        "fault_code": record.fault_code,
+        "component": record.component,
+        "description": record.description,
+        "causes": list(record.causes),
+        "parameters": list(record.parameters),
+        "confidence": record.confidence,
+    }
+
+
+def _evidence_span_to_api_dict(span: EvidenceSpan) -> Dict[str, Any]:
+    return {
+        "record_id": span.record_id,
+        "field": span.field.value,
+        "source_id": span.source_id,
+        "quote": span.quote,
+        "start": span.start,
+        "end": span.end,
+        "value_index": span.value_index,
+    }
+
+
+def _review_to_api_dict(review: FaultRecordReview) -> Dict[str, Any]:
+    return {
+        "review_id": review.review_id,
+        "record_id": review.record_id,
+        "status": review.status.value,
+        "reason": review.reason,
+        "reviewer": review.reviewer,
+        "created_at": review.created_at.isoformat(),
+    }
+
+
+def _reviewable_extraction_to_api_dict(
+    bundle: ReviewableExtractionResult,
+) -> Dict[str, Any]:
+    extraction = bundle.extraction
+    return {
+        "result_id": extraction.result_id,
+        "status": extraction.status.value,
+        "records": [_fault_record_to_api_dict(record) for record in extraction.records],
+        "evidence_spans": [
+            _evidence_span_to_api_dict(span)
+            for span in extraction.evidence_spans
+        ],
+        "diagnostics": [
+            {
+                "code": diagnostic.code,
+                "message": diagnostic.message,
+                "stage": diagnostic.stage,
+                "retryable": diagnostic.retryable,
+            }
+            for diagnostic in extraction.diagnostics
+        ],
+        "reviews": [_review_to_api_dict(review) for review in bundle.reviews],
+    }
 
 
 def _build_output_paths(prefix: str) -> Dict[str, Path]:
@@ -1426,6 +1505,33 @@ def _is_mixed_dot_and_case_text(text: str) -> bool:
 @app.get("/api/health")
 def health() -> Dict[str, str]:
     return {"status": "ok", "build": "2026-04-15-template-parser-v12"}
+
+
+@app.post("/api/fta/extract")
+def extract_text_for_review(req: ExtractTextRequest) -> Dict[str, Any]:
+    """Extract text into persisted reviewable records without building a tree."""
+    try:
+        if req.text_chunk_overlap_chars >= req.text_chunk_size_chars:
+            raise ValueError(
+                "text_chunk_overlap_chars must be smaller than text_chunk_size_chars"
+            )
+
+        extractor = build_text_extraction_adapter(
+            chunk_size_chars=req.text_chunk_size_chars,
+            overlap_chars=req.text_chunk_overlap_chars,
+            prompt_profile=req.prompt_profile,
+            custom_instructions=req.custom_instructions,
+        )
+        service = ExtractionApplicationService(
+            extractor,
+            app.state.extraction_workflow_repository,
+        )
+        bundle = service.extract(req.text)
+        return _reviewable_extraction_to_api_dict(bundle)
+    except (TypeError, ValueError) as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail="extraction workflow failed") from exc
 
 
 @app.post("/api/fta/build_dot")

@@ -18,6 +18,11 @@ from extraction_contract import (  # noqa: E402
     ExtractionStatus,
     FaultRecord,
 )
+from extraction_application_service import ExtractionApplicationService  # noqa: E402
+from extraction_repository import (  # noqa: E402
+    InMemoryExtractionRepository,
+    InMemoryExtractionWorkflowRepository,
+)
 from fault_extractor import RemoteLLMFaultExtractor  # noqa: E402
 from model_client import (  # noqa: E402
     CallableModelClient,
@@ -32,6 +37,7 @@ from review_contract import (  # noqa: E402
 from review_decision_service import ReviewDecisionService  # noqa: E402
 from review_preparation_service import ReviewPreparationService  # noqa: E402
 from review_repository import InMemoryReviewRepository  # noqa: E402
+from release_service import FaultRecordReleaseService  # noqa: E402
 from text_extraction_adapter import TextExtractionAdapter  # noqa: E402
 
 
@@ -71,6 +77,132 @@ class ExtractionContractTests(unittest.TestCase):
         )
 
         self.assertTrue(span.matches("pump stopped in bay A"))
+
+
+class ExtractionRepositoryTests(unittest.TestCase):
+    def test_save_and_get_preserve_the_complete_extraction_result(self):
+        result = ExtractionResult(
+            status=ExtractionStatus.SUCCESS,
+            records=(FaultRecord(description="pump stopped"),),
+        )
+        repository = InMemoryExtractionRepository()
+
+        saved = repository.save(result)
+
+        self.assertIs(saved, result)
+        self.assertIs(repository.get(result.result_id), result)
+
+    def test_duplicate_result_id_cannot_overwrite_an_existing_result(self):
+        result = ExtractionResult(
+            status=ExtractionStatus.EMPTY,
+        )
+        repository = InMemoryExtractionRepository()
+        repository.save(result)
+
+        with self.assertRaises(ValueError):
+            repository.save(result)
+
+    def test_missing_result_returns_none(self):
+        repository = InMemoryExtractionRepository()
+
+        self.assertIsNone(repository.get("missing-result"))
+
+    def test_workflow_repository_commits_result_and_initial_reviews_together(self):
+        record = FaultRecord(description="pump stopped")
+        result = ExtractionResult(
+            status=ExtractionStatus.SUCCESS,
+            records=(record,),
+        )
+        review = FaultRecordReview(
+            record_id=record.record_id,
+            status=ReviewStatus.PENDING,
+        )
+        repository = InMemoryExtractionWorkflowRepository()
+
+        bundle = repository.save_extraction_with_reviews(result, (review,))
+
+        self.assertIs(repository.get(result.result_id), result)
+        self.assertIs(repository.get_current(record.record_id), review)
+        self.assertIs(bundle.extraction, result)
+
+    def test_workflow_repository_rejects_mismatched_reviews_before_writing(self):
+        record = FaultRecord(description="pump stopped")
+        result = ExtractionResult(
+            status=ExtractionStatus.SUCCESS,
+            records=(record,),
+        )
+        orphan_review = FaultRecordReview(
+            record_id="other-record",
+            status=ReviewStatus.PENDING,
+        )
+        repository = InMemoryExtractionWorkflowRepository()
+
+        with self.assertRaises(ValueError):
+            repository.save_extraction_with_reviews(result, (orphan_review,))
+
+        self.assertIsNone(repository.get(result.result_id))
+        self.assertIsNone(repository.get_current(record.record_id))
+
+
+class ExtractionApplicationServiceTests(unittest.TestCase):
+    class StubExtractor:
+        def __init__(self, result: ExtractionResult) -> None:
+            self.result = result
+            self.received_text = None
+
+        def extract(self, text: str) -> ExtractionResult:
+            self.received_text = text
+            return self.result
+
+    def test_extract_persists_result_and_initial_pending_review(self):
+        record = FaultRecord(description="pump stopped")
+        extraction = ExtractionResult(
+            status=ExtractionStatus.SUCCESS,
+            records=(record,),
+        )
+        extractor = self.StubExtractor(extraction)
+        repository = InMemoryExtractionWorkflowRepository()
+
+        bundle = ExtractionApplicationService(extractor, repository).extract(
+            "pump stopped in bay A"
+        )
+
+        self.assertEqual(extractor.received_text, "pump stopped in bay A")
+        self.assertIs(bundle.extraction, extraction)
+        self.assertEqual(bundle.reviews[0].status, ReviewStatus.PENDING)
+        self.assertIs(repository.get(extraction.result_id), extraction)
+
+    def test_failed_extraction_is_persisted_without_creating_review(self):
+        extraction = ExtractionResult(
+            status=ExtractionStatus.FAILED,
+            diagnostics=(
+                ExtractionDiagnostic(
+                    code="provider_timeout",
+                    message="provider did not respond",
+                    stage="provider",
+                    retryable=True,
+                ),
+            ),
+        )
+        repository = InMemoryExtractionWorkflowRepository()
+
+        bundle = ExtractionApplicationService(
+            self.StubExtractor(extraction),
+            repository,
+        ).extract("source text")
+
+        self.assertEqual(bundle.extraction.status, ExtractionStatus.FAILED)
+        self.assertEqual(bundle.reviews, ())
+        self.assertIs(repository.get(extraction.result_id), extraction)
+
+    def test_blank_text_is_rejected_before_extractor_call(self):
+        extractor = self.StubExtractor(ExtractionResult(status=ExtractionStatus.EMPTY))
+        repository = InMemoryExtractionWorkflowRepository()
+
+        with self.assertRaises(ValueError):
+            ExtractionApplicationService(extractor, repository).extract("   ")
+
+        self.assertIsNone(extractor.received_text)
 
 
 class FaultExtractorTests(unittest.TestCase):
@@ -409,6 +541,116 @@ class ReviewDecisionServiceTests(unittest.TestCase):
     def test_decision_requires_existing_review_history(self):
         with self.assertRaises(ValueError):
             self.service.approve("missing-record", "reviewer-1")
+
+
+class FaultRecordReleaseServiceTests(unittest.TestCase):
+    def _result_with_records(self, *records: FaultRecord) -> ExtractionResult:
+        return ExtractionResult(
+            status=ExtractionStatus.SUCCESS,
+            records=records,
+        )
+
+    def test_only_approved_records_are_released(self):
+        first = FaultRecord(description="first fault")
+        second = FaultRecord(description="second fault")
+        extraction = self._result_with_records(first, second)
+        prepared = ReviewPreparationService().prepare_result(extraction)
+        repository = InMemoryReviewRepository()
+        repository.append(
+            FaultRecordReview(
+                record_id=first.record_id,
+                status=ReviewStatus.APPROVED,
+                reviewer="reviewer-1",
+            )
+        )
+        repository.append(
+            FaultRecordReview(
+                record_id=second.record_id,
+                status=ReviewStatus.PENDING,
+            )
+        )
+
+        released = FaultRecordReleaseService(repository).release(prepared)
+
+        self.assertEqual(released.records, (first,))
+        self.assertEqual(released.review_decisions[0].status, ReviewStatus.APPROVED)
+        self.assertEqual(len(released.blocked), 1)
+        self.assertEqual(released.blocked[0].record_id, second.record_id)
+
+    def test_latest_persisted_decision_overrides_preparation_snapshot(self):
+        record = FaultRecord(description="pump stopped")
+        extraction = self._result_with_records(record)
+        prepared = ReviewPreparationService().prepare_result(extraction)
+        repository = InMemoryReviewRepository()
+        repository.append(prepared.reviews[0])
+        approved = FaultRecordReview(
+            record_id=record.record_id,
+            status=ReviewStatus.APPROVED,
+            reviewer="reviewer-1",
+        )
+        repository.append(approved)
+
+        released = FaultRecordReleaseService(repository).release(prepared)
+
+        self.assertEqual(released.records, (record,))
+        self.assertEqual(released.review_decisions, (approved,))
+        self.assertEqual(released.blocked, ())
+
+    def test_pending_revision_and_rejected_records_are_blocked(self):
+        statuses = (
+            (ReviewStatus.PENDING, None),
+            (ReviewStatus.REVISION, "add evidence"),
+            (ReviewStatus.REJECTED, "unsupported"),
+        )
+        records = tuple(
+            FaultRecord(description=f"fault-{index}")
+            for index, _ in enumerate(statuses)
+        )
+        extraction = self._result_with_records(*records)
+        reviews = tuple(
+            FaultRecordReview(
+                record_id=record.record_id,
+                status=status,
+                reason=reason,
+                reviewer=(None if status is ReviewStatus.PENDING else "reviewer-1"),
+            )
+            for record, (status, reason) in zip(records, statuses)
+        )
+        prepared = ReviewableExtractionResult(extraction=extraction, reviews=reviews)
+        repository = InMemoryReviewRepository()
+        for review in reviews:
+            repository.append(review)
+
+        released = FaultRecordReleaseService(repository).release(prepared)
+
+        self.assertEqual(released.records, ())
+        self.assertEqual(
+            {item.status for item in released.blocked},
+            {ReviewStatus.PENDING, ReviewStatus.REVISION, ReviewStatus.REJECTED},
+        )
+
+    def test_not_required_needs_an_explicit_release_policy(self):
+        record = FaultRecord(description="verified fault")
+        extraction = self._result_with_records(record)
+        review = FaultRecordReview(
+            record_id=record.record_id,
+            status=ReviewStatus.NOT_REQUIRED,
+        )
+        prepared = ReviewableExtractionResult(
+            extraction=extraction,
+            reviews=(review,),
+        )
+        repository = InMemoryReviewRepository()
+        repository.append(review)
+
+        blocked = FaultRecordReleaseService(repository).release(prepared)
+        released = FaultRecordReleaseService(
+            repository,
+            allowed_statuses=(ReviewStatus.APPROVED, ReviewStatus.NOT_REQUIRED),
+        ).release(prepared)
+
+        self.assertEqual(blocked.records, ())
+        self.assertEqual(released.records, (record,))
 
 
 if __name__ == "__main__":

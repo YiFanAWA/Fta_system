@@ -168,6 +168,24 @@ flowchart TD
 人工批准、否决或要求修改由 `ReviewDecisionService` 创建新的审核实体，
 再交给仓储保存，不能直接覆盖旧审核记录。
 
+完整的抽取任务由 `ExtractionRepository` 持久化，保存对象是整个
+`ExtractionResult`，包括结果 ID、故障记录、证据和诊断信息，而不是只保存某一条
+`FaultRecord`。当前使用 `InMemoryExtractionRepository` 学习保存与查询合同；它拒绝
+覆盖已有 `result_id`，真实数据库实现需要把该 ID 作为唯一约束的一部分。
+
+`ExtractionApplicationService` 负责应用层编排：接收文本、调用 `FaultExtractor`、
+生成初始审核状态，并通过 `ExtractionWorkflowRepository` 一次保存抽取结果和审核
+记录。当前内存实现先完成全部校验再提交两类数据，避免应用服务分别写两个仓储。真实
+数据库适配器应把同一过程放进数据库事务；日志、失败任务和补偿机制属于后续专题。
+
+抽取结果不能直接进入后续 FTA 建树。`FaultRecordReleaseService` 是审核放行门：
+它按 `record_id` 查询仓储中的当前审核状态，持久化的最新审核决定优先于抽取时的
+审核快照。当前默认只有 `approved` 可以放行；`pending`、`revision`、`rejected`
+和缺失审核状态都会被拦截。放行后生成不可变的 `ReleasedExtractionResult`，其中只
+包含可供下游消费的故障记录，被拦截记录只保留编号、状态和原因，不携带可消费的
+`FaultRecord` 数据。`not_required` 是否允许自动放行必须通过显式策略配置，不能
+隐式混入人工批准结果。
+
 2. 增强流程（可演进）
 - 数据闭环：低置信度样本与人工审查修订回流到训练集。
 - 模型迭代：Prompt 优化 -> LoRA 微调 -> A/B 验证 -> 灰度上线。
