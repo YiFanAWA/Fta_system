@@ -22,7 +22,10 @@ from ai_module import (
 from extraction_application_service import ExtractionApplicationService
 from extraction_repository import InMemoryExtractionWorkflowRepository
 from extraction_contract import EvidenceSpan, FaultRecord
+from release_contract import ReleaseBlock, ReleasedExtractionResult
+from release_service import FaultRecordReleaseService
 from review_contract import FaultRecordReview, ReviewableExtractionResult
+from review_decision_service import ReviewDecisionService
 from fta_llm_pipeline import extract_fta_structure, generate_dot
 from fta_dot_builder import (
     build_dot_from_fta,
@@ -122,6 +125,20 @@ class ExtractTextRequest(BaseModel):
     custom_instructions: Optional[str] = None
 
 
+class ReviewDecisionRequest(BaseModel):
+    """Human decision submitted for one persisted fault record."""
+
+    record_id: str = Field(..., min_length=1)
+    reviewer: str = Field(..., min_length=1)
+    reason: Optional[str] = None
+
+
+class ReleaseExtractionRequest(BaseModel):
+    """Request to project one persisted extraction into downstream-safe data."""
+
+    result_id: str = Field(..., min_length=1)
+
+
 app = FastAPI(title="AI FTA API", version="1.0.0")
 
 # Allow Vue dev server and configurable origins.
@@ -217,6 +234,33 @@ def _reviewable_extraction_to_api_dict(
             for diagnostic in extraction.diagnostics
         ],
         "reviews": [_review_to_api_dict(review) for review in bundle.reviews],
+    }
+
+
+def _release_block_to_api_dict(block: ReleaseBlock) -> Dict[str, Any]:
+    return {
+        "record_id": block.record_id,
+        "status": block.status.value if block.status is not None else None,
+        "reason": block.reason,
+    }
+
+
+def _released_extraction_to_api_dict(
+    released: ReleasedExtractionResult,
+) -> Dict[str, Any]:
+    return {
+        "release_id": released.release_id,
+        "source_result_id": released.source_result_id,
+        "records": [
+            _fault_record_to_api_dict(record) for record in released.records
+        ],
+        "review_decisions": [
+            _review_to_api_dict(decision)
+            for decision in released.review_decisions
+        ],
+        "blocked": [
+            _release_block_to_api_dict(block) for block in released.blocked
+        ],
     }
 
 
@@ -1532,6 +1576,84 @@ def extract_text_for_review(req: ExtractTextRequest) -> Dict[str, Any]:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
     except Exception as exc:
         raise HTTPException(status_code=500, detail="extraction workflow failed") from exc
+
+
+def _apply_review_decision(
+    req: ReviewDecisionRequest,
+    action: str,
+) -> Dict[str, Any]:
+    service = ReviewDecisionService(app.state.extraction_workflow_repository)
+    try:
+        decision_method = getattr(service, action)
+        decision = decision_method(
+            record_id=req.record_id,
+            reviewer=req.reviewer,
+            reason=req.reason,
+        )
+        return _review_to_api_dict(decision)
+    except (TypeError, ValueError) as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail="review decision failed") from exc
+
+
+@app.post("/api/fta/reviews/approve")
+def approve_fault_record(req: ReviewDecisionRequest) -> Dict[str, Any]:
+    """Record a human approval without changing the extracted fact."""
+    return _apply_review_decision(req, "approve")
+
+
+@app.post("/api/fta/reviews/reject")
+def reject_fault_record(req: ReviewDecisionRequest) -> Dict[str, Any]:
+    """Record a human rejection with a required reason."""
+    return _apply_review_decision(req, "reject")
+
+
+@app.post("/api/fta/reviews/revision")
+def request_fault_record_revision(req: ReviewDecisionRequest) -> Dict[str, Any]:
+    """Record that a human reviewer requests more work on the record."""
+    return _apply_review_decision(req, "request_revision")
+
+
+@app.post("/api/fta/release")
+def release_extraction(req: ReleaseExtractionRequest) -> Dict[str, Any]:
+    """Release only records whose persisted current review is approved."""
+    repository = app.state.extraction_workflow_repository
+    try:
+        extraction = repository.get(req.result_id)
+        if extraction is None:
+            raise HTTPException(status_code=404, detail="extraction result not found")
+
+        current_reviews = []
+        missing_record_ids = []
+        for record in extraction.records:
+            review = repository.get_current(record.record_id)
+            if review is None:
+                missing_record_ids.append(record.record_id)
+            else:
+                current_reviews.append(review)
+
+        if missing_record_ids:
+            raise HTTPException(
+                status_code=409,
+                detail={
+                    "message": "extraction has records without persisted review state",
+                    "record_ids": missing_record_ids,
+                },
+            )
+
+        reviewable = ReviewableExtractionResult(
+            extraction=extraction,
+            reviews=tuple(current_reviews),
+        )
+        released = FaultRecordReleaseService(repository).release(reviewable)
+        return _released_extraction_to_api_dict(released)
+    except HTTPException:
+        raise
+    except (TypeError, ValueError) as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail="extraction release failed") from exc
 
 
 @app.post("/api/fta/build_dot")

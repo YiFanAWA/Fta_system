@@ -28,6 +28,11 @@ Invoke-RestMethod http://127.0.0.1:8000/api/health
 
 - `GET /api/health`：健康检查。
 - `POST /api/fta/build_dot`：从结构化条目构建 DOT。
+- `POST /api/fta/extract`：抽取文本并创建待审核的结构化故障记录，不生成故障树。
+- `POST /api/fta/reviews/approve`：记录人工批准决定。
+- `POST /api/fta/reviews/reject`：记录人工拒绝决定，必须提供原因。
+- `POST /api/fta/reviews/revision`：记录要求修改决定，必须提供原因。
+- `POST /api/fta/release`：按最新审核状态放行可进入 FTA 建树的故障记录。
 - `POST /api/fta/full_generate`：从文本生成 DOT，支持 `hybrid`、`llm`、`deterministic`。
 - `POST /api/fta/generate`：通过 `ai`、`manual` 或 `text` 输入生成完整故障树及导出文件。
 - `POST /api/fta/review`：生成分析报告和初稿审查。

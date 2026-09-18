@@ -178,6 +178,11 @@ flowchart TD
 记录。当前内存实现先完成全部校验再提交两类数据，避免应用服务分别写两个仓储。真实
 数据库适配器应把同一过程放进数据库事务；日志、失败任务和补偿机制属于后续专题。
 
+API 层通过 `POST /api/fta/extract` 暴露这一审核优先的抽取用例；人工通过审核动作
+接口新增不可变审核决定，`POST /api/fta/release` 再根据仓储中的最新审核状态生成
+下游安全投影。该接口链不直接复用旧的 `full_generate`，因为后者仍负责多种解析、
+Fallback、DOT 生成和前端渲染。
+
 抽取结果不能直接进入后续 FTA 建树。`FaultRecordReleaseService` 是审核放行门：
 它按 `record_id` 查询仓储中的当前审核状态，持久化的最新审核决定优先于抽取时的
 审核快照。当前默认只有 `approved` 可以放行；`pending`、`revision`、`rejected`
