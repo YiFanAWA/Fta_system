@@ -66,3 +66,14 @@ RAG 生成回答
 运行后发现，RAG-021、RAG-027、RAG-028、RAG-029、RAG-030 的原始单答案码标注过窄：它们分别涉及配对故障/消息码或共享参数。已把相关代码补入 `expected_fault_codes` 后重新离线评估，避免将证据充分的配对码回答误判为失败。这是评测 Gold 的口径修正，不是修改生产检索器。
 
 AI 辅助预审初步未发现故障识别、引用支持、无证据声明或跨故障污染问题；但这不等于正式领域语义通过。原因正确性、处理措施安全性和引用是否真正支持陈述，仍需 Siemens 领域专家逐条确认。
+
+## 2026-09-21 专家标注结果
+
+刘武专家已完成 RAG-001～RAG-030 的逐条标注。结构化结果与报告：
+
+- 专家标注 JSON：[siemens_s210_rag_semantic_expert_annotated_v1_2026-09-21.json](../evaluation/quality_eval/runs/siemens_s210_rag_semantic_expert_annotated_v1_2026-09-21.json)
+- 专家审核报告：[siemens_s210_rag_semantic_expert_validation_report_v1_2026-09-21.md](../evaluation/quality_eval/runs/siemens_s210_rag_semantic_expert_validation_report_v1_2026-09-21.md)
+
+结果：25 条通过、5 条需要修改（RAG-021、RAG-027、RAG-028、RAG-029、RAG-030），无明显错误、无无法判断记录。原因正确 30/30，处理措施正确 30/30，引用完全支持 29/30，部分支持 1/30，无证据声明和跨故障污染均为 0/30。
+
+这 5 条不是原因或处理措施错误，而是配对故障码/消息码展示不完整，以及参数查询没有完整解释关联关系。修正回答展示策略后，只需复审这 5 条，再冻结正式 RAG Semantic Gold v1。

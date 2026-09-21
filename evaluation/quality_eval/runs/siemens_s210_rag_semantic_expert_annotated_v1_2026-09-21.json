@@ -1,0 +1,3562 @@
+{
+  "bundle_type": "siemens_s210_rag_semantic_expert_annotated_v1",
+  "created_at": "2026-09-21",
+  "status": "expert_annotated_revision_required",
+  "authority_notice": "本文件包含刘武专家逐条标注；5 条记录需要先修正回答展示策略并复审，不能直接宣称 30 条全部通过。",
+  "scope": {
+    "query_count": 30,
+    "source_dataset": "siemens_s210_rag_semantic_gold_v1_2026-09-21",
+    "response_run": "siemens_s210_rag_semantic_responses_v1_2026-09-21",
+    "expert_required": true
+  },
+  "annotation_standard": {
+    "principle": "只依据所列原文证据判断；工程常识可以帮助理解，但不能替代原文支持。",
+    "labels": {
+      "fault_identification": [
+        "correct",
+        "partial",
+        "incorrect",
+        "unclear"
+      ],
+      "cause_correctness": [
+        "correct",
+        "partial",
+        "incorrect",
+        "not_applicable",
+        "unclear"
+      ],
+      "remedy_correctness": [
+        "correct",
+        "partial",
+        "incorrect",
+        "not_applicable",
+        "unclear"
+      ],
+      "citation_support": [
+        "supported",
+        "partial",
+        "unsupported",
+        "unclear"
+      ],
+      "unsupported_claims": [
+        "no",
+        "yes",
+        "unclear"
+      ],
+      "cross_fault_contamination": [
+        "no",
+        "yes",
+        "unclear"
+      ],
+      "overall_decision": [
+        "pass",
+        "revise",
+        "insufficient_evidence",
+        "unclear"
+      ]
+    },
+    "decision_rules": [
+      "fault_identification=correct：回答的故障码/故障实体与问题和证据一致；配对故障码或共享参数只要属于 expected_fault_codes 即可，再由专家判断是否应补码。",
+      "cause_correctness=correct：回答中的原因与证据原文语义一致；仅仅合理推测但原文没有，不得标 correct。",
+      "remedy_correctness=correct：处理措施可由 Remedy 证据直接支持；检查、更换、复位等动作不能凭工程经验补写。",
+      "citation_support=supported：引用的原文能够支持回答中的对应陈述；只能证明同一故障码不等于支持原因或处理措施。",
+      "unsupported_claims=yes：回答出现原文和证据均无法支持的事实、参数、原因、维修动作或确定性结论。",
+      "cross_fault_contamination=yes：回答把其他故障记录的原因、参数或处理措施混入当前故障，且没有明确说明这是相关故障。",
+      "overall_decision=pass：核心回答正确、证据支持且无关键无依据陈述；其余情况按问题严重性选择 revise/insufficient_evidence/unclear。",
+      "如果原文证据不足，不要依据模型的自信程度判定正确，应使用 insufficient_evidence 或 unclear。"
+    ],
+    "expert_workflow": [
+      "先读问题和模型回答。",
+      "逐条打开引用证据，核对故障码、原因、处理措施是否被原文支持。",
+      "对每个字段填写标签；没有涉及的原因/处理措施填写 not_applicable。",
+      "在 review_notes 中写明具体错误句子、对应 citation_id 和建议修改。",
+      "最后填写 overall_decision、reviewer 和 review_date。"
+    ]
+  },
+  "records": [
+    {
+      "query_id": "RAG-001",
+      "question": "故障码 A01007 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01007"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "description",
+          "cause"
+        ],
+        "ambiguity": "none",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "结论：A01007 表示“POWER ON for DRIVE-CLiQ component required”，即需要为 DRIVE-CLiQ 组件执行 POWER ON/上电 [A01007:E1][A01007:E3]；涉及组件为 DRIVE-CLiQ component [A01007:E2]。\n\n依据：\n- 故障码为 A01007 [A01007:E1]。\n- 故障现象/描述为 POWER ON for DRIVE-CLiQ component required [A01007:E3]。\n- 主要组件为 DRIVE-CLiQ component [A01007:E2]。\n- 关联参数为 r2124 [A01007:E5]；报警值按十进制解释为 DRIVE-CLiQ 组件的组件号 [A01007:E6]。\n\n原因：\n- 可能原因为 firmware update [A01007:E4]。\n- 其他可能原因当前证据未说明。\n\n建议处理：\n- 关闭指定 DRIVE-CLiQ 组件的电源，并重新开启 [A01007:E7]。\n- 对于 SINUMERIK，自动调试会被阻止；此时所有组件都需要 POWER ON，并且必须重新启动自动调试 [A01007:E7]。\n- 其他处理措施当前证据未说明。",
+        "citations": [
+          "A01007:E1",
+          "A01007:E3",
+          "A01007:E2",
+          "A01007:E5",
+          "A01007:E6",
+          "A01007:E4",
+          "A01007:E7"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "A01007:E1",
+            "field": "fault_code",
+            "quote": "A01007",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "A01007:E3",
+            "field": "description",
+            "quote": "POWER ON for DRIVE-CLiQ component required",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 7,
+            "end": 49
+          },
+          {
+            "citation_id": "A01007:E2",
+            "field": "primary_component",
+            "quote": "DRIVE-CLiQ component",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 20,
+            "end": 40
+          },
+          {
+            "citation_id": "A01007:E5",
+            "field": "parameter",
+            "quote": "r2124",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 196,
+            "end": 201
+          },
+          {
+            "citation_id": "A01007:E6",
+            "field": "alarm_value",
+            "quote": "Alarm value (r2124, interpret decimal):\nComponent number of the DRIVE-CLiQ component.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 183,
+            "end": 268
+          },
+          {
+            "citation_id": "A01007:E4",
+            "field": "cause",
+            "quote": "firmware update",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 165,
+            "end": 180
+          },
+          {
+            "citation_id": "A01007:E7",
+            "field": "remedy",
+            "quote": "Remedy: - Switch off the power supply of the specified DRIVE-CLiQ component and switch it on again.\n- For SINUMERIK, auto commissioning is prevented. In this case, a POWER ON is required for all components and the auto\ncommissioning must be restarted.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 347,
+            "end": 598
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "correct",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "supported",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "pass",
+        "review_notes": "",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    },
+    {
+      "query_id": "RAG-002",
+      "question": "故障码 A01016 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01016"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "description",
+          "cause"
+        ],
+        "ambiguity": "none",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "结论：A01016 的故障现象/描述为“Firmware changed（固件已更改）” [A01016:E1][A01016:E2]。该条目给出的报警值按参数 r2124 的十进制解释 [A01016:E9][A01016:E12]；具体组件、触发时间和设备运行状态当前证据未说明。\n\n依据：\n- 故障码为 A01016 [A01016:E1]；描述为 Firmware changed [A01016:E2]。\n- 报警值说明：r2124 十进制解释为 0：一个文件校验和不正确；1：文件缺失；2：文件过多；3：固件版本不正确；4：备份文件校验和不正确 [A01016:E12]。\n- 相关参数：r2124 [A01016:E9]、r9925 [A01016:E10]、r9926 [A01016:E11]。\n- 手册给出的处理证据：对固件的非易失性存储器（存储卡/设备存储器）恢复交付状态 [A01016:E13]。\n\n原因：\n- 非易失性存储器（存储卡/设备存储器）中目录内至少一个固件文件相对于出厂版本被非法更改 [A01016:E3]。\n- 一个文件校验和不正确 [A01016:E4]。\n- 文件缺失 [A01016:E5]。\n- 文件过多 [A01016:E6]。\n- 固件版本不正确 [A01016:E7]。\n- 备份文件校验和不正确 [A01016:E8]。\n\n建议处理：\n- 按手册要求，对固件的非易失性存储器（存储卡/设备存储器）恢复交付状态 [A01016:E13]。\n- 可参考 r2124 的十进制报警值 0-4 对应说明来区分异常类型 [A01016:E12]；但恢复交付状态的具体步骤、工具、刷写/格式化方法及维修结论当前证据未说明。",
+        "citations": [
+          "A01016:E1",
+          "A01016:E2",
+          "A01016:E9",
+          "A01016:E12",
+          "A01016:E10",
+          "A01016:E11",
+          "A01016:E13",
+          "A01016:E3",
+          "A01016:E4",
+          "A01016:E5",
+          "A01016:E6",
+          "A01016:E7",
+          "A01016:E8"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "A01016:E1",
+            "field": "fault_code",
+            "quote": "A01016",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "A01016:E2",
+            "field": "description",
+            "quote": "Firmware changed",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 7,
+            "end": 23
+          },
+          {
+            "citation_id": "A01016:E9",
+            "field": "parameter",
+            "quote": "r2124",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 257,
+            "end": 262
+          },
+          {
+            "citation_id": "A01016:E12",
+            "field": "alarm_value",
+            "quote": "Alarm value (r2124, interpret decimal):\n0: Checksum of one file is incorrect.\n1: File missing.\n2: File too many.\n3: Incorrect firmware version.\n4: Incorrect checksum of the back-up file.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 244,
+            "end": 430
+          },
+          {
+            "citation_id": "A01016:E10",
+            "field": "parameter",
+            "quote": "r9925",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 601,
+            "end": 606
+          },
+          {
+            "citation_id": "A01016:E11",
+            "field": "parameter",
+            "quote": "r9926",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 660,
+            "end": 665
+          },
+          {
+            "citation_id": "A01016:E13",
+            "field": "remedy",
+            "quote": "Remedy: For the non-volatile memory for the firmware (memory card/device memory), restore the delivery condition.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 431,
+            "end": 544
+          },
+          {
+            "citation_id": "A01016:E3",
+            "field": "cause",
+            "quote": "At least one firmware file in the directory was illegally changed on the non-volatile memory (memory card/device memory)\nwith respect to the version when shipped from the factory.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 64,
+            "end": 243
+          },
+          {
+            "citation_id": "A01016:E4",
+            "field": "cause",
+            "quote": "Checksum of one file is incorrect.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 287,
+            "end": 321
+          },
+          {
+            "citation_id": "A01016:E5",
+            "field": "cause",
+            "quote": "File missing.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 325,
+            "end": 338
+          },
+          {
+            "citation_id": "A01016:E6",
+            "field": "cause",
+            "quote": "File too many.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 342,
+            "end": 356
+          },
+          {
+            "citation_id": "A01016:E7",
+            "field": "cause",
+            "quote": "Incorrect firmware version.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 360,
+            "end": 387
+          },
+          {
+            "citation_id": "A01016:E8",
+            "field": "cause",
+            "quote": "Incorrect checksum of the back-up file.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 391,
+            "end": 430
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "correct",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "supported",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "pass",
+        "review_notes": "",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    },
+    {
+      "query_id": "RAG-003",
+      "question": "故障码 A01020 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01020"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "description",
+          "cause"
+        ],
+        "ambiguity": "none",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "结论：故障码 A01020 表示“Writing to RAM disk unsuccessful”（写入 RAM 磁盘未成功）[A01020:E1][A01020:E2]；其故障现象/描述为写入 RAM 磁盘未成功 [A01020:E2]。\n\n依据：故障码证据为 A01020 [A01020:E1]；描述证据为“Writing to RAM disk unsuccessful” [A01020:E2]；原因证据为“A write access to the internal RAM disk was unsuccessful.” [A01020:E3]；参数证据为 p9930 [A01020:E4]；处理证据见 Remedy 段落 [A01020:E5]。\n\n原因：可能原因是对内部 RAM 磁盘的写访问未成功 [A01020:E3]。\n\n建议处理：调整系统日志文件大小，使其适配内部 RAM 磁盘（p9930）[A01020:E5]。相关参数为 p9930 [A01020:E4]。",
+        "citations": [
+          "A01020:E1",
+          "A01020:E2",
+          "A01020:E3",
+          "A01020:E4",
+          "A01020:E5"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "A01020:E1",
+            "field": "fault_code",
+            "quote": "A01020",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "A01020:E2",
+            "field": "description",
+            "quote": "Writing to RAM disk unsuccessful",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 7,
+            "end": 39
+          },
+          {
+            "citation_id": "A01020:E3",
+            "field": "cause",
+            "quote": "A write access to the internal RAM disk was unsuccessful.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 80,
+            "end": 137
+          },
+          {
+            "citation_id": "A01020:E4",
+            "field": "parameter",
+            "quote": "p9930",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 215,
+            "end": 220
+          },
+          {
+            "citation_id": "A01020:E5",
+            "field": "remedy",
+            "quote": "Remedy: Adapt the file size for the system logbook to the internal RAM disk (p9930).",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 138,
+            "end": 222
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "correct",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "supported",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "pass",
+        "review_notes": "",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    },
+    {
+      "query_id": "RAG-004",
+      "question": "故障码 A01035 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01035"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "description",
+          "cause"
+        ],
+        "ambiguity": "none",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "结论：\nA01035 表示“Parameter back-up file corrupted”（参数备份文件损坏）[A01035:E1][A01035:E3]；其报警值 r2124 的表现说明为：aa=01 hex 时上电未执行数据备份、驱动处于出厂设置，aa=02 hex 时已加载最后一个可用备份数据记录且参数化必须检查 [A01035:E11]。涉及主组件为 ACX [A01035:E2]。\n\n依据：\n- 故障码证据：A01035 [A01035:E1]。\n- 描述证据：Parameter back-up file corrupted [A01035:E3]。\n- 组件证据：ACX [A01035:E2]。\n- 相关参数证据：r2124 [A01035:E9]、p0977 [A01035:E10]。\n- 报警值证据：r2124 按十六进制解释，aa=01 hex 表示上电时未执行数据备份且驱动处于出厂设置；aa=02 hex 表示已加载最后一个可用备份数据记录，参数化必须检查，建议重新下载参数化；dd、cc、bb 仅用于西门子内部故障排查 [A01035:E11]。\n\n原因：\n- Control Unit 启动时，未从参数备份文件中找到完整数据集 [A01035:E4]。\n- 上次保存参数化时未完全执行 [A01035:E5]。\n- 备份可能因关闭电源或拔出存储卡而中断 [A01035:E6]。\n- 报警值 aa=01 hex 情况下，上电时未进行数据备份，驱动处于出厂设置 [A01035:E7][A01035:E11]。\n- 报警值 aa=02 hex 情况下，已加载最后一个可用备份数据记录，必须检查参数化，建议重新下载参数化 [A01035:E8][A01035:E11]。\n\n建议处理：\n- 使用调试工具再次下载项目 [A01035:E12]。\n- 保存所有参数，即 p0977 = 1 或执行“copy RAM to ROM” [A01035:E10][A01035:E12]。\n- 对 aa=02 hex 的情况，检查参数化，并建议重新下载参数化 [A01035:E11]。\n\n除以上内容外，关于 A01035 的其他故障现象、原因、参数或维修结论，当前证据未说明。",
+        "citations": [
+          "A01035:E1",
+          "A01035:E3",
+          "A01035:E11",
+          "A01035:E2",
+          "A01035:E9",
+          "A01035:E10",
+          "A01035:E4",
+          "A01035:E5",
+          "A01035:E6",
+          "A01035:E7",
+          "A01035:E8",
+          "A01035:E12"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "A01035:E1",
+            "field": "fault_code",
+            "quote": "A01035",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "A01035:E3",
+            "field": "description",
+            "quote": "Parameter back-up file corrupted",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 12,
+            "end": 44
+          },
+          {
+            "citation_id": "A01035:E11",
+            "field": "alarm_value",
+            "quote": "Alarm value (r2124, interpret hexadecimal):\nddccbbaa hex:\naa = 01 hex:\nPower up was realized without data backup. The drive is in the factory setting.\naa = 02 hex:\nThe last available backup data record was loaded. The parameterization must be checked. It is recommended that the\nparameterization is downloaded again.\ndd, cc, bb:\nOnly for internal Siemens troubleshooting.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 365,
+            "end": 736
+          },
+          {
+            "citation_id": "A01035:E2",
+            "field": "primary_component",
+            "quote": "ACX",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 7,
+            "end": 10
+          },
+          {
+            "citation_id": "A01035:E9",
+            "field": "parameter",
+            "quote": "r2124",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 378,
+            "end": 383
+          },
+          {
+            "citation_id": "A01035:E10",
+            "field": "parameter",
+            "quote": "p0977",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 747,
+            "end": 752
+          },
+          {
+            "citation_id": "A01035:E4",
+            "field": "cause",
+            "quote": "When the Control Unit is booted, no complete data set was found from the parameter back-up files.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 85,
+            "end": 182
+          },
+          {
+            "citation_id": "A01035:E5",
+            "field": "cause",
+            "quote": "The last time that the\nparameterization was saved, it was not completely carried out.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 183,
+            "end": 268
+          },
+          {
+            "citation_id": "A01035:E6",
+            "field": "cause",
+            "quote": "It is possible that the backup was interrupted by switching off or withdrawing the memory card.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 269,
+            "end": 364
+          },
+          {
+            "citation_id": "A01035:E7",
+            "field": "cause",
+            "quote": "Power up was realized without data backup.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 436,
+            "end": 478
+          },
+          {
+            "citation_id": "A01035:E8",
+            "field": "cause",
+            "quote": "The last available backup data record was loaded.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 529,
+            "end": 578
+          },
+          {
+            "citation_id": "A01035:E12",
+            "field": "remedy",
+            "quote": "Remedy: - download the project again using the commissioning tool.\n- save all parameters (p0977 = 1 or \"copy RAM to ROM\").",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 775,
+            "end": 897
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "correct",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "supported",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "pass",
+        "review_notes": "",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    },
+    {
+      "query_id": "RAG-005",
+      "question": "故障码 A01045 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01045"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "description",
+          "cause"
+        ],
+        "ambiguity": "none",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "结论：故障码 A01045 [A01045:E1] 在手册中表示“Configuring data invalid”（配置数据无效）[A01045:E3]，涉及组件为 CU [A01045:E2]。\n\n依据：\n- 故障码为 A01045 [A01045:E1]；主组件为 CU [A01045:E2]；描述为 Configuring data invalid [A01045:E3]。\n- 相关参数包括 r2124 [A01045:E5]、p0976 [A01045:E6]、p0977 [A01045:E7]。\n- 报警值说明为：Alarm value (r2124, interpret hexadecimal): Only for internal Siemens troubleshooting.，即 r2124 需按十六进制解释，且仅用于内部 Siemens 故障诊断 [A01045:E8]。\n\n原因：\n- 在评估保存在非易失性存储器中的参数文件 PSxxxyyy.ACX、PTxxxyyy.ACX、CAxxxyyy.ACX 或 CCxxxyyy.ACX 时检测到错误 [A01045:E4]。\n- 具体是哪一个参数文件出错、内部十六进制报警值的具体含义：当前证据未说明。\n\n建议处理：\n- 使用 p0976 = 1 恢复出厂设置，并重新将项目加载到驱动单元 [A01045:E9]。\n- 然后通过“Copy RAM to ROM”或 p0977 = 1 保存参数化 [A01045:E9]。\n- 这样会覆盖非易失性存储器中的不正确参数文件，报警会撤销 [A01045:E9]。\n- 其他处理措施：当前证据未说明。",
+        "citations": [
+          "A01045:E1",
+          "A01045:E3",
+          "A01045:E2",
+          "A01045:E5",
+          "A01045:E6",
+          "A01045:E7",
+          "A01045:E8",
+          "A01045:E4",
+          "A01045:E9"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "A01045:E1",
+            "field": "fault_code",
+            "quote": "A01045",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "A01045:E3",
+            "field": "description",
+            "quote": "Configuring data invalid",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 11,
+            "end": 35
+          },
+          {
+            "citation_id": "A01045:E2",
+            "field": "primary_component",
+            "quote": "CU",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 7,
+            "end": 9
+          },
+          {
+            "citation_id": "A01045:E5",
+            "field": "parameter",
+            "quote": "r2124",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 353,
+            "end": 358
+          },
+          {
+            "citation_id": "A01045:E6",
+            "field": "parameter",
+            "quote": "p0976",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 472,
+            "end": 477
+          },
+          {
+            "citation_id": "A01045:E7",
+            "field": "parameter",
+            "quote": "p0977",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 595,
+            "end": 600
+          },
+          {
+            "citation_id": "A01045:E8",
+            "field": "alarm_value",
+            "quote": "Alarm value (r2124, interpret hexadecimal):\nOnly for internal Siemens troubleshooting.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 340,
+            "end": 426
+          },
+          {
+            "citation_id": "A01045:E4",
+            "field": "cause",
+            "quote": "An error was detected when evaluating the parameter files PSxxxyyy.ACX, PTxxxyyy.ACX, CAxxxyyy.ACX, or\nCCxxxyyy.ACX saved in the non-volatile memory.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 76,
+            "end": 225
+          },
+          {
+            "citation_id": "A01045:E9",
+            "field": "remedy",
+            "quote": "Remedy: - Restore the factory setting using (p0976 = 1) and re-load the project into the drive unit.\nThen save the parameterization using the \"Copy RAM to ROM\" or with p0977 = 1. This overwrites the incorrect parameter\nfiles in the non-volatile memory – and the alarm is withdrawn.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 427,
+            "end": 708
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "correct",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "supported",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "pass",
+        "review_notes": "",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    },
+    {
+      "query_id": "RAG-006",
+      "question": "故障码 A01049 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01049"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "description",
+          "cause"
+        ],
+        "ambiguity": "none",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "结论：故障码 A01049 表示“无法写入文件”（It is not possible to write to file）[A01049:E1][A01049:E3]；该故障关联组件为 CU [A01049:E2]。除上述描述外，其他故障现象当前证据未说明。\n\n依据：\n- 故障码为 A01049 [A01049:E1]。\n- 主组件为 CU [A01049:E2]。\n- 描述/故障现象为：It is not possible to write to file [A01049:E3]。\n- 相关参数包括 r2124 [A01049:E5] 和 p0977 [A01049:E6]。\n- 报警值 r2124 按十进制解释为 Drive object number [A01049:E7]。\n\n原因：\n可能原因是无法写入受写保护的文件（PSxxxxxx.acx）[A01049:E4]。其他原因当前证据未说明。\n\n建议处理：\n检查非易失性存储器中 .../USER/SINAMICS/DATA/... 下的文件是否设置了 “write protected” 属性 [A01049:E8]；需要时移除写保护并再次保存，例如将 p0977 设为 1 [A01049:E8]。其他处理步骤当前证据未说明。",
+        "citations": [
+          "A01049:E1",
+          "A01049:E3",
+          "A01049:E2",
+          "A01049:E5",
+          "A01049:E6",
+          "A01049:E7",
+          "A01049:E4",
+          "A01049:E8"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "A01049:E1",
+            "field": "fault_code",
+            "quote": "A01049",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "A01049:E3",
+            "field": "description",
+            "quote": "It is not possible to write to file",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 11,
+            "end": 46
+          },
+          {
+            "citation_id": "A01049:E2",
+            "field": "primary_component",
+            "quote": "CU",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 7,
+            "end": 9
+          },
+          {
+            "citation_id": "A01049:E5",
+            "field": "parameter",
+            "quote": "r2124",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 207,
+            "end": 212
+          },
+          {
+            "citation_id": "A01049:E6",
+            "field": "parameter",
+            "quote": "p0977",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 461,
+            "end": 466
+          },
+          {
+            "citation_id": "A01049:E7",
+            "field": "alarm_value",
+            "quote": "Alarm value (r2124, interpret decimal):\nDrive object number.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 194,
+            "end": 254
+          },
+          {
+            "citation_id": "A01049:E4",
+            "field": "cause",
+            "quote": "It is not possible to write into a write-protected file (PSxxxxxx.acx)",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 87,
+            "end": 157
+          },
+          {
+            "citation_id": "A01049:E8",
+            "field": "remedy",
+            "quote": "Remedy: Check whether the \"write protected\" attribute has been set for the files in the non-volatile memory under .../USER/\nSINAMICS/DATA/...\nWhen required, remove write protection and save again (e.g. set p0977 to 1).",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 255,
+            "end": 473
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "correct",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "supported",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "pass",
+        "review_notes": "",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    },
+    {
+      "query_id": "RAG-007",
+      "question": "故障码 A01064 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01064"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "description",
+          "cause"
+        ],
+        "ambiguity": "none",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "结论：A01064 表示 CU 上的“Internal error (CRC)”内部错误 [A01064:E1][A01064:E3]；主要组件为 CU [A01064:E2]。\n\n依据：故障码为 A01064 [A01064:E1]；主要组件为 CU [A01064:E2]；描述为 Internal error (CRC) [A01064:E3]。当前证据未说明具体报警值或参数。\n\n原因：记录给出的原因是 Control Unit 程序存储器中发生了校验和错误，即 CRC 错误 [A01064:E4]。当前证据未说明其他可能原因。\n\n建议处理：\n- 对所有组件执行 POWER ON（断电/再上电）[A01064:E5]。\n- 将固件升级到较新版本 [A01064:E5]。\n- 联系技术支持 [A01064:E5]。\n\n当前证据未说明其他处理措施或维修结论。",
+        "citations": [
+          "A01064:E1",
+          "A01064:E3",
+          "A01064:E2",
+          "A01064:E4",
+          "A01064:E5"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "A01064:E1",
+            "field": "fault_code",
+            "quote": "A01064",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "A01064:E3",
+            "field": "description",
+            "quote": "Internal error (CRC)",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 11,
+            "end": 31
+          },
+          {
+            "citation_id": "A01064:E2",
+            "field": "primary_component",
+            "quote": "CU",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 7,
+            "end": 9
+          },
+          {
+            "citation_id": "A01064:E4",
+            "field": "cause",
+            "quote": "A checksum error (CRC error) has occurred in the Control Unit program memory",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 72,
+            "end": 148
+          },
+          {
+            "citation_id": "A01064:E5",
+            "field": "remedy",
+            "quote": "Remedy: - carry out a POWER ON (switch-off/switch-on) for all components.\n- upgrade firmware to later version.\n- contact Technical Support.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 202,
+            "end": 341
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "correct",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "supported",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "pass",
+        "review_notes": "",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    },
+    {
+      "query_id": "RAG-008",
+      "question": "故障码 A01069 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01069"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "description",
+          "cause"
+        ],
+        "ambiguity": "none",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "结论：故障码 A01069 表示“Parameter backup and device incompatible”（参数备份与设备不兼容）[A01069:E1][A01069:E2]。其故障现象/描述为参数备份与设备不兼容 [A01069:E2]。\n\n依据：\n- 故障码为 A01069 [A01069:E1]。\n- 描述为 Parameter backup and device incompatible [A01069:E2]。\n- 涉及参数为 p0977 [A01069:E5]。\n- 除上述内容外，当前证据未说明其他报警值或参数信息。\n\n原因：\n- 存储卡上的参数备份与驱动单元不匹配 [A01069:E3]。\n- 设备 A 和设备 B 不兼容，且带有设备 A 参数备份的存储卡被插入设备 B [A01069:E4]。\n- 除上述原因外，当前证据未说明其他可能原因。\n\n建议处理：\n- 插入具有兼容参数备份的存储卡，并执行 POWER ON [A01069:E6]。\n- 插入不带参数备份的存储卡，并执行 POWER ON [A01069:E6]。\n- 保存参数（p0977 = 1）[A01069:E6]。\n- 除上述处理外，当前证据未说明其他维修结论或处理措施。",
+        "citations": [
+          "A01069:E1",
+          "A01069:E2",
+          "A01069:E5",
+          "A01069:E3",
+          "A01069:E4",
+          "A01069:E6"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "A01069:E1",
+            "field": "fault_code",
+            "quote": "A01069",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "A01069:E2",
+            "field": "description",
+            "quote": "Parameter backup and device incompatible",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 7,
+            "end": 47
+          },
+          {
+            "citation_id": "A01069:E5",
+            "field": "parameter",
+            "quote": "p0977",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 519,
+            "end": 524
+          },
+          {
+            "citation_id": "A01069:E3",
+            "field": "cause",
+            "quote": "The parameter backup on the memory card and the drive unit do not match.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 88,
+            "end": 160
+          },
+          {
+            "citation_id": "A01069:E4",
+            "field": "cause",
+            "quote": "Devices A and B. are not compatible and a memory card with the parameter backup for device A is inserted in device B.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 214,
+            "end": 331
+          },
+          {
+            "citation_id": "A01069:E6",
+            "field": "remedy",
+            "quote": "Remedy: - insert a memory card with compatible parameter backup and carry out a POWER ON.\n- insert a memory card without parameter backup and carry out a POWER ON.\n- save the parameters (p0977 = 1).",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 332,
+            "end": 530
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "correct",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "supported",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "pass",
+        "review_notes": "",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    },
+    {
+      "query_id": "RAG-009",
+      "question": "如果出现“POWER ON required for backup copy on memory card”，对应哪个故障码？请说明判断依据。",
+      "query_type": "symptom",
+      "difficulty": "easy",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01073"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "description"
+        ],
+        "ambiguity": "none",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "结论：对应故障码为 A01073 [A01073:E1]；故障现象为 “POWER ON required for backup copy on memory card” [A01073:E2]。\n\n依据：候选故障 A01073 的描述与用户给出的故障现象一致 [A01073:E2]；其故障码字段为 A01073 [A01073:E1]。\n\n原因：该故障的原因是存储卡可见分区上的参数分配已更改 [A01073:E3]。相关参数包括 p0972 [A01073:E4]、p0971 [A01073:E5]。\n\n建议处理：执行 Control Unit 的 POWER ON（关断/接通）[A01073:E6]；执行硬件复位（RESET 按钮，p0972）[A01073:E6]。",
+        "citations": [
+          "A01073:E1",
+          "A01073:E2",
+          "A01073:E3",
+          "A01073:E4",
+          "A01073:E5",
+          "A01073:E6"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "A01073:E1",
+            "field": "fault_code",
+            "quote": "A01073",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "A01073:E2",
+            "field": "description",
+            "quote": "POWER ON required for backup copy on memory card",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 7,
+            "end": 55
+          },
+          {
+            "citation_id": "A01073:E3",
+            "field": "cause",
+            "quote": "The parameter assignment on the visible partition of the memory card has changed.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 96,
+            "end": 177
+          },
+          {
+            "citation_id": "A01073:E4",
+            "field": "parameter",
+            "quote": "p0972",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 327,
+            "end": 332
+          },
+          {
+            "citation_id": "A01073:E5",
+            "field": "parameter",
+            "quote": "p0971",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 448,
+            "end": 453
+          },
+          {
+            "citation_id": "A01073:E6",
+            "field": "remedy",
+            "quote": "Remedy: - carry out a POWER ON (switch-off/switch-on) for the Control Unit.\n- carry out a hardware reset (RESET button, p0972).",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 460,
+            "end": 587
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "correct",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "supported",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "pass",
+        "review_notes": "",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    },
+    {
+      "query_id": "RAG-010",
+      "question": "如果出现“UTC synchronization tolerance violated”，对应哪个故障码？请说明判断依据。",
+      "query_type": "symptom",
+      "difficulty": "easy",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01099"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "description"
+        ],
+        "ambiguity": "none",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "结论  \n对应故障码为 A01099 [A01099:E1]，对应故障现象为 UTC synchronization tolerance violated [A01099:E2]。\n\n依据  \nA01099 的 fault_code 字段为 A01099 [A01099:E1]；其 description 字段为 UTC synchronization tolerance violated [A01099:E2]。用户所述现象与该描述一致，因此判断对应 A01099。参数记录中包含 p3109 [A01099:E4] 和 r3107 [A01099:E5]；组件、报警值等当前证据未说明。\n\n原因  \n原因字段说明：UTC 同步所设置的容差 p3109 被违反 [A01099:E3]。其他原因当前证据未说明。\n\n建议处理  \n建议选择更短的同步间隔，使主时间与驱动系统之间的偏差位于容差内 [A01099:E6]。具体容差值、维修步骤或更详细处理措施当前证据未说明。",
+        "citations": [
+          "A01099:E1",
+          "A01099:E2",
+          "A01099:E4",
+          "A01099:E5",
+          "A01099:E3",
+          "A01099:E6"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "A01099:E1",
+            "field": "fault_code",
+            "quote": "A01099",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "A01099:E2",
+            "field": "description",
+            "quote": "UTC synchronization tolerance violated",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 7,
+            "end": 45
+          },
+          {
+            "citation_id": "A01099:E4",
+            "field": "parameter",
+            "quote": "p3109",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 101,
+            "end": 106
+          },
+          {
+            "citation_id": "A01099:E5",
+            "field": "parameter",
+            "quote": "r3107",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 389,
+            "end": 394
+          },
+          {
+            "citation_id": "A01099:E3",
+            "field": "cause",
+            "quote": "The tolerance (p3109) set for UTC synchronization was violated.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 86,
+            "end": 149
+          },
+          {
+            "citation_id": "A01099:E6",
+            "field": "remedy",
+            "quote": "Remedy: Select the synchronization intervals shorter so that the deviation between the time of day master and drive system lies within\nthe tolerance.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 188,
+            "end": 337
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "correct",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "supported",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "pass",
+        "review_notes": "",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    },
+    {
+      "query_id": "RAG-011",
+      "question": "如果出现“CU-EEPROM incorrect read-write data”，对应哪个故障码？请说明判断依据。",
+      "query_type": "symptom",
+      "difficulty": "easy",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01251"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "description"
+        ],
+        "ambiguity": "none",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "结论：对应故障码是 A01251 [A01251:E1]，故障现象是 CU-EEPROM incorrect read-write data [A01251:E3]。\n\n依据：上下文中该候选的 fault_code 为 A01251 [A01251:E1]，description 为 CU-EEPROM incorrect read-write data [A01251:E3]，component 为 CU [A01251:E2]，与用户描述的“CU-EEPROM incorrect read-write data”一致 [A01251:E3]。因此判断对应 A01251 [A01251:E1]。\n\n原因：该故障记录的原因为读取 Control Unit 中 EEPROM 的读写数据时出错 [A01251:E4]。相关参数记录为 r2124 [A01251:E5]、p0952 [A01251:E6]、p2147 [A01251:E7]。报警值 r2124 的说明为仅用于内部 Siemens 故障排除 [A01251:E8]。\n\n建议处理：需按报警值 r2124 分支处理。若 r2124 < 256，执行 POWER ON（关断/接通）[A01251:E9]，并更换 Control Unit [A01251:E9]。若 r2124 >= 256，对带有该报警的驱动对象清除故障存储器（p0952 = 0）[A01251:E9]；作为替代，清除所有驱动对象的故障存储器（p2147 = 1）[A01251:E9]；并更换 Control Unit [A01251:E9]。",
+        "citations": [
+          "A01251:E1",
+          "A01251:E3",
+          "A01251:E2",
+          "A01251:E4",
+          "A01251:E5",
+          "A01251:E6",
+          "A01251:E7",
+          "A01251:E8",
+          "A01251:E9"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "A01251:E1",
+            "field": "fault_code",
+            "quote": "A01251",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "A01251:E3",
+            "field": "description",
+            "quote": "CU-EEPROM incorrect read-write data",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 11,
+            "end": 46
+          },
+          {
+            "citation_id": "A01251:E2",
+            "field": "primary_component",
+            "quote": "CU",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 7,
+            "end": 9
+          },
+          {
+            "citation_id": "A01251:E4",
+            "field": "cause",
+            "quote": "Error when reading the read-write data of the EEPROM in the Control Unit.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 87,
+            "end": 160
+          },
+          {
+            "citation_id": "A01251:E5",
+            "field": "parameter",
+            "quote": "r2124",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 174,
+            "end": 179
+          },
+          {
+            "citation_id": "A01251:E6",
+            "field": "parameter",
+            "quote": "p0952",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 496,
+            "end": 501
+          },
+          {
+            "citation_id": "A01251:E7",
+            "field": "parameter",
+            "quote": "p2147",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 574,
+            "end": 579
+          },
+          {
+            "citation_id": "A01251:E8",
+            "field": "alarm_value",
+            "quote": "Alarm value (r2124, interpret decimal):\nOnly for internal Siemens troubleshooting.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 161,
+            "end": 243
+          },
+          {
+            "citation_id": "A01251:E9",
+            "field": "remedy",
+            "quote": "Remedy: For alarm value r2124 < 256, the following applies:\n- carry out a POWER ON (switch-off/switch-on).\n- replace the Control Unit.\nFor alarm value r2124 >= 256, the following applies:\n- for the drive object with this alarm, clear the fault memory (p0952 = 0).\n- as an alternative, clear the fault memory of all drive objects (p2147 = 1).\n- replace the Control Unit.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 244,
+            "end": 613
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "correct",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "supported",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "pass",
+        "review_notes": "",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    },
+    {
+      "query_id": "RAG-012",
+      "question": "如果出现“Firmware version of DRIVE-CLiQ component is not up-to-date”，对应哪个故障码？请说明判断依据。",
+      "query_type": "symptom",
+      "difficulty": "easy",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01304"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "description"
+        ],
+        "ambiguity": "none",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "结论：出现“Firmware version of DRIVE-CLiQ component is not up-to-date”时，对应故障码为 A01304 [A01304:E1]，对应故障现象/描述为“Firmware version of DRIVE-CLiQ component is not up-to-date” [A01304:E3]。\n\n依据：该候选记录的 fault_code 字段为 A01304 [A01304:E1]；description 字段记录了上述故障现象 [A01304:E3]；主组件字段为 DRIVE-CLiQ component [A01304:E2]。因此可判定该现象对应故障码 A01304 [A01304:E1]。\n\n原因：记录中说明原因是非易失性存储器中的固件版本比所连接的 DRIVE-CLiQ 组件中的固件版本更新 [A01304:E4]。报警值 r2124 按十进制解释为涉及的 DRIVE-CLiQ 组件号 [A01304:E8]；相关参数包括 r2124 [A01304:E5]、p7828 [A01304:E6]、p7829 [A01304:E7]。\n\n建议处理：更新固件（p7828、p7829 - 或 commissioning tool）[A01304:E9]。\n\n其他具体升级步骤或固件版本要求：当前证据未说明。",
+        "citations": [
+          "A01304:E1",
+          "A01304:E3",
+          "A01304:E2",
+          "A01304:E4",
+          "A01304:E8",
+          "A01304:E5",
+          "A01304:E6",
+          "A01304:E7",
+          "A01304:E9"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "A01304:E1",
+            "field": "fault_code",
+            "quote": "A01304",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "A01304:E3",
+            "field": "description",
+            "quote": "Firmware version of DRIVE-CLiQ component is not up-to-date",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 7,
+            "end": 65
+          },
+          {
+            "citation_id": "A01304:E2",
+            "field": "primary_component",
+            "quote": "DRIVE-CLiQ component",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 27,
+            "end": 47
+          },
+          {
+            "citation_id": "A01304:E4",
+            "field": "cause",
+            "quote": "The non-volatile memory has a more recent firmware version than the one in the connected DRIVE-CLiQ component.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 106,
+            "end": 216
+          },
+          {
+            "citation_id": "A01304:E8",
+            "field": "alarm_value",
+            "quote": "Alarm value (r2124, interpret decimal):\nComponent number of the DRIVE-CLiQ component involved.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 217,
+            "end": 311
+          },
+          {
+            "citation_id": "A01304:E5",
+            "field": "parameter",
+            "quote": "r2124",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 230,
+            "end": 235
+          },
+          {
+            "citation_id": "A01304:E6",
+            "field": "parameter",
+            "quote": "p7828",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 341,
+            "end": 346
+          },
+          {
+            "citation_id": "A01304:E7",
+            "field": "parameter",
+            "quote": "p7829",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 348,
+            "end": 353
+          },
+          {
+            "citation_id": "A01304:E9",
+            "field": "remedy",
+            "quote": "Remedy: Update the firmware (p7828, p7829 - or commissioning tool).",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 312,
+            "end": 379
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "correct",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "supported",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "pass",
+        "review_notes": "",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    },
+    {
+      "query_id": "RAG-013",
+      "question": "如果出现“Firmware of the DRIVE-CLiQ component being updated”，对应哪个故障码？请说明判断依据。",
+      "query_type": "symptom",
+      "difficulty": "easy",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01306"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "description"
+        ],
+        "ambiguity": "none",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "结论：对应故障码为 A01306 [A01306:E1]；故障现象为“Firmware of the DRIVE-CLiQ component being updated” [A01306:E3]。\n\n依据：\n- 故障码字段证据为 A01306 [A01306:E1]。\n- 描述字段证据为“Firmware of the DRIVE-CLiQ component being updated” [A01306:E3]。\n- 主要组件为 DRIVE-CLiQ component [A01306:E2]。\n\n原因：\n- 原因是至少一个 DRIVE-CLiQ 组件的固件更新处于活动状态 [A01306:E4]。\n- 相关参数为 r2124 [A01306:E5]；报警值按 r2124 十进制解释为 DRIVE-CLiQ 组件的组件号 [A01306:E6]。\n\n建议处理：\n- 建议处理为“Not necessary.” [A01306:E7]。\n- 固件更新完成后，该报警会自动撤销 [A01306:E7]。\n\n除上述证据外，当前证据未说明其他故障码、原因、参数或处理措施。",
+        "citations": [
+          "A01306:E1",
+          "A01306:E3",
+          "A01306:E2",
+          "A01306:E4",
+          "A01306:E5",
+          "A01306:E6",
+          "A01306:E7"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "A01306:E1",
+            "field": "fault_code",
+            "quote": "A01306",
+            "source_id": "input_text",
+            "source_file": "S210_Manual_2019.pdf",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "A01306:E3",
+            "field": "description",
+            "quote": "Firmware of the DRIVE-CLiQ component being updated",
+            "source_id": "input_text",
+            "source_file": "S210_Manual_2019.pdf",
+            "start": 7,
+            "end": 57
+          },
+          {
+            "citation_id": "A01306:E2",
+            "field": "primary_component",
+            "quote": "DRIVE-CLiQ component",
+            "source_id": "input_text",
+            "source_file": "S210_Manual_2019.pdf",
+            "start": 23,
+            "end": 43
+          },
+          {
+            "citation_id": "A01306:E4",
+            "field": "cause",
+            "quote": "Firmware update is active for at least one DRIVE-CLiQ component.",
+            "source_id": "input_text",
+            "source_file": "S210_Manual_2019.pdf",
+            "start": 98,
+            "end": 162
+          },
+          {
+            "citation_id": "A01306:E5",
+            "field": "parameter",
+            "quote": "r2124",
+            "source_id": "input_text",
+            "source_file": "S210_Manual_2019.pdf",
+            "start": 176,
+            "end": 181
+          },
+          {
+            "citation_id": "A01306:E6",
+            "field": "alarm_value",
+            "quote": "Alarm value (r2124, interpret decimal):\nComponent number of the DRIVE-CLiQ component.",
+            "source_id": "input_text",
+            "source_file": "S210_Manual_2019.pdf",
+            "start": 163,
+            "end": 248
+          },
+          {
+            "citation_id": "A01306:E7",
+            "field": "remedy",
+            "quote": "Remedy: Not necessary.\nThis alarm is automatically withdrawn after the firmware update has been completed.",
+            "source_id": "input_text",
+            "source_file": "S210_Manual_2019.pdf",
+            "start": 249,
+            "end": 355
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "correct",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "supported",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "pass",
+        "review_notes": "",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    },
+    {
+      "query_id": "RAG-014",
+      "question": "如果出现“Commissioning not possible”，对应哪个故障码？请说明判断依据。",
+      "query_type": "symptom",
+      "difficulty": "easy",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01330"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "description"
+        ],
+        "ambiguity": "none",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "**结论**  \n出现“Commissioning not possible”对应的故障码是 A01330 [A01330:E1]；该故障现象描述为“Commissioning not possible” [A01330:E3]。\n\n**依据**  \n候选故障中，A01330 的 fault_code 证据为 A01330 [A01330:E1]；其 description 证据为 Commissioning not possible [A01330:E3]；其 primary_component 为 Topology [A01330:E2]。因此，“Commissioning not possible”与故障码 A01330 对应。\n\n**原因**  \n该故障的原因是：实际拓扑不满足要求 [A01330:E4]。当前证据未说明其他原因。\n\n**建议处理**  \n- 检查变频器与电机之间的 OCC 电缆 [A01330:E5]。  \n- 执行 POWER ON（关断/再接通） [A01330:E5]。  \n- 检查所连接的硬件是否受支持 [A01330:E5]。  \n\n当前证据未说明相关参数和报警值。",
+        "citations": [
+          "A01330:E1",
+          "A01330:E3",
+          "A01330:E2",
+          "A01330:E4",
+          "A01330:E5"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "A01330:E1",
+            "field": "fault_code",
+            "quote": "A01330",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "A01330:E3",
+            "field": "description",
+            "quote": "Commissioning not possible",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 17,
+            "end": 43
+          },
+          {
+            "citation_id": "A01330:E2",
+            "field": "primary_component",
+            "quote": "Topology",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 7,
+            "end": 15
+          },
+          {
+            "citation_id": "A01330:E4",
+            "field": "cause",
+            "quote": "The actual topology does not fulfill the requirements.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 119,
+            "end": 173
+          },
+          {
+            "citation_id": "A01330:E5",
+            "field": "remedy",
+            "quote": "Remedy: - check the OCC cable between the converter and motor.\n- carry out a POWER ON (switch-off/switch-on).\n- Check that the connected hardware is supported.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 174,
+            "end": 333
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "correct",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "supported",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "pass",
+        "review_notes": "",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    },
+    {
+      "query_id": "RAG-015",
+      "question": "如果出现“motor with DRIVE-CLiQ not connected”，对应哪个故障码？请说明判断依据。",
+      "query_type": "symptom",
+      "difficulty": "easy",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01489"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "description"
+        ],
+        "ambiguity": "none",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "结论：  \n出现“motor with DRIVE-CLiQ not connected”时，对应故障码为 A01489 [A01489:E1]；该故障现象记录为 motor with DRIVE-CLiQ not connected [A01489:E3]，相关组件为 Motor [A01489:E2]。\n\n依据：  \n候选故障记录中，Fault code 为 A01489 [A01489:E1]，Description 为 motor with DRIVE-CLiQ not connected [A01489:E3]，因此可按该描述匹配到 A01489。其告警值参数为 r2124 [A01489:E5]；r2124 的 alarm value 需按十六进制解释为 ddccbbaa，其中 dd 为连接号、cc 为组件号、bb 为组件类别、aa 为未插入组件的组件号 [A01489:E6]。\n\n原因：  \n记录的 cause 为：拓扑比较检测到实际拓扑相对于目标拓扑缺少一个带 DRIVE-CLiQ 的电机 [A01489:E4]。\n\n建议处理：  \n- 适配拓扑：在正确连接处插入相关组件，以修正实际拓扑 [A01489:E7]。  \n- 在调试工具中调整项目/参数化设置，以修正目标拓扑 [A01489:E7]。  \n- 检查硬件：检查 24 V 供电电压 [A01489:E7]。  \n- 检查 DRIVE-CLiQ 电缆是否存在中断和接触问题 [A01489:E7]。  \n- 检查该组件是否正常工作 [A01489:E7]。  \n\n当前证据未说明：具体的连接号/组件号数值、现场实际维修结果或更换建议。",
+        "citations": [
+          "A01489:E1",
+          "A01489:E3",
+          "A01489:E2",
+          "A01489:E5",
+          "A01489:E6",
+          "A01489:E4",
+          "A01489:E7"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "A01489:E1",
+            "field": "fault_code",
+            "quote": "A01489",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "A01489:E3",
+            "field": "description",
+            "quote": "motor with DRIVE-CLiQ not connected",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 17,
+            "end": 52
+          },
+          {
+            "citation_id": "A01489:E2",
+            "field": "primary_component",
+            "quote": "motor",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 17,
+            "end": 22
+          },
+          {
+            "citation_id": "A01489:E5",
+            "field": "parameter",
+            "quote": "r2124",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 235,
+            "end": 240
+          },
+          {
+            "citation_id": "A01489:E6",
+            "field": "alarm_value",
+            "quote": "Alarm value (r2124, interpret hexadecimal):\nddccbbaa hex:\ndd = connection number (%4)\ncc = component number (%3)\nbb = component class (% 2)\naa = component number of the component that has not been inserted (% 1)",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 222,
+            "end": 433
+          },
+          {
+            "citation_id": "A01489:E4",
+            "field": "cause",
+            "quote": "The topology comparison has detected a motor with DRIVE-CLiQ missing in the actual topology with respect to the target\ntopology.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 93,
+            "end": 221
+          },
+          {
+            "citation_id": "A01489:E7",
+            "field": "remedy",
+            "quote": "Remedy: Adapting topologies:\n- insert the components involved at the right connection (correct the actual topology).\n- adapt the project/parameterizing in the commissioning tool (correct the target topology).\nCheck the hardware:\n- check the 24 V supply voltage.\n- check DRIVE-CLiQ cables for interruption and contact problems.\n- check that the component is working properly.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 591,
+            "end": 965
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "correct",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "supported",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "pass",
+        "review_notes": "",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    },
+    {
+      "query_id": "RAG-016",
+      "question": "手册中提到“The selected service/maintenance interval for this motor was reached.”，它对应哪个故障记录？请说明原因证据。",
+      "query_type": "cause",
+      "difficulty": "medium",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01590"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "cause"
+        ],
+        "ambiguity": "none",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "结论：该描述对应故障记录 A01590 [A01590:E1]，故障现象为 “Motor maintenance interval expired” [A01590:E3]。该故障记录的组件为 Drive [A01590:E2]。\n\n依据：故障记录中，A01590 的描述为 “Motor maintenance interval expired” [A01590:E3]；组件为 Drive [A01590:E2]；参数包括 r2124 [A01590:E5] 和 p0651 [A01590:E6]；报警值 r2124 按十进制解释为 “Motor data set number” [A01590:E7]。\n\n原因：该故障的原因字段明确为 “The selected service/maintenance interval for this motor was reached.” [A01590:E4]。\n\n建议处理：按记录执行服务/维护，并复位服务/维护间隔（p0651）[A01590:E8]。",
+        "citations": [
+          "A01590:E1",
+          "A01590:E3",
+          "A01590:E2",
+          "A01590:E5",
+          "A01590:E6",
+          "A01590:E7",
+          "A01590:E4",
+          "A01590:E8"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "A01590:E1",
+            "field": "fault_code",
+            "quote": "A01590",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "A01590:E3",
+            "field": "description",
+            "quote": "Motor maintenance interval expired",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 14,
+            "end": 48
+          },
+          {
+            "citation_id": "A01590:E2",
+            "field": "primary_component",
+            "quote": "Drive",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 7,
+            "end": 12
+          },
+          {
+            "citation_id": "A01590:E5",
+            "field": "parameter",
+            "quote": "r2124",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 172,
+            "end": 177
+          },
+          {
+            "citation_id": "A01590:E6",
+            "field": "parameter",
+            "quote": "p0651",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 304,
+            "end": 309
+          },
+          {
+            "citation_id": "A01590:E7",
+            "field": "alarm_value",
+            "quote": "Alarm value (r2124, interpret decimal):\nMotor data set number.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 159,
+            "end": 221
+          },
+          {
+            "citation_id": "A01590:E4",
+            "field": "cause",
+            "quote": "The selected service/maintenance interval for this motor was reached.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 89,
+            "end": 158
+          },
+          {
+            "citation_id": "A01590:E8",
+            "field": "remedy",
+            "quote": "Remedy: carry out service/maintenance and reset the service/maintenance interval (p0651).",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 222,
+            "end": 311
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "correct",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "supported",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "pass",
+        "review_notes": "",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    },
+    {
+      "query_id": "RAG-017",
+      "question": "手册中提到“Safety Integrated is parameterized and enabled. However, a valid safety password has still not been entered.”，它对应哪个故障记录？请说明原因证据。",
+      "query_type": "cause",
+      "difficulty": "medium",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01637"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "cause"
+        ],
+        "ambiguity": "none",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "结论：该句对应故障记录 A01637 “Safety password not assigned”（安全密码未分配）[A01637:E1][A01637:E3]。\n\n依据：该故障记录的原因字段原文为“Safety Integrated is parameterized and enabled. However, a valid safety password has still not been entered.” [A01637:E4]；其组件为 Safety Integrated [A01637:E2]；相关参数为 r9767 [A01637:E5]。报警值内容当前证据未说明。\n\n原因：A01637 给出的原因是 Safety Integrated 已参数化并启用，但尚未输入有效安全密码 [A01637:E4]。除该原因外，当前证据未说明其他原因。\n\n建议处理：分配有效安全密码 [A01637:E6]；执行数据保存 [A01637:E6]。",
+        "citations": [
+          "A01637:E1",
+          "A01637:E3",
+          "A01637:E4",
+          "A01637:E2",
+          "A01637:E5",
+          "A01637:E6"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "A01637:E1",
+            "field": "fault_code",
+            "quote": "A01637",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "A01637:E3",
+            "field": "description",
+            "quote": "Safety password not assigned",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 11,
+            "end": 39
+          },
+          {
+            "citation_id": "A01637:E4",
+            "field": "cause",
+            "quote": "Safety Integrated is parameterized and enabled. However, a valid safety password has still not been entered.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 80,
+            "end": 188
+          },
+          {
+            "citation_id": "A01637:E2",
+            "field": "primary_component",
+            "quote": "Safety Integrated",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 80,
+            "end": 97
+          },
+          {
+            "citation_id": "A01637:E5",
+            "field": "parameter",
+            "quote": "r9767",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 199,
+            "end": 204
+          },
+          {
+            "citation_id": "A01637:E6",
+            "field": "remedy",
+            "quote": "Remedy: - assign a valid safety password.\n- carry out data save.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 233,
+            "end": 297
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "correct",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "supported",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "pass",
+        "review_notes": "",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    },
+    {
+      "query_id": "RAG-018",
+      "question": "手册中提到“A valid safety password has been entered.”，它对应哪个故障记录？请说明原因证据。",
+      "query_type": "cause",
+      "difficulty": "medium",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01638"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "cause"
+        ],
+        "ambiguity": "none",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "结论：手册中的“A valid safety password has been entered.”对应故障记录 A01638，故障现象为“Safety password entered”[A01638:E1][A01638:E3]。\n\n依据：该故障记录的故障码为 A01638[A01638:E1]；描述为 Safety password entered[A01638:E3]；组件为 SI[A01638:E2]；参数为 r9767[A01638:E5]。\n\n原因：该故障记录的原因栏明确写明“A valid safety password has been entered.”[A01638:E4]。\n\n建议处理：该记录给出的处理措施为“Remedy: Not necessary.”；该报警会通过“Delete password”自动撤销，例如退出 web server 后或 Power on 后，且密码仍保持分配[A01638:E6]。除上述内容外，当前证据未说明其他原因或处理措施。",
+        "citations": [
+          "A01638:E1",
+          "A01638:E3",
+          "A01638:E2",
+          "A01638:E5",
+          "A01638:E4",
+          "A01638:E6"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "A01638:E1",
+            "field": "fault_code",
+            "quote": "A01638",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "A01638:E3",
+            "field": "description",
+            "quote": "Safety password entered",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 11,
+            "end": 34
+          },
+          {
+            "citation_id": "A01638:E2",
+            "field": "primary_component",
+            "quote": "SI",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 7,
+            "end": 9
+          },
+          {
+            "citation_id": "A01638:E5",
+            "field": "parameter",
+            "quote": "r9767",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 204,
+            "end": 209
+          },
+          {
+            "citation_id": "A01638:E4",
+            "field": "cause",
+            "quote": "A valid safety password has been entered.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 75,
+            "end": 116
+          },
+          {
+            "citation_id": "A01638:E6",
+            "field": "remedy",
+            "quote": "Remedy: Not necessary.\nThis alarm is automatically withdrawn with \"Delete password\" (e.g. after exiting the web server - or after a Power on). The\npassword remains assigned.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 238,
+            "end": 411
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "correct",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "supported",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "pass",
+        "review_notes": "",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    },
+    {
+      "query_id": "RAG-019",
+      "question": "手册中提到“The configuration of a PROFIsafe telegram in the higher-level control (F-PLC) does not match the parameterization in the drive.”，它对应哪个故障记录？请说明原因证据。",
+      "query_type": "cause",
+      "difficulty": "medium",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01654"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "cause"
+        ],
+        "ambiguity": "none",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "结论：手册中的 “The configuration of a PROFIsafe telegram in the higher-level control (F-PLC) does not match the parameterization in the drive.” 对应故障记录 A01654 [A01654:E1]，其故障现象/描述为 “Deviating PROFIsafe configuration” [A01654:E3]，组件为 SI [A01654:E2]。该句本身在 A01654 的 Causes 中作为原因原文出现 [A01654:E4]。\n\n依据：A01654 的 Causes 字段直接包含该句 [A01654:E4]；A01654 的 Description 为 “Deviating PROFIsafe configuration” [A01654:E3]，primary component 为 SI [A01654:E2]。该故障记录列出的参数为 r2124 [A01654:E7]、p9601.3 [A01654:E8]。Alarm value 中，1 对应“上层控制已配置 PROFIsafe telegram，但驱动中 PROFIsafe 未使能（p9601.3）” [A01654:E9]；2 对应“驱动中已参数化 PROFIsafe，但上层控制未配置 PROFIsafe telegram” [A01654:E9]。\n\n原因：该不匹配被 A01654 列为原因之一 [A01654:E4]。其他原因包括：上层控制配置了 PROFIsafe telegram，但驱动中未使能 PROFIsafe（p9601.3） [A01654:E5]；以及驱动中参数化了 PROFIsafe，但上层控制未配置 PROFIsafe telegram [A01654:E6]。当前证据未说明超出这些原因之外的信息。\n\n建议处理：按该故障记录的 Remedy，一般应检查并在必要时纠正上层控制中的 PROFIsafe 配置 [A01654:E10]。若 alarm value = 1，移除上层 F 控制中的 PROFIsafe 配置，或在驱动中使能 PROFIsafe [A01654:E10]。若 alarm value = 2，配置 PROFIsafe telegram，使其匹配上层 F 控制中的参数化 [A01654:E10]。当前证据未说明其他处理参数或步骤。",
+        "citations": [
+          "A01654:E1",
+          "A01654:E3",
+          "A01654:E2",
+          "A01654:E4",
+          "A01654:E7",
+          "A01654:E8",
+          "A01654:E9",
+          "A01654:E5",
+          "A01654:E6",
+          "A01654:E10"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "A01654:E1",
+            "field": "fault_code",
+            "quote": "A01654",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "A01654:E3",
+            "field": "description",
+            "quote": "Deviating PROFIsafe configuration",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 14,
+            "end": 47
+          },
+          {
+            "citation_id": "A01654:E2",
+            "field": "primary_component",
+            "quote": "SI",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 7,
+            "end": 9
+          },
+          {
+            "citation_id": "A01654:E4",
+            "field": "cause",
+            "quote": "The configuration of a PROFIsafe telegram in the higher-level control (F-PLC) does not match the parameterization in the\ndrive.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 88,
+            "end": 215
+          },
+          {
+            "citation_id": "A01654:E7",
+            "field": "parameter",
+            "quote": "r2124",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 291,
+            "end": 296
+          },
+          {
+            "citation_id": "A01654:E8",
+            "field": "parameter",
+            "quote": "p9601.3",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 432,
+            "end": 439
+          },
+          {
+            "citation_id": "A01654:E9",
+            "field": "alarm_value",
+            "quote": "Alarm value (r2124, interpret decimal):\n1:\nA PROFIsafe telegram is configured in the higher-level control, however PROFIsafe is not enabled in the drive (p9601.3).\n2:\nPROFIsafe is parameterized in the drive; however, a PROFIsafe telegram has not been configured in the higher-level\ncontrol.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 278,
+            "end": 568
+          },
+          {
+            "citation_id": "A01654:E5",
+            "field": "cause",
+            "quote": "A PROFIsafe telegram is configured in the higher-level control, however PROFIsafe is not enabled in the drive (p9601.3).",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 321,
+            "end": 441
+          },
+          {
+            "citation_id": "A01654:E6",
+            "field": "cause",
+            "quote": "PROFIsafe is parameterized in the drive; however, a PROFIsafe telegram has not been configured in the higher-level\ncontrol.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 445,
+            "end": 568
+          },
+          {
+            "citation_id": "A01654:E10",
+            "field": "remedy",
+            "quote": "Remedy: The following generally applies:\n- check and, if necessary, correct the PROFIsafe configuration in the higher-level control.\nFor alarm value = 1:\n- remove the PROFIsafe configuring in the higher-level F control or enable PROFIsafe in the drive.\nFor alarm value = 2:\n- configure the PROFIsafe telegram to match the parameterization in the higher-level F-control.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 569,
+            "end": 938
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "correct",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "supported",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "pass",
+        "review_notes": "",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    },
+    {
+      "query_id": "RAG-020",
+      "question": "手册中提到“The configured times for PROFINET communication are not permitted and the PN cycle is used as the actual value acquisition cycle for the safe movement monitoring functions”，它对应哪个故障记录？请说明原因证据。",
+      "query_type": "cause",
+      "difficulty": "medium",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01691"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "cause"
+        ],
+        "ambiguity": "none",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "结论：该描述对应故障记录 A01691，故障现象为“Ti and To unsuitable for PN cycle” [A01691:E1][A01691:E3]。\n\n依据：用户所引“The configured times for PROFINET communication are not permitted and the PN cycle is used as the actual value acquisition cycle for the safe movement monitoring functions”出现在 A01691 的 cause 证据中 [A01691:E4]。\n\n原因：配置的 PROFINET 通信时间不被允许，且 PN cycle 被用作安全运动监控功能的实际值采集周期 [A01691:E4]。对于等时同步 PROFINET，Ti 与 To 之和相对所选 PN cycle 过高，PN 时钟周期应至少比 Ti 与 To 之和大 1 个当前控制器周期 [A01691:E5]。对于非等时同步 PROFINET，PN 时钟周期必须至少为当前控制器时钟周期的 4 倍 [A01691:E6]。\n\n建议处理：将 Ti 和 To 配置得较低，使其适合 PN 周期，或增大 PN 周期时间 [A01691:E7]。参数与报警值细节当前证据未说明。",
+        "citations": [
+          "A01691:E1",
+          "A01691:E3",
+          "A01691:E4",
+          "A01691:E5",
+          "A01691:E6",
+          "A01691:E7"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "A01691:E1",
+            "field": "fault_code",
+            "quote": "A01691",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "A01691:E3",
+            "field": "description",
+            "quote": "Ti and To unsuitable for PN cycle",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 18,
+            "end": 51
+          },
+          {
+            "citation_id": "A01691:E4",
+            "field": "cause",
+            "quote": "The configured times for PROFINET communication are not permitted and the PN cycle is used as the actual value\nacquisition cycle for the safe movement monitoring functions",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 92,
+            "end": 263
+          },
+          {
+            "citation_id": "A01691:E5",
+            "field": "cause",
+            "quote": "Isochronous PROFINET:\nThe sum of Ti and To is too high for the selected PN cycle. The PN clock cycle should be at least 1 current controller cycle\ngreater than the sum of Ti and To.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 265,
+            "end": 446
+          },
+          {
+            "citation_id": "A01691:E6",
+            "field": "cause",
+            "quote": "No isochronous PROFINET:\nThe PN clock cycle must be at least 4x the current controller clock cycle.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 447,
+            "end": 546
+          },
+          {
+            "citation_id": "A01691:E7",
+            "field": "remedy",
+            "quote": "Remedy: Configure Ti and To low so that they are suitable for the PN cycle or increase the PN cycle time.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 673,
+            "end": 778
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "correct",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "supported",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "pass",
+        "review_notes": "",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    },
+    {
+      "query_id": "RAG-021",
+      "question": "手册中提到“Safety parameters have been changed”，它对应哪个故障记录？请说明原因证据。",
+      "query_type": "cause",
+      "difficulty": "medium",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01693",
+          "F01679"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "cause"
+        ],
+        "ambiguity": "paired_fault_message_code",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "结论：手册中的“Safety parameters have been changed”对应故障记录 F01679（[F01679:E1]），其故障现象为“Safety parameter settings and topology changed, warm restart/POWER ON required”（[F01679:E3]）；该短语出现在该故障的原因中（[F01679:E4]）。\n\n依据：\n- 故障码为 F01679（[F01679:E1]）。\n- 主组件为 SI（[F01679:E2]）。\n- 故障描述为“Safety parameter settings and topology changed, warm restart/POWER ON required”（[F01679:E3]）。\n\n原因：\n- “Safety parameters have been changed”是 F01679 的原因项之一（[F01679:E4]）。\n- 同记录的另一原因项为“A partial power up (boot) with modified configuration was then performed”（[F01679:E5]）。\n\n建议处理：\n- 执行 warm restart（[F01679:E6]）。\n- 执行 POWER ON（switch-off/switch-on）（[F01679:E6]）。",
+        "citations": [
+          "F01679:E1",
+          "F01679:E3",
+          "F01679:E4",
+          "F01679:E2",
+          "F01679:E5",
+          "F01679:E6"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "F01679:E1",
+            "field": "fault_code",
+            "quote": "F01679",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "F01679:E3",
+            "field": "description",
+            "quote": "Safety parameter settings and topology changed, warm restart/POWER ON required",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 14,
+            "end": 92
+          },
+          {
+            "citation_id": "F01679:E4",
+            "field": "cause",
+            "quote": "Safety parameters have been changed",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 137,
+            "end": 172
+          },
+          {
+            "citation_id": "F01679:E2",
+            "field": "primary_component",
+            "quote": "SI",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 7,
+            "end": 9
+          },
+          {
+            "citation_id": "F01679:E5",
+            "field": "cause",
+            "quote": "A partial power up (boot) with modified configuration was then performed",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 259,
+            "end": 331
+          },
+          {
+            "citation_id": "F01679:E6",
+            "field": "remedy",
+            "quote": "Remedy: - carry out a warm restart.\n- carry out a POWER ON (switch-off/switch-on).",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 333,
+            "end": 415
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "partial",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "partial",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "revise",
+        "review_notes": "问题： 参考故障码包含 A01693、F01679，但模型只输出 F01679。\n\n判断： F01679 证据充分，但存在 paired_fault_message_code\n情况，因此故障识别完整性不足。\n\n结论： revise。",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    },
+    {
+      "query_id": "RAG-022",
+      "question": "针对“Sensor Module was replaced”，手册建议采取哪些处理措施？请引用原文依据。",
+      "query_type": "remedy",
+      "difficulty": "easy",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01695"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "description",
+          "remedy"
+        ],
+        "ambiguity": "none",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "结论：针对故障码 A01695 [A01695:E1] 的故障现象“Sensor Module was replaced” [A01695:E3]，手册建议的处理措施是：保存所有参数 [A01695:E5]、确认故障 [A01695:E5]。\n\n依据：\n- 故障码：A01695 [A01695:E1]\n- 组件：SI Motion [A01695:E2]\n- 故障现象：Sensor Module was replaced [A01695:E3]\n- 原文 Remedy：Remedy: - save all parameters - acknowledge fault. [A01695:E5]\n\n原因：用于安全运动监控功能的 Sensor Module 被更换 [A01695:E4]。\n\n建议处理：\n1. 保存所有参数 [A01695:E5]。\n2. 确认故障 [A01695:E5]。\n\n其他处理措施、具体参数或维修结论：当前证据未说明。",
+        "citations": [
+          "A01695:E1",
+          "A01695:E3",
+          "A01695:E5",
+          "A01695:E2",
+          "A01695:E4"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "A01695:E1",
+            "field": "fault_code",
+            "quote": "A01695",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "A01695:E3",
+            "field": "description",
+            "quote": "Sensor Module was replaced",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 18,
+            "end": 44
+          },
+          {
+            "citation_id": "A01695:E5",
+            "field": "remedy",
+            "quote": "Remedy: - save all parameters\n- acknowledge fault.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 328,
+            "end": 378
+          },
+          {
+            "citation_id": "A01695:E2",
+            "field": "primary_component",
+            "quote": "SI Motion",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 7,
+            "end": 16
+          },
+          {
+            "citation_id": "A01695:E4",
+            "field": "cause",
+            "quote": "A Sensor Module, which is used for safe motion monitoring functions, was replaced",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 85,
+            "end": 166
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "correct",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "supported",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "pass",
+        "review_notes": "",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    },
+    {
+      "query_id": "RAG-023",
+      "question": "针对“Test stop for the motion monitoring functions selected when booting”，手册建议采取哪些处理措施？请引用原文依据。",
+      "query_type": "remedy",
+      "difficulty": "easy",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01696"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "description",
+          "remedy"
+        ],
+        "ambiguity": "none",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "结论  \n针对故障 A01696 [A01696:E1]，故障现象为 “Test stop for the motion monitoring functions selected when booting” [A01696:E3]，手册建议的处理措施是：取消安全运动监控功能的强制检查程序（测试停止），然后重新选择 [A01696:E5]。\n\n依据  \n- 故障码：A01696 [A01696:E1]。  \n- 组件：SI Motion [A01696:E2]。  \n- 故障描述：Test stop for the motion monitoring functions selected when booting [A01696:E3]。  \n- 原因：The forced checking procedure (test stop) for the safe motion monitoring functions is already selected when booting, which is not permissible. [A01696:E4]。  \n- 处理措施：Remedy: Deselect the forced checking procedure (test stop) for the safe motion monitoring functions and then select again. [A01696:E5]。\n\n原因  \n根据故障记录，原因是在启动时已经选择了安全运动监控功能的强制检查程序（测试停止），这是不允许的 [A01696:E4]。\n\n建议处理  \n取消安全运动监控功能的强制检查程序（测试停止），然后重新选择 [A01696:E5]。其他参数或附加维修步骤当前证据未说明。",
+        "citations": [
+          "A01696:E1",
+          "A01696:E3",
+          "A01696:E5",
+          "A01696:E2",
+          "A01696:E4"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "A01696:E1",
+            "field": "fault_code",
+            "quote": "A01696",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "A01696:E3",
+            "field": "description",
+            "quote": "Test stop for the motion monitoring functions selected when booting",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 18,
+            "end": 85
+          },
+          {
+            "citation_id": "A01696:E5",
+            "field": "remedy",
+            "quote": "Remedy: Deselect the forced checking procedure (test stop) for the safe motion monitoring functions and then select again.\nSI: Safety Integrated",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 496,
+            "end": 640
+          },
+          {
+            "citation_id": "A01696:E2",
+            "field": "primary_component",
+            "quote": "SI Motion",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 7,
+            "end": 16
+          },
+          {
+            "citation_id": "A01696:E4",
+            "field": "cause",
+            "quote": "The forced checking procedure (test stop) for the safe motion monitoring functions is already selected when booting, which\nis not permissible.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 126,
+            "end": 268
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "correct",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "supported",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "pass",
+        "review_notes": "",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    },
+    {
+      "query_id": "RAG-024",
+      "question": "针对“Test stop for motion monitoring functions required”，手册建议采取哪些处理措施？请引用原文依据。",
+      "query_type": "remedy",
+      "difficulty": "easy",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01697"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "description",
+          "remedy"
+        ],
+        "ambiguity": "none",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "结论：针对 A01697 [A01697:E1]（“Test stop for motion monitoring functions required” [A01697:E3]），手册建议的处理措施是执行安全运动监控功能的强制检查程序（测试停止）[A01697:E7]。\n\n依据：\n- 故障码为 A01697 [A01697:E1]，故障现象为“Test stop for motion monitoring functions required” [A01697:E3]，涉及组件为 SI Motion [A01697:E2]。\n- 原因记录显示：p9559 中为安全运动监控功能的强制检查程序（测试停止）设置的时间已超过 [A01697:E4]。\n- 处理措施记录显示：执行安全运动监控功能的强制检查程序（测试停止）[A01697:E7]。\n\n原因：  \n根据记录，原因是 p9559 设置的强制检查程序（测试停止）时间已超过 [A01697:E4]。相关参数列出了 p9559 [A01697:E5] 和 r9765 [A01697:E6]；其中 r9765 的具体作用当前证据未说明。\n\n建议处理：  \n执行安全运动监控功能的强制检查程序（测试停止）[A01697:E7]。除此之外的处理步骤、参数修改值或复位方法当前证据未说明。",
+        "citations": [
+          "A01697:E1",
+          "A01697:E3",
+          "A01697:E7",
+          "A01697:E2",
+          "A01697:E4",
+          "A01697:E5",
+          "A01697:E6"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "A01697:E1",
+            "field": "fault_code",
+            "quote": "A01697",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "A01697:E3",
+            "field": "description",
+            "quote": "Test stop for motion monitoring functions required",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 18,
+            "end": 68
+          },
+          {
+            "citation_id": "A01697:E7",
+            "field": "remedy",
+            "quote": "Remedy: Carry out the forced checking procedure (test stop) for the safe motion monitoring functions.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 1235,
+            "end": 1336
+          },
+          {
+            "citation_id": "A01697:E2",
+            "field": "primary_component",
+            "quote": "SI Motion",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 7,
+            "end": 16
+          },
+          {
+            "citation_id": "A01697:E4",
+            "field": "cause",
+            "quote": "The time set in p9559 for the forced checking procedure (test stop) for the safe motion monitoring functions has been\nexceeded.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 109,
+            "end": 236
+          },
+          {
+            "citation_id": "A01697:E5",
+            "field": "parameter",
+            "quote": "p9559",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 125,
+            "end": 130
+          },
+          {
+            "citation_id": "A01697:E6",
+            "field": "parameter",
+            "quote": "r9765",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 1176,
+            "end": 1181
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "correct",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "supported",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "pass",
+        "review_notes": "",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    },
+    {
+      "query_id": "RAG-025",
+      "question": "针对“Commissioning mode active”，手册建议采取哪些处理措施？请引用原文依据。",
+      "query_type": "remedy",
+      "difficulty": "easy",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01698"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "description",
+          "remedy"
+        ],
+        "ambiguity": "none",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "结论：A01698 [A01698:E1] 的现象为“Commissioning mode active”[A01698:E3]；手册建议的处理措施是“Remedy: Not necessary.”，并且该消息会在安全功能调试完成后自动撤销 [A01698:E6]。\n\n依据：\n- 故障码：A01698 [A01698:E1]。\n- 故障现象/描述：Commissioning mode active [A01698:E3]。\n- 组件：Safety Integrated [A01698:E2]。\n- 参数：p0010 [A01698:E4]。\n- 原因：The commissioning of the \"Safety Integrated\" function is selected [A01698:E5]。\n- 处理：Remedy: Not necessary. This message is automatically withdrawn after the safety functions have been commissioned. [A01698:E6]。\n\n原因：该消息是因为选择了“Safety Integrated”功能的调试而出现 [A01698:E5]。\n\n建议处理：无需处理 [A01698:E6]；在安全功能调试完成后，该消息会自动撤销 [A01698:E6]。除上述内容外，当前证据未说明其他处理措施、额外参数或维修结论。",
+        "citations": [
+          "A01698:E1",
+          "A01698:E3",
+          "A01698:E6",
+          "A01698:E2",
+          "A01698:E4",
+          "A01698:E5"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "A01698:E1",
+            "field": "fault_code",
+            "quote": "A01698",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "A01698:E3",
+            "field": "description",
+            "quote": "Commissioning mode active",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 14,
+            "end": 39
+          },
+          {
+            "citation_id": "A01698:E6",
+            "field": "remedy",
+            "quote": "Remedy: Not necessary.\nThis message is automatically withdrawn after the safety functions have been commissioned.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 347,
+            "end": 460
+          },
+          {
+            "citation_id": "A01698:E2",
+            "field": "primary_component",
+            "quote": "Safety Integrated",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 106,
+            "end": 123
+          },
+          {
+            "citation_id": "A01698:E4",
+            "field": "parameter",
+            "quote": "p0010",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 300,
+            "end": 305
+          },
+          {
+            "citation_id": "A01698:E5",
+            "field": "cause",
+            "quote": "The commissioning of the \"Safety Integrated\" function is selected",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 80,
+            "end": 145
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "correct",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "supported",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "pass",
+        "review_notes": "",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    },
+    {
+      "query_id": "RAG-026",
+      "question": "针对“Test stop for STO required”，手册建议采取哪些处理措施？请引用原文依据。",
+      "query_type": "remedy",
+      "difficulty": "easy",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01699"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "description",
+          "remedy"
+        ],
+        "ambiguity": "none",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "结论：针对首位候选故障 A01699（“Test stop for STO required”）[A01699:E1][A01699:E3]，手册建议的处理措施是：选择 STO，然后再次取消选择 [A01699:E7]。\n\n依据：该故障属于 Safety Integrated [A01699:E2]，相关参数包括 p9659 [A01699:E4] 和 r9660 [A01699:E5]。故障原因记录为：p9659 中为 “STO” 功能设置的强制检查程序（测试停止）时间已超过 [A01699:E6]。其他报警值或附加条件当前证据未说明。\n\n原因：p9659 中为 ‘STO’ 功能设置的强制检查程序（测试停止）时间已超过 [A01699:E6]。其他原因当前证据未说明。\n\n建议处理：选择 STO，然后再次取消选择 [A01699:E7]。除此之外的处理步骤、参数调整或维修结论当前证据未说明。",
+        "citations": [
+          "A01699:E1",
+          "A01699:E3",
+          "A01699:E7",
+          "A01699:E2",
+          "A01699:E4",
+          "A01699:E5",
+          "A01699:E6"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "A01699:E1",
+            "field": "fault_code",
+            "quote": "A01699",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "A01699:E3",
+            "field": "description",
+            "quote": "Test stop for STO required",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 14,
+            "end": 40
+          },
+          {
+            "citation_id": "A01699:E7",
+            "field": "remedy",
+            "quote": "Remedy: Select STO and then deselect again.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 1012,
+            "end": 1055
+          },
+          {
+            "citation_id": "A01699:E2",
+            "field": "primary_component",
+            "quote": "Safety Integrated",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 1066,
+            "end": 1083
+          },
+          {
+            "citation_id": "A01699:E4",
+            "field": "parameter",
+            "quote": "p9659",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 97,
+            "end": 102
+          },
+          {
+            "citation_id": "A01699:E5",
+            "field": "parameter",
+            "quote": "r9660",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 960,
+            "end": 965
+          },
+          {
+            "citation_id": "A01699:E6",
+            "field": "cause",
+            "quote": "The time set in p9659 for the forced checking procedure (test stop) for the \"STO\" function has been exceeded",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 81,
+            "end": 189
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "correct",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "supported",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "pass",
+        "review_notes": "",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    },
+    {
+      "query_id": "RAG-027",
+      "question": "参数 p9506 与哪个故障记录相关？请说明故障含义和参数证据。",
+      "query_type": "parameter",
+      "difficulty": "medium",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01706",
+          "F01682"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "description",
+          "parameter"
+        ],
+        "ambiguity": "shared_parameter",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "**结论：**  \n参数 p9506 与故障记录 F01682（故障现象：Monitoring function not supported）相关 [F01682:E1][F01682:E3]；该记录中 p9506 被列为相关参数 [F01682:E10]。F01682 属于 SI Motion [F01682:E2]。\n\n**依据：**  \n- F01682 的故障码为 F01682 [F01682:E1]，组件为 SI Motion [F01682:E2]，描述为 Monitoring function not supported [F01682:E3]。  \n- 参数证据显示 p9506 出现在 F01682 的参数列表中 [F01682:E10]。  \n- 原因证据写明：在 p9501、p9506、p9507、p9601 中使能的监控功能在该固件版本中不受支持 [F01682:E4]。  \n- 处理证据包括：取消涉及的监控功能（p9501、p9506、p9507、p9601）[F01682:E22]；恢复出厂设置并重新调试 [F01682:E22]；升级固件 [F01682:E22]。\n\n**原因：**  \nF01682 的触发原因之一是在 p9506 等参数中使能的监控功能在当前固件版本不受支持 [F01682:E4]；p9506 被列为该故障的相关参数 [F01682:E10]。p9506 的具体参数名称、位定义或单独功能，当前证据未说明。\n\n**建议处理：**  \n取消涉及的监控功能（包括 p9501、p9506、p9507、p9601 中相关项）[F01682:E22]；恢复出厂设置并重新调试 [F01682:E22]；升级固件 [F01682:E22]。当前证据未说明针对 p9506 的其他专用维修步骤。",
+        "citations": [
+          "F01682:E1",
+          "F01682:E3",
+          "F01682:E10",
+          "F01682:E2",
+          "F01682:E4",
+          "F01682:E22"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "F01682:E1",
+            "field": "fault_code",
+            "quote": "F01682",
+            "source_id": "input_text",
+            "source_file": "S210_Manual_2019.pdf",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "F01682:E3",
+            "field": "description",
+            "quote": "Monitoring function not supported",
+            "source_id": "input_text",
+            "source_file": "S210_Manual_2019.pdf",
+            "start": 21,
+            "end": 54
+          },
+          {
+            "citation_id": "F01682:E10",
+            "field": "parameter",
+            "quote": "p9506",
+            "source_id": "input_text",
+            "source_file": "S210_Manual_2019.pdf",
+            "start": 144,
+            "end": 149
+          },
+          {
+            "citation_id": "F01682:E2",
+            "field": "primary_component",
+            "quote": "SI Motion",
+            "source_id": "input_text",
+            "source_file": "S210_Manual_2019.pdf",
+            "start": 7,
+            "end": 16
+          },
+          {
+            "citation_id": "F01682:E4",
+            "field": "cause",
+            "quote": "The monitoring function enabled in p9501, p9506, p9507, p9601 is not supported in this firmware version.",
+            "source_id": "input_text",
+            "source_file": "S210_Manual_2019.pdf",
+            "start": 102,
+            "end": 206
+          },
+          {
+            "citation_id": "F01682:E22",
+            "field": "remedy",
+            "quote": "Remedy: - deselect the monitoring function involved (p9501, p9506, p9507, p9601).\n- restore the factory setting and repeat commissioning.\n- upgrade the firmware.\nFor fault value = 59:\n- upgrade the firmware of the Motor Module to a later version.\nFor fault value = 9612:\n- establish communications with PROFIsafe (p9601).\n- parameterize STO as stop response for PROFIsafe failure (p9612 = 0).",
+            "source_id": "input_text",
+            "source_file": "S210_Manual_2019.pdf",
+            "start": 880,
+            "end": 1272
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "partial",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "supported",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "revise",
+        "review_notes": "问题： 参考中存在 A01706、F01682 配对关系。\n\n判断： 模型选择 F01682 有证据支持，但没有说明配对消息关系。\n\n结论： revise。",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    },
+    {
+      "query_id": "RAG-028",
+      "question": "参数 p9530 与哪个故障记录相关？请说明故障含义和参数证据。",
+      "query_type": "parameter",
+      "difficulty": "medium",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01707",
+          "A30707"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "description",
+          "parameter"
+        ],
+        "ambiguity": "paired_fault_message_code",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "结论：在本次默认仅回答首位候选故障的规则下，参数 p9530 与故障记录 A30707 相关 [A30707:E1]；该故障现象为“Tolerance for safe operating stop exceeded（安全操作停止容差超限）” [A30707:E3]。\n\n依据：A30707 的组件为 SI Motion [A30707:E2]；其故障描述为 Tolerance for safe operating stop exceeded [A30707:E3]；参数证据中列出 p9530 [A30707:E5]。除 p9530 被列为相关参数外，p9530 的具体参数含义、默认值、设定范围当前证据未说明；现有证据仅列出 p9530 [A30707:E5]。\n\n原因：该故障原因是实际位置偏离目标位置超过静止容差（standstill tolerance） [A30707:E4]。\n\n建议处理：检查是否存在安全故障，如需要，针对相应故障执行诊断流程 [A30707:E6]；检查静止容差是否与轴的精度和控制动态性能匹配 [A30707:E6]；执行 POWER ON（断电/上电） [A30707:E6]。",
+        "citations": [
+          "A30707:E1",
+          "A30707:E3",
+          "A30707:E2",
+          "A30707:E5",
+          "A30707:E4",
+          "A30707:E6"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "A30707:E1",
+            "field": "fault_code",
+            "quote": "A30707",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "A30707:E3",
+            "field": "description",
+            "quote": "Tolerance for safe operating stop exceeded",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 21,
+            "end": 63
+          },
+          {
+            "citation_id": "A30707:E2",
+            "field": "primary_component",
+            "quote": "SI Motion",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 7,
+            "end": 16
+          },
+          {
+            "citation_id": "A30707:E5",
+            "field": "parameter",
+            "quote": "p9530",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 599,
+            "end": 604
+          },
+          {
+            "citation_id": "A30707:E4",
+            "field": "cause",
+            "quote": "The actual position has moved further away from the target position than the standstill tolerance.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 104,
+            "end": 202
+          },
+          {
+            "citation_id": "A30707:E6",
+            "field": "remedy",
+            "quote": "Remedy: - check whether safety faults are present and if required carry out the appropriate diagnostic routines for the particular faults.\n- check whether the standstill tolerance matches the accuracy and control dynamic performance of the axis.\n- carry out a POWER ON (switch-off/switch-on).",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 243,
+            "end": 535
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "partial",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "supported",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "revise",
+        "review_notes": "问题： 参考中存在 A01707、A30707。\n\n判断： 模型选择 A30707 有证据支持，但没有覆盖 paired fault message\ncode。\n\n结论： revise。",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    },
+    {
+      "query_id": "RAG-029",
+      "question": "参数 p9553 与哪个故障记录相关？请说明故障含义和参数证据。",
+      "query_type": "parameter",
+      "difficulty": "medium",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01709",
+          "A30709"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "description",
+          "parameter"
+        ],
+        "ambiguity": "paired_fault_message_code",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "结论：参数 p9553 与首位候选故障记录 A30709 相关 [A30709:E1][A30709:E5]；该故障记录的现象为 “SS2E initiated” [A30709:E3]。\n\n依据：\n- 故障码为 A30709 [A30709:E1]，组件为 SI Motion [A30709:E2]，描述为 “SS2E initiated” [A30709:E3]。\n- 参数证据：该故障记录列出的参数为 p9553 [A30709:E5]。除“参数为 p9553”外，p9553 的具体数值、阈值和调整方式当前证据未说明。\n\n原因：\n- 驱动器通过 SS2E 停止（按路径制动），在参数化时间到期后激活 “Safe Operating Stop” (SOS) [A30709:E6]。\n- 后续响应/跟随消息为 A30714、A30716 [A30709:E4]。\n\n建议处理：\n- 在控制侧排除故障原因 [A30709:E7]。\n- 对活动消息 A30714、A30716 执行诊断 [A30709:E7]。\n- 当前证据未说明需要修改 p9553 或给出其他维修参数。",
+        "citations": [
+          "A30709:E1",
+          "A30709:E5",
+          "A30709:E3",
+          "A30709:E2",
+          "A30709:E6",
+          "A30709:E4",
+          "A30709:E7"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "A30709:E1",
+            "field": "fault_code",
+            "quote": "A30709",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "A30709:E5",
+            "field": "parameter",
+            "quote": "p9553",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 298,
+            "end": 303
+          },
+          {
+            "citation_id": "A30709:E3",
+            "field": "description",
+            "quote": "SS2E initiated",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 21,
+            "end": 35
+          },
+          {
+            "citation_id": "A30709:E2",
+            "field": "primary_component",
+            "quote": "SI Motion",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 7,
+            "end": 16
+          },
+          {
+            "citation_id": "A30709:E6",
+            "field": "cause",
+            "quote": "The drive is stopped using SS2E (braking along a path).\n\"Safe Operating Stop\" (SOS) is activated after the parameterized time has expired",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 76,
+            "end": 213
+          },
+          {
+            "citation_id": "A30709:E4",
+            "field": "cause",
+            "quote": "Subsequent response, following messages: A30714, A30716",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 232,
+            "end": 287
+          },
+          {
+            "citation_id": "A30709:E7",
+            "field": "remedy",
+            "quote": "Remedy: - remove the cause of the fault at the control.\n- carry out diagnostics for the active messages (A30714, A30716).",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 344,
+            "end": 465
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "partial",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "supported",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "revise",
+        "review_notes": "问题： 参考中存在 A01709、A30709。\n\n判断： 模型回答 A30709 与 p9553 证据一致，但没有说明配对关系。\n\n结论： revise。",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    },
+    {
+      "query_id": "RAG-030",
+      "question": "参数 r9725 与哪个故障记录相关？请说明故障含义和参数证据。",
+      "query_type": "parameter",
+      "difficulty": "medium",
+      "evaluation_reference": {
+        "expected_fault_codes": [
+          "A01711",
+          "A30711"
+        ],
+        "required_evidence_fields": [
+          "fault_code",
+          "description",
+          "parameter"
+        ],
+        "ambiguity": "paired_fault_message_code",
+        "note": "仅供评测追踪；专家可以指出 expected_fault_codes 过窄或不正确。"
+      },
+      "model_answer": {
+        "text": "结论：参数 r9725 与故障记录 A30711 相关 [A30711:E18]；该故障代码为 A30711 [A30711:E1]，故障现象/描述为 Defect in a monitoring channel [A30711:E3]。\n\n依据：A30711 的组件为 SI Motion [A30711:E2]；其参数列表中包含 r9725 [A30711:E18]。因此，在给定上下文中，r9725 的参数证据指向 A30711 [A30711:E1][A30711:E18]。故障含义方面，A30711 表示监控通道存在缺陷 [A30711:E3]。r9725 的具体参数名称、用途、数值含义或诊断映射关系，当前证据未说明。\n\n原因：A30711 的候选原因包括监控功能输入数据或结果不一致 [A30711:E4]、同步不正确 [A30711:E5]、看门狗定时器已过期或安全相关输入信号变化过多 [A30711:E6] 等。r9725 是否用于指示其中某个原因，当前证据未说明。\n\n建议处理：当前证据未说明针对 r9725 的专门处理措施。A30711 的 Remedy 段按消息值给出处理建议 [A30711:E28]；应依据实际消息值选择对应处理，r9725 与具体消息值或具体处理条目的映射关系当前证据未说明。",
+        "citations": [
+          "A30711:E18",
+          "A30711:E1",
+          "A30711:E3",
+          "A30711:E2",
+          "A30711:E4",
+          "A30711:E5",
+          "A30711:E6",
+          "A30711:E28"
+        ],
+        "cited_evidence": [
+          {
+            "citation_id": "A30711:E18",
+            "field": "parameter",
+            "quote": "r9725",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 2137,
+            "end": 2142
+          },
+          {
+            "citation_id": "A30711:E1",
+            "field": "fault_code",
+            "quote": "A30711",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 0,
+            "end": 6
+          },
+          {
+            "citation_id": "A30711:E3",
+            "field": "description",
+            "quote": "Defect in a monitoring channel",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 21,
+            "end": 51
+          },
+          {
+            "citation_id": "A30711:E2",
+            "field": "primary_component",
+            "quote": "SI Motion",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 7,
+            "end": 16
+          },
+          {
+            "citation_id": "A30711:E4",
+            "field": "cause",
+            "quote": "difference between the input data or results of the monitoring functions",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 172,
+            "end": 244
+          },
+          {
+            "citation_id": "A30711:E5",
+            "field": "cause",
+            "quote": "incorrect synchronization",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 553,
+            "end": 578
+          },
+          {
+            "citation_id": "A30711:E6",
+            "field": "cause",
+            "quote": "Watchdog timer has expired. Too many signal changes have occurred at safety-relevant inputs.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 786,
+            "end": 878
+          },
+          {
+            "citation_id": "A30711:E28",
+            "field": "remedy",
+            "quote": "Remedy: For message value = 1005:\n- check the conditions for deselecting STO.\nFor message value = 1012:\n- upgrade the encoder evaluation firmware to a newer version.\n- check encoder parameters to ensure that they are the same (p9515, p9519, p9523, p9524, p9525, p9529).\n- start the copy function for encoder parameters (commissioning tool).\n- the parameterized encoder does not correspond to the connected encoder - replace the encoder.\n- check the electrical cabinet design and cable routing for EMC compliance\n- carry out a POWER ON (switch off/switch on) or a warm restart (p0009 = 30, p0976 = 2, 3).\n- replace the hardware.\nFor message value = 1024:\n- check the communication link.\n- carry out a POWER ON (switch off/switch on) or a warm restart (p0009 = 30, p0976 = 2, 3).\n- replace the hardware.\nFor message value = 1030:\n- check the encoder connection.\n- if required, replace the encoder.\nAdapt the encoder parameterization for the second channel as follows:\n- activate the safety commissioning mode (p0010 = 95).\n- start the copy function for encoder parameters (commissioning tool).\n- exit the safety commissioning mode (p0010 = 0).\n- save the parameters in a non-volatile fashion (copy RAM to ROM).\n- carry out a POWER ON (switch off/switch on) or a warm restart (p0009 = 30, p0976 = 2, 3).\nThe following always applies:\n- check the encoder connection.\n- if required, replace the encoder.\nFor message value = 6000 ... 6999:\n- the significance of the individual message values are described in fault F01611.\nFor other message values:\n- the significance of the individual message values is described in message A01711.",
+            "source_id": "input_text",
+            "source_file": "",
+            "start": 2174,
+            "end": 3800
+          }
+        ]
+      },
+      "automated_contract_reference": {
+        "fault_code_hit": true,
+        "citations_valid": true,
+        "citations_aligned": true,
+        "answer_contract_pass": true,
+        "warning": "这是自动结构检查，不是专家语义结论。"
+      },
+      "expert_annotation": {
+        "fault_identification": "partial",
+        "cause_correctness": "correct",
+        "remedy_correctness": "correct",
+        "citation_support": "supported",
+        "unsupported_claims": "no",
+        "cross_fault_contamination": "no",
+        "overall_decision": "revise",
+        "review_notes": "问题： 参考中存在 A01711、A30711。\n\n判断： 模型识别 A30711 正确，但 r9725\n与消息值映射关系未被证据完全解释，因此不能扩大结论。\n\n结论： revise。\n\n## 汇总\n\nRAG-016 \\~ RAG-030：\n\n-   通过：10\n-   修改建议：5\n-   明显错误：0\n-   跨故障污染：0\n-   无证据扩展：0\n\n主要问题不是 RAG 生成错误，而是： 1. 配对故障码/消息码展示策略； 2.\n参数查询时需要返回关联故障集合； 3. 避免默认只输出首候选实体。\n\n审核人：刘武 日期：2026-09-21",
+        "reviewer": "刘武",
+        "review_date": "2026-09-21"
+      }
+    }
+  ],
+  "expert_review": {
+    "reviewer": "刘武",
+    "review_date": "2026-09-21",
+    "review_type": "RAG 语义回答专家审核",
+    "source_files": [
+      "C:\\Users\\爹\\Downloads\\Siemens_S210_RAG_%E4%B8%93%E5%AE%B6%E5%AE%A1%E6%A0%B8%E6%A0%87%E6%B3%A8_v1.md",
+      "C:\\Users\\爹\\Downloads\\Siemens_S210_RAG_%E4%B8%93%E5%AE%B6%E5%AE%A1%E6%A0%B8%E6%A0%87%E6%B3%A8%E7%BB%AD_v1.md"
+    ],
+    "annotation_summary": {
+      "record_count": 30,
+      "overall_decision": {
+        "pass": 25,
+        "revise": 5,
+        "insufficient_evidence": 0,
+        "unclear": 0
+      },
+      "fault_identification": {
+        "correct": 25,
+        "partial": 5,
+        "incorrect": 0,
+        "unclear": 0
+      },
+      "cause_correctness": {
+        "correct": 30,
+        "partial": 0,
+        "incorrect": 0
+      },
+      "remedy_correctness": {
+        "correct": 30,
+        "partial": 0,
+        "incorrect": 0
+      },
+      "citation_support": {
+        "supported": 29,
+        "partial": 1,
+        "unsupported": 0
+      },
+      "unsupported_claims_no": 30,
+      "cross_fault_contamination_no": 30
+    },
+    "gold_readiness": "not_final_until_five_revision_items_are_fixed_and_re_reviewed"
+  }
+}
