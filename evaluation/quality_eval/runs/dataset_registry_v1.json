@@ -1,0 +1,161 @@
+{
+  "registry_schema_version": 1,
+  "registry_id": "fta_dataset_registry",
+  "generated_at_utc": "2026-09-21T10:26:23.945461+00:00",
+  "authority": {
+    "artifact_labels": "linked dataset artifact dataset_info and samples/queries",
+    "database_import_status": "SQLite dataset_imports table",
+    "metric_scope": "linked evaluation artifact dataset_info and registry entry metrics",
+    "legacy_database_written": "informational_only"
+  },
+  "datasets": [
+    {
+      "dataset_id": "siemens_s210_gold_v1",
+      "artifact_path": "evaluation/quality_eval/datasets/siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20.json",
+      "artifact_sha256": "ffbeafa7d9e997a413ae44c1becc953e6319f41ace9ada83885cad6f1b96ac38",
+      "role": "knowledge_gold",
+      "split": "test",
+      "population": {
+        "kind": "samples",
+        "count": 281
+      },
+      "label_status": "ai_assisted_expert_reviewed",
+      "expert_status": {
+        "human_expert_reviewed": false,
+        "review_kind": "ai_assisted",
+        "review_authority": "user_authorized_ai_assisted_expert_review",
+        "confirmed_records": 281
+      },
+      "training_eligible": false,
+      "logic_status": "unknown_until_explicitly_expert_annotated",
+      "lifecycle_status": "unspecified",
+      "gold_source": null,
+      "metrics": [],
+      "database_import": {
+        "status": "completed",
+        "database_path": "backend-python/outputs/extraction_workflow.sqlite3",
+        "dataset_name": "siemens_s210_public_fault_full_review_queue",
+        "dataset_version": "2026-09-20",
+        "import_id": "6f4b1d7c-1962-5937-a899-68ec32aefe33",
+        "record_count": 281,
+        "reason": null,
+        "source_status": "completed"
+      }
+    },
+    {
+      "dataset_id": "siemens_s210_retrieval_final_test_v1",
+      "artifact_path": "evaluation/quality_eval/datasets/siemens_s210_retrieval_final_test_v1_2026-09-21.json",
+      "artifact_sha256": "75583be3472fe20ee3c93f318d4393e0890f56839eabbbfd31cee7707bea4b35",
+      "role": "retrieval_evaluation",
+      "split": "final_test_holdout",
+      "population": {
+        "kind": "queries",
+        "count": 39
+      },
+      "label_status": "independent_query_holdout_derived_from_frozen_gold",
+      "expert_status": {
+        "human_expert_reviewed": null,
+        "review_kind": "unspecified",
+        "review_authority": null,
+        "confirmed_records": null
+      },
+      "training_eligible": false,
+      "logic_status": null,
+      "lifecycle_status": "sealed_historical_final_v1",
+      "gold_source": "evaluation/quality_eval/datasets/siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20.json",
+      "metrics": [
+        "Recall@1",
+        "Recall@3",
+        "Recall@5",
+        "Recall@10",
+        "Recall@20",
+        "MRR"
+      ],
+      "database_import": {
+        "status": "not_applicable",
+        "database_path": null,
+        "dataset_name": null,
+        "dataset_version": null,
+        "import_id": null,
+        "record_count": null,
+        "reason": null
+      }
+    },
+    {
+      "dataset_id": "siemens_s210_rag_answer_dev_v1",
+      "artifact_path": "evaluation/quality_eval/datasets/siemens_s210_rag_answer_evaluation_v1_2026-09-21.json",
+      "artifact_sha256": "f0f4ad8ad3ae822c3dc109bc96de34e7d1b1ea5069160425e39c437832ffb54a",
+      "role": "rag_answer_evaluation",
+      "split": "answer_quality_dev",
+      "population": {
+        "kind": "queries",
+        "count": 12
+      },
+      "label_status": "engineering_answer_contract_labels_derived_from_frozen_gold",
+      "expert_status": {
+        "human_expert_reviewed": null,
+        "review_kind": "unspecified",
+        "review_authority": null,
+        "confirmed_records": null
+      },
+      "training_eligible": false,
+      "logic_status": null,
+      "lifecycle_status": "sealed_development_validation",
+      "gold_source": "evaluation/quality_eval/datasets/siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20.json",
+      "metrics": [
+        "fault_code_accuracy",
+        "citation_validity",
+        "citation_alignment",
+        "answer_contract_pass_rate"
+      ],
+      "database_import": {
+        "status": "not_applicable",
+        "database_path": null,
+        "dataset_name": null,
+        "dataset_version": null,
+        "import_id": null,
+        "record_count": null,
+        "reason": null
+      }
+    },
+    {
+      "dataset_id": "aerospace_retrieval_dev_v1",
+      "artifact_path": "evaluation/quality_eval/datasets/aerospace_retrieval_dev_v1_2026-09-21.json",
+      "artifact_sha256": "c4ed0275053bfe08faf1524872aca61b35ec03e5de4a7dcad76a713769997832",
+      "role": "domain_adapter_development",
+      "split": "development_only",
+      "population": {
+        "kind": "queries",
+        "count": 40
+      },
+      "label_status": "unspecified",
+      "expert_status": {
+        "human_expert_reviewed": null,
+        "review_kind": "unspecified",
+        "review_authority": null,
+        "confirmed_records": null
+      },
+      "training_eligible": false,
+      "logic_status": null,
+      "lifecycle_status": "sealed_development_only",
+      "gold_source": null,
+      "metrics": [
+        "Recall@1",
+        "Recall@3",
+        "Recall@5",
+        "Recall@10",
+        "Recall@20",
+        "MRR"
+      ],
+      "database_import": {
+        "status": "not_applicable",
+        "database_path": null,
+        "dataset_name": null,
+        "dataset_version": null,
+        "import_id": null,
+        "record_count": null,
+        "reason": null
+      }
+    }
+  ]
+}

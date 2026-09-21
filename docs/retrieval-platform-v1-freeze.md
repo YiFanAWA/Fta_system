@@ -6,6 +6,9 @@
 
 ## 冻结结论
 
+当前数据状态治理由 [数据集状态注册表 v1](dataset-registry.md) 统一承载。数据集 JSON 负责标签与样本事实，SQLite `dataset_imports`
+负责真实导入事实，Registry 负责跨数据集汇总；旧 `database_written` 字段不再作为入库判断条件。
+
 三个 v1 已达到当前工程门禁，可以作为下一阶段 `AerospaceAdapter` 的稳定依赖。冻结不等于已经切换生产：S210 生产 API 仍使用旧链路，后续必须经过 shadow mode 和 rollback 验证后再切换。
 
 ## 1. Common Fault Schema v1
