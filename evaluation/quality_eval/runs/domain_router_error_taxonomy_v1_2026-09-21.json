@@ -1,0 +1,352 @@
+{
+  "taxonomy_info": {
+    "name": "domain_router_error_taxonomy_v1",
+    "version": "2026-09-21",
+    "source_report": "mixed_domain_router_comparison_v1_2026-09-21",
+    "total_queries": 79,
+    "cross_domain_queries": 22,
+    "scoped_queries": 57,
+    "classification_authority": "diagnostic_only; benchmark labels plus analysis-only cue audit",
+    "router_mutation": false,
+    "human_review_required": true
+  },
+  "summary": {
+    "missing_router_signal": 4,
+    "domain_ambiguous": 2,
+    "query_insufficient": 16,
+    "false_cross_domain_candidate": 4,
+    "false_scoped": 0,
+    "genuine_cross_domain_or_clarification": 18
+  },
+  "cross_domain_rows": [
+    {
+      "query_id": "S210-FT007",
+      "query": "CU 温度超过允许上限时会出现哪条报警？",
+      "query_type": "symptom",
+      "expected_domain": "industrial_drive",
+      "router_mode": "cross_domain",
+      "classification": "A_missing_router_signal",
+      "expected_action": "scope_candidate",
+      "reason": "contains a diagnostic high-signal term but current Router returned cross_domain",
+      "matched_analysis_only_high_signal": [
+        "cu"
+      ],
+      "matched_analysis_only_generic_signal": [],
+      "label_authority": "benchmark_domain_plus_analysis_only_cue_audit",
+      "requires_human_review": true
+    },
+    {
+      "query_id": "S210-FT008",
+      "query": "向可移动存储介质写数据失败，应该查哪条报警？",
+      "query_type": "symptom",
+      "expected_domain": "industrial_drive",
+      "router_mode": "cross_domain",
+      "classification": "C_query_insufficient",
+      "expected_action": "clarify_before_scoping",
+      "reason": "contains no diagnostic domain cue in the analysis-only vocabulary",
+      "matched_analysis_only_high_signal": [],
+      "matched_analysis_only_generic_signal": [],
+      "label_authority": "benchmark_domain_plus_analysis_only_cue_audit",
+      "requires_human_review": true
+    },
+    {
+      "query_id": "S210-FT009",
+      "query": "驱动器内部 RAM 磁盘无法写入对应什么报警？",
+      "query_type": "symptom",
+      "expected_domain": "industrial_drive",
+      "router_mode": "cross_domain",
+      "classification": "B_domain_ambiguous",
+      "expected_action": "cross_domain_or_clarify",
+      "reason": "contains technical vocabulary that is not unique to one domain",
+      "matched_analysis_only_high_signal": [],
+      "matched_analysis_only_generic_signal": [
+        "ram"
+      ],
+      "label_authority": "benchmark_domain_plus_analysis_only_cue_audit",
+      "requires_human_review": true
+    },
+    {
+      "query_id": "S210-FT010",
+      "query": "启动时发现参数备份文件不完整，会报告什么故障？",
+      "query_type": "symptom",
+      "expected_domain": "industrial_drive",
+      "router_mode": "cross_domain",
+      "classification": "C_query_insufficient",
+      "expected_action": "clarify_before_scoping",
+      "reason": "contains no diagnostic domain cue in the analysis-only vocabulary",
+      "matched_analysis_only_high_signal": [],
+      "matched_analysis_only_generic_signal": [],
+      "label_authority": "benchmark_domain_plus_analysis_only_cue_audit",
+      "requires_human_review": true
+    },
+    {
+      "query_id": "S210-FT011",
+      "query": "控制单元程序存储区发生 CRC 校验错误时是什么故障？",
+      "query_type": "symptom",
+      "expected_domain": "industrial_drive",
+      "router_mode": "cross_domain",
+      "classification": "C_query_insufficient",
+      "expected_action": "clarify_before_scoping",
+      "reason": "contains no diagnostic domain cue in the analysis-only vocabulary",
+      "matched_analysis_only_high_signal": [],
+      "matched_analysis_only_generic_signal": [],
+      "label_authority": "benchmark_domain_plus_analysis_only_cue_audit",
+      "requires_human_review": true
+    },
+    {
+      "query_id": "S210-FT013",
+      "query": "交流变频器散热器过热会触发哪些报警？",
+      "query_type": "symptom",
+      "expected_domain": "industrial_drive",
+      "router_mode": "cross_domain",
+      "classification": "C_query_insufficient",
+      "expected_action": "clarify_before_scoping",
+      "reason": "contains no diagnostic domain cue in the analysis-only vocabulary",
+      "matched_analysis_only_high_signal": [],
+      "matched_analysis_only_generic_signal": [],
+      "label_authority": "benchmark_domain_plus_analysis_only_cue_audit",
+      "requires_human_review": true
+    },
+    {
+      "query_id": "S210-FT014",
+      "query": "24/48 V 供电电压低于下限时会产生什么报警？",
+      "query_type": "symptom",
+      "expected_domain": "industrial_drive",
+      "router_mode": "cross_domain",
+      "classification": "B_domain_ambiguous",
+      "expected_action": "cross_domain_or_clarify",
+      "reason": "contains technical vocabulary that is not unique to one domain",
+      "matched_analysis_only_high_signal": [],
+      "matched_analysis_only_generic_signal": [
+        "24/48"
+      ],
+      "label_authority": "benchmark_domain_plus_analysis_only_cue_audit",
+      "requires_human_review": true
+    },
+    {
+      "query_id": "S210-FT015",
+      "query": "用于安全运动监控的编码器报告硬件故障，对应哪条报警？",
+      "query_type": "symptom",
+      "expected_domain": "industrial_drive",
+      "router_mode": "cross_domain",
+      "classification": "C_query_insufficient",
+      "expected_action": "clarify_before_scoping",
+      "reason": "contains no diagnostic domain cue in the analysis-only vocabulary",
+      "matched_analysis_only_high_signal": [],
+      "matched_analysis_only_generic_signal": [],
+      "label_authority": "benchmark_domain_plus_analysis_only_cue_audit",
+      "requires_human_review": true
+    },
+    {
+      "query_id": "S210-FT016",
+      "query": "存储卡中的参数备份和当前驱动不匹配，可能是什么原因？",
+      "query_type": "cause",
+      "expected_domain": "industrial_drive",
+      "router_mode": "cross_domain",
+      "classification": "C_query_insufficient",
+      "expected_action": "clarify_before_scoping",
+      "reason": "contains no diagnostic domain cue in the analysis-only vocabulary",
+      "matched_analysis_only_high_signal": [],
+      "matched_analysis_only_generic_signal": [],
+      "label_authority": "benchmark_domain_plus_analysis_only_cue_audit",
+      "requires_human_review": true
+    },
+    {
+      "query_id": "S210-FT017",
+      "query": "安全集成功能已经参数化并启用，但没有有效安全密码，会出现什么报警？",
+      "query_type": "cause",
+      "expected_domain": "industrial_drive",
+      "router_mode": "cross_domain",
+      "classification": "C_query_insufficient",
+      "expected_action": "clarify_before_scoping",
+      "reason": "contains no diagnostic domain cue in the analysis-only vocabulary",
+      "matched_analysis_only_high_signal": [],
+      "matched_analysis_only_generic_signal": [],
+      "label_authority": "benchmark_domain_plus_analysis_only_cue_audit",
+      "requires_human_review": true
+    },
+    {
+      "query_id": "S210-FT019",
+      "query": "安全参数被改动后要求暖启动或重新上电，这是哪个报警的触发场景？",
+      "query_type": "cause",
+      "expected_domain": "industrial_drive",
+      "router_mode": "cross_domain",
+      "classification": "C_query_insufficient",
+      "expected_action": "clarify_before_scoping",
+      "reason": "contains no diagnostic domain cue in the analysis-only vocabulary",
+      "matched_analysis_only_high_signal": [],
+      "matched_analysis_only_generic_signal": [],
+      "label_authority": "benchmark_domain_plus_analysis_only_cue_audit",
+      "requires_human_review": true
+    },
+    {
+      "query_id": "S210-FT020",
+      "query": "开始制动测试时制动器没有打开，会对应什么报警？",
+      "query_type": "cause",
+      "expected_domain": "industrial_drive",
+      "router_mode": "cross_domain",
+      "classification": "C_query_insufficient",
+      "expected_action": "clarify_before_scoping",
+      "reason": "contains no diagnostic domain cue in the analysis-only vocabulary",
+      "matched_analysis_only_high_signal": [],
+      "matched_analysis_only_generic_signal": [],
+      "label_authority": "benchmark_domain_plus_analysis_only_cue_audit",
+      "requires_human_review": true
+    },
+    {
+      "query_id": "S210-FT021",
+      "query": "制动测试中打开制动器超过 11 秒仍未完成，是什么报警？",
+      "query_type": "cause",
+      "expected_domain": "industrial_drive",
+      "router_mode": "cross_domain",
+      "classification": "C_query_insufficient",
+      "expected_action": "clarify_before_scoping",
+      "reason": "contains no diagnostic domain cue in the analysis-only vocabulary",
+      "matched_analysis_only_high_signal": [],
+      "matched_analysis_only_generic_signal": [],
+      "label_authority": "benchmark_domain_plus_analysis_only_cue_audit",
+      "requires_human_review": true
+    },
+    {
+      "query_id": "S210-FT022",
+      "query": "电机输出相序接错会造成哪种换向角错误？",
+      "query_type": "cause",
+      "expected_domain": "industrial_drive",
+      "router_mode": "cross_domain",
+      "classification": "C_query_insufficient",
+      "expected_action": "clarify_before_scoping",
+      "reason": "contains no diagnostic domain cue in the analysis-only vocabulary",
+      "matched_analysis_only_high_signal": [],
+      "matched_analysis_only_generic_signal": [],
+      "label_authority": "benchmark_domain_plus_analysis_only_cue_audit",
+      "requires_human_review": true
+    },
+    {
+      "query_id": "S210-FT023",
+      "query": "电机回馈能量过大时会导致哪种直流母线问题？",
+      "query_type": "cause",
+      "expected_domain": "industrial_drive",
+      "router_mode": "cross_domain",
+      "classification": "C_query_insufficient",
+      "expected_action": "clarify_before_scoping",
+      "reason": "contains no diagnostic domain cue in the analysis-only vocabulary",
+      "matched_analysis_only_high_signal": [],
+      "matched_analysis_only_generic_signal": [],
+      "label_authority": "benchmark_domain_plus_analysis_only_cue_audit",
+      "requires_human_review": true
+    },
+    {
+      "query_id": "S210-FT027",
+      "query": "安全运动监控使用的 Sensor Module 更换后，需要关注什么报警？",
+      "query_type": "remedy",
+      "expected_domain": "industrial_drive",
+      "router_mode": "cross_domain",
+      "classification": "A_missing_router_signal",
+      "expected_action": "scope_candidate",
+      "reason": "contains a diagnostic high-signal term but current Router returned cross_domain",
+      "matched_analysis_only_high_signal": [
+        "sensor module"
+      ],
+      "matched_analysis_only_generic_signal": [
+        "sensor"
+      ],
+      "label_authority": "benchmark_domain_plus_analysis_only_cue_audit",
+      "requires_human_review": true
+    },
+    {
+      "query_id": "S210-FT029",
+      "query": "功率单元的 I2t 过载报警是哪一条？",
+      "query_type": "component",
+      "expected_domain": "industrial_drive",
+      "router_mode": "cross_domain",
+      "classification": "C_query_insufficient",
+      "expected_action": "clarify_before_scoping",
+      "reason": "contains no diagnostic domain cue in the analysis-only vocabulary",
+      "matched_analysis_only_high_signal": [],
+      "matched_analysis_only_generic_signal": [],
+      "label_authority": "benchmark_domain_plus_analysis_only_cue_audit",
+      "requires_human_review": true
+    },
+    {
+      "query_id": "S210-FT030",
+      "query": "PN 组件的周期连接中断对应什么故障？",
+      "query_type": "component",
+      "expected_domain": "industrial_drive",
+      "router_mode": "cross_domain",
+      "classification": "C_query_insufficient",
+      "expected_action": "clarify_before_scoping",
+      "reason": "contains no diagnostic domain cue in the analysis-only vocabulary",
+      "matched_analysis_only_high_signal": [],
+      "matched_analysis_only_generic_signal": [],
+      "label_authority": "benchmark_domain_plus_analysis_only_cue_audit",
+      "requires_human_review": true
+    },
+    {
+      "query_id": "S210-FT031",
+      "query": "SI Motion 中安全编码器的硬件故障是什么报警？",
+      "query_type": "component",
+      "expected_domain": "industrial_drive",
+      "router_mode": "cross_domain",
+      "classification": "A_missing_router_signal",
+      "expected_action": "scope_candidate",
+      "reason": "contains a diagnostic high-signal term but current Router returned cross_domain",
+      "matched_analysis_only_high_signal": [
+        "si motion"
+      ],
+      "matched_analysis_only_generic_signal": [],
+      "label_authority": "benchmark_domain_plus_analysis_only_cue_audit",
+      "requires_human_review": true
+    },
+    {
+      "query_id": "S210-FT032",
+      "query": "Drive 侧电机换向角不正确对应哪些故障码？",
+      "query_type": "component",
+      "expected_domain": "industrial_drive",
+      "router_mode": "cross_domain",
+      "classification": "C_query_insufficient",
+      "expected_action": "clarify_before_scoping",
+      "reason": "contains no diagnostic domain cue in the analysis-only vocabulary",
+      "matched_analysis_only_high_signal": [],
+      "matched_analysis_only_generic_signal": [],
+      "label_authority": "benchmark_domain_plus_analysis_only_cue_audit",
+      "requires_human_review": true
+    },
+    {
+      "query_id": "S210-FT038",
+      "query": "故障值中的 cross-compared data number 指向哪些监控通道故障？",
+      "query_type": "alarm_value",
+      "expected_domain": "industrial_drive",
+      "router_mode": "cross_domain",
+      "classification": "C_query_insufficient",
+      "expected_action": "clarify_before_scoping",
+      "reason": "contains no diagnostic domain cue in the analysis-only vocabulary",
+      "matched_analysis_only_high_signal": [],
+      "matched_analysis_only_generic_signal": [],
+      "label_authority": "benchmark_domain_plus_analysis_only_cue_audit",
+      "requires_human_review": true
+    },
+    {
+      "query_id": "S210-FT039",
+      "query": "只知道驱动报告 STO 或监控通道问题，哪些安全故障需要一起排查？",
+      "query_type": "ambiguous_description",
+      "expected_domain": "industrial_drive",
+      "router_mode": "cross_domain",
+      "classification": "A_missing_router_signal",
+      "expected_action": "scope_candidate",
+      "reason": "contains a diagnostic high-signal term but current Router returned cross_domain",
+      "matched_analysis_only_high_signal": [
+        "sto"
+      ],
+      "matched_analysis_only_generic_signal": [],
+      "label_authority": "benchmark_domain_plus_analysis_only_cue_audit",
+      "requires_human_review": true
+    }
+  ],
+  "false_scoped_rows": [],
+  "interpretation": [
+    "A is a hypothesis for Router v2 coverage, not an automatic rule change.",
+    "B should remain cross_domain unless the product chooses a clarification interaction.",
+    "C should prefer clarification over guessing a domain.",
+    "The same benchmark must not be used to tune the Router after this taxonomy is generated."
+  ]
+}

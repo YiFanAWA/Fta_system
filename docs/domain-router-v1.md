@@ -53,4 +53,6 @@ Router 不拥有检索排名、RRF、Top-K 或 Reranker 逻辑。它只输出：
 - 生产切换前必须新增 scope 回归门禁：不能出现错误领域污染，同时不能接受关键领域内 Recall/MRR 的未解释下降；
 - 低信息查询仍应保留 `cross_domain`，不能依靠词表强行猜领域。
 
-下一步是把这套 Router 放入 shadow mode，记录真实查询的路由决策与候选差异，再决定是否需要调整规则、增加 system 级 scope，或引入 learned Router。之后进入 RAG 人工语义评测。
+Router v1 的首轮错误分类见 [Domain Router Error Taxonomy v1](domain-router-error-taxonomy-v1.md)。该分类只用于离线诊断：首轮 22 条 `cross_domain` 查询被标记为 A=4、B=2、C=16，未发现 `false_scoped`；A/B/C 均需要人工复核，不会自动反向修改规则。
+
+下一步是先完成 Query Sufficiency 与 clarification 对照实验，再决定是否需要调整规则、增加 system 级 scope，或引入 learned Router。之后进入 RAG 人工语义评测。

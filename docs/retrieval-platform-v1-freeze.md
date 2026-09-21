@@ -123,6 +123,8 @@ retrieval_backend=generic
 对照证据见 [Domain/System Router v1](domain-router-v1.md)。当前 Rule Router 将 WrongDomain@1/3/5 从
 `0.1772/0.3291/0.3797` 降为 `0/0/0`，但 R@5、R@10、MRR 有轻微下降，所以状态是开发/Shadow，不是生产默认。
 
+首轮 Router Error Taxonomy 已生成，见 [Domain Router Error Taxonomy v1](domain-router-error-taxonomy-v1.md)：22 条 `cross_domain` 查询初步分为 A=4、B=2、C=16，未发现 `false_scoped`。这些是离线诊断标签，不是专家 Gold，也不自动转化为 Router v2 规则；下一步先做 Query Sufficiency 与 clarification 对照实验。
+
 ## 7. 下一阶段
 
 只启动 `AerospaceAdapter` 的单域验证：小规模公开数据 → Common Schema 映射 → RetrievalChunk → 航空 Dev Set → Generic Pipeline。暂不做 Domain Router，不把航空逻辑写进通用核心，不构造没有证据支持的 AND/OR FTA 门。
