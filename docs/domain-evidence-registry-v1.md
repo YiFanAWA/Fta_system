@@ -45,7 +45,7 @@
 - `evaluation/quality_eval/runs/query_sufficiency_gold_v1.json`；
 - [Router v2 Policy（实验版）](router-policy-v2.md)。
 
-Query Sufficiency Gold 只包含明确人工填写的 22/79 条查询；其余 57 条仍是未审核数据，不能用于计算人工准确率。Expert Router v2 registry 也只用于离线对照，`production_enabled=false`，未替换本文件中的 v1 配置。
+原始领域信号审核材料中的 22 条重点查询仅是第一版草案；随后刘武提供了覆盖全部 79 条查询的 [query_sufficiency_gold_v1_LiuWu_expert_review.json](../evaluation/quality_eval/runs/query_sufficiency_gold_v1_LiuWu_expert_review.json)。Expert Router v2 registry 仍只用于离线对照，`production_enabled=false`，未替换本文件中的 v1 配置。
 
 ## Expert Router v2 对照结果
 
@@ -59,4 +59,4 @@ Query Sufficiency Gold 只包含明确人工填写的 22/79 条查询；其余 5
 | Rule Router v1 | 0.9241 | 0.6329 | 0 | 1.0000 | 0.4051 |
 | Expert Router v2 | 0.9241 | 0.5949 | 0.2152 | 1.0000 | 0.4051 |
 
-本结果说明：专家词表没有破坏候选召回，但在当前 79 条查询上尚未减少错误领域 Top1；不能据此直接上线 v2。Rule Router v1 的领域隔离效果更好，但其优势来自现有 identifier/领域词覆盖，仍需保持 shadow mode 并继续做查询充分性分析。
+本结果说明：专家词表没有破坏候选召回，但在当前 79 条查询上尚未减少错误领域 Top1；不能据此直接上线 v2。Rule Router v1 的领域隔离效果更好，但其优势来自现有 identifier/领域词覆盖，仍需保持 shadow mode 并继续做查询充分性分析。全量专家 Gold 的复评见 `query_sufficiency_gold_v1_evaluation_2026-09-21.md`。

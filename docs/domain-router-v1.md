@@ -61,9 +61,10 @@ Query Sufficiency 首轮诊断已完成，见 `evaluation/quality_eval/runs/mixe
 
 当前已经完成人工审核输入的结构化转换：
 
-- [query_sufficiency_gold_v1.json](../evaluation/quality_eval/runs/query_sufficiency_gold_v1.json)：22/79 条查询有人工 Gold；
+- [query_sufficiency_gold_v1_LiuWu_expert_review.json](../evaluation/quality_eval/runs/query_sufficiency_gold_v1_LiuWu_expert_review.json)：79/79 条查询有人工 Gold；
 - [domain_signal_registry_v1.json](../evaluation/quality_eval/runs/domain_signal_registry_v1.json)：22 个领域词均保留专家角色或明确排除状态；
 - [router-policy-v2.md](router-policy-v2.md)：实验策略与验收口径；
 - [expert_router_v2_comparison_v1_2026-09-21.md](../evaluation/quality_eval/runs/expert_router_v2_comparison_v1_2026-09-21.md)：三组对照结果。
+- [query_sufficiency_gold_v1_evaluation_2026-09-21.md](../evaluation/quality_eval/runs/query_sufficiency_gold_v1_evaluation_2026-09-21.md)：基于全量专家 Gold 的 Router/Sufficiency 复评。
 
-结果显示 Candidate Recall@20 三组均为 0.9241；Rule Router v1 的候选 WrongDomain@1 为 0，而 Expert Router v2 为 0.2152，与 No Router 持平。Expert Router v2 目前没有证明优于 v1，因此仍保持离线实验状态，不写入生产 Router。
+全量专家 Gold 复评显示：Rule Router v1 的 Domain Accuracy 为 0.7215、Candidate Recall@20 为 0.9241、WrongDomain@1 为 0；Expert Router v2 的 Domain Accuracy 为 0.1392、Candidate Recall@20 为 0.9241、WrongDomain@1 为 0.2152；Sufficiency + Router 的 Candidate Recall@20 降为 0.5190。Expert Router v2 目前没有证明优于 v1，因此仍保持离线实验状态，不写入生产 Router。
