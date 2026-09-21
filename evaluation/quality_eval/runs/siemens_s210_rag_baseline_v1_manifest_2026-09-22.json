@@ -1,0 +1,48 @@
+{
+  "baseline_id": "siemens_s210_rag_baseline_v1",
+  "created_at": "2026-09-22",
+  "status": "contract_passed_with_cold_start_recovery",
+  "scope": {
+    "gold_dataset": "evaluation/quality_eval/datasets/siemens_s210_rag_semantic_gold_v1_2026-09-21.json",
+    "query_count": 30,
+    "retrieval_ranker_router_changed": false,
+    "relation_expansion_enabled": true,
+    "response_contract": ["fault_code", "citations", "citation_validity", "citation_alignment"]
+  },
+  "frozen_pipeline": {
+    "embedding": "BAAI/bge-m3",
+    "main_retriever": "D2: description dense + cause dense + RRF + fault_code exact + parameter exact",
+    "auxiliary_retriever": "Alarm dense",
+    "candidate_pool": "D2 Top20 union Alarm Top10, fault_code deduplicate",
+    "reranker": "BAAI/bge-reranker-v2-m3",
+    "router": "Rule Router v1",
+    "generation_model": "deepseek-flash",
+    "device": "cpu",
+    "relation_registry": "evaluation/quality_eval/datasets/siemens_s210_fault_relation_registry_v1.json",
+    "response_prompt": "EvidenceBoundPromptBuilder current contract"
+  },
+  "api_regression": {
+    "endpoint": "POST /api/rag/query",
+    "base_url": "http://127.0.0.1:8000",
+    "top_k": 5,
+    "response_artifact": "evaluation/quality_eval/runs/siemens_s210_rag_baseline_v1_responses_2026-09-22.json",
+    "report_artifact": "evaluation/quality_eval/runs/siemens_s210_rag_baseline_v1_report_2026-09-22.json",
+    "response_count": 30,
+    "initial_http_success_count": 29,
+    "initial_cold_start_timeout_count": 1,
+    "recovered_http_success_count": 30,
+    "recovered_query_ids": ["RAG-001"],
+    "metrics": {
+      "fault_code_accuracy": 1.0,
+      "citation_validity": 1.0,
+      "citation_alignment": 1.0,
+      "answer_contract_pass_rate": 1.0
+    }
+  },
+  "interpretation": {
+    "semantic_contract_baseline": "frozen",
+    "production_readiness": "not_claimed",
+    "open_runtime_risk": "lazy model loading caused the first request to exceed the 180 second client timeout; warm retry succeeded",
+    "manual_semantic_metrics": "already recorded in the Liu Wu expert review; this artifact does not replace that review"
+  }
+}

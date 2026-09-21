@@ -1,0 +1,770 @@
+{
+  "dataset": "siemens_s210_rag_semantic_gold_v1",
+  "base_url": "http://127.0.0.1:8000",
+  "top_k": 5,
+  "response_count": 1,
+  "responses": [
+    {
+      "query_id": "RAG-001",
+      "http_status": 200,
+      "question": "故障码 A01007 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "answer": {
+        "text": "结论：A01007 表示“需要为 DRIVE-CLiQ 组件执行 POWER ON（POWER ON for DRIVE-CLiQ component required）” [A01007:E1][A01007:E3]。\n\n依据：\n- 故障码为 A01007 [A01007:E1]。\n- 故障描述/现象为 POWER ON for DRIVE-CLiQ component required [A01007:E3]。\n- 涉及组件为 DRIVE-CLiQ component [A01007:E2]。\n- 参数为 r2124 [A01007:E5]；报警值按十进制解释为 DRIVE-CLiQ 组件的组件号 [A01007:E6]。\n\n原因：\n- 可能原因为 firmware update [A01007:E4]。\n- 当前证据未说明其他可能原因。\n\n建议处理：\n- 关闭指定 DRIVE-CLiQ 组件的电源，并重新开启 [A01007:E7]。\n- 对于 SINUMERIK，自动调试会被阻止；此时所有组件都需要 POWER ON，并且必须重新启动自动调试 [A01007:E7]。\n- 当前证据未说明其他处理措施。",
+        "citations": [
+          "A01007:E1",
+          "A01007:E3",
+          "A01007:E2",
+          "A01007:E5",
+          "A01007:E6",
+          "A01007:E4",
+          "A01007:E7"
+        ],
+        "model": "deepseek-flash"
+      },
+      "retrieved": [
+        {
+          "fault_code": "A01007",
+          "score": 0.8391677737236023,
+          "rank": 1
+        },
+        {
+          "fault_code": "F01800",
+          "score": 0.011625233106315136,
+          "rank": 2
+        },
+        {
+          "fault_code": "F01630",
+          "score": 0.01140312198549509,
+          "rank": 3
+        },
+        {
+          "fault_code": "F07930",
+          "score": 0.00894280057400465,
+          "rank": 4
+        },
+        {
+          "fault_code": "A01016",
+          "score": 0.008835232816636562,
+          "rank": 5
+        }
+      ],
+      "contexts": [
+        {
+          "fault_code": "A01007",
+          "description": "POWER ON for DRIVE-CLiQ component required",
+          "component": "DRIVE-CLiQ component",
+          "related_components": [],
+          "causes": [
+            "firmware update"
+          ],
+          "parameters": [
+            "r2124"
+          ],
+          "alarm_value": "Alarm value (r2124, interpret decimal):\nComponent number of the DRIVE-CLiQ component.",
+          "remedy": "Remedy: - Switch off the power supply of the specified DRIVE-CLiQ component and switch it on again.\n- For SINUMERIK, auto commissioning is prevented. In this case, a POWER ON is required for all components and the auto\ncommissioning must be restarted.",
+          "evidence": [
+            {
+              "citation_id": "A01007:E1",
+              "field": "fault_code",
+              "quote": "A01007",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 0,
+              "end": 6
+            },
+            {
+              "citation_id": "A01007:E2",
+              "field": "primary_component",
+              "quote": "DRIVE-CLiQ component",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 20,
+              "end": 40
+            },
+            {
+              "citation_id": "A01007:E3",
+              "field": "description",
+              "quote": "POWER ON for DRIVE-CLiQ component required",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 7,
+              "end": 49
+            },
+            {
+              "citation_id": "A01007:E4",
+              "field": "cause",
+              "quote": "firmware update",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 165,
+              "end": 180
+            },
+            {
+              "citation_id": "A01007:E5",
+              "field": "parameter",
+              "quote": "r2124",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 196,
+              "end": 201
+            },
+            {
+              "citation_id": "A01007:E6",
+              "field": "alarm_value",
+              "quote": "Alarm value (r2124, interpret decimal):\nComponent number of the DRIVE-CLiQ component.",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 183,
+              "end": 268
+            },
+            {
+              "citation_id": "A01007:E7",
+              "field": "remedy",
+              "quote": "Remedy: - Switch off the power supply of the specified DRIVE-CLiQ component and switch it on again.\n- For SINUMERIK, auto commissioning is prevented. In this case, a POWER ON is required for all components and the auto\ncommissioning must be restarted.",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 347,
+              "end": 598
+            }
+          ],
+          "source_file": "",
+          "relations": []
+        },
+        {
+          "fault_code": "F01800",
+          "description": "Hardware/configuration error",
+          "component": "DRIVE-CLiQ",
+          "related_components": [],
+          "causes": [
+            "A DRIVE-CLiQ connection fault has occurred.",
+            "Communication via DRIVE-CLiQ socket X100 ... X107 has not been switched to cyclic operation; cause may be an incorrect structure or a configuration that results in an impossible bus timing.",
+            "Loss of the DRIVE-CLiQ connection; cause may be, for example, that the DRIVE-CLiQ cable was withdrawn from the Control Unit or as a result of a short-circuit for motors with DRIVE-CLiQ.",
+            "Repeated faults when detecting the connection.",
+            "A connection was detected but the node ID exchange mechanism does not function; reason is probably that the component is defective."
+          ],
+          "parameters": [
+            "r0949"
+          ],
+          "alarm_value": "Fault value (r0949, interpret decimal):\n100 ... 107:\nCommunication via DRIVE-CLiQ socket X100 ... X107 has not been switched to cyclic operation. The cause may be an\nincorrect structure or a configuration that results in an impossible bus timing.\n10:\nLoss of the DRIVE-CLiQ connection. The cause may be, for example, that the DRIVE-CLiQ cable was withdrawn from the\nControl Unit or as a result of a short-circuit for motors with DRIVE-CLiQ. This fault can only be acknowledged in cyclic\ncommunication.\n11:\nRepeated faults when detecting the connection. This fault can only be acknowledged in cyclic communication.\n12:\nA connection was detected but the node ID exchange mechanism does not function. The reason is probably that the\ncomponent is defective. This fault can only be acknowledged in cyclic communication.",
+          "remedy": "Remedy: For fault value = 100 ... 107:\n- ensure that the DRIVE-CLiQ components have the same firmware versions.\n- avoid longer topologies for short current controller sampling times.\nFor fault value = 10:\n- check the DRIVE-CLiQ cables at the Control Unit.\n- remove any short-circuit for motors with DRIVE-CLiQ.\n- carry out a POWER ON.\nFor fault value = 11:\n- check the electrical cabinet design and cable routing for EMC compliance\nFor fault value = 12:\n- replace the component involved.",
+          "evidence": [
+            {
+              "citation_id": "F01800:E1",
+              "field": "fault_code",
+              "quote": "F01800",
+              "source_id": "input_text",
+              "source_file": "S210_Manual_2019.pdf",
+              "start": 0,
+              "end": 6
+            },
+            {
+              "citation_id": "F01800:E2",
+              "field": "primary_component",
+              "quote": "DRIVE-CLiQ",
+              "source_id": "input_text",
+              "source_file": "S210_Manual_2019.pdf",
+              "start": 7,
+              "end": 17
+            },
+            {
+              "citation_id": "F01800:E3",
+              "field": "description",
+              "quote": "Hardware/configuration error",
+              "source_id": "input_text",
+              "source_file": "S210_Manual_2019.pdf",
+              "start": 19,
+              "end": 47
+            },
+            {
+              "citation_id": "F01800:E4",
+              "field": "cause",
+              "quote": "A DRIVE-CLiQ connection fault has occurred.",
+              "source_id": "input_text",
+              "source_file": "S210_Manual_2019.pdf",
+              "start": 95,
+              "end": 138
+            },
+            {
+              "citation_id": "F01800:E5",
+              "field": "parameter",
+              "quote": "r0949",
+              "source_id": "input_text",
+              "source_file": "S210_Manual_2019.pdf",
+              "start": 152,
+              "end": 157
+            },
+            {
+              "citation_id": "F01800:E6",
+              "field": "cause",
+              "quote": "Communication via DRIVE-CLiQ socket X100 ... X107 has not been switched to cyclic operation. The cause may be an\nincorrect structure or a configuration that results in an impossible bus timing.",
+              "source_id": "input_text",
+              "source_file": "S210_Manual_2019.pdf",
+              "start": 192,
+              "end": 385
+            },
+            {
+              "citation_id": "F01800:E7",
+              "field": "cause",
+              "quote": "Loss of the DRIVE-CLiQ connection. The cause may be, for example, that the DRIVE-CLiQ cable was withdrawn from the\nControl Unit or as a result of a short-circuit for motors with DRIVE-CLiQ.",
+              "source_id": "input_text",
+              "source_file": "S210_Manual_2019.pdf",
+              "start": 390,
+              "end": 579
+            },
+            {
+              "citation_id": "F01800:E8",
+              "field": "cause",
+              "quote": "Repeated faults when detecting the connection.",
+              "source_id": "input_text",
+              "source_file": "S210_Manual_2019.pdf",
+              "start": 645,
+              "end": 691
+            },
+            {
+              "citation_id": "F01800:E9",
+              "field": "cause",
+              "quote": "A connection was detected but the node ID exchange mechanism does not function. The reason is probably that the\ncomponent is defective.",
+              "source_id": "input_text",
+              "source_file": "S210_Manual_2019.pdf",
+              "start": 757,
+              "end": 892
+            },
+            {
+              "citation_id": "F01800:E10",
+              "field": "alarm_value",
+              "quote": "Fault value (r0949, interpret decimal):\n100 ... 107:\nCommunication via DRIVE-CLiQ socket X100 ... X107 has not been switched to cyclic operation. The cause may be an\nincorrect structure or a configuration that results in an impossible bus timing.\n10:\nLoss of the DRIVE-CLiQ connection. The cause may be, for example, that the DRIVE-CLiQ cable was withdrawn from the\nControl Unit or as a result of a short-circuit for motors with DRIVE-CLiQ. This fault can only be acknowledged in cyclic\ncommunication.\n11:\nRepeated faults when detecting the connection. This fault can only be acknowledged in cyclic communication.\n12:\nA connection was detected but the node ID exchange mechanism does not function. The reason is probably that the\ncomponent is defective. This fault can only be acknowledged in cyclic communication.",
+              "source_id": "input_text",
+              "source_file": "S210_Manual_2019.pdf",
+              "start": 139,
+              "end": 953
+            },
+            {
+              "citation_id": "F01800:E11",
+              "field": "remedy",
+              "quote": "Remedy: For fault value = 100 ... 107:\n- ensure that the DRIVE-CLiQ components have the same firmware versions.\n- avoid longer topologies for short current controller sampling times.\nFor fault value = 10:\n- check the DRIVE-CLiQ cables at the Control Unit.\n- remove any short-circuit for motors with DRIVE-CLiQ.\n- carry out a POWER ON.\nFor fault value = 11:\n- check the electrical cabinet design and cable routing for EMC compliance\nFor fault value = 12:\n- replace the component involved.",
+              "source_id": "input_text",
+              "source_file": "S210_Manual_2019.pdf",
+              "start": 954,
+              "end": 1441
+            }
+          ],
+          "source_file": "S210_Manual_2019.pdf",
+          "relations": []
+        },
+        {
+          "fault_code": "F01630",
+          "description": "Brake control error",
+          "component": "Safety Integrated",
+          "related_components": [],
+          "causes": [
+            "OCC cable shield is not correctly connected.",
+            "defect in the brake control circuit of the drive.",
+            "Fault in 'open brake' operation.",
+            "brake not closed or interrupted cable.",
+            "ground fault in brake cable.",
+            "Fault in 'brake open' state.",
+            "short-circuit in brake winding.",
+            "Fault in 'close brake' operation.",
+            "Fault in 'brake closed' state.",
+            "Fault in the brake control of the drive or a communication error (brake control diagnostics)."
+          ],
+          "parameters": [
+            "r0949",
+            "p1215"
+          ],
+          "alarm_value": "Fault value (r0949, decimal interpretation):\n10, 11:\nFault in \"open brake\" operation.\n- brake not closed or interrupted cable.\n- ground fault in brake cable.\n20:\nFault in \"brake open\" state.\n- short-circuit in brake winding.\n30, 31:\nFault in \"close brake\" operation.\n- brake not closed or interrupted cable.\n- short-circuit in brake winding.\n40:\nFault in \"brake closed\" state.\n50:\nFault in the brake control of the drive or a communication error (brake control diagnostics).\n442 Operating Instructions, 01/2019, A5E41702836B AC",
+          "remedy": "Remedy: - select STO and then deselect again.\n- check the motor holding brake connection.\n- check the function of the motor holding brake.\n- carry out a diagnostics routine for the faults involved.\n- check for EMC-compliant control cabinet design and cable routing (e.g. shield OCC cable with shield terminal and shield\nplate, check the connection of the brake conductors).\n- replace drive.",
+          "evidence": [
+            {
+              "citation_id": "F01630:E1",
+              "field": "fault_code",
+              "quote": "F01630",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 0,
+              "end": 6
+            },
+            {
+              "citation_id": "F01630:E2",
+              "field": "primary_component",
+              "quote": "Safety Integrated",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 86,
+              "end": 103
+            },
+            {
+              "citation_id": "F01630:E3",
+              "field": "description",
+              "quote": "Brake control error",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 14,
+              "end": 33
+            },
+            {
+              "citation_id": "F01630:E4",
+              "field": "cause",
+              "quote": "OCC cable shield is not correctly connected.",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 225,
+              "end": 269
+            },
+            {
+              "citation_id": "F01630:E5",
+              "field": "cause",
+              "quote": "defect in the brake control circuit of the drive.",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 272,
+              "end": 321
+            },
+            {
+              "citation_id": "F01630:E6",
+              "field": "cause",
+              "quote": "brake not closed or interrupted cable.",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 410,
+              "end": 448
+            },
+            {
+              "citation_id": "F01630:E7",
+              "field": "cause",
+              "quote": "ground fault in brake cable.",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 451,
+              "end": 479
+            },
+            {
+              "citation_id": "F01630:E8",
+              "field": "cause",
+              "quote": "short-circuit in brake winding.",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 515,
+              "end": 546
+            },
+            {
+              "citation_id": "F01630:E9",
+              "field": "cause",
+              "quote": "Fault in the brake control of the drive or a communication error (brake control diagnostics).",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 703,
+              "end": 796
+            },
+            {
+              "citation_id": "F01630:E10",
+              "field": "parameter",
+              "quote": "r0949",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 335,
+              "end": 340
+            },
+            {
+              "citation_id": "F01630:E11",
+              "field": "parameter",
+              "quote": "p1215",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 1369,
+              "end": 1374
+            },
+            {
+              "citation_id": "F01630:E12",
+              "field": "cause",
+              "quote": "Fault in \"open brake\" operation",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 375,
+              "end": 406
+            },
+            {
+              "citation_id": "F01630:E13",
+              "field": "cause",
+              "quote": "Fault in \"brake open\" state",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 484,
+              "end": 511
+            },
+            {
+              "citation_id": "F01630:E14",
+              "field": "cause",
+              "quote": "Fault in \"close brake\" operation",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 555,
+              "end": 587
+            },
+            {
+              "citation_id": "F01630:E15",
+              "field": "cause",
+              "quote": "Fault in \"brake closed\" state",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 668,
+              "end": 697
+            },
+            {
+              "citation_id": "F01630:E16",
+              "field": "alarm_value",
+              "quote": "Fault value (r0949, decimal interpretation):\n10, 11:\nFault in \"open brake\" operation.\n- brake not closed or interrupted cable.\n- ground fault in brake cable.\n20:\nFault in \"brake open\" state.\n- short-circuit in brake winding.\n30, 31:\nFault in \"close brake\" operation.\n- brake not closed or interrupted cable.\n- short-circuit in brake winding.\n40:\nFault in \"brake closed\" state.\n50:\nFault in the brake control of the drive or a communication error (brake control diagnostics).\n442 Operating Instructions, 01/2019, A5E41702836B AC",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 322,
+              "end": 849
+            },
+            {
+              "citation_id": "F01630:E17",
+              "field": "remedy",
+              "quote": "Remedy: - select STO and then deselect again.\n- check the motor holding brake connection.\n- check the function of the motor holding brake.\n- carry out a diagnostics routine for the faults involved.\n- check for EMC-compliant control cabinet design and cable routing (e.g. shield OCC cable with shield terminal and shield\nplate, check the connection of the brake conductors).\n- replace drive.",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 850,
+              "end": 1240
+            }
+          ],
+          "source_file": "",
+          "relations": []
+        },
+        {
+          "fault_code": "F07930",
+          "description": "Brake control error",
+          "component": "Drive",
+          "related_components": [],
+          "causes": [
+            "OCC cable shield is not correctly connected.",
+            "defect in the brake control circuit of the drive.",
+            "Fault in 'open holding brake' operation.",
+            "brake not closed or interrupted cable.",
+            "ground fault in brake cable.",
+            "Fault in 'brake open' state.",
+            "short-circuit in brake winding.",
+            "Fault in 'close holding brake' operation.",
+            "Fault in 'brake closed' state.",
+            "Fault in the brake control of the drive or a communication error (brake control diagnostics)."
+          ],
+          "parameters": [
+            "r0949",
+            "p1215"
+          ],
+          "alarm_value": "Fault value (r0949, interpret decimal):\n10, 11:\nFault in \"open holding brake\" operation.\n- brake not closed or interrupted cable.\n- ground fault in brake cable.\n20:\nFault in \"brake open\" state.\n- short-circuit in brake winding.\n30, 31:\nFault in \"close holding brake\" operation.\n- brake not closed or interrupted cable.\n- short-circuit in brake winding.\n40:\nFault in \"brake closed\" state.\n50:\nFault in the brake control of the drive or a communication error (brake control diagnostics).",
+          "remedy": "Remedy: - select STO and then deselect again.\n- check the motor holding brake connection.\n- check the function of the motor holding brake.\n- carry out a diagnostics routine for the faults involved.\n- check for EMC-compliant control cabinet design and cable routing (e.g. shield OCC cable with shield terminal and shield\nplate, check the connection of the brake conductors).\n- replace drive.",
+          "evidence": [
+            {
+              "citation_id": "F07930:E1",
+              "field": "fault_code",
+              "quote": "F07930",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 0,
+              "end": 6
+            },
+            {
+              "citation_id": "F07930:E2",
+              "field": "primary_component",
+              "quote": "Drive",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 7,
+              "end": 12
+            },
+            {
+              "citation_id": "F07930:E3",
+              "field": "description",
+              "quote": "Brake control error",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 14,
+              "end": 33
+            },
+            {
+              "citation_id": "F07930:E4",
+              "field": "cause",
+              "quote": "OCC cable shield is not correctly connected.",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 278,
+              "end": 322
+            },
+            {
+              "citation_id": "F07930:E5",
+              "field": "cause",
+              "quote": "defect in the brake control circuit of the drive.",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 325,
+              "end": 374
+            },
+            {
+              "citation_id": "F07930:E6",
+              "field": "cause",
+              "quote": "brake not closed or interrupted cable.",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 466,
+              "end": 504
+            },
+            {
+              "citation_id": "F07930:E7",
+              "field": "cause",
+              "quote": "ground fault in brake cable.",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 507,
+              "end": 535
+            },
+            {
+              "citation_id": "F07930:E8",
+              "field": "cause",
+              "quote": "short-circuit in brake winding.",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 571,
+              "end": 602
+            },
+            {
+              "citation_id": "F07930:E9",
+              "field": "cause",
+              "quote": "Fault in the brake control of the drive or a communication error (brake control diagnostics).",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 767,
+              "end": 860
+            },
+            {
+              "citation_id": "F07930:E10",
+              "field": "parameter",
+              "quote": "r0949",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 388,
+              "end": 393
+            },
+            {
+              "citation_id": "F07930:E11",
+              "field": "parameter",
+              "quote": "p1215",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 1380,
+              "end": 1385
+            },
+            {
+              "citation_id": "F07930:E12",
+              "field": "cause",
+              "quote": "Fault in \"open holding brake\" operation",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 423,
+              "end": 462
+            },
+            {
+              "citation_id": "F07930:E13",
+              "field": "cause",
+              "quote": "Fault in \"brake open\" state",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 540,
+              "end": 567
+            },
+            {
+              "citation_id": "F07930:E14",
+              "field": "cause",
+              "quote": "Fault in \"close holding brake\" operation",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 611,
+              "end": 651
+            },
+            {
+              "citation_id": "F07930:E15",
+              "field": "cause",
+              "quote": "Fault in \"brake closed\" state",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 732,
+              "end": 761
+            },
+            {
+              "citation_id": "F07930:E16",
+              "field": "alarm_value",
+              "quote": "Fault value (r0949, interpret decimal):\n10, 11:\nFault in \"open holding brake\" operation.\n- brake not closed or interrupted cable.\n- ground fault in brake cable.\n20:\nFault in \"brake open\" state.\n- short-circuit in brake winding.\n30, 31:\nFault in \"close holding brake\" operation.\n- brake not closed or interrupted cable.\n- short-circuit in brake winding.\n40:\nFault in \"brake closed\" state.\n50:\nFault in the brake control of the drive or a communication error (brake control diagnostics).",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 375,
+              "end": 860
+            },
+            {
+              "citation_id": "F07930:E17",
+              "field": "remedy",
+              "quote": "Remedy: - select STO and then deselect again.\n- check the motor holding brake connection.\n- check the function of the motor holding brake.\n- carry out a diagnostics routine for the faults involved.\n- check for EMC-compliant control cabinet design and cable routing (e.g. shield OCC cable with shield terminal and shield\nplate, check the connection of the brake conductors).\n- replace drive.",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 861,
+              "end": 1251
+            }
+          ],
+          "source_file": "",
+          "relations": []
+        },
+        {
+          "fault_code": "A01016",
+          "description": "Firmware changed",
+          "component": "",
+          "related_components": [],
+          "causes": [
+            "At least one firmware file in the directory was illegally changed on the non-volatile memory (memory card/device memory) with respect to the version when shipped from the factory.",
+            "Checksum of one file is incorrect.",
+            "File missing.",
+            "File too many.",
+            "Incorrect firmware version.",
+            "Incorrect checksum of the back-up file."
+          ],
+          "parameters": [
+            "r2124",
+            "r9925",
+            "r9926"
+          ],
+          "alarm_value": "Alarm value (r2124, interpret decimal):\n0: Checksum of one file is incorrect.\n1: File missing.\n2: File too many.\n3: Incorrect firmware version.\n4: Incorrect checksum of the back-up file.",
+          "remedy": "Remedy: For the non-volatile memory for the firmware (memory card/device memory), restore the delivery condition.",
+          "evidence": [
+            {
+              "citation_id": "A01016:E1",
+              "field": "fault_code",
+              "quote": "A01016",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 0,
+              "end": 6
+            },
+            {
+              "citation_id": "A01016:E2",
+              "field": "description",
+              "quote": "Firmware changed",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 7,
+              "end": 23
+            },
+            {
+              "citation_id": "A01016:E3",
+              "field": "cause",
+              "quote": "At least one firmware file in the directory was illegally changed on the non-volatile memory (memory card/device memory)\nwith respect to the version when shipped from the factory.",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 64,
+              "end": 243
+            },
+            {
+              "citation_id": "A01016:E4",
+              "field": "cause",
+              "quote": "Checksum of one file is incorrect.",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 287,
+              "end": 321
+            },
+            {
+              "citation_id": "A01016:E5",
+              "field": "cause",
+              "quote": "File missing.",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 325,
+              "end": 338
+            },
+            {
+              "citation_id": "A01016:E6",
+              "field": "cause",
+              "quote": "File too many.",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 342,
+              "end": 356
+            },
+            {
+              "citation_id": "A01016:E7",
+              "field": "cause",
+              "quote": "Incorrect firmware version.",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 360,
+              "end": 387
+            },
+            {
+              "citation_id": "A01016:E8",
+              "field": "cause",
+              "quote": "Incorrect checksum of the back-up file.",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 391,
+              "end": 430
+            },
+            {
+              "citation_id": "A01016:E9",
+              "field": "parameter",
+              "quote": "r2124",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 257,
+              "end": 262
+            },
+            {
+              "citation_id": "A01016:E10",
+              "field": "parameter",
+              "quote": "r9925",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 601,
+              "end": 606
+            },
+            {
+              "citation_id": "A01016:E11",
+              "field": "parameter",
+              "quote": "r9926",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 660,
+              "end": 665
+            },
+            {
+              "citation_id": "A01016:E12",
+              "field": "alarm_value",
+              "quote": "Alarm value (r2124, interpret decimal):\n0: Checksum of one file is incorrect.\n1: File missing.\n2: File too many.\n3: Incorrect firmware version.\n4: Incorrect checksum of the back-up file.",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 244,
+              "end": 430
+            },
+            {
+              "citation_id": "A01016:E13",
+              "field": "remedy",
+              "quote": "Remedy: For the non-volatile memory for the firmware (memory card/device memory), restore the delivery condition.",
+              "source_id": "input_text",
+              "source_file": "",
+              "start": 431,
+              "end": 544
+            }
+          ],
+          "source_file": "",
+          "relations": []
+        }
+      ],
+      "evidence_status": "cited",
+      "relations": [],
+      "pipeline": {
+        "name": "s210_retrieval_pipeline_v1",
+        "retriever": "BAAI/bge-m3 D2 + Alarm auxiliary",
+        "candidate_pool": "D2 Top20 union Alarm Top10, fault_code deduplicated",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "evidence_status": "cited"
+      }
+    }
+  ]
+}

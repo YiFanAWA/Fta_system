@@ -1,0 +1,115 @@
+{
+  "dataset": "siemens_s210_rag_semantic_gold_v1",
+  "query_count": 30,
+  "response_count": 1,
+  "missing_response_ids": [
+    "RAG-002",
+    "RAG-003",
+    "RAG-004",
+    "RAG-005",
+    "RAG-006",
+    "RAG-007",
+    "RAG-008",
+    "RAG-009",
+    "RAG-010",
+    "RAG-011",
+    "RAG-012",
+    "RAG-013",
+    "RAG-014",
+    "RAG-015",
+    "RAG-016",
+    "RAG-017",
+    "RAG-018",
+    "RAG-019",
+    "RAG-020",
+    "RAG-021",
+    "RAG-022",
+    "RAG-023",
+    "RAG-024",
+    "RAG-025",
+    "RAG-026",
+    "RAG-027",
+    "RAG-028",
+    "RAG-029",
+    "RAG-030"
+  ],
+  "unknown_response_ids": [],
+  "metrics": {
+    "fault_code_accuracy": 1.0,
+    "citation_validity": 1.0,
+    "citation_alignment": 1.0,
+    "answer_contract_pass_rate": 1.0
+  },
+  "manual_review_required": [
+    "unsupported_claims",
+    "cause_semantic_correctness",
+    "remedy_semantic_correctness",
+    "cross_fault_contamination"
+  ],
+  "per_query": [
+    {
+      "query_id": "RAG-001",
+      "fault_code_hit": true,
+      "mentioned_fault_codes": [
+        "A01007"
+      ],
+      "expected_fault_codes": [
+        "A01007"
+      ],
+      "citations": [
+        "A01007:E1",
+        "A01007:E3",
+        "A01007:E2",
+        "A01007:E5",
+        "A01007:E6",
+        "A01007:E4",
+        "A01007:E7"
+      ],
+      "valid_citations": [
+        "A01007:E1",
+        "A01007:E3",
+        "A01007:E2",
+        "A01007:E5",
+        "A01007:E6",
+        "A01007:E4",
+        "A01007:E7"
+      ],
+      "aligned_citations": [
+        "A01007:E1",
+        "A01007:E3",
+        "A01007:E2",
+        "A01007:E5",
+        "A01007:E6",
+        "A01007:E4",
+        "A01007:E7"
+      ],
+      "citations_valid": true,
+      "citations_aligned": true,
+      "cited_evidence_fields": [
+        "alarm_value",
+        "cause",
+        "description",
+        "fault_code",
+        "parameter",
+        "primary_component",
+        "remedy"
+      ],
+      "required_evidence_fields": [
+        "cause",
+        "description",
+        "fault_code"
+      ],
+      "missing_evidence_fields": [],
+      "answer_contract_pass": true,
+      "manual_review_required": [
+        "unsupported_claims",
+        "cause_semantic_correctness",
+        "remedy_semantic_correctness",
+        "cross_fault_contamination"
+      ]
+    }
+  ],
+  "http_statuses": {
+    "RAG-001": 200
+  }
+}
