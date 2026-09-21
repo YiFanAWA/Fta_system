@@ -6,7 +6,7 @@ from pathlib import Path
 BACKEND = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(BACKEND))
 
-from component_registry import (  # noqa: E402
+from domains.component_registry import (  # noqa: E402
     find_english_component_heading,
     normalize_component_label,
 )

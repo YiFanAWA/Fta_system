@@ -15,7 +15,7 @@ BACKEND_ROOT = PROJECT_ROOT / "backend-python"
 if str(BACKEND_ROOT) not in sys.path:
     sys.path.insert(0, str(BACKEND_ROOT))
 
-from config import OPENAI_API_BASE, OPENAI_API_KEY, OPENAI_MODEL, OPENAI_TIMEOUT_SECONDS
+from core.config import OPENAI_API_BASE, OPENAI_API_KEY, OPENAI_MODEL, OPENAI_TIMEOUT_SECONDS
 
 
 NOISE_CAUSE_RE = re.compile(r"^(?:[:：%\s].*|.*bin[\"'”’)]?.*|检查.*|重新.*|请.*|见.*)$", re.IGNORECASE)

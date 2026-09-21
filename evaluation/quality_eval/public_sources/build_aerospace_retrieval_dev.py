@@ -19,7 +19,7 @@ BACKEND = ROOT / "backend-python"
 if str(BACKEND) not in sys.path:
     sys.path.insert(0, str(BACKEND))
 
-from aerospace_adapter import FaaSdrAerospaceAdapter  # noqa: E402
+from domains.aerospace_adapter import FaaSdrAerospaceAdapter  # noqa: E402
 
 
 DEFAULT_SAMPLE = ROOT / "evaluation/quality_eval/datasets/aerospace_faa_sdr_public_sample_v1_2026-09-21.json"

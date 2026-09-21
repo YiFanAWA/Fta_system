@@ -8,8 +8,8 @@ ROOT = Path(__file__).resolve().parents[2]
 BACKEND = ROOT / "backend-python"
 sys.path.insert(0, str(BACKEND))
 
-from common_fault_schema import build_fault_entity_id  # noqa: E402
-from siemens_s210_adapter import SiemensS210Adapter  # noqa: E402
+from contracts.common_fault_schema import build_fault_entity_id  # noqa: E402
+from domains.siemens_s210_adapter import SiemensS210Adapter  # noqa: E402
 
 
 GOLD = ROOT / "evaluation/quality_eval/datasets/siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20.json"

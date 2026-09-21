@@ -6,7 +6,7 @@ from pathlib import Path
 BACKEND = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(BACKEND))
 
-from domain_evidence_registry import build_domain_scope_profiles  # noqa: E402
+from domains.domain_evidence_registry import build_domain_scope_profiles  # noqa: E402
 
 
 class DomainEvidenceRegistryTests(unittest.TestCase):

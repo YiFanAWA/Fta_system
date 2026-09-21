@@ -20,7 +20,7 @@ import sys
 if str(BACKEND) not in sys.path:
     sys.path.insert(0, str(BACKEND))
 
-from query_sufficiency import QuerySufficiencyEvaluator  # noqa: E402
+from rag.query_sufficiency import QuerySufficiencyEvaluator  # noqa: E402
 
 
 def build(report: dict[str, Any]) -> dict[str, Any]:

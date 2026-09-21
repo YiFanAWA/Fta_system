@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[3]
 BACKEND = ROOT / "backend-python"
 sys.path.insert(0, str(BACKEND))
 
-from response_policy import ResponsePolicyLayer  # noqa: E402
+from rag.response_policy import ResponsePolicyLayer  # noqa: E402
 
 
 def main() -> int:

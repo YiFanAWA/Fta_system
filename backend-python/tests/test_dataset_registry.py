@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[2]
 BACKEND = ROOT / "backend-python"
 sys.path.insert(0, str(BACKEND))
 
-from dataset_registry import (
+from domains.dataset_registry import (
     assert_valid_registry,
     count_population,
     verify_database_import,

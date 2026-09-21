@@ -17,9 +17,9 @@ BACKEND = ROOT / "backend-python"
 if str(BACKEND) not in sys.path:
     sys.path.insert(0, str(BACKEND))
 
-from extraction_contract import EvidenceField, EvidenceSpan, ExtractionResult, ExtractionStatus, FaultRecord  # noqa: E402
-from review_contract import FaultRecordReview, ReviewStatus  # noqa: E402
-from sqlite_extraction_repository import SQLiteExtractionWorkflowRepository  # noqa: E402
+from contracts.extraction_contract import EvidenceField, EvidenceSpan, ExtractionResult, ExtractionStatus, FaultRecord  # noqa: E402
+from contracts.review_contract import FaultRecordReview, ReviewStatus  # noqa: E402
+from extraction.sqlite_extraction_repository import SQLiteExtractionWorkflowRepository  # noqa: E402
 
 
 _APPROVED_DECISIONS = {"审核通过", "approved", "approve"}

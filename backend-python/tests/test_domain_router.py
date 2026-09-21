@@ -6,7 +6,7 @@ ROOT = Path(__file__).resolve().parents[2]
 BACKEND = ROOT / "backend-python"
 sys.path.insert(0, str(BACKEND))
 
-from domain_router import DomainScopeProfile, RuleBasedDomainRouter  # noqa: E402
+from domains.domain_router import DomainScopeProfile, RuleBasedDomainRouter  # noqa: E402
 
 
 class DomainRouterTests(unittest.TestCase):

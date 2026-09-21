@@ -6,7 +6,7 @@ from pathlib import Path
 BACKEND = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(BACKEND))
 
-from query_decision import QueryDecisionPolicy  # noqa: E402
+from rag.query_decision import QueryDecisionPolicy  # noqa: E402
 
 
 class QueryDecisionPolicyTests(unittest.TestCase):

@@ -14,6 +14,8 @@ docs/             API、项目说明、设计与历史文档
 scripts/          仓库结构门禁
 ```
 
+后端内部职责已经进一步拆分为 `app/`、`core/`、`contracts/`、`extraction/`、`domains/`、`rag/`、`fta/` 和 `workflows/`；详见[项目模块结构 v2](docs/project-structure-v2.md)。根目录的少量 Python 文件仅作为旧命令兼容入口，不再承载业务实现。
+
 运行时生成文件写入 `backend-python/outputs/`；Python 虚拟环境、前端依赖和构建产物均不提交到 Git。
 
 ## 本地启动
@@ -33,7 +35,7 @@ Copy-Item backend-python/.env.example backend-python/.env
 启动后端：
 
 ```powershell
-& .\.venv\Scripts\python.exe -m uvicorn api_server:app --app-dir backend-python --host 127.0.0.1 --port 8000
+& .\.venv\Scripts\python.exe -m uvicorn app.api_server:app --app-dir backend-python --host 127.0.0.1 --port 8000
 ```
 
 另开终端启动前端：

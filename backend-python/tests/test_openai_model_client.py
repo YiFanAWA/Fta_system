@@ -6,7 +6,7 @@ from pathlib import Path
 BACKEND = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(BACKEND))
 
-from openai_model_client import OpenAICompatibleModelClient  # noqa: E402
+from core.openai_model_client import OpenAICompatibleModelClient  # noqa: E402
 
 
 class _FakeCompletions:

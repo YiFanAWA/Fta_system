@@ -20,8 +20,8 @@ BACKEND = ROOT / "backend-python"
 if str(BACKEND) not in sys.path:
     sys.path.insert(0, str(BACKEND))
 
-from generic_retrieval_pipeline import GenericFaultRetrievalPipeline  # noqa: E402
-from siemens_s210_adapter import SiemensS210Adapter  # noqa: E402
+from rag.generic_retrieval_pipeline import GenericFaultRetrievalPipeline  # noqa: E402
+from domains.siemens_s210_adapter import SiemensS210Adapter  # noqa: E402
 
 
 def _codes(entity_ids: Sequence[str]) -> list[str]:

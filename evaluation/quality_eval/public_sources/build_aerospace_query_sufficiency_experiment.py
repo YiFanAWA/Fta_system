@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[3]
 if str(ROOT / "backend-python") not in sys.path:
     sys.path.insert(0, str(ROOT / "backend-python"))
 
-from aerospace_adapter import FaaSdrAerospaceAdapter  # noqa: E402
+from domains.aerospace_adapter import FaaSdrAerospaceAdapter  # noqa: E402
 
 
 def build(sample_path: Path, dev_path: Path) -> dict[str, Any]:

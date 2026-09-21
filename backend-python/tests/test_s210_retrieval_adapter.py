@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[2]
 BACKEND = ROOT / "backend-python"
 sys.path.insert(0, str(BACKEND))
 
-from s210_retrieval_adapter import (  # noqa: E402
+from rag.s210_retrieval_adapter import (  # noqa: E402
     _d2_rank,
     _extract_fault_codes,
     _extract_parameters,

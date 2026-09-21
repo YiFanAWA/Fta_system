@@ -15,7 +15,7 @@ BACKEND = ROOT / "backend-python"
 if str(BACKEND) not in sys.path:
     sys.path.insert(0, str(BACKEND))
 
-from response_policy import ResponsePolicyLayer  # noqa: E402
+from rag.response_policy import ResponsePolicyLayer  # noqa: E402
 
 
 METRIC_KEYS = ("recall_at_1", "recall_at_3", "recall_at_5", "recall_at_10", "recall_at_20", "mrr")

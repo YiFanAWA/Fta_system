@@ -6,10 +6,10 @@ from pathlib import Path
 BACKEND = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(BACKEND))
 
-from extraction_contract import EvidenceField  # noqa: E402
-from model_client import CallableModelClient  # noqa: E402
-from text_extraction_adapter import TextExtractionAdapter  # noqa: E402
-from ai_module import _evidence_span_to_legacy_dict  # noqa: E402
+from contracts.extraction_contract import EvidenceField  # noqa: E402
+from core.model_client import CallableModelClient  # noqa: E402
+from extraction.text_extraction_adapter import TextExtractionAdapter  # noqa: E402
+from workflows.ai_module import _evidence_span_to_legacy_dict  # noqa: E402
 
 
 class EvidenceMappingTests(unittest.TestCase):

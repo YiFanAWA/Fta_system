@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[2]
 BACKEND = ROOT / "backend-python"
 sys.path.insert(0, str(BACKEND))
 
-from aerospace_adapter import FaaSdrAerospaceAdapter  # noqa: E402
+from domains.aerospace_adapter import FaaSdrAerospaceAdapter  # noqa: E402
 
 
 SAMPLE = ROOT / "evaluation/quality_eval/datasets/aerospace_faa_sdr_public_sample_v1_2026-09-21.json"

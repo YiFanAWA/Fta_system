@@ -13,7 +13,7 @@ Copy-Item backend-python/.env.example backend-python/.env
 配置 `backend-python/.env` 后启动服务：
 
 ```powershell
-& .\.venv\Scripts\python.exe -m uvicorn api_server:app --app-dir backend-python --host 127.0.0.1 --port 8000 --reload
+& .\.venv\Scripts\python.exe -m uvicorn app.api_server:app --app-dir backend-python --host 127.0.0.1 --port 8000 --reload
 ```
 
 健康检查：

@@ -42,7 +42,7 @@ Set-Location $projectRoot
 
 $uvicornArgs = @(
     "-m", "uvicorn",
-    "api_server:app",
+    "app.api_server:app",
     "--host", $BindHost,
     "--port", $Port.ToString(),
     "--app-dir", $appDir

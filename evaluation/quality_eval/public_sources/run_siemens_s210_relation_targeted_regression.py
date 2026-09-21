@@ -14,22 +14,22 @@ ROOT = Path(__file__).resolve().parents[3]
 BACKEND = ROOT / "backend-python"
 sys.path.insert(0, str(BACKEND))
 
-from config import (  # noqa: E402
+from core.config import (  # noqa: E402
     OPENAI_API_BASE,
     OPENAI_API_KEY,
     OPENAI_MODEL,
     OPENAI_TIMEOUT_SECONDS,
     S210_GOLD_PATH,
 )
-from fault_relation_expansion import FaultRelationRegistry  # noqa: E402
-from openai_model_client import OpenAICompatibleModelClient  # noqa: E402
-from rag_service import (  # noqa: E402
+from rag.fault_relation_expansion import FaultRelationRegistry  # noqa: E402
+from core.openai_model_client import OpenAICompatibleModelClient  # noqa: E402
+from rag.rag_service import (  # noqa: E402
     EvidenceBoundPromptBuilder,
     GoldFaultContextStore,
     PromptAnswerGenerator,
     rag_response_to_dict,
 )
-from rag_contract import RagResponse, RetrievedFault  # noqa: E402
+from contracts.rag_contract import RagResponse, RetrievedFault  # noqa: E402
 
 
 TARGET_QUERY_IDS = ("RAG-021", "RAG-027", "RAG-028", "RAG-029", "RAG-030")

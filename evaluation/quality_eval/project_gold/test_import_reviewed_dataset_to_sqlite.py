@@ -12,7 +12,7 @@ sys.path.insert(0, str(PROJECT_GOLD))
 sys.path.insert(0, str(BACKEND))
 
 from import_reviewed_dataset_to_sqlite import import_dataset  # noqa: E402
-from sqlite_extraction_repository import SQLiteExtractionWorkflowRepository  # noqa: E402
+from extraction.sqlite_extraction_repository import SQLiteExtractionWorkflowRepository  # noqa: E402
 
 
 class ReviewedDatasetImportTests(unittest.TestCase):

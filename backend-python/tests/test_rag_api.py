@@ -8,14 +8,14 @@ if str(BACKEND_DIR) not in sys.path:
     sys.path.insert(0, str(BACKEND_DIR))
 
 import api_server  # noqa: E402
-from rag_contract import (  # noqa: E402
+from contracts.rag_contract import (  # noqa: E402
     EvidenceCitation,
     FaultContext,
     GeneratedAnswer,
     RagResponse,
     RetrievedFault,
 )
-from response_policy import RagBoundaryDecision  # noqa: E402
+from rag.response_policy import RagBoundaryDecision  # noqa: E402
 
 
 class FakeRagService:

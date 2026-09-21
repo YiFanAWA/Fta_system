@@ -16,7 +16,7 @@ BACKEND = ROOT / "backend-python"
 if str(BACKEND) not in sys.path:
     sys.path.insert(0, str(BACKEND))
 
-from dataset_registry import (  # noqa: E402
+from domains.dataset_registry import (  # noqa: E402
     DatasetRegistryError,
     REGISTRY_SCHEMA_VERSION,
     assert_valid_registry,

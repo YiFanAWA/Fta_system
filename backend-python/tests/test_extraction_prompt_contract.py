@@ -6,7 +6,7 @@ from pathlib import Path
 BACKEND = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(BACKEND))
 
-from prompt_templates import build_text_extraction_prompt  # noqa: E402
+from core.prompt_templates import build_text_extraction_prompt  # noqa: E402
 
 
 class ExtractionPromptContractTests(unittest.TestCase):

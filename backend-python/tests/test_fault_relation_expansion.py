@@ -7,9 +7,9 @@ ROOT = Path(__file__).resolve().parents[2]
 BACKEND = ROOT / "backend-python"
 sys.path.insert(0, str(BACKEND))
 
-from fault_relation_expansion import FaultRelationRegistry  # noqa: E402
-from rag_contract import EvidenceCitation, FaultContext, RetrievedFault  # noqa: E402
-from rag_service import FaultRagService  # noqa: E402
+from rag.fault_relation_expansion import FaultRelationRegistry  # noqa: E402
+from contracts.rag_contract import EvidenceCitation, FaultContext, RetrievedFault  # noqa: E402
+from rag.rag_service import FaultRagService  # noqa: E402
 
 
 def _context(code: str, description: str, evidence_id: str, field: str) -> FaultContext:

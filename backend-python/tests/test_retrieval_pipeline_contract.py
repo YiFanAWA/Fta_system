@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[2]
 BACKEND = ROOT / "backend-python"
 sys.path.insert(0, str(BACKEND))
 
-from retrieval_pipeline_contract import CandidateHit, CandidateUnion  # noqa: E402
+from contracts.retrieval_pipeline_contract import CandidateHit, CandidateUnion  # noqa: E402
 
 
 class CandidateUnionTests(unittest.TestCase):

@@ -13,14 +13,14 @@ ROOT = Path(__file__).resolve().parents[3]
 BACKEND = ROOT / "backend-python"
 sys.path.insert(0, str(BACKEND))
 
-from extraction_contract import (  # noqa: E402
+from contracts.extraction_contract import (  # noqa: E402
     EvidenceField,
     EvidenceSpan,
     ExtractionResult,
     ExtractionStatus,
     FaultRecord,
 )
-from review_preparation_service import ReviewPreparationService  # noqa: E402
+from extraction.review_preparation_service import ReviewPreparationService  # noqa: E402
 
 
 PROJECT_DATASET = ROOT / "evaluation/quality_eval/datasets/fta_project_handbook_evidence.json"

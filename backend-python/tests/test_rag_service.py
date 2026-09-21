@@ -7,8 +7,8 @@ ROOT = Path(__file__).resolve().parents[2]
 BACKEND = ROOT / "backend-python"
 sys.path.insert(0, str(BACKEND))
 
-from rag_contract import FaultContext, GeneratedAnswer, RetrievedFault  # noqa: E402
-from rag_service import (  # noqa: E402
+from contracts.rag_contract import FaultContext, GeneratedAnswer, RetrievedFault  # noqa: E402
+from rag.rag_service import (  # noqa: E402
     EvidenceBoundPromptBuilder,
     FaultRagService,
     GoldFaultContextStore,

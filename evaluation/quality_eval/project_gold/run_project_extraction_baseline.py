@@ -26,7 +26,7 @@ DEFAULT_DATASET = ROOT / "evaluation" / "quality_eval" / "datasets" / "fta_proje
 DEFAULT_OUTPUT = ROOT / "evaluation" / "quality_eval" / "runs" / "fta_project_handbook_extraction_baseline.json"
 sys.path.insert(0, str(BACKEND))
 
-from ai_module import extract_fault_result_from_text  # noqa: E402
+from workflows.ai_module import extract_fault_result_from_text  # noqa: E402
 
 
 FIELDS = ("fault_code", "description", "component", "causes", "parameters")

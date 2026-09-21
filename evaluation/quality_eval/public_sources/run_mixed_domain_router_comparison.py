@@ -17,10 +17,10 @@ for path in (BACKEND, PUBLIC_SOURCES):
     if str(path) not in sys.path:
         sys.path.insert(0, str(path))
 
-from aerospace_adapter import FaaSdrAerospaceAdapter  # noqa: E402
-from domain_evidence_registry import build_domain_scope_profiles  # noqa: E402
-from domain_router import RuleBasedDomainRouter  # noqa: E402
-from generic_retrieval_pipeline import GenericFaultRetrievalPipeline  # noqa: E402
+from domains.aerospace_adapter import FaaSdrAerospaceAdapter  # noqa: E402
+from domains.domain_evidence_registry import build_domain_scope_profiles  # noqa: E402
+from domains.domain_router import RuleBasedDomainRouter  # noqa: E402
+from rag.generic_retrieval_pipeline import GenericFaultRetrievalPipeline  # noqa: E402
 from run_mixed_domain_baseline import (  # noqa: E402
     MixedDomainEvaluationAdapter,
     _average,
@@ -29,7 +29,7 @@ from run_mixed_domain_baseline import (  # noqa: E402
     _load_queries,
     _metrics,
 )
-from siemens_s210_adapter import SiemensS210Adapter  # noqa: E402
+from domains.siemens_s210_adapter import SiemensS210Adapter  # noqa: E402
 
 
 def _profiles():

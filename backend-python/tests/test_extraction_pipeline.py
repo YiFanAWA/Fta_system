@@ -11,7 +11,7 @@ BACKEND_DIR = Path(__file__).resolve().parents[1]
 if str(BACKEND_DIR) not in sys.path:
     sys.path.insert(0, str(BACKEND_DIR))
 
-from extraction_contract import (  # noqa: E402
+from contracts.extraction_contract import (  # noqa: E402
     EvidenceField,
     EvidenceSpan,
     ExtractionDiagnostic,
@@ -19,32 +19,32 @@ from extraction_contract import (  # noqa: E402
     ExtractionStatus,
     FaultRecord,
 )
-from build_contract import BuildAttemptStatus  # noqa: E402
-from extraction_application_service import ExtractionApplicationService  # noqa: E402
-from extraction_repository import (  # noqa: E402
+from contracts.build_contract import BuildAttemptStatus  # noqa: E402
+from extraction.extraction_application_service import ExtractionApplicationService  # noqa: E402
+from extraction.extraction_repository import (  # noqa: E402
     InMemoryExtractionRepository,
     InMemoryExtractionWorkflowRepository,
 )
-from fault_extractor import RemoteLLMFaultExtractor  # noqa: E402
-from fault_tree_build_service import FaultTreeBuildService  # noqa: E402
-from fta_generator import build_fault_tree  # noqa: E402
-from model_client import (  # noqa: E402
+from extraction.fault_extractor import RemoteLLMFaultExtractor  # noqa: E402
+from extraction.fault_tree_build_service import FaultTreeBuildService  # noqa: E402
+from fta.fta_generator import build_fault_tree  # noqa: E402
+from core.model_client import (  # noqa: E402
     CallableModelClient,
     ModelClientError,
     RetryingModelClient,
 )
-from review_contract import (  # noqa: E402
+from contracts.review_contract import (  # noqa: E402
     FaultRecordReview,
     ReviewStatus,
     ReviewableExtractionResult,
 )
-from review_decision_service import ReviewDecisionService  # noqa: E402
-from review_preparation_service import ReviewPreparationService  # noqa: E402
-from review_repository import InMemoryReviewRepository  # noqa: E402
-from release_contract import ReleasedExtractionResult  # noqa: E402
-from release_service import FaultRecordReleaseService  # noqa: E402
-from sqlite_extraction_repository import SQLiteExtractionWorkflowRepository  # noqa: E402
-from text_extraction_adapter import TextExtractionAdapter  # noqa: E402
+from extraction.review_decision_service import ReviewDecisionService  # noqa: E402
+from extraction.review_preparation_service import ReviewPreparationService  # noqa: E402
+from extraction.review_repository import InMemoryReviewRepository  # noqa: E402
+from contracts.release_contract import ReleasedExtractionResult  # noqa: E402
+from extraction.release_service import FaultRecordReleaseService  # noqa: E402
+from extraction.sqlite_extraction_repository import SQLiteExtractionWorkflowRepository  # noqa: E402
+from extraction.text_extraction_adapter import TextExtractionAdapter  # noqa: E402
 
 
 class ExtractionContractTests(unittest.TestCase):

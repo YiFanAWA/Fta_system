@@ -9,9 +9,9 @@ ROOT = Path(__file__).resolve().parents[2]
 BACKEND = ROOT / "backend-python"
 sys.path.insert(0, str(BACKEND))
 
-from common_fault_schema import FaultEntity  # noqa: E402
-from domain_adapter_contract import ExactFieldMatches, RetrievalFieldValues  # noqa: E402
-from generic_retrieval_pipeline import (  # noqa: E402
+from contracts.common_fault_schema import FaultEntity  # noqa: E402
+from contracts.domain_adapter_contract import ExactFieldMatches, RetrievalFieldValues  # noqa: E402
+from rag.generic_retrieval_pipeline import (  # noqa: E402
     GenericFaultRetrievalPipeline,
     GenericRerankerDocumentBuilder,
     ParentEntityLoader,

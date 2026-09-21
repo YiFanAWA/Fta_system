@@ -8,14 +8,14 @@ if str(BACKEND_DIR) not in sys.path:
     sys.path.insert(0, str(BACKEND_DIR))
 
 import api_server  # noqa: E402
-from extraction_contract import (  # noqa: E402
+from contracts.extraction_contract import (  # noqa: E402
     ExtractionDiagnostic,
     ExtractionResult,
     ExtractionStatus,
     FaultRecord,
 )
-from extraction_repository import InMemoryExtractionWorkflowRepository  # noqa: E402
-from review_contract import FaultRecordReview, ReviewStatus  # noqa: E402
+from extraction.extraction_repository import InMemoryExtractionWorkflowRepository  # noqa: E402
+from contracts.review_contract import FaultRecordReview, ReviewStatus  # noqa: E402
 
 
 class ReviewApiTests(unittest.TestCase):

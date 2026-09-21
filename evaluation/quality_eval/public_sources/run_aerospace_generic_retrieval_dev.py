@@ -16,8 +16,8 @@ BACKEND = ROOT / "backend-python"
 if str(BACKEND) not in sys.path:
     sys.path.insert(0, str(BACKEND))
 
-from aerospace_adapter import FaaSdrAerospaceAdapter  # noqa: E402
-from generic_retrieval_pipeline import GenericFaultRetrievalPipeline  # noqa: E402
+from domains.aerospace_adapter import FaaSdrAerospaceAdapter  # noqa: E402
+from rag.generic_retrieval_pipeline import GenericFaultRetrievalPipeline  # noqa: E402
 
 
 def _average(rows: Sequence[dict[str, Any]]) -> dict[str, float]:
