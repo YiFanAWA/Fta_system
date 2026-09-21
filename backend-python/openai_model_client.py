@@ -72,6 +72,7 @@ class OpenAICompatibleModelClient:
             return self._client.chat.completions.create(
                 model=self._model,
                 messages=[{"role": "user", "content": prompt}],
+                temperature=0,
                 timeout=self._timeout_seconds,
             )
 
@@ -82,6 +83,7 @@ class OpenAICompatibleModelClient:
         return openai.ChatCompletion.create(
             model=self._model,
             messages=[{"role": "user", "content": prompt}],
+            temperature=0,
             request_timeout=self._timeout_seconds,
         )
 

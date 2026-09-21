@@ -38,7 +38,7 @@
 #### 1.5.1 系统方案创新
 （1）获得优质数据集
 - 构建“手册文本 + 历史故障记录 + 专家修订”三源数据池。
-- 建立抽取字段标准（fault_code、component、description、causes、parameters）和版本化管理。
+- 建立抽取字段标准（fault_code、component、related_components、description、causes、parameters）和版本化管理。
 
 （2）Web 页面交互设计
 - 前端提供文本输入、文件上传、结果审查、图谱查询、问答辅助一体化交互。
@@ -148,7 +148,7 @@ flowchart TD
 ```
 
 其中 `ModelClient` 只负责模型调用，`TextExtractionAdapter` 负责分块、JSON
-解析、字段校验、记录聚合和错误分级；`ExtractionResult` 是抽取阶段的统一
+解析、字段校验、保守的同故障记录归并和错误分级；`ExtractionResult` 是抽取阶段的统一
 结果合同。旧的 `extract_fault_records_from_text` 仍作为兼容投影保留，新的
 内部代码应优先消费结构化结果。
 

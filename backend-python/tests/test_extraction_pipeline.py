@@ -211,6 +211,7 @@ class SQLiteExtractionRepositoryTests(unittest.TestCase):
         record = FaultRecord(
             description="pump stopped",
             component="pump",
+            related_components=("pump", "motor"),
             causes=("motor overheated",),
             confidence=0.72,
         )
@@ -240,6 +241,7 @@ class SQLiteExtractionRepositoryTests(unittest.TestCase):
         self.assertIsNotNone(loaded)
         self.assertEqual(loaded.result_id, result.result_id)
         self.assertEqual(loaded.records[0].record_id, record.record_id)
+        self.assertEqual(loaded.records[0].related_components, ("motor",))
         self.assertEqual(loaded.records[0].causes, ("motor overheated",))
         self.assertEqual(loaded.evidence_spans[0].quote, "pump stopped")
         self.assertEqual(reopened.get_current(record.record_id).status, ReviewStatus.PENDING)
@@ -270,12 +272,12 @@ class SQLiteExtractionRepositoryTests(unittest.TestCase):
         )
         self.repository.save_extraction_with_reviews(result, (pending,))
 
-        self.assertEqual(self.repository.schema_version, 2)
+        self.assertEqual(self.repository.schema_version, 4)
         backup_path = Path(self.temp_dir.name) / "backup.sqlite3"
         self.repository.backup_to(backup_path)
 
         backup_repository = SQLiteExtractionWorkflowRepository(backup_path)
-        self.assertEqual(backup_repository.schema_version, 2)
+        self.assertEqual(backup_repository.schema_version, 4)
         self.assertIsNotNone(backup_repository.get(result.result_id))
         self.assertEqual(len(backup_repository.list_pending_review_items()), 1)
 
@@ -465,6 +467,32 @@ class TextExtractionAdapterTests(unittest.TestCase):
         self.assertEqual(result.diagnostics[0].code, "fallback_used")
         self.assertEqual(len(result.records), 1)
 
+    def test_model_records_skip_fallback_instead_of_appending_duplicates(self):
+        fallback_calls = []
+
+        def fallback(text):
+            fallback_calls.append(text)
+            return [{"description": "fallback duplicate"}]
+
+        adapter = TextExtractionAdapter(
+            CallableModelClient(
+                lambda prompt: '{"items":[{"fault_code":"F01003",'
+                '"description":"access delay","causes":[],"parameters":[]}]}'
+            ),
+            lambda text, index, total: text,
+            fallback_builder=fallback,
+        )
+
+        result = adapter.extract("fault text")
+
+        self.assertEqual(result.status, ExtractionStatus.SUCCESS)
+        self.assertEqual(len(result.records), 1)
+        self.assertEqual(fallback_calls, [])
+        fallback_report = adapter.last_chunk_reports[-1]
+        self.assertEqual(fallback_report["source"], "fallback")
+        self.assertEqual(fallback_report["status"], "skipped")
+        self.assertEqual(fallback_report["skip_reason"], "model_records_present")
+
     def test_successful_model_record_is_normalized(self):
         response = (
             '{"items":[{"fault_code":null,"description":"pump stopped",'
@@ -616,6 +644,109 @@ class ReviewPreparationServiceTests(unittest.TestCase):
 
         self.assertEqual(reviews[0].status, ReviewStatus.NOT_REQUIRED)
         self.assertEqual(reviews[0].reason, "automatic_review_not_required")
+
+    def test_populated_field_without_evidence_remains_pending(self):
+        record = FaultRecord(
+            description="pump stopped",
+            causes=("overheat",),
+            confidence=0.95,
+        )
+        result = ExtractionResult(
+            status=ExtractionStatus.SUCCESS,
+            records=(record,),
+            evidence_spans=(
+                EvidenceSpan(
+                    record_id=record.record_id,
+                    field=EvidenceField.DESCRIPTION,
+                    source_id="manual-1",
+                    quote="pump stopped",
+                    start=0,
+                    end=12,
+                ),
+            ),
+        )
+
+        review = self.service.prepare(result)[0]
+
+        self.assertEqual(review.status, ReviewStatus.PENDING)
+        self.assertIn("missing_reason_evidence", review.reason)
+
+    def test_empty_primary_component_with_related_components_needs_declaration(self):
+        record = FaultRecord(
+            description="pump stopped",
+            related_components=("motor",),
+            confidence=0.95,
+        )
+        result = ExtractionResult(
+            status=ExtractionStatus.SUCCESS,
+            records=(record,),
+            evidence_spans=(
+                EvidenceSpan(
+                    record_id=record.record_id,
+                    field=EvidenceField.DESCRIPTION,
+                    source_id="manual-1",
+                    quote="pump stopped",
+                    start=0,
+                    end=12,
+                ),
+                EvidenceSpan(
+                    record_id=record.record_id,
+                    field=EvidenceField.RELATED_COMPONENT,
+                    source_id="manual-1",
+                    quote="motor",
+                    start=20,
+                    end=25,
+                    value_index=0,
+                ),
+            ),
+        )
+
+        review = self.service.prepare(result)[0]
+
+        self.assertEqual(review.status, ReviewStatus.PENDING)
+        self.assertIn("missing_evidence:component_declaration", review.reason)
+
+    def test_component_absence_is_supported_by_declaration_evidence(self):
+        record = FaultRecord(
+            description="pump stopped",
+            related_components=("motor",),
+            confidence=0.95,
+        )
+        result = ExtractionResult(
+            status=ExtractionStatus.SUCCESS,
+            records=(record,),
+            evidence_spans=(
+                EvidenceSpan(
+                    record_id=record.record_id,
+                    field=EvidenceField.DESCRIPTION,
+                    source_id="manual-1",
+                    quote="pump stopped",
+                    start=0,
+                    end=12,
+                ),
+                EvidenceSpan(
+                    record_id=record.record_id,
+                    field=EvidenceField.RELATED_COMPONENT,
+                    source_id="manual-1",
+                    quote="motor",
+                    start=20,
+                    end=25,
+                    value_index=0,
+                ),
+                EvidenceSpan(
+                    record_id=record.record_id,
+                    field=EvidenceField.COMPONENT_DECLARATION,
+                    source_id="manual-1",
+                    quote="component none",
+                    start=13,
+                    end=27,
+                ),
+            ),
+        )
+
+        review = self.service.prepare(result)[0]
+
+        self.assertEqual(review.status, ReviewStatus.NOT_REQUIRED)
 
     def test_empty_or_failed_result_creates_no_reviews(self):
         empty_result = ExtractionResult(status=ExtractionStatus.EMPTY)

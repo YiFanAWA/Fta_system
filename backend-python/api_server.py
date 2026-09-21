@@ -22,7 +22,19 @@ from ai_module import (
 from extraction_application_service import ExtractionApplicationService
 from extraction_contract import EvidenceSpan, FaultRecord
 from build_contract import FaultTreeBuildAttempt
-from config import ALLOW_AUTOMATIC_NOT_REQUIRED_RELEASE, EXTRACTION_DB_PATH
+from config import (
+    ALLOW_AUTOMATIC_NOT_REQUIRED_RELEASE,
+    EXTRACTION_DB_PATH,
+    OPENAI_API_BASE,
+    OPENAI_API_KEY,
+    OPENAI_MODEL,
+    OPENAI_TIMEOUT_SECONDS,
+    S210_EMBEDDING_MODEL,
+    S210_GOLD_PATH,
+    S210_MODEL_CACHE_DIR,
+    S210_RAG_DEVICE,
+    S210_RERANKER_MODEL,
+)
 from fault_tree_build_application_service import (
     FaultTreeBuildApplicationService,
     ReleaseNotFoundError,
@@ -58,6 +70,16 @@ from vector_store import (
     load_records_from_file,
     simple_search,
 )
+from model_client import ModelClientError
+from openai_model_client import OpenAICompatibleModelClient
+from rag_service import (
+    FaultRagService,
+    GoldFaultContextStore,
+    PromptAnswerGenerator,
+    RagServiceError,
+    rag_response_to_dict,
+)
+from s210_retrieval_adapter import S210BgeRetriever
 from visualizer import export_visuals
 from xml_exporter import export_xml
 
@@ -111,6 +133,14 @@ class ChatRequest(BaseModel):
     use_knowledge_graph: bool = True
     system: Optional[str] = None
     tree_context: Optional[str] = None
+
+
+class RagQueryRequest(BaseModel):
+    """Evidence-bound S210 RAG query; model loading remains lazy."""
+
+    question: str = Field(..., min_length=1)
+    top_k: int = Field(default=5, ge=1, le=10)
+    debug: bool = False
 
 
 class BuildDotRequest(BaseModel):
@@ -174,6 +204,7 @@ app.add_middleware(
 app.state.extraction_workflow_repository = SQLiteExtractionWorkflowRepository(
     EXTRACTION_DB_PATH
 )
+app.state.s210_rag_service = None
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -203,6 +234,7 @@ def _fault_record_to_api_dict(record: FaultRecord) -> Dict[str, Any]:
         "record_id": record.record_id,
         "fault_code": record.fault_code,
         "component": record.component,
+        "related_components": list(record.related_components),
         "description": record.description,
         "causes": list(record.causes),
         "parameters": list(record.parameters),
@@ -1605,6 +1637,74 @@ def _is_mixed_dot_and_case_text(text: str) -> bool:
 @app.get("/api/health")
 def health() -> Dict[str, str]:
     return {"status": "ok", "build": "2026-04-15-template-parser-v12"}
+
+
+def _get_s210_rag_service() -> FaultRagService:
+    """Build the heavy S210 RAG chain only when the endpoint is first used."""
+
+    service = app.state.s210_rag_service
+    if service is not None:
+        return service
+
+    retriever = S210BgeRetriever(
+        S210_GOLD_PATH,
+        embedding_model=S210_EMBEDDING_MODEL,
+        reranker_model=S210_RERANKER_MODEL,
+        cache_dir=S210_MODEL_CACHE_DIR,
+        device=S210_RAG_DEVICE,
+    )
+    context_loader = GoldFaultContextStore(S210_GOLD_PATH)
+    model_client = OpenAICompatibleModelClient(
+        api_key=OPENAI_API_KEY,
+        model=OPENAI_MODEL,
+        timeout_seconds=OPENAI_TIMEOUT_SECONDS,
+        base_url=OPENAI_API_BASE or None,
+    )
+    generator = PromptAnswerGenerator(model_client, model_name=OPENAI_MODEL)
+    service = FaultRagService(retriever, context_loader, generator)
+    app.state.s210_rag_service = service
+    return service
+
+
+def _rag_response_to_api_dict(response, *, debug: bool) -> Dict[str, Any]:
+    payload = rag_response_to_dict(response)
+    for context in payload.get("contexts", []):
+        if not debug:
+            context.pop("raw_text", None)
+    payload["pipeline"] = {
+        "name": "s210_retrieval_pipeline_v1",
+        "retriever": "BAAI/bge-m3 D2 + Alarm auxiliary",
+        "candidate_pool": "D2 Top20 union Alarm Top10, fault_code deduplicated",
+        "reranker": "BAAI/bge-reranker-v2-m3",
+        "evidence_status": response.evidence_status,
+    }
+    if not debug:
+        for candidate in payload.get("retrieved", []):
+            candidate.pop("signals", None)
+    return payload
+
+
+@app.post("/api/rag/query")
+def query_s210_rag(req: RagQueryRequest) -> Dict[str, Any]:
+    """Run the evidence-bound S210 retrieval, context and answer chain."""
+
+    try:
+        response = _get_s210_rag_service().answer(req.question, top_k=req.top_k)
+        return _rag_response_to_api_dict(response, debug=req.debug)
+    except RagServiceError as exc:
+        raise HTTPException(
+            status_code=422,
+            detail={"code": exc.code, "message": exc.message},
+        ) from exc
+    except ModelClientError as exc:
+        raise HTTPException(
+            status_code=502,
+            detail={"code": exc.code, "message": exc.message},
+        ) from exc
+    except (TypeError, ValueError) as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail="S210 RAG query failed") from exc
 
 
 @app.post("/api/fta/extract")

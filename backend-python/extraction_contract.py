@@ -38,6 +38,7 @@ class FaultRecord:
     description: str
     fault_code: str | None = None
     component: str | None = None
+    related_components: tuple[str, ...] = ()
     causes: tuple[str, ...] = ()
     parameters: tuple[str, ...] = ()
     confidence: float | None = None
@@ -58,6 +59,22 @@ class FaultRecord:
             "component",
             _clean_optional_text(self.component, field_name="component"),
         )
+        related_components = _clean_text_tuple(
+            self.related_components,
+            field_name="related_components",
+        )
+        if self.component:
+            primary_key = "".join(self.component.casefold().split())
+            related_components = tuple(
+                value
+                for value in related_components
+                if "".join(value.casefold().split()) != primary_key
+            )
+        # ``component=None`` is meaningful: the source may explicitly say
+        # that there is no primary component while still naming associated
+        # components.  Do not promote related components into the primary
+        # field; callers can use ``related_components`` for that context.
+        object.__setattr__(self, "related_components", related_components)
         object.__setattr__(
             self,
             "causes",
@@ -81,7 +98,13 @@ class EvidenceField(str, Enum):
     """FaultRecord fields that may be grounded in source text."""
 
     FAULT_CODE = "fault_code"
+    # ``COMPONENT`` remains accepted for older persisted evidence. New
+    # extraction output uses the role-specific fields below.
     COMPONENT = "component"
+    PRIMARY_COMPONENT = "primary_component"
+    RELATED_COMPONENT = "related_component"
+    COMPONENT_DECLARATION = "component_declaration"
+    DRIVER_OBJECT_DECLARATION = "driver_object_declaration"
     DESCRIPTION = "description"
     CAUSE = "cause"
     PARAMETER = "parameter"

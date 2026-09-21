@@ -41,6 +41,7 @@ Invoke-RestMethod http://127.0.0.1:8000/api/health
 - `POST /api/fta/review`：生成分析报告和初稿审查。
 - `POST /api/kg/query`：执行 Neo4j 查询。
 - `POST /api/chat`：结合本地记录、树上下文和可选图谱进行问答。
+- `POST /api/rag/query`：运行 S210 的检索、完整故障上下文加载和证据约束回答链路。
 - `POST /api/fta/generate_agent`：执行现有的分阶段生成工作流。
 - `POST /api/fta/generate_from_file`：上传单个文档并生成。
 - `POST /api/fta/generate_from_files`：合并多个上传文档并生成。
@@ -48,8 +49,31 @@ Invoke-RestMethod http://127.0.0.1:8000/api/health
 抽取与审核工作流默认使用 SQLite 持久化，数据库文件默认位于
 `backend-python/outputs/extraction_workflow.sqlite3`。可以通过环境变量
 `EXTRACTION_DB_PATH` 指定其他路径；该配置只影响后端仓储，不改变 API 合同或前端界面。
-当前 SQLite schema 版本为 2；默认仓储按单机应用设计，SQLite 的备份由后端仓储提供，
+当前 SQLite schema 版本为 3；默认仓储按单机应用设计，SQLite 的备份由后端仓储提供，
 不建议把同一个数据库文件放在网络文件系统上供多个服务实例同时写入。
+
+### S210 RAG 查询
+
+`POST /api/rag/query` 的请求体为：
+
+```json
+{
+  "question": "控制单元温度过高怎么办？",
+  "top_k": 5,
+  "debug": false
+}
+```
+
+该接口固定使用 S210 Retrieval Pipeline v1：BGE-M3 的 description/cause 双路召回、
+fault code 和 parameter 精确匹配、Alarm 辅助召回、按 fault code 去重，以及
+`bge-reranker-v2-m3` 精排。响应包含 `answer`、`retrieved`、`contexts` 和
+`pipeline.evidence_status`。模型回答必须引用上下文中的 evidence citation；缺少引用或
+引用未知证据时，后端拒绝该回答。
+
+默认 `debug=false` 时不返回 `raw_text` 和候选的内部 signals；需要诊断检索排名时可临时
+使用 `debug=true`。模型按首次请求懒加载，相关配置见 `backend-python/.env.example` 的
+`S210_*` 和现有 OpenAI-compatible provider 配置。当前 Workbench 的 AI 对话入口已经接入
+该接口；抽取、审核、放行和建树页面仍使用原有接口。
 
 待审核查询以单条故障记录为一个审核项，返回结果 ID、抽取状态、故障记录、证据和当前审核信息：
 
@@ -69,7 +93,15 @@ Invoke-RestMethod http://127.0.0.1:8000/api/health
 }
 ```
 
+故障记录的 `component` 仍是现有前端可直接展示的合并组件文本；当一个故障关联多个组件时，
+后端同时返回 `related_components` 列表用于后续建模和审计，当前前端无需新增 UI 组件。
+
 只有当前审核状态为 `pending` 的故障记录会出现在列表中；`revision` 保留在后台审核历史中，但暂不进入普通待审核列表。批准、拒绝或没有人工审核要求的记录不会出现在列表中。失败抽取结果会保留在仓储中，但不会创建审核任务。
+
+`pending` 的自动原因按字段记录证据缺口，例如 `missing_evidence:description`、
+`missing_reason_evidence`、`missing_evidence:causes` 或 `missing_evidence:component_declaration`。
+其中 `missing_reason_evidence` 专门表示候选原因已有值但缺少直接原文证据；这只补充审核原因，
+不改变现有审核接口和前端布局。
 
 ## 放行与建树
 

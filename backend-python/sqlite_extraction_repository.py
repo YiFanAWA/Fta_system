@@ -165,7 +165,45 @@ CREATE INDEX IF NOT EXISTS idx_build_attempts_release
     ON build_attempts(release_id, sequence);
 """
 
-_SCHEMA_VERSION = 2
+_DATASET_IMPORT_SCHEMA = """
+CREATE TABLE IF NOT EXISTS dataset_imports (
+    import_id TEXT PRIMARY KEY,
+    dataset_name TEXT NOT NULL,
+    dataset_version TEXT NOT NULL,
+    source_corpus TEXT NOT NULL,
+    record_count INTEGER NOT NULL,
+    status TEXT NOT NULL,
+    created_at TEXT NOT NULL,
+    UNIQUE (dataset_name, dataset_version)
+);
+
+CREATE TABLE IF NOT EXISTS dataset_import_records (
+    import_id TEXT NOT NULL,
+    sample_id TEXT NOT NULL,
+    result_id TEXT NOT NULL,
+    record_id TEXT NOT NULL,
+    source_file TEXT,
+    source_url TEXT,
+    source_sha256 TEXT,
+    source_page_start INTEGER,
+    source_page_end INTEGER,
+    source_text TEXT NOT NULL,
+    PRIMARY KEY (import_id, sample_id),
+    UNIQUE (import_id, result_id),
+    UNIQUE (import_id, record_id),
+    FOREIGN KEY (import_id) REFERENCES dataset_imports(import_id)
+        ON DELETE CASCADE,
+    FOREIGN KEY (result_id) REFERENCES extraction_results(result_id)
+        ON DELETE RESTRICT,
+    FOREIGN KEY (record_id) REFERENCES fault_records(record_id)
+        ON DELETE RESTRICT
+);
+
+CREATE INDEX IF NOT EXISTS idx_dataset_import_records_sample
+    ON dataset_import_records(import_id, sample_id);
+"""
+
+_SCHEMA_VERSION = 4
 
 
 class SQLiteExtractionWorkflowRepository:
@@ -585,6 +623,25 @@ class SQLiteExtractionWorkflowRepository:
             connection.execute("PRAGMA user_version = 2")
             connection.commit()
 
+        current_version = int(
+            connection.execute("PRAGMA user_version").fetchone()[0]
+        )
+        if current_version < 3:
+            connection.execute(
+                "ALTER TABLE fault_records ADD COLUMN "
+                "related_components_json TEXT NOT NULL DEFAULT '[]'"
+            )
+            connection.execute("PRAGMA user_version = 3")
+            connection.commit()
+
+        current_version = int(
+            connection.execute("PRAGMA user_version").fetchone()[0]
+        )
+        if current_version < 4:
+            connection.executescript(_DATASET_IMPORT_SCHEMA)
+            connection.execute("PRAGMA user_version = 4")
+            connection.commit()
+
     @staticmethod
     def _load_build_attempt(row: sqlite3.Row) -> FaultTreeBuildAttempt:
         tree = None if row["tree_json"] is None else json.loads(row["tree_json"])
@@ -615,8 +672,9 @@ class SQLiteExtractionWorkflowRepository:
                 """
                 INSERT INTO fault_records(
                     record_id, result_id, position, fault_code, component,
+                    related_components_json,
                     description, causes_json, parameters_json, confidence
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     record.record_id,
@@ -624,6 +682,7 @@ class SQLiteExtractionWorkflowRepository:
                     position,
                     record.fault_code,
                     record.component,
+                    _json_array(record.related_components),
                     record.description,
                     _json_array(record.causes),
                     _json_array(record.parameters),
@@ -756,6 +815,7 @@ class SQLiteExtractionWorkflowRepository:
             description=row["description"],
             fault_code=row["fault_code"],
             component=row["component"],
+            related_components=tuple(_json_values(row["related_components_json"])),
             causes=causes,
             parameters=parameters,
             confidence=row["confidence"],

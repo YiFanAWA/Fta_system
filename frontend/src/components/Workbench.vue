@@ -36,7 +36,7 @@
           </div>
           <div class="ai-dialog-title" v-show="!aiDialogDocked || !aiDialogCollapsed">
             <span class="ai-title-main">AI 智能助手</span>
-            <span class="ai-title-sub">{{ aiDialogCollapsed ? '点击展开对话' : '随时询问故障树相关问题' }}</span>
+            <span class="ai-title-sub">{{ aiDialogCollapsed ? '点击展开对话' : '随时询问 S210 故障记录' }}</span>
           </div>
         </div>
 
@@ -117,12 +117,13 @@
               </div>
             </div>
           </div>
+          <div v-if="aiChatError" class="error">{{ aiChatError }}</div>
           <div class="ai-input-area">
             <div class="input-wrap">
               <textarea
                 v-model="aiChatInput"
                 class="ai-dialog-input"
-                placeholder="输入你的问题，例如：分析当前故障树的关键路径..."
+                placeholder="输入你的问题，例如：控制单元温度过高怎么办？"
                 @keydown.enter.exact.prevent="sendAiChatMessage"
                 @keydown.enter.shift.exact="insertNewline"
                 rows="1"
@@ -1418,10 +1419,10 @@ export default {
       aiChatBusy: false,
       aiChatMessages: [],
       quickActions: [
-        { label: '分析关键路径', query: '请分析当前故障树的关键路径' },
-        { label: '解释逻辑结构', query: '解释这个故障树的逻辑结构' },
-        { label: '优化建议', query: '有什么优化这个故障树的建议？' },
-        { label: '概率计算', query: '如何计算这个故障树的发生概率？' }
+        { label: '控制单元过热', query: '控制单元温度过高是什么报警？' },
+        { label: '固件下载失败', query: 'DRIVE-CLiQ 组件固件下载失败的可能原因是什么？' },
+        { label: '查询 p7829', query: 'p7829 是哪个故障的关联参数？' },
+        { label: '直流母线过压', query: '直流母线过压可能对应哪些故障记录？' }
       ],
       // 新的导航栏状态
       navExpanded: false,
@@ -2791,7 +2792,7 @@ export default {
         const detail = payload?.detail
         const message = typeof detail === 'string'
           ? detail
-          : detail?.message || JSON.stringify(detail || {})
+          : detail?.message || (detail ? JSON.stringify(detail) : '')
         throw new Error(message || `请求失败：${response.status}`)
       }
       return payload || {}
@@ -3114,25 +3115,21 @@ export default {
     },
 
     async requestAiChatAnswer(question) {
-      const treeContext = this.buildTreeContextForChat()
-      const response = await fetch(`${API_BASE}/api/chat`, {
+      const payload = await this.requestWorkflowJson('/api/rag/query', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           question,
-          top_k: 3,
-          use_knowledge_graph: !!this.aiUseKnowledgeGraph,
-          system: String(this.aiSystem || '').trim() || undefined,
-          tree_context: treeContext || undefined
+          top_k: 5,
+          debug: false
         })
       })
 
-      const payload = await response.json()
-      if (!response.ok || !payload?.success) {
-        throw new Error(payload?.detail || '问答请求失败')
+      const answer = String(payload?.answer?.text || '').trim()
+      if (!answer) {
+        throw new Error('RAG 未返回有效回答')
       }
 
-      return String(payload.answer || '').trim()
+      return answer
     },
 
     buildTreeContextForChat() {

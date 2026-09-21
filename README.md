@@ -61,6 +61,18 @@ npm run build --prefix frontend
 
 仓库保留了 2026-03-31 的[通用指标报告](evaluation/quality_eval/runs/metric_report_20260331_122935.json)和[事件逻辑报告](evaluation/quality_eval/runs/event_logic_report_20260331_134338.json)。它们是历史基线，只说明当时那次运行，不代表当前提交已经重新完成模型、Neo4j 或在线 API 的端到端评测。
 
+公开资料证据评测集的生成器和边界见 [公开资料证据标注集](evaluation/quality_eval/public_evidence/README.md)。该评测集保留来源、原文位置和 `unknown` 状态，属于来源标注的临时数据，不等同于专家确认的 FTA 金标数据。
+
+软逻辑训练中间格式、来源清单和“模型软判断 + 后端硬约束”边界见 [软逻辑训练数据合同](evaluation/quality_eval/soft_logic_training/README.md)。它统一公开维修日志、OMIn 与项目手册样本；车辆故障候选数据在原始归档和列合同完成核验前保持 `pending`，不生成假样本。
+
+项目自身手册的证据集见 [项目手册证据集](evaluation/quality_eval/project_gold/README.md)，当前从手册中生成 27 条带原文证据的样本，仍不是专家确认的工程金标。
+
+当前抽取器的修复后只读基线报告为 [项目抽取基线](evaluation/quality_eval/runs/fta_project_handbook_extraction_baseline_after_evidence.json)：8 条均返回成功，证据跨度为 56/56 且全部通过原文偏移校验；这只证明证据绑定链路可用，不代表工程因果或逻辑门已经得到专家确认。
+
+针对记录边界、A 类故障码和 r 类参数规则修正后，最新 [27 条项目抽取基线](evaluation/quality_eval/runs/fta_project_handbook_extraction_baseline_semantic_v2.json) 中 27 条请求均成功，且每条样本均归并为一条故障记录。预测证据跨度 196/196 在结构上可回指输入文本；当前临时标注期望 154 条，差异部分来自多组件字段的后台证据。故障码 F1=1.0000、故障现象 F1=0.9630、组件 F1=0.9167、故障值场景候选 F1=0.4167、参数 F1=0.9931。该报告用于验证抽取规则改善，不代表专家语义金标。
+
+2026-09-19 的 [在线基线报告](evaluation/quality_eval/runs/fta_project_handbook_online_baseline_after_fallback_merge.json) 在当前 DeepSeek API 配置下重新运行了 27 条样本；修复兜底归并后每条只保留 1 条记录，196 个证据跨度均能回指原文。结构合法率和 FTA 文件产出率均为 100%，但这仍不是专家语义金标，且疑似幻觉率只是字符串启发式指标。
+
 ## 当前边界
 
 - 当前主线是 Python AI/FTA 后端与 Vue 前端；Java 后端尚未创建。

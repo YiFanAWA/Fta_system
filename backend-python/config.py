@@ -27,7 +27,7 @@ DEEPSEEK_BASE_URL = os.getenv(
 	"DEEPSEEK_BASE_URL",
 	"https://api.deepseek.com",
 )
-DEEPSEEK_MODEL = os.getenv("DEEPSEEK_MODEL", "deepseek-v4-flash")
+DEEPSEEK_MODEL = os.getenv("DEEPSEEK_MODEL", "deepseek-flash")
 
 QWEN_API_KEY = os.getenv("QWEN_API_KEY", "")
 QWEN_BASE_URL = os.getenv(
@@ -72,6 +72,28 @@ EXTRACTION_DB_PATH = os.getenv(
 	"EXTRACTION_DB_PATH",
 	str(Path(__file__).with_name("outputs") / "extraction_workflow.sqlite3"),
 )
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+S210_GOLD_PATH = os.getenv(
+	"S210_GOLD_PATH",
+	str(
+		PROJECT_ROOT
+		/ "evaluation"
+		/ "quality_eval"
+		/ "datasets"
+		/ "siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20.json"
+	),
+)
+S210_EMBEDDING_MODEL = os.getenv("S210_EMBEDDING_MODEL", "BAAI/bge-m3")
+S210_RERANKER_MODEL = os.getenv(
+	"S210_RERANKER_MODEL",
+	"BAAI/bge-reranker-v2-m3",
+)
+S210_MODEL_CACHE_DIR = os.getenv(
+	"S210_MODEL_CACHE_DIR",
+	str(PROJECT_ROOT / "tmp" / "retrieval_models" / "huggingface"),
+)
+S210_RAG_DEVICE = os.getenv("S210_RAG_DEVICE", "cpu")
 
 ALLOW_AUTOMATIC_NOT_REQUIRED_RELEASE = os.getenv(
 	"ALLOW_AUTOMATIC_NOT_REQUIRED_RELEASE",

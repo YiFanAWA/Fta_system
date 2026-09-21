@@ -15,6 +15,7 @@ from extraction_contract import (
     ExtractionResult,
     ExtractionStatus,
 )
+from fault_extractor import is_diagnostic_index_only, normalize_cause_text
 from model_client import ModelClient, RetryingModelClient
 from openai_model_client import OpenAICompatibleModelClient
 from prompt_templates import (
@@ -311,6 +312,31 @@ def _normalize_text_fault_item(item: Dict[str, Any]) -> Optional[Dict[str, Any]]
     if not isinstance(component, str):
         component = ""
 
+    related_components_raw = item.get(
+        "related_components",
+        item.get("components", []),
+    )
+    if isinstance(related_components_raw, str):
+        related_components_raw = [related_components_raw]
+    if not isinstance(related_components_raw, list):
+        related_components_raw = []
+    related_components: List[str] = []
+    related_seen = set()
+    for related in related_components_raw:
+        if not isinstance(related, str):
+            continue
+        name = related.strip()
+        if not name or name in related_seen:
+            continue
+        related_seen.add(name)
+        related_components.append(name)
+    primary_key = "".join(component.strip().casefold().split())
+    related_components = [
+        value
+        for value in related_components
+        if "".join(value.casefold().split()) != primary_key
+    ]
+
     causes_raw = item.get("causes", [])
     if not isinstance(causes_raw, list):
         causes_raw = []
@@ -319,8 +345,8 @@ def _normalize_text_fault_item(item: Dict[str, Any]) -> Optional[Dict[str, Any]]
     for cause in causes_raw:
         if not isinstance(cause, str):
             continue
-        name = cause.strip()
-        if not name or name in cause_seen:
+        name = normalize_cause_text(cause)
+        if not name or is_diagnostic_index_only(name) or name in cause_seen:
             continue
         cause_seen.add(name)
         causes.append(name)
@@ -342,6 +368,7 @@ def _normalize_text_fault_item(item: Dict[str, Any]) -> Optional[Dict[str, Any]]
     return {
         "fault_code": fault_code.strip().upper() if fault_code else None,
         "component": component.strip(),
+        "related_components": related_components,
         "description": description.strip(),
         "causes": causes,
         "parameters": parameters,
@@ -360,6 +387,7 @@ def _merge_fault_records(records: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         key = (
             "code",
             code,
+            normalized.get("description", ""),
         ) if code else (
             "fact",
             normalized.get("component", ""),
@@ -372,9 +400,9 @@ def _merge_fault_records(records: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
 
         if not entry.get("description") and normalized.get("description"):
             entry["description"] = normalized["description"]
-        if not entry.get("component") and normalized.get("component"):
-            entry["component"] = normalized["component"]
-
+        for component in normalized.get("related_components", []):
+            if component not in entry["related_components"]:
+                entry["related_components"].append(component)
         for cause in normalized.get("causes", []):
             if cause not in entry["causes"]:
                 entry["causes"].append(cause)
@@ -583,6 +611,7 @@ def _record_to_legacy_dict(record) -> Dict[str, Any]:
         "record_id": record.record_id,
         "fault_code": record.fault_code,
         "component": record.component or "",
+        "related_components": list(record.related_components),
         "description": record.description,
         "causes": list(record.causes),
         "parameters": list(record.parameters),
@@ -590,6 +619,19 @@ def _record_to_legacy_dict(record) -> Dict[str, Any]:
     if record.confidence is not None:
         result["confidence"] = record.confidence
     return result
+
+
+def _evidence_span_to_legacy_dict(span) -> Dict[str, Any]:
+    """Project the structured evidence contract through the legacy API path."""
+    return {
+        "record_id": span.record_id,
+        "field": span.field.value,
+        "source_id": span.source_id,
+        "quote": span.quote,
+        "start": span.start,
+        "end": span.end,
+        "value_index": span.value_index,
+    }
 
 
 def _diagnostic_to_dict(diagnostic: ExtractionDiagnostic) -> Dict[str, Any]:
@@ -642,6 +684,9 @@ def extract_fault_records_from_text(
         "chunk_size_chars": chunk_size_chars,
         "overlap_chars": overlap_chars,
         "records": [_record_to_legacy_dict(record) for record in result.records],
+        "evidence_spans": [
+            _evidence_span_to_legacy_dict(span) for span in result.evidence_spans
+        ],
         "chunks": chunk_reports,
         "status": result.status.value,
         "diagnostics": [
