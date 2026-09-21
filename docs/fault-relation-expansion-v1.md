@@ -32,7 +32,7 @@ Evidence-bound RAG Answer
 | A01709 ↔ A30709 | `paired_fault_message` | `p9553` | 相同 description + 参数 evidence |
 | A01711 ↔ A30711 | `paired_fault_message` | `r9725` | 相同 description + 参数 evidence |
 
-这 5 条当前状态均为 `expert_reviewed_pending_targeted_rereview`。含义是：关系候选有专家审核问题作为来源，并已完成代码回归，但修正后的回答仍需专家只针对这 5 条再次确认。
+这 5 条已由刘武专家完成定向复审，当前状态为 `expert_validated`。5 条关系的完整性、类型、证据支持均通过，且均确认不存在无依据的参数语义扩展。
 
 ## 实现边界
 
@@ -72,21 +72,22 @@ Evidence-bound RAG Answer
 
 这里的 1.0000 只证明结构合同和证据链没有回归，不代表 5 条关系已经获得专家最终通过。
 
-## 专家定向复审
+## 专家定向复审结果
 
-待专家填写的清单：
+专家已填写并通过的结果：
 
-- 文本版：[siemens_s210_fault_relation_targeted_expert_review_v1_2026-09-21.md](../evaluation/quality_eval/runs/siemens_s210_fault_relation_targeted_expert_review_v1_2026-09-21.md)
-- JSON 版：[siemens_s210_fault_relation_targeted_expert_review_v1_2026-09-21.json](../evaluation/quality_eval/runs/siemens_s210_fault_relation_targeted_expert_review_v1_2026-09-21.json)
+- 原始待审清单：[siemens_s210_fault_relation_targeted_expert_review_v1_2026-09-21.md](../evaluation/quality_eval/runs/siemens_s210_fault_relation_targeted_expert_review_v1_2026-09-21.md)
+- 正式 JSON 结果：[siemens_s210_fault_relation_expert_review_v1_2026-09-21.json](../evaluation/quality_eval/runs/siemens_s210_fault_relation_expert_review_v1_2026-09-21.json)
+- 正式文本报告：[siemens_s210_fault_relation_expert_review_v1_2026-09-21.md](../evaluation/quality_eval/runs/siemens_s210_fault_relation_expert_review_v1_2026-09-21.md)
 
-专家只需复审 5 条，不需要重做全部 30 条。每条标注：关系完整性、关系类型、关系证据支持、是否存在无依据参数语义、总体结论。专家填写完成后，才能把注册表状态从 `expert_reviewed_pending_targeted_rereview` 更新为正式可用状态，并决定是否冻结 RAG Semantic Gold v1。
+专家只复审了 5 条，不需要重做全部 30 条。结果为 5/5 `pass`，因此关系注册表可以作为 RAG Answer 的正式关系层配置使用；这不等同于已经完成因果关系 Gold、AND/OR 标注或自动 FTA 建树验收。
 
 ## 下一步边界
 
 当前可以继续做：
 
-- 将清单交给刘武专家完成 5 条定向复审。
-- 专家通过后，将 5 条关系写入正式 Relation Gold，并重新生成 5 条回答报告。
+- 将 5 条已通过关系纳入 RAG Semantic Gold v1 的正式审计记录。
+- 对新问题继续采用同样的“关系证据 + 定向专家复审”流程。
 
 当前不应做：
 

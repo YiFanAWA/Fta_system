@@ -1,7 +1,7 @@
 {
   "schema_version": "s210_fault_relation_registry_v1",
-  "status": "candidate_from_expert_review",
-  "authority_notice": "关系来自刘武专家对 RAG-021、RAG-027、RAG-028、RAG-029、RAG-030 的审核问题定位；回答策略修正后仍需这 5 条目标复审。",
+  "status": "expert_validated",
+  "authority_notice": "关系来自刘武专家对 RAG-021、RAG-027、RAG-028、RAG-029、RAG-030 的定向复审；5 条关系均为 complete/correct/supported/pass。",
   "relations": [
     {
       "relation_id": "S210-REL-001",
@@ -13,7 +13,7 @@
         {"fault_code": "A01693", "citation_id": "A01693:E4", "field": "cause"},
         {"fault_code": "F01679", "citation_id": "F01679:E4", "field": "cause"}
       ],
-      "review_status": "expert_reviewed_pending_targeted_rereview"
+      "review_status": "expert_reviewed"
     },
     {
       "relation_id": "S210-REL-002",
@@ -25,7 +25,7 @@
         {"fault_code": "A01706", "citation_id": "A01706:E5", "field": "parameter"},
         {"fault_code": "F01682", "citation_id": "F01682:E10", "field": "parameter"}
       ],
-      "review_status": "expert_reviewed_pending_targeted_rereview"
+      "review_status": "expert_reviewed"
     },
     {
       "relation_id": "S210-REL-003",
@@ -39,7 +39,7 @@
         {"fault_code": "A01707", "citation_id": "A01707:E5", "field": "parameter"},
         {"fault_code": "A30707", "citation_id": "A30707:E5", "field": "parameter"}
       ],
-      "review_status": "expert_reviewed_pending_targeted_rereview"
+      "review_status": "expert_reviewed"
     },
     {
       "relation_id": "S210-REL-004",
@@ -53,7 +53,7 @@
         {"fault_code": "A01709", "citation_id": "A01709:E5", "field": "parameter"},
         {"fault_code": "A30709", "citation_id": "A30709:E5", "field": "parameter"}
       ],
-      "review_status": "expert_reviewed_pending_targeted_rereview"
+      "review_status": "expert_reviewed"
     },
     {
       "relation_id": "S210-REL-005",
@@ -67,7 +67,7 @@
         {"fault_code": "A01711", "citation_id": "A01711:E7", "field": "parameter"},
         {"fault_code": "A30711", "citation_id": "A30711:E18", "field": "parameter"}
       ],
-      "review_status": "expert_reviewed_pending_targeted_rereview"
+      "review_status": "expert_reviewed"
     }
   ]
 }

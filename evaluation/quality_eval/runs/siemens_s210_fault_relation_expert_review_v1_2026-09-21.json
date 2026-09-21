@@ -1,0 +1,21 @@
+{
+  "review_type": "siemens_s210_fault_relation_targeted_expert_review_v1",
+  "reviewer": "刘武",
+  "review_date": "2026-09-21",
+  "status": "expert_validated",
+  "scope": ["RAG-021", "RAG-027", "RAG-028", "RAG-029", "RAG-030"],
+  "annotations": [
+    {"query_id": "RAG-021", "relation_completeness": "complete", "relation_type_correctness": "correct", "relation_evidence_support": "supported", "unsupported_parameter_semantics": "no", "overall_decision": "pass"},
+    {"query_id": "RAG-027", "relation_completeness": "complete", "relation_type_correctness": "correct", "relation_evidence_support": "supported", "unsupported_parameter_semantics": "no", "overall_decision": "pass"},
+    {"query_id": "RAG-028", "relation_completeness": "complete", "relation_type_correctness": "correct", "relation_evidence_support": "supported", "unsupported_parameter_semantics": "no", "overall_decision": "pass"},
+    {"query_id": "RAG-029", "relation_completeness": "complete", "relation_type_correctness": "correct", "relation_evidence_support": "supported", "unsupported_parameter_semantics": "no", "overall_decision": "pass"},
+    {"query_id": "RAG-030", "relation_completeness": "complete", "relation_type_correctness": "correct", "relation_evidence_support": "supported", "unsupported_parameter_semantics": "no", "overall_decision": "pass"}
+  ],
+  "summary": {
+    "relation_completeness_complete": 5,
+    "relation_type_correct": 5,
+    "relation_evidence_supported": 5,
+    "unsupported_parameter_semantics_no": 5,
+    "overall_pass": 5
+  }
+}
