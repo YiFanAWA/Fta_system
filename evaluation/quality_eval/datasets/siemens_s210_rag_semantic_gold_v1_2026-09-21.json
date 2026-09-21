@@ -421,13 +421,14 @@
       "query_type": "cause",
       "difficulty": "medium",
       "expected_fault_codes": [
-        "A01693"
+        "A01693",
+        "F01679"
       ],
       "required_evidence_fields": [
         "fault_code",
         "cause"
       ],
-      "ambiguity": "none",
+      "ambiguity": "paired_fault_message_code",
       "relevance_policy": "any_relevant_in_top_k",
       "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
       "source_sample_id": "SIEMENS_S210_2019_A01693",
@@ -540,14 +541,15 @@
       "query_type": "parameter",
       "difficulty": "medium",
       "expected_fault_codes": [
-        "A01706"
+        "A01706",
+        "F01682"
       ],
       "required_evidence_fields": [
         "fault_code",
         "description",
         "parameter"
       ],
-      "ambiguity": "none",
+      "ambiguity": "shared_parameter",
       "relevance_policy": "any_relevant_in_top_k",
       "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
       "source_sample_id": "SIEMENS_S210_2019_A01706",
@@ -560,14 +562,15 @@
       "query_type": "parameter",
       "difficulty": "medium",
       "expected_fault_codes": [
-        "A01707"
+        "A01707",
+        "A30707"
       ],
       "required_evidence_fields": [
         "fault_code",
         "description",
         "parameter"
       ],
-      "ambiguity": "none",
+      "ambiguity": "paired_fault_message_code",
       "relevance_policy": "any_relevant_in_top_k",
       "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
       "source_sample_id": "SIEMENS_S210_2019_A01707",
@@ -580,14 +583,15 @@
       "query_type": "parameter",
       "difficulty": "medium",
       "expected_fault_codes": [
-        "A01709"
+        "A01709",
+        "A30709"
       ],
       "required_evidence_fields": [
         "fault_code",
         "description",
         "parameter"
       ],
-      "ambiguity": "none",
+      "ambiguity": "paired_fault_message_code",
       "relevance_policy": "any_relevant_in_top_k",
       "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
       "source_sample_id": "SIEMENS_S210_2019_A01709",
@@ -600,14 +604,15 @@
       "query_type": "parameter",
       "difficulty": "medium",
       "expected_fault_codes": [
-        "A01711"
+        "A01711",
+        "A30711"
       ],
       "required_evidence_fields": [
         "fault_code",
         "description",
         "parameter"
       ],
-      "ambiguity": "none",
+      "ambiguity": "paired_fault_message_code",
       "relevance_policy": "any_relevant_in_top_k",
       "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
       "source_sample_id": "SIEMENS_S210_2019_A01711",

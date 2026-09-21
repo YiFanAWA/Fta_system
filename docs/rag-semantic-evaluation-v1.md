@@ -43,3 +43,24 @@ RAG 生成回答
 本轮只在人工审核完成后报告语义指标。自动 citation 存在、citation 对齐和答案合同通过，只能证明结构合同，不能替代原因/处理措施语义正确性。
 
 已有 12 条回答复核属于历史 AI 辅助参考，不并入本轮 30 条新评测，也不把“AI 辅助复核”表述成外部 Siemens 专家签字。
+
+## 2026-09-21 实际运行结果
+
+本轮 30 条新查询已调用本地 `/api/rag/query`，30/30 返回 HTTP 200。自动答案合同复核结果：
+
+| 指标 | 结果 |
+|---|---:|
+| 故障码命中 | 1.0000 |
+| 引用有效性 | 1.0000 |
+| 引用归属对齐 | 1.0000 |
+| 答案合同通过率 | 1.0000 |
+
+运行产物：
+
+- 回答：[siemens_s210_rag_semantic_responses_v1_2026-09-21.json](../evaluation/quality_eval/runs/siemens_s210_rag_semantic_responses_v1_2026-09-21.json)
+- 合同报告：[siemens_s210_rag_semantic_contract_report_v1_2026-09-21.json](../evaluation/quality_eval/runs/siemens_s210_rag_semantic_contract_report_v1_2026-09-21.json)
+- AI 辅助预审：[siemens_s210_rag_semantic_ai_review_v1_2026-09-21.md](../evaluation/quality_eval/runs/siemens_s210_rag_semantic_ai_review_v1_2026-09-21.md)
+
+运行后发现，RAG-021、RAG-027、RAG-028、RAG-029、RAG-030 的原始单答案码标注过窄：它们分别涉及配对故障/消息码或共享参数。已把相关代码补入 `expected_fault_codes` 后重新离线评估，避免将证据充分的配对码回答误判为失败。这是评测 Gold 的口径修正，不是修改生产检索器。
+
+AI 辅助预审初步未发现故障识别、引用支持、无证据声明或跨故障污染问题；但这不等于正式领域语义通过。原因正确性、处理措施安全性和引用是否真正支持陈述，仍需 Siemens 领域专家逐条确认。

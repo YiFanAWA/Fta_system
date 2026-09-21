@@ -1,0 +1,729 @@
+{
+  "report_type": "siemens_s210_rag_semantic_ai_assisted_preliminary_review_v1",
+  "created_at": "2026-09-21",
+  "status": "ai_assisted_preliminary_review_pending_external_domain_expert_confirmation",
+  "dataset": {
+    "name": "siemens_s210_rag_semantic_gold_v1",
+    "version": "2026-09-21",
+    "query_count": 30,
+    "source_gold": "siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+    "source_gold_count": 281,
+    "split": "rag_semantic_review_draft",
+    "status": "draft_pending_human_semantic_review",
+    "expert_gold": false,
+    "production_claim": false,
+    "reuse_policy": "do_not_use_to_tune_retrieval_or_claim_rag_semantic_accuracy_before_review",
+    "query_type_counts": {
+      "fault_code": 8,
+      "symptom": 7,
+      "cause": 6,
+      "remedy": 5,
+      "parameter": 4
+    },
+    "evaluation_dimensions": [
+      "fault_identification",
+      "cause_correctness",
+      "remedy_correctness",
+      "citation_support",
+      "unsupported_claims",
+      "cross_fault_contamination"
+    ]
+  },
+  "run_artifacts": {
+    "responses": "evaluation/quality_eval/runs/siemens_s210_rag_semantic_responses_v1_2026-09-21.json",
+    "contract_report": "evaluation/quality_eval/runs/siemens_s210_rag_semantic_contract_report_v1_2026-09-21.json"
+  },
+  "authority_notice": "本报告不是外部 Siemens 领域专家签字。它是基于回答文本、证据引用和自动合同结果的 AI 辅助预审；正式语义 Gold 仍需领域专家确认。",
+  "contract_metrics": {
+    "fault_code_accuracy": 1.0,
+    "citation_validity": 1.0,
+    "citation_alignment": 1.0,
+    "answer_contract_pass_rate": 1.0
+  },
+  "preliminary_semantic_summary": {
+    "fault_identification_correct": 30,
+    "cause_queries_preliminarily_correct": 6,
+    "remedy_queries_preliminarily_correct": 5,
+    "citation_support_preliminarily_supported": 30,
+    "unsupported_claims_not_observed": 30,
+    "cross_fault_contamination_not_observed": 30,
+    "formal_semantic_metrics_claimed": false
+  },
+  "review_dimensions": [
+    "fault_identification",
+    "cause_correctness",
+    "remedy_correctness",
+    "citation_support",
+    "unsupported_claims",
+    "cross_fault_contamination"
+  ],
+  "rows": [
+    {
+      "query_id": "RAG-001",
+      "question": "故障码 A01007 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "expected_fault_codes": [
+        "A01007"
+      ],
+      "mentioned_fault_codes": [
+        "A01007"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "not_requested",
+      "remedy_correctness": "not_requested",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答给出了与查询故障现象对应的故障码，并引用了故障码/描述证据。",
+      "answer_excerpt": "结论：A01007 表示“POWER ON for DRIVE-CLiQ component required”，即需要为 DRIVE-CLiQ 组件执行 POWER ON/上电 [A01007:E1][A01007:E3]；涉及组件为 DRIVE-CLiQ component [A01007:E2]。\n\n依据：\n- 故障码为 A01007 [A01007:E1]。\n- 故障现象/描述为 POWER ON for DRIVE-CLiQ component required [A01007:E3]。\n- 主要组件为 DRIVE-CLiQ component [A01007:E2]。\n- 关联参数为 r2124 [A01007:E5]；报警值按十进制解释为 DRIVE-CLiQ 组件的组件号 [A01007:E6]。\n\n原因：\n- 可能原因为 firmware update [A01007:E4]。\n- 其他可能原因当前证据未说明。\n\n建议处理：\n- 关闭指定 DRIVE-CLiQ 组件的电源，并重新开启 [A01007:E7]。\n- 对于 SINUMERIK，自动调试会被阻止；此时所有组",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    },
+    {
+      "query_id": "RAG-002",
+      "question": "故障码 A01016 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "expected_fault_codes": [
+        "A01016"
+      ],
+      "mentioned_fault_codes": [
+        "A01016"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "not_requested",
+      "remedy_correctness": "not_requested",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答给出了与查询故障现象对应的故障码，并引用了故障码/描述证据。",
+      "answer_excerpt": "结论：A01016 的故障现象/描述为“Firmware changed（固件已更改）” [A01016:E1][A01016:E2]。该条目给出的报警值按参数 r2124 的十进制解释 [A01016:E9][A01016:E12]；具体组件、触发时间和设备运行状态当前证据未说明。\n\n依据：\n- 故障码为 A01016 [A01016:E1]；描述为 Firmware changed [A01016:E2]。\n- 报警值说明：r2124 十进制解释为 0：一个文件校验和不正确；1：文件缺失；2：文件过多；3：固件版本不正确；4：备份文件校验和不正确 [A01016:E12]。\n- 相关参数：r2124 [A01016:E9]、r9925 [A01016:E10]、r9926 [A01016:E11]。\n- 手册给出的处理证据：对固件的非易失性存储器（存储卡/设备存储器）恢复交付状态 [A01016:E13]。\n\n原因：\n- 非易失性存储器（存储卡/设备存储器）中目录内至少一个固件文件相对于出厂版本被非法更改 [A01016:E3]。\n- 一个文件校验和不正确 [A01016:E4]。",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    },
+    {
+      "query_id": "RAG-003",
+      "question": "故障码 A01020 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "expected_fault_codes": [
+        "A01020"
+      ],
+      "mentioned_fault_codes": [
+        "A01020"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "not_requested",
+      "remedy_correctness": "not_requested",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答给出了与查询故障现象对应的故障码，并引用了故障码/描述证据。",
+      "answer_excerpt": "结论：故障码 A01020 表示“Writing to RAM disk unsuccessful”（写入 RAM 磁盘未成功）[A01020:E1][A01020:E2]；其故障现象/描述为写入 RAM 磁盘未成功 [A01020:E2]。\n\n依据：故障码证据为 A01020 [A01020:E1]；描述证据为“Writing to RAM disk unsuccessful” [A01020:E2]；原因证据为“A write access to the internal RAM disk was unsuccessful.” [A01020:E3]；参数证据为 p9930 [A01020:E4]；处理证据见 Remedy 段落 [A01020:E5]。\n\n原因：可能原因是对内部 RAM 磁盘的写访问未成功 [A01020:E3]。\n\n建议处理：调整系统日志文件大小，使其适配内部 RAM 磁盘（p9930）[A01020:E5]。相关参数为 p9930 [A01020:E4]。",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    },
+    {
+      "query_id": "RAG-004",
+      "question": "故障码 A01035 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "expected_fault_codes": [
+        "A01035"
+      ],
+      "mentioned_fault_codes": [
+        "A01035"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "not_requested",
+      "remedy_correctness": "not_requested",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答给出了与查询故障现象对应的故障码，并引用了故障码/描述证据。",
+      "answer_excerpt": "结论：\nA01035 表示“Parameter back-up file corrupted”（参数备份文件损坏）[A01035:E1][A01035:E3]；其报警值 r2124 的表现说明为：aa=01 hex 时上电未执行数据备份、驱动处于出厂设置，aa=02 hex 时已加载最后一个可用备份数据记录且参数化必须检查 [A01035:E11]。涉及主组件为 ACX [A01035:E2]。\n\n依据：\n- 故障码证据：A01035 [A01035:E1]。\n- 描述证据：Parameter back-up file corrupted [A01035:E3]。\n- 组件证据：ACX [A01035:E2]。\n- 相关参数证据：r2124 [A01035:E9]、p0977 [A01035:E10]。\n- 报警值证据：r2124 按十六进制解释，aa=01 hex 表示上电时未执行数据备份且驱动处于出厂设置；aa=02 hex 表示已加载最后一个可用备份数据记录，参数化必须检查，建议重新下载参数化；dd、cc、bb 仅用于西门子内部故障排查 [A01035:E11]。\n\n原因：\n- ",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    },
+    {
+      "query_id": "RAG-005",
+      "question": "故障码 A01045 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "expected_fault_codes": [
+        "A01045"
+      ],
+      "mentioned_fault_codes": [
+        "A01045"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "not_requested",
+      "remedy_correctness": "not_requested",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答给出了与查询故障现象对应的故障码，并引用了故障码/描述证据。",
+      "answer_excerpt": "结论：故障码 A01045 [A01045:E1] 在手册中表示“Configuring data invalid”（配置数据无效）[A01045:E3]，涉及组件为 CU [A01045:E2]。\n\n依据：\n- 故障码为 A01045 [A01045:E1]；主组件为 CU [A01045:E2]；描述为 Configuring data invalid [A01045:E3]。\n- 相关参数包括 r2124 [A01045:E5]、p0976 [A01045:E6]、p0977 [A01045:E7]。\n- 报警值说明为：Alarm value (r2124, interpret hexadecimal): Only for internal Siemens troubleshooting.，即 r2124 需按十六进制解释，且仅用于内部 Siemens 故障诊断 [A01045:E8]。\n\n原因：\n- 在评估保存在非易失性存储器中的参数文件 PSxxxyyy.ACX、PTxxxyyy.ACX、CAxxxyyy.ACX 或 CCxxxyyy.ACX 时检测到错误 [A01045:E",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    },
+    {
+      "query_id": "RAG-006",
+      "question": "故障码 A01049 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "expected_fault_codes": [
+        "A01049"
+      ],
+      "mentioned_fault_codes": [
+        "A01049"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "not_requested",
+      "remedy_correctness": "not_requested",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答给出了与查询故障现象对应的故障码，并引用了故障码/描述证据。",
+      "answer_excerpt": "结论：故障码 A01049 表示“无法写入文件”（It is not possible to write to file）[A01049:E1][A01049:E3]；该故障关联组件为 CU [A01049:E2]。除上述描述外，其他故障现象当前证据未说明。\n\n依据：\n- 故障码为 A01049 [A01049:E1]。\n- 主组件为 CU [A01049:E2]。\n- 描述/故障现象为：It is not possible to write to file [A01049:E3]。\n- 相关参数包括 r2124 [A01049:E5] 和 p0977 [A01049:E6]。\n- 报警值 r2124 按十进制解释为 Drive object number [A01049:E7]。\n\n原因：\n可能原因是无法写入受写保护的文件（PSxxxxxx.acx）[A01049:E4]。其他原因当前证据未说明。\n\n建议处理：\n检查非易失性存储器中 .../USER/SINAMICS/DATA/... 下的文件是否设置了 “write protected” 属性 [A01049:E8]；需要时移除写",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    },
+    {
+      "query_id": "RAG-007",
+      "question": "故障码 A01064 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "expected_fault_codes": [
+        "A01064"
+      ],
+      "mentioned_fault_codes": [
+        "A01064"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "not_requested",
+      "remedy_correctness": "not_requested",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答给出了与查询故障现象对应的故障码，并引用了故障码/描述证据。",
+      "answer_excerpt": "结论：A01064 表示 CU 上的“Internal error (CRC)”内部错误 [A01064:E1][A01064:E3]；主要组件为 CU [A01064:E2]。\n\n依据：故障码为 A01064 [A01064:E1]；主要组件为 CU [A01064:E2]；描述为 Internal error (CRC) [A01064:E3]。当前证据未说明具体报警值或参数。\n\n原因：记录给出的原因是 Control Unit 程序存储器中发生了校验和错误，即 CRC 错误 [A01064:E4]。当前证据未说明其他可能原因。\n\n建议处理：\n- 对所有组件执行 POWER ON（断电/再上电）[A01064:E5]。\n- 将固件升级到较新版本 [A01064:E5]。\n- 联系技术支持 [A01064:E5]。\n\n当前证据未说明其他处理措施或维修结论。",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    },
+    {
+      "query_id": "RAG-008",
+      "question": "故障码 A01069 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "expected_fault_codes": [
+        "A01069"
+      ],
+      "mentioned_fault_codes": [
+        "A01069"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "not_requested",
+      "remedy_correctness": "not_requested",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答给出了与查询故障现象对应的故障码，并引用了故障码/描述证据。",
+      "answer_excerpt": "结论：故障码 A01069 表示“Parameter backup and device incompatible”（参数备份与设备不兼容）[A01069:E1][A01069:E2]。其故障现象/描述为参数备份与设备不兼容 [A01069:E2]。\n\n依据：\n- 故障码为 A01069 [A01069:E1]。\n- 描述为 Parameter backup and device incompatible [A01069:E2]。\n- 涉及参数为 p0977 [A01069:E5]。\n- 除上述内容外，当前证据未说明其他报警值或参数信息。\n\n原因：\n- 存储卡上的参数备份与驱动单元不匹配 [A01069:E3]。\n- 设备 A 和设备 B 不兼容，且带有设备 A 参数备份的存储卡被插入设备 B [A01069:E4]。\n- 除上述原因外，当前证据未说明其他可能原因。\n\n建议处理：\n- 插入具有兼容参数备份的存储卡，并执行 POWER ON [A01069:E6]。\n- 插入不带参数备份的存储卡，并执行 POWER ON [A01069:E6]。\n- 保存参数（p0977 = 1）[A0",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    },
+    {
+      "query_id": "RAG-009",
+      "question": "如果出现“POWER ON required for backup copy on memory card”，对应哪个故障码？请说明判断依据。",
+      "query_type": "symptom",
+      "expected_fault_codes": [
+        "A01073"
+      ],
+      "mentioned_fault_codes": [
+        "A01073"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "not_requested",
+      "remedy_correctness": "not_requested",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答将用户描述映射到故障现象，并引用了故障码、描述和相关证据。",
+      "answer_excerpt": "结论：对应故障码为 A01073 [A01073:E1]；故障现象为 “POWER ON required for backup copy on memory card” [A01073:E2]。\n\n依据：候选故障 A01073 的描述与用户给出的故障现象一致 [A01073:E2]；其故障码字段为 A01073 [A01073:E1]。\n\n原因：该故障的原因是存储卡可见分区上的参数分配已更改 [A01073:E3]。相关参数包括 p0972 [A01073:E4]、p0971 [A01073:E5]。\n\n建议处理：执行 Control Unit 的 POWER ON（关断/接通）[A01073:E6]；执行硬件复位（RESET 按钮，p0972）[A01073:E6]。",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    },
+    {
+      "query_id": "RAG-010",
+      "question": "如果出现“UTC synchronization tolerance violated”，对应哪个故障码？请说明判断依据。",
+      "query_type": "symptom",
+      "expected_fault_codes": [
+        "A01099"
+      ],
+      "mentioned_fault_codes": [
+        "A01099"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "not_requested",
+      "remedy_correctness": "not_requested",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答将用户描述映射到故障现象，并引用了故障码、描述和相关证据。",
+      "answer_excerpt": "结论  \n对应故障码为 A01099 [A01099:E1]，对应故障现象为 UTC synchronization tolerance violated [A01099:E2]。\n\n依据  \nA01099 的 fault_code 字段为 A01099 [A01099:E1]；其 description 字段为 UTC synchronization tolerance violated [A01099:E2]。用户所述现象与该描述一致，因此判断对应 A01099。参数记录中包含 p3109 [A01099:E4] 和 r3107 [A01099:E5]；组件、报警值等当前证据未说明。\n\n原因  \n原因字段说明：UTC 同步所设置的容差 p3109 被违反 [A01099:E3]。其他原因当前证据未说明。\n\n建议处理  \n建议选择更短的同步间隔，使主时间与驱动系统之间的偏差位于容差内 [A01099:E6]。具体容差值、维修步骤或更详细处理措施当前证据未说明。",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    },
+    {
+      "query_id": "RAG-011",
+      "question": "如果出现“CU-EEPROM incorrect read-write data”，对应哪个故障码？请说明判断依据。",
+      "query_type": "symptom",
+      "expected_fault_codes": [
+        "A01251"
+      ],
+      "mentioned_fault_codes": [
+        "A01251"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "not_requested",
+      "remedy_correctness": "not_requested",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答将用户描述映射到故障现象，并引用了故障码、描述和相关证据。",
+      "answer_excerpt": "结论：对应故障码是 A01251 [A01251:E1]，故障现象是 CU-EEPROM incorrect read-write data [A01251:E3]。\n\n依据：上下文中该候选的 fault_code 为 A01251 [A01251:E1]，description 为 CU-EEPROM incorrect read-write data [A01251:E3]，component 为 CU [A01251:E2]，与用户描述的“CU-EEPROM incorrect read-write data”一致 [A01251:E3]。因此判断对应 A01251 [A01251:E1]。\n\n原因：该故障记录的原因为读取 Control Unit 中 EEPROM 的读写数据时出错 [A01251:E4]。相关参数记录为 r2124 [A01251:E5]、p0952 [A01251:E6]、p2147 [A01251:E7]。报警值 r2124 的说明为仅用于内部 Siemens 故障排除 [A01251:E8]。\n\n建议处理：需按报警值 r2124 分支处理。若 r2124",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    },
+    {
+      "query_id": "RAG-012",
+      "question": "如果出现“Firmware version of DRIVE-CLiQ component is not up-to-date”，对应哪个故障码？请说明判断依据。",
+      "query_type": "symptom",
+      "expected_fault_codes": [
+        "A01304"
+      ],
+      "mentioned_fault_codes": [
+        "A01304"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "not_requested",
+      "remedy_correctness": "not_requested",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答将用户描述映射到故障现象，并引用了故障码、描述和相关证据。",
+      "answer_excerpt": "结论：出现“Firmware version of DRIVE-CLiQ component is not up-to-date”时，对应故障码为 A01304 [A01304:E1]，对应故障现象/描述为“Firmware version of DRIVE-CLiQ component is not up-to-date” [A01304:E3]。\n\n依据：该候选记录的 fault_code 字段为 A01304 [A01304:E1]；description 字段记录了上述故障现象 [A01304:E3]；主组件字段为 DRIVE-CLiQ component [A01304:E2]。因此可判定该现象对应故障码 A01304 [A01304:E1]。\n\n原因：记录中说明原因是非易失性存储器中的固件版本比所连接的 DRIVE-CLiQ 组件中的固件版本更新 [A01304:E4]。报警值 r2124 按十进制解释为涉及的 DRIVE-CLiQ 组件号 [A01304:E8]；相关参数包括 r2124 [A01304:E5]、p7828 [A01304:E6]、p7829 [A0130",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    },
+    {
+      "query_id": "RAG-013",
+      "question": "如果出现“Firmware of the DRIVE-CLiQ component being updated”，对应哪个故障码？请说明判断依据。",
+      "query_type": "symptom",
+      "expected_fault_codes": [
+        "A01306"
+      ],
+      "mentioned_fault_codes": [
+        "A01306"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "not_requested",
+      "remedy_correctness": "not_requested",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答将用户描述映射到故障现象，并引用了故障码、描述和相关证据。",
+      "answer_excerpt": "结论：对应故障码为 A01306 [A01306:E1]；故障现象为“Firmware of the DRIVE-CLiQ component being updated” [A01306:E3]。\n\n依据：\n- 故障码字段证据为 A01306 [A01306:E1]。\n- 描述字段证据为“Firmware of the DRIVE-CLiQ component being updated” [A01306:E3]。\n- 主要组件为 DRIVE-CLiQ component [A01306:E2]。\n\n原因：\n- 原因是至少一个 DRIVE-CLiQ 组件的固件更新处于活动状态 [A01306:E4]。\n- 相关参数为 r2124 [A01306:E5]；报警值按 r2124 十进制解释为 DRIVE-CLiQ 组件的组件号 [A01306:E6]。\n\n建议处理：\n- 建议处理为“Not necessary.” [A01306:E7]。\n- 固件更新完成后，该报警会自动撤销 [A01306:E7]。\n\n除上述证据外，当前证据未说明其他故障码、原因、参数或处理措施。",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    },
+    {
+      "query_id": "RAG-014",
+      "question": "如果出现“Commissioning not possible”，对应哪个故障码？请说明判断依据。",
+      "query_type": "symptom",
+      "expected_fault_codes": [
+        "A01330"
+      ],
+      "mentioned_fault_codes": [
+        "A01330"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "not_requested",
+      "remedy_correctness": "not_requested",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答将用户描述映射到故障现象，并引用了故障码、描述和相关证据。",
+      "answer_excerpt": "**结论**  \n出现“Commissioning not possible”对应的故障码是 A01330 [A01330:E1]；该故障现象描述为“Commissioning not possible” [A01330:E3]。\n\n**依据**  \n候选故障中，A01330 的 fault_code 证据为 A01330 [A01330:E1]；其 description 证据为 Commissioning not possible [A01330:E3]；其 primary_component 为 Topology [A01330:E2]。因此，“Commissioning not possible”与故障码 A01330 对应。\n\n**原因**  \n该故障的原因是：实际拓扑不满足要求 [A01330:E4]。当前证据未说明其他原因。\n\n**建议处理**  \n- 检查变频器与电机之间的 OCC 电缆 [A01330:E5]。  \n- 执行 POWER ON（关断/再接通） [A01330:E5]。  \n- 检查所连接的硬件是否受支持 [A01330:E5]。  \n\n当前证据未说明相",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    },
+    {
+      "query_id": "RAG-015",
+      "question": "如果出现“motor with DRIVE-CLiQ not connected”，对应哪个故障码？请说明判断依据。",
+      "query_type": "symptom",
+      "expected_fault_codes": [
+        "A01489"
+      ],
+      "mentioned_fault_codes": [
+        "A01489"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "not_requested",
+      "remedy_correctness": "not_requested",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答将用户描述映射到故障现象，并引用了故障码、描述和相关证据。",
+      "answer_excerpt": "结论：  \n出现“motor with DRIVE-CLiQ not connected”时，对应故障码为 A01489 [A01489:E1]；该故障现象记录为 motor with DRIVE-CLiQ not connected [A01489:E3]，相关组件为 Motor [A01489:E2]。\n\n依据：  \n候选故障记录中，Fault code 为 A01489 [A01489:E1]，Description 为 motor with DRIVE-CLiQ not connected [A01489:E3]，因此可按该描述匹配到 A01489。其告警值参数为 r2124 [A01489:E5]；r2124 的 alarm value 需按十六进制解释为 ddccbbaa，其中 dd 为连接号、cc 为组件号、bb 为组件类别、aa 为未插入组件的组件号 [A01489:E6]。\n\n原因：  \n记录的 cause 为：拓扑比较检测到实际拓扑相对于目标拓扑缺少一个带 DRIVE-CLiQ 的电机 [A01489:E4]。\n\n建议处理：  \n- 适配拓扑：在正确连接处插入相关组",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    },
+    {
+      "query_id": "RAG-016",
+      "question": "手册中提到“The selected service/maintenance interval for this motor was reached.”，它对应哪个故障记录？请说明原因证据。",
+      "query_type": "cause",
+      "expected_fault_codes": [
+        "A01590"
+      ],
+      "mentioned_fault_codes": [
+        "A01590"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "correct",
+      "remedy_correctness": "not_requested",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答将查询中的原因短语映射到记录中的候选原因，并引用了原因证据。",
+      "answer_excerpt": "结论：该描述对应故障记录 A01590 [A01590:E1]，故障现象为 “Motor maintenance interval expired” [A01590:E3]。该故障记录的组件为 Drive [A01590:E2]。\n\n依据：故障记录中，A01590 的描述为 “Motor maintenance interval expired” [A01590:E3]；组件为 Drive [A01590:E2]；参数包括 r2124 [A01590:E5] 和 p0651 [A01590:E6]；报警值 r2124 按十进制解释为 “Motor data set number” [A01590:E7]。\n\n原因：该故障的原因字段明确为 “The selected service/maintenance interval for this motor was reached.” [A01590:E4]。\n\n建议处理：按记录执行服务/维护，并复位服务/维护间隔（p0651）[A01590:E8]。",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    },
+    {
+      "query_id": "RAG-017",
+      "question": "手册中提到“Safety Integrated is parameterized and enabled. However, a valid safety password has still not been entered.”，它对应哪个故障记录？请说明原因证据。",
+      "query_type": "cause",
+      "expected_fault_codes": [
+        "A01637"
+      ],
+      "mentioned_fault_codes": [
+        "A01637"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "correct",
+      "remedy_correctness": "not_requested",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答将查询中的原因短语映射到记录中的候选原因，并引用了原因证据。",
+      "answer_excerpt": "结论：该句对应故障记录 A01637 “Safety password not assigned”（安全密码未分配）[A01637:E1][A01637:E3]。\n\n依据：该故障记录的原因字段原文为“Safety Integrated is parameterized and enabled. However, a valid safety password has still not been entered.” [A01637:E4]；其组件为 Safety Integrated [A01637:E2]；相关参数为 r9767 [A01637:E5]。报警值内容当前证据未说明。\n\n原因：A01637 给出的原因是 Safety Integrated 已参数化并启用，但尚未输入有效安全密码 [A01637:E4]。除该原因外，当前证据未说明其他原因。\n\n建议处理：分配有效安全密码 [A01637:E6]；执行数据保存 [A01637:E6]。",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    },
+    {
+      "query_id": "RAG-018",
+      "question": "手册中提到“A valid safety password has been entered.”，它对应哪个故障记录？请说明原因证据。",
+      "query_type": "cause",
+      "expected_fault_codes": [
+        "A01638"
+      ],
+      "mentioned_fault_codes": [
+        "A01638"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "correct",
+      "remedy_correctness": "not_requested",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答将查询中的原因短语映射到记录中的候选原因，并引用了原因证据。",
+      "answer_excerpt": "结论：手册中的“A valid safety password has been entered.”对应故障记录 A01638，故障现象为“Safety password entered”[A01638:E1][A01638:E3]。\n\n依据：该故障记录的故障码为 A01638[A01638:E1]；描述为 Safety password entered[A01638:E3]；组件为 SI[A01638:E2]；参数为 r9767[A01638:E5]。\n\n原因：该故障记录的原因栏明确写明“A valid safety password has been entered.”[A01638:E4]。\n\n建议处理：该记录给出的处理措施为“Remedy: Not necessary.”；该报警会通过“Delete password”自动撤销，例如退出 web server 后或 Power on 后，且密码仍保持分配[A01638:E6]。除上述内容外，当前证据未说明其他原因或处理措施。",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    },
+    {
+      "query_id": "RAG-019",
+      "question": "手册中提到“The configuration of a PROFIsafe telegram in the higher-level control (F-PLC) does not match the parameterization in the drive.”，它对应哪个故障记录？请说明原因证据。",
+      "query_type": "cause",
+      "expected_fault_codes": [
+        "A01654"
+      ],
+      "mentioned_fault_codes": [
+        "A01654"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "correct",
+      "remedy_correctness": "not_requested",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答将查询中的原因短语映射到记录中的候选原因，并引用了原因证据。",
+      "answer_excerpt": "结论：手册中的 “The configuration of a PROFIsafe telegram in the higher-level control (F-PLC) does not match the parameterization in the drive.” 对应故障记录 A01654 [A01654:E1]，其故障现象/描述为 “Deviating PROFIsafe configuration” [A01654:E3]，组件为 SI [A01654:E2]。该句本身在 A01654 的 Causes 中作为原因原文出现 [A01654:E4]。\n\n依据：A01654 的 Causes 字段直接包含该句 [A01654:E4]；A01654 的 Description 为 “Deviating PROFIsafe configuration” [A01654:E3]，primary component 为 SI [A01654:E2]。该故障记录列出的参数为 r2124 [A01654:E7]、p9601.3 [A01654:E8]。Alarm value 中，1 对",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    },
+    {
+      "query_id": "RAG-020",
+      "question": "手册中提到“The configured times for PROFINET communication are not permitted and the PN cycle is used as the actual value acquisition cycle for the safe movement monitoring functions”，它对应哪个故障记录？请说明原因证据。",
+      "query_type": "cause",
+      "expected_fault_codes": [
+        "A01691"
+      ],
+      "mentioned_fault_codes": [
+        "A01691"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "correct",
+      "remedy_correctness": "not_requested",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答将查询中的原因短语映射到记录中的候选原因，并引用了原因证据。",
+      "answer_excerpt": "结论：该描述对应故障记录 A01691，故障现象为“Ti and To unsuitable for PN cycle” [A01691:E1][A01691:E3]。\n\n依据：用户所引“The configured times for PROFINET communication are not permitted and the PN cycle is used as the actual value acquisition cycle for the safe movement monitoring functions”出现在 A01691 的 cause 证据中 [A01691:E4]。\n\n原因：配置的 PROFINET 通信时间不被允许，且 PN cycle 被用作安全运动监控功能的实际值采集周期 [A01691:E4]。对于等时同步 PROFINET，Ti 与 To 之和相对所选 PN cycle 过高，PN 时钟周期应至少比 Ti 与 To 之和大 1 个当前控制器周期 [A01691:E5]。对于非等时同步 PROFINET，PN 时钟周期必须至少为当前控制器时钟周期的",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    },
+    {
+      "query_id": "RAG-021",
+      "question": "手册中提到“Safety parameters have been changed”，它对应哪个故障记录？请说明原因证据。",
+      "query_type": "cause",
+      "expected_fault_codes": [
+        "A01693",
+        "F01679"
+      ],
+      "mentioned_fault_codes": [
+        "F01679"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "correct",
+      "remedy_correctness": "not_requested",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答将查询中的原因短语映射到记录中的候选原因，并引用了原因证据。",
+      "answer_excerpt": "结论：手册中的“Safety parameters have been changed”对应故障记录 F01679（[F01679:E1]），其故障现象为“Safety parameter settings and topology changed, warm restart/POWER ON required”（[F01679:E3]）；该短语出现在该故障的原因中（[F01679:E4]）。\n\n依据：\n- 故障码为 F01679（[F01679:E1]）。\n- 主组件为 SI（[F01679:E2]）。\n- 故障描述为“Safety parameter settings and topology changed, warm restart/POWER ON required”（[F01679:E3]）。\n\n原因：\n- “Safety parameters have been changed”是 F01679 的原因项之一（[F01679:E4]）。\n- 同记录的另一原因项为“A partial power up (boot) with modified configuration w",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    },
+    {
+      "query_id": "RAG-022",
+      "question": "针对“Sensor Module was replaced”，手册建议采取哪些处理措施？请引用原文依据。",
+      "query_type": "remedy",
+      "expected_fault_codes": [
+        "A01695"
+      ],
+      "mentioned_fault_codes": [
+        "A01695"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "not_requested",
+      "remedy_correctness": "correct",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答给出的处理措施来自记录的 Remedy 证据，没有把未被证据支持的维修结论写成确定事实。",
+      "answer_excerpt": "结论：针对故障码 A01695 [A01695:E1] 的故障现象“Sensor Module was replaced” [A01695:E3]，手册建议的处理措施是：保存所有参数 [A01695:E5]、确认故障 [A01695:E5]。\n\n依据：\n- 故障码：A01695 [A01695:E1]\n- 组件：SI Motion [A01695:E2]\n- 故障现象：Sensor Module was replaced [A01695:E3]\n- 原文 Remedy：Remedy: - save all parameters - acknowledge fault. [A01695:E5]\n\n原因：用于安全运动监控功能的 Sensor Module 被更换 [A01695:E4]。\n\n建议处理：\n1. 保存所有参数 [A01695:E5]。\n2. 确认故障 [A01695:E5]。\n\n其他处理措施、具体参数或维修结论：当前证据未说明。",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    },
+    {
+      "query_id": "RAG-023",
+      "question": "针对“Test stop for the motion monitoring functions selected when booting”，手册建议采取哪些处理措施？请引用原文依据。",
+      "query_type": "remedy",
+      "expected_fault_codes": [
+        "A01696"
+      ],
+      "mentioned_fault_codes": [
+        "A01696"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "not_requested",
+      "remedy_correctness": "correct",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答给出的处理措施来自记录的 Remedy 证据，没有把未被证据支持的维修结论写成确定事实。",
+      "answer_excerpt": "结论  \n针对故障 A01696 [A01696:E1]，故障现象为 “Test stop for the motion monitoring functions selected when booting” [A01696:E3]，手册建议的处理措施是：取消安全运动监控功能的强制检查程序（测试停止），然后重新选择 [A01696:E5]。\n\n依据  \n- 故障码：A01696 [A01696:E1]。  \n- 组件：SI Motion [A01696:E2]。  \n- 故障描述：Test stop for the motion monitoring functions selected when booting [A01696:E3]。  \n- 原因：The forced checking procedure (test stop) for the safe motion monitoring functions is already selected when booting, which is not permissible. [A01696:E4]。  \n- 处理措施：Reme",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    },
+    {
+      "query_id": "RAG-024",
+      "question": "针对“Test stop for motion monitoring functions required”，手册建议采取哪些处理措施？请引用原文依据。",
+      "query_type": "remedy",
+      "expected_fault_codes": [
+        "A01697"
+      ],
+      "mentioned_fault_codes": [
+        "A01697"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "not_requested",
+      "remedy_correctness": "correct",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答给出的处理措施来自记录的 Remedy 证据，没有把未被证据支持的维修结论写成确定事实。",
+      "answer_excerpt": "结论：针对 A01697 [A01697:E1]（“Test stop for motion monitoring functions required” [A01697:E3]），手册建议的处理措施是执行安全运动监控功能的强制检查程序（测试停止）[A01697:E7]。\n\n依据：\n- 故障码为 A01697 [A01697:E1]，故障现象为“Test stop for motion monitoring functions required” [A01697:E3]，涉及组件为 SI Motion [A01697:E2]。\n- 原因记录显示：p9559 中为安全运动监控功能的强制检查程序（测试停止）设置的时间已超过 [A01697:E4]。\n- 处理措施记录显示：执行安全运动监控功能的强制检查程序（测试停止）[A01697:E7]。\n\n原因：  \n根据记录，原因是 p9559 设置的强制检查程序（测试停止）时间已超过 [A01697:E4]。相关参数列出了 p9559 [A01697:E5] 和 r9765 [A01697:E6]；其中 r9765 的具体作用当前证据未说明。\n\n建",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    },
+    {
+      "query_id": "RAG-025",
+      "question": "针对“Commissioning mode active”，手册建议采取哪些处理措施？请引用原文依据。",
+      "query_type": "remedy",
+      "expected_fault_codes": [
+        "A01698"
+      ],
+      "mentioned_fault_codes": [
+        "A01698"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "not_requested",
+      "remedy_correctness": "correct",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答给出的处理措施来自记录的 Remedy 证据，没有把未被证据支持的维修结论写成确定事实。",
+      "answer_excerpt": "结论：A01698 [A01698:E1] 的现象为“Commissioning mode active”[A01698:E3]；手册建议的处理措施是“Remedy: Not necessary.”，并且该消息会在安全功能调试完成后自动撤销 [A01698:E6]。\n\n依据：\n- 故障码：A01698 [A01698:E1]。\n- 故障现象/描述：Commissioning mode active [A01698:E3]。\n- 组件：Safety Integrated [A01698:E2]。\n- 参数：p0010 [A01698:E4]。\n- 原因：The commissioning of the \"Safety Integrated\" function is selected [A01698:E5]。\n- 处理：Remedy: Not necessary. This message is automatically withdrawn after the safety functions have been commissioned. [A01698:E6]。\n\n原因：该消息是因为",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    },
+    {
+      "query_id": "RAG-026",
+      "question": "针对“Test stop for STO required”，手册建议采取哪些处理措施？请引用原文依据。",
+      "query_type": "remedy",
+      "expected_fault_codes": [
+        "A01699"
+      ],
+      "mentioned_fault_codes": [
+        "A01699"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "not_requested",
+      "remedy_correctness": "correct",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答给出的处理措施来自记录的 Remedy 证据，没有把未被证据支持的维修结论写成确定事实。",
+      "answer_excerpt": "结论：针对首位候选故障 A01699（“Test stop for STO required”）[A01699:E1][A01699:E3]，手册建议的处理措施是：选择 STO，然后再次取消选择 [A01699:E7]。\n\n依据：该故障属于 Safety Integrated [A01699:E2]，相关参数包括 p9659 [A01699:E4] 和 r9660 [A01699:E5]。故障原因记录为：p9659 中为 “STO” 功能设置的强制检查程序（测试停止）时间已超过 [A01699:E6]。其他报警值或附加条件当前证据未说明。\n\n原因：p9659 中为 ‘STO’ 功能设置的强制检查程序（测试停止）时间已超过 [A01699:E6]。其他原因当前证据未说明。\n\n建议处理：选择 STO，然后再次取消选择 [A01699:E7]。除此之外的处理步骤、参数调整或维修结论当前证据未说明。",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    },
+    {
+      "query_id": "RAG-027",
+      "question": "参数 p9506 与哪个故障记录相关？请说明故障含义和参数证据。",
+      "query_type": "parameter",
+      "expected_fault_codes": [
+        "A01706",
+        "F01682"
+      ],
+      "mentioned_fault_codes": [
+        "F01682"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "not_requested",
+      "remedy_correctness": "not_requested",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答将参数与相关故障记录关联，并引用参数证据；配对故障码或共享参数按修正后的 Gold 处理。",
+      "answer_excerpt": "**结论：**  \n参数 p9506 与故障记录 F01682（故障现象：Monitoring function not supported）相关 [F01682:E1][F01682:E3]；该记录中 p9506 被列为相关参数 [F01682:E10]。F01682 属于 SI Motion [F01682:E2]。\n\n**依据：**  \n- F01682 的故障码为 F01682 [F01682:E1]，组件为 SI Motion [F01682:E2]，描述为 Monitoring function not supported [F01682:E3]。  \n- 参数证据显示 p9506 出现在 F01682 的参数列表中 [F01682:E10]。  \n- 原因证据写明：在 p9501、p9506、p9507、p9601 中使能的监控功能在该固件版本中不受支持 [F01682:E4]。  \n- 处理证据包括：取消涉及的监控功能（p9501、p9506、p9507、p9601）[F01682:E22]；恢复出厂设置并重新调试 [F01682:E22]；升级固件 [F01682:E",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    },
+    {
+      "query_id": "RAG-028",
+      "question": "参数 p9530 与哪个故障记录相关？请说明故障含义和参数证据。",
+      "query_type": "parameter",
+      "expected_fault_codes": [
+        "A01707",
+        "A30707"
+      ],
+      "mentioned_fault_codes": [
+        "A30707"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "not_requested",
+      "remedy_correctness": "not_requested",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答将参数与相关故障记录关联，并引用参数证据；配对故障码或共享参数按修正后的 Gold 处理。",
+      "answer_excerpt": "结论：在本次默认仅回答首位候选故障的规则下，参数 p9530 与故障记录 A30707 相关 [A30707:E1]；该故障现象为“Tolerance for safe operating stop exceeded（安全操作停止容差超限）” [A30707:E3]。\n\n依据：A30707 的组件为 SI Motion [A30707:E2]；其故障描述为 Tolerance for safe operating stop exceeded [A30707:E3]；参数证据中列出 p9530 [A30707:E5]。除 p9530 被列为相关参数外，p9530 的具体参数含义、默认值、设定范围当前证据未说明；现有证据仅列出 p9530 [A30707:E5]。\n\n原因：该故障原因是实际位置偏离目标位置超过静止容差（standstill tolerance） [A30707:E4]。\n\n建议处理：检查是否存在安全故障，如需要，针对相应故障执行诊断流程 [A30707:E6]；检查静止容差是否与轴的精度和控制动态性能匹配 [A30707:E6]；执行 POWER ON（断电/上电） [A3",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    },
+    {
+      "query_id": "RAG-029",
+      "question": "参数 p9553 与哪个故障记录相关？请说明故障含义和参数证据。",
+      "query_type": "parameter",
+      "expected_fault_codes": [
+        "A01709",
+        "A30709"
+      ],
+      "mentioned_fault_codes": [
+        "A30709",
+        "A30714",
+        "A30716"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "not_requested",
+      "remedy_correctness": "not_requested",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答将参数与相关故障记录关联，并引用参数证据；配对故障码或共享参数按修正后的 Gold 处理。",
+      "answer_excerpt": "结论：参数 p9553 与首位候选故障记录 A30709 相关 [A30709:E1][A30709:E5]；该故障记录的现象为 “SS2E initiated” [A30709:E3]。\n\n依据：\n- 故障码为 A30709 [A30709:E1]，组件为 SI Motion [A30709:E2]，描述为 “SS2E initiated” [A30709:E3]。\n- 参数证据：该故障记录列出的参数为 p9553 [A30709:E5]。除“参数为 p9553”外，p9553 的具体数值、阈值和调整方式当前证据未说明。\n\n原因：\n- 驱动器通过 SS2E 停止（按路径制动），在参数化时间到期后激活 “Safe Operating Stop” (SOS) [A30709:E6]。\n- 后续响应/跟随消息为 A30714、A30716 [A30709:E4]。\n\n建议处理：\n- 在控制侧排除故障原因 [A30709:E7]。\n- 对活动消息 A30714、A30716 执行诊断 [A30709:E7]。\n- 当前证据未说明需要修改 p9553 或给出其他维修参数。",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    },
+    {
+      "query_id": "RAG-030",
+      "question": "参数 r9725 与哪个故障记录相关？请说明故障含义和参数证据。",
+      "query_type": "parameter",
+      "expected_fault_codes": [
+        "A01711",
+        "A30711"
+      ],
+      "mentioned_fault_codes": [
+        "A30711"
+      ],
+      "fault_identification": "correct",
+      "cause_correctness": "not_requested",
+      "remedy_correctness": "not_requested",
+      "citation_support": "supported",
+      "unsupported_claims": "no",
+      "cross_fault_contamination": "no",
+      "contract_pass": true,
+      "ai_assisted_preliminary_judgment": "pass",
+      "review_note": "回答将参数与相关故障记录关联，并引用参数证据；配对故障码或共享参数按修正后的 Gold 处理。",
+      "answer_excerpt": "结论：参数 r9725 与故障记录 A30711 相关 [A30711:E18]；该故障代码为 A30711 [A30711:E1]，故障现象/描述为 Defect in a monitoring channel [A30711:E3]。\n\n依据：A30711 的组件为 SI Motion [A30711:E2]；其参数列表中包含 r9725 [A30711:E18]。因此，在给定上下文中，r9725 的参数证据指向 A30711 [A30711:E1][A30711:E18]。故障含义方面，A30711 表示监控通道存在缺陷 [A30711:E3]。r9725 的具体参数名称、用途、数值含义或诊断映射关系，当前证据未说明。\n\n原因：A30711 的候选原因包括监控功能输入数据或结果不一致 [A30711:E4]、同步不正确 [A30711:E5]、看门狗定时器已过期或安全相关输入信号变化过多 [A30711:E6] 等。r9725 是否用于指示其中某个原因，当前证据未说明。\n\n建议处理：当前证据未说明针对 r9725 的专门处理措施。A30711 的 Remedy 段按消息值给出处理",
+      "review_authority": "AI-assisted preliminary review; not an external Siemens domain-expert sign-off"
+    }
+  ]
+}
