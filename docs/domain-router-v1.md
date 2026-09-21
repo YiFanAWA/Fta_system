@@ -56,3 +56,14 @@ Router 不拥有检索排名、RRF、Top-K 或 Reranker 逻辑。它只输出：
 Router v1 的首轮错误分类见 [Domain Router Error Taxonomy v1](domain-router-error-taxonomy-v1.md)。该分类只用于离线诊断：首轮 22 条 `cross_domain` 查询被标记为 A=4、B=2、C=16，未发现 `false_scoped`；A/B/C 均需要人工复核，不会自动反向修改规则。
 
 Query Sufficiency 首轮诊断已完成，见 `evaluation/quality_eval/runs/mixed_domain_query_sufficiency_v1_2026-09-21.md`；下一步是建立人工 sufficiency Gold 并进行 clarification 对照实验，再决定是否需要调整规则、增加 system 级 scope，或引入 learned Router。之后进入 RAG 人工语义评测。
+
+## 刘武审核后的 Expert Router v2 对照
+
+当前已经完成人工审核输入的结构化转换：
+
+- [query_sufficiency_gold_v1.json](../evaluation/quality_eval/runs/query_sufficiency_gold_v1.json)：22/79 条查询有人工 Gold；
+- [domain_signal_registry_v1.json](../evaluation/quality_eval/runs/domain_signal_registry_v1.json)：22 个领域词均保留专家角色或明确排除状态；
+- [router-policy-v2.md](router-policy-v2.md)：实验策略与验收口径；
+- [expert_router_v2_comparison_v1_2026-09-21.md](../evaluation/quality_eval/runs/expert_router_v2_comparison_v1_2026-09-21.md)：三组对照结果。
+
+结果显示 Candidate Recall@20 三组均为 0.9241；Rule Router v1 的候选 WrongDomain@1 为 0，而 Expert Router v2 为 0.2152，与 No Router 持平。Expert Router v2 目前没有证明优于 v1，因此仍保持离线实验状态，不写入生产 Router。

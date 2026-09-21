@@ -1,0 +1,378 @@
+{
+  "registry_info": {
+    "name": "domain_signal_registry_v1",
+    "version": "2026-09-21",
+    "status": "expert_review_derived_experiment_only",
+    "authority": {
+      "expert_name": "刘武",
+      "role": "domain_router_query_sufficiency_expert_review",
+      "version": "v1",
+      "note": "人工专家标注，不自动修改Router或Retrieval"
+    },
+    "source_review_file": "evaluation\\quality_eval\\runs\\domain_router_manual_review_bundle_v2_LiuWu_reviewed_v1.json",
+    "source_review_sha256": "f2558785e2577daeff91953e0b245f44b3179fc3e82fbfd2d168c85f8dd5d4c6",
+    "reviewed_signal_count": 16,
+    "production_enabled": false,
+    "promotion_rule": "Do not replace backend/config/domain_evidence_registry_v1.json until the three-way experiment and regression review pass.",
+    "medium_signal_rule": "A medium signal alone does not scope a query; it needs same-scope high signal, an explicit identifier/system match, or human-approved scope evidence.",
+    "collision_rule": "Signals from multiple scopes keep the query cross_domain until a higher-confidence disambiguator exists."
+  },
+  "scopes": {
+    "siemens_s210": {
+      "domain": "industrial_drive",
+      "manufacturer": "Siemens",
+      "system": "S210",
+      "high_signal": [
+        "drive-cliq",
+        "s210",
+        "SI Motion",
+        "siemens",
+        "sinamics"
+      ],
+      "medium_signal": [
+        "CU",
+        "profinet",
+        "profisafe",
+        "Sensor module",
+        "STO"
+      ],
+      "excluded_signal": [
+        "drive",
+        "servo"
+      ],
+      "signal_evidence": {
+        "siemens": {
+          "reviewer_judgement": "是",
+          "approved_router_role": "high_signal",
+          "notes": "Siemens厂商强相关，可直接缩小工业驱动领域",
+          "positive_presence_evidence": [
+            {
+              "sample_id": "SIEMENS_S210_2019_A01035",
+              "source_record_id": "",
+              "quote": "ked. It is recommended that the parameterization is downloaded again. dd, cc, bb: Only for internal Siemens troubleshooting. See also: p0977 (Save all parameters) Remedy: - download the project again using the commissioning tool. - save all parameters (p0977 = 1 or \"copy RAM to ROM\"). S"
+            },
+            {
+              "sample_id": "SIEMENS_S210_2019_A01045",
+              "source_record_id": "",
+              "quote": " values were not able to be accepted. Alarm value (r2124, interpret hexadecimal): Only for internal Siemens troubleshooting. Remedy: - Restore the factory setting using (p0976 = 1) and re-load the project into the drive unit. Then save the parameterization using the \"Copy RAM to ROM\" or"
+            },
+            {
+              "sample_id": "SIEMENS_S210_2019_A01251",
+              "source_record_id": "",
+              "quote": "e data of the EEPROM in the Control Unit. Alarm value (r2124, interpret decimal): Only for internal Siemens troubleshooting. Remedy: For alarm value r2124 < 256, the following applies: - carry out a POWER ON (switch-off/switch-on). - replace the Control Unit. For alarm value r2124 >= 25"
+            }
+          ],
+          "registry_status_before_review": "confirmed"
+        },
+        "sinamics": {
+          "reviewer_judgement": "是",
+          "approved_router_role": "high_signal",
+          "notes": "Siemens驱动产品体系专用词",
+          "positive_presence_evidence": [
+            {
+              "sample_id": "SIEMENS_S210_2019_A01049",
+              "source_record_id": "",
+              "quote": "e \"write protected\" attribute has been set for the files in the non-volatile memory under .../USER/ SINAMICS/DATA/... When required, remove write protection and save again (e.g. set p0977 to 1)."
+            },
+            {
+              "sample_id": "SIEMENS_S210_2019_A09000",
+              "source_record_id": "",
+              "quote": ". Fault value (r0949, interpret decimal): 0: No admin password 1: Invalid admin password 2: Invalid SINAMICS password Remedy: Correct the user configuration, enter a correct password."
+            },
+            {
+              "sample_id": "SIEMENS_S210_2019_F01005",
+              "source_record_id": "",
+              "quote": "of connection to the firmware file. This can occur during a project download/reset in the case of a SINAMICS Integrated Control Unit, for example. xxxx = 008F hex = 143 dec: Component has not changed to the mode for firmware download. It was not possible to delete the existing firmware. "
+            }
+          ],
+          "registry_status_before_review": "confirmed"
+        },
+        "s210": {
+          "reviewer_judgement": "是",
+          "approved_router_role": "high_signal",
+          "notes": "型号级信号，最高优先级",
+          "positive_presence_evidence": [],
+          "registry_status_before_review": "confirmed"
+        },
+        "drive-cliq": {
+          "reviewer_judgement": "是",
+          "approved_router_role": "high_signal",
+          "notes": "Siemens运动控制组件协议",
+          "positive_presence_evidence": [
+            {
+              "sample_id": "SIEMENS_S210_2019_A01006",
+              "source_record_id": "",
+              "quote": "A01006 Firmware update for DRIVE-CLiQ component required Reaction: NONE Acknowledge: NONE Cause: The firmware of a DRIVE-CLiQ component must be updated as there is no suitable firmware or firmware version in the compo"
+            },
+            {
+              "sample_id": "SIEMENS_S210_2019_A01007",
+              "source_record_id": "",
+              "quote": "A01007 POWER ON for DRIVE-CLiQ component required Reaction: NONE Acknowledge: NONE Cause: A DRIVE-CLiQ component must be switched on again (POWER ON) (e.g. due to a firmware update). Alarm value (r2124, interpr"
+            },
+            {
+              "sample_id": "SIEMENS_S210_2019_A01304",
+              "source_record_id": "",
+              "quote": "A01304 Firmware version of DRIVE-CLiQ component is not up-to-date Reaction: NONE Acknowledge: NONE Cause: The non-volatile memory has a more recent firmware version than the one in the connected DRIVE-CLiQ component. "
+            }
+          ],
+          "registry_status_before_review": "confirmed"
+        },
+        "profinet": {
+          "reviewer_judgement": "条件是",
+          "approved_router_role": "medium_signal",
+          "notes": "工业协议，需结合驱动上下文",
+          "positive_presence_evidence": [
+            {
+              "sample_id": "SIEMENS_S210_2019_A01691",
+              "source_record_id": "",
+              "quote": " Ti and To unsuitable for PN cycle Reaction: NONE Acknowledge: NONE Cause: The configured times for PROFINET communication are not permitted and the PN cycle is used as the actual value acquisition cycle for the safe movement monitoring functions: Isochronous PROFINET: The sum of Ti and "
+            },
+            {
+              "sample_id": "SIEMENS_S210_2019_A01711",
+              "source_record_id": "",
+              "quote": "Isafe telegram. 6000 ... 6166: PROFIsafe message values (PROFIsafe driver for PROFIBUS DP V1/V2 and PROFINET). For these message values, the failsafe control signals (Failsafe Values) are transferred to the safety functions. If \"SS1 after failure of PROFIsafe communication\" is parameteri"
+            },
+            {
+              "sample_id": "SIEMENS_S210_2019_A01902",
+              "source_record_id": "",
+              "quote": " For alarm value = 10: - reduce Tdx by using fewer bus participants or shorter telegrams. Note: PN: PROFINET"
+            }
+          ],
+          "registry_status_before_review": "confirmed"
+        },
+        "profisafe": {
+          "reviewer_judgement": "条件是",
+          "approved_router_role": "medium_signal",
+          "notes": "安全通信协议，需结合系统",
+          "positive_presence_evidence": [
+            {
+              "sample_id": "SIEMENS_S210_2019_A01654",
+              "source_record_id": "",
+              "quote": "A01654 SI P1: Deviating PROFIsafe configuration Reaction: NONE Acknowledge: NONE Cause: The configuration of a PROFIsafe telegram in the higher-level control (F-PLC) does not match the parameterization in the driv"
+            },
+            {
+              "sample_id": "SIEMENS_S210_2019_A01706",
+              "source_record_id": "",
+              "quote": "e parameter settings of the \"SAM\" or the \"SBR\" function. Note: This message can be acknowledged via PROFIsafe (safe acknowledgment). SAM: Safe Acceleration Monitor (safe acceleration monitoring) SBR: Safe Brake Ramp (safe ramp monitoring) SI: Safety Integrated SS1: Safe Stop 1 SS2: Safe S"
+            },
+            {
+              "sample_id": "SIEMENS_S210_2019_A01711",
+              "source_record_id": "",
+              "quote": "tatus image of monitoring functions SOS, SLS, test stop, SBR, SDI (result list 1 ext) (r9710). 259: PROFIsafe telegram (p9611) is different between the monitoring channels. 261: Scaling factor for acceleration for SBR different. 262: Scaling factor for the inverse value of the acceleratio"
+            }
+          ],
+          "registry_status_before_review": "confirmed"
+        },
+        "STO": {
+          "reviewer_judgement": "条件是",
+          "approved_router_role": "medium_signal",
+          "notes": "安全功能词，需要驱动上下文",
+          "positive_presence_evidence": [
+            {
+              "sample_id": "SIEMENS_S210_2019_A01698",
+              "source_record_id": "",
+              "quote": " - this message does not result in a safety stop response. - in the safety commissioning mode, the \"STO\" function is internally selected. See also: p0010 (Drive commissioning parameter filter 2) Remedy: Not necessary. This message is automatically withdrawn after the safety function"
+            },
+            {
+              "sample_id": "SIEMENS_S210_2019_A01699",
+              "source_record_id": "",
+              "quote": "A01699 SI P1: Test stop for STO required Reaction: NONE Acknowledge: NONE Cause: The time set in p9659 for the forced checking procedure (test stop) for the \"STO\" function has been exceeded. A new forced checkin"
+            },
+            {
+              "sample_id": "SIEMENS_S210_2019_A01711",
+              "source_record_id": "",
+              "quote": "olerance (p9530). 31: Position tolerance (p9542). 33: Time, speed switchover (p9551) 35: Delay time STO (p9556). 36: Test time, STO (p9557). 37: Transition time SS2 to SOS (p9552). 38: Transition time SS2E to SOS (p9553). 42: Shutdown speed STO (p9560). 43: Memory test stop response"
+            }
+          ],
+          "registry_status_before_review": "pending_manual_confirmation"
+        },
+        "SI Motion": {
+          "reviewer_judgement": "是",
+          "approved_router_role": "high_signal",
+          "notes": "Siemens安全运动体系",
+          "positive_presence_evidence": [
+            {
+              "sample_id": "SIEMENS_S210_2019_A01691",
+              "source_record_id": "",
+              "quote": "A01691 SI Motion: Ti and To unsuitable for PN cycle Reaction: NONE Acknowledge: NONE Cause: The configured times for PROFINET communication are not permitted and the PN cycle is used as the actual"
+            },
+            {
+              "sample_id": "SIEMENS_S210_2019_A01695",
+              "source_record_id": "",
+              "quote": "A01695 SI Motion: Sensor Module was replaced Reaction: NONE Acknowledge: NONE Cause: A Sensor Module, which is used for safe motion monitoring functions, was replaced. The hardware replacement mus"
+            },
+            {
+              "sample_id": "SIEMENS_S210_2019_A01696",
+              "source_record_id": "",
+              "quote": "A01696 SI Motion: Test stop for the motion monitoring functions selected when booting Reaction: NONE Acknowledge: NONE Cause: The forced checking procedure (test stop) for the safe motion monitori"
+            }
+          ],
+          "registry_status_before_review": "pending_manual_confirmation"
+        },
+        "CU": {
+          "reviewer_judgement": "条件是",
+          "approved_router_role": "medium_signal",
+          "notes": "Control Unit缩写，不能单独确定",
+          "positive_presence_evidence": [
+            {
+              "sample_id": "SIEMENS_S210_2019_A01009",
+              "source_record_id": "",
+              "quote": "A01009 CU: Control module overtemperature Reaction: NONE Acknowledge: NONE Cause: The temperature (r0037[0]) of the control module (Control Unit) has exceeded the specified limit value. Rem"
+            },
+            {
+              "sample_id": "SIEMENS_S210_2019_A01045",
+              "source_record_id": "",
+              "quote": "A01045 CU: Configuring data invalid Reaction: NONE Acknowledge: NONE Cause: An error was detected when evaluating the parameter files PSxxxyyy.ACX, PTxxxyyy.ACX, CAxxxyyy.ACX, or CCxxxyyy.A"
+            },
+            {
+              "sample_id": "SIEMENS_S210_2019_A01049",
+              "source_record_id": "",
+              "quote": "A01049 CU: It is not possible to write to file Reaction: NONE Acknowledge: NONE Cause: It is not possible to write into a write-protected file (PSxxxxxx.acx). The write request was interrup"
+            }
+          ],
+          "registry_status_before_review": "pending_manual_confirmation"
+        },
+        "Sensor module": {
+          "reviewer_judgement": "条件是",
+          "approved_router_role": "medium_signal",
+          "notes": "需结合SI Motion",
+          "positive_presence_evidence": [
+            {
+              "sample_id": "SIEMENS_S210_2019_A01695",
+              "source_record_id": "",
+              "quote": "A01695 SI Motion: Sensor Module was replaced Reaction: NONE Acknowledge: NONE Cause: A Sensor Module, which is used for safe motion monitoring functions, was replaced. The hardware replacement must be acknowledg"
+            },
+            {
+              "sample_id": "SIEMENS_S210_2019_F01640",
+              "source_record_id": "",
+              "quote": "It has been identified that the drive has been replaced. Bit 3 = 1: It has been identified that the Sensor Module has been replaced. Bit 5 = 1: It has been identified that the sensor has been replaced. Remedy: - save all parameters - acknowledge fault. Note: In addition to the fault, diagnost"
+            },
+            {
+              "sample_id": "SIEMENS_S210_2019_F01641",
+              "source_record_id": "",
+              "quote": "It has been identified that the drive has been replaced. Bit 3 = 1: It has been identified that the Sensor Module has been replaced. Bit 5 = 1: It has been identified that the sensor has been replaced. Remedy: - save all parameters - acknowledge fault. See also: r9776 (SI diagnostics)"
+            }
+          ],
+          "registry_status_before_review": "pending_manual_confirmation"
+        }
+      },
+      "identifier_patterns": [
+        "\\b[AFN]\\d{5}\\b",
+        "\\b[pr]\\d{4,5}\\b"
+      ]
+    },
+    "faa_sdr": {
+      "domain": "aerospace",
+      "manufacturer": "FAA",
+      "system": "SDR",
+      "high_signal": [
+        "faa",
+        "jasc"
+      ],
+      "medium_signal": [
+        "aircraft",
+        "ATA",
+        "LRU",
+        "sdr"
+      ],
+      "excluded_signal": [
+        "flight",
+        "航空",
+        "航空器",
+        "飞机"
+      ],
+      "signal_evidence": {
+        "faa": {
+          "reviewer_judgement": "是",
+          "approved_router_role": "high_signal",
+          "notes": "航空监管数据强信号",
+          "positive_presence_evidence": [
+            {
+              "sample_id": "FAA-SDR-2024-034",
+              "source_record_id": "20240320083",
+              "quote": "TACH LUGS. ACCOMPLISHED TEXTRON AVIATION FIELD REPAIR FR-680-0149-12564 REV A DATED 25 OCT 2023 AND FAA FORM 8100-9 DATED 25 OCT 2023; FIELD REPAIR - CORROSION, RH MLG, TRUNNION, TRAILING LINK ATTACH LUGS."
+            },
+            {
+              "sample_id": "FAA-SDR-2024-035",
+              "source_record_id": "20240612001",
+              "quote": "REE HPT STATOR CASES WERE INSTALLED IN THREE ENGINES PREVIOUSLY RETURNED TO SERVICE BY GEEVES UNDER FAA REPAIR STATION PRIVILEGES.  THE ENGINES (ENGINE SERIAL NUMBERS (ESNS) 956612; 956649; AND 956582) WERE DELIVERED TO A 14 CFR PART 121 AIR CARRIER AND THAT CARRIER HAS BEEN NOTIFIE"
+            }
+          ],
+          "registry_status_before_review": "confirmed"
+        },
+        "jasc": {
+          "reviewer_judgement": "是",
+          "approved_router_role": "high_signal",
+          "notes": "航空分类编码",
+          "positive_presence_evidence": [
+            {
+              "sample_id": "FAA-SDR-2024-001",
+              "source_record_id": "DALA2024010200007",
+              "quote": "OperatorControlNumber: DALA2024010200007 JASCCode: 3350 AircraftMake: AIRBUS AircraftModel: A320211 PartName: UNKNOWN PartNumber: UNKNOWN PartCondition: UNKNOWN Discrepancy: SHIP 3229 DISC: FOUND BROKEN GROUND WIRE FOR EMERGENCY "
+            },
+            {
+              "sample_id": "FAA-SDR-2024-002",
+              "source_record_id": "DALA2024010200010",
+              "quote": "OperatorControlNumber: DALA2024010200010 JASCCode: 2565 AircraftMake: AIRBUS AircraftModel: A320212 PartName: UNKNOWN PartNumber: UNKNOWN PartCondition: UNKNOWN Discrepancy: 2L SLIDE DEPLOYED IN ERROR. C/A: REF. LOG 0134554 FOR 2"
+            },
+            {
+              "sample_id": "FAA-SDR-2024-003",
+              "source_record_id": "DALA2024010500168",
+              "quote": "OperatorControlNumber: DALA2024010500168 JASCCode: 5330 AircraftMake: AIRBUS AircraftModel: A320212 PartName: NONE PartNumber: NONE PartCondition: NONE Discrepancy: SHIP 3242 DISC: PERFORM ERA 614433-14AD. C/A: PERFORMED ER/A 614"
+            }
+          ],
+          "registry_status_before_review": "confirmed"
+        },
+        "sdr": {
+          "reviewer_judgement": "条件是",
+          "approved_router_role": "medium_signal",
+          "notes": "需结合FAA",
+          "positive_presence_evidence": [],
+          "registry_status_before_review": "confirmed"
+        },
+        "ATA": {
+          "reviewer_judgement": "条件是",
+          "approved_router_role": "medium_signal",
+          "notes": "航空维修体系词",
+          "positive_presence_evidence": [],
+          "registry_status_before_review": "pending_manual_confirmation"
+        },
+        "LRU": {
+          "reviewer_judgement": "条件是",
+          "approved_router_role": "medium_signal",
+          "notes": "航空维修语境有效",
+          "positive_presence_evidence": [],
+          "registry_status_before_review": "pending_manual_confirmation"
+        },
+        "aircraft": {
+          "reviewer_judgement": "条件是",
+          "approved_router_role": "medium_signal",
+          "notes": "需航空维修上下文",
+          "positive_presence_evidence": [
+            {
+              "sample_id": "FAA-SDR-2024-010",
+              "source_record_id": "2024F00021",
+              "quote": " PartCondition: DISCONNECTED ComponentName: SHUTOFF VALVE ComponentPartNumber: UNKNOWN Discrepancy: AIRCRAFT ARRIVED ON LFBF AIRPORT ON 20 DEC 2023 FROM UNITED STATES.  THE LEADING EDGE STANDBY SHUTOFF VALVE WAS FOUND DISCONNECTED AT THE ARRIVAL OF THE AIRCRAFT (ELECTRICAL CONNECTOR DISC"
+            },
+            {
+              "sample_id": "FAA-SDR-2024-012",
+              "source_record_id": "2024F00240",
+              "quote": "N 1, THEN PULLING THE STARTER CB AND RESETTING. NEITHER ACTION WAS SUCCESSFUL IN RE-ENGAGING GEN 1. AIRCRAFT IS EQUIPPED WITH AN STC THAT INSTALLS A 300 AMP GEN 2 SO NO EMERGENCY LOAD SHEDDING WAS REQUIRED. PILOT PERFORMED AN EMERGENCY GEAR EXTENSION FOR LANDING IN KOGD AND RECEIVED THRE"
+            },
+            {
+              "sample_id": "FAA-SDR-2024-020",
+              "source_record_id": "15MA202412120318",
+              "quote": "ED AN EMERGENCY FOR SINGLE ENGINE OPERATION. PILOT PERFORMED APPROACH TO RUNWAY. PRIOR TO TOUCHDOWN AIRCRAFT HAD SUFFICIENT POWER TO CONTINUE, PILOT CONTINUED TO TAXIWAY AND LANDED WITHOUT INCIDENT. MAINTENANCE MOVED AIRCRAFT TO HANGER. INSPECTED ENGINE MAGNETIC AND ELECTRICAL CHIP PLUGS"
+            }
+          ],
+          "registry_status_before_review": "pending_manual_confirmation"
+        }
+      },
+      "identifier_patterns": [
+        "\\b[AFN]\\d{5}\\b",
+        "\\b[pr]\\d{4,5}\\b",
+        "\\bjasc\\s*\\d{4}\\b"
+      ]
+    }
+  }
+}

@@ -34,3 +34,29 @@
 - `include_pending=True` 只允许离线审查测试使用，不能作为生产/Shadow 默认配置。
 
 注册表加载的确定性验证表明：使用已确认词生成的 Router 决策与原 Router v1 逐条一致，仍为 57 条 `scoped`、22 条 `cross_domain`。
+
+## 刘武审核后的 Expert Router v2 输入
+
+刘武审核后的完整输入快照为
+`evaluation/quality_eval/runs/domain_router_manual_review_bundle_v2_LiuWu_reviewed_v1.json`。
+基于该快照生成的实验文件为：
+
+- `evaluation/quality_eval/runs/domain_signal_registry_v1.json`；
+- `evaluation/quality_eval/runs/query_sufficiency_gold_v1.json`；
+- [Router v2 Policy（实验版）](router-policy-v2.md)。
+
+Query Sufficiency Gold 只包含明确人工填写的 22/79 条查询；其余 57 条仍是未审核数据，不能用于计算人工准确率。Expert Router v2 registry 也只用于离线对照，`production_enabled=false`，未替换本文件中的 v1 配置。
+
+## Expert Router v2 对照结果
+
+三组对照报告：
+
+`evaluation/quality_eval/runs/expert_router_v2_comparison_v1_2026-09-21.md`
+
+| 方案 | Candidate Recall@20 | Ranked R@1 | WrongDomain@1（候选） | Clarification Precision（22 条 Gold） | 全量澄清比例 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| No Router | 0.9241 | 0.5949 | 0.2152 | N/A | 0.0000 |
+| Rule Router v1 | 0.9241 | 0.6329 | 0 | 1.0000 | 0.4051 |
+| Expert Router v2 | 0.9241 | 0.5949 | 0.2152 | 1.0000 | 0.4051 |
+
+本结果说明：专家词表没有破坏候选召回，但在当前 79 条查询上尚未减少错误领域 Top1；不能据此直接上线 v2。Rule Router v1 的领域隔离效果更好，但其优势来自现有 identifier/领域词覆盖，仍需保持 shadow mode 并继续做查询充分性分析。
