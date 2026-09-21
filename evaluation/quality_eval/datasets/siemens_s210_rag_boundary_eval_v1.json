@@ -1,0 +1,212 @@
+{
+  "dataset_info": {
+    "name": "siemens_s210_rag_boundary_eval_v1",
+    "version": "v1",
+    "purpose": "验证 S210 RAG 对库内、信息不足和明确库外问题的安全回答边界",
+    "status": "engineering_draft_pending_expert_review",
+    "gold_source": "engineering_draft",
+    "not_for_training": true,
+    "query_count": 24,
+    "policy_owner": "backend-python/response_policy.py"
+  },
+  "label_definitions": {
+    "supported": "有明确 S210 标识或故障码/参数，可基于证据正常回答",
+    "supported_with_warning": "属于技术故障问题，但缺少明确设备身份，应回答并提示补充信息",
+    "insufficient_evidence": "信息过少，不能给出确定诊断，应请求补充",
+    "out_of_domain": "明确属于当前知识库以外的领域，不应生成故障诊断"
+  },
+  "queries": [
+    {
+      "query_id": "BOUNDARY-001",
+      "question": "S210 F01630 是什么故障？",
+      "expected_knowledge_status": "supported",
+      "expected_response_policy": "normal",
+      "answer_allowed": true,
+      "category": "explicit_fault_code"
+    },
+    {
+      "query_id": "BOUNDARY-002",
+      "question": "Siemens S210 的 p7829 参数有什么作用？",
+      "expected_knowledge_status": "supported",
+      "expected_response_policy": "normal",
+      "answer_allowed": true,
+      "category": "explicit_parameter"
+    },
+    {
+      "query_id": "BOUNDARY-003",
+      "question": "SINAMICS A01009 控制单元过热怎么办？",
+      "expected_knowledge_status": "supported",
+      "expected_response_policy": "normal",
+      "answer_allowed": true,
+      "category": "explicit_system_and_code"
+    },
+    {
+      "query_id": "BOUNDARY-004",
+      "question": "STO 状态不一致对应什么 S210 故障？",
+      "expected_knowledge_status": "supported",
+      "expected_response_policy": "normal",
+      "answer_allowed": true,
+      "category": "explicit_safety_signal"
+    },
+    {
+      "query_id": "BOUNDARY-005",
+      "question": "DRIVE-CLiQ 组件固件升级失败的原因是什么？",
+      "expected_knowledge_status": "supported",
+      "expected_response_policy": "normal",
+      "answer_allowed": true,
+      "category": "explicit_component_signal"
+    },
+    {
+      "query_id": "BOUNDARY-006",
+      "question": "Siemens 控制单元温度过高，应该检查什么？",
+      "expected_knowledge_status": "supported",
+      "expected_response_policy": "normal",
+      "answer_allowed": true,
+      "category": "explicit_manufacturer_and_component"
+    },
+    {
+      "query_id": "BOUNDARY-007",
+      "question": "温度异常怎么办？",
+      "expected_knowledge_status": "supported_with_warning",
+      "expected_response_policy": "warning",
+      "answer_allowed": true,
+      "category": "technical_low_identity"
+    },
+    {
+      "query_id": "BOUNDARY-008",
+      "question": "电机通信失败是什么原因？",
+      "expected_knowledge_status": "supported_with_warning",
+      "expected_response_policy": "warning",
+      "answer_allowed": true,
+      "category": "technical_low_identity"
+    },
+    {
+      "query_id": "BOUNDARY-009",
+      "question": "编码器信号异常，怎么排查？",
+      "expected_knowledge_status": "supported_with_warning",
+      "expected_response_policy": "warning",
+      "answer_allowed": true,
+      "category": "technical_low_identity"
+    },
+    {
+      "query_id": "BOUNDARY-010",
+      "question": "驱动报警后停止运行，可能是什么问题？",
+      "expected_knowledge_status": "supported_with_warning",
+      "expected_response_policy": "warning",
+      "answer_allowed": true,
+      "category": "technical_low_identity"
+    },
+    {
+      "query_id": "BOUNDARY-011",
+      "question": "控制单元过热应该如何处理？",
+      "expected_knowledge_status": "supported_with_warning",
+      "expected_response_policy": "warning",
+      "answer_allowed": true,
+      "category": "technical_low_identity"
+    },
+    {
+      "query_id": "BOUNDARY-012",
+      "question": "参数设置错误导致报警，怎么判断？",
+      "expected_knowledge_status": "supported_with_warning",
+      "expected_response_policy": "warning",
+      "answer_allowed": true,
+      "category": "technical_low_identity"
+    },
+    {
+      "query_id": "BOUNDARY-013",
+      "question": "设备坏了。",
+      "expected_knowledge_status": "insufficient_evidence",
+      "expected_response_policy": "clarify",
+      "answer_allowed": false,
+      "category": "low_information"
+    },
+    {
+      "query_id": "BOUNDARY-014",
+      "question": "报警了怎么办？",
+      "expected_knowledge_status": "insufficient_evidence",
+      "expected_response_policy": "clarify",
+      "answer_allowed": false,
+      "category": "low_information"
+    },
+    {
+      "query_id": "BOUNDARY-015",
+      "question": "不工作了。",
+      "expected_knowledge_status": "insufficient_evidence",
+      "expected_response_policy": "clarify",
+      "answer_allowed": false,
+      "category": "low_information"
+    },
+    {
+      "query_id": "BOUNDARY-016",
+      "question": "帮我看看这个问题。",
+      "expected_knowledge_status": "insufficient_evidence",
+      "expected_response_policy": "clarify",
+      "answer_allowed": false,
+      "category": "low_information"
+    },
+    {
+      "query_id": "BOUNDARY-017",
+      "question": "系统有点异常。",
+      "expected_knowledge_status": "insufficient_evidence",
+      "expected_response_policy": "clarify",
+      "answer_allowed": false,
+      "category": "low_information"
+    },
+    {
+      "query_id": "BOUNDARY-018",
+      "question": "这个故障严重吗？",
+      "expected_knowledge_status": "insufficient_evidence",
+      "expected_response_policy": "clarify",
+      "answer_allowed": false,
+      "category": "low_information"
+    },
+    {
+      "query_id": "BOUNDARY-019",
+      "question": "今天天气怎么样？",
+      "expected_knowledge_status": "out_of_domain",
+      "expected_response_policy": "out_of_domain",
+      "answer_allowed": false,
+      "category": "explicit_external_domain"
+    },
+    {
+      "query_id": "BOUNDARY-020",
+      "question": "帮我推荐一只股票。",
+      "expected_knowledge_status": "out_of_domain",
+      "expected_response_policy": "out_of_domain",
+      "answer_allowed": false,
+      "category": "explicit_external_domain"
+    },
+    {
+      "query_id": "BOUNDARY-021",
+      "question": "帮我写一首诗。",
+      "expected_knowledge_status": "out_of_domain",
+      "expected_response_policy": "out_of_domain",
+      "answer_allowed": false,
+      "category": "explicit_external_domain"
+    },
+    {
+      "query_id": "BOUNDARY-022",
+      "question": "飞机液压系统故障怎么处理？",
+      "expected_knowledge_status": "out_of_domain",
+      "expected_response_policy": "out_of_domain",
+      "answer_allowed": false,
+      "category": "explicit_external_domain"
+    },
+    {
+      "query_id": "BOUNDARY-023",
+      "question": "请分析这个航空器的 ATA 故障。",
+      "expected_knowledge_status": "out_of_domain",
+      "expected_response_policy": "out_of_domain",
+      "answer_allowed": false,
+      "category": "explicit_external_domain"
+    },
+    {
+      "query_id": "BOUNDARY-024",
+      "question": "帮我做一个旅游计划。",
+      "expected_knowledge_status": "out_of_domain",
+      "expected_response_policy": "out_of_domain",
+      "answer_allowed": false,
+      "category": "explicit_external_domain"
+    }
+  ]
+}

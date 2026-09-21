@@ -31,6 +31,7 @@ from rag_contract import (
     RetrievedFault,
 )
 from fault_relation_expansion import FaultRelationRegistry
+from response_policy import RagBoundaryDecision, ResponsePolicyLayer, boundary_message
 
 
 class RagServiceError(ValueError):
@@ -244,7 +245,14 @@ class GoldFaultContextStore(FaultContextLoader):
 class EvidenceBoundPromptBuilder:
     """Build a prompt that only permits claims supported by supplied spans."""
 
-    def build(self, question: str, contexts: Sequence[FaultContext]) -> str:
+    def build(
+        self,
+        question: str,
+        contexts: Sequence[FaultContext],
+        *,
+        response_policy: str = "normal",
+        missing_information: Sequence[str] = (),
+    ) -> str:
         blocks: list[str] = []
         for context in contexts:
             evidence_lines = []
@@ -273,6 +281,18 @@ class EvidenceBoundPromptBuilder:
                 )
             )
 
+        policy_instruction = {
+            "warning": (
+                "当前问题缺少明确的 S210 故障码或设备型号。可以根据证据回答，但必须降低确定性，"
+                "明确说明这是可能相关的故障，并提示用户补充："
+                + ("、".join(missing_information) or "故障码或设备型号")
+                + "。"
+            ),
+            "normal": "当前问题可以基于证据正常回答。",
+        }.get(
+            response_policy,
+            "当前证据不足，不得给出确定性诊断。",
+        )
         return (
             "你是 Siemens S210 工业故障诊断助手。只能使用下方故障记录和 Evidence spans 回答。\n"
             "要求：\n"
@@ -283,6 +303,7 @@ class EvidenceBoundPromptBuilder:
             "5. 默认只回答上下文中的首位候选故障；只有用户明确询问多个故障，或上下文已标记为同描述且排名接近时，才并列回答多个故障。\n"
             "6. 不要为了展示候选而主动扩展其他故障；未纳入回答范围的候选不得在回答中引用。\n"
             "7. 若上下文提供了有证据的 Fault Relation，且用户问题命中该关系触发词，必须说明主故障与关联故障/消息码的关系；不能把关系证据扩展成未被原文支持的参数含义。\n\n"
+            f"回答策略：{policy_instruction}\n\n"
             f"用户问题：{question.strip()}\n\n"
             "候选故障上下文：\n"
             + "\n\n---\n\n".join(blocks)
@@ -328,7 +349,44 @@ class PromptAnswerGenerator(AnswerGenerator):
     ) -> GeneratedAnswer:
         if not contexts:
             raise RagServiceError("answer_context_empty", "没有可用于回答的故障上下文")
-        text = self._client.complete(self._prompt_builder.build(question, contexts)).strip()
+        return self._generate_with_policy(
+            question,
+            contexts,
+            response_policy="normal",
+            missing_information=(),
+        )
+
+    def generate_with_policy(
+        self,
+        question: str,
+        contexts: Sequence[FaultContext],
+        *,
+        response_policy: str,
+        missing_information: Sequence[str] = (),
+    ) -> GeneratedAnswer:
+        return self._generate_with_policy(
+            question,
+            contexts,
+            response_policy=response_policy,
+            missing_information=missing_information,
+        )
+
+    def _generate_with_policy(
+        self,
+        question: str,
+        contexts: Sequence[FaultContext],
+        *,
+        response_policy: str,
+        missing_information: Sequence[str],
+    ) -> GeneratedAnswer:
+        text = self._client.complete(
+            self._prompt_builder.build(
+                question,
+                contexts,
+                response_policy=response_policy,
+                missing_information=missing_information,
+            )
+        ).strip()
         if not text:
             raise RagServiceError("answer_empty", "模型未返回有效回答")
         citations = tuple(dict.fromkeys(_CITATION_RE.findall(text)))
@@ -351,6 +409,26 @@ class PromptAnswerGenerator(AnswerGenerator):
         return GeneratedAnswer(text=text, citations=citations, model=self._model_name)
 
 
+def build_boundary_rag_response(
+    question: str,
+    boundary: RagBoundaryDecision,
+) -> RagResponse:
+    """Build a safe non-answer without constructing the heavy retriever."""
+
+    return RagResponse(
+        question=str(question or "").strip(),
+        answer=GeneratedAnswer(
+            text=boundary_message(boundary),
+            citations=(),
+            model="boundary-policy",
+        ),
+        retrieved=(),
+        contexts=(),
+        evidence_status="not_answered",
+        boundary=boundary,
+    )
+
+
 class FaultRagService:
     """Orchestrate retrieval, full-context loading and evidence-bound generation."""
 
@@ -360,11 +438,21 @@ class FaultRagService:
         context_loader: FaultContextLoader,
         answer_generator: AnswerGenerator,
         relation_registry: FaultRelationRegistry | None = None,
+        response_policy_layer: ResponsePolicyLayer | None = None,
     ) -> None:
         self._retriever = retriever
         self._context_loader = context_loader
         self._answer_generator = answer_generator
         self._relation_registry = relation_registry or FaultRelationRegistry()
+        self._response_policy_layer = response_policy_layer or ResponsePolicyLayer()
+
+    @staticmethod
+    def _boundary_answer(boundary: RagBoundaryDecision) -> GeneratedAnswer:
+        return GeneratedAnswer(
+            text=boundary_message(boundary),
+            citations=(),
+            model="boundary-policy",
+        )
 
     @staticmethod
     def _generation_contexts(
@@ -419,6 +507,23 @@ class FaultRagService:
         if isinstance(top_k, bool) or not isinstance(top_k, int) or not 1 <= top_k <= 10:
             raise RagServiceError("top_k_invalid", "top_k 必须是 1 到 10 之间的整数")
 
+        # An explicit external-domain query can be rejected before loading the
+        # heavy retriever. Low-information and technical queries still proceed
+        # to retrieval and are assessed again once evidence contexts exist.
+        preflight_boundary = self._response_policy_layer.assess_boundary(
+            question=safe_question,
+            contexts=(),
+        )
+        if preflight_boundary.knowledge_status == "out_of_domain":
+            return RagResponse(
+                question=safe_question,
+                answer=self._boundary_answer(preflight_boundary),
+                retrieved=(),
+                contexts=(),
+                evidence_status="not_answered",
+                boundary=preflight_boundary,
+            )
+
         raw_candidates = self._retriever.retrieve(safe_question, limit=top_k)
         candidates: list[RetrievedFault] = []
         seen: set[str] = set()
@@ -443,6 +548,19 @@ class FaultRagService:
         )
         if not candidate_contexts:
             raise RagServiceError("context_empty", "候选故障没有可加载的完整上下文")
+        boundary = self._response_policy_layer.assess_boundary(
+            question=safe_question,
+            contexts=candidate_contexts,
+        )
+        if not boundary.answer_allowed:
+            return RagResponse(
+                question=safe_question,
+                answer=self._boundary_answer(boundary),
+                retrieved=tuple(candidates),
+                contexts=tuple(candidate_contexts),
+                evidence_status="not_answered",
+                boundary=boundary,
+            )
         primary_code = candidate_contexts[0].fault_code.upper()
         related_codes = self._relation_registry.triggered_related_codes(
             safe_question,
@@ -484,7 +602,16 @@ class FaultRagService:
                 for context in related_contexts
                 if context.fault_code.upper() not in generation_codes
             )
-        generated = self._answer_generator.generate(safe_question, generation_contexts)
+        generate_with_policy = getattr(self._answer_generator, "generate_with_policy", None)
+        if callable(generate_with_policy):
+            generated = generate_with_policy(
+                safe_question,
+                generation_contexts,
+                response_policy=boundary.response_policy,
+                missing_information=boundary.missing_information,
+            )
+        else:
+            generated = self._answer_generator.generate(safe_question, generation_contexts)
         expected_citations = {
             evidence.citation_id
             for context in generation_contexts
@@ -500,6 +627,7 @@ class FaultRagService:
             contexts=tuple(all_contexts),
             relations=relations,
             evidence_status=evidence_status,
+            boundary=boundary,
         )
 
 

@@ -5,6 +5,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any, Mapping, Protocol, Sequence
 
+from response_policy import RagBoundaryDecision
+
 
 @dataclass(frozen=True)
 class RetrievedFault:
@@ -89,6 +91,7 @@ class RagResponse:
     contexts: tuple[FaultContext, ...]
     evidence_status: str
     relations: tuple[FaultRelation, ...] = ()
+    boundary: RagBoundaryDecision | None = None
 
 
 class FaultRetriever(Protocol):

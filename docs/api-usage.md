@@ -70,6 +70,25 @@ fault code 和 parameter 精确匹配、Alarm 辅助召回、按 fault code 去�
 `pipeline.evidence_status`。模型回答必须引用上下文中的 evidence citation；缺少引用或
 引用未知证据时，后端拒绝该回答。
 
+响应同时包含 `boundary` 和对应的 `pipeline` 状态：
+
+```json
+{
+  "boundary": {
+    "knowledge_status": "supported_with_warning",
+    "response_policy": "warning",
+    "answer_allowed": true,
+    "confidence_level": "medium",
+    "need_additional_info": true,
+    "warning_required": true,
+    "missing_information": ["fault_code_or_device_model"]
+  }
+}
+```
+
+`out_of_domain` 和 `insufficient_evidence` 不会调用回答模型；非 debug 响应也不会把无关的
+最近邻故障候选展示为诊断结果。该边界策略只控制回答安全性，不改变检索召回范围。
+
 默认 `debug=false` 时不返回 `raw_text` 和候选的内部 signals；需要诊断检索排名时可临时
 使用 `debug=true`。模型按首次请求懒加载，相关配置见 `backend-python/.env.example` 的
 `S210_*` 和现有 OpenAI-compatible provider 配置。当前 Workbench 的 AI 对话入口已经接入

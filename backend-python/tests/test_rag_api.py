@@ -15,6 +15,7 @@ from rag_contract import (  # noqa: E402
     RagResponse,
     RetrievedFault,
 )
+from response_policy import RagBoundaryDecision  # noqa: E402
 
 
 class FakeRagService:
@@ -38,6 +39,33 @@ class FakeRagService:
             source_file="S210_Manual_Test.pdf",
             raw_text="private source text",
         )
+        if "天气" in question:
+            return RagResponse(
+                question=question,
+                answer=GeneratedAnswer(
+                    text="当前系统不支持该问题。",
+                    citations=(),
+                    model="boundary-policy",
+                ),
+                retrieved=(
+                    RetrievedFault(
+                        fault_code="A01009",
+                        score=0.20,
+                        rank=1,
+                    ),
+                ),
+                contexts=(context,),
+                evidence_status="not_answered",
+                boundary=RagBoundaryDecision(
+                    knowledge_status="out_of_domain",
+                    response_policy="out_of_domain",
+                    answer_allowed=False,
+                    confidence_level="low",
+                    need_additional_info=False,
+                    warning_required=False,
+                    reason="outside S210 scope",
+                ),
+            )
         return RagResponse(
             question=question,
             answer=GeneratedAnswer(
@@ -87,6 +115,26 @@ class RagApiTests(unittest.TestCase):
         self.assertEqual("private source text", response["contexts"][0]["raw_text"])
         self.assertEqual(1, response["retrieved"][0]["signals"]["d2_rank"])
         self.assertIn("BAAI/bge-m3", response["pipeline"]["retriever"])
+
+    def test_query_hides_unrelated_candidates_when_boundary_refuses_answer(self):
+        response = api_server.query_s210_rag(
+            api_server.RagQueryRequest(question="今天天气怎么样？")
+        )
+
+        self.assertEqual("out_of_domain", response["pipeline"]["knowledge_status"])
+        self.assertFalse(response["pipeline"]["answer_allowed"])
+        self.assertEqual([], response["retrieved"])
+        self.assertEqual([], response["contexts"])
+        self.assertEqual("not_answered", response["pipeline"]["evidence_status"])
+
+    def test_out_of_domain_preflight_does_not_construct_rag_service(self):
+        api_server.app.state.s210_rag_service = None
+        response = api_server.query_s210_rag(
+            api_server.RagQueryRequest(question="帮我写一首诗。")
+        )
+
+        self.assertEqual("out_of_domain", response["pipeline"]["knowledge_status"])
+        self.assertEqual("boundary-policy", response["answer"]["model"])
 
 
 if __name__ == "__main__":

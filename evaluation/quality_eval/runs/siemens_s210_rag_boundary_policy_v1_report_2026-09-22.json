@@ -1,0 +1,609 @@
+{
+  "dataset": "siemens_s210_rag_boundary_eval_v1",
+  "status": "engineering_policy_check",
+  "expert_validated": false,
+  "query_count": 24,
+  "matched": 24,
+  "accuracy": 1.0,
+  "expected_counts": {
+    "supported": 6,
+    "supported_with_warning": 6,
+    "insufficient_evidence": 6,
+    "out_of_domain": 6
+  },
+  "actual_counts": {
+    "supported": 6,
+    "supported_with_warning": 6,
+    "insufficient_evidence": 6,
+    "out_of_domain": 6
+  },
+  "mismatches": [],
+  "results": [
+    {
+      "query_id": "BOUNDARY-001",
+      "question": "S210 F01630 是什么故障？",
+      "expected_knowledge_status": "supported",
+      "actual_knowledge_status": "supported",
+      "expected_response_policy": "normal",
+      "actual_response_policy": "normal",
+      "match": true,
+      "decision": {
+        "knowledge_status": "supported",
+        "response_policy": "normal",
+        "answer_allowed": true,
+        "confidence_level": "high",
+        "need_additional_info": false,
+        "warning_required": false,
+        "reason": "query contains an S210 identifier or explicit supported-scope signal",
+        "missing_information": [],
+        "matched_scope_signals": [
+          "s210"
+        ],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-002",
+      "question": "Siemens S210 的 p7829 参数有什么作用？",
+      "expected_knowledge_status": "supported",
+      "actual_knowledge_status": "supported",
+      "expected_response_policy": "normal",
+      "actual_response_policy": "normal",
+      "match": true,
+      "decision": {
+        "knowledge_status": "supported",
+        "response_policy": "normal",
+        "answer_allowed": true,
+        "confidence_level": "high",
+        "need_additional_info": false,
+        "warning_required": false,
+        "reason": "query contains an S210 identifier or explicit supported-scope signal",
+        "missing_information": [],
+        "matched_scope_signals": [
+          "siemens",
+          "s210",
+          "siemens s210"
+        ],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-003",
+      "question": "SINAMICS A01009 控制单元过热怎么办？",
+      "expected_knowledge_status": "supported",
+      "actual_knowledge_status": "supported",
+      "expected_response_policy": "normal",
+      "actual_response_policy": "normal",
+      "match": true,
+      "decision": {
+        "knowledge_status": "supported",
+        "response_policy": "normal",
+        "answer_allowed": true,
+        "confidence_level": "high",
+        "need_additional_info": false,
+        "warning_required": false,
+        "reason": "query contains an S210 identifier or explicit supported-scope signal",
+        "missing_information": [],
+        "matched_scope_signals": [
+          "sinamics"
+        ],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-004",
+      "question": "STO 状态不一致对应什么 S210 故障？",
+      "expected_knowledge_status": "supported",
+      "actual_knowledge_status": "supported",
+      "expected_response_policy": "normal",
+      "actual_response_policy": "normal",
+      "match": true,
+      "decision": {
+        "knowledge_status": "supported",
+        "response_policy": "normal",
+        "answer_allowed": true,
+        "confidence_level": "high",
+        "need_additional_info": false,
+        "warning_required": false,
+        "reason": "query contains an S210 identifier or explicit supported-scope signal",
+        "missing_information": [],
+        "matched_scope_signals": [
+          "s210"
+        ],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-005",
+      "question": "DRIVE-CLiQ 组件固件升级失败的原因是什么？",
+      "expected_knowledge_status": "supported",
+      "actual_knowledge_status": "supported",
+      "expected_response_policy": "normal",
+      "actual_response_policy": "normal",
+      "match": true,
+      "decision": {
+        "knowledge_status": "supported",
+        "response_policy": "normal",
+        "answer_allowed": true,
+        "confidence_level": "high",
+        "need_additional_info": false,
+        "warning_required": false,
+        "reason": "query contains an S210 identifier or explicit supported-scope signal",
+        "missing_information": [],
+        "matched_scope_signals": [
+          "drive-cliq"
+        ],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-006",
+      "question": "Siemens 控制单元温度过高，应该检查什么？",
+      "expected_knowledge_status": "supported",
+      "actual_knowledge_status": "supported",
+      "expected_response_policy": "normal",
+      "actual_response_policy": "normal",
+      "match": true,
+      "decision": {
+        "knowledge_status": "supported",
+        "response_policy": "normal",
+        "answer_allowed": true,
+        "confidence_level": "high",
+        "need_additional_info": false,
+        "warning_required": false,
+        "reason": "query contains an S210 identifier or explicit supported-scope signal",
+        "missing_information": [],
+        "matched_scope_signals": [
+          "siemens"
+        ],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-007",
+      "question": "温度异常怎么办？",
+      "expected_knowledge_status": "supported_with_warning",
+      "actual_knowledge_status": "supported_with_warning",
+      "expected_response_policy": "warning",
+      "actual_response_policy": "warning",
+      "match": true,
+      "decision": {
+        "knowledge_status": "supported_with_warning",
+        "response_policy": "warning",
+        "answer_allowed": true,
+        "confidence_level": "medium",
+        "need_additional_info": true,
+        "warning_required": true,
+        "reason": "technical query lacks an explicit S210 identity signal",
+        "missing_information": [
+          "fault_code_or_device_model"
+        ],
+        "matched_scope_signals": [],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-008",
+      "question": "电机通信失败是什么原因？",
+      "expected_knowledge_status": "supported_with_warning",
+      "actual_knowledge_status": "supported_with_warning",
+      "expected_response_policy": "warning",
+      "actual_response_policy": "warning",
+      "match": true,
+      "decision": {
+        "knowledge_status": "supported_with_warning",
+        "response_policy": "warning",
+        "answer_allowed": true,
+        "confidence_level": "medium",
+        "need_additional_info": true,
+        "warning_required": true,
+        "reason": "technical query lacks an explicit S210 identity signal",
+        "missing_information": [
+          "fault_code_or_device_model"
+        ],
+        "matched_scope_signals": [],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-009",
+      "question": "编码器信号异常，怎么排查？",
+      "expected_knowledge_status": "supported_with_warning",
+      "actual_knowledge_status": "supported_with_warning",
+      "expected_response_policy": "warning",
+      "actual_response_policy": "warning",
+      "match": true,
+      "decision": {
+        "knowledge_status": "supported_with_warning",
+        "response_policy": "warning",
+        "answer_allowed": true,
+        "confidence_level": "medium",
+        "need_additional_info": true,
+        "warning_required": true,
+        "reason": "technical query lacks an explicit S210 identity signal",
+        "missing_information": [
+          "fault_code_or_device_model"
+        ],
+        "matched_scope_signals": [],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-010",
+      "question": "驱动报警后停止运行，可能是什么问题？",
+      "expected_knowledge_status": "supported_with_warning",
+      "actual_knowledge_status": "supported_with_warning",
+      "expected_response_policy": "warning",
+      "actual_response_policy": "warning",
+      "match": true,
+      "decision": {
+        "knowledge_status": "supported_with_warning",
+        "response_policy": "warning",
+        "answer_allowed": true,
+        "confidence_level": "medium",
+        "need_additional_info": true,
+        "warning_required": true,
+        "reason": "technical query lacks an explicit S210 identity signal",
+        "missing_information": [
+          "fault_code_or_device_model"
+        ],
+        "matched_scope_signals": [],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-011",
+      "question": "控制单元过热应该如何处理？",
+      "expected_knowledge_status": "supported_with_warning",
+      "actual_knowledge_status": "supported_with_warning",
+      "expected_response_policy": "warning",
+      "actual_response_policy": "warning",
+      "match": true,
+      "decision": {
+        "knowledge_status": "supported_with_warning",
+        "response_policy": "warning",
+        "answer_allowed": true,
+        "confidence_level": "medium",
+        "need_additional_info": true,
+        "warning_required": true,
+        "reason": "technical query lacks an explicit S210 identity signal",
+        "missing_information": [
+          "fault_code_or_device_model"
+        ],
+        "matched_scope_signals": [],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-012",
+      "question": "参数设置错误导致报警，怎么判断？",
+      "expected_knowledge_status": "supported_with_warning",
+      "actual_knowledge_status": "supported_with_warning",
+      "expected_response_policy": "warning",
+      "actual_response_policy": "warning",
+      "match": true,
+      "decision": {
+        "knowledge_status": "supported_with_warning",
+        "response_policy": "warning",
+        "answer_allowed": true,
+        "confidence_level": "medium",
+        "need_additional_info": true,
+        "warning_required": true,
+        "reason": "technical query lacks an explicit S210 identity signal",
+        "missing_information": [
+          "fault_code_or_device_model"
+        ],
+        "matched_scope_signals": [],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-013",
+      "question": "设备坏了。",
+      "expected_knowledge_status": "insufficient_evidence",
+      "actual_knowledge_status": "insufficient_evidence",
+      "expected_response_policy": "clarify",
+      "actual_response_policy": "clarify",
+      "match": true,
+      "decision": {
+        "knowledge_status": "insufficient_evidence",
+        "response_policy": "clarify",
+        "answer_allowed": false,
+        "confidence_level": "low",
+        "need_additional_info": true,
+        "warning_required": false,
+        "reason": "query does not provide enough technical or S210 context for a reliable answer",
+        "missing_information": [
+          "device_model",
+          "fault_code_or_symptom"
+        ],
+        "matched_scope_signals": [],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-014",
+      "question": "报警了怎么办？",
+      "expected_knowledge_status": "insufficient_evidence",
+      "actual_knowledge_status": "insufficient_evidence",
+      "expected_response_policy": "clarify",
+      "actual_response_policy": "clarify",
+      "match": true,
+      "decision": {
+        "knowledge_status": "insufficient_evidence",
+        "response_policy": "clarify",
+        "answer_allowed": false,
+        "confidence_level": "low",
+        "need_additional_info": true,
+        "warning_required": false,
+        "reason": "query does not provide enough technical or S210 context for a reliable answer",
+        "missing_information": [
+          "device_model",
+          "fault_code_or_symptom"
+        ],
+        "matched_scope_signals": [],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-015",
+      "question": "不工作了。",
+      "expected_knowledge_status": "insufficient_evidence",
+      "actual_knowledge_status": "insufficient_evidence",
+      "expected_response_policy": "clarify",
+      "actual_response_policy": "clarify",
+      "match": true,
+      "decision": {
+        "knowledge_status": "insufficient_evidence",
+        "response_policy": "clarify",
+        "answer_allowed": false,
+        "confidence_level": "low",
+        "need_additional_info": true,
+        "warning_required": false,
+        "reason": "query does not provide enough technical or S210 context for a reliable answer",
+        "missing_information": [
+          "device_model",
+          "fault_code_or_symptom"
+        ],
+        "matched_scope_signals": [],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-016",
+      "question": "帮我看看这个问题。",
+      "expected_knowledge_status": "insufficient_evidence",
+      "actual_knowledge_status": "insufficient_evidence",
+      "expected_response_policy": "clarify",
+      "actual_response_policy": "clarify",
+      "match": true,
+      "decision": {
+        "knowledge_status": "insufficient_evidence",
+        "response_policy": "clarify",
+        "answer_allowed": false,
+        "confidence_level": "low",
+        "need_additional_info": true,
+        "warning_required": false,
+        "reason": "query does not provide enough technical or S210 context for a reliable answer",
+        "missing_information": [
+          "device_model",
+          "fault_code_or_symptom"
+        ],
+        "matched_scope_signals": [],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-017",
+      "question": "系统有点异常。",
+      "expected_knowledge_status": "insufficient_evidence",
+      "actual_knowledge_status": "insufficient_evidence",
+      "expected_response_policy": "clarify",
+      "actual_response_policy": "clarify",
+      "match": true,
+      "decision": {
+        "knowledge_status": "insufficient_evidence",
+        "response_policy": "clarify",
+        "answer_allowed": false,
+        "confidence_level": "low",
+        "need_additional_info": true,
+        "warning_required": false,
+        "reason": "query does not provide enough technical or S210 context for a reliable answer",
+        "missing_information": [
+          "device_model",
+          "fault_code_or_symptom"
+        ],
+        "matched_scope_signals": [],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-018",
+      "question": "这个故障严重吗？",
+      "expected_knowledge_status": "insufficient_evidence",
+      "actual_knowledge_status": "insufficient_evidence",
+      "expected_response_policy": "clarify",
+      "actual_response_policy": "clarify",
+      "match": true,
+      "decision": {
+        "knowledge_status": "insufficient_evidence",
+        "response_policy": "clarify",
+        "answer_allowed": false,
+        "confidence_level": "low",
+        "need_additional_info": true,
+        "warning_required": false,
+        "reason": "query does not provide enough technical or S210 context for a reliable answer",
+        "missing_information": [
+          "device_model",
+          "fault_code_or_symptom"
+        ],
+        "matched_scope_signals": [],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-019",
+      "question": "今天天气怎么样？",
+      "expected_knowledge_status": "out_of_domain",
+      "actual_knowledge_status": "out_of_domain",
+      "expected_response_policy": "out_of_domain",
+      "actual_response_policy": "out_of_domain",
+      "match": true,
+      "decision": {
+        "knowledge_status": "out_of_domain",
+        "response_policy": "out_of_domain",
+        "answer_allowed": false,
+        "confidence_level": "low",
+        "need_additional_info": false,
+        "warning_required": false,
+        "reason": "query contains explicit signals for a domain outside the S210 knowledge base",
+        "missing_information": [],
+        "matched_scope_signals": [],
+        "matched_external_signals": [
+          "天气"
+        ],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-020",
+      "question": "帮我推荐一只股票。",
+      "expected_knowledge_status": "out_of_domain",
+      "actual_knowledge_status": "out_of_domain",
+      "expected_response_policy": "out_of_domain",
+      "actual_response_policy": "out_of_domain",
+      "match": true,
+      "decision": {
+        "knowledge_status": "out_of_domain",
+        "response_policy": "out_of_domain",
+        "answer_allowed": false,
+        "confidence_level": "low",
+        "need_additional_info": false,
+        "warning_required": false,
+        "reason": "query contains explicit signals for a domain outside the S210 knowledge base",
+        "missing_information": [],
+        "matched_scope_signals": [],
+        "matched_external_signals": [
+          "股票"
+        ],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-021",
+      "question": "帮我写一首诗。",
+      "expected_knowledge_status": "out_of_domain",
+      "actual_knowledge_status": "out_of_domain",
+      "expected_response_policy": "out_of_domain",
+      "actual_response_policy": "out_of_domain",
+      "match": true,
+      "decision": {
+        "knowledge_status": "out_of_domain",
+        "response_policy": "out_of_domain",
+        "answer_allowed": false,
+        "confidence_level": "low",
+        "need_additional_info": false,
+        "warning_required": false,
+        "reason": "query contains explicit signals for a domain outside the S210 knowledge base",
+        "missing_information": [],
+        "matched_scope_signals": [],
+        "matched_external_signals": [
+          "写一首诗"
+        ],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-022",
+      "question": "飞机液压系统故障怎么处理？",
+      "expected_knowledge_status": "out_of_domain",
+      "actual_knowledge_status": "out_of_domain",
+      "expected_response_policy": "out_of_domain",
+      "actual_response_policy": "out_of_domain",
+      "match": true,
+      "decision": {
+        "knowledge_status": "out_of_domain",
+        "response_policy": "out_of_domain",
+        "answer_allowed": false,
+        "confidence_level": "low",
+        "need_additional_info": false,
+        "warning_required": false,
+        "reason": "query contains explicit signals for a domain outside the S210 knowledge base",
+        "missing_information": [],
+        "matched_scope_signals": [],
+        "matched_external_signals": [
+          "飞机"
+        ],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-023",
+      "question": "请分析这个航空器的 ATA 故障。",
+      "expected_knowledge_status": "out_of_domain",
+      "actual_knowledge_status": "out_of_domain",
+      "expected_response_policy": "out_of_domain",
+      "actual_response_policy": "out_of_domain",
+      "match": true,
+      "decision": {
+        "knowledge_status": "out_of_domain",
+        "response_policy": "out_of_domain",
+        "answer_allowed": false,
+        "confidence_level": "low",
+        "need_additional_info": false,
+        "warning_required": false,
+        "reason": "query contains explicit signals for a domain outside the S210 knowledge base",
+        "missing_information": [],
+        "matched_scope_signals": [],
+        "matched_external_signals": [
+          "航空",
+          "航空器",
+          "ata"
+        ],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-024",
+      "question": "帮我做一个旅游计划。",
+      "expected_knowledge_status": "out_of_domain",
+      "actual_knowledge_status": "out_of_domain",
+      "expected_response_policy": "out_of_domain",
+      "actual_response_policy": "out_of_domain",
+      "match": true,
+      "decision": {
+        "knowledge_status": "out_of_domain",
+        "response_policy": "out_of_domain",
+        "answer_allowed": false,
+        "confidence_level": "low",
+        "need_additional_info": false,
+        "warning_required": false,
+        "reason": "query contains explicit signals for a domain outside the S210 knowledge base",
+        "missing_information": [],
+        "matched_scope_signals": [],
+        "matched_external_signals": [
+          "旅游"
+        ],
+        "matched_context_evidence": []
+      }
+    }
+  ]
+}

@@ -78,9 +78,11 @@ from rag_service import (
     GoldFaultContextStore,
     PromptAnswerGenerator,
     RagServiceError,
+    build_boundary_rag_response,
     rag_response_to_dict,
 )
 from fault_relation_expansion import FaultRelationRegistry
+from response_policy import ResponsePolicyLayer
 from s210_retrieval_adapter import S210BgeRetriever
 from visualizer import export_visuals
 from xml_exporter import export_xml
@@ -1686,6 +1688,23 @@ def _rag_response_to_api_dict(response, *, debug: bool) -> Dict[str, Any]:
         "reranker": "BAAI/bge-reranker-v2-m3",
         "evidence_status": response.evidence_status,
     }
+    boundary = payload.get("boundary") or {}
+    if boundary:
+        payload["pipeline"]["knowledge_status"] = boundary.get("knowledge_status")
+        payload["pipeline"]["response_policy"] = boundary.get("response_policy")
+        payload["pipeline"]["answer_allowed"] = boundary.get("answer_allowed")
+        payload["pipeline"]["confidence_level"] = boundary.get("confidence_level")
+        payload["pipeline"]["warning_required"] = boundary.get("warning_required")
+        payload["pipeline"]["need_additional_info"] = boundary.get("need_additional_info")
+    if (
+        not debug
+        and boundary.get("knowledge_status") in {"out_of_domain", "insufficient_evidence"}
+    ):
+        # Do not expose unrelated nearest-neighbour faults as if they were
+        # answers when the boundary layer refused a definitive diagnosis.
+        payload["retrieved"] = []
+        payload["contexts"] = []
+        payload["relations"] = []
     if not debug:
         for candidate in payload.get("retrieved", []):
             candidate.pop("signals", None)
@@ -1697,7 +1716,14 @@ def query_s210_rag(req: RagQueryRequest) -> Dict[str, Any]:
     """Run the evidence-bound S210 retrieval, context and answer chain."""
 
     try:
-        response = _get_s210_rag_service().answer(req.question, top_k=req.top_k)
+        preflight_boundary = ResponsePolicyLayer().assess_boundary(
+            question=req.question,
+            contexts=(),
+        )
+        if preflight_boundary.knowledge_status == "out_of_domain":
+            response = build_boundary_rag_response(req.question, preflight_boundary)
+        else:
+            response = _get_s210_rag_service().answer(req.question, top_k=req.top_k)
         return _rag_response_to_api_dict(response, debug=req.debug)
     except RagServiceError as exc:
         raise HTTPException(

@@ -62,7 +62,11 @@ def _gold_payload():
 
 
 class FakeRetriever:
+    def __init__(self):
+        self.calls = 0
+
     def retrieve(self, question, *, limit):
+        self.calls += 1
         return [
             RetrievedFault("A01009", score=0.91, rank=1, signals={"source": "fake"}),
             RetrievedFault("A01009", score=0.90, rank=2, signals={"source": "duplicate"}),
@@ -168,6 +172,34 @@ class RagServiceTests(unittest.TestCase):
         self.assertEqual(["A01009"], [item.fault_code for item in response.retrieved])
         self.assertEqual("A01009", response.contexts[0].fault_code)
         self.assertIsNotNone(generator.contexts)
+
+    def test_service_does_not_generate_for_out_of_domain_query(self):
+        generator = FakeGenerator()
+        retriever = FakeRetriever()
+        service = FaultRagService(
+            retriever,
+            GoldFaultContextStore.from_payload(_gold_payload()),
+            generator,
+        )
+        response = service.answer("今天天气怎么样？", top_k=3)
+        self.assertEqual("out_of_domain", response.boundary.knowledge_status)
+        self.assertFalse(response.boundary.answer_allowed)
+        self.assertEqual("not_answered", response.evidence_status)
+        self.assertEqual("boundary-policy", response.answer.model)
+        self.assertIsNone(generator.contexts)
+        self.assertEqual(0, retriever.calls)
+
+    def test_service_does_not_generate_for_low_information_query(self):
+        generator = FakeGenerator()
+        service = FaultRagService(
+            FakeRetriever(),
+            GoldFaultContextStore.from_payload(_gold_payload()),
+            generator,
+        )
+        response = service.answer("设备坏了。", top_k=3)
+        self.assertEqual("insufficient_evidence", response.boundary.knowledge_status)
+        self.assertFalse(response.boundary.answer_allowed)
+        self.assertIn("信息不足", response.answer.text)
 
     def test_service_scopes_generation_to_primary_fault_by_default(self):
         contexts = [
