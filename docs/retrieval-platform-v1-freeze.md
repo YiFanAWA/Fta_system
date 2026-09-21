@@ -115,11 +115,19 @@ retrieval_backend=generic
 
 只有 shadow 数据没有明显 regression 后，才允许把默认值切到 generic；出现回归时可以立即回到 legacy。前端布局和回答合同不因 shadow 增加 UI。
 
-## 6. 下一阶段
+## 6. Domain/System Router v1（开发/Shadow）
+
+已新增 `backend-python/domain_router.py` 和混合域对照脚本 `evaluation/quality_eval/public_sources/run_mixed_domain_router_comparison.py`。
+当前规则只在显式信号足够明确时缩小 scope，否则保持 `cross_domain`；不修改 Generic Pipeline，不切生产 API。
+
+对照证据见 [Domain/System Router v1](domain-router-v1.md)。当前 Rule Router 将 WrongDomain@1/3/5 从
+`0.1772/0.3291/0.3797` 降为 `0/0/0`，但 R@5、R@10、MRR 有轻微下降，所以状态是开发/Shadow，不是生产默认。
+
+## 7. 下一阶段
 
 只启动 `AerospaceAdapter` 的单域验证：小规模公开数据 → Common Schema 映射 → RetrievalChunk → 航空 Dev Set → Generic Pipeline。暂不做 Domain Router，不把航空逻辑写进通用核心，不构造没有证据支持的 AND/OR FTA 门。
 
-## 7. Phase G 当前进度（2026-09-21）
+## 8. Phase G 当前进度（2026-09-21）
 
 G1～G3 已完成第一轮：
 
