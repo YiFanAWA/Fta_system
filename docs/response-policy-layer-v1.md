@@ -61,5 +61,6 @@ Evidence-grounded RAG
 
 - Rule Router v1 保持当前候选/Shadow 基线；Expert Router v2 不晋升为生产实现。
 - 不修改 Generic Retrieval、embedding、reranker、Gold 故障数据或前端/API。
+- 后续结构化合同见 [Response Policy v2](response-policy-v2.md)，将策略展开为 `answer_allowed`、`confidence_level`、`need_additional_info` 和 `warning_required`。
 - `query-decision-layer-v1.md` 保留为历史的前置决策实验，不作为当前检索架构。
-- 下一阶段进入 RAG 人工语义评测：故障识别、原因正确性、处理措施正确性、证据支持、无依据陈述和跨故障混淆。
+- 下一阶段进入 [RAG Semantic Evaluation v1](rag-semantic-evaluation-v1.md)：故障识别、原因正确性、处理措施正确性、证据支持、无依据陈述和跨故障混淆。

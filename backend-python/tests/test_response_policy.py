@@ -33,6 +33,27 @@ class ResponsePolicyTests(unittest.TestCase):
         self.assertEqual("allow", result.retrieval_policy)
         self.assertEqual("warning", result.response_policy)
 
+    def test_v2_direct_answer_contract(self):
+        result = self.layer.decide_v2(sufficiency_level="sufficient")
+        self.assertEqual("P0_DIRECT_ANSWER", result.policy)
+        self.assertTrue(result.answer_allowed)
+        self.assertEqual("high", result.confidence_level)
+        self.assertFalse(result.warning_required)
+
+    def test_v2_warning_contract(self):
+        result = self.layer.decide_v2(sufficiency_level="partially_sufficient")
+        self.assertEqual("P1_ANSWER_WITH_WARNING", result.policy)
+        self.assertTrue(result.answer_allowed)
+        self.assertEqual("medium", result.confidence_level)
+        self.assertTrue(result.warning_required)
+
+    def test_v2_clarification_contract_does_not_block_retrieval(self):
+        result = self.layer.decide_v2(sufficiency_level="insufficient")
+        self.assertEqual("P2_ASK_BEFORE_DEFINITIVE_ANSWER", result.policy)
+        self.assertFalse(result.answer_allowed)
+        self.assertTrue(result.need_additional_info)
+        self.assertEqual("allow", result.retrieval_policy)
+
 
 if __name__ == "__main__":
     unittest.main()

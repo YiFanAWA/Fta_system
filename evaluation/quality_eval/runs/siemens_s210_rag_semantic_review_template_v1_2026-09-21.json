@@ -1,0 +1,959 @@
+{
+  "dataset": "siemens_s210_rag_semantic_gold_v1",
+  "template_version": "rag_answer_manual_review_v1",
+  "review_decisions": [
+    "pass",
+    "needs_revision",
+    "insufficient_evidence",
+    "uncertain"
+  ],
+  "rows": [
+    {
+      "query_id": "RAG-001",
+      "question": "故障码 A01007 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01007"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "cause"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    },
+    {
+      "query_id": "RAG-002",
+      "question": "故障码 A01016 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01016"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "cause"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    },
+    {
+      "query_id": "RAG-003",
+      "question": "故障码 A01020 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01020"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "cause"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    },
+    {
+      "query_id": "RAG-004",
+      "question": "故障码 A01035 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01035"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "cause"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    },
+    {
+      "query_id": "RAG-005",
+      "question": "故障码 A01045 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01045"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "cause"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    },
+    {
+      "query_id": "RAG-006",
+      "question": "故障码 A01049 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01049"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "cause"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    },
+    {
+      "query_id": "RAG-007",
+      "question": "故障码 A01064 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01064"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "cause"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    },
+    {
+      "query_id": "RAG-008",
+      "question": "故障码 A01069 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01069"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "cause"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    },
+    {
+      "query_id": "RAG-009",
+      "question": "如果出现“POWER ON required for backup copy on memory card”，对应哪个故障码？请说明判断依据。",
+      "query_type": "symptom",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01073"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    },
+    {
+      "query_id": "RAG-010",
+      "question": "如果出现“UTC synchronization tolerance violated”，对应哪个故障码？请说明判断依据。",
+      "query_type": "symptom",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01099"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    },
+    {
+      "query_id": "RAG-011",
+      "question": "如果出现“CU-EEPROM incorrect read-write data”，对应哪个故障码？请说明判断依据。",
+      "query_type": "symptom",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01251"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    },
+    {
+      "query_id": "RAG-012",
+      "question": "如果出现“Firmware version of DRIVE-CLiQ component is not up-to-date”，对应哪个故障码？请说明判断依据。",
+      "query_type": "symptom",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01304"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    },
+    {
+      "query_id": "RAG-013",
+      "question": "如果出现“Firmware of the DRIVE-CLiQ component being updated”，对应哪个故障码？请说明判断依据。",
+      "query_type": "symptom",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01306"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    },
+    {
+      "query_id": "RAG-014",
+      "question": "如果出现“Commissioning not possible”，对应哪个故障码？请说明判断依据。",
+      "query_type": "symptom",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01330"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    },
+    {
+      "query_id": "RAG-015",
+      "question": "如果出现“motor with DRIVE-CLiQ not connected”，对应哪个故障码？请说明判断依据。",
+      "query_type": "symptom",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01489"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    },
+    {
+      "query_id": "RAG-016",
+      "question": "手册中提到“The selected service/maintenance interval for this motor was reached.”，它对应哪个故障记录？请说明原因证据。",
+      "query_type": "cause",
+      "difficulty": "medium",
+      "expected_fault_codes": [
+        "A01590"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "cause"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    },
+    {
+      "query_id": "RAG-017",
+      "question": "手册中提到“Safety Integrated is parameterized and enabled. However, a valid safety password has still not been entered.”，它对应哪个故障记录？请说明原因证据。",
+      "query_type": "cause",
+      "difficulty": "medium",
+      "expected_fault_codes": [
+        "A01637"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "cause"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    },
+    {
+      "query_id": "RAG-018",
+      "question": "手册中提到“A valid safety password has been entered.”，它对应哪个故障记录？请说明原因证据。",
+      "query_type": "cause",
+      "difficulty": "medium",
+      "expected_fault_codes": [
+        "A01638"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "cause"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    },
+    {
+      "query_id": "RAG-019",
+      "question": "手册中提到“The configuration of a PROFIsafe telegram in the higher-level control (F-PLC) does not match the parameterization in the drive.”，它对应哪个故障记录？请说明原因证据。",
+      "query_type": "cause",
+      "difficulty": "medium",
+      "expected_fault_codes": [
+        "A01654"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "cause"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    },
+    {
+      "query_id": "RAG-020",
+      "question": "手册中提到“The configured times for PROFINET communication are not permitted and the PN cycle is used as the actual value acquisition cycle for the safe movement monitoring functions”，它对应哪个故障记录？请说明原因证据。",
+      "query_type": "cause",
+      "difficulty": "medium",
+      "expected_fault_codes": [
+        "A01691"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "cause"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    },
+    {
+      "query_id": "RAG-021",
+      "question": "手册中提到“Safety parameters have been changed”，它对应哪个故障记录？请说明原因证据。",
+      "query_type": "cause",
+      "difficulty": "medium",
+      "expected_fault_codes": [
+        "A01693"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "cause"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    },
+    {
+      "query_id": "RAG-022",
+      "question": "针对“Sensor Module was replaced”，手册建议采取哪些处理措施？请引用原文依据。",
+      "query_type": "remedy",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01695"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "remedy"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    },
+    {
+      "query_id": "RAG-023",
+      "question": "针对“Test stop for the motion monitoring functions selected when booting”，手册建议采取哪些处理措施？请引用原文依据。",
+      "query_type": "remedy",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01696"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "remedy"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    },
+    {
+      "query_id": "RAG-024",
+      "question": "针对“Test stop for motion monitoring functions required”，手册建议采取哪些处理措施？请引用原文依据。",
+      "query_type": "remedy",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01697"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "remedy"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    },
+    {
+      "query_id": "RAG-025",
+      "question": "针对“Commissioning mode active”，手册建议采取哪些处理措施？请引用原文依据。",
+      "query_type": "remedy",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01698"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "remedy"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    },
+    {
+      "query_id": "RAG-026",
+      "question": "针对“Test stop for STO required”，手册建议采取哪些处理措施？请引用原文依据。",
+      "query_type": "remedy",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01699"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "remedy"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    },
+    {
+      "query_id": "RAG-027",
+      "question": "参数 p9506 与哪个故障记录相关？请说明故障含义和参数证据。",
+      "query_type": "parameter",
+      "difficulty": "medium",
+      "expected_fault_codes": [
+        "A01706"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "parameter"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    },
+    {
+      "query_id": "RAG-028",
+      "question": "参数 p9530 与哪个故障记录相关？请说明故障含义和参数证据。",
+      "query_type": "parameter",
+      "difficulty": "medium",
+      "expected_fault_codes": [
+        "A01707"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "parameter"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    },
+    {
+      "query_id": "RAG-029",
+      "question": "参数 p9553 与哪个故障记录相关？请说明故障含义和参数证据。",
+      "query_type": "parameter",
+      "difficulty": "medium",
+      "expected_fault_codes": [
+        "A01709"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "parameter"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    },
+    {
+      "query_id": "RAG-030",
+      "question": "参数 r9725 与哪个故障记录相关？请说明故障含义和参数证据。",
+      "query_type": "parameter",
+      "difficulty": "medium",
+      "expected_fault_codes": [
+        "A01711"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "parameter"
+      ],
+      "response": {
+        "http_status": null,
+        "fault_codes": [],
+        "answer_text": null,
+        "citations": []
+      },
+      "manual_review": {
+        "decision": null,
+        "fault_code_correct": null,
+        "cause_semantic_correctness": null,
+        "remedy_semantic_correctness": null,
+        "evidence_supports_claims": null,
+        "unsupported_claims": null,
+        "cross_fault_contamination": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": null
+      }
+    }
+  ]
+}

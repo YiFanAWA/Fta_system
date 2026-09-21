@@ -1,0 +1,618 @@
+{
+  "dataset_info": {
+    "name": "siemens_s210_rag_semantic_gold_v1",
+    "version": "2026-09-21",
+    "query_count": 30,
+    "source_gold": "siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+    "source_gold_count": 281,
+    "split": "rag_semantic_review_draft",
+    "status": "draft_pending_human_semantic_review",
+    "expert_gold": false,
+    "production_claim": false,
+    "reuse_policy": "do_not_use_to_tune_retrieval_or_claim_rag_semantic_accuracy_before_review",
+    "query_type_counts": {
+      "fault_code": 8,
+      "symptom": 7,
+      "cause": 6,
+      "remedy": 5,
+      "parameter": 4
+    },
+    "evaluation_dimensions": [
+      "fault_identification",
+      "cause_correctness",
+      "remedy_correctness",
+      "citation_support",
+      "unsupported_claims",
+      "cross_fault_contamination"
+    ]
+  },
+  "queries": [
+    {
+      "query_id": "RAG-001",
+      "question": "故障码 A01007 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01007"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "cause"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01007",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    },
+    {
+      "query_id": "RAG-002",
+      "question": "故障码 A01016 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01016"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "cause"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01016",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    },
+    {
+      "query_id": "RAG-003",
+      "question": "故障码 A01020 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01020"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "cause"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01020",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    },
+    {
+      "query_id": "RAG-004",
+      "question": "故障码 A01035 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01035"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "cause"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01035",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    },
+    {
+      "query_id": "RAG-005",
+      "question": "故障码 A01045 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01045"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "cause"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01045",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    },
+    {
+      "query_id": "RAG-006",
+      "question": "故障码 A01049 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01049"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "cause"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01049",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    },
+    {
+      "query_id": "RAG-007",
+      "question": "故障码 A01064 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01064"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "cause"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01064",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    },
+    {
+      "query_id": "RAG-008",
+      "question": "故障码 A01069 在手册中表示什么故障？请说明故障现象、可能原因和证据。",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01069"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "cause"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01069",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    },
+    {
+      "query_id": "RAG-009",
+      "question": "如果出现“POWER ON required for backup copy on memory card”，对应哪个故障码？请说明判断依据。",
+      "query_type": "symptom",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01073"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01073",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    },
+    {
+      "query_id": "RAG-010",
+      "question": "如果出现“UTC synchronization tolerance violated”，对应哪个故障码？请说明判断依据。",
+      "query_type": "symptom",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01099"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01099",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    },
+    {
+      "query_id": "RAG-011",
+      "question": "如果出现“CU-EEPROM incorrect read-write data”，对应哪个故障码？请说明判断依据。",
+      "query_type": "symptom",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01251"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01251",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    },
+    {
+      "query_id": "RAG-012",
+      "question": "如果出现“Firmware version of DRIVE-CLiQ component is not up-to-date”，对应哪个故障码？请说明判断依据。",
+      "query_type": "symptom",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01304"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01304",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    },
+    {
+      "query_id": "RAG-013",
+      "question": "如果出现“Firmware of the DRIVE-CLiQ component being updated”，对应哪个故障码？请说明判断依据。",
+      "query_type": "symptom",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01306"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01306",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    },
+    {
+      "query_id": "RAG-014",
+      "question": "如果出现“Commissioning not possible”，对应哪个故障码？请说明判断依据。",
+      "query_type": "symptom",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01330"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01330",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    },
+    {
+      "query_id": "RAG-015",
+      "question": "如果出现“motor with DRIVE-CLiQ not connected”，对应哪个故障码？请说明判断依据。",
+      "query_type": "symptom",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01489"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01489",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    },
+    {
+      "query_id": "RAG-016",
+      "question": "手册中提到“The selected service/maintenance interval for this motor was reached.”，它对应哪个故障记录？请说明原因证据。",
+      "query_type": "cause",
+      "difficulty": "medium",
+      "expected_fault_codes": [
+        "A01590"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "cause"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01590",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    },
+    {
+      "query_id": "RAG-017",
+      "question": "手册中提到“Safety Integrated is parameterized and enabled. However, a valid safety password has still not been entered.”，它对应哪个故障记录？请说明原因证据。",
+      "query_type": "cause",
+      "difficulty": "medium",
+      "expected_fault_codes": [
+        "A01637"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "cause"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01637",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    },
+    {
+      "query_id": "RAG-018",
+      "question": "手册中提到“A valid safety password has been entered.”，它对应哪个故障记录？请说明原因证据。",
+      "query_type": "cause",
+      "difficulty": "medium",
+      "expected_fault_codes": [
+        "A01638"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "cause"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01638",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    },
+    {
+      "query_id": "RAG-019",
+      "question": "手册中提到“The configuration of a PROFIsafe telegram in the higher-level control (F-PLC) does not match the parameterization in the drive.”，它对应哪个故障记录？请说明原因证据。",
+      "query_type": "cause",
+      "difficulty": "medium",
+      "expected_fault_codes": [
+        "A01654"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "cause"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01654",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    },
+    {
+      "query_id": "RAG-020",
+      "question": "手册中提到“The configured times for PROFINET communication are not permitted and the PN cycle is used as the actual value acquisition cycle for the safe movement monitoring functions”，它对应哪个故障记录？请说明原因证据。",
+      "query_type": "cause",
+      "difficulty": "medium",
+      "expected_fault_codes": [
+        "A01691"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "cause"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01691",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    },
+    {
+      "query_id": "RAG-021",
+      "question": "手册中提到“Safety parameters have been changed”，它对应哪个故障记录？请说明原因证据。",
+      "query_type": "cause",
+      "difficulty": "medium",
+      "expected_fault_codes": [
+        "A01693"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "cause"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01693",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    },
+    {
+      "query_id": "RAG-022",
+      "question": "针对“Sensor Module was replaced”，手册建议采取哪些处理措施？请引用原文依据。",
+      "query_type": "remedy",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01695"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "remedy"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01695",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    },
+    {
+      "query_id": "RAG-023",
+      "question": "针对“Test stop for the motion monitoring functions selected when booting”，手册建议采取哪些处理措施？请引用原文依据。",
+      "query_type": "remedy",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01696"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "remedy"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01696",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    },
+    {
+      "query_id": "RAG-024",
+      "question": "针对“Test stop for motion monitoring functions required”，手册建议采取哪些处理措施？请引用原文依据。",
+      "query_type": "remedy",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01697"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "remedy"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01697",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    },
+    {
+      "query_id": "RAG-025",
+      "question": "针对“Commissioning mode active”，手册建议采取哪些处理措施？请引用原文依据。",
+      "query_type": "remedy",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01698"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "remedy"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01698",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    },
+    {
+      "query_id": "RAG-026",
+      "question": "针对“Test stop for STO required”，手册建议采取哪些处理措施？请引用原文依据。",
+      "query_type": "remedy",
+      "difficulty": "easy",
+      "expected_fault_codes": [
+        "A01699"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "remedy"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01699",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    },
+    {
+      "query_id": "RAG-027",
+      "question": "参数 p9506 与哪个故障记录相关？请说明故障含义和参数证据。",
+      "query_type": "parameter",
+      "difficulty": "medium",
+      "expected_fault_codes": [
+        "A01706"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "parameter"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01706",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    },
+    {
+      "query_id": "RAG-028",
+      "question": "参数 p9530 与哪个故障记录相关？请说明故障含义和参数证据。",
+      "query_type": "parameter",
+      "difficulty": "medium",
+      "expected_fault_codes": [
+        "A01707"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "parameter"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01707",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    },
+    {
+      "query_id": "RAG-029",
+      "question": "参数 p9553 与哪个故障记录相关？请说明故障含义和参数证据。",
+      "query_type": "parameter",
+      "difficulty": "medium",
+      "expected_fault_codes": [
+        "A01709"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "parameter"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01709",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    },
+    {
+      "query_id": "RAG-030",
+      "question": "参数 r9725 与哪个故障记录相关？请说明故障含义和参数证据。",
+      "query_type": "parameter",
+      "difficulty": "medium",
+      "expected_fault_codes": [
+        "A01711"
+      ],
+      "required_evidence_fields": [
+        "fault_code",
+        "description",
+        "parameter"
+      ],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20",
+      "source_sample_id": "SIEMENS_S210_2019_A01711",
+      "semantic_review_status": "pending_human_review",
+      "review_note": "fault-code relevance is projected from frozen Gold; cause/remedy semantics, unsupported claims, and citation support require separate human review"
+    }
+  ]
+}
