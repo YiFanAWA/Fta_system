@@ -68,3 +68,7 @@ Query Sufficiency 首轮诊断已完成，见 `evaluation/quality_eval/runs/mixe
 - [query_sufficiency_gold_v1_evaluation_2026-09-21.md](../evaluation/quality_eval/runs/query_sufficiency_gold_v1_evaluation_2026-09-21.md)：基于全量专家 Gold 的 Router/Sufficiency 复评。
 
 全量专家 Gold 复评显示：Rule Router v1 的 Domain Accuracy 为 0.7215、Candidate Recall@20 为 0.9241、WrongDomain@1 为 0；Expert Router v2 的 Domain Accuracy 为 0.1392、Candidate Recall@20 为 0.9241、WrongDomain@1 为 0.2152；Sufficiency + Router 的 Candidate Recall@20 降为 0.5190。Expert Router v2 目前没有证明优于 v1，因此仍保持离线实验状态，不写入生产 Router。
+
+## Query Decision Layer
+
+基于新 Gold 已增加独立的行为决策层，见 [Query Decision Layer v1](query-decision-layer-v1.md)。本层把 `partially_sufficient` 与 `clarify` 分开，支持 `retrieve`、`retrieve_with_warning`、`clarify` 三种动作。当前 79 条 Gold 中没有真正的 `clarify` 样本，因此暂不接生产；实验矩阵见 `query_action_matrix_v2_2026-09-21.md`。
