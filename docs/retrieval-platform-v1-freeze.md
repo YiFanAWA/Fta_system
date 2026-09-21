@@ -1,7 +1,7 @@
 # Retrieval Platform v1 冻结说明
 
-更新时间：2026-09-21  
-适用项目：FTA System  
+更新时间：2026-09-21
+适用项目：FTA System
 冻结范围：Common Fault Schema v1、Domain Adapter Contract v1、Generic Retrieval Pipeline v1
 
 ## 冻结结论
