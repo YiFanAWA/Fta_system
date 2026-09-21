@@ -60,6 +60,8 @@ RAG 生成回答
 - 回答：[siemens_s210_rag_semantic_responses_v1_2026-09-21.json](../evaluation/quality_eval/runs/siemens_s210_rag_semantic_responses_v1_2026-09-21.json)
 - 合同报告：[siemens_s210_rag_semantic_contract_report_v1_2026-09-21.json](../evaluation/quality_eval/runs/siemens_s210_rag_semantic_contract_report_v1_2026-09-21.json)
 - AI 辅助预审：[siemens_s210_rag_semantic_ai_review_v1_2026-09-21.md](../evaluation/quality_eval/runs/siemens_s210_rag_semantic_ai_review_v1_2026-09-21.md)
+- 专家审核清单：[siemens_s210_rag_semantic_expert_review_checklist_v1_2026-09-21.md](../evaluation/quality_eval/runs/siemens_s210_rag_semantic_expert_review_checklist_v1_2026-09-21.md)
+- 专家 JSON 标注模板：[siemens_s210_rag_semantic_expert_review_template_v1_2026-09-21.json](../evaluation/quality_eval/runs/siemens_s210_rag_semantic_expert_review_template_v1_2026-09-21.json)
 
 运行后发现，RAG-021、RAG-027、RAG-028、RAG-029、RAG-030 的原始单答案码标注过窄：它们分别涉及配对故障/消息码或共享参数。已把相关代码补入 `expected_fault_codes` 后重新离线评估，避免将证据充分的配对码回答误判为失败。这是评测 Gold 的口径修正，不是修改生产检索器。
 
