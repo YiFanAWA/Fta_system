@@ -19,6 +19,8 @@
 
 输出报告：`evaluation/quality_eval/runs/domain_router_error_taxonomy_v1_2026-09-21.md` / `.json`
 
+面向专家的完整材料包见 `evaluation/quality_eval/runs/domain_router_manual_review_bundle_v2_2026-09-21.md` / `.json`；它包含每个信号的原文证据、全部 79 条查询的相关实体材料和人工填写空白栏。
+
 | 项目 | 数量 |
 | --- | ---: |
 | 总查询 | 79 |

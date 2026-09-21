@@ -17,7 +17,7 @@
 
 当前注册表状态为 `pending_manual_confirmation_for_a_signals`，Router 默认只加载 `confirmed` 项。
 
-专家填写入口见 [Domain Router / Query Sufficiency 人工确认清单 v1](../evaluation/quality_eval/runs/domain_router_manual_confirmation_checklist_v1_2026-09-21.md)。
+上一版简要填写入口见 [Domain Router / Query Sufficiency 人工确认清单 v1](../evaluation/quality_eval/runs/domain_router_manual_confirmation_checklist_v1_2026-09-21.md)；完整材料包见 [Domain Router / Query Sufficiency 完整人工审核材料包 v2](../evaluation/quality_eval/runs/domain_router_manual_review_bundle_v2_2026-09-21.md)。完整包包含原文证据、来源记录、全部 79 条查询和 22 条重点 cross-domain 查询。
 
 待人工确认的 A 类候选词：
 
