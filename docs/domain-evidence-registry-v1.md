@@ -17,6 +17,8 @@
 
 当前注册表状态为 `pending_manual_confirmation_for_a_signals`，Router 默认只加载 `confirmed` 项。
 
+专家填写入口见 [Domain Router / Query Sufficiency 人工确认清单 v1](../evaluation/quality_eval/runs/domain_router_manual_confirmation_checklist_v1_2026-09-21.md)。
+
 待人工确认的 A 类候选词：
 
 - Siemens S210：`STO`、`SI Motion`、`CU`、`Sensor module`；
