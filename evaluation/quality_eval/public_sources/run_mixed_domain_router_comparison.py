@@ -18,7 +18,8 @@ for path in (BACKEND, PUBLIC_SOURCES):
         sys.path.insert(0, str(path))
 
 from aerospace_adapter import FaaSdrAerospaceAdapter  # noqa: E402
-from domain_router import DomainScopeProfile, RuleBasedDomainRouter  # noqa: E402
+from domain_evidence_registry import build_domain_scope_profiles  # noqa: E402
+from domain_router import RuleBasedDomainRouter  # noqa: E402
 from generic_retrieval_pipeline import GenericFaultRetrievalPipeline  # noqa: E402
 from run_mixed_domain_baseline import (  # noqa: E402
     MixedDomainEvaluationAdapter,
@@ -31,25 +32,10 @@ from run_mixed_domain_baseline import (  # noqa: E402
 from siemens_s210_adapter import SiemensS210Adapter  # noqa: E402
 
 
-def _profiles() -> tuple[DomainScopeProfile, ...]:
-    return (
-        DomainScopeProfile(
-            scope_id="siemens_s210",
-            domain="industrial_drive",
-            manufacturer="Siemens",
-            system="S210",
-            strong_terms=("siemens", "sinamics", "s210", "drive-cliq", "profinet", "profisafe"),
-            identifier_patterns=(r"\b[AFN]\d{5}\b", r"\b[pr]\d{4,5}\b"),
-        ),
-        DomainScopeProfile(
-            scope_id="faa_sdr",
-            domain="aerospace",
-            manufacturer="FAA",
-            system="SDR",
-            strong_terms=("航空器", "航空", "faa", "jasc", "sdr", "飞机"),
-            identifier_patterns=(r"\bjasc\s*\d{4}\b",),
-        ),
-    )
+def _profiles():
+    """Load confirmed signals; pending review terms stay out of Router v1."""
+
+    return build_domain_scope_profiles()
 
 
 def _stage(rows: Sequence[dict[str, Any]], stage: str) -> dict[str, Any]:

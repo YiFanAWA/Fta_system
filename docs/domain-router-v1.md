@@ -11,7 +11,7 @@ Router 不拥有检索排名、RRF、Top-K 或 Reranker 逻辑。它只输出：
 - `confidence`：规则信号形成的可解释置信度；
 - `signals` 与 `scores`：用于审计和 shadow mode。
 
-实现：`backend-python/domain_router.py`。
+实现：`backend-python/domain_router.py`；领域证据由 [Domain Evidence Registry v1](domain-evidence-registry-v1.md) 集中维护。
 
 ## 当前规则
 
@@ -22,12 +22,12 @@ Router 不拥有检索排名、RRF、Top-K 或 Reranker 逻辑。它只输出：
 - 可选弱词；
 - 领域侧 identifier 正则。
 
-当前规则优先识别：
+当前已确认规则优先识别：
 
 - Siemens：Siemens、SINAMICS、S210、DRIVE-CLiQ、PROFINET、PROFIsafe、故障码和参数号；
 - Aerospace：航空/航空器、FAA、SDR、JASC 及 JASC 编号。
 
-规则没有命中或最高分与次高分不足以拉开差距时，结果为 `cross_domain`。这不是拒答，而是保留完整检索空间。
+规则没有命中或最高分与次高分不足以拉开差距时，结果为 `cross_domain`。这不是拒答，而是保留完整检索空间。注册表中的 `pending_manual_confirmation` 词不会自动参与 Router v1。
 
 ## 混合域对照结果
 
@@ -55,4 +55,4 @@ Router 不拥有检索排名、RRF、Top-K 或 Reranker 逻辑。它只输出：
 
 Router v1 的首轮错误分类见 [Domain Router Error Taxonomy v1](domain-router-error-taxonomy-v1.md)。该分类只用于离线诊断：首轮 22 条 `cross_domain` 查询被标记为 A=4、B=2、C=16，未发现 `false_scoped`；A/B/C 均需要人工复核，不会自动反向修改规则。
 
-下一步是先完成 Query Sufficiency 与 clarification 对照实验，再决定是否需要调整规则、增加 system 级 scope，或引入 learned Router。之后进入 RAG 人工语义评测。
+Query Sufficiency 首轮诊断已完成，见 `evaluation/quality_eval/runs/mixed_domain_query_sufficiency_v1_2026-09-21.md`；下一步是建立人工 sufficiency Gold 并进行 clarification 对照实验，再决定是否需要调整规则、增加 system 级 scope，或引入 learned Router。之后进入 RAG 人工语义评测。

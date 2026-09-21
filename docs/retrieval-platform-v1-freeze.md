@@ -117,13 +117,13 @@ retrieval_backend=generic
 
 ## 6. Domain/System Router v1（开发/Shadow）
 
-已新增 `backend-python/domain_router.py` 和混合域对照脚本 `evaluation/quality_eval/public_sources/run_mixed_domain_router_comparison.py`。
+已新增 `backend-python/domain_router.py`、`backend-python/domain_evidence_registry.py` 和混合域对照脚本 `evaluation/quality_eval/public_sources/run_mixed_domain_router_comparison.py`。领域证据集中维护于 [Domain Evidence Registry v1](domain-evidence-registry-v1.md)，当前只加载已确认信号。
 当前规则只在显式信号足够明确时缩小 scope，否则保持 `cross_domain`；不修改 Generic Pipeline，不切生产 API。
 
 对照证据见 [Domain/System Router v1](domain-router-v1.md)。当前 Rule Router 将 WrongDomain@1/3/5 从
 `0.1772/0.3291/0.3797` 降为 `0/0/0`，但 R@5、R@10、MRR 有轻微下降，所以状态是开发/Shadow，不是生产默认。
 
-首轮 Router Error Taxonomy 已生成，见 [Domain Router Error Taxonomy v1](domain-router-error-taxonomy-v1.md)：22 条 `cross_domain` 查询初步分为 A=4、B=2、C=16，未发现 `false_scoped`。这些是离线诊断标签，不是专家 Gold，也不自动转化为 Router v2 规则；下一步先做 Query Sufficiency 与 clarification 对照实验。
+首轮 Router Error Taxonomy 已生成，见 [Domain Router Error Taxonomy v1](domain-router-error-taxonomy-v1.md)：22 条 `cross_domain` 查询初步分为 A=4、B=2、C=16，未发现 `false_scoped`。这些是离线诊断标签，不是专家 Gold，也不自动转化为 Router v2 规则。Query Sufficiency 诊断见 `evaluation/quality_eval/runs/mixed_domain_query_sufficiency_v1_2026-09-21.md`；当前 79 条查询的规则诊断为 `sufficient=14`、`partially_sufficient=33`、`insufficient=32`，Clarification Rate=0.4051，但还没有人工充分性金标，不能计算 Abstain Accuracy。
 
 ## 7. 下一阶段
 

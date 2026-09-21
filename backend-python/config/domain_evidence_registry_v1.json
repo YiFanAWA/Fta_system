@@ -1,0 +1,72 @@
+{
+  "registry_info": {
+    "name": "domain_evidence_registry_v1",
+    "version": "2026-09-21",
+    "status": "pending_manual_confirmation_for_a_signals",
+    "authority": "development_config",
+    "router_consumes": "confirmed_only",
+    "pending_terms_do_not_change_router": true
+  },
+  "scopes": {
+    "siemens_s210": {
+      "domain": "industrial_drive",
+      "manufacturer": "Siemens",
+      "system": "S210",
+      "high_signal": {
+        "confirmed": [
+          "siemens",
+          "sinamics",
+          "s210",
+          "drive-cliq",
+          "profinet",
+          "profisafe"
+        ],
+        "pending_manual_confirmation": [
+          "STO",
+          "SI Motion",
+          "CU",
+          "Sensor module"
+        ]
+      },
+      "medium_signal": {
+        "confirmed": [],
+        "pending_manual_confirmation": [
+          "drive",
+          "servo"
+        ]
+      },
+      "identifier_patterns": [
+        "\\b[AFN]\\d{5}\\b",
+        "\\b[pr]\\d{4,5}\\b"
+      ]
+    },
+    "faa_sdr": {
+      "domain": "aerospace",
+      "manufacturer": "FAA",
+      "system": "SDR",
+      "high_signal": {
+        "confirmed": [
+          "航空器",
+          "航空",
+          "faa",
+          "jasc",
+          "sdr",
+          "飞机"
+        ],
+        "pending_manual_confirmation": [
+          "ATA",
+          "LRU",
+          "flight",
+          "aircraft"
+        ]
+      },
+      "medium_signal": {
+        "confirmed": [],
+        "pending_manual_confirmation": []
+      },
+      "identifier_patterns": [
+        "\\bjasc\\s*\\d{4}\\b"
+      ]
+    }
+  }
+}

@@ -39,9 +39,16 @@ A 类当前只是 Router v2 候选，例如包含 `STO`、`CU`、`Sensor Module`
 - Generic Retrieval Pipeline、S210 生产 API、前端 UI 均未修改。
 - 同一批查询在本报告生成后不得用于调词表或调参数；需要新建 Query Sufficiency 评测或新的 Router Final Test。
 
+## Query Sufficiency 首轮诊断
+
+已新增 `backend-python/query_sufficiency.py`，并对同一 79 条混合域查询生成诊断报告：
+`evaluation/quality_eval/runs/mixed_domain_query_sufficiency_v1_2026-09-21.md` / `.json`。
+
+当前规则输出：`sufficient=14`、`partially_sufficient=33`、`insufficient=32`，建议澄清比例为 `0.4051`。这是系统建议澄清的比例，不是澄清正确率；由于尚无人工充分性 Gold，`Abstain Accuracy` 暂为 N/A。
+
 ## 下一步
 
-1. 对 22 条 `cross_domain` 查询补充人工标签：A、B、C，并记录标签依据。
-2. 建立 Query Sufficiency 输出：`sufficient`、`partially_sufficient`、`insufficient`。
+1. 对 22 条 `cross_domain` 查询补充人工标签：A、B、C，并记录标签依据；A 类候选词仍待确认。
+2. 为 sufficiency 建立独立人工 Gold，才能计算 `Abstain Accuracy`。
 3. 比较 `No Router`、`Rule Router v1`、`Rule Router + clarification` 的 R@K、MRR、WrongDomain@K 和 abstain rate。
 4. 只有 A 类经人工确认且产生可复现收益后，才考虑 Router v2；B/C 优先走跨域召回或澄清，不通过猜测解决。
