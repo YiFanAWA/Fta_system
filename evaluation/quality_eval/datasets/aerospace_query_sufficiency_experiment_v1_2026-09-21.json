@@ -1,0 +1,534 @@
+{
+  "dataset_info": {
+    "name": "aerospace_query_sufficiency_experiment_v1",
+    "version": "2026-09-21",
+    "source_dev": "evaluation\\quality_eval\\datasets\\aerospace_retrieval_dev_v1_2026-09-21.json",
+    "query_count": 32,
+    "evaluation_role": "paired_development_experiment",
+    "lifecycle_status": "development_only",
+    "eligible_for_final_generalization_claim": false,
+    "paired_variants": [
+      "base",
+      "enriched"
+    ],
+    "annotation_authority": "derived public-row paired query; not expert annotation",
+    "notes": [
+      "Enriched queries append target-row aircraft/JASC/component/part context only to measure information sufficiency.",
+      "The enriched context is experimental metadata, not a production query rewrite rule."
+    ]
+  },
+  "queries": [
+    {
+      "query_id": "AERO-SUFF-001-base",
+      "query": "哪条航空故障记录涉及 LIGHT？",
+      "query_type": "component",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00003"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "component-only query lacks aircraft/JASC context",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "base"
+    },
+    {
+      "query_id": "AERO-SUFF-001-enriched",
+      "query": "哪条航空故障记录涉及 LIGHT？，上下文：EC135P3 JASC 3340 LIGHT SCREW L856M3001881",
+      "query_type": "component",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00003"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "paired context enrichment experiment",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "enriched"
+    },
+    {
+      "query_id": "AERO-SUFF-002-base",
+      "query": "哪条航空故障记录涉及 SHUTOFF VALVE？",
+      "query_type": "component",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00021"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "component-only query lacks aircraft/JASC context",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "base"
+    },
+    {
+      "query_id": "AERO-SUFF-002-enriched",
+      "query": "哪条航空故障记录涉及 SHUTOFF VALVE？，上下文：7378 JASC 2797 SHUTOFF VALVE CONNECTOR",
+      "query_type": "component",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00021"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "paired context enrichment experiment",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "enriched"
+    },
+    {
+      "query_id": "AERO-SUFF-003-base",
+      "query": "哪条航空故障记录涉及 FIRE LOOP CABLE？",
+      "query_type": "component",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00051"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "component-only query lacks aircraft/JASC context",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "base"
+    },
+    {
+      "query_id": "AERO-SUFF-003-enriched",
+      "query": "哪条航空故障记录涉及 FIRE LOOP CABLE？，上下文：S61N JASC 2697 FIRE LOOP CABLE CABLE 356200575",
+      "query_type": "component",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00051"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "paired context enrichment experiment",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "enriched"
+    },
+    {
+      "query_id": "AERO-SUFF-004-base",
+      "query": "哪条航空故障记录涉及 STARTER GEN？",
+      "query_type": "component",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00240"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "component-only query lacks aircraft/JASC context",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "base"
+    },
+    {
+      "query_id": "AERO-SUFF-004-enriched",
+      "query": "哪条航空故障记录涉及 STARTER GEN？，上下文：PC1245 JASC 2435 STARTER GEN 23085029",
+      "query_type": "component",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00240"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "paired context enrichment experiment",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "enriched"
+    },
+    {
+      "query_id": "AERO-SUFF-005-base",
+      "query": "哪条航空故障记录涉及 TAXI LIGHT？",
+      "query_type": "component",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00264"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "component-only query lacks aircraft/JASC context",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "base"
+    },
+    {
+      "query_id": "AERO-SUFF-005-enriched",
+      "query": "哪条航空故障记录涉及 TAXI LIGHT？，上下文：C212DF JASC 3340 TAXI LIGHT MOTOR G4710A19",
+      "query_type": "component",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00264"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "paired context enrichment experiment",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "enriched"
+    },
+    {
+      "query_id": "AERO-SUFF-006-base",
+      "query": "哪条航空故障记录涉及 THRUST LINK？",
+      "query_type": "component",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000000"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "component-only query lacks aircraft/JASC context",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "base"
+    },
+    {
+      "query_id": "AERO-SUFF-006-enriched",
+      "query": "哪条航空故障记录涉及 THRUST LINK？，上下文：737* JASC 7120 THRUST LINK 310A204110",
+      "query_type": "component",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000000"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "paired context enrichment experiment",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "enriched"
+    },
+    {
+      "query_id": "AERO-SUFF-007-base",
+      "query": "哪条航空故障记录涉及 ENGINE CYLINDER？",
+      "query_type": "component",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000003"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "component-only query lacks aircraft/JASC context",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "base"
+    },
+    {
+      "query_id": "AERO-SUFF-007-enriched",
+      "query": "哪条航空故障记录涉及 ENGINE CYLINDER？，上下文：M20TN JASC 8520 ENGINE CYLINDER ROCKER BOSS",
+      "query_type": "component",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000003"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "paired context enrichment experiment",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "enriched"
+    },
+    {
+      "query_id": "AERO-SUFF-008-base",
+      "query": "哪条航空故障记录涉及 CYLINDER？",
+      "query_type": "component",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000065"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "component-only query lacks aircraft/JASC context",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "base"
+    },
+    {
+      "query_id": "AERO-SUFF-008-enriched",
+      "query": "哪条航空故障记录涉及 CYLINDER？，上下文：PA28180 JASC 8530 CYLINDER PISTON SL36006WA20P",
+      "query_type": "component",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000065"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "paired context enrichment experiment",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "enriched"
+    },
+    {
+      "query_id": "AERO-SUFF-009-base",
+      "query": "航空部件状态为 LOOSE 的故障记录是哪条？",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00003"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "insufficient",
+      "sufficiency_reason": "low-information condition label is repeated",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "base"
+    },
+    {
+      "query_id": "AERO-SUFF-009-enriched",
+      "query": "航空部件状态为 LOOSE 的故障记录是哪条？，上下文：EC135P3 JASC 3340 LIGHT SCREW L856M3001881",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00003"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "paired context enrichment experiment",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "enriched"
+    },
+    {
+      "query_id": "AERO-SUFF-010-base",
+      "query": "航空部件状态为 DISCONNECTED 的故障记录是哪条？",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00021"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "condition query lacks aircraft/JASC/part context",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "base"
+    },
+    {
+      "query_id": "AERO-SUFF-010-enriched",
+      "query": "航空部件状态为 DISCONNECTED 的故障记录是哪条？，上下文：7378 JASC 2797 SHUTOFF VALVE CONNECTOR",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00021"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "paired context enrichment experiment",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "enriched"
+    },
+    {
+      "query_id": "AERO-SUFF-011-base",
+      "query": "航空部件状态为 CHAFED 的故障记录是哪条？",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00051"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "condition query lacks aircraft/JASC/part context",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "base"
+    },
+    {
+      "query_id": "AERO-SUFF-011-enriched",
+      "query": "航空部件状态为 CHAFED 的故障记录是哪条？，上下文：S61N JASC 2697 FIRE LOOP CABLE CABLE 356200575",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00051"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "paired context enrichment experiment",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "enriched"
+    },
+    {
+      "query_id": "AERO-SUFF-012-base",
+      "query": "航空部件状态为 FAILED 的故障记录是哪条？",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00240"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "insufficient",
+      "sufficiency_reason": "low-information condition label is repeated",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "base"
+    },
+    {
+      "query_id": "AERO-SUFF-012-enriched",
+      "query": "航空部件状态为 FAILED 的故障记录是哪条？，上下文：PC1245 JASC 2435 STARTER GEN 23085029",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00240"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "paired context enrichment experiment",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "enriched"
+    },
+    {
+      "query_id": "AERO-SUFF-013-base",
+      "query": "航空部件状态为 FAILED 的故障记录是哪条？",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00264"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "insufficient",
+      "sufficiency_reason": "low-information condition label is repeated",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "base"
+    },
+    {
+      "query_id": "AERO-SUFF-013-enriched",
+      "query": "航空部件状态为 FAILED 的故障记录是哪条？，上下文：C212DF JASC 3340 TAXI LIGHT MOTOR G4710A19",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00264"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "paired context enrichment experiment",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "enriched"
+    },
+    {
+      "query_id": "AERO-SUFF-014-base",
+      "query": "航空部件状态为 MAKING METAL 的故障记录是哪条？",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000000"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "insufficient",
+      "sufficiency_reason": "low-information condition label is repeated",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "base"
+    },
+    {
+      "query_id": "AERO-SUFF-014-enriched",
+      "query": "航空部件状态为 MAKING METAL 的故障记录是哪条？，上下文：737* JASC 7120 THRUST LINK 310A204110",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000000"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "paired context enrichment experiment",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "enriched"
+    },
+    {
+      "query_id": "AERO-SUFF-015-base",
+      "query": "航空部件状态为 BROKEN 的故障记录是哪条？",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000003"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "insufficient",
+      "sufficiency_reason": "low-information condition label is repeated",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "base"
+    },
+    {
+      "query_id": "AERO-SUFF-015-enriched",
+      "query": "航空部件状态为 BROKEN 的故障记录是哪条？，上下文：M20TN JASC 8520 ENGINE CYLINDER ROCKER BOSS",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000003"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "paired context enrichment experiment",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "enriched"
+    },
+    {
+      "query_id": "AERO-SUFF-016-base",
+      "query": "航空部件状态为 FAILED 的故障记录是哪条？",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000065"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "insufficient",
+      "sufficiency_reason": "low-information condition label is repeated",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "base"
+    },
+    {
+      "query_id": "AERO-SUFF-016-enriched",
+      "query": "航空部件状态为 FAILED 的故障记录是哪条？，上下文：PA28180 JASC 8530 CYLINDER PISTON SL36006WA20P",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000065"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "paired context enrichment experiment",
+      "gold_source": "derived_from_aerospace_retrieval_dev_v1_paired_query",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation",
+      "variant": "enriched"
+    }
+  ]
+}

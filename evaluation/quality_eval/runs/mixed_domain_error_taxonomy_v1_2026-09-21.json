@@ -1,0 +1,37 @@
+{
+  "report_id": "mixed_domain_error_taxonomy_v1",
+  "generated_date": "2026-09-21",
+  "source_report": "evaluation/quality_eval/runs/mixed_domain_retrieval_baseline_v1_2026-09-21.json",
+  "status": "provisional_engineering_review",
+  "router": "none",
+  "summary": {
+    "entity_count": 321,
+    "query_count": 79,
+    "candidate_recall_at_20": 0.9241,
+    "wrong_domain_at_1": 0.1772,
+    "wrong_domain_at_3": 0.3418,
+    "wrong_domain_at_5": 0.3797,
+    "domain_purity_at_1": 0.8228,
+    "domain_purity_at_3": 0.7932,
+    "domain_purity_at_5": 0.8127
+  },
+  "by_domain": {
+    "industrial_drive": {
+      "query_count": 39,
+      "candidate_recall_at_20": 1.0,
+      "mrr": 0.8611
+    },
+    "aerospace": {
+      "query_count": 40,
+      "candidate_recall_at_20": 0.85,
+      "mrr": 0.4785
+    }
+  },
+  "observations": [
+    "The no-router mixed index produces measurable cross-domain contamination, especially for aerospace component/condition queries.",
+    "S210 queries remain stable in this candidate-only baseline, while aerospace queries lose recall against the larger mixed corpus.",
+    "This is evidence that a scope or router experiment is warranted; it is not yet evidence for a particular router implementation.",
+    "The mixed baseline uses an evaluation-only composition adapter and does not modify the Generic Pipeline."
+  ],
+  "next_experiment": "Compare no-router mixed retrieval with explicit metadata scope and, only if needed, a domain router; keep the same queries and report WrongDomain@1/@3/@5 and DomainPurity@K."
+}

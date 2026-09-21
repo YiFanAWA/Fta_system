@@ -1,0 +1,4464 @@
+{
+  "evaluation_info": {
+    "name": "aerospace_generic_retrieval_dev_v1",
+    "version": "2026-09-21",
+    "sample_source": "evaluation\\quality_eval\\datasets\\aerospace_faa_sdr_public_sample_v1_2026-09-21.json",
+    "benchmark_source": "evaluation\\quality_eval\\datasets\\aerospace_retrieval_dev_v1_2026-09-21.json",
+    "embedding_model": "BAAI/bge-m3",
+    "reranker_model": "BAAI/bge-reranker-v2-m3",
+    "device": "cpu",
+    "pipeline": "Generic Retrieval Pipeline v1; D2 Top20 union auxiliary Top10; entity_id aggregation",
+    "production_claim": false,
+    "query_annotation_authority": "derived public-record links and deterministic templates; not human expert query annotation",
+    "taxonomy_status": "unreviewed; diagnostics only",
+    "python": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "report_revision": "sufficiency_stratified_without_model_rerun"
+  },
+  "candidate_recall": {
+    "metrics": {
+      "recall_at_1": 0.4,
+      "recall_at_3": 0.4,
+      "recall_at_5": 0.4,
+      "recall_at_10": 0.675,
+      "recall_at_20": 0.85,
+      "mrr": 0.447120761183261
+    },
+    "metrics_by_query_type": {
+      "component": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.625,
+        "recall_at_20": 0.75,
+        "mrr": 0.08824855699855699
+      },
+      "condition": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.25,
+        "recall_at_20": 0.5,
+        "mrr": 0.05092216810966811
+      },
+      "identifier": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0
+      },
+      "maintenance_action": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 1.0,
+        "mrr": 0.09643308080808081
+      },
+      "part_number": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0
+      }
+    },
+    "metrics_by_sufficiency": {
+      "insufficient": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.16666666666666666,
+        "recall_at_20": 0.5,
+        "mrr": 0.044086700336700334
+      },
+      "partially_sufficient": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.6,
+        "recall_at_20": 0.7,
+        "mrr": 0.08488455988455987
+      },
+      "sufficient": {
+        "recall_at_1": 0.6666666666666666,
+        "recall_at_3": 0.6666666666666666,
+        "recall_at_5": 0.6666666666666666,
+        "recall_at_10": 0.8333333333333334,
+        "recall_at_20": 1.0,
+        "mrr": 0.6988110269360268
+      }
+    }
+  },
+  "reranked": {
+    "metrics": {
+      "recall_at_1": 0.8,
+      "recall_at_3": 0.85,
+      "recall_at_5": 0.85,
+      "recall_at_10": 0.85,
+      "recall_at_20": 0.85,
+      "mrr": 0.825
+    },
+    "metrics_by_query_type": {
+      "component": {
+        "recall_at_1": 0.75,
+        "recall_at_3": 0.75,
+        "recall_at_5": 0.75,
+        "recall_at_10": 0.75,
+        "recall_at_20": 0.75,
+        "mrr": 0.75
+      },
+      "condition": {
+        "recall_at_1": 0.25,
+        "recall_at_3": 0.5,
+        "recall_at_5": 0.5,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.5,
+        "mrr": 0.375
+      },
+      "identifier": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0
+      },
+      "maintenance_action": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0
+      },
+      "part_number": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0
+      }
+    },
+    "metrics_by_sufficiency": {
+      "insufficient": {
+        "recall_at_1": 0.16666666666666666,
+        "recall_at_3": 0.5,
+        "recall_at_5": 0.5,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.5,
+        "mrr": 0.3333333333333333
+      },
+      "partially_sufficient": {
+        "recall_at_1": 0.7,
+        "recall_at_3": 0.7,
+        "recall_at_5": 0.7,
+        "recall_at_10": 0.7,
+        "recall_at_20": 0.7,
+        "mrr": 0.7
+      },
+      "sufficient": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0
+      }
+    }
+  },
+  "error_taxonomy": {
+    "status": "unreviewed",
+    "allowed_categories": [
+      "adapter_mapping",
+      "schema_gap",
+      "retrieval_role",
+      "chunk",
+      "generic_contract"
+    ],
+    "rows_requiring_review": [
+      "AERO-Q022",
+      "AERO-Q024",
+      "AERO-Q027",
+      "AERO-Q028",
+      "AERO-Q029",
+      "AERO-Q030",
+      "AERO-Q031",
+      "AERO-Q032"
+    ]
+  },
+  "queries": [
+    {
+      "query_id": "AERO-Q001",
+      "query": "JASC 2100 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "difficulty": "easy",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00008"
+      ],
+      "relevant_source_record_ids": [
+        "2024F00008"
+      ],
+      "candidate_pool_size": 21,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "2024F00008",
+        "1JAA20240130001",
+        "141A2024050700003",
+        "141A202011590001",
+        "2024F00003"
+      ],
+      "candidate_pool_source_record_ids": [
+        "2024F00008",
+        "141A2024032900003",
+        "141A2026011560002",
+        "1R4A202404220001",
+        "141A202011590001",
+        "20240612001",
+        "141A2024050700003",
+        "2024F00021",
+        "1DJA20240521001",
+        "2024F00007",
+        "1DJA 202403080001",
+        "141A2024032900001",
+        "141A2024040200002",
+        "1JAA20240130001",
+        "20240320083",
+        "15MA202412120318",
+        "2024F00003",
+        "141A2026011570001",
+        "2024F00240",
+        "141A2026011540001",
+        "1AZA2024021500032"
+      ],
+      "exact_fields": {
+        "fault_codes": [
+          "2100"
+        ],
+        "parameters": [],
+        "components": []
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [
+        "2024F00008"
+      ],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:2024F00021",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00007",
+          "aerospace:faa-sdr:service-difficulty-report:20240612001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2026011560002"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:2024F00008",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2026011560002",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001"
+        ]
+      },
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit JASC identifier; repeated JASC values intentionally allow multi-answer relevance"
+    },
+    {
+      "query_id": "AERO-Q002",
+      "query": "JASC 2120 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "difficulty": "easy",
+      "ambiguity": "multi_answer",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+        "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+        "aerospace:faa-sdr:service-difficulty-report:141A2026011570001",
+        "aerospace:faa-sdr:service-difficulty-report:1JAA20240130001",
+        "aerospace:faa-sdr:service-difficulty-report:1LXA2025012800062",
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010500169"
+      ],
+      "relevant_source_record_ids": [
+        "141A202011590001",
+        "141A2024050700003",
+        "141A2026011570001",
+        "1JAA20240130001",
+        "1LXA2025012800062",
+        "DALA2024010500169"
+      ],
+      "candidate_pool_size": 22,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "141A2024050700003",
+        "1JAA20240130001",
+        "DALA2024010500169",
+        "141A202011590001",
+        "141A2026011570001"
+      ],
+      "candidate_pool_source_record_ids": [
+        "141A2024050700003",
+        "141A202011590001",
+        "141A2026011570001",
+        "1JAA20240130001",
+        "1LXA2025012800062",
+        "DALA2024010500169",
+        "141A2024032900003",
+        "1R4A202404220001",
+        "141A2026011560002",
+        "20240612001",
+        "2024F00021",
+        "2024F00007",
+        "1DJA20240521001",
+        "1DJA 202403080001",
+        "2024F00008",
+        "141A2024032900001",
+        "15MA202412120318",
+        "20240314FAA0001",
+        "2024FA0000003",
+        "141A2024040200002",
+        "141A2026011540001",
+        "1AZA2024021500032"
+      ],
+      "exact_fields": {
+        "fault_codes": [
+          "2120"
+        ],
+        "parameters": [],
+        "components": []
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [
+        "DALA2024010500169",
+        "141A202011590001",
+        "141A2024050700003",
+        "141A2026011570001",
+        "1JAA20240130001",
+        "1LXA2025012800062"
+      ],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:2024F00021",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00007",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:20240612001"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2026011570001",
+          "aerospace:faa-sdr:service-difficulty-report:1JAA20240130001",
+          "aerospace:faa-sdr:service-difficulty-report:1LXA2025012800062"
+        ]
+      },
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit JASC identifier; repeated JASC values intentionally allow multi-answer relevance"
+    },
+    {
+      "query_id": "AERO-Q003",
+      "query": "JASC 2421 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "difficulty": "easy",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00007"
+      ],
+      "relevant_source_record_ids": [
+        "2024F00007"
+      ],
+      "candidate_pool_size": 21,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "2024F00007",
+        "2024F00021",
+        "2024FA0000003",
+        "2024F00008",
+        "1JAA20240130001"
+      ],
+      "candidate_pool_source_record_ids": [
+        "2024F00007",
+        "141A2024032900003",
+        "1R4A202404220001",
+        "141A2024050700003",
+        "141A202011590001",
+        "141A2026011560002",
+        "20240612001",
+        "2024F00021",
+        "1DJA20240521001",
+        "141A2024032900001",
+        "20240314FAA0001",
+        "2024F00008",
+        "15MA202412120318",
+        "1DJA 202403080001",
+        "141A2026011540001",
+        "DALA2024010800207",
+        "1JAA20240130001",
+        "141A2024040200002",
+        "141A2026011570001",
+        "2024FA0000003",
+        "DALA2024010800208"
+      ],
+      "exact_fields": {
+        "fault_codes": [
+          "2421"
+        ],
+        "parameters": [],
+        "components": []
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [
+        "2024F00007"
+      ],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00021",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:2024F00007",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001"
+        ]
+      },
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit JASC identifier; repeated JASC values intentionally allow multi-answer relevance"
+    },
+    {
+      "query_id": "AERO-Q004",
+      "query": "JASC 2435 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "difficulty": "easy",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00240"
+      ],
+      "relevant_source_record_ids": [
+        "2024F00240"
+      ],
+      "candidate_pool_size": 22,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "2024F00240",
+        "2024F00007",
+        "2024F00021",
+        "1DJA20240521001",
+        "15MA202412120318"
+      ],
+      "candidate_pool_source_record_ids": [
+        "2024F00240",
+        "141A2024032900003",
+        "141A2026011560002",
+        "1R4A202404220001",
+        "141A2024050700003",
+        "141A202011590001",
+        "2024F00021",
+        "2024F00007",
+        "1DJA20240521001",
+        "15MA202412120318",
+        "2024F00008",
+        "20240612001",
+        "DALA2024010800206",
+        "20240314FAA0001",
+        "141A2024032900001",
+        "1DJA 202403080001",
+        "DALA2024010800208",
+        "141A2026011570001",
+        "141A2024040200002",
+        "1JAA20240130001",
+        "DALA2024010800207",
+        "141A2026011540001"
+      ],
+      "exact_fields": {
+        "fault_codes": [
+          "2435"
+        ],
+        "parameters": [],
+        "components": []
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [
+        "2024F00240"
+      ],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00021",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00007"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:2024F00240",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2026011560002",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ]
+      },
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit JASC identifier; repeated JASC values intentionally allow multi-answer relevance"
+    },
+    {
+      "query_id": "AERO-Q005",
+      "query": "JASC 2565 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "difficulty": "easy",
+      "ambiguity": "multi_answer",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010200010",
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010500170"
+      ],
+      "relevant_source_record_ids": [
+        "DALA2024010200010",
+        "DALA2024010500170"
+      ],
+      "candidate_pool_size": 22,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "DALA2024010200010",
+        "DALA2024010500170",
+        "2024F00021",
+        "141A2026011560002",
+        "2024F00007"
+      ],
+      "candidate_pool_source_record_ids": [
+        "DALA2024010200010",
+        "DALA2024010500170",
+        "141A2024032900003",
+        "1R4A202404220001",
+        "141A2024050700003",
+        "1DJA20240521001",
+        "141A2026011560002",
+        "2024F00007",
+        "141A202011590001",
+        "20240320083",
+        "20240612001",
+        "2024F00008",
+        "15MA202412120318",
+        "2024F00021",
+        "1DJA 202403080001",
+        "141A2026011540001",
+        "141A2024032900001",
+        "DALA2024010800208",
+        "DALA2024010800206",
+        "20240314FAA0001",
+        "141A2024040200002",
+        "141A2026011570001"
+      ],
+      "exact_fields": {
+        "fault_codes": [
+          "2565"
+        ],
+        "parameters": [],
+        "components": []
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [
+        "DALA2024010200010",
+        "DALA2024010500170"
+      ],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00007",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:1DJA20240521001"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010200010",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010500170",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ]
+      },
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit JASC identifier; repeated JASC values intentionally allow multi-answer relevance"
+    },
+    {
+      "query_id": "AERO-Q006",
+      "query": "JASC 2612 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "difficulty": "easy",
+      "ambiguity": "multi_answer",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+        "aerospace:faa-sdr:service-difficulty-report:1DJA 202403080001"
+      ],
+      "relevant_source_record_ids": [
+        "141A2024032900003",
+        "1DJA 202403080001"
+      ],
+      "candidate_pool_size": 22,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "1DJA 202403080001",
+        "141A2024032900003",
+        "1R4A202404220001",
+        "141A2026011560002",
+        "2024F00021"
+      ],
+      "candidate_pool_source_record_ids": [
+        "141A2024032900003",
+        "1DJA 202403080001",
+        "1R4A202404220001",
+        "141A2026011560002",
+        "141A2024050700003",
+        "20240612001",
+        "141A202011590001",
+        "2024F00007",
+        "1DJA20240521001",
+        "2024F00021",
+        "15MA202412120318",
+        "141A2024032900001",
+        "20240314FAA0001",
+        "2024F00008",
+        "DALA2024010800206",
+        "141A2024040200002",
+        "141A2026011570001",
+        "141A2026011540001",
+        "DALA2024010200007",
+        "1JAA20240130001",
+        "DALA2024010800207",
+        "DALA2024010800208"
+      ],
+      "exact_fields": {
+        "fault_codes": [
+          "2612"
+        ],
+        "parameters": [],
+        "components": []
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [
+        "141A2024032900003",
+        "1DJA 202403080001"
+      ],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:20240612001",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00007",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00021"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:1DJA 202403080001",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2026011560002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ]
+      },
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit JASC identifier; repeated JASC values intentionally allow multi-answer relevance"
+    },
+    {
+      "query_id": "AERO-Q007",
+      "query": "JASC 2697 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "difficulty": "easy",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00051"
+      ],
+      "relevant_source_record_ids": [
+        "2024F00051"
+      ],
+      "candidate_pool_size": 21,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "2024F00051",
+        "141A2026011560002",
+        "1AZA2024021500032",
+        "1DJA20240521001",
+        "2024F00007"
+      ],
+      "candidate_pool_source_record_ids": [
+        "2024F00051",
+        "141A2024032900003",
+        "1R4A202404220001",
+        "141A2024050700003",
+        "1DJA 202403080001",
+        "20240612001",
+        "20240320083",
+        "1DJA20240521001",
+        "141A202011590001",
+        "20240314FAA0001",
+        "141A2026011560002",
+        "2024F00007",
+        "141A2024032900001",
+        "15MA202412120318",
+        "141A2026011570001",
+        "DALA2024010500169",
+        "DALA2024010200007",
+        "141A2026011540001",
+        "141A2024040200002",
+        "1JAA20240130001",
+        "1AZA2024021500032"
+      ],
+      "exact_fields": {
+        "fault_codes": [
+          "2697"
+        ],
+        "parameters": [],
+        "components": []
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [
+        "2024F00051"
+      ],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010500169",
+          "aerospace:faa-sdr:service-difficulty-report:20240612001",
+          "aerospace:faa-sdr:service-difficulty-report:20240320083"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:2024F00051",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "aerospace:faa-sdr:service-difficulty-report:1DJA 202403080001"
+        ]
+      },
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit JASC identifier; repeated JASC values intentionally allow multi-answer relevance"
+    },
+    {
+      "query_id": "AERO-Q008",
+      "query": "JASC 2740 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "difficulty": "easy",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:20240314FAA0001"
+      ],
+      "relevant_source_record_ids": [
+        "20240314FAA0001"
+      ],
+      "candidate_pool_size": 21,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "20240314FAA0001",
+        "1DJA20240521001",
+        "2024F00021",
+        "1AZA2024021500032",
+        "141A2024040200002"
+      ],
+      "candidate_pool_source_record_ids": [
+        "20240314FAA0001",
+        "141A2024032900003",
+        "141A2024050700003",
+        "141A2026011560002",
+        "1R4A202404220001",
+        "141A202011590001",
+        "2024F00007",
+        "15MA202412120318",
+        "1DJA20240521001",
+        "141A2024032900001",
+        "2024F00008",
+        "DALA2024010800206",
+        "1DJA 202403080001",
+        "20240612001",
+        "DALA2024010800208",
+        "DALA2024010800207",
+        "141A2024040200002",
+        "1AZA2024021500032",
+        "2024F00021",
+        "141A2026011570001",
+        "141A2026011540001"
+      ],
+      "exact_fields": {
+        "fault_codes": [
+          "2740"
+        ],
+        "parameters": [],
+        "components": []
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [
+        "20240314FAA0001"
+      ],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:20240314FAA0001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2026011560002",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001"
+        ]
+      },
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit JASC identifier; repeated JASC values intentionally allow multi-answer relevance"
+    },
+    {
+      "query_id": "AERO-Q009",
+      "query": "航空维修记录中涉及部件号 L856M3001881 的是哪条记录？",
+      "query_type": "part_number",
+      "difficulty": "easy",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00003"
+      ],
+      "relevant_source_record_ids": [
+        "2024F00003"
+      ],
+      "candidate_pool_size": 23,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "2024F00003",
+        "DALA2024010800206",
+        "DALA2024010800208",
+        "141A2024040200002",
+        "20240320083"
+      ],
+      "candidate_pool_source_record_ids": [
+        "2024F00003",
+        "141A2024032900003",
+        "1R4A202404220001",
+        "141A2024050700003",
+        "20240320083",
+        "20240612001",
+        "141A2024040200002",
+        "141A2026011560002",
+        "20240314FAA0001",
+        "141A202011590001",
+        "15MA202412120318",
+        "2024F00240",
+        "141A2024032900001",
+        "DALA2024010800206",
+        "1DJA 202403080001",
+        "DALA2024010800208",
+        "2024F00021",
+        "1JAA20240130001",
+        "1AZA2024021500032",
+        "141A2026011540001",
+        "DALA2024010800207",
+        "DALA2024010200007",
+        "DALA2024010500170"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [
+          "L856M3001881"
+        ],
+        "components": []
+      },
+      "matched_parameters_by_entity": {
+        "2024F00003": [
+          "L856M3001881"
+        ]
+      },
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:20240320083",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:20240612001"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010200007",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010500170"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:2024F00003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "aerospace:faa-sdr:service-difficulty-report:20240320083"
+        ]
+      },
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit part number"
+    },
+    {
+      "query_id": "AERO-Q010",
+      "query": "航空维修记录中涉及部件号 356200575 的是哪条记录？",
+      "query_type": "part_number",
+      "difficulty": "easy",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00051"
+      ],
+      "relevant_source_record_ids": [
+        "2024F00051"
+      ],
+      "candidate_pool_size": 23,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "2024F00051",
+        "1DJA20240521001",
+        "DALA2024010800206",
+        "141A2024040200002",
+        "141A2024032900001"
+      ],
+      "candidate_pool_source_record_ids": [
+        "2024F00051",
+        "141A2024032900003",
+        "1R4A202404220001",
+        "141A2024050700003",
+        "20240314FAA0001",
+        "20240612001",
+        "141A2026011560002",
+        "20240320083",
+        "141A2024040200002",
+        "15MA202412120318",
+        "141A202011590001",
+        "2024F00240",
+        "141A2024032900001",
+        "DALA2024010800206",
+        "141A2026011570001",
+        "1DJA20240521001",
+        "DALA2024010800208",
+        "1DJA 202403080001",
+        "141A2026011540001",
+        "DALA2024010500169",
+        "DALA2024010800207",
+        "DALA2024010200007",
+        "DALA2024010500170"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [
+          "356200575"
+        ],
+        "components": []
+      },
+      "matched_parameters_by_entity": {
+        "2024F00051": [
+          "356200575"
+        ]
+      },
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:20240314FAA0001",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:20240612001"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010200007",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010500170"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:2024F00051",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "aerospace:faa-sdr:service-difficulty-report:20240314FAA0001"
+        ]
+      },
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit part number"
+    },
+    {
+      "query_id": "AERO-Q011",
+      "query": "航空维修记录中涉及部件号 23085029 的是哪条记录？",
+      "query_type": "part_number",
+      "difficulty": "easy",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00240"
+      ],
+      "relevant_source_record_ids": [
+        "2024F00240"
+      ],
+      "candidate_pool_size": 21,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "2024F00240",
+        "DALA2024010200007",
+        "20240612001",
+        "141A2024040200002",
+        "1DJA20240521001"
+      ],
+      "candidate_pool_source_record_ids": [
+        "2024F00240",
+        "141A2024032900003",
+        "1R4A202404220001",
+        "141A2024050700003",
+        "20240320083",
+        "141A202011590001",
+        "15MA202412120318",
+        "20240314FAA0001",
+        "141A2026011560002",
+        "141A2024040200002",
+        "20240612001",
+        "DALA2024010800206",
+        "141A2024032900001",
+        "1DJA20240521001",
+        "DALA2024010800208",
+        "141A2026011570001",
+        "DALA2024010800207",
+        "141A2026011540001",
+        "DALA2024010200007",
+        "DALA2024010500169",
+        "DALA2024010500170"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [
+          "23085029"
+        ],
+        "components": []
+      },
+      "matched_parameters_by_entity": {
+        "2024F00240": [
+          "23085029"
+        ]
+      },
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:20240320083"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010500170",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010200007"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:2024F00240",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "aerospace:faa-sdr:service-difficulty-report:20240320083"
+        ]
+      },
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit part number"
+    },
+    {
+      "query_id": "AERO-Q012",
+      "query": "航空维修记录中涉及部件号 G4710A19 的是哪条记录？",
+      "query_type": "part_number",
+      "difficulty": "easy",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00264"
+      ],
+      "relevant_source_record_ids": [
+        "2024F00264"
+      ],
+      "candidate_pool_size": 20,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "2024F00264",
+        "DALA2024010800206",
+        "20240612001",
+        "20240314FAA0001",
+        "141A2024050700003"
+      ],
+      "candidate_pool_source_record_ids": [
+        "2024F00264",
+        "141A2024032900003",
+        "1R4A202404220001",
+        "141A2026011560002",
+        "141A2024050700003",
+        "20240612001",
+        "20240314FAA0001",
+        "141A2024040200002",
+        "141A202011590001",
+        "15MA202412120318",
+        "20240320083",
+        "141A2024032900001",
+        "DALA2024010800206",
+        "141A2026011570001",
+        "2024F00240",
+        "DALA2024010800208",
+        "1DJA 202403080001",
+        "141A2026011540001",
+        "DALA2024010800207",
+        "1JAA20240130001"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [
+          "G4710A19"
+        ],
+        "components": []
+      },
+      "matched_parameters_by_entity": {
+        "2024F00264": [
+          "G4710A19"
+        ]
+      },
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:20240612001",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:20240314FAA0001",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:2024F00264",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2026011560002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ]
+      },
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit part number"
+    },
+    {
+      "query_id": "AERO-Q013",
+      "query": "航空维修记录中涉及部件号 310A204110 的是哪条记录？",
+      "query_type": "part_number",
+      "difficulty": "easy",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000000"
+      ],
+      "relevant_source_record_ids": [
+        "2024FA0000000"
+      ],
+      "candidate_pool_size": 22,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "2024FA0000000",
+        "141A2024040200002",
+        "141A2024032900001",
+        "141A2024050700003",
+        "DALA2024010200007"
+      ],
+      "candidate_pool_source_record_ids": [
+        "2024FA0000000",
+        "141A2024032900003",
+        "141A2024050700003",
+        "1R4A202404220001",
+        "141A2026011560002",
+        "20240612001",
+        "141A2024040200002",
+        "20240314FAA0001",
+        "141A202011590001",
+        "15MA202412120318",
+        "2024F00240",
+        "20240320083",
+        "141A2024032900001",
+        "DALA2024010800206",
+        "DALA2024010800208",
+        "1JAA20240130001",
+        "141A2026011570001",
+        "DALA2024010800207",
+        "DALA2024010200007",
+        "141A2026011540001",
+        "DALA2024010500170",
+        "DALA2024010200010"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [
+          "310A204110"
+        ],
+        "components": []
+      },
+      "matched_parameters_by_entity": {
+        "2024FA0000000": [
+          "310A204110"
+        ]
+      },
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00240"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010200007",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010500170"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:2024FA0000000",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2026011560002"
+        ]
+      },
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit part number"
+    },
+    {
+      "query_id": "AERO-Q014",
+      "query": "航空维修记录中涉及部件号 SL36006WA20P 的是哪条记录？",
+      "query_type": "part_number",
+      "difficulty": "easy",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000065"
+      ],
+      "relevant_source_record_ids": [
+        "2024FA0000065"
+      ],
+      "candidate_pool_size": 23,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "2024FA0000065",
+        "1DJA20240521001",
+        "DALA2024010800206",
+        "141A2024040200002",
+        "DALA2024010200007"
+      ],
+      "candidate_pool_source_record_ids": [
+        "2024FA0000065",
+        "141A2024032900003",
+        "1R4A202404220001",
+        "20240612001",
+        "20240314FAA0001",
+        "141A2024040200002",
+        "141A2026011560002",
+        "141A2024050700003",
+        "2024F00240",
+        "15MA202412120318",
+        "141A202011590001",
+        "141A2024032900001",
+        "DALA2024010800206",
+        "2024F00021",
+        "20240320083",
+        "141A2026011570001",
+        "1JAA20240130001",
+        "DALA2024010800208",
+        "141A2026011540001",
+        "1DJA20240521001",
+        "DALA2024010800207",
+        "DALA2024010200007",
+        "DALA2024010500170"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [
+          "SL36006WA20P"
+        ],
+        "components": []
+      },
+      "matched_parameters_by_entity": {
+        "2024FA0000065": [
+          "SL36006WA20P"
+        ]
+      },
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00240",
+          "aerospace:faa-sdr:service-difficulty-report:20240612001",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010200007",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010500170"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:2024FA0000065",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:20240612001",
+          "aerospace:faa-sdr:service-difficulty-report:20240314FAA0001"
+        ]
+      },
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit part number"
+    },
+    {
+      "query_id": "AERO-Q015",
+      "query": "航空维修记录中涉及部件号 03018200 的是哪条记录？",
+      "query_type": "part_number",
+      "difficulty": "easy",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:141A2024032900001"
+      ],
+      "relevant_source_record_ids": [
+        "141A2024032900001"
+      ],
+      "candidate_pool_size": 23,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "141A2024032900001",
+        "141A2024040200002",
+        "DALA2024010800206",
+        "1DJA20240521001",
+        "DALA2024010800208"
+      ],
+      "candidate_pool_source_record_ids": [
+        "141A2024032900001",
+        "141A2024032900003",
+        "1R4A202404220001",
+        "141A2024050700003",
+        "20240314FAA0001",
+        "20240320083",
+        "141A2024040200002",
+        "141A202011590001",
+        "141A2026011560002",
+        "15MA202412120318",
+        "2024F00240",
+        "DALA2024010200007",
+        "DALA2024010800206",
+        "20240612001",
+        "141A2026011570001",
+        "1DJA20240521001",
+        "2024FA0000003",
+        "1JAA20240130001",
+        "2024F00004",
+        "141A2026011540001",
+        "DALA2024010500170",
+        "DALA2024010800207",
+        "DALA2024010800208"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [
+          "03018200"
+        ],
+        "components": []
+      },
+      "matched_parameters_by_entity": {
+        "141A2024032900001": [
+          "03018200"
+        ]
+      },
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010200007",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00240",
+          "aerospace:faa-sdr:service-difficulty-report:20240314FAA0001"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010200007",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010500170",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "aerospace:faa-sdr:service-difficulty-report:20240314FAA0001"
+        ]
+      },
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit part number"
+    },
+    {
+      "query_id": "AERO-Q016",
+      "query": "航空维修记录中涉及部件号 64404303416 的是哪条记录？",
+      "query_type": "part_number",
+      "difficulty": "easy",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:141A2024032900003"
+      ],
+      "relevant_source_record_ids": [
+        "141A2024032900003"
+      ],
+      "candidate_pool_size": 21,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "141A2024032900003",
+        "1R4A202404220001",
+        "DALA2024010800206",
+        "DALA2024010800208",
+        "DALA2024010500168"
+      ],
+      "candidate_pool_source_record_ids": [
+        "141A2024032900003",
+        "1R4A202404220001",
+        "141A2024050700003",
+        "141A2026011560002",
+        "15MA202412120318",
+        "20240314FAA0001",
+        "141A2024040200002",
+        "20240612001",
+        "141A202011590001",
+        "141A2024032900001",
+        "DALA2024010800206",
+        "2024F00240",
+        "DALA2024010500168",
+        "DALA2024010800208",
+        "1DJA20240521001",
+        "DALA2024010800207",
+        "1DJA 202403080001",
+        "141A2026011570001",
+        "2024F00021",
+        "141A2026011540001",
+        "DALA2024010200007"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [
+          "64404303416"
+        ],
+        "components": []
+      },
+      "matched_parameters_by_entity": {
+        "141A2024032900003": [
+          "64404303416"
+        ]
+      },
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010500168"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010200007",
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2026011560002",
+          "aerospace:faa-sdr:service-difficulty-report:15MA202412120318"
+        ]
+      },
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit part number"
+    },
+    {
+      "query_id": "AERO-Q017",
+      "query": "哪条航空故障记录涉及 LIGHT？",
+      "query_type": "component",
+      "difficulty": "medium",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00003"
+      ],
+      "relevant_source_record_ids": [
+        "2024F00003"
+      ],
+      "candidate_pool_size": 20,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.14285714285714285,
+        "first_relevant_rank": 7
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "2024F00003",
+        "2024F00051",
+        "DALA2024010200007",
+        "15MA202412120318",
+        "1DJA 202403080001"
+      ],
+      "candidate_pool_source_record_ids": [
+        "141A2024032900003",
+        "141A202011590001",
+        "1DJA 202403080001",
+        "141A2024050700003",
+        "1R4A202404220001",
+        "15MA202412120318",
+        "2024F00003",
+        "1DJA20240521001",
+        "141A2026011560002",
+        "2024F00051",
+        "141A2026011570001",
+        "2024F00021",
+        "2024F00008",
+        "20240612001",
+        "DALA2024010200007",
+        "141A2024032900001",
+        "141A2026011540001",
+        "141A2024040200002",
+        "20240320083",
+        "1AZA2024021500032"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [],
+        "components": [
+          "LIGHT"
+        ]
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:2024F00003",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00051",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:1DJA 202403080001",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010200007"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:1DJA 202403080001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001"
+        ]
+      },
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "component-only query lacks aircraft/JASC context"
+    },
+    {
+      "query_id": "AERO-Q018",
+      "query": "哪条航空故障记录涉及 SHUTOFF VALVE？",
+      "query_type": "component",
+      "difficulty": "medium",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00021"
+      ],
+      "relevant_source_record_ids": [
+        "2024F00021"
+      ],
+      "candidate_pool_size": 22,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.125,
+        "first_relevant_rank": 8
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "2024F00021",
+        "141A2026011560002",
+        "141A202011590001",
+        "20240314FAA0001",
+        "1DJA20240521001"
+      ],
+      "candidate_pool_source_record_ids": [
+        "141A2024032900003",
+        "141A202011590001",
+        "1DJA20240521001",
+        "1R4A202404220001",
+        "141A2026011560002",
+        "15MA202412120318",
+        "141A2024050700003",
+        "2024F00021",
+        "2024F00008",
+        "141A2024040200002",
+        "20240612001",
+        "141A2026011540001",
+        "141A2024032900001",
+        "1LXA2025012800062",
+        "2024FA0000003",
+        "1DJA 202403080001",
+        "2024F00240",
+        "2024F00003",
+        "20240314FAA0001",
+        "1JAA20240130001",
+        "141A2026011570001",
+        "1AZA2024021500032"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [],
+        "components": [
+          "SHUTOFF VALVE"
+        ]
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:2024F00021",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:1DJA20240521001",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00008"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:1DJA20240521001",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2026011560002"
+        ]
+      },
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "component-only query lacks aircraft/JASC context"
+    },
+    {
+      "query_id": "AERO-Q019",
+      "query": "哪条航空故障记录涉及 FIRE LOOP CABLE？",
+      "query_type": "component",
+      "difficulty": "medium",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00051"
+      ],
+      "relevant_source_record_ids": [
+        "2024F00051"
+      ],
+      "candidate_pool_size": 20,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.125,
+        "first_relevant_rank": 8
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "2024F00051",
+        "141A2024032900003",
+        "141A2026011570001",
+        "1DJA20240521001",
+        "141A2024050700003"
+      ],
+      "candidate_pool_source_record_ids": [
+        "141A2024032900003",
+        "141A202011590001",
+        "1DJA20240521001",
+        "1DJA 202403080001",
+        "141A2024050700003",
+        "141A2026011560002",
+        "1R4A202404220001",
+        "2024F00051",
+        "1LXA2025012800062",
+        "2024F00021",
+        "2024F00008",
+        "141A2026011570001",
+        "141A2024032900001",
+        "141A2026011540001",
+        "15MA202412120318",
+        "20240320083",
+        "20240314FAA0001",
+        "1JAA20240130001",
+        "141A2024040200002",
+        "1AZA2024021500032"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [],
+        "components": [
+          "CABLE",
+          "FIRE LOOP",
+          "FIRE LOOP CABLE"
+        ]
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:2024F00051",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00021",
+          "aerospace:faa-sdr:service-difficulty-report:1DJA20240521001",
+          "aerospace:faa-sdr:service-difficulty-report:1DJA 202403080001"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:1DJA20240521001",
+          "aerospace:faa-sdr:service-difficulty-report:1DJA 202403080001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ]
+      },
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "component-only query lacks aircraft/JASC context"
+    },
+    {
+      "query_id": "AERO-Q020",
+      "query": "哪条航空故障记录涉及 STARTER GEN？",
+      "query_type": "component",
+      "difficulty": "medium",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00240"
+      ],
+      "relevant_source_record_ids": [
+        "2024F00240"
+      ],
+      "candidate_pool_size": 21,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.1111111111111111,
+        "first_relevant_rank": 9
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "2024F00240",
+        "2024F00007",
+        "141A2026011560002",
+        "2024FA0000003",
+        "1DJA20240521001"
+      ],
+      "candidate_pool_source_record_ids": [
+        "141A2024032900003",
+        "141A202011590001",
+        "1R4A202404220001",
+        "141A2026011560002",
+        "141A2024050700003",
+        "1DJA20240521001",
+        "20240612001",
+        "1DJA 202403080001",
+        "2024F00240",
+        "2024F00007",
+        "15MA202412120318",
+        "141A2024040200002",
+        "2024F00021",
+        "20240314FAA0001",
+        "141A2024032900001",
+        "2024FA0000003",
+        "141A2026011540001",
+        "1JAA20240130001",
+        "2024F00008",
+        "141A2026011570001",
+        "1AZA2024021500032"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [],
+        "components": [
+          "STARTER GEN"
+        ]
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:2024F00240",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:20240612001",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00007",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00021"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2026011560002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ]
+      },
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "component-only query lacks aircraft/JASC context"
+    },
+    {
+      "query_id": "AERO-Q021",
+      "query": "哪条航空故障记录涉及 TAXI LIGHT？",
+      "query_type": "component",
+      "difficulty": "medium",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00264"
+      ],
+      "relevant_source_record_ids": [
+        "2024F00264"
+      ],
+      "candidate_pool_size": 21,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.09090909090909091,
+        "first_relevant_rank": 11
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "2024F00264",
+        "15MA202412120318",
+        "2024F00003",
+        "141A2024040200002",
+        "2024F00240"
+      ],
+      "candidate_pool_source_record_ids": [
+        "141A2024032900003",
+        "15MA202412120318",
+        "141A202011590001",
+        "141A2024040200002",
+        "1R4A202404220001",
+        "1DJA 202403080001",
+        "2024F00003",
+        "141A2026011560002",
+        "141A2024050700003",
+        "1DJA20240521001",
+        "2024F00264",
+        "2024F00051",
+        "141A2026011570001",
+        "20240612001",
+        "141A2024032900001",
+        "2024F00008",
+        "2024F00240",
+        "141A2026011540001",
+        "2024F00021",
+        "DALA2024010200007",
+        "1AZA2024021500032"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [],
+        "components": [
+          "LIGHT",
+          "TAXI LIGHT"
+        ]
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:15MA202412120318",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00264",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:15MA202412120318",
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001"
+        ]
+      },
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "component-only query lacks aircraft/JASC context"
+    },
+    {
+      "query_id": "AERO-Q022",
+      "query": "哪条航空故障记录涉及 THRUST LINK？",
+      "query_type": "component",
+      "difficulty": "medium",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000000"
+      ],
+      "relevant_source_record_ids": [
+        "2024FA0000000"
+      ],
+      "candidate_pool_size": 22,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "reranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "top_5_source_record_ids": [
+        "20240314FAA0001",
+        "20240320083",
+        "141A2026011560002",
+        "141A2026011540001",
+        "2024FA0000003"
+      ],
+      "candidate_pool_source_record_ids": [
+        "141A2024050700003",
+        "141A2024032900003",
+        "1R4A202404220001",
+        "1DJA 202403080001",
+        "20240320083",
+        "141A202011590001",
+        "141A2026011560002",
+        "20240314FAA0001",
+        "141A2024040200002",
+        "2024F00021",
+        "1DJA20240521001",
+        "20240612001",
+        "141A2024032900001",
+        "141A2026011570001",
+        "141A2026011540001",
+        "2024F00240",
+        "15MA202412120318",
+        "2024F00008",
+        "2024FA0000003",
+        "2024F00003",
+        "DALA2024010800207",
+        "DALA2024010800208"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [],
+        "components": [
+          "THRUST LINK"
+        ]
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "candidate_union_or_top_k_boundary_needs_review",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:20240320083",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00021",
+          "aerospace:faa-sdr:service-difficulty-report:1DJA 202403080001"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:1DJA 202403080001",
+          "aerospace:faa-sdr:service-difficulty-report:20240320083"
+        ]
+      },
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "component-only query lacks aircraft/JASC context"
+    },
+    {
+      "query_id": "AERO-Q023",
+      "query": "哪条航空故障记录涉及 ENGINE CYLINDER？",
+      "query_type": "component",
+      "difficulty": "medium",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000003"
+      ],
+      "relevant_source_record_ids": [
+        "2024FA0000003"
+      ],
+      "candidate_pool_size": 22,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.1111111111111111,
+        "first_relevant_rank": 9
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "2024FA0000003",
+        "1AZA2024021500032",
+        "141A2024040200002",
+        "15MA202412120318",
+        "2024F00004"
+      ],
+      "candidate_pool_source_record_ids": [
+        "141A2024032900003",
+        "141A2024050700003",
+        "141A2024040200002",
+        "1R4A202404220001",
+        "15MA202412120318",
+        "1DJA20240521001",
+        "141A202011590001",
+        "20240612001",
+        "2024FA0000003",
+        "141A2026011560002",
+        "2024F00240",
+        "2024F00021",
+        "1DJA 202403080001",
+        "141A2024032900001",
+        "1LXA2025012800062",
+        "141A2026011570001",
+        "1AZA2024021500032",
+        "2024F00007",
+        "141A2026011540001",
+        "2024F00004",
+        "DALA2024010800207",
+        "DALA2024010800208"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [],
+        "components": [
+          "CYLINDER",
+          "ENGINE",
+          "ENGINE CYLINDER"
+        ]
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:2024FA0000003",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:20240612001",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00240"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:15MA202412120318"
+        ]
+      },
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "component-only query lacks aircraft/JASC context"
+    },
+    {
+      "query_id": "AERO-Q024",
+      "query": "哪条航空故障记录涉及 CYLINDER？",
+      "query_type": "component",
+      "difficulty": "medium",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000065"
+      ],
+      "relevant_source_record_ids": [
+        "2024FA0000065"
+      ],
+      "candidate_pool_size": 22,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "reranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "top_5_source_record_ids": [
+        "2024FA0000003",
+        "141A2024040200002",
+        "141A2024032900001",
+        "141A2026011540001",
+        "1DJA20240521001"
+      ],
+      "candidate_pool_source_record_ids": [
+        "141A2024032900003",
+        "141A2024050700003",
+        "1DJA20240521001",
+        "141A2024040200002",
+        "1R4A202404220001",
+        "141A202011590001",
+        "141A2026011560002",
+        "2024FA0000003",
+        "20240612001",
+        "15MA202412120318",
+        "141A2024032900001",
+        "2024F00240",
+        "1DJA 202403080001",
+        "141A2026011570001",
+        "1JAA20240130001",
+        "141A2026011540001",
+        "2024F00007",
+        "DALA2024010800206",
+        "2024F00021",
+        "1LXA2025012800062",
+        "DALA2024010800207",
+        "DALA2024010800208"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [],
+        "components": [
+          "CYLINDER"
+        ]
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "candidate_union_or_top_k_boundary_needs_review",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:2024FA0000003",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:1DJA20240521001",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "aerospace:faa-sdr:service-difficulty-report:1DJA20240521001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001"
+        ]
+      },
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "component-only query lacks aircraft/JASC context"
+    },
+    {
+      "query_id": "AERO-Q025",
+      "query": "航空部件状态为 LOOSE 的故障记录是哪条？",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00003"
+      ],
+      "relevant_source_record_ids": [
+        "2024F00003"
+      ],
+      "candidate_pool_size": 20,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.1111111111111111,
+        "first_relevant_rank": 9
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "2024F00003",
+        "1DJA20240521001",
+        "2024F00021",
+        "141A2026011540001",
+        "141A2024040200002"
+      ],
+      "candidate_pool_source_record_ids": [
+        "141A2024032900003",
+        "141A2024050700003",
+        "1R4A202404220001",
+        "1DJA20240521001",
+        "141A202011590001",
+        "20240612001",
+        "141A2026011560002",
+        "2024F00240",
+        "2024F00003",
+        "1DJA 202403080001",
+        "141A2024040200002",
+        "20240320083",
+        "141A2024032900001",
+        "141A2026011570001",
+        "2024F00021",
+        "20240314FAA0001",
+        "DALA2024010800206",
+        "15MA202412120318",
+        "141A2026011540001",
+        "1AZA2024021500032"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [],
+        "components": []
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00240",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:20240612001"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:1DJA20240521001",
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001"
+        ]
+      },
+      "query_sufficiency": "insufficient",
+      "sufficiency_reason": "low-information condition label is repeated"
+    },
+    {
+      "query_id": "AERO-Q026",
+      "query": "航空部件状态为 DISCONNECTED 的故障记录是哪条？",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00021"
+      ],
+      "relevant_source_record_ids": [
+        "2024F00021"
+      ],
+      "candidate_pool_size": 21,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.14285714285714285,
+        "first_relevant_rank": 7
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "2024F00021",
+        "1DJA20240521001",
+        "141A2026011540001",
+        "2024F00007",
+        "1AZA2024021500032"
+      ],
+      "candidate_pool_source_record_ids": [
+        "141A2024032900003",
+        "141A2026011560002",
+        "141A2024050700003",
+        "1DJA20240521001",
+        "15MA202412120318",
+        "1R4A202404220001",
+        "2024F00021",
+        "141A202011590001",
+        "2024F00240",
+        "20240314FAA0001",
+        "1DJA 202403080001",
+        "141A2024032900001",
+        "2024F00007",
+        "141A2024040200002",
+        "1AZA2024021500032",
+        "2024F00003",
+        "20240612001",
+        "141A2026011570001",
+        "1AZA202402160033",
+        "2024FA0000003",
+        "141A2026011540001"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [],
+        "components": []
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:2024F00021",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00240",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:1DJA20240521001",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2026011560002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "aerospace:faa-sdr:service-difficulty-report:1DJA20240521001",
+          "aerospace:faa-sdr:service-difficulty-report:15MA202412120318"
+        ]
+      },
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "condition query lacks aircraft/JASC/part context"
+    },
+    {
+      "query_id": "AERO-Q027",
+      "query": "航空部件状态为 CHAFED 的故障记录是哪条？",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00051"
+      ],
+      "relevant_source_record_ids": [
+        "2024F00051"
+      ],
+      "candidate_pool_size": 23,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "reranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "top_5_source_record_ids": [
+        "1DJA20240521001",
+        "141A2024040200002",
+        "141A2026011540001",
+        "141A2024032900001",
+        "2024F00021"
+      ],
+      "candidate_pool_source_record_ids": [
+        "141A2024032900003",
+        "1R4A202404220001",
+        "141A2026011560002",
+        "141A2024050700003",
+        "15MA202412120318",
+        "1DJA20240521001",
+        "141A202011590001",
+        "2024F00021",
+        "141A2024032900001",
+        "2024F00240",
+        "20240314FAA0001",
+        "DALA2024010800206",
+        "2024F00007",
+        "141A2024040200002",
+        "1DJA 202403080001",
+        "2024FA0000003",
+        "1AZA2024021500032",
+        "141A2026011540001",
+        "1AZA202402160033",
+        "2024F00008",
+        "DALA2024010800208",
+        "DALA2024010800207",
+        "141A2026011570001"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [],
+        "components": []
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "candidate_union_or_top_k_boundary_needs_review",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00021",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00240",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2026011560002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "aerospace:faa-sdr:service-difficulty-report:15MA202412120318"
+        ]
+      },
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "condition query lacks aircraft/JASC/part context"
+    },
+    {
+      "query_id": "AERO-Q028",
+      "query": "航空部件状态为 FAILED 的故障记录是哪条？",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00240"
+      ],
+      "relevant_source_record_ids": [
+        "2024F00240"
+      ],
+      "candidate_pool_size": 21,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.09090909090909091,
+        "first_relevant_rank": 11
+      },
+      "reranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.5,
+        "first_relevant_rank": 2
+      },
+      "top_5_source_record_ids": [
+        "1DJA20240521001",
+        "2024F00240",
+        "141A2026011540001",
+        "2024F00007",
+        "2024F00003"
+      ],
+      "candidate_pool_source_record_ids": [
+        "141A2024032900003",
+        "1DJA20240521001",
+        "141A2026011560002",
+        "1R4A202404220001",
+        "15MA202412120318",
+        "141A2024050700003",
+        "2024F00007",
+        "1DJA 202403080001",
+        "141A2024040200002",
+        "141A202011590001",
+        "2024F00240",
+        "20240612001",
+        "2024F00021",
+        "141A2024032900001",
+        "2024F00008",
+        "20240320083",
+        "141A2026011540001",
+        "2024F00003",
+        "2024FA0000003",
+        "1AZA2024021500032",
+        "141A2026011570001"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [],
+        "components": []
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "candidate_recalled_but_ranking_needs_review",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:1DJA20240521001",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00240",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00007",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00021"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:1DJA20240521001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2026011560002",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:15MA202412120318"
+        ]
+      },
+      "query_sufficiency": "insufficient",
+      "sufficiency_reason": "low-information condition label is repeated"
+    },
+    {
+      "query_id": "AERO-Q029",
+      "query": "航空部件状态为 FAILED 的故障记录是哪条？",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00264"
+      ],
+      "relevant_source_record_ids": [
+        "2024F00264"
+      ],
+      "candidate_pool_size": 21,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "reranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "top_5_source_record_ids": [
+        "1DJA20240521001",
+        "2024F00240",
+        "141A2026011540001",
+        "2024F00007",
+        "2024F00003"
+      ],
+      "candidate_pool_source_record_ids": [
+        "141A2024032900003",
+        "1DJA20240521001",
+        "141A2026011560002",
+        "1R4A202404220001",
+        "15MA202412120318",
+        "141A2024050700003",
+        "2024F00007",
+        "1DJA 202403080001",
+        "141A2024040200002",
+        "141A202011590001",
+        "2024F00240",
+        "20240612001",
+        "2024F00021",
+        "141A2024032900001",
+        "2024F00008",
+        "20240320083",
+        "141A2026011540001",
+        "2024F00003",
+        "2024FA0000003",
+        "1AZA2024021500032",
+        "141A2026011570001"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [],
+        "components": []
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "candidate_union_or_top_k_boundary_needs_review",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:1DJA20240521001",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00240",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00007",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00021"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:1DJA20240521001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2026011560002",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:15MA202412120318"
+        ]
+      },
+      "query_sufficiency": "insufficient",
+      "sufficiency_reason": "low-information condition label is repeated"
+    },
+    {
+      "query_id": "AERO-Q030",
+      "query": "航空部件状态为 MAKING METAL 的故障记录是哪条？",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000000"
+      ],
+      "relevant_source_record_ids": [
+        "2024FA0000000"
+      ],
+      "candidate_pool_size": 21,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "reranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "top_5_source_record_ids": [
+        "15MA202412120318",
+        "1DJA20240521001",
+        "141A2026011540001",
+        "141A2024032900001",
+        "1AZA2024021500032"
+      ],
+      "candidate_pool_source_record_ids": [
+        "141A2024032900003",
+        "141A2026011560002",
+        "1R4A202404220001",
+        "141A2024050700003",
+        "141A202011590001",
+        "20240612001",
+        "1DJA20240521001",
+        "15MA202412120318",
+        "20240314FAA0001",
+        "2024F00240",
+        "2024FA0000003",
+        "2024F00021",
+        "141A2024040200002",
+        "141A2024032900001",
+        "1AZA2024021500032",
+        "20240320083",
+        "2024F00007",
+        "2024F00051",
+        "1AZA202402160033",
+        "141A2026011540001",
+        "141A2026011570001"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [],
+        "components": []
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "candidate_union_or_top_k_boundary_needs_review",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:2024FA0000003",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00240",
+          "aerospace:faa-sdr:service-difficulty-report:20240612001"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2026011560002",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001"
+        ]
+      },
+      "query_sufficiency": "insufficient",
+      "sufficiency_reason": "low-information condition label is repeated"
+    },
+    {
+      "query_id": "AERO-Q031",
+      "query": "航空部件状态为 BROKEN 的故障记录是哪条？",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000003"
+      ],
+      "relevant_source_record_ids": [
+        "2024FA0000003"
+      ],
+      "candidate_pool_size": 21,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.0625,
+        "first_relevant_rank": 16
+      },
+      "reranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.5,
+        "first_relevant_rank": 2
+      },
+      "top_5_source_record_ids": [
+        "141A2024032900003",
+        "2024FA0000003",
+        "1DJA20240521001",
+        "141A2024040200002",
+        "141A2026011540001"
+      ],
+      "candidate_pool_source_record_ids": [
+        "141A2024032900003",
+        "141A2024050700003",
+        "1R4A202404220001",
+        "1DJA20240521001",
+        "141A2024032900001",
+        "141A2026011560002",
+        "15MA202412120318",
+        "141A2024040200002",
+        "141A202011590001",
+        "20240314FAA0001",
+        "2024F00240",
+        "20240320083",
+        "1DJA 202403080001",
+        "2024F00021",
+        "2024F00007",
+        "2024FA0000003",
+        "20240612001",
+        "141A2026011540001",
+        "DALA2024010800206",
+        "141A2026011570001",
+        "1AZA2024021500032"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [],
+        "components": []
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "candidate_recalled_but_ranking_needs_review",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00240",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:2024FA0000003"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:1DJA20240521001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001"
+        ]
+      },
+      "query_sufficiency": "insufficient",
+      "sufficiency_reason": "low-information condition label is repeated"
+    },
+    {
+      "query_id": "AERO-Q032",
+      "query": "航空部件状态为 FAILED 的故障记录是哪条？",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000065"
+      ],
+      "relevant_source_record_ids": [
+        "2024FA0000065"
+      ],
+      "candidate_pool_size": 21,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "reranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "top_5_source_record_ids": [
+        "1DJA20240521001",
+        "2024F00240",
+        "141A2026011540001",
+        "2024F00007",
+        "2024F00003"
+      ],
+      "candidate_pool_source_record_ids": [
+        "141A2024032900003",
+        "1DJA20240521001",
+        "141A2026011560002",
+        "1R4A202404220001",
+        "15MA202412120318",
+        "141A2024050700003",
+        "2024F00007",
+        "1DJA 202403080001",
+        "141A2024040200002",
+        "141A202011590001",
+        "2024F00240",
+        "20240612001",
+        "2024F00021",
+        "141A2024032900001",
+        "2024F00008",
+        "20240320083",
+        "141A2026011540001",
+        "2024F00003",
+        "2024FA0000003",
+        "1AZA2024021500032",
+        "141A2026011570001"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [],
+        "components": []
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "candidate_union_or_top_k_boundary_needs_review",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:1DJA20240521001",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00240",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00007",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00021"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:1DJA20240521001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2026011560002",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:15MA202412120318"
+        ]
+      },
+      "query_sufficiency": "insufficient",
+      "sufficiency_reason": "low-information condition label is repeated"
+    },
+    {
+      "query_id": "AERO-Q033",
+      "query": "哪条航空维修报告包含处置记录：REPAIRED WIRE AND OPS CHECKED THE CABIN MERGENCY PATHWAY LIGHTS IAW A320？",
+      "query_type": "maintenance_action",
+      "difficulty": "hard",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010200007"
+      ],
+      "relevant_source_record_ids": [
+        "DALA2024010200007"
+      ],
+      "candidate_pool_size": 23,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.125,
+        "first_relevant_rank": 8
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "DALA2024010200007",
+        "20240314FAA0001",
+        "DALA2024010800206",
+        "DALA2024010500170",
+        "2024F00007"
+      ],
+      "candidate_pool_source_record_ids": [
+        "141A2024032900003",
+        "15MA202412120318",
+        "141A2024050700003",
+        "141A2026011560002",
+        "1R4A202404220001",
+        "141A2026011570001",
+        "141A202011590001",
+        "DALA2024010200007",
+        "2024F00051",
+        "141A2024040200002",
+        "1DJA 202403080001",
+        "1JAA20240130001",
+        "141A2024032900001",
+        "DALA2024010800206",
+        "1DJA20240521001",
+        "2024F00007",
+        "20240314FAA0001",
+        "141A2026011540001",
+        "2024F00240",
+        "DALA2024010500169",
+        "DALA2024010500170",
+        "DALA2024010800207",
+        "DALA2024010800208"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [],
+        "components": []
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010200007",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:15MA202412120318",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00051"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010200007",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010500170",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010500169"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:15MA202412120318",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2026011560002",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001"
+        ]
+      },
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit C/A maintenance narrative"
+    },
+    {
+      "query_id": "AERO-Q034",
+      "query": "哪条航空维修报告包含处置记录：REF. LOG 0134554 FOR 2L SLIDE REPLACEMENT, REMOVAL, REMOVED 2L DAMPER PER？",
+      "query_type": "maintenance_action",
+      "difficulty": "hard",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010200010"
+      ],
+      "relevant_source_record_ids": [
+        "DALA2024010200010"
+      ],
+      "candidate_pool_size": 23,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.1111111111111111,
+        "first_relevant_rank": 9
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "DALA2024010200010",
+        "DALA2024010800206",
+        "1AZA202402160033",
+        "141A2024032900001",
+        "1AZA2024021500032"
+      ],
+      "candidate_pool_source_record_ids": [
+        "141A2024032900003",
+        "1R4A202404220001",
+        "141A2024040200002",
+        "141A202011590001",
+        "20240612001",
+        "141A2026011560002",
+        "141A2024050700003",
+        "141A2024032900001",
+        "DALA2024010200010",
+        "1JAA20240130001",
+        "1DJA20240521001",
+        "20240320083",
+        "1AZA2024021500032",
+        "DALA2024010800206",
+        "15MA202412120318",
+        "2024F00240",
+        "1AZA202402160033",
+        "2024F00021",
+        "DALA2024010800208",
+        "2024F00004",
+        "DALA2024010800207",
+        "DALA2024010500170",
+        "DALA2024010200007"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [],
+        "components": []
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010200010",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010200010",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010500170"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:20240612001"
+        ]
+      },
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit C/A maintenance narrative"
+    },
+    {
+      "query_id": "AERO-Q035",
+      "query": "哪条航空维修报告包含处置记录：PERFORMED ER/A 614433-14AD REV: ORIGINAL AS PER PRI REV 0 OF ER/？",
+      "query_type": "maintenance_action",
+      "difficulty": "hard",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010500168"
+      ],
+      "relevant_source_record_ids": [
+        "DALA2024010500168"
+      ],
+      "candidate_pool_size": 23,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.1111111111111111,
+        "first_relevant_rank": 9
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "DALA2024010500168",
+        "DALA2024010800206",
+        "DALA2024010800208",
+        "DALA2024010800207",
+        "141A2024050700003"
+      ],
+      "candidate_pool_source_record_ids": [
+        "141A2024032900003",
+        "141A2024050700003",
+        "141A2026011560002",
+        "1R4A202404220001",
+        "141A2024040200002",
+        "20240314FAA0001",
+        "20240612001",
+        "141A202011590001",
+        "DALA2024010500168",
+        "2024F00021",
+        "2024F00240",
+        "141A2026011570001",
+        "15MA202412120318",
+        "1DJA20240521001",
+        "141A2024032900001",
+        "DALA2024010800208",
+        "2024F00008",
+        "DALA2024010800207",
+        "141A2026011540001",
+        "20240320083",
+        "DALA2024010800206",
+        "DALA2024010200007",
+        "DALA2024010500170"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [],
+        "components": []
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010500168",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:2024F00240"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010500168",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010200007"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2026011560002",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002"
+        ]
+      },
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit C/A maintenance narrative"
+    },
+    {
+      "query_id": "AERO-Q036",
+      "query": "哪条航空维修报告包含处置记录：C/W ODI WORK CARD 0550-2002 UP TO STEP 3. ALSO, C/W FIG？",
+      "query_type": "maintenance_action",
+      "difficulty": "hard",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010500169"
+      ],
+      "relevant_source_record_ids": [
+        "DALA2024010500169"
+      ],
+      "candidate_pool_size": 22,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.09090909090909091,
+        "first_relevant_rank": 11
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "DALA2024010500169",
+        "DALA2024010800206",
+        "1DJA20240521001",
+        "141A2024050700003",
+        "1R4A202404220001"
+      ],
+      "candidate_pool_source_record_ids": [
+        "141A2024032900003",
+        "1R4A202404220001",
+        "15MA202412120318",
+        "141A2026011560002",
+        "20240320083",
+        "141A2024050700003",
+        "1DJA20240521001",
+        "141A202011590001",
+        "20240612001",
+        "141A2024040200002",
+        "DALA2024010500169",
+        "141A2024032900001",
+        "2024F00240",
+        "1JAA20240130001",
+        "DALA2024010800206",
+        "DALA2024010800208",
+        "141A2026011570001",
+        "1DJA 202403080001",
+        "2024F00004",
+        "DALA2024010800207",
+        "DALA2024010200007",
+        "DALA2024010500170"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [],
+        "components": []
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010500169",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010500169",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010200007"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:15MA202412120318",
+          "aerospace:faa-sdr:service-difficulty-report:141A2026011560002",
+          "aerospace:faa-sdr:service-difficulty-report:20240320083"
+        ]
+      },
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit C/A maintenance narrative"
+    },
+    {
+      "query_id": "AERO-Q037",
+      "query": "哪条航空维修报告包含处置记录：OPS CKD AFT LEFT PASSENGER DOOR SLIDE ARM PER A320 AMM 52-73,？",
+      "query_type": "maintenance_action",
+      "difficulty": "hard",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010500170"
+      ],
+      "relevant_source_record_ids": [
+        "DALA2024010500170"
+      ],
+      "candidate_pool_size": 22,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.1,
+        "first_relevant_rank": 10
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "DALA2024010500170",
+        "DALA2024010200010",
+        "DALA2024010200007",
+        "DALA2024010800206",
+        "20240314FAA0001"
+      ],
+      "candidate_pool_source_record_ids": [
+        "141A202011590001",
+        "1R4A202404220001",
+        "1DJA20240521001",
+        "141A2024050700003",
+        "141A2024032900003",
+        "141A2024040200002",
+        "20240314FAA0001",
+        "141A2026011560002",
+        "141A2026011570001",
+        "DALA2024010500170",
+        "141A2024032900001",
+        "2024F00007",
+        "20240320083",
+        "DALA2024010200010",
+        "DALA2024010200007",
+        "1JAA20240130001",
+        "DALA2024010800206",
+        "15MA202412120318",
+        "2024FA0000003",
+        "20240612001",
+        "DALA2024010800208",
+        "DALA2024010800207"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [],
+        "components": []
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010500170",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010200010",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010200007",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010500170",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010200007",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010200010",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:1DJA20240521001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003"
+        ]
+      },
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit C/A maintenance narrative"
+    },
+    {
+      "query_id": "AERO-Q038",
+      "query": "哪条航空维修报告包含处置记录：PERFORMED REPAIR IN HOLE #4, LOCATED ON INBOARD LOWER POSITION, DOOR STOP？",
+      "query_type": "maintenance_action",
+      "difficulty": "hard",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206"
+      ],
+      "relevant_source_record_ids": [
+        "DALA2024010800206"
+      ],
+      "candidate_pool_size": 24,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.06666666666666667,
+        "first_relevant_rank": 15
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "DALA2024010800206",
+        "20240314FAA0001",
+        "2024F00008",
+        "1R4A202404220001",
+        "DALA2024010500169"
+      ],
+      "candidate_pool_source_record_ids": [
+        "141A2024032900003",
+        "1R4A202404220001",
+        "1DJA20240521001",
+        "141A2024040200002",
+        "15MA202412120318",
+        "20240612001",
+        "141A2024050700003",
+        "141A202011590001",
+        "20240314FAA0001",
+        "2024F00008",
+        "2024F00003",
+        "141A2024032900001",
+        "141A2026011560002",
+        "1LXA2025012800062",
+        "DALA2024010800206",
+        "1DJA 202403080001",
+        "2024F00240",
+        "141A2026011570001",
+        "2024FA0000003",
+        "DALA2024010200007",
+        "DALA2024010500170",
+        "DALA2024010800208",
+        "DALA2024010500169",
+        "DALA2024010800207"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [],
+        "components": []
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:20240612001",
+          "aerospace:faa-sdr:service-difficulty-report:1DJA20240521001"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010500170",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010200007",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010500169"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:1DJA20240521001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:15MA202412120318"
+        ]
+      },
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit C/A maintenance narrative"
+    },
+    {
+      "query_id": "AERO-Q039",
+      "query": "哪条航空维修报告包含处置记录：REVISE AND UPDATE ERA 550224-14AD WITH DTE RESULTS PRIOR TO 101,081 TOTAL？",
+      "query_type": "maintenance_action",
+      "difficulty": "hard",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207"
+      ],
+      "relevant_source_record_ids": [
+        "DALA2024010800207"
+      ],
+      "candidate_pool_size": 21,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.08333333333333333,
+        "first_relevant_rank": 12
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "DALA2024010800207",
+        "DALA2024010800208",
+        "DALA2024010500168",
+        "DALA2024010800206",
+        "DALA2024010500169"
+      ],
+      "candidate_pool_source_record_ids": [
+        "141A2024032900003",
+        "141A2026011560002",
+        "1R4A202404220001",
+        "141A2024050700003",
+        "20240320083",
+        "141A2024040200002",
+        "20240612001",
+        "141A202011590001",
+        "1JAA20240130001",
+        "141A2026011570001",
+        "20240314FAA0001",
+        "DALA2024010800207",
+        "141A2024032900001",
+        "DALA2024010500168",
+        "1DJA20240521001",
+        "DALA2024010800208",
+        "2024F00021",
+        "15MA202412120318",
+        "2024F00240",
+        "DALA2024010800206",
+        "DALA2024010500169"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [],
+        "components": []
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010500168",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010500168",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010500169"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2026011560002",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "aerospace:faa-sdr:service-difficulty-report:20240320083"
+        ]
+      },
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit C/A maintenance narrative"
+    },
+    {
+      "query_id": "AERO-Q040",
+      "query": "哪条航空维修报告包含处置记录：ACCOMPLISH INSPECTIONS PER ERA 550225-14AD SECTION IV PRIOR TO 47,581 TOTAL FLIGHT？",
+      "query_type": "maintenance_action",
+      "difficulty": "hard",
+      "ambiguity": "none",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208"
+      ],
+      "relevant_source_record_ids": [
+        "DALA2024010800208"
+      ],
+      "candidate_pool_size": 21,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.08333333333333333,
+        "first_relevant_rank": 12
+      },
+      "reranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "top_5_source_record_ids": [
+        "DALA2024010800208",
+        "DALA2024010800207",
+        "DALA2024010800206",
+        "DALA2024010500168",
+        "DALA2024010500169"
+      ],
+      "candidate_pool_source_record_ids": [
+        "141A2024032900003",
+        "141A2026011560002",
+        "141A2024050700003",
+        "1R4A202404220001",
+        "20240320083",
+        "141A202011590001",
+        "20240612001",
+        "141A2026011570001",
+        "1DJA20240521001",
+        "141A2024040200002",
+        "DALA2024010500168",
+        "DALA2024010800208",
+        "20240314FAA0001",
+        "2024F00240",
+        "141A2024032900001",
+        "DALA2024010800207",
+        "141A2026011540001",
+        "1JAA20240130001",
+        "15MA202412120318",
+        "DALA2024010800206",
+        "DALA2024010500169"
+      ],
+      "exact_fields": {
+        "fault_codes": [],
+        "parameters": [],
+        "components": []
+      },
+      "matched_parameters_by_entity": {},
+      "exact_identifier_source_record_ids": [],
+      "diagnostic_hint": "none",
+      "taxonomy_status": "unreviewed",
+      "stage_top_entity_ids": {
+        "description_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010500168",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001"
+        ],
+        "cause_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024040200002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003"
+        ],
+        "auxiliary_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206",
+          "aerospace:faa-sdr:service-difficulty-report:DALA2024010500169",
+          "aerospace:faa-sdr:service-difficulty-report:141A202011590001"
+        ],
+        "d2_top_5": [
+          "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "aerospace:faa-sdr:service-difficulty-report:141A2026011560002",
+          "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "aerospace:faa-sdr:service-difficulty-report:20240320083"
+        ]
+      },
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit C/A maintenance narrative"
+    }
+  ]
+}

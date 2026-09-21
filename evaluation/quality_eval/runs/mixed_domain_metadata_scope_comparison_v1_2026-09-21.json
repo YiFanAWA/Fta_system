@@ -1,0 +1,1726 @@
+{
+  "evaluation_info": {
+    "name": "mixed_domain_metadata_scope_comparison_v1",
+    "version": "2026-09-21",
+    "router": "oracle_metadata_scope",
+    "scope_source": "expected query domain from benchmark metadata; not a classifier",
+    "entity_count": 321,
+    "query_count": 79,
+    "embedding_model": "BAAI/bge-m3",
+    "production_claim": false
+  },
+  "scoped_candidate_recall": {
+    "metrics": {
+      "recall_at_1": 0.5949367088607594,
+      "recall_at_3": 0.6582278481012658,
+      "recall_at_5": 0.6708860759493671,
+      "recall_at_10": 0.810126582278481,
+      "recall_at_20": 0.9240506329113924,
+      "mrr": 0.6515104972383459
+    },
+    "metrics_by_domain": {
+      "aerospace": {
+        "recall_at_1": 0.4,
+        "recall_at_3": 0.4,
+        "recall_at_5": 0.4,
+        "recall_at_10": 0.675,
+        "recall_at_20": 0.85,
+        "mrr": 0.447120761183261
+      },
+      "industrial_drive": {
+        "recall_at_1": 0.7948717948717948,
+        "recall_at_3": 0.9230769230769231,
+        "recall_at_5": 0.9487179487179487,
+        "recall_at_10": 0.9487179487179487,
+        "recall_at_20": 1.0,
+        "mrr": 0.8611409957563805
+      }
+    },
+    "contamination": {
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0,
+      "domain_purity_at_1": 1.0,
+      "domain_purity_at_3": 1.0,
+      "domain_purity_at_5": 1.0
+    }
+  },
+  "queries": [
+    {
+      "query_id": "S210-FT001",
+      "query_domain": "industrial_drive",
+      "query_type": "fault_code",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01009"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 26,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT002",
+      "query_domain": "industrial_drive",
+      "query_type": "fault_code",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:F01001"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 29,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT003",
+      "query_domain": "industrial_drive",
+      "query_type": "fault_code",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01637"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 30,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT004",
+      "query_domain": "industrial_drive",
+      "query_type": "fault_code",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01900"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 25,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT005",
+      "query_domain": "industrial_drive",
+      "query_type": "fault_code",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A30054"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 27,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT006",
+      "query_domain": "industrial_drive",
+      "query_type": "fault_code",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:F01023"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 28,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT007",
+      "query_domain": "industrial_drive",
+      "query_type": "symptom",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01009"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 27,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT008",
+      "query_domain": "industrial_drive",
+      "query_type": "symptom",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01019"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 28,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT009",
+      "query_domain": "industrial_drive",
+      "query_type": "symptom",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01020"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 29,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT010",
+      "query_domain": "industrial_drive",
+      "query_type": "symptom",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01035"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 27,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT011",
+      "query_domain": "industrial_drive",
+      "query_type": "symptom",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01064"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 30,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT012",
+      "query_domain": "industrial_drive",
+      "query_type": "symptom",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01980"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 25,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT013",
+      "query_domain": "industrial_drive",
+      "query_type": "symptom",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A05000"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.25,
+        "first_relevant_rank": 4
+      },
+      "candidate_pool_size": 28,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT014",
+      "query_domain": "industrial_drive",
+      "query_type": "symptom",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A30041"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 25,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT015",
+      "query_domain": "industrial_drive",
+      "query_type": "symptom",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01750"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 29,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT016",
+      "query_domain": "industrial_drive",
+      "query_type": "cause",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01069"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 28,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT017",
+      "query_domain": "industrial_drive",
+      "query_type": "cause",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01637"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 30,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT018",
+      "query_domain": "industrial_drive",
+      "query_type": "cause",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01654"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 22,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT019",
+      "query_domain": "industrial_drive",
+      "query_type": "cause",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01693"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 28,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT020",
+      "query_domain": "industrial_drive",
+      "query_type": "cause",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01780"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.07692307692307693,
+        "first_relevant_rank": 13
+      },
+      "candidate_pool_size": 24,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT021",
+      "query_domain": "industrial_drive",
+      "query_type": "cause",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01781"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.5,
+        "first_relevant_rank": 2
+      },
+      "candidate_pool_size": 24,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT022",
+      "query_domain": "industrial_drive",
+      "query_type": "cause",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:F07412"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 26,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT023",
+      "query_domain": "industrial_drive",
+      "query_type": "cause",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:F30002"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.3333333333333333,
+        "first_relevant_rank": 3
+      },
+      "candidate_pool_size": 29,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT024",
+      "query_domain": "industrial_drive",
+      "query_type": "remedy",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01099"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 26,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT025",
+      "query_domain": "industrial_drive",
+      "query_type": "remedy",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01697"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 26,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT026",
+      "query_domain": "industrial_drive",
+      "query_type": "remedy",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01699"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 26,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT027",
+      "query_domain": "industrial_drive",
+      "query_type": "remedy",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01695"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 27,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT028",
+      "query_domain": "industrial_drive",
+      "query_type": "remedy",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01020"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 29,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT029",
+      "query_domain": "industrial_drive",
+      "query_type": "component",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A07805"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 28,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT030",
+      "query_domain": "industrial_drive",
+      "query_type": "component",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01980"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.5,
+        "first_relevant_rank": 2
+      },
+      "candidate_pool_size": 30,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT031",
+      "query_domain": "industrial_drive",
+      "query_type": "component",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01750"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 30,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT032",
+      "query_domain": "industrial_drive",
+      "query_type": "component",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:F07412"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 27,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT033",
+      "query_domain": "industrial_drive",
+      "query_type": "parameter",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01637"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.5,
+        "first_relevant_rank": 2
+      },
+      "candidate_pool_size": 28,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT034",
+      "query_domain": "industrial_drive",
+      "query_type": "parameter",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A07805"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 29,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT035",
+      "query_domain": "industrial_drive",
+      "query_type": "parameter",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01900"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 25,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT036",
+      "query_domain": "industrial_drive",
+      "query_type": "parameter",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01980"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 22,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT037",
+      "query_domain": "industrial_drive",
+      "query_type": "parameter",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01780",
+        "industrial-drive:siemens:s210:A01782"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 26,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT038",
+      "query_domain": "industrial_drive",
+      "query_type": "alarm_value",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:F01611",
+        "industrial-drive:siemens:s210:F30611"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.3333333333333333,
+        "first_relevant_rank": 3
+      },
+      "candidate_pool_size": 27,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "S210-FT039",
+      "query_domain": "industrial_drive",
+      "query_type": "ambiguous_description",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:F01600",
+        "industrial-drive:siemens:s210:F01611",
+        "industrial-drive:siemens:s210:F30600",
+        "industrial-drive:siemens:s210:F30611"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.09090909090909091,
+        "first_relevant_rank": 11
+      },
+      "candidate_pool_size": 27,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q001",
+      "query_domain": "aerospace",
+      "query_type": "identifier",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00008"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 21,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q002",
+      "query_domain": "aerospace",
+      "query_type": "identifier",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+        "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+        "aerospace:faa-sdr:service-difficulty-report:141A2026011570001",
+        "aerospace:faa-sdr:service-difficulty-report:1JAA20240130001",
+        "aerospace:faa-sdr:service-difficulty-report:1LXA2025012800062",
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010500169"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 22,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q003",
+      "query_domain": "aerospace",
+      "query_type": "identifier",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00007"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 21,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q004",
+      "query_domain": "aerospace",
+      "query_type": "identifier",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00240"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 22,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q005",
+      "query_domain": "aerospace",
+      "query_type": "identifier",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010200010",
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010500170"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 22,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q006",
+      "query_domain": "aerospace",
+      "query_type": "identifier",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+        "aerospace:faa-sdr:service-difficulty-report:1DJA 202403080001"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 22,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q007",
+      "query_domain": "aerospace",
+      "query_type": "identifier",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00051"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 21,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q008",
+      "query_domain": "aerospace",
+      "query_type": "identifier",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:20240314FAA0001"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 21,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q009",
+      "query_domain": "aerospace",
+      "query_type": "part_number",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00003"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 23,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q010",
+      "query_domain": "aerospace",
+      "query_type": "part_number",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00051"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 23,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q011",
+      "query_domain": "aerospace",
+      "query_type": "part_number",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00240"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 21,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q012",
+      "query_domain": "aerospace",
+      "query_type": "part_number",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00264"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 20,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q013",
+      "query_domain": "aerospace",
+      "query_type": "part_number",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000000"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 22,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q014",
+      "query_domain": "aerospace",
+      "query_type": "part_number",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000065"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 23,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q015",
+      "query_domain": "aerospace",
+      "query_type": "part_number",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:141A2024032900001"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 23,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q016",
+      "query_domain": "aerospace",
+      "query_type": "part_number",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:141A2024032900003"
+      ],
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_pool_size": 21,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q017",
+      "query_domain": "aerospace",
+      "query_type": "component",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00003"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.14285714285714285,
+        "first_relevant_rank": 7
+      },
+      "candidate_pool_size": 20,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q018",
+      "query_domain": "aerospace",
+      "query_type": "component",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00021"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.125,
+        "first_relevant_rank": 8
+      },
+      "candidate_pool_size": 22,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q019",
+      "query_domain": "aerospace",
+      "query_type": "component",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00051"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.125,
+        "first_relevant_rank": 8
+      },
+      "candidate_pool_size": 20,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q020",
+      "query_domain": "aerospace",
+      "query_type": "component",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00240"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.1111111111111111,
+        "first_relevant_rank": 9
+      },
+      "candidate_pool_size": 21,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q021",
+      "query_domain": "aerospace",
+      "query_type": "component",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00264"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.09090909090909091,
+        "first_relevant_rank": 11
+      },
+      "candidate_pool_size": 21,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q022",
+      "query_domain": "aerospace",
+      "query_type": "component",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000000"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "candidate_pool_size": 22,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q023",
+      "query_domain": "aerospace",
+      "query_type": "component",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000003"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.1111111111111111,
+        "first_relevant_rank": 9
+      },
+      "candidate_pool_size": 22,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q024",
+      "query_domain": "aerospace",
+      "query_type": "component",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000065"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "candidate_pool_size": 22,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q025",
+      "query_domain": "aerospace",
+      "query_type": "condition",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00003"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.1111111111111111,
+        "first_relevant_rank": 9
+      },
+      "candidate_pool_size": 20,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q026",
+      "query_domain": "aerospace",
+      "query_type": "condition",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00021"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.14285714285714285,
+        "first_relevant_rank": 7
+      },
+      "candidate_pool_size": 21,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q027",
+      "query_domain": "aerospace",
+      "query_type": "condition",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00051"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "candidate_pool_size": 23,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q028",
+      "query_domain": "aerospace",
+      "query_type": "condition",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00240"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.09090909090909091,
+        "first_relevant_rank": 11
+      },
+      "candidate_pool_size": 21,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q029",
+      "query_domain": "aerospace",
+      "query_type": "condition",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00264"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "candidate_pool_size": 21,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q030",
+      "query_domain": "aerospace",
+      "query_type": "condition",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000000"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "candidate_pool_size": 21,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q031",
+      "query_domain": "aerospace",
+      "query_type": "condition",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000003"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.0625,
+        "first_relevant_rank": 16
+      },
+      "candidate_pool_size": 21,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q032",
+      "query_domain": "aerospace",
+      "query_type": "condition",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000065"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "candidate_pool_size": 21,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q033",
+      "query_domain": "aerospace",
+      "query_type": "maintenance_action",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010200007"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.125,
+        "first_relevant_rank": 8
+      },
+      "candidate_pool_size": 23,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q034",
+      "query_domain": "aerospace",
+      "query_type": "maintenance_action",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010200010"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.1111111111111111,
+        "first_relevant_rank": 9
+      },
+      "candidate_pool_size": 23,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q035",
+      "query_domain": "aerospace",
+      "query_type": "maintenance_action",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010500168"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.1111111111111111,
+        "first_relevant_rank": 9
+      },
+      "candidate_pool_size": 23,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q036",
+      "query_domain": "aerospace",
+      "query_type": "maintenance_action",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010500169"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.09090909090909091,
+        "first_relevant_rank": 11
+      },
+      "candidate_pool_size": 22,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q037",
+      "query_domain": "aerospace",
+      "query_type": "maintenance_action",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010500170"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.1,
+        "first_relevant_rank": 10
+      },
+      "candidate_pool_size": 22,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q038",
+      "query_domain": "aerospace",
+      "query_type": "maintenance_action",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.06666666666666667,
+        "first_relevant_rank": 15
+      },
+      "candidate_pool_size": 24,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q039",
+      "query_domain": "aerospace",
+      "query_type": "maintenance_action",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.08333333333333333,
+        "first_relevant_rank": 12
+      },
+      "candidate_pool_size": 21,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    },
+    {
+      "query_id": "AERO-Q040",
+      "query_domain": "aerospace",
+      "query_type": "maintenance_action",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208"
+      ],
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.08333333333333333,
+        "first_relevant_rank": 12
+      },
+      "candidate_pool_size": 21,
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0
+    }
+  ],
+  "interpretation": [
+    "This is an oracle metadata-scope upper bound, not a domain router implementation.",
+    "A zero contamination result is guaranteed by the scope boundary; internal domain recall remains meaningful.",
+    "Use the result to separate cross-domain contamination from within-domain retrieval weakness."
+  ]
+}

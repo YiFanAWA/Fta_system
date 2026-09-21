@@ -1,0 +1,62 @@
+{
+  "report_id": "aerospace_generic_retrieval_error_taxonomy_v2",
+  "generated_date": "2026-09-21",
+  "source_report": "evaluation/quality_eval/runs/aerospace_generic_retrieval_dev_v1_sufficiency_stratified_2026-09-21.json",
+  "status": "provisional_engineering_review",
+  "production_claim": false,
+  "summary": {
+    "query_count": 40,
+    "candidate_recall_at_20": 0.85,
+    "reranked_recall_at_1": 0.8,
+    "candidate_misses": 6,
+    "candidate_recalled_but_not_top1": 2,
+    "shared_generic_pipeline_change_requested": false
+  },
+  "cases": [
+    {
+      "query_ids": ["AERO-Q022", "AERO-Q024"],
+      "query_type": "component",
+      "query_sufficiency": "partially_sufficient",
+      "provisional_category": "retrieval_role",
+      "reason": "Component-only queries have no aircraft/JASC context. The adapter records components for metadata/reranker context, while Generic v1 does not use component as a default candidate-ranking bonus.",
+      "action": "Do not re-enable global component boost. Add context-rich component queries before deciding whether a generic component retrieval role is required."
+    },
+    {
+      "query_ids": ["AERO-Q027"],
+      "query_type": "condition",
+      "query_sufficiency": "partially_sufficient",
+      "provisional_category": "retrieval_role",
+      "reason": "CHAFED appears only as a condition/symptom and the query lacks aircraft/JASC/part context; the condition is not a dedicated dense retrieval plane in the current adapter role mapping.",
+      "action": "First test enriched condition queries; only then consider exposing condition as an auxiliary retrieval role."
+    },
+    {
+      "query_ids": ["AERO-Q028", "AERO-Q029", "AERO-Q030", "AERO-Q031", "AERO-Q032"],
+      "query_type": "condition",
+      "query_sufficiency": "insufficient",
+      "provisional_category": "query_ambiguity",
+      "reason": "Repeated low-information condition labels such as FAILED, BROKEN, and MAKING METAL do not uniquely identify a report without aircraft, JASC, component, or part-number context.",
+      "action": "Keep these as hard ambiguity cases; report them separately from sufficient-query quality."
+    }
+  ],
+  "sufficiency_strata": {
+    "sufficient": {
+      "query_count": 24,
+      "candidate_recall_at_20": 1.0,
+      "reranked_recall_at_1": 1.0,
+      "reranked_mrr": 1.0
+    },
+    "partially_sufficient": {
+      "query_count": 10,
+      "candidate_recall_at_20": 0.7,
+      "reranked_recall_at_1": 0.7,
+      "reranked_mrr": 0.7
+    },
+    "insufficient": {
+      "query_count": 6,
+      "candidate_recall_at_20": 0.5,
+      "reranked_recall_at_1": 0.1667,
+      "reranked_mrr": 0.3333
+    }
+  },
+  "next_gate": "Run an enriched-query sufficiency experiment and a no-router Siemens+Aerospace mixed-domain baseline before changing shared retrieval code."
+}

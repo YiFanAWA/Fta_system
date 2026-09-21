@@ -1,0 +1,648 @@
+{
+  "dataset_info": {
+    "name": "aerospace_retrieval_dev_v1",
+    "version": "2026-09-21",
+    "source_sample": "evaluation\\quality_eval\\datasets\\aerospace_faa_sdr_public_sample_v1_2026-09-21.json",
+    "query_count": 40,
+    "evaluation_role": "Aerospace Retrieval Development v1",
+    "lifecycle_status": "sealed_development_only",
+    "eligible_for_final_generalization_claim": false,
+    "ranking_unit": "entity_id",
+    "multi_answer_policy": "any relevant entity in top_k",
+    "annotation_authority": "derived public-record links and deterministic templates; not human expert query annotation",
+    "query_types": {
+      "component": 8,
+      "condition": 8,
+      "identifier": 8,
+      "maintenance_action": 8,
+      "part_number": 8
+    },
+    "query_sufficiency_counts": {
+      "insufficient": 6,
+      "partially_sufficient": 10,
+      "sufficient": 24
+    },
+    "stages": [
+      "adapter_parse",
+      "exact_identifier_and_part_number_retrieval",
+      "description_dense_retrieval",
+      "candidate_fusion",
+      "entity_id_aggregation",
+      "reranking"
+    ],
+    "notes": [
+      "This is a development set generated from public source rows, not expert relevance annotation.",
+      "Do not modify Common Fault Gold or Generic Pipeline from this set alone.",
+      "Classify misses as adapter_mapping, schema_gap, retrieval_role, chunk, or generic_contract before changing shared code."
+    ]
+  },
+  "queries": [
+    {
+      "query_id": "AERO-Q001",
+      "query": "JASC 2100 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "difficulty": "easy",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00008"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit JASC identifier; repeated JASC values intentionally allow multi-answer relevance",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q002",
+      "query": "JASC 2120 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "difficulty": "easy",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010500169",
+        "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+        "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+        "aerospace:faa-sdr:service-difficulty-report:141A2026011570001",
+        "aerospace:faa-sdr:service-difficulty-report:1JAA20240130001",
+        "aerospace:faa-sdr:service-difficulty-report:1LXA2025012800062"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "multi_answer",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit JASC identifier; repeated JASC values intentionally allow multi-answer relevance",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q003",
+      "query": "JASC 2421 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "difficulty": "easy",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00007"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit JASC identifier; repeated JASC values intentionally allow multi-answer relevance",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q004",
+      "query": "JASC 2435 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "difficulty": "easy",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00240"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit JASC identifier; repeated JASC values intentionally allow multi-answer relevance",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q005",
+      "query": "JASC 2565 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "difficulty": "easy",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010200010",
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010500170"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "multi_answer",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit JASC identifier; repeated JASC values intentionally allow multi-answer relevance",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q006",
+      "query": "JASC 2612 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "difficulty": "easy",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+        "aerospace:faa-sdr:service-difficulty-report:1DJA 202403080001"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "multi_answer",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit JASC identifier; repeated JASC values intentionally allow multi-answer relevance",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q007",
+      "query": "JASC 2697 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "difficulty": "easy",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00051"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit JASC identifier; repeated JASC values intentionally allow multi-answer relevance",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q008",
+      "query": "JASC 2740 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "difficulty": "easy",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:20240314FAA0001"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit JASC identifier; repeated JASC values intentionally allow multi-answer relevance",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q009",
+      "query": "航空维修记录中涉及部件号 L856M3001881 的是哪条记录？",
+      "query_type": "part_number",
+      "difficulty": "easy",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00003"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit part number",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q010",
+      "query": "航空维修记录中涉及部件号 356200575 的是哪条记录？",
+      "query_type": "part_number",
+      "difficulty": "easy",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00051"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit part number",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q011",
+      "query": "航空维修记录中涉及部件号 23085029 的是哪条记录？",
+      "query_type": "part_number",
+      "difficulty": "easy",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00240"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit part number",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q012",
+      "query": "航空维修记录中涉及部件号 G4710A19 的是哪条记录？",
+      "query_type": "part_number",
+      "difficulty": "easy",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00264"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit part number",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q013",
+      "query": "航空维修记录中涉及部件号 310A204110 的是哪条记录？",
+      "query_type": "part_number",
+      "difficulty": "easy",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000000"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit part number",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q014",
+      "query": "航空维修记录中涉及部件号 SL36006WA20P 的是哪条记录？",
+      "query_type": "part_number",
+      "difficulty": "easy",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000065"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit part number",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q015",
+      "query": "航空维修记录中涉及部件号 03018200 的是哪条记录？",
+      "query_type": "part_number",
+      "difficulty": "easy",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:141A2024032900001"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit part number",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q016",
+      "query": "航空维修记录中涉及部件号 64404303416 的是哪条记录？",
+      "query_type": "part_number",
+      "difficulty": "easy",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:141A2024032900003"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit part number",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q017",
+      "query": "哪条航空故障记录涉及 LIGHT？",
+      "query_type": "component",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00003"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "component-only query lacks aircraft/JASC context",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q018",
+      "query": "哪条航空故障记录涉及 SHUTOFF VALVE？",
+      "query_type": "component",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00021"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "component-only query lacks aircraft/JASC context",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q019",
+      "query": "哪条航空故障记录涉及 FIRE LOOP CABLE？",
+      "query_type": "component",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00051"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "component-only query lacks aircraft/JASC context",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q020",
+      "query": "哪条航空故障记录涉及 STARTER GEN？",
+      "query_type": "component",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00240"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "component-only query lacks aircraft/JASC context",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q021",
+      "query": "哪条航空故障记录涉及 TAXI LIGHT？",
+      "query_type": "component",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00264"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "component-only query lacks aircraft/JASC context",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q022",
+      "query": "哪条航空故障记录涉及 THRUST LINK？",
+      "query_type": "component",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000000"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "component-only query lacks aircraft/JASC context",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q023",
+      "query": "哪条航空故障记录涉及 ENGINE CYLINDER？",
+      "query_type": "component",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000003"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "component-only query lacks aircraft/JASC context",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q024",
+      "query": "哪条航空故障记录涉及 CYLINDER？",
+      "query_type": "component",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000065"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "component-only query lacks aircraft/JASC context",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q025",
+      "query": "航空部件状态为 LOOSE 的故障记录是哪条？",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00003"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "insufficient",
+      "sufficiency_reason": "low-information condition label is repeated",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q026",
+      "query": "航空部件状态为 DISCONNECTED 的故障记录是哪条？",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00021"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "condition query lacks aircraft/JASC/part context",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q027",
+      "query": "航空部件状态为 CHAFED 的故障记录是哪条？",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00051"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "partially_sufficient",
+      "sufficiency_reason": "condition query lacks aircraft/JASC/part context",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q028",
+      "query": "航空部件状态为 FAILED 的故障记录是哪条？",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00240"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "insufficient",
+      "sufficiency_reason": "low-information condition label is repeated",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q029",
+      "query": "航空部件状态为 FAILED 的故障记录是哪条？",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00264"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "insufficient",
+      "sufficiency_reason": "low-information condition label is repeated",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q030",
+      "query": "航空部件状态为 MAKING METAL 的故障记录是哪条？",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000000"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "insufficient",
+      "sufficiency_reason": "low-information condition label is repeated",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q031",
+      "query": "航空部件状态为 BROKEN 的故障记录是哪条？",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000003"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "insufficient",
+      "sufficiency_reason": "low-information condition label is repeated",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q032",
+      "query": "航空部件状态为 FAILED 的故障记录是哪条？",
+      "query_type": "condition",
+      "difficulty": "medium",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000065"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "insufficient",
+      "sufficiency_reason": "low-information condition label is repeated",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q033",
+      "query": "哪条航空维修报告包含处置记录：REPAIRED WIRE AND OPS CHECKED THE CABIN MERGENCY PATHWAY LIGHTS IAW A320？",
+      "query_type": "maintenance_action",
+      "difficulty": "hard",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010200007"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit C/A maintenance narrative",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q034",
+      "query": "哪条航空维修报告包含处置记录：REF. LOG 0134554 FOR 2L SLIDE REPLACEMENT, REMOVAL, REMOVED 2L DAMPER PER？",
+      "query_type": "maintenance_action",
+      "difficulty": "hard",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010200010"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit C/A maintenance narrative",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q035",
+      "query": "哪条航空维修报告包含处置记录：PERFORMED ER/A 614433-14AD REV: ORIGINAL AS PER PRI REV 0 OF ER/？",
+      "query_type": "maintenance_action",
+      "difficulty": "hard",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010500168"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit C/A maintenance narrative",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q036",
+      "query": "哪条航空维修报告包含处置记录：C/W ODI WORK CARD 0550-2002 UP TO STEP 3. ALSO, C/W FIG？",
+      "query_type": "maintenance_action",
+      "difficulty": "hard",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010500169"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit C/A maintenance narrative",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q037",
+      "query": "哪条航空维修报告包含处置记录：OPS CKD AFT LEFT PASSENGER DOOR SLIDE ARM PER A320 AMM 52-73,？",
+      "query_type": "maintenance_action",
+      "difficulty": "hard",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010500170"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit C/A maintenance narrative",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q038",
+      "query": "哪条航空维修报告包含处置记录：PERFORMED REPAIR IN HOLE #4, LOCATED ON INBOARD LOWER POSITION, DOOR STOP？",
+      "query_type": "maintenance_action",
+      "difficulty": "hard",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit C/A maintenance narrative",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q039",
+      "query": "哪条航空维修报告包含处置记录：REVISE AND UPDATE ERA 550224-14AD WITH DTE RESULTS PRIOR TO 101,081 TOTAL？",
+      "query_type": "maintenance_action",
+      "difficulty": "hard",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit C/A maintenance narrative",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    },
+    {
+      "query_id": "AERO-Q040",
+      "query": "哪条航空维修报告包含处置记录：ACCOMPLISH INSPECTIONS PER ERA 550225-14AD SECTION IV PRIOR TO 47,581 TOTAL FLIGHT？",
+      "query_type": "maintenance_action",
+      "difficulty": "hard",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208"
+      ],
+      "relevance_policy": "any_relevant_entity_in_top_k",
+      "ambiguity": "none",
+      "query_sufficiency": "sufficient",
+      "sufficiency_reason": "explicit C/A maintenance narrative",
+      "gold_source": "derived_from_faa_sdr_public_sample_v1",
+      "annotation_authority": "template_derived_public_record_link; not expert_query_annotation"
+    }
+  ]
+}

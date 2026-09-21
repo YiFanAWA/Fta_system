@@ -1,0 +1,6348 @@
+{
+  "evaluation_info": {
+    "name": "mixed_domain_retrieval_baseline_v1",
+    "version": "2026-09-21",
+    "domains": [
+      "industrial_drive/Siemens/S210",
+      "aerospace/FAA_SDR"
+    ],
+    "entity_count": 321,
+    "query_count": 79,
+    "embedding_model": "BAAI/bge-m3",
+    "reranker_model": null,
+    "router": "none",
+    "candidate_pool": "D2 Top20 union auxiliary Top10, entity_id deduplicated",
+    "production_claim": false,
+    "query_annotation_authority": "S210 frozen derived benchmark + aerospace public-row derived dev labels",
+    "taxonomy_status": "unreviewed",
+    "python": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "candidate_recall": {
+    "metrics": {
+      "recall_at_1": 0.6075949367088608,
+      "recall_at_3": 0.6708860759493671,
+      "recall_at_5": 0.6962025316455697,
+      "recall_at_10": 0.8354430379746836,
+      "recall_at_20": 0.9240506329113924,
+      "mrr": 0.6673976691381756
+    },
+    "metrics_by_domain": {
+      "aerospace": {
+        "recall_at_1": 0.425,
+        "recall_at_3": 0.425,
+        "recall_at_5": 0.45,
+        "recall_at_10": 0.725,
+        "recall_at_20": 0.85,
+        "mrr": 0.4784979256854259
+      },
+      "industrial_drive": {
+        "recall_at_1": 0.7948717948717948,
+        "recall_at_3": 0.9230769230769231,
+        "recall_at_5": 0.9487179487179487,
+        "recall_at_10": 0.9487179487179487,
+        "recall_at_20": 1.0,
+        "mrr": 0.8611409957563805
+      }
+    },
+    "contamination": {
+      "wrong_domain_at_1": 0.17721518987341772,
+      "domain_purity_at_1": 0.8227848101265823,
+      "wrong_domain_at_3": 0.34177215189873417,
+      "domain_purity_at_3": 0.7932489451476792,
+      "wrong_domain_at_5": 0.379746835443038,
+      "domain_purity_at_5": 0.8126582278481009
+    }
+  },
+  "ranked": {
+    "metrics": {
+      "recall_at_1": 0.6075949367088608,
+      "recall_at_3": 0.6708860759493671,
+      "recall_at_5": 0.6962025316455697,
+      "recall_at_10": 0.8354430379746836,
+      "recall_at_20": 0.9240506329113924,
+      "mrr": 0.6673976691381756
+    },
+    "metrics_by_domain": {
+      "aerospace": {
+        "recall_at_1": 0.425,
+        "recall_at_3": 0.425,
+        "recall_at_5": 0.45,
+        "recall_at_10": 0.725,
+        "recall_at_20": 0.85,
+        "mrr": 0.4784979256854259
+      },
+      "industrial_drive": {
+        "recall_at_1": 0.7948717948717948,
+        "recall_at_3": 0.9230769230769231,
+        "recall_at_5": 0.9487179487179487,
+        "recall_at_10": 0.9487179487179487,
+        "recall_at_20": 1.0,
+        "mrr": 0.8611409957563805
+      }
+    },
+    "contamination": {
+      "wrong_domain_at_1": 0.17721518987341772,
+      "domain_purity_at_1": 0.8227848101265823,
+      "wrong_domain_at_3": 0.34177215189873417,
+      "domain_purity_at_3": 0.7932489451476792,
+      "wrong_domain_at_5": 0.379746835443038,
+      "domain_purity_at_5": 0.8126582278481009
+    }
+  },
+  "queries": [
+    {
+      "query_id": "S210-FT001",
+      "query": "请给出 A01009 的故障定义。",
+      "query_type": "fault_code",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01009"
+      ],
+      "candidate_pool_size": 26,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01009",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01000",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01002",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01015",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30950",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT002",
+      "query": "故障码 F01001 的含义是什么？",
+      "query_type": "fault_code",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:F01001"
+      ],
+      "candidate_pool_size": 29,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01001",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01002",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01015",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01000",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30950",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT003",
+      "query": "A01637 对应哪一种安全报警？",
+      "query_type": "fault_code",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01637"
+      ],
+      "candidate_pool_size": 30,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01637",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30657",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01658",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01750",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01638",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT004",
+      "query": "查询 PN 故障码 A01900。",
+      "query_type": "fault_code",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01900"
+      ],
+      "candidate_pool_size": 25,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01900",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01002",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01015",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01000",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30950",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT005",
+      "query": "A30054 是什么类型的电源报警？",
+      "query_type": "fault_code",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A30054"
+      ],
+      "candidate_pool_size": 27,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A30054",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F31875",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A40100",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30657",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A30999",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT006",
+      "query": "F01023 的故障现象和含义是什么？",
+      "query_type": "fault_code",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:F01023"
+      ],
+      "candidate_pool_size": 29,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01023",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01002",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01015",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01000",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30950",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT007",
+      "query": "CU 温度超过允许上限时会出现哪条报警？",
+      "query_type": "symptom",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01009"
+      ],
+      "candidate_pool_size": 27,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01009",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F31405",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30025",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A05003",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A30034",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT008",
+      "query": "向可移动存储介质写数据失败，应该查哪条报警？",
+      "query_type": "symptom",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01019"
+      ],
+      "candidate_pool_size": 28,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01019",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01020",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01000",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01002",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01015",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT009",
+      "query": "驱动器内部 RAM 磁盘无法写入对应什么报警？",
+      "query_type": "symptom",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01020"
+      ],
+      "candidate_pool_size": 29,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01020",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01002",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01015",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01000",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30950",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT010",
+      "query": "启动时发现参数备份文件不完整，会报告什么故障？",
+      "query_type": "symptom",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01035"
+      ],
+      "candidate_pool_size": 27,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01035",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01036",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01000",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01039",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01002",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT011",
+      "query": "控制单元程序存储区发生 CRC 校验错误时是什么故障？",
+      "query_type": "symptom",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01064"
+      ],
+      "candidate_pool_size": 30,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01064",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01002",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01015",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01000",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30950",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT012",
+      "query": "PROFINET 控制器的周期连接断开后对应哪条报警？",
+      "query_type": "symptom",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01980"
+      ],
+      "candidate_pool_size": 25,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01980",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A40100",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30657",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01658",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F31875",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT013",
+      "query": "交流变频器散热器过热会触发哪些报警？",
+      "query_type": "symptom",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A05000"
+      ],
+      "candidate_pool_size": 28,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.25,
+        "first_relevant_rank": 4
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.25,
+        "first_relevant_rank": 4
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01009",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30078",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F31405",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A05000",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30025",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT014",
+      "query": "24/48 V 供电电压低于下限时会产生什么报警？",
+      "query_type": "symptom",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A30041"
+      ],
+      "candidate_pool_size": 25,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A30041",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30040",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F31875",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A30044",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A30054",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT015",
+      "query": "用于安全运动监控的编码器报告硬件故障，对应哪条报警？",
+      "query_type": "symptom",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01750"
+      ],
+      "candidate_pool_size": 29,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01750",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01695",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F31804",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A30711",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01711",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT016",
+      "query": "存储卡中的参数备份和当前驱动不匹配，可能是什么原因？",
+      "query_type": "cause",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01069"
+      ],
+      "candidate_pool_size": 28,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01069",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01050",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01036",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01035",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01690",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT017",
+      "query": "安全集成功能已经参数化并启用，但没有有效安全密码，会出现什么报警？",
+      "query_type": "cause",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01637"
+      ],
+      "candidate_pool_size": 30,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01637",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01638",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30657",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01120",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01649",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT018",
+      "query": "上位 F-PLC 的 PROFIsafe 配置和驱动侧参数化不一致，会触发哪条报警？",
+      "query_type": "cause",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01654"
+      ],
+      "candidate_pool_size": 22,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01654",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01653",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01674",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30657",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01675",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT019",
+      "query": "安全参数被改动后要求暖启动或重新上电，这是哪个报警的触发场景？",
+      "query_type": "cause",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01693"
+      ],
+      "candidate_pool_size": 28,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01693",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A30693",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01679",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A30999",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01009",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT020",
+      "query": "开始制动测试时制动器没有打开，会对应什么报警？",
+      "query_type": "cause",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01780"
+      ],
+      "candidate_pool_size": 24,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.07692307692307693,
+        "first_relevant_rank": 13
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.07692307692307693,
+        "first_relevant_rank": 13
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A30054",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01696",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F07575",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30630",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F07930",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT021",
+      "query": "制动测试中打开制动器超过 11 秒仍未完成，是什么报警？",
+      "query_type": "cause",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01781"
+      ],
+      "candidate_pool_size": 24,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.5,
+        "first_relevant_rank": 2
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.5,
+        "first_relevant_rank": 2
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01783",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01781",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A30054",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F07575",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30051",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT022",
+      "query": "电机输出相序接错会造成哪种换向角错误？",
+      "query_type": "cause",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:F07412"
+      ],
+      "candidate_pool_size": 26,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:F07412",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F31875",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01012",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F31137",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F31895",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT023",
+      "query": "电机回馈能量过大时会导致哪种直流母线问题？",
+      "query_type": "cause",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:F30002"
+      ],
+      "candidate_pool_size": 30,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.3333333333333333,
+        "first_relevant_rank": 3
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.3333333333333333,
+        "first_relevant_rank": 3
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:F31875",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30017",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30002",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A30502",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F07801",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT024",
+      "query": "调整 p3109 的 UTC 同步容差后，应查看哪条报警？",
+      "query_type": "remedy",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01099"
+      ],
+      "candidate_pool_size": 26,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01099",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F31804",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01711",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01900",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01611",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT025",
+      "query": "排查 p9559 设置并执行安全运动监控测试停止，针对哪个报警？",
+      "query_type": "remedy",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01697"
+      ],
+      "candidate_pool_size": 26,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01697",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01696",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01798",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A30798",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01682",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT026",
+      "query": "处理 STO 测试停止超时并检查 p9659，应该定位哪条报警？",
+      "query_type": "remedy",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01699"
+      ],
+      "candidate_pool_size": 26,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01699",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01700",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01788",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A30788",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30700",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT027",
+      "query": "安全运动监控使用的 Sensor Module 更换后，需要关注什么报警？",
+      "query_type": "remedy",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01695"
+      ],
+      "candidate_pool_size": 27,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01695",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01673",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F31804",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01693",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A30693",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT028",
+      "query": "修改 p9930 仍不能写入内部 RAM 盘时，应该复核哪个故障？",
+      "query_type": "remedy",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01020"
+      ],
+      "candidate_pool_size": 29,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01020",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01002",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01015",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01000",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30950",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT029",
+      "query": "功率单元的 I2t 过载报警是哪一条？",
+      "query_type": "component",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A07805"
+      ],
+      "candidate_pool_size": 28,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A07805",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30050",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A30044",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30002",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30043",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT030",
+      "query": "PN 组件的周期连接中断对应什么故障？",
+      "query_type": "component",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01980"
+      ],
+      "candidate_pool_size": 30,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.5,
+        "first_relevant_rank": 2
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.5,
+        "first_relevant_rank": 2
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:F31875",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01980",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01691",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A30016",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30011",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT031",
+      "query": "SI Motion 中安全编码器的硬件故障是什么报警？",
+      "query_type": "component",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01750"
+      ],
+      "candidate_pool_size": 30,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01750",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01649",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30649",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01002",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01015",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT032",
+      "query": "Drive 侧电机换向角不正确对应哪些故障码？",
+      "query_type": "component",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:F07412"
+      ],
+      "candidate_pool_size": 27,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:F07412",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A02007",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F31137",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F31138",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F31875",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT033",
+      "query": "r9767 是哪条安全密码报警的关联参数？",
+      "query_type": "parameter",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01637"
+      ],
+      "candidate_pool_size": 28,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.5,
+        "first_relevant_rank": 2
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.5,
+        "first_relevant_rank": 2
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01638",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01637",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01658",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01750",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30657",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT034",
+      "query": "p0294 用于哪个功率单元过载报警的诊断？",
+      "query_type": "parameter",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A07805"
+      ],
+      "candidate_pool_size": 28,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A07805",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F06310",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30050",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A30502",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A30044",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT035",
+      "query": "配置电报错误可能涉及 p8969，这对应哪条故障？",
+      "query_type": "parameter",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01900"
+      ],
+      "candidate_pool_size": 25,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01900",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A08511",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01002",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01015",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01000",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT036",
+      "query": "r8936 与哪条 PROFINET 周期连接报警有关？",
+      "query_type": "parameter",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01980"
+      ],
+      "candidate_pool_size": 23,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01980",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01658",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30657",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01839",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A40100",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT037",
+      "query": "p10202 涉及哪些制动测试报警？",
+      "query_type": "parameter",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:A01780",
+        "industrial-drive:siemens:s210:A01782"
+      ],
+      "candidate_pool_size": 26,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01782",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01785",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01780",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01784",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01697",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT038",
+      "query": "故障值中的 cross-compared data number 指向哪些监控通道故障？",
+      "query_type": "alarm_value",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:F01611",
+        "industrial-drive:siemens:s210:F30611"
+      ],
+      "candidate_pool_size": 27,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.3333333333333333,
+        "first_relevant_rank": 3
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.3333333333333333,
+        "first_relevant_rank": 3
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01711",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A30711",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01611",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30625",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A13001",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "S210-FT039",
+      "query": "只知道驱动报告 STO 或监控通道问题，哪些安全故障需要一起排查？",
+      "query_type": "ambiguous_description",
+      "query_domain": "industrial_drive",
+      "relevant_entity_ids": [
+        "industrial-drive:siemens:s210:F01600",
+        "industrial-drive:siemens:s210:F01611",
+        "industrial-drive:siemens:s210:F30600",
+        "industrial-drive:siemens:s210:F30611"
+      ],
+      "candidate_pool_size": 27,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.09090909090909091,
+        "first_relevant_rank": 11
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.09090909090909091,
+        "first_relevant_rank": 11
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01788",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01699",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01750",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01696",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01649",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q001",
+      "query": "JASC 2100 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00008"
+      ],
+      "candidate_pool_size": 28,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:2024F00008",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:20240612001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:2024F00021",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:2024F00007",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q002",
+      "query": "JASC 2120 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+        "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+        "aerospace:faa-sdr:service-difficulty-report:141A2026011570001",
+        "aerospace:faa-sdr:service-difficulty-report:1JAA20240130001",
+        "aerospace:faa-sdr:service-difficulty-report:1LXA2025012800062",
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010500169"
+      ],
+      "candidate_pool_size": 28,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1JAA20240130001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1LXA2025012800062",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:DALA2024010500169",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q003",
+      "query": "JASC 2421 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00007"
+      ],
+      "candidate_pool_size": 26,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:2024F00007",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:20240612001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:2024F00021",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q004",
+      "query": "JASC 2435 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00240"
+      ],
+      "candidate_pool_size": 26,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:2024F00240",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:2024F00021",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:2024F00007",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q005",
+      "query": "JASC 2565 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010200010",
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010500170"
+      ],
+      "candidate_pool_size": 27,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:DALA2024010200010",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:DALA2024010500170",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:2024F00007",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1DJA20240521001",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q006",
+      "query": "JASC 2612 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+        "aerospace:faa-sdr:service-difficulty-report:1DJA 202403080001"
+      ],
+      "candidate_pool_size": 26,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1DJA 202403080001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:20240612001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:2024F00007",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q007",
+      "query": "JASC 2697 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00051"
+      ],
+      "candidate_pool_size": 27,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:2024F00051",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:20240612001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:20240320083",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q008",
+      "query": "JASC 2740 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:20240314FAA0001"
+      ],
+      "candidate_pool_size": 25,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:20240314FAA0001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2026011560002",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q009",
+      "query": "航空维修记录中涉及部件号 L856M3001881 的是哪条记录？",
+      "query_type": "part_number",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00003"
+      ],
+      "candidate_pool_size": 26,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.6666666666666666
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.8
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.6666666666666666
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.8
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:2024F00003",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01590",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:20240320083",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q010",
+      "query": "航空维修记录中涉及部件号 356200575 的是哪条记录？",
+      "query_type": "part_number",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00051"
+      ],
+      "candidate_pool_size": 24,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.6666666666666666
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.8
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.6666666666666666
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.8
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:2024F00051",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01590",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:20240314FAA0001",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q011",
+      "query": "航空维修记录中涉及部件号 23085029 的是哪条记录？",
+      "query_type": "part_number",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00240"
+      ],
+      "candidate_pool_size": 22,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.6666666666666666
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.8
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.6666666666666666
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.8
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:2024F00240",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01590",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q012",
+      "query": "航空维修记录中涉及部件号 G4710A19 的是哪条记录？",
+      "query_type": "part_number",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00264"
+      ],
+      "candidate_pool_size": 26,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.8
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.8
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:2024F00264",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:20240612001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01590",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:20240314FAA0001",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q013",
+      "query": "航空维修记录中涉及部件号 310A204110 的是哪条记录？",
+      "query_type": "part_number",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000000"
+      ],
+      "candidate_pool_size": 25,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.6666666666666666
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.8
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.6666666666666666
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.8
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:2024FA0000000",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01590",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q014",
+      "query": "航空维修记录中涉及部件号 SL36006WA20P 的是哪条记录？",
+      "query_type": "part_number",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000065"
+      ],
+      "candidate_pool_size": 25,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.6666666666666666
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.8
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.6666666666666666
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.8
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:2024FA0000065",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01590",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:20240612001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:20240314FAA0001",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q015",
+      "query": "航空维修记录中涉及部件号 03018200 的是哪条记录？",
+      "query_type": "part_number",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:141A2024032900001"
+      ],
+      "candidate_pool_size": 24,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.6666666666666666
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.8
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.6666666666666666
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.8
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2024032900001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01590",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:20240314FAA0001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:20240320083",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q016",
+      "query": "航空维修记录中涉及部件号 64404303416 的是哪条记录？",
+      "query_type": "part_number",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:141A2024032900003"
+      ],
+      "candidate_pool_size": 25,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.6666666666666666
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.8
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.6666666666666666
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.8
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01590",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:20240314FAA0001",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q017",
+      "query": "哪条航空故障记录涉及 LIGHT？",
+      "query_type": "component",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00003"
+      ],
+      "candidate_pool_size": 25,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.16666666666666666,
+        "first_relevant_rank": 6
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.16666666666666666,
+        "first_relevant_rank": 6
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.3333333333333333
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.6
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.3333333333333333
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.6
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01625",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A13001",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1DJA 202403080001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q018",
+      "query": "哪条航空故障记录涉及 SHUTOFF VALVE？",
+      "query_type": "component",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00021"
+      ],
+      "candidate_pool_size": 27,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.16666666666666666,
+        "first_relevant_rank": 6
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.16666666666666666,
+        "first_relevant_rank": 6
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.6666666666666666
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.8
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.6666666666666666
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.8
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01625",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A202011590001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1DJA20240521001",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q019",
+      "query": "哪条航空故障记录涉及 FIRE LOOP CABLE？",
+      "query_type": "component",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00051"
+      ],
+      "candidate_pool_size": 28,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.125,
+        "first_relevant_rank": 8
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.125,
+        "first_relevant_rank": 8
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.3333333333333333
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.4
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.3333333333333333
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.4
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01839",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F31875",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01625",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q020",
+      "query": "哪条航空故障记录涉及 STARTER GEN？",
+      "query_type": "component",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00240"
+      ],
+      "candidate_pool_size": 29,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.2,
+        "first_relevant_rank": 5
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.2,
+        "first_relevant_rank": 5
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.2
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.2
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A13001",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01120",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01699",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01649",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:2024F00240",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q021",
+      "query": "哪条航空故障记录涉及 TAXI LIGHT？",
+      "query_type": "component",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00264"
+      ],
+      "candidate_pool_size": 25,
+      "candidate_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "ranked_metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 1.0,
+        "first_relevant_rank": 1
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.8
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.8
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:2024F00264",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:15MA202412120318",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01625",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q022",
+      "query": "哪条航空故障记录涉及 THRUST LINK？",
+      "query_type": "component",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000000"
+      ],
+      "candidate_pool_size": 28,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.6666666666666666
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.8
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.6666666666666666
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.8
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01980",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:20240320083",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2024050700003",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:20240314FAA0001",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q023",
+      "query": "哪条航空故障记录涉及 ENGINE CYLINDER？",
+      "query_type": "component",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000003"
+      ],
+      "candidate_pool_size": 29,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.09090909090909091,
+        "first_relevant_rank": 11
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.09090909090909091,
+        "first_relevant_rank": 11
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.3333333333333333
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.4
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.3333333333333333
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.4
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:F31845",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30950",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:20240612001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01015",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q024",
+      "query": "哪条航空故障记录涉及 CYLINDER？",
+      "query_type": "component",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000065"
+      ],
+      "candidate_pool_size": 28,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.2
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.2
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:F31845",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01980",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F31895",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30895",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q025",
+      "query": "航空部件状态为 LOOSE 的故障记录是哪条？",
+      "query_type": "condition",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00003"
+      ],
+      "candidate_pool_size": 27,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.07142857142857142,
+        "first_relevant_rank": 14
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.07142857142857142,
+        "first_relevant_rank": 14
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.3333333333333333
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.2
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.3333333333333333
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.2
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A13001",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01002",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01000",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01015",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q026",
+      "query": "航空部件状态为 DISCONNECTED 的故障记录是哪条？",
+      "query_type": "condition",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00021"
+      ],
+      "candidate_pool_size": 28,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.14285714285714285,
+        "first_relevant_rank": 7
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.14285714285714285,
+        "first_relevant_rank": 7
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.3333333333333333
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.2
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.3333333333333333
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.2
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01980",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F31875",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01031",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01000",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q027",
+      "query": "航空部件状态为 CHAFED 的故障记录是哪条？",
+      "query_type": "condition",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00051"
+      ],
+      "candidate_pool_size": 27,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.3333333333333333
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.2
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.3333333333333333
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.2
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01015",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01018",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30950",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01002",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q028",
+      "query": "航空部件状态为 FAILED 的故障记录是哪条？",
+      "query_type": "condition",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00240"
+      ],
+      "candidate_pool_size": 30,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.0625,
+        "first_relevant_rank": 16
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.0625,
+        "first_relevant_rank": 16
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:F31875",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01019",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F31813",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01020",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30075",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q029",
+      "query": "航空部件状态为 FAILED 的故障记录是哪条？",
+      "query_type": "condition",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024F00264"
+      ],
+      "candidate_pool_size": 30,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:F31875",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01019",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F31813",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01020",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30075",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q030",
+      "query": "航空部件状态为 MAKING METAL 的故障记录是哪条？",
+      "query_type": "condition",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000000"
+      ],
+      "candidate_pool_size": 28,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.2
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.2
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01002",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01015",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01000",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30950",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q031",
+      "query": "航空部件状态为 BROKEN 的故障记录是哪条？",
+      "query_type": "condition",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000003"
+      ],
+      "candidate_pool_size": 29,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.07142857142857142,
+        "first_relevant_rank": 14
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.07142857142857142,
+        "first_relevant_rank": 14
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.3333333333333333
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.4
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.3333333333333333
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.4
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01002",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F31875",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01000",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q032",
+      "query": "航空部件状态为 FAILED 的故障记录是哪条？",
+      "query_type": "condition",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:2024FA0000065"
+      ],
+      "candidate_pool_size": 30,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "mrr": 0.0,
+        "first_relevant_rank": null
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:F31875",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01019",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F31813",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01020",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30075",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q033",
+      "query": "哪条航空维修报告包含处置记录：REPAIRED WIRE AND OPS CHECKED THE CABIN MERGENCY PATHWAY LIGHTS IAW A320？",
+      "query_type": "maintenance_action",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010200007"
+      ],
+      "candidate_pool_size": 27,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.1,
+        "first_relevant_rank": 10
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.1,
+        "first_relevant_rank": 10
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.8
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.8
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:15MA202412120318",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01693",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1JAA20240130001",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q034",
+      "query": "哪条航空维修报告包含处置记录：REF. LOG 0134554 FOR 2L SLIDE REPLACEMENT, REMOVAL, REMOVED 2L DAMPER PER？",
+      "query_type": "maintenance_action",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010200010"
+      ],
+      "candidate_pool_size": 25,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.125,
+        "first_relevant_rank": 8
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.125,
+        "first_relevant_rank": 8
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.6666666666666666
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.6
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.6666666666666666
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.6
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:20240612001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01590",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01695",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1JAA20240130001",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q035",
+      "query": "哪条航空维修报告包含处置记录：PERFORMED ER/A 614433-14AD REV: ORIGINAL AS PER PRI REV 0 OF ER/？",
+      "query_type": "maintenance_action",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010500168"
+      ],
+      "candidate_pool_size": 26,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.14285714285714285,
+        "first_relevant_rank": 7
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.14285714285714285,
+        "first_relevant_rank": 7
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.3333333333333333
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.4
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.3333333333333333
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.4
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30657",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01590",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01251",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q036",
+      "query": "哪条航空维修报告包含处置记录：C/W ODI WORK CARD 0550-2002 UP TO STEP 3. ALSO, C/W FIG？",
+      "query_type": "maintenance_action",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010500169"
+      ],
+      "candidate_pool_size": 24,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.16666666666666666,
+        "first_relevant_rank": 6
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.16666666666666666,
+        "first_relevant_rank": 6
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.6666666666666666
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.8
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.6666666666666666
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.8
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:20240320083",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01590",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:20240612001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q037",
+      "query": "哪条航空维修报告包含处置记录：OPS CKD AFT LEFT PASSENGER DOOR SLIDE ARM PER A320 AMM 52-73,？",
+      "query_type": "maintenance_action",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010500170"
+      ],
+      "candidate_pool_size": 25,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.16666666666666666,
+        "first_relevant_rank": 6
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.16666666666666666,
+        "first_relevant_rank": 6
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:20240314FAA0001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:20240320083",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1JAA20240130001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:20240612001",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q038",
+      "query": "哪条航空维修报告包含处置记录：PERFORMED REPAIR IN HOLE #4, LOCATED ON INBOARD LOWER POSITION, DOOR STOP？",
+      "query_type": "maintenance_action",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010800206"
+      ],
+      "candidate_pool_size": 28,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.05555555555555555,
+        "first_relevant_rank": 18
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.05555555555555555,
+        "first_relevant_rank": 18
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01000",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01002",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F30950",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F01015",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:F31950",
+          "domain": "industrial_drive"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q039",
+      "query": "哪条航空维修报告包含处置记录：REVISE AND UPDATE ERA 550224-14AD WITH DTE RESULTS PRIOR TO 101,081 TOTAL？",
+      "query_type": "maintenance_action",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010800207"
+      ],
+      "candidate_pool_size": 25,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.14285714285714285,
+        "first_relevant_rank": 7
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.14285714285714285,
+        "first_relevant_rank": 7
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.6666666666666666
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.8
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.6666666666666666
+        },
+        "at_5": {
+          "wrong_domain_presence": 1.0,
+          "domain_purity": 0.8
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "industrial-drive:siemens:s210:A01590",
+          "domain": "industrial_drive"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2026011560002",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:20240320083",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    },
+    {
+      "query_id": "AERO-Q040",
+      "query": "哪条航空维修报告包含处置记录：ACCOMPLISH INSPECTIONS PER ERA 550225-14AD SECTION IV PRIOR TO 47,581 TOTAL FLIGHT？",
+      "query_type": "maintenance_action",
+      "query_domain": "aerospace",
+      "relevant_entity_ids": [
+        "aerospace:faa-sdr:service-difficulty-report:DALA2024010800208"
+      ],
+      "candidate_pool_size": 24,
+      "candidate_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.14285714285714285,
+        "first_relevant_rank": 7
+      },
+      "ranked_metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr": 0.14285714285714285,
+        "first_relevant_rank": 7
+      },
+      "candidate_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "ranked_wrong_domain": {
+        "at_1": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_3": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        },
+        "at_5": {
+          "wrong_domain_presence": 0.0,
+          "domain_purity": 1.0
+        }
+      },
+      "top_5": [
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:1R4A202404220001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:20240320083",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:141A2024032900003",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:20240612001",
+          "domain": "aerospace"
+        },
+        {
+          "entity_id": "aerospace:faa-sdr:service-difficulty-report:20240314FAA0001",
+          "domain": "aerospace"
+        }
+      ],
+      "taxonomy_status": "unreviewed"
+    }
+  ]
+}
