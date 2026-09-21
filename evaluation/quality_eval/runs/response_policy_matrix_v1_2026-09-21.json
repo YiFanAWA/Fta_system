@@ -1,0 +1,1574 @@
+{
+  "evaluation_info": {
+    "name": "response_policy_matrix_v1",
+    "version": "2026-09-21",
+    "comparison_source": "expert_router_v2_comparison_v1",
+    "response_policy_gold": "response_policy_gold_v1",
+    "query_count": 79,
+    "production_claim": false,
+    "retrieval_core_changed": false,
+    "architecture": "Query -> Rule Router v1 -> Retrieval/Reranker -> Response Policy -> RAG"
+  },
+  "stages": {
+    "rule_router_v1": {
+      "retrieval": {
+        "candidate_recall": {
+          "recall_at_1": 0.6329113924050633,
+          "recall_at_3": 0.7215189873417721,
+          "recall_at_5": 0.7721518987341772,
+          "recall_at_10": 0.810126582278481,
+          "recall_at_20": 0.9240506329113924,
+          "mrr": 0.694739718790352
+        },
+        "ranked_metrics": {
+          "recall_at_1": 0.6329113924050633,
+          "recall_at_3": 0.7215189873417721,
+          "recall_at_5": 0.7721518987341772,
+          "recall_at_10": 0.810126582278481,
+          "recall_at_20": 0.9240506329113924,
+          "mrr": 0.694739718790352
+        },
+        "candidate_contamination": {
+          "wrong_domain_at_1": 0.0,
+          "wrong_domain_at_3": 0.0,
+          "wrong_domain_at_5": 0.0,
+          "wrong_domain_at_10": 0.0,
+          "wrong_domain_at_20": 0.0
+        }
+      },
+      "response_policy": null
+    },
+    "rule_router_v1_plus_response_policy": {
+      "retrieval": {
+        "candidate_recall": {
+          "recall_at_1": 0.6329113924050633,
+          "recall_at_3": 0.7215189873417721,
+          "recall_at_5": 0.7721518987341772,
+          "recall_at_10": 0.810126582278481,
+          "recall_at_20": 0.9240506329113924,
+          "mrr": 0.694739718790352
+        },
+        "ranked_metrics": {
+          "recall_at_1": 0.6329113924050633,
+          "recall_at_3": 0.7215189873417721,
+          "recall_at_5": 0.7721518987341772,
+          "recall_at_10": 0.810126582278481,
+          "recall_at_20": 0.9240506329113924,
+          "mrr": 0.694739718790352
+        },
+        "candidate_contamination": {
+          "wrong_domain_at_1": 0.0,
+          "wrong_domain_at_3": 0.0,
+          "wrong_domain_at_5": 0.0,
+          "wrong_domain_at_10": 0.0,
+          "wrong_domain_at_20": 0.0
+        }
+      },
+      "response_policy": {
+        "accuracy": 0.5189873417721519,
+        "predicted_distribution": {
+          "normal": 14,
+          "warning": 33,
+          "clarify": 32
+        },
+        "gold_distribution": {
+          "warning": 70,
+          "normal": 9
+        },
+        "per_policy": {
+          "normal": {
+            "precision": 0.5714285714285714,
+            "recall": 0.8888888888888888,
+            "support": 9,
+            "predicted": 14
+          },
+          "warning": {
+            "precision": 1.0,
+            "recall": 0.4714285714285714,
+            "support": 70,
+            "predicted": 33
+          },
+          "clarify": {
+            "precision": 0.0,
+            "recall": null,
+            "support": 0,
+            "predicted": 32
+          }
+        },
+        "confusion_matrix": {
+          "normal": {
+            "normal": 8,
+            "warning": 6,
+            "clarify": 0
+          },
+          "warning": {
+            "normal": 0,
+            "warning": 33,
+            "clarify": 0
+          },
+          "clarify": {
+            "normal": 1,
+            "warning": 31,
+            "clarify": 0
+          }
+        },
+        "clarification_rate": 0.4050632911392405
+      }
+    }
+  },
+  "retrieval_parity": {
+    "retrieval_identical": true,
+    "candidate_recall_delta": {
+      "recall_at_1": 0.0,
+      "recall_at_3": 0.0,
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "recall_at_20": 0.0,
+      "mrr": 0.0
+    },
+    "ranked_metrics_delta": {
+      "recall_at_1": 0.0,
+      "recall_at_3": 0.0,
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "recall_at_20": 0.0,
+      "mrr": 0.0
+    },
+    "contamination_delta": {
+      "wrong_domain_at_1": 0.0,
+      "wrong_domain_at_3": 0.0,
+      "wrong_domain_at_5": 0.0,
+      "wrong_domain_at_10": 0.0,
+      "wrong_domain_at_20": 0.0
+    }
+  },
+  "answer_safety_metrics": {
+    "unsupported_claim_rate": null,
+    "citation_support_rate": null,
+    "note": "These require generated RAG answers and a separate human semantic Gold; this matrix only evaluates policy behavior and retrieval parity."
+  },
+  "queries": [
+    {
+      "query_id": "S210-FT001",
+      "query": "请给出 A01009 的故障定义。",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "sufficient",
+      "response_policy_prediction": "normal",
+      "response_policy_decision": {
+        "response_policy": "normal",
+        "retrieval_policy": "allow",
+        "reason": "query context is sufficient for a normal evidence-grounded answer",
+        "sufficiency_level": "sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT002",
+      "query": "故障码 F01001 的含义是什么？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "sufficient",
+      "response_policy_prediction": "normal",
+      "response_policy_decision": {
+        "response_policy": "normal",
+        "retrieval_policy": "allow",
+        "reason": "query context is sufficient for a normal evidence-grounded answer",
+        "sufficiency_level": "sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT003",
+      "query": "A01637 对应哪一种安全报警？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "sufficient",
+      "response_policy_prediction": "normal",
+      "response_policy_decision": {
+        "response_policy": "normal",
+        "retrieval_policy": "allow",
+        "reason": "query context is sufficient for a normal evidence-grounded answer",
+        "sufficiency_level": "sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT004",
+      "query": "查询 PN 故障码 A01900。",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "sufficient",
+      "response_policy_prediction": "normal",
+      "response_policy_decision": {
+        "response_policy": "normal",
+        "retrieval_policy": "allow",
+        "reason": "query context is sufficient for a normal evidence-grounded answer",
+        "sufficiency_level": "sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT005",
+      "query": "A30054 是什么类型的电源报警？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "sufficient",
+      "response_policy_prediction": "normal",
+      "response_policy_decision": {
+        "response_policy": "normal",
+        "retrieval_policy": "allow",
+        "reason": "query context is sufficient for a normal evidence-grounded answer",
+        "sufficiency_level": "sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT006",
+      "query": "F01023 的故障现象和含义是什么？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "sufficient",
+      "response_policy_prediction": "normal",
+      "response_policy_decision": {
+        "response_policy": "normal",
+        "retrieval_policy": "allow",
+        "reason": "query context is sufficient for a normal evidence-grounded answer",
+        "sufficiency_level": "sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT007",
+      "query": "CU 温度超过允许上限时会出现哪条报警？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT008",
+      "query": "向可移动存储介质写数据失败，应该查哪条报警？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT009",
+      "query": "驱动器内部 RAM 磁盘无法写入对应什么报警？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT010",
+      "query": "启动时发现参数备份文件不完整，会报告什么故障？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT011",
+      "query": "控制单元程序存储区发生 CRC 校验错误时是什么故障？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT012",
+      "query": "PROFINET 控制器的周期连接断开后对应哪条报警？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT013",
+      "query": "交流变频器散热器过热会触发哪些报警？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 4,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT014",
+      "query": "24/48 V 供电电压低于下限时会产生什么报警？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT015",
+      "query": "用于安全运动监控的编码器报告硬件故障，对应哪条报警？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT016",
+      "query": "存储卡中的参数备份和当前驱动不匹配，可能是什么原因？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT017",
+      "query": "安全集成功能已经参数化并启用，但没有有效安全密码，会出现什么报警？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT018",
+      "query": "上位 F-PLC 的 PROFIsafe 配置和驱动侧参数化不一致，会触发哪条报警？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT019",
+      "query": "安全参数被改动后要求暖启动或重新上电，这是哪个报警的触发场景？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT020",
+      "query": "开始制动测试时制动器没有打开，会对应什么报警？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 13,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT021",
+      "query": "制动测试中打开制动器超过 11 秒仍未完成，是什么报警？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 2,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT022",
+      "query": "电机输出相序接错会造成哪种换向角错误？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT023",
+      "query": "电机回馈能量过大时会导致哪种直流母线问题？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 3,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT024",
+      "query": "调整 p3109 的 UTC 同步容差后，应查看哪条报警？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT025",
+      "query": "排查 p9559 设置并执行安全运动监控测试停止，针对哪个报警？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT026",
+      "query": "处理 STO 测试停止超时并检查 p9659，应该定位哪条报警？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT027",
+      "query": "安全运动监控使用的 Sensor Module 更换后，需要关注什么报警？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT028",
+      "query": "修改 p9930 仍不能写入内部 RAM 盘时，应该复核哪个故障？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT029",
+      "query": "功率单元的 I2t 过载报警是哪一条？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT030",
+      "query": "PN 组件的周期连接中断对应什么故障？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 2,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT031",
+      "query": "SI Motion 中安全编码器的硬件故障是什么报警？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT032",
+      "query": "Drive 侧电机换向角不正确对应哪些故障码？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT033",
+      "query": "r9767 是哪条安全密码报警的关联参数？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 2,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT034",
+      "query": "p0294 用于哪个功率单元过载报警的诊断？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT035",
+      "query": "配置电报错误可能涉及 p8969，这对应哪条故障？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT036",
+      "query": "r8936 与哪条 PROFINET 周期连接报警有关？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT037",
+      "query": "p10202 涉及哪些制动测试报警？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT038",
+      "query": "故障值中的 cross-compared data number 指向哪些监控通道故障？",
+      "response_policy_gold": "normal",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 3,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "S210-FT039",
+      "query": "只知道驱动报告 STO 或监控通道问题，哪些安全故障需要一起排查？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 11,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q001",
+      "query": "JASC 2100 对应哪些航空故障报告？",
+      "response_policy_gold": "normal",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve",
+      "machine_sufficiency_level": "sufficient",
+      "response_policy_prediction": "normal",
+      "response_policy_decision": {
+        "response_policy": "normal",
+        "retrieval_policy": "allow",
+        "reason": "query context is sufficient for a normal evidence-grounded answer",
+        "sufficiency_level": "sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q002",
+      "query": "JASC 2120 对应哪些航空故障报告？",
+      "response_policy_gold": "normal",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve",
+      "machine_sufficiency_level": "sufficient",
+      "response_policy_prediction": "normal",
+      "response_policy_decision": {
+        "response_policy": "normal",
+        "retrieval_policy": "allow",
+        "reason": "query context is sufficient for a normal evidence-grounded answer",
+        "sufficiency_level": "sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q003",
+      "query": "JASC 2421 对应哪些航空故障报告？",
+      "response_policy_gold": "normal",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve",
+      "machine_sufficiency_level": "sufficient",
+      "response_policy_prediction": "normal",
+      "response_policy_decision": {
+        "response_policy": "normal",
+        "retrieval_policy": "allow",
+        "reason": "query context is sufficient for a normal evidence-grounded answer",
+        "sufficiency_level": "sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q004",
+      "query": "JASC 2435 对应哪些航空故障报告？",
+      "response_policy_gold": "normal",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve",
+      "machine_sufficiency_level": "sufficient",
+      "response_policy_prediction": "normal",
+      "response_policy_decision": {
+        "response_policy": "normal",
+        "retrieval_policy": "allow",
+        "reason": "query context is sufficient for a normal evidence-grounded answer",
+        "sufficiency_level": "sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q005",
+      "query": "JASC 2565 对应哪些航空故障报告？",
+      "response_policy_gold": "normal",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve",
+      "machine_sufficiency_level": "sufficient",
+      "response_policy_prediction": "normal",
+      "response_policy_decision": {
+        "response_policy": "normal",
+        "retrieval_policy": "allow",
+        "reason": "query context is sufficient for a normal evidence-grounded answer",
+        "sufficiency_level": "sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q006",
+      "query": "JASC 2612 对应哪些航空故障报告？",
+      "response_policy_gold": "normal",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve",
+      "machine_sufficiency_level": "sufficient",
+      "response_policy_prediction": "normal",
+      "response_policy_decision": {
+        "response_policy": "normal",
+        "retrieval_policy": "allow",
+        "reason": "query context is sufficient for a normal evidence-grounded answer",
+        "sufficiency_level": "sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q007",
+      "query": "JASC 2697 对应哪些航空故障报告？",
+      "response_policy_gold": "normal",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve",
+      "machine_sufficiency_level": "sufficient",
+      "response_policy_prediction": "normal",
+      "response_policy_decision": {
+        "response_policy": "normal",
+        "retrieval_policy": "allow",
+        "reason": "query context is sufficient for a normal evidence-grounded answer",
+        "sufficiency_level": "sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q008",
+      "query": "JASC 2740 对应哪些航空故障报告？",
+      "response_policy_gold": "normal",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve",
+      "machine_sufficiency_level": "sufficient",
+      "response_policy_prediction": "normal",
+      "response_policy_decision": {
+        "response_policy": "normal",
+        "retrieval_policy": "allow",
+        "reason": "query context is sufficient for a normal evidence-grounded answer",
+        "sufficiency_level": "sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q009",
+      "query": "航空维修记录中涉及部件号 L856M3001881 的是哪条记录？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q010",
+      "query": "航空维修记录中涉及部件号 356200575 的是哪条记录？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q011",
+      "query": "航空维修记录中涉及部件号 23085029 的是哪条记录？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q012",
+      "query": "航空维修记录中涉及部件号 G4710A19 的是哪条记录？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q013",
+      "query": "航空维修记录中涉及部件号 310A204110 的是哪条记录？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q014",
+      "query": "航空维修记录中涉及部件号 SL36006WA20P 的是哪条记录？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q015",
+      "query": "航空维修记录中涉及部件号 03018200 的是哪条记录？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q016",
+      "query": "航空维修记录中涉及部件号 64404303416 的是哪条记录？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q017",
+      "query": "哪条航空故障记录涉及 LIGHT？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 5,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q018",
+      "query": "哪条航空故障记录涉及 SHUTOFF VALVE？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 5,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q019",
+      "query": "哪条航空故障记录涉及 FIRE LOOP CABLE？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 8,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q020",
+      "query": "哪条航空故障记录涉及 STARTER GEN？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q021",
+      "query": "哪条航空故障记录涉及 TAXI LIGHT？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 15,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q022",
+      "query": "哪条航空故障记录涉及 THRUST LINK？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": null,
+      "candidate_recall_at_20": 0.0
+    },
+    {
+      "query_id": "AERO-Q023",
+      "query": "哪条航空故障记录涉及 ENGINE CYLINDER？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 5,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q024",
+      "query": "哪条航空故障记录涉及 CYLINDER？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": null,
+      "candidate_recall_at_20": 0.0
+    },
+    {
+      "query_id": "AERO-Q025",
+      "query": "航空部件状态为 LOOSE 的故障记录是哪条？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 9,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q026",
+      "query": "航空部件状态为 DISCONNECTED 的故障记录是哪条？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 10,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q027",
+      "query": "航空部件状态为 CHAFED 的故障记录是哪条？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": null,
+      "candidate_recall_at_20": 0.0
+    },
+    {
+      "query_id": "AERO-Q028",
+      "query": "航空部件状态为 FAILED 的故障记录是哪条？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q029",
+      "query": "航空部件状态为 FAILED 的故障记录是哪条？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 21,
+      "candidate_recall_at_20": 0.0
+    },
+    {
+      "query_id": "AERO-Q030",
+      "query": "航空部件状态为 MAKING METAL 的故障记录是哪条？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": null,
+      "candidate_recall_at_20": 0.0
+    },
+    {
+      "query_id": "AERO-Q031",
+      "query": "航空部件状态为 BROKEN 的故障记录是哪条？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 16,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q032",
+      "query": "航空部件状态为 FAILED 的故障记录是哪条？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "partially_sufficient",
+      "response_policy_prediction": "warning",
+      "response_policy_decision": {
+        "response_policy": "warning",
+        "retrieval_policy": "allow",
+        "reason": "answer should state uncertainty and request missing context",
+        "sufficiency_level": "partially_sufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": null,
+      "candidate_recall_at_20": 0.0
+    },
+    {
+      "query_id": "AERO-Q033",
+      "query": "哪条航空维修报告包含处置记录：REPAIRED WIRE AND OPS CHECKED THE CABIN MERGENCY PATHWAY LIGHTS IAW A320？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 13,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q034",
+      "query": "哪条航空维修报告包含处置记录：REF. LOG 0134554 FOR 2L SLIDE REPLACEMENT, REMOVAL, REMOVED 2L DAMPER PER？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 14,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q035",
+      "query": "哪条航空维修报告包含处置记录：PERFORMED ER/A 614433-14AD REV: ORIGINAL AS PER PRI REV 0 OF ER/？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 14,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q036",
+      "query": "哪条航空维修报告包含处置记录：C/W ODI WORK CARD 0550-2002 UP TO STEP 3. ALSO, C/W FIG？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 3,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q037",
+      "query": "哪条航空维修报告包含处置记录：OPS CKD AFT LEFT PASSENGER DOOR SLIDE ARM PER A320 AMM 52-73,？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 1,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q038",
+      "query": "哪条航空维修报告包含处置记录：PERFORMED REPAIR IN HOLE #4, LOCATED ON INBOARD LOWER POSITION, DOOR STOP？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 16,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q039",
+      "query": "哪条航空维修报告包含处置记录：REVISE AND UPDATE ERA 550224-14AD WITH DTE RESULTS PRIOR TO 101,081 TOTAL？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 2,
+      "candidate_recall_at_20": 1.0
+    },
+    {
+      "query_id": "AERO-Q040",
+      "query": "哪条航空维修报告包含处置记录：ACCOMPLISH INSPECTIONS PER ERA 550225-14AD SECTION IV PRIOR TO 47,581 TOTAL FLIGHT？",
+      "response_policy_gold": "warning",
+      "retrieval_policy_gold": "allow",
+      "source_action": "retrieve_with_warning",
+      "machine_sufficiency_level": "insufficient",
+      "response_policy_prediction": "clarify",
+      "response_policy_decision": {
+        "response_policy": "clarify",
+        "retrieval_policy": "allow",
+        "reason": "retrieval may inform the clarification, but no definitive answer should be produced",
+        "sufficiency_level": "insufficient"
+      },
+      "retrieval_policy_prediction": "allow",
+      "retrieval_first_relevant_rank": 14,
+      "candidate_recall_at_20": 1.0
+    }
+  ]
+}

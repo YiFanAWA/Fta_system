@@ -1,6 +1,8 @@
-# Query Decision Layer v1
+# Query Decision Layer v1（历史实验）
 
-## 定位
+> 本文记录的是前置决策实验，不是当前推荐架构。当前实现方向见 [Response Policy Layer v1](response-policy-layer-v1.md)。
+
+## 历史定位
 
 Query Decision Layer 位于 Query Analyzer 与 Retrieval 之间，负责决定系统行为，不拥有 embedding、RRF、reranker 或实体检索逻辑。
 
@@ -9,10 +11,7 @@ Query
   ↓
 Domain Router v1 + Query Sufficiency Analyzer
   ↓
-Query Decision Layer
-  ├─ retrieve
-  ├─ retrieve_with_warning
-  └─ clarify
+Query Decision Layer（历史前置实验）
   ↓
 Generic Retrieval v1
 ```
@@ -66,9 +65,9 @@ Generic Retrieval v1
 3. 不能把 `partially_sufficient` 直接映射成 `clarify`；它应默认映射为 `retrieve_with_warning`。
 4. 当前 Gold 没有真正的 `clarify` 样本，不能宣称阻断澄清策略已经得到专家验证。
 
-## 下一步边界
+## 历史结论与当前替代方案
 
-- 保持 Generic Retrieval v1、Rule Router v1、embedding、reranker 不变；
-- 增加真实低信息查询并由专家标注 `clarify`；
-- 只有 `clarify` 样本形成足够覆盖后，才评估阻断式 Query Decision；
-- Query Decision Layer 暂不接生产 API/前端。
+- 前置 `clarify` 会把 32 条查询从检索链路中移除，使 Candidate Recall@20 从 0.9241 降至 0.5190，因此不作为当前检索准入层。
+- 当前保留 Generic Retrieval v1、Rule Router v1、embedding、reranker 不变。
+- Query Sufficiency 的输出改由后置 Response Policy 消费：`warning` 和 `clarify` 都允许检索，只限制回答确定性。
+- 真正的 `clarify` 正例仍需专家补充后，才能单独评估回答层澄清质量。

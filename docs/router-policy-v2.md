@@ -27,13 +27,13 @@
 4. 多个 scope 同时出现 high signal 时，输出 `cross_domain`，不得猜测。
 5. Router 不修改检索实体、Gold、embedding、RRF、reranker 或前端/API。
 
-## Query Sufficiency
+## Query Sufficiency（仅作回答策略输入）
 
 - `sufficient`：可以直接检索。
-- `partially_sufficient`：可以谨慎检索，但是否先澄清由专家 Gold 的 `gold_action` 决定。
-- `insufficient`：原则上输出 `clarify_first`，不强行确定领域。
+- `partially_sufficient`：允许检索，回答使用 `warning` 策略。
+- `insufficient`：允许检索，但回答使用 `clarify` 策略，不输出确定性结论。
 - `cannot_determine`：保持跨域并记录无法判断原因。
-- `clarification precision` 在新版 79 条专家 Gold 上计算；澄清门开启后的召回另行报告。
+- `clarification` 只控制回答层；不把候选结果从 Retrieval 中删除。
 
 ## 三组实验定义
 
@@ -42,7 +42,7 @@
 | No Router | 321 个实体混合检索 | 不主动澄清 |
 | Rule Router v1 | 使用当前 backend v1 已确认注册表 | 使用当前机器 sufficiency evaluator |
 | Expert Router v2 | 使用本策略派生 registry；未命中强条件时保持 `cross_domain` | 使用同一 sufficiency evaluator；Gold 仅用于评估 |
-| Sufficiency + Router | Expert Router v2 + 当前机器 sufficiency gate | 机器判断为 insufficient 时先澄清，不进行检索 |
+| Sufficiency + Router（历史） | Expert Router v2 + 当前机器 sufficiency gate | 机器判断为 insufficient 时阻断检索；仅用于解释召回损失 |
 
 ## 验收指标
 
@@ -62,7 +62,7 @@
 | Expert Router v2 | 0.1392 | 0.5190 | 0.9688 | 0.4429 | 0.4051 | 0.9241 | 0.2152 |
 | Sufficiency + Router | 0.1392 | 0.5190 | 0.9688 | 0.4429 | 0.4051 | 0.5190 | 0.1646 |
 
-结论：Expert Router v2 尚未证明优于 Rule Router v1；Sufficiency + Router 能减少部分错误领域输出，但当前机器 gate 将 32 条查询置为澄清，Candidate Recall@20 降至 0.5190。三者均不得直接替换生产 Router。
+结论：Expert Router v2 尚未证明优于 Rule Router v1；历史 Sufficiency + Router 将 32 条查询置为澄清并阻断检索，Candidate Recall@20 降至 0.5190。当前不再采用这种前置阻断；回答风险控制改由 Response Policy Layer 承担。
 
 ## 禁止事项
 

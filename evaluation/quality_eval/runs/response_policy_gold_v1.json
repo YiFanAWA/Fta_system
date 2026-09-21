@@ -1,0 +1,1272 @@
+{
+  "dataset_info": {
+    "name": "response_policy_gold_v1",
+    "version": "2026-09-21",
+    "purpose": "post-retrieval answer-risk policy Gold",
+    "reviewer": "刘武",
+    "source_file": "evaluation\\quality_eval\\runs\\query_sufficiency_gold_v1_LiuWu_expert_review.json",
+    "source_sha256": "368076f9d11e3f6d453df6025b4a281b8353f30075d9464b194825b1f8dea0c2",
+    "query_count": 79,
+    "counts": {
+      "retrieval_policy": {
+        "allow": 79
+      },
+      "response_policy": {
+        "normal": 9,
+        "warning": 70,
+        "clarify": 0
+      }
+    },
+    "production_use": false,
+    "contract_note": "all policies allow retrieval; warning changes answer wording and certainty, while clarify requests missing context before presenting a definitive answer."
+  },
+  "label_schema": {
+    "retrieval_policy": {
+      "allow": "retrieval is allowed; the answer policy controls certainty and whether clarification is requested"
+    },
+    "response_policy": {
+      "normal": "normal evidence-grounded answer",
+      "warning": "answer with uncertainty and request missing context",
+      "clarify": "ask for missing context instead of presenting a definitive answer"
+    }
+  },
+  "queries": [
+    {
+      "query_id": "S210-FT001",
+      "query": "请给出 A01009 的故障定义。",
+      "query_type": "fault_code",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT002",
+      "query": "故障码 F01001 的含义是什么？",
+      "query_type": "fault_code",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT003",
+      "query": "A01637 对应哪一种安全报警？",
+      "query_type": "fault_code",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT004",
+      "query": "查询 PN 故障码 A01900。",
+      "query_type": "fault_code",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT005",
+      "query": "A30054 是什么类型的电源报警？",
+      "query_type": "fault_code",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT006",
+      "query": "F01023 的故障现象和含义是什么？",
+      "query_type": "fault_code",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT007",
+      "query": "CU 温度超过允许上限时会出现哪条报警？",
+      "query_type": "symptom",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT008",
+      "query": "向可移动存储介质写数据失败，应该查哪条报警？",
+      "query_type": "symptom",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT009",
+      "query": "驱动器内部 RAM 磁盘无法写入对应什么报警？",
+      "query_type": "symptom",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT010",
+      "query": "启动时发现参数备份文件不完整，会报告什么故障？",
+      "query_type": "symptom",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT011",
+      "query": "控制单元程序存储区发生 CRC 校验错误时是什么故障？",
+      "query_type": "symptom",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT012",
+      "query": "PROFINET 控制器的周期连接断开后对应哪条报警？",
+      "query_type": "symptom",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT013",
+      "query": "交流变频器散热器过热会触发哪些报警？",
+      "query_type": "symptom",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT014",
+      "query": "24/48 V 供电电压低于下限时会产生什么报警？",
+      "query_type": "symptom",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT015",
+      "query": "用于安全运动监控的编码器报告硬件故障，对应哪条报警？",
+      "query_type": "symptom",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT016",
+      "query": "存储卡中的参数备份和当前驱动不匹配，可能是什么原因？",
+      "query_type": "cause",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT017",
+      "query": "安全集成功能已经参数化并启用，但没有有效安全密码，会出现什么报警？",
+      "query_type": "cause",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT018",
+      "query": "上位 F-PLC 的 PROFIsafe 配置和驱动侧参数化不一致，会触发哪条报警？",
+      "query_type": "cause",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT019",
+      "query": "安全参数被改动后要求暖启动或重新上电，这是哪个报警的触发场景？",
+      "query_type": "cause",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT020",
+      "query": "开始制动测试时制动器没有打开，会对应什么报警？",
+      "query_type": "cause",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT021",
+      "query": "制动测试中打开制动器超过 11 秒仍未完成，是什么报警？",
+      "query_type": "cause",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT022",
+      "query": "电机输出相序接错会造成哪种换向角错误？",
+      "query_type": "cause",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT023",
+      "query": "电机回馈能量过大时会导致哪种直流母线问题？",
+      "query_type": "cause",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT024",
+      "query": "调整 p3109 的 UTC 同步容差后，应查看哪条报警？",
+      "query_type": "remedy",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT025",
+      "query": "排查 p9559 设置并执行安全运动监控测试停止，针对哪个报警？",
+      "query_type": "remedy",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT026",
+      "query": "处理 STO 测试停止超时并检查 p9659，应该定位哪条报警？",
+      "query_type": "remedy",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT027",
+      "query": "安全运动监控使用的 Sensor Module 更换后，需要关注什么报警？",
+      "query_type": "remedy",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT028",
+      "query": "修改 p9930 仍不能写入内部 RAM 盘时，应该复核哪个故障？",
+      "query_type": "remedy",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT029",
+      "query": "功率单元的 I2t 过载报警是哪一条？",
+      "query_type": "component",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT030",
+      "query": "PN 组件的周期连接中断对应什么故障？",
+      "query_type": "component",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT031",
+      "query": "SI Motion 中安全编码器的硬件故障是什么报警？",
+      "query_type": "component",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT032",
+      "query": "Drive 侧电机换向角不正确对应哪些故障码？",
+      "query_type": "component",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT033",
+      "query": "r9767 是哪条安全密码报警的关联参数？",
+      "query_type": "parameter",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT034",
+      "query": "p0294 用于哪个功率单元过载报警的诊断？",
+      "query_type": "parameter",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT035",
+      "query": "配置电报错误可能涉及 p8969，这对应哪条故障？",
+      "query_type": "parameter",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT036",
+      "query": "r8936 与哪条 PROFINET 周期连接报警有关？",
+      "query_type": "parameter",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT037",
+      "query": "p10202 涉及哪些制动测试报警？",
+      "query_type": "parameter",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT038",
+      "query": "故障值中的 cross-compared data number 指向哪些监控通道故障？",
+      "query_type": "alarm_value",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "normal",
+      "source_action": "retrieve",
+      "missing_information": [],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "S210-FT039",
+      "query": "只知道驱动报告 STO 或监控通道问题，哪些安全故障需要一起排查？",
+      "query_type": "ambiguous_description",
+      "domain_decision": "industrial_drive",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q001",
+      "query": "JASC 2100 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "normal",
+      "source_action": "retrieve",
+      "missing_information": [],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q002",
+      "query": "JASC 2120 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "normal",
+      "source_action": "retrieve",
+      "missing_information": [],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q003",
+      "query": "JASC 2421 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "normal",
+      "source_action": "retrieve",
+      "missing_information": [],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q004",
+      "query": "JASC 2435 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "normal",
+      "source_action": "retrieve",
+      "missing_information": [],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q005",
+      "query": "JASC 2565 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "normal",
+      "source_action": "retrieve",
+      "missing_information": [],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q006",
+      "query": "JASC 2612 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "normal",
+      "source_action": "retrieve",
+      "missing_information": [],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q007",
+      "query": "JASC 2697 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "normal",
+      "source_action": "retrieve",
+      "missing_information": [],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q008",
+      "query": "JASC 2740 对应哪些航空故障报告？",
+      "query_type": "identifier",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "normal",
+      "source_action": "retrieve",
+      "missing_information": [],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q009",
+      "query": "航空维修记录中涉及部件号 L856M3001881 的是哪条记录？",
+      "query_type": "part_number",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q010",
+      "query": "航空维修记录中涉及部件号 356200575 的是哪条记录？",
+      "query_type": "part_number",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q011",
+      "query": "航空维修记录中涉及部件号 23085029 的是哪条记录？",
+      "query_type": "part_number",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q012",
+      "query": "航空维修记录中涉及部件号 G4710A19 的是哪条记录？",
+      "query_type": "part_number",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q013",
+      "query": "航空维修记录中涉及部件号 310A204110 的是哪条记录？",
+      "query_type": "part_number",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q014",
+      "query": "航空维修记录中涉及部件号 SL36006WA20P 的是哪条记录？",
+      "query_type": "part_number",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q015",
+      "query": "航空维修记录中涉及部件号 03018200 的是哪条记录？",
+      "query_type": "part_number",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q016",
+      "query": "航空维修记录中涉及部件号 64404303416 的是哪条记录？",
+      "query_type": "part_number",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q017",
+      "query": "哪条航空故障记录涉及 LIGHT？",
+      "query_type": "component",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q018",
+      "query": "哪条航空故障记录涉及 SHUTOFF VALVE？",
+      "query_type": "component",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q019",
+      "query": "哪条航空故障记录涉及 FIRE LOOP CABLE？",
+      "query_type": "component",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q020",
+      "query": "哪条航空故障记录涉及 STARTER GEN？",
+      "query_type": "component",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q021",
+      "query": "哪条航空故障记录涉及 TAXI LIGHT？",
+      "query_type": "component",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q022",
+      "query": "哪条航空故障记录涉及 THRUST LINK？",
+      "query_type": "component",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q023",
+      "query": "哪条航空故障记录涉及 ENGINE CYLINDER？",
+      "query_type": "component",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q024",
+      "query": "哪条航空故障记录涉及 CYLINDER？",
+      "query_type": "component",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q025",
+      "query": "航空部件状态为 LOOSE 的故障记录是哪条？",
+      "query_type": "condition",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q026",
+      "query": "航空部件状态为 DISCONNECTED 的故障记录是哪条？",
+      "query_type": "condition",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q027",
+      "query": "航空部件状态为 CHAFED 的故障记录是哪条？",
+      "query_type": "condition",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q028",
+      "query": "航空部件状态为 FAILED 的故障记录是哪条？",
+      "query_type": "condition",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q029",
+      "query": "航空部件状态为 FAILED 的故障记录是哪条？",
+      "query_type": "condition",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q030",
+      "query": "航空部件状态为 MAKING METAL 的故障记录是哪条？",
+      "query_type": "condition",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q031",
+      "query": "航空部件状态为 BROKEN 的故障记录是哪条？",
+      "query_type": "condition",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q032",
+      "query": "航空部件状态为 FAILED 的故障记录是哪条？",
+      "query_type": "condition",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q033",
+      "query": "哪条航空维修报告包含处置记录：REPAIRED WIRE AND OPS CHECKED THE CABIN MERGENCY PATHWAY LIGHTS IAW A320？",
+      "query_type": "maintenance_action",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q034",
+      "query": "哪条航空维修报告包含处置记录：REF. LOG 0134554 FOR 2L SLIDE REPLACEMENT, REMOVAL, REMOVED 2L DAMPER PER？",
+      "query_type": "maintenance_action",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q035",
+      "query": "哪条航空维修报告包含处置记录：PERFORMED ER/A 614433-14AD REV: ORIGINAL AS PER PRI REV 0 OF ER/？",
+      "query_type": "maintenance_action",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q036",
+      "query": "哪条航空维修报告包含处置记录：C/W ODI WORK CARD 0550-2002 UP TO STEP 3. ALSO, C/W FIG？",
+      "query_type": "maintenance_action",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q037",
+      "query": "哪条航空维修报告包含处置记录：OPS CKD AFT LEFT PASSENGER DOOR SLIDE ARM PER A320 AMM 52-73,？",
+      "query_type": "maintenance_action",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q038",
+      "query": "哪条航空维修报告包含处置记录：PERFORMED REPAIR IN HOLE #4, LOCATED ON INBOARD LOWER POSITION, DOOR STOP？",
+      "query_type": "maintenance_action",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q039",
+      "query": "哪条航空维修报告包含处置记录：REVISE AND UPDATE ERA 550224-14AD WITH DTE RESULTS PRIOR TO 101,081 TOTAL？",
+      "query_type": "maintenance_action",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    },
+    {
+      "query_id": "AERO-Q040",
+      "query": "哪条航空维修报告包含处置记录：ACCOMPLISH INSPECTIONS PER ERA 550225-14AD SECTION IV PRIOR TO 47,581 TOTAL FLIGHT？",
+      "query_type": "maintenance_action",
+      "domain_decision": "aerospace",
+      "sufficiency_decision": "partially_sufficient",
+      "retrieval_policy": "allow",
+      "response_policy": "warning",
+      "source_action": "retrieve_with_warning",
+      "missing_information": [
+        "device_or_system",
+        "fault_code_or_identifier"
+      ],
+      "reason": "基于故障码、设备标识、领域专用术语和查询上下文进行人工审核。该标注用于评估，不自动修改Router。",
+      "expert": "刘武"
+    }
+  ]
+}
