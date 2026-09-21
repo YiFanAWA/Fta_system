@@ -1,0 +1,12 @@
+name: fta-retrieval
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - torch==2.14.0
+      - sentence-transformers==6.1.0
+      - transformers==5.17.0
+      - huggingface-hub==1.32.0
+      - numpy==2.4.6

@@ -1,0 +1,29 @@
+{
+  "dataset": "siemens_s210_public_fault_expert_review_batches",
+  "version": "v1",
+  "source_corpus": "siemens_s210_public_fault_corpus_v1.jsonl",
+  "source_records": 281,
+  "batch_count": 10,
+  "reviewed_records": 30,
+  "pending_review_records": 251,
+  "label_status": "unlabeled_expert_review_queue",
+  "training_eligible": false,
+  "logic_policy": "unknown_until_explicitly_expert_annotated",
+  "batches": [
+    {"batch": "v1", "records": 30, "F": 20, "A": 8, "N": 2, "overlaps_previous": 0, "review_status": "confirmed_in_unified_57"},
+    {"batch": "v2", "records": 30, "F": 20, "A": 8, "N": 2, "overlaps_previous": 0, "review_status": "pending"},
+    {"batch": "v3", "records": 30, "F": 20, "A": 8, "N": 2, "overlaps_previous": 0, "review_status": "pending"},
+    {"batch": "v4", "records": 30, "F": 18, "A": 12, "N": 0, "overlaps_previous": 0, "review_status": "pending"},
+    {"batch": "v5", "records": 30, "F": 18, "A": 12, "N": 0, "overlaps_previous": 0, "review_status": "pending"},
+    {"batch": "v6", "records": 30, "F": 18, "A": 12, "N": 0, "overlaps_previous": 0, "review_status": "pending"},
+    {"batch": "v7", "records": 30, "F": 18, "A": 12, "N": 0, "overlaps_previous": 0, "review_status": "pending"},
+    {"batch": "v8", "records": 30, "F": 18, "A": 12, "N": 0, "overlaps_previous": 0, "review_status": "pending"},
+    {"batch": "v9", "records": 30, "F": 18, "A": 12, "N": 0, "overlaps_previous": 0, "review_status": "pending"},
+    {"batch": "v10", "records": 11, "F": 1, "A": 10, "N": 0, "overlaps_previous": 0, "review_status": "pending"}
+  ],
+  "artifacts": {
+    "data_pattern": "siemens_s210_public_fault_expert_review_sample_v{batch}.json",
+    "checklist_pattern": "siemens_s210_public_fault_expert_review_checklist_v{batch}.md"
+  },
+  "import_policy": "Only expert-reviewed records with final evidence and a resolved decision may be promoted to the gold dataset and production database."
+}

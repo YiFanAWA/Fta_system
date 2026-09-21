@@ -136,6 +136,13 @@ def _safe_list(value: Any) -> List[Any]:
     return value if isinstance(value, list) else []
 
 
+def _text_value(value: Any) -> str:
+    """Return a field value without turning an unknown null into 'None'."""
+    if value is None:
+        return ""
+    return str(value).strip()
+
+
 def _f1(tp: int, fp: int, fn: int) -> Tuple[float, float, float]:
     precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0
     recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0
@@ -185,13 +192,24 @@ def _extract_pred_basic_events(pred: Dict[str, Any]) -> Set[str]:
 
     for rec in _extract_pred_records(pred):
         for c in _safe_list(rec.get("causes")):
-            cc = str(c.get("name", c)).strip() if isinstance(c, dict) else str(c).strip()
+            cc = (
+                _text_value(c.get("name", c))
+                if isinstance(c, dict)
+                else _text_value(c)
+            )
             if cc:
                 out.add(_normalize(cc))
 
     tree = pred.get("tree")
     if isinstance(tree, dict):
-        _collect_tree_leaf_events(tree, out)
+        # The root top event is the effect being explained, not a basic event.
+        # Start at its children so a tree with no children contributes no leaf
+        # event and gold-mode self checks do not create a false positive.
+        children = tree.get("children")
+        if isinstance(children, list):
+            for child in children:
+                if isinstance(child, dict):
+                    _collect_tree_leaf_events(child, out)
     return out
 
 

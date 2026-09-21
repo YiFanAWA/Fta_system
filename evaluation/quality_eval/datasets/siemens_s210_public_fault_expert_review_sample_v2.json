@@ -1,0 +1,1226 @@
+{
+  "dataset_info": {
+    "name": "siemens_s210_public_fault_expert_review_sample",
+    "version": "v2",
+    "label_status": "unlabeled_expert_review_sample",
+    "human_expert_reviewed": false,
+    "selection": {
+      "method": "deterministic_even_spacing_within_message_type",
+      "quotas": {
+        "F": 20,
+        "A": 8,
+        "N": 2
+      },
+      "total": 30,
+      "excluded_count": 30
+    },
+    "review_rules": [
+      "规则1：故障码、故障现象是否对应同一条故障记录",
+      "规则2：组件是否属于主组件；组件为无时不强行指定主组件",
+      "规则3：候选原因必须是故障原因或故障场景，而非处理动作",
+      "规则4：参数是否确实属于该故障记录",
+      "规则5：每个字段是否有原文支持证据"
+    ],
+    "logic_policy": "unknown_until_explicitly_expert_annotated"
+  },
+  "samples": [
+    {
+      "sample_id": "SIEMENS_S210_2019_A01007",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "A01007 POWER ON for DRIVE-CLiQ component required\nReaction: NONE\nAcknowledge: NONE\nCause: A DRIVE-CLiQ component must be switched on again (POWER ON) (e.g. due to a firmware update).\nAlarm value (r2124, interpret decimal):\nComponent number of the DRIVE-CLiQ component.\nNote:\nFor a component number = 1, a POWER ON of the Control Unit is required.\nRemedy: - Switch off the power supply of the specified DRIVE-CLiQ component and switch it on again.\n- For SINUMERIK, auto commissioning is prevented. In this case, a POWER ON is required for all components and the auto\ncommissioning must be restarted.",
+      "weak_record": {
+        "fault_code": "A01007",
+        "description": "POWER ON for DRIVE-CLiQ component required",
+        "component": null,
+        "related_components": [],
+        "causes_text": "A DRIVE-CLiQ component must be switched on again (POWER ON) (e.g. due to a firmware update).",
+        "parameters": [
+          "r2124"
+        ],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 426,
+        "pdf_page_end": 426,
+        "source_offset_start": 6001,
+        "source_offset_end": 6600,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01330",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "A01330 Topology: Commissioning not possible\nReaction: NONE\nAcknowledge: NONE\nCause: Unable to carry out commissioning. The actual topology does not fulfill the requirements.\nRemedy: - check the OCC cable between the converter and motor.\n- carry out a POWER ON (switch-off/switch-on).\n- Check that the connected hardware is supported.\nNote:\nOCC: One Cable Connection (one cable system)\n436 Operating Instructions, 01/2019, A5E41702836B AC",
+      "weak_record": {
+        "fault_code": "A01330",
+        "description": "Topology: Commissioning not possible",
+        "component": null,
+        "related_components": [],
+        "causes_text": "Unable to carry out commissioning. The actual topology does not fulfill the requirements.",
+        "parameters": [],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 438,
+        "pdf_page_end": 439,
+        "source_offset_start": 35807,
+        "source_offset_end": 36327,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01707",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "A01707 SI Motion P1: Tolerance for safe operating stop exceeded\nReaction: NONE\nAcknowledge: NONE\nCause: The actual position has moved further away from the target position than the standstill tolerance.\nThe drive is stopped by message F01701.\nRemedy: - check whether safety faults are present and if required carry out the appropriate diagnostic routines for the particular faults.\n- check whether the standstill tolerance matches the accuracy and control dynamic performance of the axis.\n- carry out a POWER ON (switch-off/switch-on).\nNote:\nSI: Safety Integrated\nSOS: Safe Operating Stop\nSee also: p9530 (SI Motion standstill tolerance)",
+      "weak_record": {
+        "fault_code": "A01707",
+        "description": "SI Motion P1: Tolerance for safe operating stop exceeded",
+        "component": null,
+        "related_components": [],
+        "causes_text": "The actual position has moved further away from the target position than the standstill tolerance. The drive is stopped by message F01701.",
+        "parameters": [
+          "p9530"
+        ],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 463,
+        "pdf_page_end": 463,
+        "source_offset_start": 92451,
+        "source_offset_end": 93089,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01796",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "A01796 SI P1: Wait for communication\nReaction: NONE\nAcknowledge: NONE\nCause: The drive waits for communication to be established to execute the safety-relevant motion monitoring functions.\nNote:\nSTO is active in this state.\nAlarm value (r2124, interpret decimal):\n3: Wait for communication to be established to PROFIsafe F-Host.\nRemedy: If the message is not automatically withdrawn after a longer period of time, then carry out the following checks:\n- check any other PROFIsafe communication messages/signals present and evaluate them.\n- check the operating state of the F-Host.\n- check the communication connection to the F Host.\nNote:\nSTO: Safe Torque Off\nSee also: p9601 (SI enable, functions integrated in the drive)",
+      "weak_record": {
+        "fault_code": "A01796",
+        "description": "SI P1: Wait for communication",
+        "component": null,
+        "related_components": [],
+        "causes_text": "The drive waits for communication to be established to execute the safety-relevant motion monitoring functions.",
+        "parameters": [
+          "r2124",
+          "p9601"
+        ],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 473,
+        "pdf_page_end": 473,
+        "source_offset_start": 117863,
+        "source_offset_end": 118585,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01989",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "A01989 PN: internal cyclic data transfer error\nReaction: NONE\nAcknowledge: NONE\nCause: The cyclic actual values and/or setpoints were not transferred within the specified times.\nAlarm value (r2124, interpret hexadecimal):\nOnly for internal Siemens troubleshooting.\nRemedy: Correctly set T_io_input or T_io_output.",
+      "weak_record": {
+        "fault_code": "A01989",
+        "description": "PN: internal cyclic data transfer error",
+        "component": null,
+        "related_components": [],
+        "causes_text": "The cyclic actual values and/or setpoints were not transferred within the specified times.",
+        "parameters": [
+          "r2124"
+        ],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 479,
+        "pdf_page_end": 479,
+        "source_offset_start": 132265,
+        "source_offset_end": 132579,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A08800",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "A08800 PROFIenergy energy-saving mode active\nReaction: NONE\nAcknowledge: NONE\nCause: The PROFIenergy energy-saving mode is active\nAlarm value (r2124, interpret decimal):\nMode ID of the active PROFIenergy energy-saving mode.\nSee also: r5600 (Pe energy-saving mode ID)\nRemedy: The alarm is automatically withdrawn when the energy-saving mode is exited.\nNote:\nThe energy-saving mode is exited after the following events:\n- the PROFIenergy command end_pause is received from the higher-level control.\n- the higher-level control has changed into the STOP operating state.\n- the PROFINET connection to the higher-level control has been disconnected.",
+      "weak_record": {
+        "fault_code": "A08800",
+        "description": "PROFIenergy energy-saving mode active",
+        "component": null,
+        "related_components": [],
+        "causes_text": "The PROFIenergy energy-saving mode is active",
+        "parameters": [
+          "r2124",
+          "r5600"
+        ],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 491,
+        "pdf_page_end": 491,
+        "source_offset_start": 160226,
+        "source_offset_end": 160870,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A30076",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "A30076 Power unit: thermal overload internal braking resistor alarm\nReaction: NONE\nAcknowledge: NONE\nCause: The energy absorbed by the internal braking resistor has exceeded the alarm threshold of 80 %. If the power unit is still\noperated in the generator mode, then this can reach the shutdown threshold. To avoid overheating of the braking resistor,\nuse of the braking resistor is inhibited and alarm A30077 is output.\nAlarm value (r2124, interpret decimal):\nEnergy absorbed by the braking resistor [Ws].\nRemedy: Reduce the power when generating.\nNote:\nFor a DC link coupling, the generating power of all of the coupled power units must be taken into consideration.",
+      "weak_record": {
+        "fault_code": "A30076",
+        "description": "Power unit: thermal overload internal braking resistor alarm",
+        "component": null,
+        "related_components": [],
+        "causes_text": "The energy absorbed by the internal braking resistor has exceeded the alarm threshold of 80 %. If the power unit is still operated in the generator mode, then this can reach the shutdown threshold. To avoid overheating of the braking resistor, use of the braking resistor is inhibited and alarm A30077 is output.",
+        "parameters": [
+          "r2124"
+        ],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 506,
+        "pdf_page_end": 506,
+        "source_offset_start": 191846,
+        "source_offset_end": 192514,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A31700",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "A31700 Encoder 1: Functional safety monitoring initiated\nReaction: NONE\nAcknowledge: NONE\nCause: Functional safety was activated. Self-test of the DRIVE-CLiQ encoder has detected a fault.\nAlarm value (r2124, interpret binary):\nBit x = 1: Effectivity test x unsuccessful.\nRemedy: Replace encoder.",
+      "weak_record": {
+        "fault_code": "A31700",
+        "description": "Encoder 1: Functional safety monitoring initiated",
+        "component": null,
+        "related_components": [],
+        "causes_text": "Functional safety was activated. Self-test of the DRIVE-CLiQ encoder has detected a fault.",
+        "parameters": [
+          "r2124"
+        ],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 530,
+        "pdf_page_end": 530,
+        "source_offset_start": 244125,
+        "source_offset_end": 244421,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01001",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "F01001 FloatingPoint exception\nReaction: OFF2\nAcknowledge: POWER ON\nCause: An exception occurred during an operation with the FloatingPoint data type.\nThe error may be caused by the basic system or a technology function (e.g. FBLOCKS, DCC, TEC).\nFault value (r0949, interpret hexadecimal):\nOnly for internal Siemens troubleshooting.\nNote:\nRefer to r9999 for further information about this fault.\nr9999[0]: Fault number.\nr9999[1]: Program counter at the time when the exception occurred.\nr9999[2]: Cause of the FloatingPoint exception.\nBit 0 = 1: Operation invalid\nBit 1 = 1: Division by zero\nBit 2 = 1: Overflow\nBit 3 = 1: Underflow\nBit 4 = 1: Inaccurate result\nRemedy: - carry out a POWER ON (switch-off/switch-on) for all components.\n- check configuration and signals of the blocks in FBLOCKS.\n- check configuration and signals of DCC charts.\n- check configuration and signals of TEC charts.\n- upgrade firmware to later version.\n- contact Technical Support.",
+      "weak_record": {
+        "fault_code": "F01001",
+        "description": "FloatingPoint exception",
+        "component": null,
+        "related_components": [],
+        "causes_text": "An exception occurred during an operation with the FloatingPoint data type. The error may be caused by the basic system or a technology function (e.g. FBLOCKS, DCC, TEC).",
+        "parameters": [
+          "r0949",
+          "r9999"
+        ],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 423,
+        "pdf_page_end": 423,
+        "source_offset_start": 631,
+        "source_offset_end": 1591,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01030",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "F01030 Sign-of-life failure for master control\nReaction: OFF3\nAcknowledge: IMMEDIATELY\nCause: For active PC master control, no sign-of-life was received within the monitoring time.\nThe master control was returned to the active BICO interconnection.\nRemedy: Set the monitoring time higher at the PC or, if required, completely disable the monitoring function.\nThe monitoring time is set as follows using the commissioning tool:\n<Drive> -> Commissioning -> Control panel -> Button \"Fetch master control\" -> A window is displayed to set the monitoring\ntime in milliseconds.\nNotice:\nThe monitoring time should be set as short as possible. A long monitoring time means a late response when the\ncommunication fails!",
+      "weak_record": {
+        "fault_code": "F01030",
+        "description": "Sign-of-life failure for master control",
+        "component": null,
+        "related_components": [],
+        "causes_text": "For active PC master control, no sign-of-life was received within the monitoring time. The master control was returned to the active BICO interconnection.",
+        "parameters": [],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 428,
+        "pdf_page_end": 428,
+        "source_offset_start": 11911,
+        "source_offset_end": 12621,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01043",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "F01043 Fatal error at project download\nReaction: NONE\nAcknowledge: IMMEDIATELY\nCause: A fatal error was detected when downloading a project using the commissioning tool.\nFault value (r0949, interpret decimal):\n1: Device status cannot be changed to Device Download (drive object ON?).\n2: Incorrect drive object number.\n3: A drive object that has already been deleted is deleted again.\n4: Deleting of a drive object that has already been registered for generation.\n5: Deleting a drive object that does not exist.\n6: Generating an undeleted drive object that already existed.\n7: Regenerating a drive object already registered for generation.\n8: Maximum number of drive objects that can be generated exceeded.\n9: Error while generating a device drive object.\n10: Error while generating target topology parameters (p9902 and p9903).\n11: Error while generating a drive object (global component).\n12: Error while generating a drive object (drive component).\n13: Unknown drive object type.\n14: Drive status cannot be changed to \"ready for operation\" (r0947 and r0949).\n15: Drive status cannot be changed to drive download.\n16: Device status cannot be changed to \"ready for operation\".\n17: It is not possible to download the topology. The component wiring should be checked, taking into account the various\nmessages/signals.\n18: A new download is only possible if the factory settings are restored for the drive unit.\n19: The slot for the option module has been configured several times (e.g. CAN and COMM BOARD)\n20: The configuration is inconsistent (e.g. CAN for Control Unit, however no CAN configured for drive objects A_INF,\nSERVO or VECTOR).\n21: Error when accepting the download parameters.\n22: Software-internal download error.\n23: download not possible when know-how protection is activated.\n24: download not possible during a partial power up after inserting a component.\n25: The configuration is inconsistent. Know-how protection is either not activated or only partially.\nAdditional values:\nOnly for internal Siemens troubleshooting.\nRemedy: - use the current version of the commissioning tool.\n- modify the offline project and carry out a new download (e.g. compare the number of drive objects, motor, encoder, power\nunit in the offline project and at the drive).\n- change the drive state (is a drive rotating or is there a message/signal?).\n- carefully note any other active messages/signals and remove their cause (e.g. correct any incorrectly set parameters).\n- automatically calculate the control parameters (p0340). Then set p0010 = 0.\n- boot from previously saved files (switch-off/switch-on or p0976).\n- before a new download, restore the factory setting if the know-how protection was not activated on all drive objects.",
+      "weak_record": {
+        "fault_code": "F01043",
+        "description": "Fatal error at project download",
+        "component": null,
+        "related_components": [],
+        "causes_text": "A fatal error was detected when downloading a project using the commissioning tool.",
+        "parameters": [
+          "r0949",
+          "p9902",
+          "p9903",
+          "r0947",
+          "p0340",
+          "p0010",
+          "p0976"
+        ],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 433,
+        "pdf_page_end": 434,
+        "source_offset_start": 22532,
+        "source_offset_end": 25400,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01250",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "F01250 CU: CU-EEPROM incorrect read-only data\nReaction: NONE\nAcknowledge: POWER ON\nCause: Error when reading the read-only data of the EEPROM in the Control Unit.\nFault value (r0949, interpret decimal):\nOnly for internal Siemens troubleshooting.\nRemedy: - carry out a POWER ON (switch-off/switch-on).\n- replace the Control Unit.",
+      "weak_record": {
+        "fault_code": "F01250",
+        "description": "CU: CU-EEPROM incorrect read-only data",
+        "component": null,
+        "related_components": [],
+        "causes_text": "Error when reading the read-only data of the EEPROM in the Control Unit.",
+        "parameters": [
+          "r0949"
+        ],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 437,
+        "pdf_page_end": 438,
+        "source_offset_start": 33993,
+        "source_offset_end": 34457,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01651",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "F01651 SI P1: Synchronization safety time slices unsuccessful\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The \"Safety Integrated\" function requires a synchronization of the safety time slices between the two monitoring channels\nand between the drive and the higher-level control. This synchronization routine was unsuccessful.\nNote:\nThis fault results in an STO that cannot be acknowledged.\nRemedy: - carry out a POWER ON (switch-off/switch-on).\n- upgrade the drive software.\n- upgrade the software of the higher-level control.\nNote:\nSI: Safety Integrated\nSTO: Safe Torque Off",
+      "weak_record": {
+        "fault_code": "F01651",
+        "description": "SI P1: Synchronization safety time slices unsuccessful",
+        "component": null,
+        "related_components": [],
+        "causes_text": "The \"Safety Integrated\" function requires a synchronization of the safety time slices between the two monitoring channels and between the drive and the higher-level control. This synchronization routine was unsuccessful.",
+        "parameters": [],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 448,
+        "pdf_page_end": 448,
+        "source_offset_start": 58168,
+        "source_offset_end": 58748,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01671",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "F01671 SI Motion: Parameterization encoder error\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The parameterization of the encoder used by Safety Integrated is different to the parameterization of the standard encoder.\nNote:\nThis fault does not result in a safety stop response.\nFault value (r0949, interpret decimal):\nParameter number of the non-corresponding safety parameter.\nRemedy: Align the encoder parameterization between the safety encoder and the standard encoder.\nNote:\nSI: Safety Integrated",
+      "weak_record": {
+        "fault_code": "F01671",
+        "description": "SI Motion: Parameterization encoder error",
+        "component": null,
+        "related_components": [],
+        "causes_text": "The parameterization of the encoder used by Safety Integrated is different to the parameterization of the standard encoder.",
+        "parameters": [
+          "r0949"
+        ],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 453,
+        "pdf_page_end": 453,
+        "source_offset_start": 69961,
+        "source_offset_end": 70465,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01683",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "F01683 SI Motion P1: SOS/SLS enable missing\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The safety-relevant basic function \"SOS/SLS\" is not enabled in p9501 although other safety-relevant monitoring functions\nare enabled.\nNote:\nThis fault does not result in a safety stop response.\nRemedy: Enable the function \"SOS/SLS\" (p9501.0) and carry out a POWER ON.\nNote:\nSI: Safety Integrated\nSLS: Safely-Limited Speed\nSOS: Safe Operating Stop\nSee also: p9501 (SI Motion enable safety functions)",
+      "weak_record": {
+        "fault_code": "F01683",
+        "description": "SI Motion P1: SOS/SLS enable missing",
+        "component": null,
+        "related_components": [],
+        "causes_text": "The safety-relevant basic function \"SOS/SLS\" is not enabled in p9501 although other safety-relevant monitoring functions are enabled.",
+        "parameters": [
+          "p9501"
+        ],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 458,
+        "pdf_page_end": 458,
+        "source_offset_start": 80912,
+        "source_offset_end": 81402,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01910",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "F01910 Fieldbus: setpoint timeout\nReaction: OFF3\nAcknowledge: IMMEDIATELY\n474 Operating Instructions, 01/2019, A5E41702836B AC\nCause: The reception of setpoints from the fieldbus interface (onboard, PROFIBUS/PROFINET/USS) has been interrupted.\n- bus connection interrupted.\n- controller switched off.\n- controller set into the STOP state.\nRemedy: Restore the bus connection and set the controller to RUN.\nNote regarding PROFIBUS slave redundancy:\nFor operation on a Y link, it must be ensured that \"DP alarm mode = DPV1\" is set in the slave parameterization.",
+      "weak_record": {
+        "fault_code": "F01910",
+        "description": "Fieldbus: setpoint timeout",
+        "component": null,
+        "related_components": [],
+        "causes_text": "The reception of setpoints from the fieldbus interface (onboard, PROFIBUS/PROFINET/USS) has been interrupted. - bus connection interrupted. - controller switched off. - controller set into the STOP state.",
+        "parameters": [],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 476,
+        "pdf_page_end": 477,
+        "source_offset_start": 125718,
+        "source_offset_end": 126359,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F07085",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "F07085 Drive: Open-loop/closed-loop control parameters changed\nReaction: NONE\nAcknowledge: IMMEDIATELY\nCause: Open-loop/closed-loop control parameters have had to be changed.\nPossible causes:\n1. As a result of other parameters, they have exceeded the dynamic limits.\n2. They cannot be used due to the fact that the hardware detected not having certain features.\n3. The value is estimated as the thermal time constant is missing.\n4. Motor temperature model 1 is activated as thermal motor protection is missing.\nSee also: p1082 (Maximum speed)\nRemedy: Not necessary.\nIt is not necessary to change the parameters as they have already been correctly limited.",
+      "weak_record": {
+        "fault_code": "F07085",
+        "description": "Drive: Open-loop/closed-loop control parameters changed",
+        "component": null,
+        "related_components": [],
+        "causes_text": "Open-loop/closed-loop control parameters have had to be changed.",
+        "parameters": [
+          "p1082"
+        ],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 481,
+        "pdf_page_end": 482,
+        "source_offset_start": 137555,
+        "source_offset_end": 138346,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F07575",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "F07575 Drive: Motor encoder not ready\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The motor encoder signals that it is not ready.\n- initialization of encoder 1 (motor encoder) was unsuccessful.\n- the function \"parking encoder\" is active (encoder control word G1_STW.14 = 1).\n- the encoder interface (Sensor Module) is deactivated (p0145).\n- the Sensor Module is defective.\nRemedy: Evaluate other queued faults via encoder 1.",
+      "weak_record": {
+        "fault_code": "F07575",
+        "description": "Drive: Motor encoder not ready",
+        "component": null,
+        "related_components": [],
+        "causes_text": "The motor encoder signals that it is not ready. - initialization of encoder 1 (motor encoder) was unsuccessful. - the function \"parking encoder\" is active (encoder control word G1_STW.14 = 1). - the encoder interface (Sensor Module) is deactivated (p0145). - the Sensor Module is defective.",
+        "parameters": [
+          "p0145"
+        ],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 487,
+        "pdf_page_end": 487,
+        "source_offset_start": 152006,
+        "source_offset_end": 152434,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F13000",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "F13000 License not adequate\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: - for the drive unit, the options that require a license are being used but the licenses are not sufficient.\n- an error occurred when checking the existing licenses.\nFault value (r0949, decimal interpretation):\n0:\nThe existing license is not sufficient.\n1:\nAn adequate license was not able to be determined as the memory card with the required licensing data was withdrawn in\noperation.\n2:\nAn adequate license was not able to be determined as there is no licensing data available on the memory card.\n3:\nAn adequate license was not able to be determined as there is a checksum error in the license key.\n4:\nAn internal error occurred when checking the license.\nRemedy: For fault value = 0:\nAdditional licenses are required and these must be activated (p9920, p9921).\nFor fault value = 1:\nWith the system powered down, re-insert the memory card that matches the system.\nFor fault value = 2:\nEnter and activate the license key (p9920, p9921).\nFor fault value = 3:\nCompare the license key (p9920) entered with the license key on the certificate of license.\nRe-enter the license key and activate (p9920, p9921).\nFor fault value = 4:\n- carry out a POWER ON.\n- upgrade firmware to later version.\n- contact Technical Support.\nNote:\nAn overview of the drive device functions requiring a license can be displayed using a commissioning tool in the online\nmode. Depending on the commissioning tool, you can obtain the necessary licenses (serial number, license Key, Trial\nLicense Mode).",
+      "weak_record": {
+        "fault_code": "F13000",
+        "description": "License not adequate",
+        "component": null,
+        "related_components": [],
+        "causes_text": "- for the drive unit, the options that require a license are being used but the licenses are not sufficient. - an error occurred when checking the existing licenses.",
+        "parameters": [
+          "r0949",
+          "p9920",
+          "p9921"
+        ],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 491,
+        "pdf_page_end": 492,
+        "source_offset_start": 161194,
+        "source_offset_end": 162878,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30004",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "F30004 Power unit: Overtemperature heat sink AC inverter\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The temperature of the power unit heat sink has exceeded the permissible limit value.\n- insufficient cooling, fan failure.\n- overload.\n- ambient temperature too high.\n- pulse frequency too high.\nFault value (r0949, interpret decimal):\nTemperature [0.01 °C].\nRemedy: - check whether the fan is running.\n- check the fan elements.\n- check whether the ambient temperature is in the permissible range.\n- check the motor load.\n- reduce the pulse frequency if this is higher than the rated pulse frequency.\nNotice:\nThis fault can only be acknowledged after the alarm threshold for alarm A05000 has been undershot.",
+      "weak_record": {
+        "fault_code": "F30004",
+        "description": "Power unit: Overtemperature heat sink AC inverter",
+        "component": null,
+        "related_components": [],
+        "causes_text": "The temperature of the power unit heat sink has exceeded the permissible limit value. - insufficient cooling, fan failure. - overload. - ambient temperature too high. - pulse frequency too high.",
+        "parameters": [
+          "r0949"
+        ],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 496,
+        "pdf_page_end": 496,
+        "source_offset_start": 171249,
+        "source_offset_end": 171960,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30025",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "F30025 Power unit: Chip overtemperature\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The chip temperature of the semiconductor has exceeded the permissible limit value.\n- the permissible load duty cycle was not maintained.\n- insufficient cooling, fan failure.\n- overload.\n- ambient temperature too high.\n- pulse frequency too high.\nFault value (r0949, interpret decimal):\nTemperature difference between the heat sink and chip [0.01 °C].\nRemedy: - adapt the load duty cycle.\n- check whether the fan is running.\n- check the fan elements.\n- check whether the ambient temperature is in the permissible range.\n- check the motor load.\n- reduce the pulse frequency if this is higher than the rated pulse frequency.\nNotice:\nThis fault can only be acknowledged after the alarm threshold for alarm A05001 has been undershot.\nSee also: r0037 (Drive temperatures)",
+      "weak_record": {
+        "fault_code": "F30025",
+        "description": "Power unit: Chip overtemperature",
+        "component": null,
+        "related_components": [],
+        "causes_text": "The chip temperature of the semiconductor has exceeded the permissible limit value. - the permissible load duty cycle was not maintained. - insufficient cooling, fan failure. - overload. - ambient temperature too high. - pulse frequency too high.",
+        "parameters": [
+          "r0949",
+          "r0037"
+        ],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 499,
+        "pdf_page_end": 500,
+        "source_offset_start": 177904,
+        "source_offset_end": 178893,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30068",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "F30068 Power unit: undertemperature inverter heat sink\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The actual inverter heat sink temperature is below the permissible minimum value.\nPossible causes:\n- the power unit is being operated at an ambient temperature that lies below the permissible range.\n- the temperature sensor evaluation is defective.\nFault value (r0949, interpret decimal):\nInverter heat sink temperature [0.1 °C].\nRemedy: - ensure that higher ambient temperatures prevail.\n- replace the power unit.",
+      "weak_record": {
+        "fault_code": "F30068",
+        "description": "Power unit: undertemperature inverter heat sink",
+        "component": null,
+        "related_components": [],
+        "causes_text": "The actual inverter heat sink temperature is below the permissible minimum value.",
+        "parameters": [
+          "r0949"
+        ],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 506,
+        "pdf_page_end": 506,
+        "source_offset_start": 190698,
+        "source_offset_end": 191215,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30651",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "F30651 SI P2: synchronization with monitoring channel 1 unsuccessful\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The \"Safety Integrated\" function requires synchronization of the safety time slices in both monitoring channels. This\nsynchronization routine was unsuccessful.\nNote:\nThis fault results in an STO that cannot be acknowledged.\nFault value (r0949, interpret decimal):\nOnly for internal Siemens troubleshooting.\nRemedy: - carry out a POWER ON (switch-off/switch-on).\n- upgrade the drive software.\nNote:\nSI: Safety Integrated\nSTO: Safe Torque Off",
+      "weak_record": {
+        "fault_code": "F30651",
+        "description": "SI P2: synchronization with monitoring channel 1 unsuccessful",
+        "component": null,
+        "related_components": [],
+        "causes_text": "The \"Safety Integrated\" function requires synchronization of the safety time slices in both monitoring channels. This synchronization routine was unsuccessful.",
+        "parameters": [
+          "r0949"
+        ],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 512,
+        "pdf_page_end": 512,
+        "source_offset_start": 205241,
+        "source_offset_end": 205798,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30683",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "F30683 SI Motion P2: SOS/SLS enable missing\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The safety-relevant basic function \"SOS/SLS\" is not enabled, although other safety-relevant monitoring functions are\nenabled.\nNote:\nThis message does not result in a safety stop response.\nRemedy: Using the commissioning tool, copy the safety parameters, confirm the data change and carry out a power on.\nNote:\nSI: Safety Integrated\nSLS: Safely-Limited Speed\nSOS: Safe Operating Stop",
+      "weak_record": {
+        "fault_code": "F30683",
+        "description": "SI Motion P2: SOS/SLS enable missing",
+        "component": null,
+        "related_components": [],
+        "causes_text": "The safety-relevant basic function \"SOS/SLS\" is not enabled, although other safety-relevant monitoring functions are enabled.",
+        "parameters": [],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 516,
+        "pdf_page_end": 516,
+        "source_offset_start": 212988,
+        "source_offset_end": 213462,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31135",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "F31135 Encoder 1: Fault when determining the position (single turn)\nReaction: ENCODER\nAcknowledge: PULSE INHIBIT\n522 Operating Instructions, 01/2019, A5E41702836B AC\nCause: The encoder has identified a position determination fault (singleturn) and supplies status information bit by bit in an internal\nstatus/fault word.\nSome of these bits cause this fault to be triggered. Other bits are status displays. The status/fault word is displayed in the\nfault value.\nNote regarding the bit designation:\nThe first designation is valid for DRIVE-CLiQ encoders, the second for EnDat 2.2 encoders.\nFault value (r0949, interpret binary):\nBit 0: F1 (safety status display).\nBit 1: F2 (safety status display).\nBit 2: Reserved (lighting).\nBit 3: Reserved (signal amplitude).\nBit 4: Reserved (position value).\nBit 5: Reserved (overvoltage).\nBit 6: Reserved (undervoltage)/hardware fault EnDat supply (--> F3x110, x = 1, 2, 3).\nBit 7: Reserved (overcurrent)/EnDat encoder withdrawn when not in the parked state (--> F3x110, x = 1, 2, 3).\nBit 8: Reserved (battery)/overcurrent EnDat supply (--> F3x110, x = 1, 2, 3).\nBit 9: Reserved/overvoltage EnDat supply (--> F3x110, x = 1, 2, 3).\nBit 11: Reserved/internal communication error (--> F3x110, x = 1, 2, 3).\nBit 12: Reserved/internal communication error (--> F3x110, x = 1, 2, 3).\nBit 13: Reserved/internal communication error (--> F3x110, x = 1, 2, 3).\nBit 14: Reserved/internal communication error (--> F3x110, x = 1, 2, 3).\nBit 15: Internal communication error (--> F3x110, x = 1, 2, 3).\nBit 16: Lighting (--> F3x135, x = 1, 2, 3).\nBit 17: Signal amplitude (--> F3x135, x = 1, 2, 3).\nBit 18: Singleturn position 1 (--> F3x135, x = 1, 2, 3).\nBit 19: Overvoltage (--> F3x135, x = 1, 2, 3).\nBit 20: Undervoltage (--> F3x135, x = 1, 2, 3).\nBit 21: Overcurrent (--> F3x135, x = 1, 2, 3).\nBit 22: Temperature exceeded (--> F3x405, x = 1, 2, 3).\nBit 23: Singleturn position 2 (safety status display).\nBit 24: Singleturn system (--> F3x135, x = 1, 2, 3).\nBit 25: Singleturn power down (--> F3x135, x = 1, 2, 3)\nBit 26: Multiturn position 1 (--> F3x136, x = 1, 2, 3).\nBit 27: Multiturn position 2 (--> F3x136, x = 1, 2, 3).\nBit 28: Multiturn system (--> F3x136, x = 1, 2, 3).\nBit 29: Multiturn power down (--> F3x136, x = 1, 2, 3).\nBit 30: Multiturn overflow/underflow (--> F3x136, x = 1, 2, 3).\nBit 31: Multiturn battery (reserved).\nRemedy: - determine the detailed cause of the fault using the fault value.\n- replace the encoder if necessary.\nNote:\nAn EnDat 2.2 encoder may only be removed and inserted in the \"Park\" state.\nIf an EnDat 2.2 encoder was removed when not in the \"Park\" state, then after inserting the encoder, a POWER ON (switch-\noff/switch-on) is necessary to acknowledge the fault.",
+      "weak_record": {
+        "fault_code": "F31135",
+        "description": "Encoder 1: Fault when determining the position (single turn)",
+        "component": null,
+        "related_components": [],
+        "causes_text": "The encoder has identified a position determination fault (singleturn) and supplies status information bit by bit in an internal status/fault word. Some of these bits cause this fault to be triggered. Other bits are status displays. The status/fault word is displayed in the fault value.",
+        "parameters": [
+          "r0949"
+        ],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 524,
+        "pdf_page_end": 525,
+        "source_offset_start": 230580,
+        "source_offset_end": 233389,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31804",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "F31804 Encoder 1: Sensor Module checksum error\nReaction: ENCODER\nAcknowledge: POWER ON\nCause: A checksum error has occurred when reading-out the program memory on the Sensor Module.\nFault value (r0949, interpret hexadecimal):\nyyyyxxxx hex\nyyyy: Memory area involved.\nxxxx: Difference between the checksum at POWER ON and the actual checksum.\nRemedy: - carry out a POWER ON (switch-off/switch-on).\n- upgrade firmware to later version (>= V2.6 HF3, >= V4.3 SP2, >= V4.4).\n- check whether the permissible ambient temperature for the component is maintained.\n- replace the Sensor Module.",
+      "weak_record": {
+        "fault_code": "F31804",
+        "description": "Encoder 1: Sensor Module checksum error",
+        "component": null,
+        "related_components": [],
+        "causes_text": "A checksum error has occurred when reading-out the program memory on the Sensor Module.",
+        "parameters": [
+          "r0949"
+        ],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 531,
+        "pdf_page_end": 531,
+        "source_offset_start": 245835,
+        "source_offset_end": 246419,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31850",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "F31850 Encoder 1: Encoder evaluation internal software error\nReaction: ENCODER\nAcknowledge: POWER ON\n532 Operating Instructions, 01/2019, A5E41702836B AC\nCause: An internal software error has occurred in the Sensor Module of encoder 1.\nFault value (r0949, interpret decimal):\n1: Background time slice is blocked.\n2: Checksum over the code memory is not OK.\n10000: OEM memory of the EnDat encoder contains data that cannot be interpreted.\n11000 ... 11499: Descriptive data from EEPROM incorrect.\n11500 ... 11899: Calibration data from EEPROM incorrect.\n11900 ... 11999: Configuration data from EEPROM incorrect.\n12000 ... 12008: communication with analog/digital converter faulted.\n16000: DRIVE-CLiQ encoder initialization application error.\n16001: DRIVE-CLiQ encoder initialization ALU error.\n16002: DRIVE-CLiQ encoder HISI / SISI initialization error.\n16003: DRIVE-CLiQ encoder safety initialization error.\n16004: DRIVE-CLiQ encoder internal system error.\nRemedy: - replace the Sensor Module.\n- if required, upgrade the firmware in the Sensor Module.\n- contact Technical Support.",
+      "weak_record": {
+        "fault_code": "F31850",
+        "description": "Encoder 1: Encoder evaluation internal software error",
+        "component": null,
+        "related_components": [],
+        "causes_text": "An internal software error has occurred in the Sensor Module of encoder 1.",
+        "parameters": [
+          "r0949"
+        ],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 534,
+        "pdf_page_end": 535,
+        "source_offset_start": 253536,
+        "source_offset_end": 254699,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31950",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "F31950 Encoder 1: Internal software error\nReaction: ENCODER\nAcknowledge: POWER ON\n536 Operating Instructions, 01/2019, A5E41702836B AC\nCause: An internal software error has occurred.\nFault value (r0949, interpret decimal):\nThe fault value contains information regarding the fault source.\nOnly for internal Siemens troubleshooting.\nRemedy: - if necessary, upgrade the firmware in the Sensor Module to a later version.\n- contact Technical Support.",
+      "weak_record": {
+        "fault_code": "F31950",
+        "description": "Encoder 1: Internal software error",
+        "component": null,
+        "related_components": [],
+        "causes_text": "An internal software error has occurred.",
+        "parameters": [
+          "r0949"
+        ],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 538,
+        "pdf_page_end": 539,
+        "source_offset_start": 262507,
+        "source_offset_end": 263035,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_N01620",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "N01620 SI P1: Safe Torque Off active\nReaction: NONE\nAcknowledge: NONE\nCause: The \"Safe Torque Off\" (STO) function of the basic functions has been selected in monitoring channel 1 using the input\nterminal and is active.\nNote:\n- this message does not result in a safety stop response.\n- this message is not output when STO is selected using the Extended Functions.\nRemedy: Not necessary.\nNote:\nSI: Safety Integrated\nSTO: Safe Torque Off",
+      "weak_record": {
+        "fault_code": "N01620",
+        "description": "SI P1: Safe Torque Off active",
+        "component": null,
+        "related_components": [],
+        "causes_text": "The \"Safe Torque Off\" (STO) function of the basic functions has been selected in monitoring channel 1 using the input terminal and is active.",
+        "parameters": [],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 443,
+        "pdf_page_end": 443,
+        "source_offset_start": 48022,
+        "source_offset_end": 48457,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_N30621",
+      "split": "expert_review_sample",
+      "source_type": "public_manual_fault_corpus",
+      "input_text": "N30621 SI P2: Safe Stop 1 active\nReaction: NONE\nAcknowledge: NONE\nCause: The \"Safe Stop 1\" function (SS1) was selected in monitoring channel 2 and is active.\nNote:\nThis message does not result in a safety stop response.\nRemedy: Not necessary.\nNote:\nSI: Safety Integrated\nSS1: Safe Stop 1",
+      "weak_record": {
+        "fault_code": "N30621",
+        "description": "SI P2: Safe Stop 1 active",
+        "component": null,
+        "related_components": [],
+        "causes_text": "The \"Safe Stop 1\" function (SS1) was selected in monitoring channel 2 and is active.",
+        "parameters": [],
+        "gate_type": null
+      },
+      "annotation": {
+        "human_expert_reviewed": false,
+        "decision": null,
+        "reviewer_role": null,
+        "reviewer_name": null,
+        "review_date": null,
+        "corrected_fields": [],
+        "review_note": null,
+        "logic_status": "unknown"
+      },
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 509,
+        "pdf_page_end": 510,
+        "source_offset_start": 199753,
+        "source_offset_end": 200176,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19"
+      }
+    }
+  ]
+}

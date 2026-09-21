@@ -1,0 +1,316 @@
+{
+  "summary": {
+    "samples_evaluated": 27,
+    "predict_mode": "api",
+    "split_filter": "test",
+    "legality_rate": 1.0,
+    "hallucination_rate": 0.027933,
+    "fta_productivity_rate": 1.0,
+    "counts": {
+      "legal_ok": 27,
+      "hallucination_bad_fields": 5,
+      "hallucination_total_fields": 179,
+      "fta_ok": 27
+    },
+    "avg_latency_ms": 19548.59
+  },
+  "details": [
+    {
+      "sample_id": "PH-F01003",
+      "split": "test",
+      "source_type": "project_handbook_sample",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 4,
+      "hallucinated_fields": 0,
+      "latency_ms": 13720,
+      "error": ""
+    },
+    {
+      "sample_id": "PH-F01014",
+      "split": "test",
+      "source_type": "project_handbook_sample",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 6,
+      "hallucinated_fields": 1,
+      "latency_ms": 28449,
+      "error": ""
+    },
+    {
+      "sample_id": "PH-F01015",
+      "split": "test",
+      "source_type": "project_handbook_sample",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 4,
+      "hallucinated_fields": 0,
+      "latency_ms": 6532,
+      "error": ""
+    },
+    {
+      "sample_id": "PH-F01020",
+      "split": "test",
+      "source_type": "project_handbook_sample",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 5,
+      "hallucinated_fields": 0,
+      "latency_ms": 26382,
+      "error": ""
+    },
+    {
+      "sample_id": "PH-F01023",
+      "split": "test",
+      "source_type": "project_handbook_sample",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 6,
+      "hallucinated_fields": 0,
+      "latency_ms": 11262,
+      "error": ""
+    },
+    {
+      "sample_id": "PH-A01013",
+      "split": "test",
+      "source_type": "project_handbook_sample",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 5,
+      "hallucinated_fields": 0,
+      "latency_ms": 12482,
+      "error": ""
+    },
+    {
+      "sample_id": "PH-A01016",
+      "split": "test",
+      "source_type": "project_handbook_sample",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 6,
+      "hallucinated_fields": 0,
+      "latency_ms": 24650,
+      "error": ""
+    },
+    {
+      "sample_id": "PH-A01017",
+      "split": "test",
+      "source_type": "project_handbook_sample",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 5,
+      "hallucinated_fields": 0,
+      "latency_ms": 11791,
+      "error": ""
+    },
+    {
+      "sample_id": "PH-A01032",
+      "split": "test",
+      "source_type": "project_handbook_sample",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 5,
+      "hallucinated_fields": 0,
+      "latency_ms": 9382,
+      "error": ""
+    },
+    {
+      "sample_id": "PH-F01600",
+      "split": "test",
+      "source_type": "project_handbook_sample",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 10,
+      "hallucinated_fields": 0,
+      "latency_ms": 28225,
+      "error": ""
+    },
+    {
+      "sample_id": "PH-F01611",
+      "split": "test",
+      "source_type": "project_handbook_sample",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 5,
+      "hallucinated_fields": 0,
+      "latency_ms": 36709,
+      "error": ""
+    },
+    {
+      "sample_id": "PH-F01612",
+      "split": "test",
+      "source_type": "project_handbook_sample",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 6,
+      "hallucinated_fields": 1,
+      "latency_ms": 23100,
+      "error": ""
+    },
+    {
+      "sample_id": "PH-F01630",
+      "split": "test",
+      "source_type": "project_handbook_sample",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 6,
+      "hallucinated_fields": 0,
+      "latency_ms": 39896,
+      "error": ""
+    },
+    {
+      "sample_id": "PH-F01632",
+      "split": "test",
+      "source_type": "project_handbook_sample",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 6,
+      "hallucinated_fields": 1,
+      "latency_ms": 44388,
+      "error": ""
+    },
+    {
+      "sample_id": "PH-A01631",
+      "split": "test",
+      "source_type": "project_handbook_sample",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 6,
+      "hallucinated_fields": 0,
+      "latency_ms": 15268,
+      "error": ""
+    },
+    {
+      "sample_id": "PH-F01640",
+      "split": "test",
+      "source_type": "project_handbook_sample",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 8,
+      "hallucinated_fields": 0,
+      "latency_ms": 20282,
+      "error": ""
+    },
+    {
+      "sample_id": "PH-F01641",
+      "split": "test",
+      "source_type": "project_handbook_sample",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 5,
+      "hallucinated_fields": 0,
+      "latency_ms": 8013,
+      "error": ""
+    },
+    {
+      "sample_id": "PH-F01649",
+      "split": "test",
+      "source_type": "project_handbook_sample",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 4,
+      "hallucinated_fields": 0,
+      "latency_ms": 14638,
+      "error": ""
+    },
+    {
+      "sample_id": "PH-F01650",
+      "split": "test",
+      "source_type": "project_handbook_sample",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 13,
+      "hallucinated_fields": 0,
+      "latency_ms": 18571,
+      "error": ""
+    },
+    {
+      "sample_id": "PH-F01651",
+      "split": "test",
+      "source_type": "project_handbook_sample",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 7,
+      "hallucinated_fields": 0,
+      "latency_ms": 23269,
+      "error": ""
+    },
+    {
+      "sample_id": "PH-F01034",
+      "split": "test",
+      "source_type": "project_handbook_sample",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 5,
+      "hallucinated_fields": 1,
+      "latency_ms": 13999,
+      "error": ""
+    },
+    {
+      "sample_id": "PH-F01033",
+      "split": "test",
+      "source_type": "project_handbook_sample",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 12,
+      "hallucinated_fields": 0,
+      "latency_ms": 27648,
+      "error": ""
+    },
+    {
+      "sample_id": "PH-F01005",
+      "split": "test",
+      "source_type": "project_handbook_sample",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 17,
+      "hallucinated_fields": 0,
+      "latency_ms": 17790,
+      "error": ""
+    },
+    {
+      "sample_id": "PH-A01006",
+      "split": "test",
+      "source_type": "project_handbook_sample",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 6,
+      "hallucinated_fields": 0,
+      "latency_ms": 7675,
+      "error": ""
+    },
+    {
+      "sample_id": "PH-A01007",
+      "split": "test",
+      "source_type": "project_handbook_sample",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 4,
+      "hallucinated_fields": 0,
+      "latency_ms": 8063,
+      "error": ""
+    },
+    {
+      "sample_id": "PH-F01012",
+      "split": "test",
+      "source_type": "project_handbook_sample",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 9,
+      "hallucinated_fields": 1,
+      "latency_ms": 17744,
+      "error": ""
+    },
+    {
+      "sample_id": "PH-F01009",
+      "split": "test",
+      "source_type": "project_handbook_sample",
+      "legal": true,
+      "fta_productive": true,
+      "hallucination_total_fields": 4,
+      "hallucinated_fields": 0,
+      "latency_ms": 17884,
+      "error": ""
+    }
+  ]
+}

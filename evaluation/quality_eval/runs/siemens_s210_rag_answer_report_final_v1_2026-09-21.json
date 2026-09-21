@@ -1,0 +1,826 @@
+{
+  "dataset": "siemens_s210_rag_answer_evaluation_v1",
+  "query_count": 12,
+  "response_count": 12,
+  "missing_response_ids": [],
+  "unknown_response_ids": [],
+  "metrics": {
+    "fault_code_accuracy": 1.0,
+    "citation_validity": 1.0,
+    "citation_alignment": 1.0,
+    "answer_contract_pass_rate": 1.0
+  },
+  "manual_review_required": [
+    "unsupported_claims",
+    "cause_semantic_correctness",
+    "remedy_semantic_correctness",
+    "cross_fault_contamination"
+  ],
+  "per_query": [
+    {
+      "query_id": "RA001",
+      "fault_code_hit": true,
+      "mentioned_fault_codes": [
+        "A01009"
+      ],
+      "expected_fault_codes": [
+        "A01009"
+      ],
+      "citations": [
+        "A01009:E1",
+        "A01009:E3",
+        "A01009:E2",
+        "A01009:E4",
+        "A01009:E5",
+        "A01009:E6"
+      ],
+      "valid_citations": [
+        "A01009:E1",
+        "A01009:E3",
+        "A01009:E2",
+        "A01009:E4",
+        "A01009:E5",
+        "A01009:E6"
+      ],
+      "aligned_citations": [
+        "A01009:E1",
+        "A01009:E3",
+        "A01009:E2",
+        "A01009:E4",
+        "A01009:E5",
+        "A01009:E6"
+      ],
+      "citations_valid": true,
+      "citations_aligned": true,
+      "cited_evidence_fields": [
+        "cause",
+        "description",
+        "fault_code",
+        "parameter",
+        "primary_component",
+        "remedy"
+      ],
+      "required_evidence_fields": [
+        "cause",
+        "description",
+        "fault_code",
+        "remedy"
+      ],
+      "missing_evidence_fields": [],
+      "answer_contract_pass": true,
+      "manual_review_required": [
+        "unsupported_claims",
+        "cause_semantic_correctness",
+        "remedy_semantic_correctness",
+        "cross_fault_contamination"
+      ]
+    },
+    {
+      "query_id": "RA002",
+      "fault_code_hit": true,
+      "mentioned_fault_codes": [
+        "F30002"
+      ],
+      "expected_fault_codes": [
+        "F30002"
+      ],
+      "citations": [
+        "F30002:E1",
+        "F30002:E3",
+        "F30002:E2",
+        "F30002:E4",
+        "F30002:E5",
+        "F30002:E6",
+        "F30002:E10"
+      ],
+      "valid_citations": [
+        "F30002:E1",
+        "F30002:E3",
+        "F30002:E2",
+        "F30002:E4",
+        "F30002:E5",
+        "F30002:E6",
+        "F30002:E10"
+      ],
+      "aligned_citations": [
+        "F30002:E1",
+        "F30002:E3",
+        "F30002:E2",
+        "F30002:E4",
+        "F30002:E5",
+        "F30002:E6",
+        "F30002:E10"
+      ],
+      "citations_valid": true,
+      "citations_aligned": true,
+      "cited_evidence_fields": [
+        "cause",
+        "description",
+        "fault_code",
+        "primary_component",
+        "remedy"
+      ],
+      "required_evidence_fields": [
+        "cause",
+        "description",
+        "fault_code"
+      ],
+      "missing_evidence_fields": [],
+      "answer_contract_pass": true,
+      "manual_review_required": [
+        "unsupported_claims",
+        "cause_semantic_correctness",
+        "remedy_semantic_correctness",
+        "cross_fault_contamination"
+      ]
+    },
+    {
+      "query_id": "RA003",
+      "fault_code_hit": true,
+      "mentioned_fault_codes": [
+        "F01005"
+      ],
+      "expected_fault_codes": [
+        "F01005"
+      ],
+      "citations": [
+        "F01005:E1",
+        "F01005:E3",
+        "F01005:E2",
+        "F01005:E5",
+        "F01005:E20",
+        "F01005:E16",
+        "F01005:E17",
+        "F01005:E18",
+        "F01005:E4",
+        "F01005:E13",
+        "F01005:E21"
+      ],
+      "valid_citations": [
+        "F01005:E1",
+        "F01005:E3",
+        "F01005:E2",
+        "F01005:E5",
+        "F01005:E20",
+        "F01005:E16",
+        "F01005:E17",
+        "F01005:E18",
+        "F01005:E4",
+        "F01005:E13",
+        "F01005:E21"
+      ],
+      "aligned_citations": [
+        "F01005:E1",
+        "F01005:E3",
+        "F01005:E2",
+        "F01005:E5",
+        "F01005:E20",
+        "F01005:E16",
+        "F01005:E17",
+        "F01005:E18",
+        "F01005:E4",
+        "F01005:E13",
+        "F01005:E21"
+      ],
+      "citations_valid": true,
+      "citations_aligned": true,
+      "cited_evidence_fields": [
+        "alarm_value",
+        "cause",
+        "description",
+        "fault_code",
+        "parameter",
+        "primary_component",
+        "remedy"
+      ],
+      "required_evidence_fields": [
+        "cause",
+        "description",
+        "fault_code",
+        "parameter",
+        "remedy"
+      ],
+      "missing_evidence_fields": [],
+      "answer_contract_pass": true,
+      "manual_review_required": [
+        "unsupported_claims",
+        "cause_semantic_correctness",
+        "remedy_semantic_correctness",
+        "cross_fault_contamination"
+      ]
+    },
+    {
+      "query_id": "RA004",
+      "fault_code_hit": true,
+      "mentioned_fault_codes": [
+        "A01006"
+      ],
+      "expected_fault_codes": [
+        "A01006"
+      ],
+      "citations": [
+        "A01006:E1",
+        "A01006:E3",
+        "A01006:E2",
+        "A01006:E8",
+        "A01006:E5",
+        "A01006:E6",
+        "A01006:E7",
+        "A01006:E4",
+        "A01006:E9"
+      ],
+      "valid_citations": [
+        "A01006:E1",
+        "A01006:E3",
+        "A01006:E2",
+        "A01006:E8",
+        "A01006:E5",
+        "A01006:E6",
+        "A01006:E7",
+        "A01006:E4",
+        "A01006:E9"
+      ],
+      "aligned_citations": [
+        "A01006:E1",
+        "A01006:E3",
+        "A01006:E2",
+        "A01006:E8",
+        "A01006:E5",
+        "A01006:E6",
+        "A01006:E7",
+        "A01006:E4",
+        "A01006:E9"
+      ],
+      "citations_valid": true,
+      "citations_aligned": true,
+      "cited_evidence_fields": [
+        "alarm_value",
+        "cause",
+        "description",
+        "fault_code",
+        "parameter",
+        "primary_component",
+        "remedy"
+      ],
+      "required_evidence_fields": [
+        "cause",
+        "description",
+        "fault_code",
+        "parameter",
+        "remedy"
+      ],
+      "missing_evidence_fields": [],
+      "answer_contract_pass": true,
+      "manual_review_required": [
+        "unsupported_claims",
+        "cause_semantic_correctness",
+        "remedy_semantic_correctness",
+        "cross_fault_contamination"
+      ]
+    },
+    {
+      "query_id": "RA005",
+      "fault_code_hit": true,
+      "mentioned_fault_codes": [
+        "A01019"
+      ],
+      "expected_fault_codes": [
+        "A01019"
+      ],
+      "citations": [
+        "A01019:E1",
+        "A01019:E2",
+        "A01019:E3",
+        "A01019:E4"
+      ],
+      "valid_citations": [
+        "A01019:E1",
+        "A01019:E2",
+        "A01019:E3",
+        "A01019:E4"
+      ],
+      "aligned_citations": [
+        "A01019:E1",
+        "A01019:E2",
+        "A01019:E3",
+        "A01019:E4"
+      ],
+      "citations_valid": true,
+      "citations_aligned": true,
+      "cited_evidence_fields": [
+        "cause",
+        "description",
+        "fault_code",
+        "remedy"
+      ],
+      "required_evidence_fields": [
+        "cause",
+        "description",
+        "fault_code",
+        "remedy"
+      ],
+      "missing_evidence_fields": [],
+      "answer_contract_pass": true,
+      "manual_review_required": [
+        "unsupported_claims",
+        "cause_semantic_correctness",
+        "remedy_semantic_correctness",
+        "cross_fault_contamination"
+      ]
+    },
+    {
+      "query_id": "RA006",
+      "fault_code_hit": true,
+      "mentioned_fault_codes": [
+        "F01611"
+      ],
+      "expected_fault_codes": [
+        "F01611"
+      ],
+      "citations": [
+        "F01611:E1",
+        "F01611:E2",
+        "F01611:E3",
+        "F01611:E13",
+        "F01611:E43",
+        "F01611:E16",
+        "F01611:E32",
+        "F01611:E44"
+      ],
+      "valid_citations": [
+        "F01611:E1",
+        "F01611:E2",
+        "F01611:E3",
+        "F01611:E13",
+        "F01611:E43",
+        "F01611:E16",
+        "F01611:E32",
+        "F01611:E44"
+      ],
+      "aligned_citations": [
+        "F01611:E1",
+        "F01611:E2",
+        "F01611:E3",
+        "F01611:E13",
+        "F01611:E43",
+        "F01611:E16",
+        "F01611:E32",
+        "F01611:E44"
+      ],
+      "citations_valid": true,
+      "citations_aligned": true,
+      "cited_evidence_fields": [
+        "alarm_value",
+        "cause",
+        "description",
+        "fault_code",
+        "parameter",
+        "primary_component",
+        "remedy"
+      ],
+      "required_evidence_fields": [
+        "cause",
+        "description",
+        "fault_code",
+        "parameter"
+      ],
+      "missing_evidence_fields": [],
+      "answer_contract_pass": true,
+      "manual_review_required": [
+        "unsupported_claims",
+        "cause_semantic_correctness",
+        "remedy_semantic_correctness",
+        "cross_fault_contamination"
+      ]
+    },
+    {
+      "query_id": "RA007",
+      "fault_code_hit": true,
+      "mentioned_fault_codes": [
+        "A01631"
+      ],
+      "expected_fault_codes": [
+        "A01631"
+      ],
+      "citations": [
+        "A01631:E1",
+        "A01631:E3",
+        "A01631:E2",
+        "A01631:E4",
+        "A01631:E7",
+        "A01631:E5",
+        "A01631:E6",
+        "A01631:E8"
+      ],
+      "valid_citations": [
+        "A01631:E1",
+        "A01631:E3",
+        "A01631:E2",
+        "A01631:E4",
+        "A01631:E7",
+        "A01631:E5",
+        "A01631:E6",
+        "A01631:E8"
+      ],
+      "aligned_citations": [
+        "A01631:E1",
+        "A01631:E3",
+        "A01631:E2",
+        "A01631:E4",
+        "A01631:E7",
+        "A01631:E5",
+        "A01631:E6",
+        "A01631:E8"
+      ],
+      "citations_valid": true,
+      "citations_aligned": true,
+      "cited_evidence_fields": [
+        "cause",
+        "description",
+        "fault_code",
+        "parameter",
+        "primary_component",
+        "remedy"
+      ],
+      "required_evidence_fields": [
+        "cause",
+        "description",
+        "fault_code",
+        "parameter"
+      ],
+      "missing_evidence_fields": [],
+      "answer_contract_pass": true,
+      "manual_review_required": [
+        "unsupported_claims",
+        "cause_semantic_correctness",
+        "remedy_semantic_correctness",
+        "cross_fault_contamination"
+      ]
+    },
+    {
+      "query_id": "RA008",
+      "fault_code_hit": true,
+      "mentioned_fault_codes": [
+        "F01033"
+      ],
+      "expected_fault_codes": [
+        "F01033"
+      ],
+      "citations": [
+        "F01033:E1",
+        "F01033:E2",
+        "F01033:E9",
+        "F01033:E3",
+        "F01033:E4",
+        "F01033:E5",
+        "F01033:E6",
+        "F01033:E7",
+        "F01033:E8",
+        "F01033:E10"
+      ],
+      "valid_citations": [
+        "F01033:E1",
+        "F01033:E2",
+        "F01033:E9",
+        "F01033:E3",
+        "F01033:E4",
+        "F01033:E5",
+        "F01033:E6",
+        "F01033:E7",
+        "F01033:E8",
+        "F01033:E10"
+      ],
+      "aligned_citations": [
+        "F01033:E1",
+        "F01033:E2",
+        "F01033:E9",
+        "F01033:E3",
+        "F01033:E4",
+        "F01033:E5",
+        "F01033:E6",
+        "F01033:E7",
+        "F01033:E8",
+        "F01033:E10"
+      ],
+      "citations_valid": true,
+      "citations_aligned": true,
+      "cited_evidence_fields": [
+        "alarm_value",
+        "cause",
+        "description",
+        "fault_code",
+        "parameter",
+        "remedy"
+      ],
+      "required_evidence_fields": [
+        "cause",
+        "description",
+        "fault_code",
+        "parameter"
+      ],
+      "missing_evidence_fields": [],
+      "answer_contract_pass": true,
+      "manual_review_required": [
+        "unsupported_claims",
+        "cause_semantic_correctness",
+        "remedy_semantic_correctness",
+        "cross_fault_contamination"
+      ]
+    },
+    {
+      "query_id": "RA009",
+      "fault_code_hit": true,
+      "mentioned_fault_codes": [
+        "F01012"
+      ],
+      "expected_fault_codes": [
+        "F01012"
+      ],
+      "citations": [
+        "F01012:E1",
+        "F01012:E2",
+        "F01012:E10",
+        "F01012:E5",
+        "F01012:E6",
+        "F01012:E7",
+        "F01012:E8",
+        "F01012:E9",
+        "F01012:E3",
+        "F01012:E11"
+      ],
+      "valid_citations": [
+        "F01012:E1",
+        "F01012:E2",
+        "F01012:E10",
+        "F01012:E5",
+        "F01012:E6",
+        "F01012:E7",
+        "F01012:E8",
+        "F01012:E9",
+        "F01012:E3",
+        "F01012:E11"
+      ],
+      "aligned_citations": [
+        "F01012:E1",
+        "F01012:E2",
+        "F01012:E10",
+        "F01012:E5",
+        "F01012:E6",
+        "F01012:E7",
+        "F01012:E8",
+        "F01012:E9",
+        "F01012:E3",
+        "F01012:E11"
+      ],
+      "citations_valid": true,
+      "citations_aligned": true,
+      "cited_evidence_fields": [
+        "alarm_value",
+        "cause",
+        "description",
+        "fault_code",
+        "parameter",
+        "remedy"
+      ],
+      "required_evidence_fields": [
+        "cause",
+        "description",
+        "fault_code",
+        "parameter"
+      ],
+      "missing_evidence_fields": [],
+      "answer_contract_pass": true,
+      "manual_review_required": [
+        "unsupported_claims",
+        "cause_semantic_correctness",
+        "remedy_semantic_correctness",
+        "cross_fault_contamination"
+      ]
+    },
+    {
+      "query_id": "RA010",
+      "fault_code_hit": true,
+      "mentioned_fault_codes": [
+        "A01006"
+      ],
+      "expected_fault_codes": [
+        "A01006"
+      ],
+      "citations": [
+        "A01006:E7",
+        "A01006:E3",
+        "A01006:E2",
+        "A01006:E1",
+        "A01006:E5",
+        "A01006:E6",
+        "A01006:E8",
+        "A01006:E4",
+        "A01006:E9"
+      ],
+      "valid_citations": [
+        "A01006:E7",
+        "A01006:E3",
+        "A01006:E2",
+        "A01006:E1",
+        "A01006:E5",
+        "A01006:E6",
+        "A01006:E8",
+        "A01006:E4",
+        "A01006:E9"
+      ],
+      "aligned_citations": [
+        "A01006:E7",
+        "A01006:E3",
+        "A01006:E2",
+        "A01006:E1",
+        "A01006:E5",
+        "A01006:E6",
+        "A01006:E8",
+        "A01006:E4",
+        "A01006:E9"
+      ],
+      "citations_valid": true,
+      "citations_aligned": true,
+      "cited_evidence_fields": [
+        "alarm_value",
+        "cause",
+        "description",
+        "fault_code",
+        "parameter",
+        "primary_component",
+        "remedy"
+      ],
+      "required_evidence_fields": [
+        "description",
+        "fault_code",
+        "parameter"
+      ],
+      "missing_evidence_fields": [],
+      "answer_contract_pass": true,
+      "manual_review_required": [
+        "unsupported_claims",
+        "cause_semantic_correctness",
+        "remedy_semantic_correctness",
+        "cross_fault_contamination"
+      ]
+    },
+    {
+      "query_id": "RA011",
+      "fault_code_hit": true,
+      "mentioned_fault_codes": [
+        "A30502",
+        "F30002"
+      ],
+      "expected_fault_codes": [
+        "A30502",
+        "F30002"
+      ],
+      "citations": [
+        "F30002:E1",
+        "F30002:E2",
+        "F30002:E3",
+        "A30502:E1",
+        "A30502:E2",
+        "A30502:E3",
+        "F30002:E7",
+        "F30002:E8",
+        "F30002:E9",
+        "A30502:E6",
+        "A30502:E7",
+        "A30502:E8",
+        "A30502:E9",
+        "F30002:E4",
+        "F30002:E5",
+        "F30002:E6",
+        "A30502:E4",
+        "A30502:E5",
+        "F30002:E10",
+        "A30502:E10"
+      ],
+      "valid_citations": [
+        "F30002:E1",
+        "F30002:E2",
+        "F30002:E3",
+        "A30502:E1",
+        "A30502:E2",
+        "A30502:E3",
+        "F30002:E7",
+        "F30002:E8",
+        "F30002:E9",
+        "A30502:E6",
+        "A30502:E7",
+        "A30502:E8",
+        "A30502:E9",
+        "F30002:E4",
+        "F30002:E5",
+        "F30002:E6",
+        "A30502:E4",
+        "A30502:E5",
+        "F30002:E10",
+        "A30502:E10"
+      ],
+      "aligned_citations": [
+        "F30002:E1",
+        "F30002:E2",
+        "F30002:E3",
+        "A30502:E1",
+        "A30502:E2",
+        "A30502:E3",
+        "F30002:E7",
+        "F30002:E8",
+        "F30002:E9",
+        "A30502:E6",
+        "A30502:E7",
+        "A30502:E8",
+        "A30502:E9",
+        "F30002:E4",
+        "F30002:E5",
+        "F30002:E6",
+        "A30502:E4",
+        "A30502:E5",
+        "F30002:E10",
+        "A30502:E10"
+      ],
+      "citations_valid": true,
+      "citations_aligned": true,
+      "cited_evidence_fields": [
+        "alarm_value",
+        "cause",
+        "description",
+        "fault_code",
+        "parameter",
+        "primary_component",
+        "remedy"
+      ],
+      "required_evidence_fields": [
+        "description",
+        "fault_code"
+      ],
+      "missing_evidence_fields": [],
+      "answer_contract_pass": true,
+      "manual_review_required": [
+        "unsupported_claims",
+        "cause_semantic_correctness",
+        "remedy_semantic_correctness",
+        "cross_fault_contamination"
+      ]
+    },
+    {
+      "query_id": "RA012",
+      "fault_code_hit": true,
+      "mentioned_fault_codes": [
+        "A01009"
+      ],
+      "expected_fault_codes": [
+        "A01009"
+      ],
+      "citations": [
+        "A01009:E1",
+        "A01009:E3",
+        "A01009:E6",
+        "A01009:E2",
+        "A01009:E4",
+        "A01009:E5"
+      ],
+      "valid_citations": [
+        "A01009:E1",
+        "A01009:E3",
+        "A01009:E6",
+        "A01009:E2",
+        "A01009:E4",
+        "A01009:E5"
+      ],
+      "aligned_citations": [
+        "A01009:E1",
+        "A01009:E3",
+        "A01009:E6",
+        "A01009:E2",
+        "A01009:E4",
+        "A01009:E5"
+      ],
+      "citations_valid": true,
+      "citations_aligned": true,
+      "cited_evidence_fields": [
+        "cause",
+        "description",
+        "fault_code",
+        "parameter",
+        "primary_component",
+        "remedy"
+      ],
+      "required_evidence_fields": [
+        "description",
+        "fault_code",
+        "remedy"
+      ],
+      "missing_evidence_fields": [],
+      "answer_contract_pass": true,
+      "manual_review_required": [
+        "unsupported_claims",
+        "cause_semantic_correctness",
+        "remedy_semantic_correctness",
+        "cross_fault_contamination"
+      ]
+    }
+  ]
+}

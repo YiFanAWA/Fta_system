@@ -1,0 +1,1364 @@
+{
+  "dataset": "siemens_s210_public_fault_full_review_queue",
+  "pending_records": 251,
+  "rows_with_findings": 129,
+  "rows_clean_structurally": 122,
+  "finding_counts": {
+    "cause_needs_semantic_review": 85,
+    "empty_component_without_explicit_declaration": 41,
+    "missing_cause_evidence": 89,
+    "record_count_not_one": 1
+  },
+  "findings": [
+    {
+      "sample_id": "SIEMENS_S210_2019_A01007",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01009",
+      "codes": [
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01016",
+      "codes": [
+        "empty_component_without_explicit_declaration",
+        "cause_needs_semantic_review:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01019",
+      "codes": [
+        "empty_component_without_explicit_declaration"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01020",
+      "codes": [
+        "empty_component_without_explicit_declaration"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01035",
+      "codes": [
+        "cause_needs_semantic_review:1"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01045",
+      "codes": [
+        "cause_needs_semantic_review:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01049",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01064",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01069",
+      "codes": [
+        "empty_component_without_explicit_declaration"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01073",
+      "codes": [
+        "empty_component_without_explicit_declaration"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01099",
+      "codes": [
+        "empty_component_without_explicit_declaration"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01251",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01304",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01330",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01489",
+      "codes": [
+        "cause_needs_semantic_review:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01590",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01631",
+      "codes": [
+        "missing_cause_evidence:1"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01637",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01638",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01654",
+      "codes": [
+        "cause_needs_semantic_review:0",
+        "cause_needs_semantic_review:2"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01691",
+      "codes": [
+        "cause_needs_semantic_review:0",
+        "cause_needs_semantic_review:1",
+        "cause_needs_semantic_review:2"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01693",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01695",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01696",
+      "codes": [
+        "cause_needs_semantic_review:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01697",
+      "codes": [
+        "cause_needs_semantic_review:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01698",
+      "codes": [
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01699",
+      "codes": [
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01707",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01709",
+      "codes": [
+        "missing_cause_evidence:1"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01711",
+      "codes": [
+        "record_count_not_one",
+        "empty_component_without_explicit_declaration"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01714",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01716",
+      "codes": [
+        "missing_cause_evidence:0",
+        "missing_cause_evidence:1",
+        "missing_cause_evidence:2"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01730",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01750",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01751",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01780",
+      "codes": [
+        "cause_needs_semantic_review:2"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01781",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01782",
+      "codes": [
+        "empty_component_without_explicit_declaration",
+        "cause_needs_semantic_review:4"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01783",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01784",
+      "codes": [
+        "empty_component_without_explicit_declaration",
+        "cause_needs_semantic_review:10",
+        "missing_cause_evidence:12",
+        "missing_cause_evidence:16"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01785",
+      "codes": [
+        "empty_component_without_explicit_declaration"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01796",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01798",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01799",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01839",
+      "codes": [
+        "empty_component_without_explicit_declaration"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01900",
+      "codes": [
+        "cause_needs_semantic_review:1",
+        "cause_needs_semantic_review:2",
+        "cause_needs_semantic_review:6",
+        "cause_needs_semantic_review:11"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01902",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01932",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01940",
+      "codes": [
+        "cause_needs_semantic_review:0",
+        "cause_needs_semantic_review:1",
+        "cause_needs_semantic_review:2"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01941",
+      "codes": [
+        "cause_needs_semantic_review:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01943",
+      "codes": [
+        "cause_needs_semantic_review:0",
+        "cause_needs_semantic_review:3"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01944",
+      "codes": [
+        "cause_needs_semantic_review:0",
+        "cause_needs_semantic_review:1"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01980",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01981",
+      "codes": [
+        "cause_needs_semantic_review:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01989",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A05000",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A05001",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A05003",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A05006",
+      "codes": [
+        "cause_needs_semantic_review:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A07012",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A07091",
+      "codes": [
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A07092",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A07094",
+      "codes": [
+        "empty_component_without_explicit_declaration"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A07095",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A07200",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A07565",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A07805",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A08511",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A08800",
+      "codes": [
+        "empty_component_without_explicit_declaration"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A13001",
+      "codes": [
+        "empty_component_without_explicit_declaration"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A13021",
+      "codes": [
+        "empty_component_without_explicit_declaration"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A13030",
+      "codes": [
+        "empty_component_without_explicit_declaration",
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A13031",
+      "codes": [
+        "empty_component_without_explicit_declaration",
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A13032",
+      "codes": [
+        "empty_component_without_explicit_declaration",
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A13033",
+      "codes": [
+        "empty_component_without_explicit_declaration",
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A30016",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A30031",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A30034",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A30041",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A30042",
+      "codes": [
+        "missing_cause_evidence:2",
+        "cause_needs_semantic_review:3"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A30044",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A30054",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A30076",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A30502",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A30693",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A30706",
+      "codes": [
+        "missing_cause_evidence:0",
+        "missing_cause_evidence:1"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A30707",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A30709",
+      "codes": [
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A30711",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A30714",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A30716",
+      "codes": [
+        "missing_cause_evidence:0",
+        "missing_cause_evidence:1",
+        "missing_cause_evidence:2"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A30730",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A30788",
+      "codes": [
+        "empty_component_without_explicit_declaration"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A30798",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A30799",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A30999",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A31700",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01001",
+      "codes": [
+        "empty_component_without_explicit_declaration"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01002",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01003",
+      "codes": [
+        "empty_component_without_explicit_declaration",
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01005",
+      "codes": [
+        "missing_cause_evidence:6",
+        "cause_needs_semantic_review:8",
+        "cause_needs_semantic_review:10"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01011",
+      "codes": [
+        "empty_component_without_explicit_declaration",
+        "missing_cause_evidence:4"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01012",
+      "codes": [
+        "empty_component_without_explicit_declaration"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01015",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01018",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01030",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01031",
+      "codes": [
+        "empty_component_without_explicit_declaration",
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01033",
+      "codes": [
+        "empty_component_without_explicit_declaration",
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01034",
+      "codes": [
+        "empty_component_without_explicit_declaration",
+        "cause_needs_semantic_review:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01036",
+      "codes": [
+        "cause_needs_semantic_review:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01039",
+      "codes": [
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01040",
+      "codes": [
+        "empty_component_without_explicit_declaration"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01041",
+      "codes": [
+        "empty_component_without_explicit_declaration"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01043",
+      "codes": [
+        "empty_component_without_explicit_declaration",
+        "missing_cause_evidence:14",
+        "missing_cause_evidence:16",
+        "cause_needs_semantic_review:20"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01044",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01050",
+      "codes": [
+        "empty_component_without_explicit_declaration"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01072",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01082",
+      "codes": [
+        "cause_needs_semantic_review:1"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01120",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01122",
+      "codes": [
+        "empty_component_without_explicit_declaration"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01250",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01600",
+      "codes": [
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01611",
+      "codes": [
+        "cause_needs_semantic_review:2",
+        "cause_needs_semantic_review:3",
+        "cause_needs_semantic_review:15",
+        "cause_needs_semantic_review:23",
+        "cause_needs_semantic_review:25"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01625",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01630",
+      "codes": [
+        "missing_cause_evidence:2",
+        "missing_cause_evidence:5",
+        "missing_cause_evidence:7",
+        "missing_cause_evidence:8"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01640",
+      "codes": [
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01641",
+      "codes": [
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01649",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01651",
+      "codes": [
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01653",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01655",
+      "codes": [
+        "cause_needs_semantic_review:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01656",
+      "codes": [
+        "cause_needs_semantic_review:0",
+        "cause_needs_semantic_review:1",
+        "cause_needs_semantic_review:2"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01657",
+      "codes": [
+        "missing_cause_evidence:1"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01658",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01659",
+      "codes": [
+        "cause_needs_semantic_review:1",
+        "cause_needs_semantic_review:2",
+        "missing_cause_evidence:5",
+        "missing_cause_evidence:6"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01663",
+      "codes": [
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01671",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01672",
+      "codes": [
+        "cause_needs_semantic_review:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01673",
+      "codes": [
+        "cause_needs_semantic_review:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01674",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01675",
+      "codes": [
+        "missing_cause_evidence:0",
+        "missing_cause_evidence:1",
+        "missing_cause_evidence:2"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01679",
+      "codes": [
+        "missing_cause_evidence:1"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01680",
+      "codes": [
+        "cause_needs_semantic_review:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01681",
+      "codes": [
+        "missing_cause_evidence:1",
+        "cause_needs_semantic_review:6",
+        "cause_needs_semantic_review:7"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01683",
+      "codes": [
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01685",
+      "codes": [
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01689",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01690",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01694",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01700",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01701",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01708",
+      "codes": [
+        "missing_cause_evidence:1"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01910",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01911",
+      "codes": [
+        "cause_needs_semantic_review:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01912",
+      "codes": [
+        "cause_needs_semantic_review:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01950",
+      "codes": [
+        "cause_needs_semantic_review:1"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F03001",
+      "codes": [
+        "empty_component_without_explicit_declaration"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F06310",
+      "codes": [
+        "empty_component_without_explicit_declaration",
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F07011",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F07085",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F07097",
+      "codes": [
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F07220",
+      "codes": [
+        "missing_cause_evidence:0",
+        "missing_cause_evidence:1"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F07410",
+      "codes": [
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F07412",
+      "codes": [
+        "cause_needs_semantic_review:4",
+        "cause_needs_semantic_review:5",
+        "missing_cause_evidence:9",
+        "missing_cause_evidence:10",
+        "missing_cause_evidence:11"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F07414",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F07433",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F07434",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F07575",
+      "codes": [
+        "missing_cause_evidence:2"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F07802",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F07860",
+      "codes": [
+        "empty_component_without_explicit_declaration",
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F07900",
+      "codes": [
+        "cause_needs_semantic_review:1"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F07901",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F07930",
+      "codes": [
+        "missing_cause_evidence:2",
+        "missing_cause_evidence:5",
+        "missing_cause_evidence:7",
+        "missing_cause_evidence:8"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F07935",
+      "codes": [
+        "missing_cause_evidence:1",
+        "missing_cause_evidence:2"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F07955",
+      "codes": [
+        "cause_needs_semantic_review:1"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F13000",
+      "codes": [
+        "empty_component_without_explicit_declaration",
+        "cause_needs_semantic_review:3"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F13009",
+      "codes": [
+        "empty_component_without_explicit_declaration"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F13010",
+      "codes": [
+        "empty_component_without_explicit_declaration"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F13100",
+      "codes": [
+        "empty_component_without_explicit_declaration",
+        "missing_cause_evidence:5",
+        "missing_cause_evidence:6"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F13101",
+      "codes": [
+        "empty_component_without_explicit_declaration"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F13102",
+      "codes": [
+        "empty_component_without_explicit_declaration"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30001",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30002",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30004",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30005",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30011",
+      "codes": [
+        "cause_needs_semantic_review:3"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30015",
+      "codes": [
+        "cause_needs_semantic_review:1"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30017",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30021",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30024",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30025",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30036",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30040",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30043",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30050",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30051",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30052",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30055",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30068",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30078",
+      "codes": [
+        "cause_needs_semantic_review:2"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30600",
+      "codes": [
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30611",
+      "codes": [
+        "cause_needs_semantic_review:3"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30625",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30630",
+      "codes": [
+        "missing_cause_evidence:2",
+        "missing_cause_evidence:3",
+        "missing_cause_evidence:4",
+        "missing_cause_evidence:5"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30649",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30650",
+      "codes": [
+        "missing_cause_evidence:0",
+        "cause_needs_semantic_review:4",
+        "cause_needs_semantic_review:5"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30651",
+      "codes": [
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30656",
+      "codes": [
+        "cause_needs_semantic_review:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30657",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30659",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30674",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30680",
+      "codes": [
+        "cause_needs_semantic_review:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30681",
+      "codes": [
+        "missing_cause_evidence:1",
+        "missing_cause_evidence:3",
+        "missing_cause_evidence:4",
+        "missing_cause_evidence:5",
+        "missing_cause_evidence:6",
+        "missing_cause_evidence:7",
+        "missing_cause_evidence:8"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30682",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30683",
+      "codes": [
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30700",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30701",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30708",
+      "codes": [
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30805",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30895",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30899",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30950",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31135",
+      "codes": [
+        "cause_needs_semantic_review:6",
+        "cause_needs_semantic_review:7",
+        "cause_needs_semantic_review:9",
+        "cause_needs_semantic_review:10",
+        "cause_needs_semantic_review:11"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31136",
+      "codes": [
+        "cause_needs_semantic_review:5",
+        "cause_needs_semantic_review:6",
+        "cause_needs_semantic_review:8",
+        "cause_needs_semantic_review:9",
+        "cause_needs_semantic_review:10"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31137",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31138",
+      "codes": [
+        "cause_needs_semantic_review:16",
+        "cause_needs_semantic_review:20"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31405",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31801",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31802",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31804",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31806",
+      "codes": [
+        "cause_needs_semantic_review:1"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31813",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31820",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31835",
+      "codes": [
+        "cause_needs_semantic_review:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31836",
+      "codes": [
+        "cause_needs_semantic_review:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31837",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31845",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31850",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31860",
+      "codes": [
+        "cause_needs_semantic_review:7"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31875",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31885",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31886",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31887",
+      "codes": [
+        "cause_needs_semantic_review:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31895",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31896",
+      "codes": [
+        "missing_cause_evidence:0",
+        "cause_needs_semantic_review:1"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31950",
+      "codes": []
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_N01620",
+      "codes": [
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_N01621",
+      "codes": [
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_N30620",
+      "codes": [
+        "missing_cause_evidence:0"
+      ]
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_N30621",
+      "codes": [
+        "missing_cause_evidence:0"
+      ]
+    }
+  ],
+  "decision": "结构审计不等于语义审核；不得据此自动批准"
+}

@@ -1,0 +1,130 @@
+{
+  "dataset_info": {
+    "name": "siemens_s210_rag_answer_evaluation_v1",
+    "version": "2026-09-21",
+    "split": "answer_quality_dev",
+    "evaluation_role": "RAG Answer Development / Validation v1",
+    "lifecycle_status": "sealed_development_validation",
+    "eligible_for_final_generalization_claim": false,
+    "source_gold": "evaluation/quality_eval/datasets/siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20.json",
+    "query_count": 12,
+    "label_status": "engineering_answer_contract_labels_derived_from_frozen_gold",
+    "annotation_authority": "not_human_expert_answer_annotation",
+    "retrieval_evaluation_separation": "This dataset evaluates generated answers, not retriever ranking.",
+    "required_answer_contract": [
+      "answer must mention an expected fault code",
+      "answer citations must be valid evidence ids",
+      "answer citations must belong to an expected fault code",
+      "required evidence fields must be cited"
+    ],
+    "manual_review_required": [
+      "unsupported_claims",
+      "cause_semantic_correctness",
+      "remedy_semantic_correctness",
+      "cross_fault_contamination"
+    ],
+    "notes": [
+      "Do not use this dataset to tune retrieval or reranker settings.",
+      "The expected fields are mechanical evidence-contract checks; semantic answer quality still requires manual review.",
+      "Add a v2 dataset instead of modifying this file when new answer patterns are introduced."
+    ]
+  },
+  "queries": [
+    {
+      "query_id": "RA001",
+      "question": "控制单元温度过高时是什么报警，可能原因和建议处理是什么？",
+      "query_type": "symptom_remedy",
+      "difficulty": "easy",
+      "expected_fault_codes": ["A01009"],
+      "required_evidence_fields": ["fault_code", "description", "cause", "remedy"]
+    },
+    {
+      "query_id": "RA002",
+      "question": "电机回馈能量过多导致直流母线过压，对应哪个故障？",
+      "query_type": "cause",
+      "difficulty": "easy",
+      "expected_fault_codes": ["F30002"],
+      "required_evidence_fields": ["fault_code", "description", "cause"]
+    },
+    {
+      "query_id": "RA003",
+      "question": "DRIVE-CLiQ 组件固件下载失败并出现校验和错误，如何诊断？",
+      "query_type": "cause_remedy",
+      "difficulty": "medium",
+      "expected_fault_codes": ["F01005"],
+      "required_evidence_fields": ["fault_code", "description", "cause", "parameter", "remedy"]
+    },
+    {
+      "query_id": "RA004",
+      "question": "DRIVE-CLiQ 组件没有适用固件，需要更新固件时对应什么报警？",
+      "query_type": "cause",
+      "difficulty": "easy",
+      "expected_fault_codes": ["A01006"],
+      "required_evidence_fields": ["fault_code", "description", "cause", "parameter", "remedy"]
+    },
+    {
+      "query_id": "RA005",
+      "question": "写入可移动存储介质失败时应查看哪个故障记录以及怎么处理？",
+      "query_type": "remedy",
+      "difficulty": "easy",
+      "expected_fault_codes": ["A01019"],
+      "required_evidence_fields": ["fault_code", "description", "cause", "remedy"]
+    },
+    {
+      "query_id": "RA006",
+      "question": "STO 两个监控通道状态不一致属于什么故障？",
+      "query_type": "symptom",
+      "difficulty": "medium",
+      "expected_fault_codes": ["F01611"],
+      "required_evidence_fields": ["fault_code", "description", "cause", "parameter"]
+    },
+    {
+      "query_id": "RA007",
+      "question": "没有电机抱闸但启用了 SBC，会触发什么报警？",
+      "query_type": "cause",
+      "difficulty": "easy",
+      "expected_fault_codes": ["A01631"],
+      "required_evidence_fields": ["fault_code", "description", "cause", "parameter"]
+    },
+    {
+      "query_id": "RA008",
+      "question": "切换单位时参考参数为 0，导致参考参数无效，是什么故障？",
+      "query_type": "cause",
+      "difficulty": "medium",
+      "expected_fault_codes": ["F01033"],
+      "required_evidence_fields": ["fault_code", "description", "cause", "parameter"]
+    },
+    {
+      "query_id": "RA009",
+      "question": "旧固件项目转换时温度评估分配错误，对应哪个故障？",
+      "query_type": "cause",
+      "difficulty": "medium",
+      "expected_fault_codes": ["F01012"],
+      "required_evidence_fields": ["fault_code", "description", "cause", "parameter"]
+    },
+    {
+      "query_id": "RA010",
+      "question": "p7829 是哪个故障的关联参数？请给出故障含义。",
+      "query_type": "parameter",
+      "difficulty": "easy",
+      "expected_fault_codes": ["A01006"],
+      "required_evidence_fields": ["fault_code", "description", "parameter"]
+    },
+    {
+      "query_id": "RA011",
+      "question": "直流母线过压可能对应哪些故障记录？",
+      "query_type": "ambiguous_description",
+      "difficulty": "hard",
+      "expected_fault_codes": ["F30002", "A30502"],
+      "required_evidence_fields": ["fault_code", "description"]
+    },
+    {
+      "query_id": "RA012",
+      "question": "控制单元过热时，原文建议检查哪些内容？",
+      "query_type": "remedy",
+      "difficulty": "easy",
+      "expected_fault_codes": ["A01009"],
+      "required_evidence_fields": ["fault_code", "description", "remedy"]
+    }
+  ]
+}

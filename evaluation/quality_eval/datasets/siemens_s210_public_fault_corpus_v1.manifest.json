@@ -1,0 +1,26 @@
+{
+  "dataset": "siemens_s210_public_fault_corpus",
+  "version": "0.1.0",
+  "label_status": "unlabeled_public_corpus",
+  "human_expert_reviewed": false,
+  "records": 281,
+  "fault_records": 169,
+  "alarm_records": 106,
+  "internal_records": 6,
+  "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+  "source_pdf": "S210_Manual_2019.pdf",
+  "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+  "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+  "section": "15.2 List of faults and alarms",
+  "page_range": {
+    "start": 423,
+    "end": 539
+  },
+  "license_note": "The manual is publicly accessible but not marked as an open-data license in this corpus. Keep the PDF local, preserve provenance, and verify Siemens reuse terms before redistribution.",
+  "limitations": [
+    "weak_record is a parser aid, not an expert gold annotation",
+    "Cause text may contain parameter-value explanations and remedy context",
+    "AND/OR logic is not annotated",
+    "product/version differences require separate expert review"
+  ]
+}

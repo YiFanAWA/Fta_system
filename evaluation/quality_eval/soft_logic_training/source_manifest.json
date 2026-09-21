@@ -1,0 +1,57 @@
+{
+  "manifest_version": "soft_logic_training.sources.v1",
+  "generated_at": "2026-09-19",
+  "purpose": "记录软逻辑训练中间集的来源、可复现状态和标签边界；不把公开来源声明为项目专家金标。",
+  "sources": [
+    {
+      "source_id": "annotated_maintenance_logbook",
+      "dataset": "Annotated Maintenance Logbook",
+      "url": "https://zenodo.org/records/20779601",
+      "status": "imported",
+      "sample_count": 76,
+      "split_policy": "source stable hash",
+      "label_status": "source_annotated_provisional",
+      "human_expert_reviewed": false,
+      "allowed_use": ["文本字段抽取测试", "证据回指测试", "关系抽取候选"],
+      "not_allowed": ["直接作为项目设备金标", "直接确定 AND/OR", "自动批准生产审核"]
+    },
+    {
+      "source_id": "omin_faa_sample_100",
+      "dataset": "OMIn Dataset FAA sample",
+      "url": "https://github.com/nd-crane/trusted_ke",
+      "status": "imported",
+      "sample_count": 100,
+      "split_policy": "stable ID hash",
+      "label_status": "source_annotated_provisional",
+      "human_expert_reviewed": false,
+      "allowed_use": ["NER 预训练或微调候选", "关系抽取候选", "证据回指测试"],
+      "not_allowed": ["直接作为项目设备金标", "把因果关系改写成 FTA 逻辑门", "自动批准生产审核"],
+      "notes": "原始文件保留在仓库外部；数据再分发条款需在实际训练发布前单独核对。"
+    },
+    {
+      "source_id": "project_handbook",
+      "dataset": "Project Handbook Evidence Set",
+      "url": null,
+      "status": "imported_test_only",
+      "sample_count": 27,
+      "split_policy": "forced test",
+      "label_status": "source_annotated_provisional",
+      "human_expert_reviewed": false,
+      "allowed_use": ["项目域迁移测试", "证据偏移校验", "抽取回归测试"],
+      "not_allowed": ["参与训练", "直接作为专家金标", "直接确定 AND/OR"]
+    },
+    {
+      "source_id": "chinese_vehicle_fleet_fault_association",
+      "dataset": "Chinese Vehicle Fleet Fault Association Dataset",
+      "url": "https://data.mendeley.com/datasets/r98g7g6k5t/1",
+      "status": "pending_archive_and_column_audit",
+      "sample_count": null,
+      "split_policy": null,
+      "label_status": "not_imported",
+      "human_expert_reviewed": false,
+      "allowed_use": [],
+      "not_allowed": ["在原始文件未验证前生成训练样本", "把第三方分析仓库统计当作原始数据"],
+      "blocker": "本轮未获得可复现的原始归档文件；fault_events、ner_annotations、knowledge_graph_triples 的列映射尚未按发布文件核对。"
+    }
+  ]
+}

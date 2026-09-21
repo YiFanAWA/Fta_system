@@ -1,0 +1,3829 @@
+{
+  "dataset_info": {
+    "name": "siemens_s210_public_fault_expert_gold",
+    "version": "1.0.0",
+    "language": "en with bilingual expert annotations",
+    "task": "expert_reviewed_public_fault_record_extraction",
+    "label_status": "human_expert_reviewed",
+    "human_expert_reviewed": true,
+    "training_policy": {
+      "eligible_for_training": false,
+      "reason": "独立公开手册测试金标；当前样本仅用于测试/评估，不用于训练。"
+    },
+    "review": {
+      "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+      "reviewer_role": "领域专家",
+      "reviewer_name": "刘武",
+      "review_date": "2026-09-19",
+      "identity_verified": true,
+      "decision_counts": {
+        "审核通过": 30,
+        "证据不足": 0,
+        "语义需修改": 0,
+        "无法判断": 0
+      },
+      "field_values_confirmed": true,
+      "evidence_confirmed": true,
+      "logic_gate_confirmed": false
+    },
+    "source": {
+      "dataset": "siemens_s210_public_fault_corpus_v1",
+      "review_sample": "siemens_s210_public_fault_expert_review_sample_v1",
+      "review_confirmation_document": "SINAMICS_S210_3条疑点记录专家确认.docx"
+    },
+    "stats": {
+      "total": 30,
+      "split": {
+        "test": 30
+      },
+      "with_evidence": 30,
+      "with_unknown_logic_gate": 30,
+      "confirmed_reclassifications": 3
+    }
+  },
+  "label_schema": {
+    "record_fields": [
+      "fault_code",
+      "component",
+      "related_components",
+      "description",
+      "causes",
+      "parameters",
+      "gate_type"
+    ],
+    "evidence_fields": [
+      "fault_code",
+      "primary_component",
+      "related_component",
+      "description",
+      "cause",
+      "parameter"
+    ],
+    "logic_policy": "unknown_until_explicitly_expert_annotated",
+    "negative_evidence_policy": "no_direct_quote_when_field_is_not_declared; preserve negative_assertion note"
+  },
+  "gold_status": {
+    "independent_expert_reviewed": true,
+    "reviewer_identity_verified": true,
+    "not_for_training": true,
+    "f1_ready": false,
+    "f1_blocker": "严格 F1 目前仅作为诊断结果；正式 F1 还需要先统一组件字段的双语表达，并明确原因字段的拆分/改写匹配规则。",
+    "f1_scope": "字段抽取与证据；不包含 AND/OR 逻辑门"
+  },
+  "samples": [
+    {
+      "sample_id": "SIEMENS_S210_2019_A01006",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "A01006 Firmware update for DRIVE-CLiQ component required\nReaction: NONE\nAcknowledge: NONE\nCause: The firmware of a DRIVE-CLiQ component must be updated as there is no suitable firmware or firmware version in the\ncomponent for operation with the Control Unit.\nAlarm value (r2124, interpret decimal):\nComponent number of the DRIVE-CLiQ component.\nRemedy: Update the firmware using the commissioning tool:\nThe firmware version of all of the components on the \"Version overview\" page can be read in the Project Navigator under\n\"Configuration\" of the associated drive unit and an appropriate firmware update can be carried out.\nFirmware update via parameter:\n- take the component number from the alarm value and enter into p7828.\n- start the firmware download with p7829 = 1.",
+      "gold_records": [
+        {
+          "fault_code": "A01006",
+          "component": "DRIVE-CLiQ 组件",
+          "related_components": [
+            "Control Unit（控制单元）"
+          ],
+          "description": "Firmware update for DRIVE-CLiQ component required",
+          "causes": [
+            "The firmware of a DRIVE-CLiQ component must be updated as there is no suitable firmware or firmware version in the component for operation with the Control Unit."
+          ],
+          "parameters": [
+            "r2124",
+            "p7828",
+            "p7829"
+          ],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "A01006 Firmware update for DRIVE-CLiQ component required",
+          "start": 0,
+          "end": 56,
+          "location": "425–426"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=425–426",
+        "primary_component:未能在输入原文中直接定位证据，保留页码/位置=425–426",
+        "related_component:未能在输入原文中直接定位证据，保留页码/位置=425–426",
+        "cause:未能在输入原文中直接定位证据，保留页码/位置=425–426",
+        "parameter:未能在输入原文中直接定位证据，保留页码/位置=425–426"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "A01006",
+        "description": "Firmware update for DRIVE-CLiQ component required\n（DRIVE-CLiQ 组件需要固件更新）",
+        "component": "DRIVE-CLiQ 组件",
+        "related_components": "Control Unit（控制单元）",
+        "causes": "The firmware of a DRIVE-CLiQ component must be updated as there is no suitable firmware or firmware version in the component for operation with the Control Unit.\n（DRIVE-CLiQ 组件的固件需要更新，因为组件中没有适用于与控制单元配合操作的合适固件或固件版本）",
+        "parameters": "r2124、p7828、p7829",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "A01006 Firmware update for DRIVE-CLiQ component required",
+          "location": "425–426"
+        },
+        "description": {
+          "quote": "A01006 Firmware update for DRIVE-CLiQ component required / Reaction: NONE / Acknowledge: NONE",
+          "location": "425–426"
+        },
+        "primary_component": {
+          "quote": "The firmware of a DRIVE-CLiQ component must be updated as there is no suitable firmware or firmware version in the component for operation with the Control Unit.",
+          "location": "425–426"
+        },
+        "related_component": {
+          "quote": "The firmware of a DRIVE-CLiQ component must be updated as there is no suitable firmware or firmware version in the component for operation with the Control Unit.",
+          "location": "425–426"
+        },
+        "cause": {
+          "quote": "Cause: The firmware of a DRIVE-CLiQ component must be updated as there is no suitable firmware or firmware version in the component for operation with the Control Unit.",
+          "location": "425–426"
+        },
+        "parameter": {
+          "quote": "Alarm value (r2124, interpret decimal): / take the component number from the alarm value and enter into p7828. / start the firmware download with p7829 = 1.",
+          "location": "425–426"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": false,
+        "reclassification": null
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": null
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 425,
+        "pdf_page_end": 426,
+        "source_offset_start": 5095,
+        "source_offset_end": 6001,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01306",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "A01306 Firmware of the DRIVE-CLiQ component being updated\nReaction: NONE\nAcknowledge: NONE\nCause: Firmware update is active for at least one DRIVE-CLiQ component.\nAlarm value (r2124, interpret decimal):\nComponent number of the DRIVE-CLiQ component.\nRemedy: Not necessary.\nThis alarm is automatically withdrawn after the firmware update has been completed.",
+      "gold_records": [
+        {
+          "fault_code": "A01306",
+          "component": "DRIVE-CLiQ 组件",
+          "related_components": [],
+          "description": "Firmware of the DRIVE-CLiQ component being updated",
+          "causes": [
+            "Firmware update is active for at least one DRIVE-CLiQ component."
+          ],
+          "parameters": [
+            "r2124"
+          ],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "A01306 Firmware of the DRIVE-CLiQ component being updated",
+          "start": 0,
+          "end": 57,
+          "location": "438"
+        },
+        {
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "Firmware update is active for at least one DRIVE-CLiQ component.",
+          "start": 98,
+          "end": 162,
+          "location": "438"
+        },
+        {
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "Cause: Firmware update is active for at least one DRIVE-CLiQ component.",
+          "start": 91,
+          "end": 162,
+          "location": "438"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=438",
+        "related_component:未能在输入原文中直接定位证据，保留页码/位置=438",
+        "parameter:未能在输入原文中直接定位证据，保留页码/位置=438"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "A01306",
+        "description": "Firmware of the DRIVE-CLiQ component being updated\n（DRIVE-CLiQ 组件固件正在更新）",
+        "component": "DRIVE-CLiQ 组件",
+        "related_components": "无",
+        "causes": "Firmware update is active for at least one DRIVE-CLiQ component.\n（至少一个 DRIVE-CLiQ 组件正在执行固件更新）",
+        "parameters": "r2124",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "A01306 Firmware of the DRIVE-CLiQ component being updated",
+          "location": "438"
+        },
+        "description": {
+          "quote": "A01306 Firmware of the DRIVE-CLiQ component being updated / Reaction: NONE / Acknowledge: NONE",
+          "location": "438"
+        },
+        "primary_component": {
+          "quote": "Firmware update is active for at least one DRIVE-CLiQ component.",
+          "location": "438"
+        },
+        "related_component": {
+          "quote": "无明确关联组件，仅涉及单个 DRIVE-CLiQ 组件",
+          "location": "438"
+        },
+        "cause": {
+          "quote": "Cause: Firmware update is active for at least one DRIVE-CLiQ component.",
+          "location": "438"
+        },
+        "parameter": {
+          "quote": "Alarm value (r2124, interpret decimal): Component number of the DRIVE-CLiQ component.",
+          "location": "438"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": false,
+        "reclassification": null
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": null
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 438,
+        "pdf_page_end": 438,
+        "source_offset_start": 35451,
+        "source_offset_end": 35807,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01706",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "A01706 SI Motion P1: SAM/SBR limit exceeded\nReaction: NONE\nAcknowledge: NONE\nCause: Motion monitoring functions with SAM (p9506 = 0):\n- after initiating SS1 or SS2, the speed exceeded the set tolerance.\nMotion monitoring functions with SBR (p9506 = 2):\n- after initiating SS1 or SLS switchover to the lower speed level, the speed exceeded the set tolerance.\nThe drive is stopped by message F01700.\n460 Operating Instructions, 01/2019, A5E41702836B AC\nRemedy: Check the braking behavior and, if necessary, adapt the parameterization of the parameter settings of the \"SAM\" or the\n\"SBR\" function.\nNote:\nThis message can be acknowledged via PROFIsafe (safe acknowledgment).\nSAM: Safe Acceleration Monitor (safe acceleration monitoring)\nSBR: Safe Brake Ramp (safe ramp monitoring)\nSI: Safety Integrated\nSS1: Safe Stop 1\nSS2: Safe Stop 2\nSLS: Safely-Limited Speed\nSee also: p9548 (SI Motion SAM actual speed tolerance), p9581 (SI Motion brake ramp reference value), p9582 (SI Motion\nbrake ramp delay time), p9583 (SI Motion brake ramp monitoring time)",
+      "gold_records": [
+        {
+          "fault_code": "A01706",
+          "component": "SI Motion（安全集成运动监控）",
+          "related_components": [],
+          "description": "SI Motion P1: SAM/SBR limit exceeded",
+          "causes": [
+            "Motion monitoring functions with SAM (p9506 = 0): after initiating SS1 or SS2, the speed exceeded the set tolerance.",
+            "Motion monitoring functions with SBR (p9506 = 2): after initiating SS1 or SLS switchover to the lower speed level, the speed exceeded the set tolerance."
+          ],
+          "parameters": [
+            "p9506",
+            "p9548",
+            "p9581",
+            "p9582",
+            "p9583"
+          ],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "A01706 SI Motion P1: SAM/SBR limit exceeded",
+          "start": 0,
+          "end": 43,
+          "location": "462–463"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=462–463",
+        "primary_component:未能在输入原文中直接定位证据，保留页码/位置=462–463",
+        "related_component:未能在输入原文中直接定位证据，保留页码/位置=462–463",
+        "cause:未能在输入原文中直接定位证据，保留页码/位置=462–463",
+        "parameter:未能在输入原文中直接定位证据，保留页码/位置=462–463"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "A01706",
+        "description": "SI Motion P1: SAM/SBR limit exceeded\n（SI Motion P1: SAM/SBR 限值超调）",
+        "component": "SI Motion（安全集成运动监控）",
+        "related_components": "无",
+        "causes": "Motion monitoring functions with SAM (p9506 = 0): after initiating SS1 or SS2, the speed exceeded the set tolerance.\nMotion monitoring functions with SBR (p9506 = 2): after initiating SS1 or SLS switchover to the lower speed level, the speed exceeded the set tolerance.\n（SAM 运动监控功能：启动 SS1 或 SS2 后，速度超过设定容差。\nSBR 运动监控功能：启动 SS1 或 SLS 切换至较低速度级后，速度超过设定容差）",
+        "parameters": "p9506、p9548、p9581、p9582、p9583",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "A01706 SI Motion P1: SAM/SBR limit exceeded",
+          "location": "462–463"
+        },
+        "description": {
+          "quote": "A01706 SI Motion P1: SAM/SBR limit exceeded / Reaction: NONE / Acknowledge: NONE",
+          "location": "462–463"
+        },
+        "primary_component": {
+          "quote": "SI Motion P1: SAM/SBR limit exceeded / Motion monitoring functions with SAM... / Motion monitoring functions with SBR...",
+          "location": "462–463"
+        },
+        "related_component": {
+          "quote": "原文未明确声明关联组件",
+          "location": "462–463",
+          "evidence_type": "negative_assertion",
+          "source_quote": null
+        },
+        "cause": {
+          "quote": "Cause: Motion monitoring functions with SAM (p9506 = 0): after initiating SS1 or SS2, the speed exceeded the set tolerance. / Motion monitoring functions with SBR (p9506 = 2): after initiating SS1 or SLS switchover to the lower speed level, the speed exceeded the set tolerance.",
+          "location": "462–463"
+        },
+        "parameter": {
+          "quote": "p9506 (SAM/SBR 选择), p9548 (SAM 实际速度容差), p9581 (制动 ramp 参考值), p9582 (制动 ramp 延迟时间), p9583 (制动 ramp 监控时间)",
+          "location": "462–463"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": true,
+        "reclassification": {
+          "target_field": "reaction_context",
+          "action": "move_from_related_component_evidence",
+          "summary": "驱动器被 F01700 停止属于故障反应/上下文，不属于关联组件。",
+          "original_evidence": {
+            "quote": "The drive is stopped by message F01700.",
+            "location": "462–463"
+          },
+          "related_components_final": []
+        }
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": {
+            "target_field": "reaction_context",
+            "action": "move_from_related_component_evidence",
+            "summary": "驱动器被 F01700 停止属于故障反应/上下文，不属于关联组件。",
+            "original_evidence": {
+              "quote": "The drive is stopped by message F01700.",
+              "location": "462–463"
+            },
+            "related_components_final": []
+          }
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 462,
+        "pdf_page_end": 463,
+        "source_offset_start": 91323,
+        "source_offset_end": 92451,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A01788",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "A01788 SI: Automatic test stop waits for STO deselection via motion monitoring functions\nReaction: NONE\nAcknowledge: NONE\nCause: The automatic test stop (forced checking procedure) was not able to be carried out after powering up.\nPossible causes:\n- the STO function is selected via safe motion monitoring functions.\n- a safety message is present, that resulted in a STO.\nNote:\nSTO: Safe Torque Off\nRemedy: - deselect STO via safe motion monitoring functions.\n- remove the cause of the safety messages and acknowledge the messages.\nNote:\nThe automatic test stop is performed after removing the cause.",
+      "gold_records": [
+        {
+          "fault_code": "A01788",
+          "component": "SI（Safety Integrated 安全集成）",
+          "related_components": [],
+          "description": "SI: Automatic test stop waits for STO deselection via motion monitoring functions",
+          "causes": [
+            "The automatic test stop (forced checking procedure) was not able to be carried out after powering up.",
+            "Possible causes: the STO function is selected via safe motion monitoring functions; a safety message is present, that resulted in a STO."
+          ],
+          "parameters": [],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "A01788 SI: Automatic test stop waits for STO deselection via motion monitoring functions",
+          "start": 0,
+          "end": 88,
+          "location": "473"
+        },
+        {
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "SI: Automatic test stop waits for STO deselection via motion monitoring functions",
+          "start": 7,
+          "end": 88,
+          "location": "473"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=473",
+        "related_component:未能在输入原文中直接定位证据，保留页码/位置=473",
+        "cause:未能在输入原文中直接定位证据，保留页码/位置=473",
+        "parameter:未能在输入原文中直接定位证据，保留页码/位置=473"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "A01788",
+        "description": "SI: Automatic test stop waits for STO deselection via motion monitoring functions\n（SI: 自动测试停止等待通过运动监控功能取消 STO）",
+        "component": "SI（Safety Integrated 安全集成）",
+        "related_components": "无",
+        "causes": "The automatic test stop (forced checking procedure) was not able to be carried out after powering up.\nPossible causes: the STO function is selected via safe motion monitoring functions; a safety message is present, that resulted in a STO.\n（上电后无法执行自动测试停止（强制检查程序）。可能原因：通过安全运动监控功能选择了 STO 功能；存在安全消息导致 STO）",
+        "parameters": "无",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "A01788 SI: Automatic test stop waits for STO deselection via motion monitoring functions",
+          "location": "473"
+        },
+        "description": {
+          "quote": "A01788 SI: Automatic test stop waits for STO deselection via motion monitoring functions / Reaction: NONE / Acknowledge: NONE",
+          "location": "473"
+        },
+        "primary_component": {
+          "quote": "SI: Automatic test stop waits for STO deselection via motion monitoring functions",
+          "location": "473"
+        },
+        "related_component": {
+          "quote": "原文未明确声明关联组件",
+          "location": "473",
+          "evidence_type": "negative_assertion",
+          "source_quote": null
+        },
+        "cause": {
+          "quote": "Cause: The automatic test stop (forced checking procedure) was not able to be carried out after powering up. / Possible causes: the STO function is selected via safe motion monitoring functions; a safety message is present, that resulted in a STO.",
+          "location": "473"
+        },
+        "parameter": {
+          "quote": "原文未提及具体参数",
+          "location": "473"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": true,
+        "reclassification": {
+          "target_field": "cause_context",
+          "action": "move_from_related_component_evidence",
+          "summary": "STO 是安全功能并在原文中作为故障原因上下文出现，不属于关联组件。",
+          "original_evidence": {
+            "quote": "STO: Safe Torque Off（通过安全运动监控功能控制）",
+            "location": "473"
+          },
+          "related_components_final": []
+        }
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": {
+            "target_field": "cause_context",
+            "action": "move_from_related_component_evidence",
+            "summary": "STO 是安全功能并在原文中作为故障原因上下文出现，不属于关联组件。",
+            "original_evidence": {
+              "quote": "STO: Safe Torque Off（通过安全运动监控功能控制）",
+              "location": "473"
+            },
+            "related_components_final": []
+          }
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 473,
+        "pdf_page_end": 473,
+        "source_offset_start": 117262,
+        "source_offset_end": 117863,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A02007",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "A02007 Function generator: Drive not SERVO / VECTOR / DC_CTRL\nReaction: NONE\nAcknowledge: NONE\nCause: The drive object specified for connection is not a SERVO / VECTOR or DC_CTRL.\nRemedy: Use a SERVO / VECTOR / DC_CTRL drive object with the corresponding number.\nNote:\nThe alarm is reset as follows:\n- remove the cause of this alarm.\n- restart the function generator.",
+      "gold_records": [
+        {
+          "fault_code": "A02007",
+          "component": "功能发生器（Function generator）",
+          "related_components": [],
+          "description": "Function generator: Drive not SERVO / VECTOR / DC_CTRL",
+          "causes": [
+            "The drive object specified for connection is not a SERVO / VECTOR or DC_CTRL."
+          ],
+          "parameters": [],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "A02007 Function generator: Drive not SERVO / VECTOR / DC_CTRL",
+          "start": 0,
+          "end": 61,
+          "location": "479"
+        },
+        {
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "Function generator: Drive not SERVO / VECTOR / DC_CTRL",
+          "start": 7,
+          "end": 61,
+          "location": "479"
+        },
+        {
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "Cause: The drive object specified for connection is not a SERVO / VECTOR or DC_CTRL.",
+          "start": 95,
+          "end": 179,
+          "location": "479"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=479",
+        "related_component:未能在输入原文中直接定位证据，保留页码/位置=479",
+        "parameter:未能在输入原文中直接定位证据，保留页码/位置=479"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "A02007",
+        "description": "Function generator: Drive not SERVO / VECTOR / DC_CTRL\n（功能发生器：驱动器不是 SERVO / VECTOR / DC_CTRL）",
+        "component": "功能发生器（Function generator）",
+        "related_components": "无",
+        "causes": "The drive object specified for connection is not a SERVO / VECTOR or DC_CTRL.\n（指定用于连接的驱动器对象不是 SERVO / VECTOR 或 DC_CTRL）",
+        "parameters": "无",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "A02007 Function generator: Drive not SERVO / VECTOR / DC_CTRL",
+          "location": "479"
+        },
+        "description": {
+          "quote": "A02007 Function generator: Drive not SERVO / VECTOR / DC_CTRL / Reaction: NONE / Acknowledge: NONE",
+          "location": "479"
+        },
+        "primary_component": {
+          "quote": "Function generator: Drive not SERVO / VECTOR / DC_CTRL",
+          "location": "479"
+        },
+        "related_component": {
+          "quote": "无明确关联组件",
+          "location": "479"
+        },
+        "cause": {
+          "quote": "Cause: The drive object specified for connection is not a SERVO / VECTOR or DC_CTRL.",
+          "location": "479"
+        },
+        "parameter": {
+          "quote": "原文未提及具体参数",
+          "location": "479"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": false,
+        "reclassification": null
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": null
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 479,
+        "pdf_page_end": 479,
+        "source_offset_start": 132579,
+        "source_offset_end": 132947,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A09000",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "A09000 Web server user incorrectly configured\nReaction: NONE\nAcknowledge: NONE\nCause: An error occurred when configuring the web server user.\nFault value (r0949, interpret decimal):\n0: No admin password\n1: Invalid admin password\n2: Invalid SINAMICS password\nRemedy: Correct the user configuration, enter a correct password.",
+      "gold_records": [
+        {
+          "fault_code": "A09000",
+          "component": "Web 服务器",
+          "related_components": [],
+          "description": "Web server user incorrectly configured",
+          "causes": [
+            "An error occurred when configuring the web server user."
+          ],
+          "parameters": [
+            "r0949"
+          ],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "A09000 Web server user incorrectly configured",
+          "start": 0,
+          "end": 45,
+          "location": "491"
+        },
+        {
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "Web server user incorrectly configured",
+          "start": 7,
+          "end": 45,
+          "location": "491"
+        },
+        {
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "Cause: An error occurred when configuring the web server user.",
+          "start": 79,
+          "end": 141,
+          "location": "491"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=491",
+        "related_component:未能在输入原文中直接定位证据，保留页码/位置=491",
+        "parameter:未能在输入原文中直接定位证据，保留页码/位置=491"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "A09000",
+        "description": "Web server user incorrectly configured\n（Web 服务器用户配置不正确）",
+        "component": "Web 服务器",
+        "related_components": "无",
+        "causes": "An error occurred when configuring the web server user.\n（配置 Web 服务器用户时发生错误）",
+        "parameters": "r0949",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "A09000 Web server user incorrectly configured",
+          "location": "491"
+        },
+        "description": {
+          "quote": "A09000 Web server user incorrectly configured / Reaction: NONE / Acknowledge: NONE",
+          "location": "491"
+        },
+        "primary_component": {
+          "quote": "Web server user incorrectly configured",
+          "location": "491"
+        },
+        "related_component": {
+          "quote": "无明确关联组件",
+          "location": "491"
+        },
+        "cause": {
+          "quote": "Cause: An error occurred when configuring the web server user.",
+          "location": "491"
+        },
+        "parameter": {
+          "quote": "Fault value (r0949, interpret decimal): 0: No admin password; 1: Invalid admin password; 2: Invalid SINAMICS password",
+          "location": "491"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": false,
+        "reclassification": null
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": null
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 491,
+        "pdf_page_end": 491,
+        "source_offset_start": 160870,
+        "source_offset_end": 161194,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A30077",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "A30077 Power unit: thermal overload internal braking resistor\nReaction: NONE\nAcknowledge: NONE\nCause: The internal braking resistor is thermally overloaded. This is the reason that its use was inhibited.\nAlarm value (r2124, interpret decimal):\nEnergy absorbed by the braking resistor [Ws].\n504 Operating Instructions, 01/2019, A5E41702836B AC\nRemedy: Reduce the power when generating.\nNote:\n- once the internal braking resistor has thermally recovered, it is enabled for further use.\n- for a DC link coupling, the generating power of all the coupled power units must be taken into consideration.",
+      "gold_records": [
+        {
+          "fault_code": "A30077",
+          "component": "功率单元（Power unit）",
+          "related_components": [
+            "内部制动电阻（internal braking resistor）"
+          ],
+          "description": "Power unit: thermal overload internal braking resistor",
+          "causes": [
+            "The internal braking resistor is thermally overloaded. This is the reason that its use was inhibited."
+          ],
+          "parameters": [
+            "r2124"
+          ],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "A30077 Power unit: thermal overload internal braking resistor",
+          "start": 0,
+          "end": 61,
+          "location": "506–507"
+        },
+        {
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "Power unit: thermal overload internal braking resistor",
+          "start": 7,
+          "end": 61,
+          "location": "506–507"
+        },
+        {
+          "field": "related_component",
+          "source_id": "input_text",
+          "quote": "The internal braking resistor is thermally overloaded.",
+          "start": 102,
+          "end": 156,
+          "location": "506–507"
+        },
+        {
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "Cause: The internal braking resistor is thermally overloaded. This is the reason that its use was inhibited.",
+          "start": 95,
+          "end": 203,
+          "location": "506–507"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=506–507",
+        "parameter:未能在输入原文中直接定位证据，保留页码/位置=506–507"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "A30077",
+        "description": "Power unit: thermal overload internal braking resistor\n（功率单元：内部制动电阻热过载）",
+        "component": "功率单元（Power unit）",
+        "related_components": "内部制动电阻（internal braking resistor）",
+        "causes": "The internal braking resistor is thermally overloaded. This is the reason that its use was inhibited.\n（内部制动电阻热过载。这就是其使用被禁止的原因）",
+        "parameters": "r2124",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "A30077 Power unit: thermal overload internal braking resistor",
+          "location": "506–507"
+        },
+        "description": {
+          "quote": "A30077 Power unit: thermal overload internal braking resistor / Reaction: NONE / Acknowledge: NONE",
+          "location": "506–507"
+        },
+        "primary_component": {
+          "quote": "Power unit: thermal overload internal braking resistor",
+          "location": "506–507"
+        },
+        "related_component": {
+          "quote": "The internal braking resistor is thermally overloaded.",
+          "location": "506–507"
+        },
+        "cause": {
+          "quote": "Cause: The internal braking resistor is thermally overloaded. This is the reason that its use was inhibited.",
+          "location": "506–507"
+        },
+        "parameter": {
+          "quote": "Alarm value (r2124, interpret decimal): Energy absorbed by the braking resistor [Ws].",
+          "location": "506–507"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": false,
+        "reclassification": null
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": null
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 506,
+        "pdf_page_end": 507,
+        "source_offset_start": 192514,
+        "source_offset_end": 193192,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_A40100",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "A40100 Alarm at DRIVE-CLiQ socket X100\nReaction: NONE\nAcknowledge: NONE\nCause: An alarm has occurred at the drive object at the DRIVE-CLiQ socket X100.\nAlarm value (r2124, interpret decimal):\nFirst alarm that has occurred for this drive object.\nRemedy: Evaluate the alarm buffer of the specified object.",
+      "gold_records": [
+        {
+          "fault_code": "A40100",
+          "component": "DRIVE-CLiQ 插座 X100",
+          "related_components": [],
+          "description": "Alarm at DRIVE-CLiQ socket X100",
+          "causes": [
+            "An alarm has occurred at the drive object at the DRIVE-CLiQ socket X100."
+          ],
+          "parameters": [
+            "r2124"
+          ],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "A40100 Alarm at DRIVE-CLiQ socket X100",
+          "start": 0,
+          "end": 38,
+          "location": "539"
+        },
+        {
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "Alarm at DRIVE-CLiQ socket X100",
+          "start": 7,
+          "end": 38,
+          "location": "539"
+        },
+        {
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "Cause: An alarm has occurred at the drive object at the DRIVE-CLiQ socket X100.",
+          "start": 72,
+          "end": 151,
+          "location": "539"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=539",
+        "related_component:未能在输入原文中直接定位证据，保留页码/位置=539",
+        "parameter:未能在输入原文中直接定位证据，保留页码/位置=539"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "A40100",
+        "description": "Alarm at DRIVE-CLiQ socket X100\n（DRIVE-CLiQ 插座 X100 处报警）",
+        "component": "DRIVE-CLiQ 插座 X100",
+        "related_components": "无",
+        "causes": "An alarm has occurred at the drive object at the DRIVE-CLiQ socket X100.\n（DRIVE-CLiQ 插座 X100 处的驱动器对象处发生报警）",
+        "parameters": "r2124",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "A40100 Alarm at DRIVE-CLiQ socket X100",
+          "location": "539"
+        },
+        "description": {
+          "quote": "A40100 Alarm at DRIVE-CLiQ socket X100 / Reaction: NONE / Acknowledge: NONE",
+          "location": "539"
+        },
+        "primary_component": {
+          "quote": "Alarm at DRIVE-CLiQ socket X100",
+          "location": "539"
+        },
+        "related_component": {
+          "quote": "无明确关联组件",
+          "location": "539"
+        },
+        "cause": {
+          "quote": "Cause: An alarm has occurred at the drive object at the DRIVE-CLiQ socket X100.",
+          "location": "539"
+        },
+        "parameter": {
+          "quote": "Alarm value (r2124, interpret decimal): First alarm that has occurred for this drive object.",
+          "location": "539"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": false,
+        "reclassification": null
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": null
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 539,
+        "pdf_page_end": 539,
+        "source_offset_start": 263345,
+        "source_offset_end": 263734,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01000",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "F01000 Internal software error\nReaction: OFF2\nAcknowledge: POWER ON\nCause: An internal software error has occurred.\nFault value (r0949, interpret hexadecimal):\nOnly for internal Siemens troubleshooting.\nRemedy: - evaluate fault buffer (r0945).\n- carry out a POWER ON (switch-off/switch-on) for all components.\n- if required, check the data on the non-volatile memory (e.g. memory card).\n- upgrade firmware to later version.\n- contact Technical Support.\n- replace the Control Unit.",
+      "gold_records": [
+        {
+          "fault_code": "F01000",
+          "component": "控制系统（内部软件）",
+          "related_components": [],
+          "description": "Internal software error",
+          "causes": [
+            "An internal software error has occurred."
+          ],
+          "parameters": [
+            "r0949",
+            "r0945"
+          ],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "F01000 Internal software error",
+          "start": 0,
+          "end": 30,
+          "location": "423"
+        },
+        {
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "Internal software error",
+          "start": 7,
+          "end": 30,
+          "location": "423"
+        },
+        {
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "Cause: An internal software error has occurred.",
+          "start": 68,
+          "end": 115,
+          "location": "423"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=423",
+        "related_component:未能在输入原文中直接定位证据，保留页码/位置=423",
+        "parameter:未能在输入原文中直接定位证据，保留页码/位置=423"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "F01000",
+        "description": "Internal software error\n（内部软件错误）",
+        "component": "控制系统（内部软件）",
+        "related_components": "无",
+        "causes": "An internal software error has occurred.\n（发生内部软件错误）",
+        "parameters": "r0949、r0945",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "F01000 Internal software error",
+          "location": "423"
+        },
+        "description": {
+          "quote": "F01000 Internal software error / Reaction: OFF2 / Acknowledge: POWER ON",
+          "location": "423"
+        },
+        "primary_component": {
+          "quote": "Internal software error",
+          "location": "423"
+        },
+        "related_component": {
+          "quote": "无明确关联组件",
+          "location": "423"
+        },
+        "cause": {
+          "quote": "Cause: An internal software error has occurred.",
+          "location": "423"
+        },
+        "parameter": {
+          "quote": "Fault value (r0949, interpret hexadecimal): Only for internal Siemens troubleshooting. / evaluate fault buffer (r0945).",
+          "location": "423"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": false,
+        "reclassification": null
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": null
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 423,
+        "pdf_page_end": 423,
+        "source_offset_start": 150,
+        "source_offset_end": 631,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01023",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "F01023 Software timeout (internal)\nReaction: NONE\nAcknowledge: IMMEDIATELY\nCause: An internal software timeout has occurred.\nFault value (r0949, interpret decimal):\nOnly for internal Siemens troubleshooting.\nRemedy: - carry out a POWER ON (switch-off/switch-on) for all components.\n- upgrade firmware to later version.\n- contact Technical Support.",
+      "gold_records": [
+        {
+          "fault_code": "F01023",
+          "component": "控制系统（内部软件）",
+          "related_components": [],
+          "description": "Software timeout (internal)",
+          "causes": [
+            "An internal software timeout has occurred."
+          ],
+          "parameters": [
+            "r0949"
+          ],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "F01023 Software timeout (internal)",
+          "start": 0,
+          "end": 34,
+          "location": "428"
+        },
+        {
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "Software timeout (internal)",
+          "start": 7,
+          "end": 34,
+          "location": "428"
+        },
+        {
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "Cause: An internal software timeout has occurred.",
+          "start": 75,
+          "end": 124,
+          "location": "428"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=428",
+        "related_component:未能在输入原文中直接定位证据，保留页码/位置=428",
+        "parameter:未能在输入原文中直接定位证据，保留页码/位置=428"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "F01023",
+        "description": "Software timeout (internal)\n（软件超时（内部））",
+        "component": "控制系统（内部软件）",
+        "related_components": "无",
+        "causes": "An internal software timeout has occurred.\n（发生内部软件超时）",
+        "parameters": "r0949",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "F01023 Software timeout (internal)",
+          "location": "428"
+        },
+        "description": {
+          "quote": "F01023 Software timeout (internal) / Reaction: NONE / Acknowledge: IMMEDIATELY",
+          "location": "428"
+        },
+        "primary_component": {
+          "quote": "Software timeout (internal)",
+          "location": "428"
+        },
+        "related_component": {
+          "quote": "无明确关联组件",
+          "location": "428"
+        },
+        "cause": {
+          "quote": "Cause: An internal software timeout has occurred.",
+          "location": "428"
+        },
+        "parameter": {
+          "quote": "Fault value (r0949, interpret decimal): Only for internal Siemens troubleshooting.",
+          "location": "428"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": false,
+        "reclassification": null
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": null
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 428,
+        "pdf_page_end": 428,
+        "source_offset_start": 11563,
+        "source_offset_end": 11911,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01042",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "F01042 Parameter error during project download\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: An error was detected when downloading a project using the commissioning software (e.g. incorrect parameter value). It\nis possible that the parameter limits are dependent on other parameters.\nThe detailed cause of the fault can be determined using the fault value.\nFault value (r0949, interpret hexadecimal):\nccbbaaaa hex\naaaa = Parameter\nbb = Index\ncc = fault cause\n0: Parameter number illegal.\n1: Parameter value cannot be changed.\n2: Lower or upper value limit exceeded.\n3: Sub-index incorrect.\n4: No array, no sub-index.\n5: Data type incorrect.\n6: Setting not permitted (only resetting).\n7: Descriptive element cannot be changed.\n9: Descriptive data not available.\n11: No master control.\n15: No text array available.\n17: Task cannot be executed due to operating state.\n20: Illegal value.\n21: Response too long.\n22: Parameter address illegal.\n23: Format illegal.\n24: Number of values not consistent.\n25: Drive object does not exist.\n101: Presently deactivated.\n104: Illegal value.\n107: Write access not permitted when controller enabled.\n108: Unit unknown.\n109: Write access only in the commissioning state, encoder (p0010 = 4).\n110: Write access only in the commissioning state, motor (p0010 = 3).\n111: Write access only in the commissioning state, power unit (p0010 = 2).\n112: Write access only in the quick commissioning mode (p0010 = 1).\n113: Write access only in the ready mode (p0010 = 0).\n114: Write access only in the commissioning state, parameter reset (p0010 = 30).\n115: Write access only in the Safety Integrated commissioning state (p0010 = 95).\n116: Write access only in the commissioning state, technological application/units (p0010 = 5).\n117: Write access only in the commissioning state (p0010 not equal to 0).\n118: Write access only in the commissioning state, download (p0010 = 29).\n119: Parameter may not be written in download.\n120: Write access only in the commissioning state, drive basic configuration (device: p0009 = 3).\n121: Write access only in the commissioning state, define drive type (device: p0009 = 2).\n122: Write access only in the commissioning state, data set basic configuration (device: p0009 = 4).\n123: Write access only in the commissioning state, device configuration (device: p0009 = 1).\n124: Write access only in the commissioning state, device download (device: p0009 = 29).\n125: Write access only in the commissioning state, device parameter reset (device: p0009 = 30).\n126: Write access only in the commissioning state, device ready (device: p0009 = 0).\n127: Write access only in the commissioning state, device (device: p0009 not equal to 0).\n129: Parameter may not be written in download.\n130: Transfer of the master control is inhibited via binector input p0806.\n131: Required BICO interconnection not possible because BICO output does not supply floating value\n430 Operating Instructions, 01/2019, A5E41702836B AC\n132: Free BICO interconnection inhibited via p0922.\n133: Access method not defined.\n200: Below the valid values.\n201: Above the valid values.\n202: Cannot be accessed from the Basic Operator Panel (BOP).\n203: Cannot be read from the Basic Operator Panel (BOP).\n204: Write access not permitted.\nRemedy: - correct the parameterization in the commissioning tool and download the project again.\n- enter the correct value in the specified parameter.\n- identify the parameter that restricts the limits of the specified parameter.",
+      "gold_records": [
+        {
+          "fault_code": "F01042",
+          "component": "参数配置系统",
+          "related_components": [],
+          "description": "Parameter error during project download",
+          "causes": [
+            "An error was detected when downloading a project using the commissioning software (e.g. incorrect parameter value). It is possible that the parameter limits are dependent on other parameters."
+          ],
+          "parameters": [
+            "r0949",
+            "p0010",
+            "p0009",
+            "p0806",
+            "p0922"
+          ],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "F01042 Parameter error during project download",
+          "start": 0,
+          "end": 46,
+          "location": "431–433"
+        },
+        {
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "Parameter error during project download",
+          "start": 7,
+          "end": 46,
+          "location": "431–433"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=431–433",
+        "related_component:未能在输入原文中直接定位证据，保留页码/位置=431–433",
+        "cause:未能在输入原文中直接定位证据，保留页码/位置=431–433",
+        "parameter:未能在输入原文中直接定位证据，保留页码/位置=431–433"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "F01042",
+        "description": "Parameter error during project download\n（下载项目时参数错误）",
+        "component": "参数配置系统",
+        "related_components": "无",
+        "causes": "An error was detected when downloading a project using the commissioning software (e.g. incorrect parameter value). It is possible that the parameter limits are dependent on other parameters.\n（使用调试软件下载项目时检测到错误（例如参数值不正确）。参数限值可能依赖于其他参数）",
+        "parameters": "r0949、p0010、p0009、p0806、p0922",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "F01042 Parameter error during project download",
+          "location": "431–433"
+        },
+        "description": {
+          "quote": "F01042 Parameter error during project download / Reaction: OFF2 / Acknowledge: IMMEDIATELY",
+          "location": "431–433"
+        },
+        "primary_component": {
+          "quote": "Parameter error during project download",
+          "location": "431–433"
+        },
+        "related_component": {
+          "quote": "无明确关联组件",
+          "location": "431–433"
+        },
+        "cause": {
+          "quote": "Cause: An error was detected when downloading a project using the commissioning software (e.g. incorrect parameter value). It is possible that the parameter limits are dependent on other parameters.",
+          "location": "431–433"
+        },
+        "parameter": {
+          "quote": "Fault value (r0949, interpret hexadecimal): ccbbaaaa hex / 涉及 p0010、p0009、p0806、p0922 等参数",
+          "location": "431–433"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": false,
+        "reclassification": null
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": null
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 431,
+        "pdf_page_end": 433,
+        "source_offset_start": 18829,
+        "source_offset_end": 22532,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01357",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "F01357 Topology: Two Control Units identified on the DRIVE-CLiQ line\nReaction: NONE\nAcknowledge: IMMEDIATELY\nCause: In the actual topology, 2 Control Units are connected with one another through DRIVE-CLiQ.\nAs standard, this is not permitted.\nThis is only permitted if the Technology Extension OALINK has already been installed on the two Control Units and has been\ncommissioned online.\nFault value (r0949, interpret hexadecimal):\nyyxx hex:\nyy = connection number of the Control Unit at which the second Control Unit is connected\nxx = component number of the Control Unit at which the second Control Unit is connected\nNote:\nPulse enable is withdrawn and prevented.\nRemedy: In general:\n- remove the connection to the second Control Unit and restart.\n- for the S120M component DRIVE-CLiQ extension, interchange the hybrid cable (IN/OUT).\nWhen using OALINK:\n- remove the DRIVE-CLiQ connection and restart the systems.\n- install OALINK on both Control Units and activate.\n- Check the configuration of the DRIVE-CLiQ sockets in OALINK.",
+      "gold_records": [
+        {
+          "fault_code": "F01357",
+          "component": "DRIVE-CLiQ 线路",
+          "related_components": [
+            "Control Unit（控制单元）"
+          ],
+          "description": "Topology: Two Control Units identified on the DRIVE-CLiQ line",
+          "causes": [
+            "In the actual topology, 2 Control Units are connected with one another through DRIVE-CLiQ. As standard, this is not permitted."
+          ],
+          "parameters": [
+            "r0949"
+          ],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "F01357 Topology: Two Control Units identified on the DRIVE-CLiQ line",
+          "start": 0,
+          "end": 68,
+          "location": "439"
+        },
+        {
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "Topology: Two Control Units identified on the DRIVE-CLiQ line",
+          "start": 7,
+          "end": 68,
+          "location": "439"
+        },
+        {
+          "field": "related_component",
+          "source_id": "input_text",
+          "quote": "In the actual topology, 2 Control Units are connected with one another through DRIVE-CLiQ.",
+          "start": 116,
+          "end": 206,
+          "location": "439"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=439",
+        "cause:未能在输入原文中直接定位证据，保留页码/位置=439",
+        "parameter:未能在输入原文中直接定位证据，保留页码/位置=439"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "F01357",
+        "description": "Topology: Two Control Units identified on the DRIVE-CLiQ line\n（拓扑结构：DRIVE-CLiQ 线路上识别到两个控制单元）",
+        "component": "DRIVE-CLiQ 线路",
+        "related_components": "Control Unit（控制单元）",
+        "causes": "In the actual topology, 2 Control Units are connected with one another through DRIVE-CLiQ. As standard, this is not permitted.\n（在实际拓扑结构中，2 个控制单元通过 DRIVE-CLiQ 相互连接。标准情况下不允许这样做）",
+        "parameters": "r0949",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "F01357 Topology: Two Control Units identified on the DRIVE-CLiQ line",
+          "location": "439"
+        },
+        "description": {
+          "quote": "F01357 Topology: Two Control Units identified on the DRIVE-CLiQ line / Reaction: NONE / Acknowledge: IMMEDIATELY",
+          "location": "439"
+        },
+        "primary_component": {
+          "quote": "Topology: Two Control Units identified on the DRIVE-CLiQ line",
+          "location": "439"
+        },
+        "related_component": {
+          "quote": "In the actual topology, 2 Control Units are connected with one another through DRIVE-CLiQ.",
+          "location": "439"
+        },
+        "cause": {
+          "quote": "Cause: In the actual topology, 2 Control Units are connected with one another through DRIVE-CLiQ. As standard, this is not permitted.",
+          "location": "439"
+        },
+        "parameter": {
+          "quote": "Fault value (r0949, interpret hexadecimal): yyxx hex: yy = connection number of the Control Unit; xx = component number of the Control Unit",
+          "location": "439"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": false,
+        "reclassification": null
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": null
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 439,
+        "pdf_page_end": 439,
+        "source_offset_start": 36327,
+        "source_offset_end": 37358,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01650",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "F01650 SI P1: Acceptance test required\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The \"Safety Integrated\" function on monitoring channel 1 requires an acceptance test.\nNote:\nThis fault results in an STO that can be acknowledged.\nFault value (r0949, interpret decimal):\n130: Safety parameters for monitoring channel 2 not available.\nNote:\nThis fault value is always output when Safety Integrated is commissioned for the first time.\n1000: Reference and actual checksum in monitoring channel 1 are not identical (booting).\n- safety parameters set offline and loaded to the drive.\n- at least one checksum-checked piece of data is defective.\n2000: Reference and actual checksum in monitoring channel 1 are not identical (commissioning mode).\n2001: Reference and actual checksum in monitoring channel 2 are not identical (commissioning mode).\n2002: Enable of safety-related functions between the two monitoring channels differ.\n2003: Acceptance test is required as a safety parameter has been changed.\n2004: An acceptance test is required because a project with enabled safety-functions has been downloaded.\n2005: The safety logbook has identified that the safety checksums have changed.\n2010: Safe brake control enable different between both monitoring channels.\n2020: Error when saving the safety parameters for the monitoring channel 2.\n3003: Acceptance test is required as a hardware-related safety parameter has been changed.\n3005: The Safety logbook has identified that a hardware-related safety checksum has changed.\n9999: Subsequent response of another safety-related fault that occurred when booting that requires an acceptance test.\nRemedy: For fault value = 130:\n- carry out safety commissioning routine.\nFor fault value = 1000:\n- again carry out safety commissioning routine.\n- replace the memory card or drive.\nFor fault value = 2000:\n- confirm the data change using the commissioning tool.\nFor fault value = 2001:\n- confirm the data change using the commissioning tool.\nFor fault value = 2002:\n- using the commissioning tool, copy the safety parameters and confirm the data change.\nFor fault value = 2003, 2004, 2005:\n- carry out an acceptance test and generate an acceptance report.\nNote:\nThe fault with fault value 2005 can only be acknowledged when the \"STO\" function is deselected.\nFor fault value = 2010:\n- check that safe brake control is enabled.\n- using the commissioning tool, copy the safety parameters and confirm the data change.\nFor fault value = 2020:\n- again carry out safety commissioning routine.\n- replace the memory card or drive.\nFor fault value = 3003:\n- carry out the function checks for the modified hardware and generate an acceptance report.\nFor fault value = 3005:\n- carry out the function checks for the modified hardware and generate an acceptance report.\nNote:\nThe fault with fault value 3005 can only be acknowledged when the \"STO\" function is deselected.\nFor fault value = 9999:\n- carry out diagnostics for the other safety-related fault that is present.\nNote:\nSI: Safety Integrated\nSTO: Safe Torque Off",
+      "gold_records": [
+        {
+          "fault_code": "F01650",
+          "component": "SI（Safety Integrated 安全集成）",
+          "related_components": [],
+          "description": "SI P1: Acceptance test required",
+          "causes": [
+            "The \"Safety Integrated\" function on monitoring channel 1 requires an acceptance test."
+          ],
+          "parameters": [
+            "r0949"
+          ],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "F01650 SI P1: Acceptance test required",
+          "start": 0,
+          "end": 38,
+          "location": "447–448"
+        },
+        {
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "SI P1: Acceptance test required",
+          "start": 7,
+          "end": 38,
+          "location": "447–448"
+        },
+        {
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "Cause: The \"Safety Integrated\" function on monitoring channel 1 requires an acceptance test.",
+          "start": 79,
+          "end": 171,
+          "location": "447–448"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=447–448",
+        "related_component:未能在输入原文中直接定位证据，保留页码/位置=447–448",
+        "parameter:未能在输入原文中直接定位证据，保留页码/位置=447–448"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "F01650",
+        "description": "SI P1: Acceptance test required\n（SI P1: 需要验收测试）",
+        "component": "SI（Safety Integrated 安全集成）",
+        "related_components": "无",
+        "causes": "The \"Safety Integrated\" function on monitoring channel 1 requires an acceptance test.\n（\"Safety Integrated\" 监控通道 1 上的功能需要验收测试）",
+        "parameters": "r0949",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "F01650 SI P1: Acceptance test required",
+          "location": "447–448"
+        },
+        "description": {
+          "quote": "F01650 SI P1: Acceptance test required / Reaction: OFF2 / Acknowledge: IMMEDIATELY",
+          "location": "447–448"
+        },
+        "primary_component": {
+          "quote": "SI P1: Acceptance test required",
+          "location": "447–448"
+        },
+        "related_component": {
+          "quote": "无明确关联组件",
+          "location": "447–448"
+        },
+        "cause": {
+          "quote": "Cause: The \"Safety Integrated\" function on monitoring channel 1 requires an acceptance test.",
+          "location": "447–448"
+        },
+        "parameter": {
+          "quote": "Fault value (r0949, interpret decimal): 130: Safety parameters for monitoring channel 2 not available; 1000–9999 多种子值",
+          "location": "447–448"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": false,
+        "reclassification": null
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": null
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 447,
+        "pdf_page_end": 448,
+        "source_offset_start": 54986,
+        "source_offset_end": 58168,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01670",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "F01670 SI Motion: Invalid parameterization of the encoder evaluation\nReaction: OFF2\nAcknowledge: IMMEDIATELY\n450 Operating Instructions, 01/2019, A5E41702836B AC\nCause: The parameterization of the encoder evaluation used for Safety Integrated is not permissible.\nNote:\nThis fault results in an STO that cannot be acknowledged.\nFault value (r0949, interpret decimal):\n1: No encoder was parameterized for Safety Integrated.\n2: An encoder was parameterized for Safety Integrated that does not have an A/B track (sine/cosine).\n3: The encoder data set selected for Safety Integrated is still not valid.\n4: A communication error with the encoder has occurred.\n5: Number of relevant bits in the encoder coarse position invalid.\n6: DRIVE-CLiQ encoder configuration invalid.\n8: Parameterized Safety comparison algorithm not supported.\nRemedy: For fault value = 1, 2:\n- use and parameterize an encoder that Safety Integrated supports (encoder with track A/B sine-wave, p0404.4 = 1).\nFor fault value = 3:\n- check whether the drive or drive commissioning function is active and if required, exit this (p0009 = p00010 = 0), save the\nparameters (p0971 = 1) and carry out a POWER ON\nFor fault value = 4:\n- check whether there are any active faults in the DRIVE-CLiQ communication between the drive and the encoder\nevaluation - and when necessary, carry out diagnostics for the faults involved.\nFor fault value = 5:\n- p9525 = 0 (not permissible). Check the encoder parameterization.\nFor fault value = 6:\n- check p9515.0 (for DRIVE-CLiQ encoders, the following applies: p9515.0 = 1). Check the encoder parameterization.\nFor fault value = 8:\n- use and parameterize an encoder that implements an algorithm supported by Safety Integrated.\nNote:\nSI: Safety Integrated\nSTO: Safe Torque Off",
+      "gold_records": [
+        {
+          "fault_code": "F01670",
+          "component": "SI Motion（安全集成运动）",
+          "related_components": [
+            "编码器（Encoder）"
+          ],
+          "description": "SI Motion: Invalid parameterization of the encoder evaluation",
+          "causes": [
+            "The parameterization of the encoder evaluation used for Safety Integrated is not permissible."
+          ],
+          "parameters": [
+            "r0949",
+            "p0404",
+            "p0009",
+            "p00010",
+            "p0971",
+            "p9525",
+            "p9515"
+          ],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "F01670 SI Motion: Invalid parameterization of the encoder evaluation",
+          "start": 0,
+          "end": 68,
+          "location": "452–453"
+        },
+        {
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "SI Motion: Invalid parameterization of the encoder evaluation",
+          "start": 7,
+          "end": 68,
+          "location": "452–453"
+        },
+        {
+          "field": "related_component",
+          "source_id": "input_text",
+          "quote": "The parameterization of the encoder evaluation used for Safety Integrated is not permissible.",
+          "start": 169,
+          "end": 262,
+          "location": "452–453"
+        },
+        {
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "Cause: The parameterization of the encoder evaluation used for Safety Integrated is not permissible.",
+          "start": 162,
+          "end": 262,
+          "location": "452–453"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=452–453",
+        "parameter:未能在输入原文中直接定位证据，保留页码/位置=452–453"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "F01670",
+        "description": "SI Motion: Invalid parameterization of the encoder evaluation\n（SI Motion: 编码器评估的参数化无效）",
+        "component": "SI Motion（安全集成运动）",
+        "related_components": "编码器（Encoder）",
+        "causes": "The parameterization of the encoder evaluation used for Safety Integrated is not permissible.\n（用于 Safety Integrated 的编码器评估参数化不允许）",
+        "parameters": "r0949、p0404、p0009、p00010、p0971、p9525、p9515",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "F01670 SI Motion: Invalid parameterization of the encoder evaluation",
+          "location": "452–453"
+        },
+        "description": {
+          "quote": "F01670 SI Motion: Invalid parameterization of the encoder evaluation / Reaction: OFF2 / Acknowledge: IMMEDIATELY",
+          "location": "452–453"
+        },
+        "primary_component": {
+          "quote": "SI Motion: Invalid parameterization of the encoder evaluation",
+          "location": "452–453"
+        },
+        "related_component": {
+          "quote": "The parameterization of the encoder evaluation used for Safety Integrated is not permissible.",
+          "location": "452–453"
+        },
+        "cause": {
+          "quote": "Cause: The parameterization of the encoder evaluation used for Safety Integrated is not permissible.",
+          "location": "452–453"
+        },
+        "parameter": {
+          "quote": "Fault value (r0949, interpret decimal): 1–8 多种子值 / p0404、p0009、p00010、p0971、p9525、p9515",
+          "location": "452–453"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": false,
+        "reclassification": null
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": null
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 452,
+        "pdf_page_end": 453,
+        "source_offset_start": 68111,
+        "source_offset_end": 69961,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01682",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "F01682 SI Motion P1: Monitoring function not supported\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The monitoring function enabled in p9501, p9506, p9507, p9601 is not supported in this firmware version.\nNote:\nThis fault results in an STO that cannot be acknowledged.\nFault value (r0949, interpret decimal):\n20: Motion monitoring functions integrated in the drive are only supported in conjunction with PROFIsafe (p9501 and\np9601.1 ... 2).\n21: Enable a safe motion monitoring function (in p9501), not supported for enabled basic functions via PROFIsafe (p9601.2\n= 0, p9601.3 = 1).\n59: Safe actual value sensing with SIL3 encoder not supported.\n9612: An attempt was made to set the stop response SS1 for PROFIsafe failure (p9612 = 1), although PROFIsafe is not\nenabled.\nAdditional fault values:\nMonitoring function not supported.\nSee also: p9612 (SI PROFIsafe failure response)\nRemedy: - deselect the monitoring function involved (p9501, p9506, p9507, p9601).\n- restore the factory setting and repeat commissioning.\n- upgrade the firmware.\nFor fault value = 59:\n- upgrade the firmware of the Motor Module to a later version.\nFor fault value = 9612:\n- establish communications with PROFIsafe (p9601).\n- parameterize STO as stop response for PROFIsafe failure (p9612 = 0).\nNote:\nSI: Safety Integrated\nSS1: Safe Stop 1\nSTO: Safe Torque Off\nSee also: p9501 (SI Motion enable safety functions), p9601 (SI enable, functions integrated in the drive), p9612 (SI\nPROFIsafe failure response)",
+      "gold_records": [
+        {
+          "fault_code": "F01682",
+          "component": "SI Motion（安全集成运动）",
+          "related_components": [],
+          "description": "SI Motion P1: Monitoring function not supported",
+          "causes": [
+            "The monitoring function enabled in p9501, p9506, p9507, p9601 is not supported in this firmware version."
+          ],
+          "parameters": [
+            "p9501",
+            "p9506",
+            "p9507",
+            "p9601",
+            "r0949",
+            "p9612"
+          ],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "F01682 SI Motion P1: Monitoring function not supported",
+          "start": 0,
+          "end": 54,
+          "location": "457–458"
+        },
+        {
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "SI Motion P1: Monitoring function not supported",
+          "start": 7,
+          "end": 54,
+          "location": "457–458"
+        },
+        {
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "Cause: The monitoring function enabled in p9501, p9506, p9507, p9601 is not supported in this firmware version.",
+          "start": 95,
+          "end": 206,
+          "location": "457–458"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=457–458",
+        "related_component:未能在输入原文中直接定位证据，保留页码/位置=457–458",
+        "parameter:未能在输入原文中直接定位证据，保留页码/位置=457–458"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "F01682",
+        "description": "SI Motion P1: Monitoring function not supported\n（SI Motion P1: 不支持监控功能）",
+        "component": "SI Motion（安全集成运动）",
+        "related_components": "无",
+        "causes": "The monitoring function enabled in p9501, p9506, p9507, p9601 is not supported in this firmware version.\n（在 p9501、p9506、p9507、p9601 中启用的监控功能在此固件版本中不受支持）",
+        "parameters": "p9501、p9506、p9507、p9601、r0949、p9612",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "F01682 SI Motion P1: Monitoring function not supported",
+          "location": "457–458"
+        },
+        "description": {
+          "quote": "F01682 SI Motion P1: Monitoring function not supported / Reaction: OFF2 / Acknowledge: IMMEDIATELY",
+          "location": "457–458"
+        },
+        "primary_component": {
+          "quote": "SI Motion P1: Monitoring function not supported",
+          "location": "457–458"
+        },
+        "related_component": {
+          "quote": "无明确关联组件",
+          "location": "457–458"
+        },
+        "cause": {
+          "quote": "Cause: The monitoring function enabled in p9501, p9506, p9507, p9601 is not supported in this firmware version.",
+          "location": "457–458"
+        },
+        "parameter": {
+          "quote": "p9501、p9506、p9507、p9601（监控功能启用）/ Fault value (r0949, interpret decimal): 20、21、59、9612 / p9612（SI PROFIsafe failure response）",
+          "location": "457–458"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": false,
+        "reclassification": null
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": null
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 457,
+        "pdf_page_end": 458,
+        "source_offset_start": 79293,
+        "source_offset_end": 80912,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F01800",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "F01800 DRIVE-CLiQ: Hardware/configuration error\nReaction: NONE\nAcknowledge: IMMEDIATELY\nCause: A DRIVE-CLiQ connection fault has occurred.\nFault value (r0949, interpret decimal):\n100 ... 107:\nCommunication via DRIVE-CLiQ socket X100 ... X107 has not been switched to cyclic operation. The cause may be an\nincorrect structure or a configuration that results in an impossible bus timing.\n10:\nLoss of the DRIVE-CLiQ connection. The cause may be, for example, that the DRIVE-CLiQ cable was withdrawn from the\nControl Unit or as a result of a short-circuit for motors with DRIVE-CLiQ. This fault can only be acknowledged in cyclic\ncommunication.\n11:\nRepeated faults when detecting the connection. This fault can only be acknowledged in cyclic communication.\n12:\nA connection was detected but the node ID exchange mechanism does not function. The reason is probably that the\ncomponent is defective. This fault can only be acknowledged in cyclic communication.\nRemedy: For fault value = 100 ... 107:\n- ensure that the DRIVE-CLiQ components have the same firmware versions.\n- avoid longer topologies for short current controller sampling times.\nFor fault value = 10:\n- check the DRIVE-CLiQ cables at the Control Unit.\n- remove any short-circuit for motors with DRIVE-CLiQ.\n- carry out a POWER ON.\nFor fault value = 11:\n- check the electrical cabinet design and cable routing for EMC compliance\nFor fault value = 12:\n- replace the component involved.",
+      "gold_records": [
+        {
+          "fault_code": "F01800",
+          "component": "DRIVE-CLiQ",
+          "related_components": [
+            "Control Unit（控制单元）"
+          ],
+          "description": "DRIVE-CLiQ: Hardware/configuration error",
+          "causes": [
+            "A DRIVE-CLiQ connection fault has occurred."
+          ],
+          "parameters": [
+            "r0949"
+          ],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "F01800 DRIVE-CLiQ: Hardware/configuration error",
+          "start": 0,
+          "end": 47,
+          "location": "474"
+        },
+        {
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "DRIVE-CLiQ: Hardware/configuration error",
+          "start": 7,
+          "end": 47,
+          "location": "474"
+        },
+        {
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "Cause: A DRIVE-CLiQ connection fault has occurred.",
+          "start": 88,
+          "end": 138,
+          "location": "474"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=474",
+        "related_component:未能在输入原文中直接定位证据，保留页码/位置=474",
+        "parameter:未能在输入原文中直接定位证据，保留页码/位置=474"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "F01800",
+        "description": "DRIVE-CLiQ: Hardware/configuration error\n（DRIVE-CLiQ: 硬件/配置错误）",
+        "component": "DRIVE-CLiQ",
+        "related_components": "Control Unit（控制单元）",
+        "causes": "A DRIVE-CLiQ connection fault has occurred.\n（发生 DRIVE-CLiQ 连接故障）",
+        "parameters": "r0949",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "F01800 DRIVE-CLiQ: Hardware/configuration error",
+          "location": "474"
+        },
+        "description": {
+          "quote": "F01800 DRIVE-CLiQ: Hardware/configuration error / Reaction: NONE / Acknowledge: IMMEDIATELY",
+          "location": "474"
+        },
+        "primary_component": {
+          "quote": "DRIVE-CLiQ: Hardware/configuration error",
+          "location": "474"
+        },
+        "related_component": {
+          "quote": "Communication via DRIVE-CLiQ socket X100 ... X107 / Control Unit",
+          "location": "474"
+        },
+        "cause": {
+          "quote": "Cause: A DRIVE-CLiQ connection fault has occurred.",
+          "location": "474"
+        },
+        "parameter": {
+          "quote": "Fault value (r0949, interpret decimal): 100...107 / 10 / 11 / 12",
+          "location": "474"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": false,
+        "reclassification": null
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": null
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 474,
+        "pdf_page_end": 474,
+        "source_offset_start": 119391,
+        "source_offset_end": 120833,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F07093",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "F07093 Drive: Test signal error\nReaction: OFF3\nAcknowledge: IMMEDIATELY\n480 Operating Instructions, 01/2019, A5E41702836B AC\nCause: An error was identified when executing the \"Test signal\" function (p5307.1 = 1).\nThe function was not executed or was canceled.\nFault value (r0949, interpret decimal):\n1: No distance limit has been defined (p5308 = 0).\n2: The moment of inertia estimator has not stabilized in the parameterized time (p5309) (r1407.26).\n3: The parameterized distance (p5308) was exceeded.\n4: no motor encoder parameterized (closed-loop speed control without encoder).\n5: Offset (p5297) is too high for the parameterized distance (p5308).\n6: Pulse enable was withdrawn while traversing.\n7: speed setpoint not equal to zero.\nSee also: p5308 (One Button Tuning distance limiting), p5309 (One Button Tuning duration)\nRemedy: For fault value = 1:\n- Define distance limiting (p5308).\nFor fault value = 2:\n- increase the duration or distance limiting (p5309, p5308).\nFor fault value = 3:\n- check distance limiting (p5308).\nFor fault value = 4:\n- configure speed control with encoder.\nFor fault value = 5:\n- increase distance limit p5308 or reduce offset p5297.\n- the fault can only be acknowledged after p5300 was set = 0.\n- for the factory setting, a test signal duration of approximately 1.3 s is obtained. If an offset (p5297) of 60 rpm is set, for\nexample, then this results in a distance of approximately 1.3 revolutions. As a consequence, a value must be parameterized\nin parameter p5308, which is longer than this distance + 10% controller reserve (e.g. p5308=515°). Further, the distance\ndepends on the speed controller sampling time (p0115[1]) and the controller configuration (p5271).\nFor fault value = 6:\n- keep the drive switched on until the \"Test signal\" function has been completely exited.\nFor fault value = 7:\n- set the speed setpoint to zero. It is possible that the setpoint was entered from the control panel.",
+      "gold_records": [
+        {
+          "fault_code": "F07093",
+          "component": "驱动器（Drive）",
+          "related_components": [
+            "编码器（Encoder）"
+          ],
+          "description": "Drive: Test signal error",
+          "causes": [
+            "An error was identified when executing the \"Test signal\" function (p5307.1 = 1). The function was not executed or was canceled."
+          ],
+          "parameters": [
+            "p5307",
+            "r0949",
+            "p5308",
+            "p5309",
+            "r1407",
+            "p5297",
+            "p5300",
+            "p0115",
+            "p5271"
+          ],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "F07093 Drive: Test signal error",
+          "start": 0,
+          "end": 31,
+          "location": "482–483"
+        },
+        {
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "Drive: Test signal error",
+          "start": 7,
+          "end": 31,
+          "location": "482–483"
+        },
+        {
+          "field": "related_component",
+          "source_id": "input_text",
+          "quote": "no motor encoder parameterized (closed-loop speed control without encoder)",
+          "start": 506,
+          "end": 580,
+          "location": "482–483"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=482–483",
+        "cause:未能在输入原文中直接定位证据，保留页码/位置=482–483",
+        "parameter:未能在输入原文中直接定位证据，保留页码/位置=482–483"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "F07093",
+        "description": "Drive: Test signal error\n（驱动器: 测试信号错误）",
+        "component": "驱动器（Drive）",
+        "related_components": "编码器（Encoder）",
+        "causes": "An error was identified when executing the \"Test signal\" function (p5307.1 = 1). The function was not executed or was canceled.\n（执行\"测试信号\"功能时检测到错误。功能未执行或被取消）",
+        "parameters": "p5307、r0949、p5308、p5309、r1407、p5297、p5300、p0115、p5271",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "F07093 Drive: Test signal error",
+          "location": "482–483"
+        },
+        "description": {
+          "quote": "F07093 Drive: Test signal error / Reaction: OFF3 / Acknowledge: IMMEDIATELY",
+          "location": "482–483"
+        },
+        "primary_component": {
+          "quote": "Drive: Test signal error",
+          "location": "482–483"
+        },
+        "related_component": {
+          "quote": "no motor encoder parameterized (closed-loop speed control without encoder)",
+          "location": "482–483"
+        },
+        "cause": {
+          "quote": "Cause: An error was identified when executing the \"Test signal\" function (p5307.1 = 1). The function was not executed or was canceled.",
+          "location": "482–483"
+        },
+        "parameter": {
+          "quote": "p5307、r0949、p5308、p5309、r1407、p5297、p5300、p0115、p5271",
+          "location": "482–483"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": false,
+        "reclassification": null
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": null
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 482,
+        "pdf_page_end": 483,
+        "source_offset_start": 139774,
+        "source_offset_end": 141793,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F07801",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "F07801 Drive: Motor overcurrent\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The permissible motor limit current was exceeded.\n- active current limit too low.\n- current controller not correctly set.\n- load is too high.\n- short-circuit in the motor cable or ground fault.\n- motor current does not match the drive current.\nRemedy: - reduce the load.\n- check the motor and motor cables for short-circuit and ground fault.\n- check the drive and motor combination.",
+      "gold_records": [
+        {
+          "fault_code": "F07801",
+          "component": "驱动器（Drive）",
+          "related_components": [
+            "电机（Motor）"
+          ],
+          "description": "Drive: Motor overcurrent",
+          "causes": [
+            "The permissible motor limit current was exceeded.",
+            "Possible causes: active current limit too low; current controller not correctly set; load is too high; short-circuit in the motor cable or ground fault; motor current does not match the drive current."
+          ],
+          "parameters": [],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "F07801 Drive: Motor overcurrent",
+          "start": 0,
+          "end": 31,
+          "location": "487"
+        },
+        {
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "Drive: Motor overcurrent",
+          "start": 7,
+          "end": 31,
+          "location": "487"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=487",
+        "related_component:未能在输入原文中直接定位证据，保留页码/位置=487",
+        "cause:未能在输入原文中直接定位证据，保留页码/位置=487",
+        "parameter:未能在输入原文中直接定位证据，保留页码/位置=487"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "F07801",
+        "description": "Drive: Motor overcurrent\n（驱动器: 电机过流）",
+        "component": "驱动器（Drive）",
+        "related_components": "电机（Motor）",
+        "causes": "The permissible motor limit current was exceeded.\nPossible causes: active current limit too low; current controller not correctly set; load is too high; short-circuit in the motor cable or ground fault; motor current does not match the drive current.\n（超过允许的电机极限电流。可能原因：有源电流限值过低；电流控制器设置不正确；负载过高；电机电缆短路或接地故障；电机电流与驱动器电流不匹配）",
+        "parameters": "无",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "F07801 Drive: Motor overcurrent",
+          "location": "487"
+        },
+        "description": {
+          "quote": "F07801 Drive: Motor overcurrent / Reaction: OFF2 / Acknowledge: IMMEDIATELY",
+          "location": "487"
+        },
+        "primary_component": {
+          "quote": "Drive: Motor overcurrent",
+          "location": "487"
+        },
+        "related_component": {
+          "quote": "Motor overcurrent - 涉及电机",
+          "location": "487"
+        },
+        "cause": {
+          "quote": "Cause: The permissible motor limit current was exceeded. / - active current limit too low. / - current controller not correctly set. / - load is too high. / - short-circuit in the motor cable or ground fault. / - motor current does not match the drive current.",
+          "location": "487"
+        },
+        "parameter": {
+          "quote": "原文未提及具体参数",
+          "location": "487"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": false,
+        "reclassification": null
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": null
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 487,
+        "pdf_page_end": 487,
+        "source_offset_start": 152434,
+        "source_offset_end": 152896,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F08501",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "F08501 PN/COMM BOARD: Setpoint timeout\nReaction: OFF3\nAcknowledge: IMMEDIATELY\nCause: The reception of setpoints from the COMM BOARD has been interrupted.\n- bus connection interrupted.\n- controller switched off.\n- controller set into the STOP state.\n- COMM BOARD defective.\nRemedy: - Restore the bus connection and set the controller to RUN.\n- if the error is repeated, check the update time set in the bus configuration (HW Config).",
+      "gold_records": [
+        {
+          "fault_code": "F08501",
+          "component": "PN/COMM BOARD",
+          "related_components": [],
+          "description": "PN/COMM BOARD: Setpoint timeout",
+          "causes": [
+            "The reception of setpoints from the COMM BOARD has been interrupted.",
+            "Possible causes: bus connection interrupted; controller switched off; controller set into the STOP state; COMM BOARD defective."
+          ],
+          "parameters": [],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "F08501 PN/COMM BOARD: Setpoint timeout",
+          "start": 0,
+          "end": 38,
+          "location": "490"
+        },
+        {
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "PN/COMM BOARD: Setpoint timeout",
+          "start": 7,
+          "end": 38,
+          "location": "490"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=490",
+        "related_component:未能在输入原文中直接定位证据，保留页码/位置=490",
+        "cause:未能在输入原文中直接定位证据，保留页码/位置=490",
+        "parameter:未能在输入原文中直接定位证据，保留页码/位置=490"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "F08501",
+        "description": "PN/COMM BOARD: Setpoint timeout\n（PN/COMM BOARD: 设定值超时）",
+        "component": "PN/COMM BOARD",
+        "related_components": "无",
+        "causes": "The reception of setpoints from the COMM BOARD has been interrupted.\nPossible causes: bus connection interrupted; controller switched off; controller set into the STOP state; COMM BOARD defective.\n（来自 COMM BOARD 的设定值接收已中断。可能原因：总线连接中断；控制器关闭；控制器置于 STOP 状态；COMM BOARD 故障）",
+        "parameters": "无",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "F08501 PN/COMM BOARD: Setpoint timeout",
+          "location": "490"
+        },
+        "description": {
+          "quote": "F08501 PN/COMM BOARD: Setpoint timeout / Reaction: OFF3 / Acknowledge: IMMEDIATELY",
+          "location": "490"
+        },
+        "primary_component": {
+          "quote": "PN/COMM BOARD: Setpoint timeout",
+          "location": "490"
+        },
+        "related_component": {
+          "quote": "无明确关联组件",
+          "location": "490"
+        },
+        "cause": {
+          "quote": "Cause: The reception of setpoints from the COMM BOARD has been interrupted. / - bus connection interrupted. / - controller switched off. / - controller set into the STOP state. / - COMM BOARD defective.",
+          "location": "490"
+        },
+        "parameter": {
+          "quote": "原文未提及具体参数",
+          "location": "490"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": false,
+        "reclassification": null
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": null
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 490,
+        "pdf_page_end": 490,
+        "source_offset_start": 157808,
+        "source_offset_end": 158242,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30003",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "F30003 Drive: DC link undervoltage\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The power unit has detected an undervoltage condition in the DC link.\n- line supply failure\n- line supply voltage below the permissible value.\n- line supply infeed failed or interrupted.\n- line phase interrupted.\nRemedy: - check the line supply voltage\n- check the line supply infeed and observe the fault messages relating to it (if there are any)\n- check the line supply phases.\n- check the line supply voltage setting (p0210).\nSee also: p0210 (Drive unit line supply voltage)",
+      "gold_records": [
+        {
+          "fault_code": "F30003",
+          "component": "驱动器（Drive）",
+          "related_components": [
+            "功率单元（Power unit）"
+          ],
+          "description": "Drive: DC link undervoltage",
+          "causes": [
+            "The power unit has detected an undervoltage condition in the DC link.",
+            "Possible causes: line supply failure; line supply voltage below the permissible value; line supply infeed failed or interrupted; line phase interrupted."
+          ],
+          "parameters": [
+            "p0210"
+          ],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "F30003 Drive: DC link undervoltage",
+          "start": 0,
+          "end": 34,
+          "location": "496"
+        },
+        {
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "Drive: DC link undervoltage",
+          "start": 7,
+          "end": 34,
+          "location": "496"
+        },
+        {
+          "field": "related_component",
+          "source_id": "input_text",
+          "quote": "The power unit has detected an undervoltage condition in the DC link.",
+          "start": 82,
+          "end": 151,
+          "location": "496"
+        },
+        {
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "p0210 (Drive unit line supply voltage)",
+          "start": 522,
+          "end": 560,
+          "location": "496"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=496",
+        "cause:未能在输入原文中直接定位证据，保留页码/位置=496"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "F30003",
+        "description": "Drive: DC link undervoltage\n（驱动器: 直流母线欠压）",
+        "component": "驱动器（Drive）",
+        "related_components": "功率单元（Power unit）",
+        "causes": "The power unit has detected an undervoltage condition in the DC link.\nPossible causes: line supply failure; line supply voltage below the permissible value; line supply infeed failed or interrupted; line phase interrupted.\n（功率单元检测到直流母线欠压。可能原因：电源故障；电源电压低于允许值；电源供电失败或中断；电源相线中断）",
+        "parameters": "p0210",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "F30003 Drive: DC link undervoltage",
+          "location": "496"
+        },
+        "description": {
+          "quote": "F30003 Drive: DC link undervoltage / Reaction: OFF2 / Acknowledge: IMMEDIATELY",
+          "location": "496"
+        },
+        "primary_component": {
+          "quote": "Drive: DC link undervoltage",
+          "location": "496"
+        },
+        "related_component": {
+          "quote": "The power unit has detected an undervoltage condition in the DC link.",
+          "location": "496"
+        },
+        "cause": {
+          "quote": "Cause: The power unit has detected an undervoltage condition in the DC link. / - line supply failure / - line supply voltage below the permissible value / - line supply infeed failed or interrupted / - line phase interrupted",
+          "location": "496"
+        },
+        "parameter": {
+          "quote": "p0210 (Drive unit line supply voltage)",
+          "location": "496"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": false,
+        "reclassification": null
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": null
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 496,
+        "pdf_page_end": 496,
+        "source_offset_start": 170688,
+        "source_offset_end": 171249,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30027",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "F30027 Power unit: Precharging DC link time monitoring\nReaction: OFF2\nAcknowledge: IMMEDIATELY\n498 Operating Instructions, 01/2019, A5E41702836B AC\nCause: The power unit DC link was not able to be precharged within the expected time.\n1) There is no line supply voltage connected.\n2) The line contactor/line side switch has not been closed.\n3) The line supply voltage is too low.\n4) Line supply voltage incorrectly set (p0210).\n5) The precharging resistors are overheated as there were too many precharging operations per time unit.\n6) The precharging resistors are overheated as the DC link capacitance is too high.\n7) The precharging resistors are overheated because when there is no \"ready for operation\" (r0863.0) of the infeed unit,\npower is taken from the DC link.\n8) The precharging resistors are overheated as the line contactor was closed during the DC link fast discharge through the\nBraking Module.\n9) The DC link has either a ground fault or a short-circuit.\nFault value (r0949, interpret binary):\nyyyyxxxx hex:\nyyyy = power unit state\n0: Fault status (wait for OFF and fault acknowledgment).\n1: Restart inhibit (wait for OFF).\n2: Overvoltage condition detected -> change into the fault state.\n3: Undervoltage condition detected -> change into the fault state.\n4: Wait for bridging contactor to open -> change into the fault state.\n5: Wait for bridging contactor to open -> change into restart inhibit.\n6: Wait for bypass contactor to open\n7: Commissioning.\n8: Ready for precharging.\n9: Precharging started, DC link voltage lower than the minimum switch-on voltage\n10: Precharging, DC link voltage end of precharging still not detected\n11: Wait for the end of the de-bounce time of the main contactor after precharging has been completed.\n12: Precharging completed, ready for pulse enable.\n13: It was detected that the STO terminal was energized at the power unit\nxxxx = Missing internal enable signals, power unit (inverted bit-coded, FFFF hex -> all internal enable signals available)\nBit 0: Power supply of the IGBT gating shut down.\nBit 1: Ground fault detected.\nBit 2: Peak current intervention.\nBit 3: I2t exceeded.\nBit 4. Thermal model overtemperature calculated.\nBit 5: (heat sink, gating module, power unit) overtemperature measured.\nBit 6: Reserved.\nBit 7: Overvoltage detected.\nBit 8: Power unit has completed precharging, ready for pulse enable.\nBit 9: STO terminal missing.\nBit 10: Overcurrent detected.\nBit 11: Armature short-circuit active.\nBit 12: DRIVE-CLiQ fault active.\nBit 13: Vce fault detected, transistor de-saturated due to overcurrent/short-circuit.\nBit 14: Undervoltage detected.\nSee also: p0210 (Drive unit line supply voltage)\nRemedy: In general:\n- check the line supply voltage at the input terminals.\n- check the line supply voltage setting (p0210).\nFor 5):\n- carefully observe the permissible precharging frequency (refer to the appropriate Manual).\nFor 6):\n- check the total capacitance of the DC link and reduce in accordance with the maximum permissible DC link capacitance\nif necessary (refer to the appropriate Manual).\nFor 7):\n- interconnect the ready-for-operation signal from the infeed unit (r0863.0) in the enable logic of the drives connected to this\nDC link\nFor 8):\n- check the connections of the external line contactor. The line contactor must be open during DC link fast discharge.\nFor 9):\n- check the DC link for ground faults or short circuits.\nFor 11):\n- check the DC link voltage of the infeed (r0070) and Motor Modules (r0070).\nIf the DC link voltage generated by the infeed (or external) is not displayed for the Motor Modules (r0070), then a fuse has\nruptured in the Motor Module.\nSee also: p0210 (Drive unit line supply voltage)",
+      "gold_records": [
+        {
+          "fault_code": "F30027",
+          "component": "功率单元（Power unit）",
+          "related_components": [
+            "直流母线（DC link）"
+          ],
+          "description": "Power unit: Precharging DC link time monitoring",
+          "causes": [
+            "The power unit DC link was not able to be precharged within the expected time."
+          ],
+          "parameters": [
+            "p0210",
+            "r0863",
+            "r0949",
+            "r0070"
+          ],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "F30027 Power unit: Precharging DC link time monitoring",
+          "start": 0,
+          "end": 54,
+          "location": "500–502"
+        },
+        {
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "Power unit: Precharging DC link time monitoring",
+          "start": 7,
+          "end": 54,
+          "location": "500–502"
+        },
+        {
+          "field": "related_component",
+          "source_id": "input_text",
+          "quote": "The power unit DC link was not able to be precharged within the expected time.",
+          "start": 155,
+          "end": 233,
+          "location": "500–502"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=500–502",
+        "cause:未能在输入原文中直接定位证据，保留页码/位置=500–502",
+        "parameter:未能在输入原文中直接定位证据，保留页码/位置=500–502"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "F30027",
+        "description": "Power unit: Precharging DC link time monitoring\n（功率单元: 直流母线预充电时间监控）",
+        "component": "功率单元（Power unit）",
+        "related_components": "直流母线（DC link）",
+        "causes": "The power unit DC link was not able to be precharged within the expected time.\n（功率单元直流母线未能在预期时间内完成预充电）",
+        "parameters": "p0210、r0863、r0949、r0070",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "F30027 Power unit: Precharging DC link time monitoring",
+          "location": "500–502"
+        },
+        "description": {
+          "quote": "F30027 Power unit: Precharging DC link time monitoring / Reaction: OFF2 / Acknowledge: IMMEDIATELY",
+          "location": "500–502"
+        },
+        "primary_component": {
+          "quote": "Power unit: Precharging DC link time monitoring",
+          "location": "500–502"
+        },
+        "related_component": {
+          "quote": "The power unit DC link was not able to be precharged within the expected time.",
+          "location": "500–502"
+        },
+        "cause": {
+          "quote": "Cause: The power unit DC link was not able to be precharged within the expected time. / 9 种可能原因（无电源电压、线路接触器未闭合、电压过低、预充电电阻过热、直流母线接地或短路等）",
+          "location": "500–502"
+        },
+        "parameter": {
+          "quote": "p0210、r0863、r0949、r0070",
+          "location": "500–502"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": false,
+        "reclassification": null
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": null
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 500,
+        "pdf_page_end": 502,
+        "source_offset_start": 178893,
+        "source_offset_end": 182804,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30075",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "F30075 Configuration of the power unit unsuccessful\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: A communication error has occurred while configuring the power unit using the Control Unit. The cause is not clear.\nFault value (r0949, interpret decimal):\n0:\nThe output filter initialization was unsuccessful.\n1:\nActivation/deactivation of the regenerative feedback functionality was unsuccessful.\n2:\nActivation/deactivation of the chopper function was unsuccessful.\nRemedy: - acknowledge the fault and continue operation.\n- if the fault reoccurs, carry out a POWER ON (switch-off/switch-on).\n- if required, replace the power unit.",
+      "gold_records": [
+        {
+          "fault_code": "F30075",
+          "component": "功率单元（Power unit）",
+          "related_components": [
+            "Control Unit（控制单元）"
+          ],
+          "description": "Configuration of the power unit unsuccessful",
+          "causes": [
+            "A communication error has occurred while configuring the power unit using the Control Unit. The cause is not clear."
+          ],
+          "parameters": [
+            "r0949"
+          ],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "F30075 Configuration of the power unit unsuccessful",
+          "start": 0,
+          "end": 51,
+          "location": "506"
+        },
+        {
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "Configuration of the power unit unsuccessful",
+          "start": 7,
+          "end": 51,
+          "location": "506"
+        },
+        {
+          "field": "related_component",
+          "source_id": "input_text",
+          "quote": "A communication error has occurred while configuring the power unit using the Control Unit.",
+          "start": 99,
+          "end": 190,
+          "location": "506"
+        },
+        {
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "Cause: A communication error has occurred while configuring the power unit using the Control Unit. The cause is not clear.",
+          "start": 92,
+          "end": 214,
+          "location": "506"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=506",
+        "parameter:未能在输入原文中直接定位证据，保留页码/位置=506"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "F30075",
+        "description": "Configuration of the power unit unsuccessful\n（功率单元配置不成功）",
+        "component": "功率单元（Power unit）",
+        "related_components": "Control Unit（控制单元）",
+        "causes": "A communication error has occurred while configuring the power unit using the Control Unit. The cause is not clear.\n（使用控制单元配置功率单元时发生通信错误。原因不明）",
+        "parameters": "r0949",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "F30075 Configuration of the power unit unsuccessful",
+          "location": "506"
+        },
+        "description": {
+          "quote": "F30075 Configuration of the power unit unsuccessful / Reaction: OFF2 / Acknowledge: IMMEDIATELY",
+          "location": "506"
+        },
+        "primary_component": {
+          "quote": "Configuration of the power unit unsuccessful",
+          "location": "506"
+        },
+        "related_component": {
+          "quote": "A communication error has occurred while configuring the power unit using the Control Unit.",
+          "location": "506"
+        },
+        "cause": {
+          "quote": "Cause: A communication error has occurred while configuring the power unit using the Control Unit. The cause is not clear.",
+          "location": "506"
+        },
+        "parameter": {
+          "quote": "Fault value (r0949, interpret decimal): 0: output filter initialization unsuccessful; 1: regenerative feedback activation/deactivation unsuccessful; 2: chopper function activation/deactivation unsuccessful",
+          "location": "506"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": false,
+        "reclassification": null
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": null
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 506,
+        "pdf_page_end": 506,
+        "source_offset_start": 191215,
+        "source_offset_end": 191846,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30655",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "F30655 SI P2: Align monitoring functions\nReaction: OFF2\nAcknowledge: IMMEDIATELY\n510 Operating Instructions, 01/2019, A5E41702836B AC\nCause: An error has occurred when aligning the Safety Integrated monitoring functions of both monitoring channels. No common\nset of supported SI monitoring functions was able to be determined.\n- there is either a DRIVE-CLiQ communication error or communication has failed.\nNote:\nThis fault results in an STO that cannot be acknowledged.\nFault value (r0949, interpret hexadecimal):\nOnly for internal Siemens troubleshooting.\nRemedy: - carry out a POWER ON (switch-off/switch-on) for all components.\n- upgrade the drive software.\n- check the electrical cabinet design and cable routing for EMC compliance\nNote:\nSI: Safety Integrated\nSTO: Safe Torque Off",
+      "gold_records": [
+        {
+          "fault_code": "F30655",
+          "component": "SI（Safety Integrated 安全集成）",
+          "related_components": [],
+          "description": "SI P2: Align monitoring functions",
+          "causes": [
+            "An error has occurred when aligning the Safety Integrated monitoring functions of both monitoring channels. No common set of supported SI monitoring functions was able to be determined."
+          ],
+          "parameters": [
+            "r0949"
+          ],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "F30655 SI P2: Align monitoring functions",
+          "start": 0,
+          "end": 40,
+          "location": "512–513"
+        },
+        {
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "SI P2: Align monitoring functions",
+          "start": 7,
+          "end": 40,
+          "location": "512–513"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=512–513",
+        "related_component:未能在输入原文中直接定位证据，保留页码/位置=512–513",
+        "cause:未能在输入原文中直接定位证据，保留页码/位置=512–513",
+        "parameter:未能在输入原文中直接定位证据，保留页码/位置=512–513"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "F30655",
+        "description": "SI P2: Align monitoring functions\n（SI P2: 对齐监控功能）",
+        "component": "SI（Safety Integrated 安全集成）",
+        "related_components": "无",
+        "causes": "An error has occurred when aligning the Safety Integrated monitoring functions of both monitoring channels. No common set of supported SI monitoring functions was able to be determined.\n（对齐两个监控通道的安全集成监控功能时发生错误。无法确定共同支持的 SI 监控功能集）",
+        "parameters": "r0949",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "F30655 SI P2: Align monitoring functions",
+          "location": "512–513"
+        },
+        "description": {
+          "quote": "F30655 SI P2: Align monitoring functions / Reaction: OFF2 / Acknowledge: IMMEDIATELY",
+          "location": "512–513"
+        },
+        "primary_component": {
+          "quote": "SI P2: Align monitoring functions",
+          "location": "512–513"
+        },
+        "related_component": {
+          "quote": "原文未明确声明关联组件",
+          "location": "512–513",
+          "evidence_type": "negative_assertion",
+          "source_quote": null
+        },
+        "cause": {
+          "quote": "Cause: An error has occurred when aligning the Safety Integrated monitoring functions of both monitoring channels. No common set of supported SI monitoring functions was able to be determined.",
+          "location": "512–513"
+        },
+        "parameter": {
+          "quote": "Fault value (r0949, interpret hexadecimal): Only for internal Siemens troubleshooting.",
+          "location": "512–513"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": true,
+        "reclassification": {
+          "target_field": "cause_context",
+          "action": "move_from_related_component_evidence",
+          "summary": "DRIVE-CLiQ 通信错误在原文中是故障原因，不属于关联组件。",
+          "original_evidence": {
+            "quote": "DRIVE-CLiQ communication error or communication has failed",
+            "location": "512–513"
+          },
+          "related_components_final": []
+        }
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": {
+            "target_field": "cause_context",
+            "action": "move_from_related_component_evidence",
+            "summary": "DRIVE-CLiQ 通信错误在原文中是故障原因，不属于关联组件。",
+            "original_evidence": {
+              "quote": "DRIVE-CLiQ communication error or communication has failed",
+              "location": "512–513"
+            },
+            "related_components_final": []
+          }
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 512,
+        "pdf_page_end": 513,
+        "source_offset_start": 205798,
+        "source_offset_end": 206666,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F30685",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "F30685 SI Motion P2: Safely-Limited Speed limit value too high\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The limit value for the function \"Safely-Limited Speed\" (SLS) is greater than the speed that corresponds to an encoder limit\nfrequency of 500 kHz.\nNote:\nThis message does not result in a safety stop response.\nFault value (r0949, interpret decimal):\nMaximum permissible speed.\nRemedy: Correct the limit values for SLS and carry out a POWER ON.\nNote:\nSI: Safety Integrated\nSLS: Safely-Limited Speed",
+      "gold_records": [
+        {
+          "fault_code": "F30685",
+          "component": "SI Motion（安全集成运动）",
+          "related_components": [],
+          "description": "SI Motion P2: Safely-Limited Speed limit value too high",
+          "causes": [
+            "The limit value for the function \"Safely-Limited Speed\" (SLS) is greater than the speed that corresponds to an encoder limit frequency of 500 kHz."
+          ],
+          "parameters": [
+            "r0949"
+          ],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "F30685 SI Motion P2: Safely-Limited Speed limit value too high",
+          "start": 0,
+          "end": 62,
+          "location": "516"
+        },
+        {
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "SI Motion P2: Safely-Limited Speed limit value too high",
+          "start": 7,
+          "end": 62,
+          "location": "516"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=516",
+        "related_component:未能在输入原文中直接定位证据，保留页码/位置=516",
+        "cause:未能在输入原文中直接定位证据，保留页码/位置=516",
+        "parameter:未能在输入原文中直接定位证据，保留页码/位置=516"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "F30685",
+        "description": "SI Motion P2: Safely-Limited Speed limit value too high\n（SI Motion P2: 安全限速限值过高）",
+        "component": "SI Motion（安全集成运动）",
+        "related_components": "无",
+        "causes": "The limit value for the function \"Safely-Limited Speed\" (SLS) is greater than the speed that corresponds to an encoder limit frequency of 500 kHz.\n（功能\"Safely-Limited Speed\"的限值大于对应于编码器极限频率 500 kHz 的速度）",
+        "parameters": "r0949",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "F30685 SI Motion P2: Safely-Limited Speed limit value too high",
+          "location": "516"
+        },
+        "description": {
+          "quote": "F30685 SI Motion P2: Safely-Limited Speed limit value too high / Reaction: OFF2 / Acknowledge: IMMEDIATELY",
+          "location": "516"
+        },
+        "primary_component": {
+          "quote": "SI Motion P2: Safely-Limited Speed limit value too high",
+          "location": "516"
+        },
+        "related_component": {
+          "quote": "无明确关联组件",
+          "location": "516"
+        },
+        "cause": {
+          "quote": "Cause: The limit value for the function \"Safely-Limited Speed\" (SLS) is greater than the speed that corresponds to an encoder limit frequency of 500 kHz.",
+          "location": "516"
+        },
+        "parameter": {
+          "quote": "Fault value (r0949, interpret decimal): Maximum permissible speed.",
+          "location": "516"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": false,
+        "reclassification": null
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": null
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 516,
+        "pdf_page_end": 516,
+        "source_offset_start": 213462,
+        "source_offset_end": 213969,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31120",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "F31120 Encoder 1: Encoder power supply fault\nReaction: ENCODER\nAcknowledge: PULSE INHIBIT\nCause: An encoder power supply fault was detected.\nFault value (r0949, interpret binary):\nBit 0: Undervoltage condition on the sense line.\nBit 1: Overcurrent condition for the encoder power supply.\nBit 2: Overcurrent condition for encoder power supply on cable resolver excitation negative.\nBit 3: Overcurrent condition for encoder power supply on cable resolver excitation positive.\nBit 4: The 24 V power supply through the Power Module (PM) is overloaded.\nBit 5: Overcurrent at the EnDat connection of the converter.\nBit 6: Overvoltage at the EnDat connection of the converter.\nBit 7: Hardware fault at the EnDat connection of the converter.\nNote:\nIf the encoder cables 6FX2002-2EQ00-.... and 6FX2002-2CH00-.... are interchanged, this can result in the encoder being\ndestroyed because the pins of the operating voltage are reversed.\nRemedy: For fault value, bit 0 = 1:\n- correct encoder cable connected?\n- check the plug connections of the encoder cable.\n- SMC30: Check the parameterization (p0404.22).\nFor fault value, bit 1 = 1:\n- correct encoder cable connected?\n- replace the encoder or encoder cable.\nFor fault value, bit 2 = 1:\n- correct encoder cable connected?\n- replace the encoder or encoder cable.\nFor fault value, bit 3 = 1:\n- correct encoder cable connected?\n- replace the encoder or encoder cable.\nFor fault value, bit 5 = 1:\n- Measuring unit correctly connected at the converter?\n- Replace the measuring unit or the cable to the measuring unit.\nFor fault value, bit 6, 7 = 1:\n- Replace the defective EnDat 2.2 converter.",
+      "gold_records": [
+        {
+          "fault_code": "F31120",
+          "component": "编码器 1（Encoder 1）",
+          "related_components": [],
+          "description": "Encoder 1: Encoder power supply fault",
+          "causes": [
+            "An encoder power supply fault was detected."
+          ],
+          "parameters": [
+            "r0949",
+            "p0404"
+          ],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "F31120 Encoder 1: Encoder power supply fault",
+          "start": 0,
+          "end": 44,
+          "location": "523–524"
+        },
+        {
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "Encoder 1: Encoder power supply fault",
+          "start": 7,
+          "end": 44,
+          "location": "523–524"
+        },
+        {
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "Cause: An encoder power supply fault was detected.",
+          "start": 90,
+          "end": 140,
+          "location": "523–524"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=523–524",
+        "related_component:未能在输入原文中直接定位证据，保留页码/位置=523–524",
+        "parameter:未能在输入原文中直接定位证据，保留页码/位置=523–524"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "F31120",
+        "description": "Encoder 1: Encoder power supply fault\n（编码器 1: 编码器电源故障）",
+        "component": "编码器 1（Encoder 1）",
+        "related_components": "无",
+        "causes": "An encoder power supply fault was detected.\n（检测到编码器电源故障）",
+        "parameters": "r0949、p0404",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "F31120 Encoder 1: Encoder power supply fault",
+          "location": "523–524"
+        },
+        "description": {
+          "quote": "F31120 Encoder 1: Encoder power supply fault / Reaction: ENCODER / Acknowledge: PULSE INHIBIT",
+          "location": "523–524"
+        },
+        "primary_component": {
+          "quote": "Encoder 1: Encoder power supply fault",
+          "location": "523–524"
+        },
+        "related_component": {
+          "quote": "无明确关联组件",
+          "location": "523–524"
+        },
+        "cause": {
+          "quote": "Cause: An encoder power supply fault was detected.",
+          "location": "523–524"
+        },
+        "parameter": {
+          "quote": "Fault value (r0949, interpret binary): Bit 0–7 多种子值 / p0404.22 (SMC30 参数化)",
+          "location": "523–524"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": false,
+        "reclassification": null
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": null
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 523,
+        "pdf_page_end": 524,
+        "source_offset_start": 228817,
+        "source_offset_end": 230580,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31805",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "F31805 Encoder 1: EEPROM checksum error\nReaction: ENCODER\nAcknowledge: IMMEDIATELY\nCause: Data in the EEPROM corrupted .\nFault value (r0949, interpret hexadecimal):\n01: EEPROM access error.\n02: Too many blocks in the EEPROM.\nRemedy: Replace the module.",
+      "gold_records": [
+        {
+          "fault_code": "F31805",
+          "component": "编码器 1（Encoder 1）",
+          "related_components": [],
+          "description": "Encoder 1: EEPROM checksum error",
+          "causes": [
+            "Data in the EEPROM corrupted."
+          ],
+          "parameters": [
+            "r0949"
+          ],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "F31805 Encoder 1: EEPROM checksum error",
+          "start": 0,
+          "end": 39,
+          "location": "531"
+        },
+        {
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "Encoder 1: EEPROM checksum error",
+          "start": 7,
+          "end": 39,
+          "location": "531"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=531",
+        "related_component:未能在输入原文中直接定位证据，保留页码/位置=531",
+        "cause:未能在输入原文中直接定位证据，保留页码/位置=531",
+        "parameter:未能在输入原文中直接定位证据，保留页码/位置=531"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "F31805",
+        "description": "Encoder 1: EEPROM checksum error\n（编码器 1: EEPROM 校验和错误）",
+        "component": "编码器 1（Encoder 1）",
+        "related_components": "无",
+        "causes": "Data in the EEPROM corrupted.\n（EEPROM 中的数据损坏）",
+        "parameters": "r0949",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "F31805 Encoder 1: EEPROM checksum error",
+          "location": "531"
+        },
+        "description": {
+          "quote": "F31805 Encoder 1: EEPROM checksum error / Reaction: ENCODER / Acknowledge: IMMEDIATELY",
+          "location": "531"
+        },
+        "primary_component": {
+          "quote": "Encoder 1: EEPROM checksum error",
+          "location": "531"
+        },
+        "related_component": {
+          "quote": "无明确关联组件",
+          "location": "531"
+        },
+        "cause": {
+          "quote": "Cause: Data in the EEPROM corrupted.",
+          "location": "531"
+        },
+        "parameter": {
+          "quote": "Fault value (r0949, interpret hexadecimal): 01: EEPROM access error; 02: Too many blocks in the EEPROM",
+          "location": "531"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": false,
+        "reclassification": null
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": null
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 531,
+        "pdf_page_end": 531,
+        "source_offset_start": 246419,
+        "source_offset_end": 246672,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F31851",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "F31851 Encoder 1 DRIVE-CLiQ (CU): Sign-of-life missing\nReaction: ENCODER\nAcknowledge: IMMEDIATELY\nCause: A DRIVE-CLiQ communication error has occurred from the Sensor Module (encoder 1) involved to the Control Unit.\nThe DRIVE-CLiQ component did not set the sign-of-life to the Control Unit.\nFault cause:\n10 (= 0A hex):\nThe sign-of-life bit in the receive telegram is not set.\nNote regarding the message value:\nThe individual information is coded as follows in the message value (r0949/r2124):\n0000yyxx hex: yy = component number, xx = error cause\nRemedy: - Upgrade the firmware of the component involved.\n- carry out a POWER ON (switch-off/switch-on) for the component involved.",
+      "gold_records": [
+        {
+          "fault_code": "F31851",
+          "component": "编码器 1（DRIVE-CLiQ）",
+          "related_components": [
+            "Control Unit"
+          ],
+          "description": "Encoder 1 DRIVE-CLiQ (CU): Sign-of-life missing",
+          "causes": [
+            "A DRIVE-CLiQ communication error has occurred from the Sensor Module (encoder 1) involved to the Control Unit. The DRIVE-CLiQ component did not set the sign-of-life to the Control Unit."
+          ],
+          "parameters": [
+            "r0949",
+            "r2124"
+          ],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "F31851 Encoder 1 DRIVE-CLiQ (CU): Sign-of-life missing",
+          "start": 0,
+          "end": 54,
+          "location": "535"
+        },
+        {
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "Encoder 1 DRIVE-CLiQ (CU): Sign-of-life missing",
+          "start": 7,
+          "end": 54,
+          "location": "535"
+        },
+        {
+          "field": "related_component",
+          "source_id": "input_text",
+          "quote": "A DRIVE-CLiQ communication error has occurred from the Sensor Module (encoder 1) involved to the Control Unit.",
+          "start": 105,
+          "end": 215,
+          "location": "535"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=535",
+        "cause:未能在输入原文中直接定位证据，保留页码/位置=535",
+        "parameter:未能在输入原文中直接定位证据，保留页码/位置=535"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "F31851",
+        "description": "Encoder 1 DRIVE-CLiQ (CU): Sign-of-life missing\n（编码器 1 DRIVE-CLiQ (CU): 生命信号丢失）",
+        "component": "编码器 1（DRIVE-CLiQ）",
+        "related_components": "Control Unit",
+        "causes": "A DRIVE-CLiQ communication error has occurred from the Sensor Module (encoder 1) involved to the Control Unit. The DRIVE-CLiQ component did not set the sign-of-life to the Control Unit.\n（涉及的 Sensor Module（编码器 1）与控制单元之间发生 DRIVE-CLiQ 通信错误。DRIVE-CLiQ 组件未向控制单元设置生命信号）",
+        "parameters": "r0949、r2124",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "F31851 Encoder 1 DRIVE-CLiQ (CU): Sign-of-life missing",
+          "location": "535"
+        },
+        "description": {
+          "quote": "F31851 Encoder 1 DRIVE-CLiQ (CU): Sign-of-life missing / Reaction: ENCODER / Acknowledge: IMMEDIATELY",
+          "location": "535"
+        },
+        "primary_component": {
+          "quote": "Encoder 1 DRIVE-CLiQ (CU): Sign-of-life missing",
+          "location": "535"
+        },
+        "related_component": {
+          "quote": "A DRIVE-CLiQ communication error has occurred from the Sensor Module (encoder 1) involved to the Control Unit.",
+          "location": "535"
+        },
+        "cause": {
+          "quote": "Cause: A DRIVE-CLiQ communication error has occurred from the Sensor Module (encoder 1) involved to the Control Unit. The DRIVE-CLiQ component did not set the sign-of-life to the Control Unit.",
+          "location": "535"
+        },
+        "parameter": {
+          "quote": "Fault value (r0949/r2124): 0000yyxx hex: yy = component number, xx = error cause",
+          "location": "535"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": false,
+        "reclassification": null
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": null
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 535,
+        "pdf_page_end": 535,
+        "source_offset_start": 254699,
+        "source_offset_end": 255378,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_F40000",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "F40000 Fault at DRIVE-CLiQ socket X100\nReaction: NONE\nAcknowledge: IMMEDIATELY\nCause: A fault has occurred at the drive object at the DRIVE-CLiQ socket X100.\nFault value (r0949, interpret decimal):\nFirst fault that has occurred for this drive object.\nRemedy: Evaluate the fault buffer of the specified object.",
+      "gold_records": [
+        {
+          "fault_code": "F40000",
+          "component": "DRIVE-CLiQ 插座 X100",
+          "related_components": [],
+          "description": "Fault at DRIVE-CLiQ socket X100",
+          "causes": [
+            "A fault has occurred at the drive object at the DRIVE-CLiQ socket X100."
+          ],
+          "parameters": [
+            "r0949"
+          ],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "F40000 Fault at DRIVE-CLiQ socket X100",
+          "start": 0,
+          "end": 38,
+          "location": "539"
+        },
+        {
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "Fault at DRIVE-CLiQ socket X100",
+          "start": 7,
+          "end": 38,
+          "location": "539"
+        },
+        {
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "Cause: A fault has occurred at the drive object at the DRIVE-CLiQ socket X100.",
+          "start": 79,
+          "end": 157,
+          "location": "539"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=539",
+        "related_component:未能在输入原文中直接定位证据，保留页码/位置=539",
+        "parameter:未能在输入原文中直接定位证据，保留页码/位置=539"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "F40000",
+        "description": "Fault at DRIVE-CLiQ socket X100\n（DRIVE-CLiQ 插座 X100 处故障）",
+        "component": "DRIVE-CLiQ 插座 X100",
+        "related_components": "无",
+        "causes": "A fault has occurred at the drive object at the DRIVE-CLiQ socket X100.\n（DRIVE-CLiQ 插座 X100 处的驱动器对象处发生故障）",
+        "parameters": "r0949",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "F40000 Fault at DRIVE-CLiQ socket X100",
+          "location": "539"
+        },
+        "description": {
+          "quote": "F40000 Fault at DRIVE-CLiQ socket X100 / Reaction: NONE / Acknowledge: IMMEDIATELY",
+          "location": "539"
+        },
+        "primary_component": {
+          "quote": "Fault at DRIVE-CLiQ socket X100",
+          "location": "539"
+        },
+        "related_component": {
+          "quote": "无明确关联组件",
+          "location": "539"
+        },
+        "cause": {
+          "quote": "Cause: A fault has occurred at the drive object at the DRIVE-CLiQ socket X100.",
+          "location": "539"
+        },
+        "parameter": {
+          "quote": "Fault value (r0949, interpret decimal): First fault that has occurred for this drive object.",
+          "location": "539"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": false,
+        "reclassification": null
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": null
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 539,
+        "pdf_page_end": 539,
+        "source_offset_start": 263035,
+        "source_offset_end": 263345,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_N01004",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "N01004 Internal software error\nReaction: NONE\nAcknowledge: NONE\nCause: An internal software error has occurred.\nFault value (r0949, hexadecimal):\nOnly for internal Siemens troubleshooting.\nRemedy: - read out diagnostics parameter (r9999).\n- contact Technical Support.",
+      "gold_records": [
+        {
+          "fault_code": "N01004",
+          "component": "控制系统（内部软件）",
+          "related_components": [],
+          "description": "Internal software error",
+          "causes": [
+            "An internal software error has occurred."
+          ],
+          "parameters": [
+            "r0949",
+            "r9999"
+          ],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "N01004 Internal software error",
+          "start": 0,
+          "end": 30,
+          "location": "424"
+        },
+        {
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "Internal software error",
+          "start": 7,
+          "end": 30,
+          "location": "424"
+        },
+        {
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "Cause: An internal software error has occurred.",
+          "start": 64,
+          "end": 111,
+          "location": "424"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=424",
+        "related_component:未能在输入原文中直接定位证据，保留页码/位置=424",
+        "parameter:未能在输入原文中直接定位证据，保留页码/位置=424"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "N01004",
+        "description": "Internal software error\n（内部软件错误）",
+        "component": "控制系统（内部软件）",
+        "related_components": "无",
+        "causes": "An internal software error has occurred.\n（发生内部软件错误）",
+        "parameters": "r0949、r9999",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "N01004 Internal software error",
+          "location": "424"
+        },
+        "description": {
+          "quote": "N01004 Internal software error / Reaction: NONE / Acknowledge: NONE",
+          "location": "424"
+        },
+        "primary_component": {
+          "quote": "Internal software error",
+          "location": "424"
+        },
+        "related_component": {
+          "quote": "无明确关联组件",
+          "location": "424"
+        },
+        "cause": {
+          "quote": "Cause: An internal software error has occurred.",
+          "location": "424"
+        },
+        "parameter": {
+          "quote": "Fault value (r0949, hexadecimal): Only for internal Siemens troubleshooting. / read out diagnostics parameter (r9999).",
+          "location": "424"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": false,
+        "reclassification": null
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": null
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 424,
+        "pdf_page_end": 424,
+        "source_offset_start": 2422,
+        "source_offset_end": 2690,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    },
+    {
+      "sample_id": "SIEMENS_S210_2019_N30800",
+      "split": "test",
+      "source_type": "public_manual_expert_reviewed",
+      "input_text": "N30800 Power unit: Group signal\nReaction: OFF2\nAcknowledge: NONE\nCause: The power unit has detected at least one fault.\nRemedy: Evaluate the other messages that are presently available.",
+      "gold_records": [
+        {
+          "fault_code": "N30800",
+          "component": "功率单元（Power unit）",
+          "related_components": [],
+          "description": "Power unit: Group signal",
+          "causes": [
+            "The power unit has detected at least one fault."
+          ],
+          "parameters": [],
+          "gate_type": null
+        }
+      ],
+      "gold_relations": [],
+      "logic_status": "unknown",
+      "evidence_spans": [
+        {
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "N30800 Power unit: Group signal",
+          "start": 0,
+          "end": 31,
+          "location": "522"
+        },
+        {
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "Power unit: Group signal",
+          "start": 7,
+          "end": 31,
+          "location": "522"
+        },
+        {
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "Cause: The power unit has detected at least one fault.",
+          "start": 65,
+          "end": 119,
+          "location": "522"
+        }
+      ],
+      "evidence_notes": [
+        "description:未能在输入原文中直接定位证据，保留页码/位置=522",
+        "related_component:未能在输入原文中直接定位证据，保留页码/位置=522",
+        "parameter:未能在输入原文中直接定位证据，保留页码/位置=522"
+      ],
+      "reviewed_fields_raw": {
+        "fault_code": "N30800",
+        "description": "Power unit: Group signal\n（功率单元: 组信号）",
+        "component": "功率单元（Power unit）",
+        "related_components": "无",
+        "causes": "The power unit has detected at least one fault.\n（功率单元检测到至少一个故障）",
+        "parameters": "无",
+        "gate_type": "unknown"
+      },
+      "reviewed_evidence_raw": {
+        "fault_code": {
+          "quote": "N30800 Power unit: Group signal",
+          "location": "522"
+        },
+        "description": {
+          "quote": "N30800 Power unit: Group signal / Reaction: OFF2 / Acknowledge: NONE",
+          "location": "522"
+        },
+        "primary_component": {
+          "quote": "Power unit: Group signal",
+          "location": "522"
+        },
+        "related_component": {
+          "quote": "无明确关联组件",
+          "location": "522"
+        },
+        "cause": {
+          "quote": "Cause: The power unit has detected at least one fault.",
+          "location": "522"
+        },
+        "parameter": {
+          "quote": "原文未提及具体参数",
+          "location": "522"
+        }
+      },
+      "expert_review": {
+        "decision": "审核通过",
+        "reviewer_role": "领域专家（文档声明）",
+        "reviewer_name": "刘武",
+        "review_date": "2026-09-19",
+        "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+        "review_document_sha256": "e08e40f034c5fb7afda4227cb74a13e481cea3a796cd86850359d9eb041ef349",
+        "identity_verified": false,
+        "confirmation_applied": false,
+        "reclassification": null
+      },
+      "review_history": [
+        {
+          "stage": "external_expert_confirmation",
+          "decision": "审核通过",
+          "review_document": "SINAMICS_S210_3条疑点记录专家确认.docx",
+          "reclassification": null
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+        "source_pdf": "S210_Manual_2019.pdf",
+        "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+        "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+        "section": "15.2 List of faults and alarms",
+        "pdf_page_start": 522,
+        "pdf_page_end": 522,
+        "source_offset_start": 226176,
+        "source_offset_end": 226362,
+        "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+        "retrieved_date": "2026-09-19",
+        "review_docx": "SINAMICS_S210_专家审核清单_30条.docx",
+        "review_docx_sha256": "93831bce8f77cb8d36eb2973e9e4b85ce2e8c718bc5400fbc43346c84f149e9c"
+      }
+    }
+  ]
+}

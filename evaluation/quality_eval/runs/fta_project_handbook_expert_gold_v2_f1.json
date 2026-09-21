@@ -1,0 +1,3735 @@
+{
+  "report_type": "project_extraction_baseline",
+  "created_at": "2026-09-19T18:16:33",
+  "dataset": "evaluation/quality_eval/datasets/fta_project_handbook_expert_gold_v2.json",
+  "extractor": "extract_fault_result_from_text",
+  "read_only": true,
+  "replayed_from": "evaluation/quality_eval/runs/fta_project_handbook_extraction_baseline_semantic_v2.json",
+  "summary": {
+    "samples": 27,
+    "successful_samples": 27,
+    "failed_or_runner_error_samples": 0,
+    "field_metrics": {
+      "fault_code": {
+        "counts": {
+          "tp": 27,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "metrics": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "scored": true
+      },
+      "description": {
+        "counts": {
+          "tp": 25,
+          "fp": 2,
+          "fn": 2,
+          "predicted_unknown": 0
+        },
+        "metrics": {
+          "precision": 0.925926,
+          "recall": 0.925926,
+          "f1": 0.925926
+        },
+        "scored": true
+      },
+      "component": {
+        "counts": {
+          "tp": 11,
+          "fp": 1,
+          "fn": 1,
+          "predicted_unknown": 15
+        },
+        "metrics": {
+          "precision": 0.916667,
+          "recall": 0.916667,
+          "f1": 0.916667
+        },
+        "scored": true
+      },
+      "causes": {
+        "counts": {
+          "tp": 22,
+          "fp": 3,
+          "fn": 27,
+          "predicted_unknown": 0
+        },
+        "metrics": {
+          "precision": 0.88,
+          "recall": 0.44898,
+          "f1": 0.594595
+        },
+        "scored": true
+      },
+      "parameters": {
+        "counts": {
+          "tp": 73,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "metrics": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "scored": true
+      }
+    },
+    "evidence": {
+      "gold_expected_count": 232,
+      "predicted_count": 196,
+      "valid_predicted_count": 196,
+      "valid_predicted_rate": 1.0
+    },
+    "interpretation": "字段指标只对原文明确标注的字段计算；原文未知字段单独统计，不把未知误判成模型漏抽。该报告不评价FTA逻辑门。"
+  },
+  "details": [
+    {
+      "sample_id": "PH-F01003",
+      "status": "success",
+      "latency_ms": 7088.25,
+      "record_count": 1,
+      "records": [
+        {
+          "fault_code": "F01003",
+          "description": "访问存储器时出现应答延迟",
+          "component": "控制单元（CU）",
+          "related_components": [
+            "控制单元（CU）"
+          ],
+          "causes": [],
+          "parameters": [
+            "r0949"
+          ],
+          "confidence": null
+        }
+      ],
+      "field_scores": {
+        "fault_code": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "description": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "component": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "causes": {
+          "status": "unknown_gold_excluded",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "parameters": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        }
+      },
+      "evidence": {
+        "gold_expected_count": 4,
+        "predicted_count": 4,
+        "valid_predicted_count": 4,
+        "spans": [
+          {
+            "field": "fault_code",
+            "source_id": "input_text",
+            "quote": "F01003",
+            "start": 10,
+            "end": 16,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "控\n制单元（CU）",
+            "start": 58,
+            "end": 67,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "description",
+            "source_id": "input_text",
+            "quote": "访问存储器时出现应答延迟",
+            "start": 141,
+            "end": 153,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "r0949",
+            "start": 115,
+            "end": 120,
+            "matches_input": true,
+            "value_index": 0
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "sample_id": "PH-F01014",
+      "status": "success",
+      "latency_ms": 43169.67,
+      "record_count": 1,
+      "records": [
+        {
+          "fault_code": "F01014",
+          "description": "拓扑：DRIVE-CLiQ组件属性变化",
+          "component": "DRIVE-CLiQ组件",
+          "related_components": [
+            "控制单元",
+            "DRIVE-CLiQ组件"
+          ],
+          "causes": [],
+          "parameters": [
+            "r0949",
+            "p0009",
+            "p0976"
+          ],
+          "confidence": null
+        }
+      ],
+      "field_scores": {
+        "fault_code": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "description": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "component": {
+          "status": "unknown_gold_excluded",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 1
+        },
+        "causes": {
+          "status": "unknown_gold_excluded",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "parameters": {
+          "status": "scored",
+          "tp": 3,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        }
+      },
+      "evidence": {
+        "gold_expected_count": 7,
+        "predicted_count": 7,
+        "valid_predicted_count": 7,
+        "spans": [
+          {
+            "field": "fault_code",
+            "source_id": "input_text",
+            "quote": "F01014",
+            "start": 10,
+            "end": 16,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "控制单元",
+            "start": 63,
+            "end": 67,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "DRIVE-CLiQ组件",
+            "start": 142,
+            "end": 154,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "description",
+            "source_id": "input_text",
+            "quote": "拓扑：DRIVE-CLiQ组件属性变\n化",
+            "start": 139,
+            "end": 159,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "r0949",
+            "start": 116,
+            "end": 121,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p0009",
+            "start": 289,
+            "end": 294,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p0976",
+            "start": 298,
+            "end": 303,
+            "matches_input": true,
+            "value_index": 2
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "sample_id": "PH-F01015",
+      "status": "success",
+      "latency_ms": 6097.16,
+      "record_count": 1,
+      "records": [
+        {
+          "fault_code": "F01015",
+          "description": "内部软件错误",
+          "component": "控制单元（CU）",
+          "related_components": [
+            "控制单元（CU）"
+          ],
+          "causes": [],
+          "parameters": [
+            "r0949"
+          ],
+          "confidence": null
+        }
+      ],
+      "field_scores": {
+        "fault_code": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "description": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "component": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "causes": {
+          "status": "unknown_gold_excluded",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "parameters": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        }
+      },
+      "evidence": {
+        "gold_expected_count": 4,
+        "predicted_count": 4,
+        "valid_predicted_count": 4,
+        "spans": [
+          {
+            "field": "fault_code",
+            "source_id": "input_text",
+            "quote": "F01015",
+            "start": 10,
+            "end": 16,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "控\n制单元（CU）",
+            "start": 58,
+            "end": 67,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "description",
+            "source_id": "input_text",
+            "quote": "内部软件错误",
+            "start": 140,
+            "end": 146,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "r0949",
+            "start": 115,
+            "end": 120,
+            "matches_input": true,
+            "value_index": 0
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "sample_id": "PH-F01020",
+      "status": "success",
+      "latency_ms": 15972.03,
+      "record_count": 1,
+      "records": [
+        {
+          "fault_code": "F01020",
+          "description": "写RAM失败",
+          "component": "控制单元（CU）",
+          "related_components": [
+            "控制单元（CU）"
+          ],
+          "causes": [],
+          "parameters": [
+            "r0949",
+            "p9930"
+          ],
+          "confidence": null
+        }
+      ],
+      "field_scores": {
+        "fault_code": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "description": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "component": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "causes": {
+          "status": "unknown_gold_excluded",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "parameters": {
+          "status": "scored",
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        }
+      },
+      "evidence": {
+        "gold_expected_count": 5,
+        "predicted_count": 5,
+        "valid_predicted_count": 5,
+        "spans": [
+          {
+            "field": "fault_code",
+            "source_id": "input_text",
+            "quote": "F01020",
+            "start": 10,
+            "end": 16,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "控\n制单元（CU）",
+            "start": 58,
+            "end": 67,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "description",
+            "source_id": "input_text",
+            "quote": "写RAM失败",
+            "start": 128,
+            "end": 134,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "r0949",
+            "start": 109,
+            "end": 114,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p9930",
+            "start": 183,
+            "end": 188,
+            "matches_input": true,
+            "value_index": 1
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "sample_id": "PH-F01023",
+      "status": "success",
+      "latency_ms": 5985.74,
+      "record_count": 1,
+      "records": [
+        {
+          "fault_code": "F01023",
+          "description": "内部软件超时",
+          "component": "控制单元（CU）",
+          "related_components": [
+            "控制单元（CU）"
+          ],
+          "causes": [
+            "瞬时电压波动",
+            "启用了过多的驱动功能，导致软件运行负载过大",
+            "软件超时漏洞"
+          ],
+          "parameters": [
+            "r0949"
+          ],
+          "confidence": null
+        }
+      ],
+      "field_scores": {
+        "fault_code": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "description": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "component": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "causes": {
+          "status": "scored",
+          "tp": 2,
+          "fp": 1,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "parameters": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        }
+      },
+      "evidence": {
+        "gold_expected_count": 6,
+        "predicted_count": 7,
+        "valid_predicted_count": 7,
+        "spans": [
+          {
+            "field": "fault_code",
+            "source_id": "input_text",
+            "quote": "F01023",
+            "start": 10,
+            "end": 16,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "控\n制单元（CU）",
+            "start": 58,
+            "end": 67,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "description",
+            "source_id": "input_text",
+            "quote": "内部软件超时",
+            "start": 137,
+            "end": 143,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "cause",
+            "source_id": "input_text",
+            "quote": "瞬时电压波动",
+            "start": 187,
+            "end": 193,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "cause",
+            "source_id": "input_text",
+            "quote": "启用了过多的驱动功能，导致软件运行负载过大",
+            "start": 203,
+            "end": 224,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "cause",
+            "source_id": "input_text",
+            "quote": "软件\n超时漏洞",
+            "start": 287,
+            "end": 294,
+            "matches_input": true,
+            "value_index": 2
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "r0949",
+            "start": 112,
+            "end": 117,
+            "matches_input": true,
+            "value_index": 0
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "sample_id": "PH-A01013",
+      "status": "success",
+      "latency_ms": 16936.88,
+      "record_count": 1,
+      "records": [
+        {
+          "fault_code": "A01013",
+          "description": "控制单元：达到或超过风扇的使用寿命",
+          "component": "控制单元（CU）",
+          "related_components": [
+            "控制单元（CU）"
+          ],
+          "causes": [],
+          "parameters": [
+            "r2124",
+            "p3961"
+          ],
+          "confidence": null
+        }
+      ],
+      "field_scores": {
+        "fault_code": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "description": {
+          "status": "scored",
+          "tp": 0,
+          "fp": 1,
+          "fn": 1,
+          "predicted_unknown": 0
+        },
+        "component": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "causes": {
+          "status": "scored",
+          "tp": 0,
+          "fp": 0,
+          "fn": 3,
+          "predicted_unknown": 0
+        },
+        "parameters": {
+          "status": "scored",
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        }
+      },
+      "evidence": {
+        "gold_expected_count": 8,
+        "predicted_count": 5,
+        "valid_predicted_count": 5,
+        "spans": [
+          {
+            "field": "fault_code",
+            "source_id": "input_text",
+            "quote": "A01013",
+            "start": 10,
+            "end": 16,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "控制单元（CU）",
+            "start": 80,
+            "end": 88,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "description",
+            "source_id": "input_text",
+            "quote": "控制单元：达到或超过风扇的使用寿命",
+            "start": 183,
+            "end": 200,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "r2124",
+            "start": 131,
+            "end": 136,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p3961",
+            "start": 260,
+            "end": 265,
+            "matches_input": true,
+            "value_index": 1
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "sample_id": "PH-A01016",
+      "status": "success",
+      "latency_ms": 28796.27,
+      "record_count": 1,
+      "records": [
+        {
+          "fault_code": "A01016",
+          "description": "固件被修改",
+          "component": "控制单元存储器",
+          "related_components": [
+            "控制单元存储器"
+          ],
+          "causes": [],
+          "parameters": [
+            "r2124",
+            "p0977",
+            "r9925"
+          ],
+          "confidence": null
+        }
+      ],
+      "field_scores": {
+        "fault_code": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "description": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "component": {
+          "status": "unknown_gold_excluded",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 1
+        },
+        "causes": {
+          "status": "scored",
+          "tp": 0,
+          "fp": 0,
+          "fn": 6,
+          "predicted_unknown": 0
+        },
+        "parameters": {
+          "status": "scored",
+          "tp": 3,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        }
+      },
+      "evidence": {
+        "gold_expected_count": 13,
+        "predicted_count": 6,
+        "valid_predicted_count": 6,
+        "spans": [
+          {
+            "field": "fault_code",
+            "source_id": "input_text",
+            "quote": "A01016",
+            "start": 10,
+            "end": 16,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "控制单元存储器",
+            "start": 55,
+            "end": 62,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "description",
+            "source_id": "input_text",
+            "quote": "固件被修改",
+            "start": 171,
+            "end": 176,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "r2124",
+            "start": 104,
+            "end": 109,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p0977",
+            "start": 250,
+            "end": 255,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "r9925",
+            "start": 270,
+            "end": 275,
+            "matches_input": true,
+            "value_index": 2
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "sample_id": "PH-A01017",
+      "status": "success",
+      "latency_ms": 8623.26,
+      "record_count": 1,
+      "records": [
+        {
+          "fault_code": "A01017",
+          "description": "组件列表被更改",
+          "component": "控制单元（CU）",
+          "related_components": [
+            "控制单元（CU）"
+          ],
+          "causes": [],
+          "parameters": [
+            "r2124",
+            "p0977"
+          ],
+          "confidence": null
+        }
+      ],
+      "field_scores": {
+        "fault_code": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "description": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "component": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "causes": {
+          "status": "unknown_gold_excluded",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "parameters": {
+          "status": "scored",
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        }
+      },
+      "evidence": {
+        "gold_expected_count": 5,
+        "predicted_count": 5,
+        "valid_predicted_count": 5,
+        "spans": [
+          {
+            "field": "fault_code",
+            "source_id": "input_text",
+            "quote": "A01017",
+            "start": 10,
+            "end": 16,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "控\n制单元（CU）",
+            "start": 58,
+            "end": 67,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "description",
+            "source_id": "input_text",
+            "quote": "组件列表被更改",
+            "start": 150,
+            "end": 157,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "r2124",
+            "start": 110,
+            "end": 115,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p0977",
+            "start": 281,
+            "end": 286,
+            "matches_input": true,
+            "value_index": 1
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "sample_id": "PH-A01032",
+      "status": "success",
+      "latency_ms": 10664.32,
+      "record_count": 1,
+      "records": [
+        {
+          "fault_code": "A01032",
+          "description": "ACX：需要存储所有参数",
+          "component": "控制单元（CU）",
+          "related_components": [
+            "控制单元（CU）"
+          ],
+          "causes": [],
+          "parameters": [
+            "r2124",
+            "p0977"
+          ],
+          "confidence": null
+        }
+      ],
+      "field_scores": {
+        "fault_code": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "description": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "component": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "causes": {
+          "status": "unknown_gold_excluded",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "parameters": {
+          "status": "scored",
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        }
+      },
+      "evidence": {
+        "gold_expected_count": 5,
+        "predicted_count": 5,
+        "valid_predicted_count": 5,
+        "spans": [
+          {
+            "field": "fault_code",
+            "source_id": "input_text",
+            "quote": "A01032",
+            "start": 10,
+            "end": 16,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "控制单元（CU）",
+            "start": 62,
+            "end": 70,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "description",
+            "source_id": "input_text",
+            "quote": "ACX：需要存储所有参数",
+            "start": 138,
+            "end": 150,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "r2124",
+            "start": 113,
+            "end": 118,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p0977",
+            "start": 193,
+            "end": 198,
+            "matches_input": true,
+            "value_index": 1
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "sample_id": "PH-F01600",
+      "status": "success",
+      "latency_ms": 31267.21,
+      "record_count": 1,
+      "records": [
+        {
+          "fault_code": "F01600",
+          "description": "SI CU:STOP A被触发",
+          "component": "控制单元、电机模块",
+          "related_components": [
+            "控制单元",
+            "电机模块"
+          ],
+          "causes": [],
+          "parameters": [
+            "r0949",
+            "p9601",
+            "p9602",
+            "p9650",
+            "p9850",
+            "p9610",
+            "p9612"
+          ],
+          "confidence": null
+        }
+      ],
+      "field_scores": {
+        "fault_code": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "description": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "component": {
+          "status": "unknown_gold_excluded",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 1
+        },
+        "causes": {
+          "status": "scored",
+          "tp": 0,
+          "fp": 0,
+          "fn": 4,
+          "predicted_unknown": 0
+        },
+        "parameters": {
+          "status": "scored",
+          "tp": 7,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        }
+      },
+      "evidence": {
+        "gold_expected_count": 16,
+        "predicted_count": 11,
+        "valid_predicted_count": 11,
+        "spans": [
+          {
+            "field": "fault_code",
+            "source_id": "input_text",
+            "quote": "F01600",
+            "start": 10,
+            "end": 16,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "控制单元",
+            "start": 84,
+            "end": 88,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "电机模块",
+            "start": 89,
+            "end": 93,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "description",
+            "source_id": "input_text",
+            "quote": "SI CU:STOP A被触发",
+            "start": 230,
+            "end": 245,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "r0949",
+            "start": 153,
+            "end": 158,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p9601",
+            "start": 341,
+            "end": 346,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p9602",
+            "start": 347,
+            "end": 352,
+            "matches_input": true,
+            "value_index": 2
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p9650",
+            "start": 464,
+            "end": 469,
+            "matches_input": true,
+            "value_index": 3
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p9850",
+            "start": 470,
+            "end": 475,
+            "matches_input": true,
+            "value_index": 4
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p9610",
+            "start": 526,
+            "end": 531,
+            "matches_input": true,
+            "value_index": 5
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p9612",
+            "start": 532,
+            "end": 537,
+            "matches_input": true,
+            "value_index": 6
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "sample_id": "PH-F01611",
+      "status": "success",
+      "latency_ms": 16300.85,
+      "record_count": 1,
+      "records": [
+        {
+          "fault_code": "F01611",
+          "description": "SI P1（CU）：某一监控通道故障",
+          "component": "控制单元及液压模块",
+          "related_components": [
+            "控制单元",
+            "液压模块"
+          ],
+          "causes": [],
+          "parameters": [
+            "r0949",
+            "r9772"
+          ],
+          "confidence": null
+        }
+      ],
+      "field_scores": {
+        "fault_code": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "description": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "component": {
+          "status": "unknown_gold_excluded",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 1
+        },
+        "causes": {
+          "status": "scored",
+          "tp": 0,
+          "fp": 0,
+          "fn": 1,
+          "predicted_unknown": 0
+        },
+        "parameters": {
+          "status": "scored",
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        }
+      },
+      "evidence": {
+        "gold_expected_count": 8,
+        "predicted_count": 6,
+        "valid_predicted_count": 6,
+        "spans": [
+          {
+            "field": "fault_code",
+            "source_id": "input_text",
+            "quote": "F01611",
+            "start": 10,
+            "end": 16,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "控制单元",
+            "start": 71,
+            "end": 75,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "液压模块",
+            "start": 76,
+            "end": 80,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "description",
+            "source_id": "input_text",
+            "quote": "SI P1（CU）：某一监控通道故\n障",
+            "start": 196,
+            "end": 215,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "r0949",
+            "start": 146,
+            "end": 151,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "r9772",
+            "start": 360,
+            "end": 365,
+            "matches_input": true,
+            "value_index": 1
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "sample_id": "PH-F01612",
+      "status": "success",
+      "latency_ms": 24177.12,
+      "record_count": 1,
+      "records": [
+        {
+          "fault_code": "F01612",
+          "description": "安全监控通道发现一处故障（PROFIdrive编号10）；SI P1（CU）：并联功率单元上STO输入不同",
+          "component": "控制单元及功率单元",
+          "related_components": [
+            "控制单元",
+            "功率单元",
+            "并联功率单元"
+          ],
+          "causes": [],
+          "parameters": [
+            "r0949",
+            "p9650",
+            "p7015"
+          ],
+          "confidence": null
+        }
+      ],
+      "field_scores": {
+        "fault_code": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "description": {
+          "status": "scored",
+          "tp": 0,
+          "fp": 1,
+          "fn": 1,
+          "predicted_unknown": 0
+        },
+        "component": {
+          "status": "unknown_gold_excluded",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 1
+        },
+        "causes": {
+          "status": "unknown_gold_excluded",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "parameters": {
+          "status": "scored",
+          "tp": 3,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        }
+      },
+      "evidence": {
+        "gold_expected_count": 8,
+        "predicted_count": 7,
+        "valid_predicted_count": 7,
+        "spans": [
+          {
+            "field": "fault_code",
+            "source_id": "input_text",
+            "quote": "F01612",
+            "start": 10,
+            "end": 16,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "控制单元",
+            "start": 84,
+            "end": 88,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "功率单元",
+            "start": 89,
+            "end": 93,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "并联功率单元",
+            "start": 212,
+            "end": 218,
+            "matches_input": true,
+            "value_index": 2
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "r0949",
+            "start": 169,
+            "end": 174,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p9650",
+            "start": 285,
+            "end": 290,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p7015",
+            "start": 358,
+            "end": 363,
+            "matches_input": true,
+            "value_index": 2
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "sample_id": "PH-F01630",
+      "status": "success",
+      "latency_ms": 43319.8,
+      "record_count": 1,
+      "records": [
+        {
+          "fault_code": "F01630",
+          "description": "SI P1（CU）：制动控制出错",
+          "component": "无（关联控制单元及电机模块）",
+          "related_components": [
+            "控制单元",
+            "电机模块"
+          ],
+          "causes": [],
+          "parameters": [
+            "r0949",
+            "p1278"
+          ],
+          "confidence": null
+        }
+      ],
+      "field_scores": {
+        "fault_code": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "description": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "component": {
+          "status": "unknown_gold_excluded",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 1
+        },
+        "causes": {
+          "status": "scored",
+          "tp": 0,
+          "fp": 0,
+          "fn": 4,
+          "predicted_unknown": 0
+        },
+        "parameters": {
+          "status": "scored",
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        }
+      },
+      "evidence": {
+        "gold_expected_count": 11,
+        "predicted_count": 6,
+        "valid_predicted_count": 6,
+        "spans": [
+          {
+            "field": "fault_code",
+            "source_id": "input_text",
+            "quote": "F01630",
+            "start": 10,
+            "end": 16,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "控制单元",
+            "start": 84,
+            "end": 88,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "电机模块",
+            "start": 89,
+            "end": 93,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "description",
+            "source_id": "input_text",
+            "quote": "SI\nP1（CU）：制动控制出错",
+            "start": 207,
+            "end": 223,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "r0949",
+            "start": 146,
+            "end": 151,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p1278",
+            "start": 298,
+            "end": 303,
+            "matches_input": true,
+            "value_index": 1
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "sample_id": "PH-F01632",
+      "status": "success",
+      "latency_ms": 32479.18,
+      "record_count": 1,
+      "records": [
+        {
+          "fault_code": "F01632",
+          "description": "SI P1（CU）：断流阀控制/反馈出错",
+          "component": "断流阀",
+          "related_components": [
+            "断流阀",
+            "控制单元",
+            "液压模块"
+          ],
+          "causes": [],
+          "parameters": [
+            "r0949",
+            "p9626",
+            "p9826"
+          ],
+          "confidence": null
+        }
+      ],
+      "field_scores": {
+        "fault_code": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "description": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "component": {
+          "status": "unknown_gold_excluded",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 1
+        },
+        "causes": {
+          "status": "scored",
+          "tp": 0,
+          "fp": 0,
+          "fn": 4,
+          "predicted_unknown": 0
+        },
+        "parameters": {
+          "status": "scored",
+          "tp": 3,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        }
+      },
+      "evidence": {
+        "gold_expected_count": 12,
+        "predicted_count": 8,
+        "valid_predicted_count": 8,
+        "spans": [
+          {
+            "field": "fault_code",
+            "source_id": "input_text",
+            "quote": "F01632",
+            "start": 10,
+            "end": 16,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "断流阀",
+            "start": 149,
+            "end": 152,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "控制单元",
+            "start": 68,
+            "end": 72,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "液压模块",
+            "start": 73,
+            "end": 77,
+            "matches_input": true,
+            "value_index": 2
+          },
+          {
+            "field": "description",
+            "source_id": "input_text",
+            "quote": "SI P1（CU）：断流阀控制/反馈出错",
+            "start": 180,
+            "end": 200,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "r0949",
+            "start": 130,
+            "end": 135,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p9626",
+            "start": 487,
+            "end": 492,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p9826",
+            "start": 493,
+            "end": 498,
+            "matches_input": true,
+            "value_index": 2
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "sample_id": "PH-A01631",
+      "status": "success",
+      "latency_ms": 15194.07,
+      "record_count": 1,
+      "records": [
+        {
+          "fault_code": "A01631",
+          "description": "SI P1（CU）：电机抱闸/SBC配置无意义",
+          "component": "电机模块及制动组件",
+          "related_components": [
+            "电机模块",
+            "制动组件"
+          ],
+          "causes": [],
+          "parameters": [
+            "p1215",
+            "p9602",
+            "p9802"
+          ],
+          "confidence": null
+        }
+      ],
+      "field_scores": {
+        "fault_code": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "description": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "component": {
+          "status": "unknown_gold_excluded",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 1
+        },
+        "causes": {
+          "status": "scored",
+          "tp": 0,
+          "fp": 0,
+          "fn": 2,
+          "predicted_unknown": 0
+        },
+        "parameters": {
+          "status": "scored",
+          "tp": 3,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        }
+      },
+      "evidence": {
+        "gold_expected_count": 11,
+        "predicted_count": 7,
+        "valid_predicted_count": 7,
+        "spans": [
+          {
+            "field": "fault_code",
+            "source_id": "input_text",
+            "quote": "A01631",
+            "start": 10,
+            "end": 16,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "电机模块",
+            "start": 74,
+            "end": 78,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "制动组件",
+            "start": 79,
+            "end": 83,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "description",
+            "source_id": "input_text",
+            "quote": "SI P1\n（CU）：电机抱闸/SBC配置无意义",
+            "start": 144,
+            "end": 168,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p1215",
+            "start": 214,
+            "end": 219,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p9602",
+            "start": 228,
+            "end": 233,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p9802",
+            "start": 234,
+            "end": 239,
+            "matches_input": true,
+            "value_index": 2
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "sample_id": "PH-F01640",
+      "status": "success",
+      "latency_ms": 28233.11,
+      "record_count": 1,
+      "records": [
+        {
+          "fault_code": "F01640",
+          "description": "SI P1（CU）：识别出组件更换并需应答/保存",
+          "component": "控制单元（CU）、电机模块/液压模块",
+          "related_components": [
+            "控制单元（CU）",
+            "电机模块",
+            "液压模块"
+          ],
+          "causes": [],
+          "parameters": [
+            "r0949",
+            "p9702",
+            "p0977",
+            "p0971",
+            "p2103"
+          ],
+          "confidence": null
+        }
+      ],
+      "field_scores": {
+        "fault_code": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "description": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "component": {
+          "status": "scored",
+          "tp": 0,
+          "fp": 1,
+          "fn": 1,
+          "predicted_unknown": 0
+        },
+        "causes": {
+          "status": "scored",
+          "tp": 0,
+          "fp": 0,
+          "fn": 2,
+          "predicted_unknown": 0
+        },
+        "parameters": {
+          "status": "scored",
+          "tp": 5,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        }
+      },
+      "evidence": {
+        "gold_expected_count": 10,
+        "predicted_count": 10,
+        "valid_predicted_count": 10,
+        "spans": [
+          {
+            "field": "fault_code",
+            "source_id": "input_text",
+            "quote": "F01640",
+            "start": 10,
+            "end": 16,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "控制单元（CU）",
+            "start": 74,
+            "end": 82,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "电机模块",
+            "start": 375,
+            "end": 379,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "液压模块",
+            "start": 163,
+            "end": 167,
+            "matches_input": true,
+            "value_index": 2
+          },
+          {
+            "field": "description",
+            "source_id": "input_text",
+            "quote": "SI P1（CU）：识别出组件更换并需应答/保存",
+            "start": 177,
+            "end": 201,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "r0949",
+            "start": 132,
+            "end": 137,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p9702",
+            "start": 274,
+            "end": 279,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p0977",
+            "start": 291,
+            "end": 296,
+            "matches_input": true,
+            "value_index": 2
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p0971",
+            "start": 299,
+            "end": 304,
+            "matches_input": true,
+            "value_index": 3
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p2103",
+            "start": 339,
+            "end": 344,
+            "matches_input": true,
+            "value_index": 4
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "sample_id": "PH-F01641",
+      "status": "success",
+      "latency_ms": 11395.38,
+      "record_count": 1,
+      "records": [
+        {
+          "fault_code": "F01641",
+          "description": "SI P1（CU）：识别出组件更换并需保存",
+          "component": "控制单元（CU）",
+          "related_components": [
+            "控制单元（CU）"
+          ],
+          "causes": [],
+          "parameters": [
+            "r0949",
+            "r9776"
+          ],
+          "confidence": null
+        }
+      ],
+      "field_scores": {
+        "fault_code": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "description": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "component": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "causes": {
+          "status": "unknown_gold_excluded",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "parameters": {
+          "status": "scored",
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        }
+      },
+      "evidence": {
+        "gold_expected_count": 5,
+        "predicted_count": 5,
+        "valid_predicted_count": 5,
+        "spans": [
+          {
+            "field": "fault_code",
+            "source_id": "input_text",
+            "quote": "F01641",
+            "start": 10,
+            "end": 16,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "控制单元（CU）",
+            "start": 76,
+            "end": 84,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "description",
+            "source_id": "input_text",
+            "quote": "SI P1（CU）：识别出组件更换并需保存",
+            "start": 175,
+            "end": 196,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "r0949",
+            "start": 134,
+            "end": 139,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "r9776",
+            "start": 283,
+            "end": 288,
+            "matches_input": true,
+            "value_index": 1
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "sample_id": "PH-F01649",
+      "status": "success",
+      "latency_ms": 14332.26,
+      "record_count": 1,
+      "records": [
+        {
+          "fault_code": "F01649",
+          "description": "SI P1（CU）：内部软件错误（安全功能相关）",
+          "component": "控制单元（CU）",
+          "related_components": [
+            "控制单元（CU）"
+          ],
+          "causes": [],
+          "parameters": [
+            "r0949"
+          ],
+          "confidence": null
+        }
+      ],
+      "field_scores": {
+        "fault_code": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "description": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "component": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "causes": {
+          "status": "unknown_gold_excluded",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "parameters": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        }
+      },
+      "evidence": {
+        "gold_expected_count": 4,
+        "predicted_count": 4,
+        "valid_predicted_count": 4,
+        "spans": [
+          {
+            "field": "fault_code",
+            "source_id": "input_text",
+            "quote": "F01649",
+            "start": 10,
+            "end": 16,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "控制\n单元（CU）",
+            "start": 57,
+            "end": 66,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "description",
+            "source_id": "input_text",
+            "quote": "SI P1（CU）：内部软件错误（安全功\n能相关）",
+            "start": 137,
+            "end": 162,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "r0949",
+            "start": 111,
+            "end": 116,
+            "matches_input": true,
+            "value_index": 0
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "sample_id": "PH-F01650",
+      "status": "success",
+      "latency_ms": 24633.06,
+      "record_count": 1,
+      "records": [
+        {
+          "fault_code": "F01650",
+          "description": "SI P1（CU）：必须进行验收测试",
+          "component": "控制单元（CU）",
+          "related_components": [
+            "控制单元（CU）"
+          ],
+          "causes": [
+            "无监控通道2安全参数",
+            "监控通道1校验和不一致",
+            "校验和不一致",
+            "参数或硬件更改",
+            "其他安全故障后续反应"
+          ],
+          "parameters": [
+            "r0949",
+            "p9799",
+            "p9899",
+            "p9501",
+            "p9503"
+          ],
+          "confidence": null
+        }
+      ],
+      "field_scores": {
+        "fault_code": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "description": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "component": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "causes": {
+          "status": "scored",
+          "tp": 4,
+          "fp": 1,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "parameters": {
+          "status": "scored",
+          "tp": 5,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        }
+      },
+      "evidence": {
+        "gold_expected_count": 12,
+        "predicted_count": 13,
+        "valid_predicted_count": 13,
+        "spans": [
+          {
+            "field": "fault_code",
+            "source_id": "input_text",
+            "quote": "F01650",
+            "start": 10,
+            "end": 16,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "控制单元（CU）",
+            "start": 64,
+            "end": 72,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "description",
+            "source_id": "input_text",
+            "quote": "SI P1（CU）：必须进行验收测试",
+            "start": 175,
+            "end": 193,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "cause",
+            "source_id": "input_text",
+            "quote": "无监控通道2安全参数",
+            "start": 138,
+            "end": 148,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "cause",
+            "source_id": "input_text",
+            "quote": "监控通道1校\n验和不一致",
+            "start": 155,
+            "end": 167,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "cause",
+            "source_id": "input_text",
+            "quote": "校验和不一致",
+            "start": 304,
+            "end": 310,
+            "matches_input": true,
+            "value_index": 2
+          },
+          {
+            "field": "cause",
+            "source_id": "input_text",
+            "quote": "参数或硬件更\n改",
+            "start": 402,
+            "end": 410,
+            "matches_input": true,
+            "value_index": 3
+          },
+          {
+            "field": "cause",
+            "source_id": "input_text",
+            "quote": "其他安全故障后续反应",
+            "start": 471,
+            "end": 481,
+            "matches_input": true,
+            "value_index": 4
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "r0949",
+            "start": 123,
+            "end": 128,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p9799",
+            "start": 315,
+            "end": 320,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p9899",
+            "start": 321,
+            "end": 326,
+            "matches_input": true,
+            "value_index": 2
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p9501",
+            "start": 359,
+            "end": 364,
+            "matches_input": true,
+            "value_index": 3
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p9503",
+            "start": 365,
+            "end": 370,
+            "matches_input": true,
+            "value_index": 4
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "sample_id": "PH-F01651",
+      "status": "success",
+      "latency_ms": 21490.65,
+      "record_count": 1,
+      "records": [
+        {
+          "fault_code": "F01651",
+          "description": "SI P1（CU）：安全时间片同步失败",
+          "component": "控制单元、电机模块",
+          "related_components": [
+            "控制单元",
+            "电机模块"
+          ],
+          "causes": [
+            "热启动导致同步失败",
+            "PROFIBUS主站同步故障"
+          ],
+          "parameters": [
+            "r0949",
+            "p9510"
+          ],
+          "confidence": null
+        }
+      ],
+      "field_scores": {
+        "fault_code": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "description": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "component": {
+          "status": "unknown_gold_excluded",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 1
+        },
+        "causes": {
+          "status": "scored",
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "parameters": {
+          "status": "scored",
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        }
+      },
+      "evidence": {
+        "gold_expected_count": 9,
+        "predicted_count": 8,
+        "valid_predicted_count": 8,
+        "spans": [
+          {
+            "field": "fault_code",
+            "source_id": "input_text",
+            "quote": "F01651",
+            "start": 10,
+            "end": 16,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "控制单元",
+            "start": 78,
+            "end": 82,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "电机模块",
+            "start": 83,
+            "end": 87,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "description",
+            "source_id": "input_text",
+            "quote": "SI P1（CU）：安全时间片同步失败",
+            "start": 193,
+            "end": 212,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "cause",
+            "source_id": "input_text",
+            "quote": "热启动导致同步失\n败",
+            "start": 155,
+            "end": 165,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "cause",
+            "source_id": "input_text",
+            "quote": "PROFIBUS主站同步故障",
+            "start": 171,
+            "end": 185,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "r0949",
+            "start": 140,
+            "end": 145,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p9510",
+            "start": 329,
+            "end": 334,
+            "matches_input": true,
+            "value_index": 1
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "sample_id": "PH-F01034",
+      "status": "success",
+      "latency_ms": 14640.63,
+      "record_count": 1,
+      "records": [
+        {
+          "fault_code": "F01034",
+          "description": "单位转换：参考值更改后参数值计算失败",
+          "component": "编码器、传感器",
+          "related_components": [
+            "编码器",
+            "传感器"
+          ],
+          "causes": [
+            "参考参数更改"
+          ],
+          "parameters": [
+            "r0949"
+          ],
+          "confidence": null
+        }
+      ],
+      "field_scores": {
+        "fault_code": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "description": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "component": {
+          "status": "unknown_gold_excluded",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 1
+        },
+        "causes": {
+          "status": "scored",
+          "tp": 0,
+          "fp": 1,
+          "fn": 1,
+          "predicted_unknown": 0
+        },
+        "parameters": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        }
+      },
+      "evidence": {
+        "gold_expected_count": 7,
+        "predicted_count": 6,
+        "valid_predicted_count": 6,
+        "spans": [
+          {
+            "field": "fault_code",
+            "source_id": "input_text",
+            "quote": "F01034",
+            "start": 10,
+            "end": 16,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "编码器",
+            "start": 83,
+            "end": 86,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "传感器",
+            "start": 87,
+            "end": 90,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "description",
+            "source_id": "input_text",
+            "quote": "单位转换：参考值更改后参数值计算失败",
+            "start": 166,
+            "end": 184,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "cause",
+            "source_id": "input_text",
+            "quote": "参考参数更改",
+            "start": 246,
+            "end": 252,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "r0949",
+            "start": 139,
+            "end": 144,
+            "matches_input": true,
+            "value_index": 0
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "sample_id": "PH-F01033",
+      "status": "success",
+      "latency_ms": 18133.41,
+      "record_count": 1,
+      "records": [
+        {
+          "fault_code": "F01033",
+          "description": "单位转换：参考参数无效",
+          "component": "编码器、传感器",
+          "related_components": [
+            "编码器",
+            "传感器"
+          ],
+          "causes": [],
+          "parameters": [
+            "r0949",
+            "p0304",
+            "p0305",
+            "p0310",
+            "p0596",
+            "p2000",
+            "p0349",
+            "p005",
+            "p0595"
+          ],
+          "confidence": null
+        }
+      ],
+      "field_scores": {
+        "fault_code": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "description": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "component": {
+          "status": "unknown_gold_excluded",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 1
+        },
+        "causes": {
+          "status": "unknown_gold_excluded",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "parameters": {
+          "status": "scored",
+          "tp": 9,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        }
+      },
+      "evidence": {
+        "gold_expected_count": 14,
+        "predicted_count": 13,
+        "valid_predicted_count": 13,
+        "spans": [
+          {
+            "field": "fault_code",
+            "source_id": "input_text",
+            "quote": "F01033",
+            "start": 10,
+            "end": 16,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "编码器",
+            "start": 83,
+            "end": 86,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "传感器",
+            "start": 87,
+            "end": 90,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "description",
+            "source_id": "input_text",
+            "quote": "单位转换：参考参数无效",
+            "start": 166,
+            "end": 177,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "r0949",
+            "start": 139,
+            "end": 144,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p0304",
+            "start": 249,
+            "end": 254,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p0305",
+            "start": 255,
+            "end": 260,
+            "matches_input": true,
+            "value_index": 2
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p0310",
+            "start": 261,
+            "end": 266,
+            "matches_input": true,
+            "value_index": 3
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p0596",
+            "start": 267,
+            "end": 272,
+            "matches_input": true,
+            "value_index": 4
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p2000",
+            "start": 273,
+            "end": 278,
+            "matches_input": true,
+            "value_index": 5
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p0349",
+            "start": 302,
+            "end": 307,
+            "matches_input": true,
+            "value_index": 6
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p005",
+            "start": 308,
+            "end": 312,
+            "matches_input": true,
+            "value_index": 7
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p0595",
+            "start": 313,
+            "end": 318,
+            "matches_input": true,
+            "value_index": 8
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "sample_id": "PH-F01005",
+      "status": "success",
+      "latency_ms": 22291.4,
+      "record_count": 1,
+      "records": [
+        {
+          "fault_code": "F01005",
+          "description": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+          "component": "DRIVE-CLiQ组件及编码器模块",
+          "related_components": [
+            "DRIVE-CLiQ组件",
+            "编码器模块"
+          ],
+          "causes": [
+            "校验和错误",
+            "组件不支持固件内容",
+            "固件版本过旧",
+            "固件与硬件版本不兼容",
+            "通讯无应答",
+            "仅载入引导程序",
+            "无固件文件",
+            "固件文件长度不一致",
+            "无法进入下载模式",
+            "固件校验失败",
+            "校验超时",
+            "组件不存在"
+          ],
+          "parameters": [
+            "r0949",
+            "p7828"
+          ],
+          "confidence": null
+        }
+      ],
+      "field_scores": {
+        "fault_code": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "description": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "component": {
+          "status": "unknown_gold_excluded",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 1
+        },
+        "causes": {
+          "status": "scored",
+          "tp": 12,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "parameters": {
+          "status": "scored",
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        }
+      },
+      "evidence": {
+        "gold_expected_count": 19,
+        "predicted_count": 18,
+        "valid_predicted_count": 18,
+        "spans": [
+          {
+            "field": "fault_code",
+            "source_id": "input_text",
+            "quote": "F01005",
+            "start": 10,
+            "end": 16,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "DRIVE-CLiQ组件",
+            "start": 63,
+            "end": 75,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "编码器模块",
+            "start": 76,
+            "end": 81,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "description",
+            "source_id": "input_text",
+            "quote": "下载DRIVE-CLiQ组件的固件失败（含编码器模块）",
+            "start": 183,
+            "end": 210,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "cause",
+            "source_id": "input_text",
+            "quote": "校验和错误",
+            "start": 285,
+            "end": 290,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "cause",
+            "source_id": "input_text",
+            "quote": "组件不支持\n固件内容",
+            "start": 319,
+            "end": 329,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "cause",
+            "source_id": "input_text",
+            "quote": "固件版本过旧",
+            "start": 353,
+            "end": 359,
+            "matches_input": true,
+            "value_index": 2
+          },
+          {
+            "field": "cause",
+            "source_id": "input_text",
+            "quote": "固件与硬件版本\n不兼容",
+            "start": 371,
+            "end": 382,
+            "matches_input": true,
+            "value_index": 3
+          },
+          {
+            "field": "cause",
+            "source_id": "input_text",
+            "quote": "通讯无应答",
+            "start": 409,
+            "end": 414,
+            "matches_input": true,
+            "value_index": 4
+          },
+          {
+            "field": "cause",
+            "source_id": "input_text",
+            "quote": "仅载入引导程序",
+            "start": 459,
+            "end": 466,
+            "matches_input": true,
+            "value_index": 5
+          },
+          {
+            "field": "cause",
+            "source_id": "input_text",
+            "quote": "无固件文件",
+            "start": 492,
+            "end": 497,
+            "matches_input": true,
+            "value_index": 6
+          },
+          {
+            "field": "cause",
+            "source_id": "input_text",
+            "quote": "固件文件长度不一致",
+            "start": 549,
+            "end": 558,
+            "matches_input": true,
+            "value_index": 7
+          },
+          {
+            "field": "cause",
+            "source_id": "input_text",
+            "quote": "无法进入下载模式",
+            "start": 594,
+            "end": 602,
+            "matches_input": true,
+            "value_index": 8
+          },
+          {
+            "field": "cause",
+            "source_id": "input_text",
+            "quote": "固件校验失败",
+            "start": 633,
+            "end": 639,
+            "matches_input": true,
+            "value_index": 9
+          },
+          {
+            "field": "cause",
+            "source_id": "input_text",
+            "quote": "校验超时",
+            "start": 668,
+            "end": 672,
+            "matches_input": true,
+            "value_index": 10
+          },
+          {
+            "field": "cause",
+            "source_id": "input_text",
+            "quote": "组件不存在",
+            "start": 700,
+            "end": 705,
+            "matches_input": true,
+            "value_index": 11
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "r0949",
+            "start": 138,
+            "end": 143,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p7828",
+            "start": 710,
+            "end": 715,
+            "matches_input": true,
+            "value_index": 1
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "sample_id": "PH-A01006",
+      "status": "success",
+      "latency_ms": 5297.39,
+      "record_count": 1,
+      "records": [
+        {
+          "fault_code": "A01006",
+          "description": "DRIVE-CLiQ组件的固件需要升级（含编码器模块）",
+          "component": "DRIVE-CLiQ组件及编码器模块",
+          "related_components": [
+            "DRIVE-CLiQ组件",
+            "编码器模块"
+          ],
+          "causes": [],
+          "parameters": [
+            "r2124",
+            "p7828",
+            "p7829"
+          ],
+          "confidence": null
+        }
+      ],
+      "field_scores": {
+        "fault_code": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "description": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "component": {
+          "status": "unknown_gold_excluded",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 1
+        },
+        "causes": {
+          "status": "unknown_gold_excluded",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "parameters": {
+          "status": "scored",
+          "tp": 3,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        }
+      },
+      "evidence": {
+        "gold_expected_count": 8,
+        "predicted_count": 7,
+        "valid_predicted_count": 7,
+        "spans": [
+          {
+            "field": "fault_code",
+            "source_id": "input_text",
+            "quote": "A01006",
+            "start": 10,
+            "end": 16,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "DRIVE-CLiQ组件",
+            "start": 43,
+            "end": 55,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "编码器模块",
+            "start": 154,
+            "end": 159,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "description",
+            "source_id": "input_text",
+            "quote": "DRIVE-CLiQ组件的固件需要升级（含编码器模块）",
+            "start": 133,
+            "end": 160,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "r2124",
+            "start": 99,
+            "end": 104,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p7828",
+            "start": 282,
+            "end": 287,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p7829",
+            "start": 290,
+            "end": 295,
+            "matches_input": true,
+            "value_index": 2
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "sample_id": "PH-A01007",
+      "status": "success",
+      "latency_ms": 14725.92,
+      "record_count": 1,
+      "records": [
+        {
+          "fault_code": "A01007",
+          "description": "DRIVE-CLiQ组件需要重新上电（含编码器模块）",
+          "component": "DRIVE-CLiQ组件及编码器模块",
+          "related_components": [
+            "DRIVE-CLiQ组件",
+            "编码器模块"
+          ],
+          "causes": [],
+          "parameters": [
+            "r2124"
+          ],
+          "confidence": null
+        }
+      ],
+      "field_scores": {
+        "fault_code": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "description": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "component": {
+          "status": "unknown_gold_excluded",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 1
+        },
+        "causes": {
+          "status": "unknown_gold_excluded",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "parameters": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        }
+      },
+      "evidence": {
+        "gold_expected_count": 6,
+        "predicted_count": 5,
+        "valid_predicted_count": 5,
+        "spans": [
+          {
+            "field": "fault_code",
+            "source_id": "input_text",
+            "quote": "A01007",
+            "start": 10,
+            "end": 16,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "DRIVE-CLiQ组件",
+            "start": 63,
+            "end": 75,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "编码器模块",
+            "start": 76,
+            "end": 81,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "description",
+            "source_id": "input_text",
+            "quote": "DRIVE-CLiQ组件需要重新上电（含编码器模块）",
+            "start": 164,
+            "end": 190,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "r2124",
+            "start": 130,
+            "end": 135,
+            "matches_input": true,
+            "value_index": 0
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "sample_id": "PH-F01012",
+      "status": "success",
+      "latency_ms": 25260.59,
+      "record_count": 1,
+      "records": [
+        {
+          "fault_code": "F01012",
+          "description": "项目转化出错（含编码器相关参数）",
+          "component": "编码器、控制单元",
+          "related_components": [
+            "编码器",
+            "控制单元"
+          ],
+          "causes": [
+            "温度检测分配错误"
+          ],
+          "parameters": [
+            "r0949",
+            "p0600",
+            "p0187",
+            "p0188",
+            "p0189"
+          ],
+          "confidence": null
+        }
+      ],
+      "field_scores": {
+        "fault_code": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "description": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "component": {
+          "status": "unknown_gold_excluded",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 1
+        },
+        "causes": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "parameters": {
+          "status": "scored",
+          "tp": 5,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        }
+      },
+      "evidence": {
+        "gold_expected_count": 11,
+        "predicted_count": 10,
+        "valid_predicted_count": 10,
+        "spans": [
+          {
+            "field": "fault_code",
+            "source_id": "input_text",
+            "quote": "F01012",
+            "start": 10,
+            "end": 16,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "编码器",
+            "start": 79,
+            "end": 82,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "控制单元",
+            "start": 83,
+            "end": 87,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "description",
+            "source_id": "input_text",
+            "quote": "项目转化出错（含编码器相关参数）",
+            "start": 165,
+            "end": 181,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "cause",
+            "source_id": "input_text",
+            "quote": "温度检测分配错误",
+            "start": 242,
+            "end": 250,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "r0949",
+            "start": 139,
+            "end": 144,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p0600",
+            "start": 277,
+            "end": 282,
+            "matches_input": true,
+            "value_index": 1
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p0187",
+            "start": 315,
+            "end": 320,
+            "matches_input": true,
+            "value_index": 2
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p0188",
+            "start": 321,
+            "end": 326,
+            "matches_input": true,
+            "value_index": 3
+          },
+          {
+            "field": "parameter",
+            "source_id": "input_text",
+            "quote": "p0189",
+            "start": 327,
+            "end": 332,
+            "matches_input": true,
+            "value_index": 4
+          }
+        ]
+      },
+      "diagnostics": []
+    },
+    {
+      "sample_id": "PH-F01009",
+      "status": "success",
+      "latency_ms": 13230.34,
+      "record_count": 1,
+      "records": [
+        {
+          "fault_code": "F01009",
+          "description": "CU：控制单元过热（间接影响编码器信号处理）",
+          "component": "控制单元（CU）",
+          "related_components": [
+            "控制单元（CU）"
+          ],
+          "causes": [
+            "环境温度过高"
+          ],
+          "parameters": [],
+          "confidence": null
+        }
+      ],
+      "field_scores": {
+        "fault_code": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "description": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "component": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "causes": {
+          "status": "scored",
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        },
+        "parameters": {
+          "status": "unknown_gold_excluded",
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "predicted_unknown": 0
+        }
+      },
+      "evidence": {
+        "gold_expected_count": 4,
+        "predicted_count": 4,
+        "valid_predicted_count": 4,
+        "spans": [
+          {
+            "field": "fault_code",
+            "source_id": "input_text",
+            "quote": "F01009",
+            "start": 10,
+            "end": 16,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "component",
+            "source_id": "input_text",
+            "quote": "控制单元（CU）",
+            "start": 61,
+            "end": 69,
+            "matches_input": true,
+            "value_index": 0
+          },
+          {
+            "field": "description",
+            "source_id": "input_text",
+            "quote": "CU：控制单元过热（间接影响编码器信号处理）",
+            "start": 116,
+            "end": 138,
+            "matches_input": true,
+            "value_index": null
+          },
+          {
+            "field": "cause",
+            "source_id": "input_text",
+            "quote": "环\n境温度过高",
+            "start": 237,
+            "end": 244,
+            "matches_input": true,
+            "value_index": 0
+          }
+        ]
+      },
+      "diagnostics": []
+    }
+  ]
+}

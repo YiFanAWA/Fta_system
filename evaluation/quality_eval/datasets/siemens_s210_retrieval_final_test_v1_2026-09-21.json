@@ -1,0 +1,425 @@
+{
+  "dataset_info": {
+    "name": "siemens_s210_retrieval_final_test_v1",
+    "version": "2026-09-21",
+    "split": "final_test_holdout",
+    "lifecycle_status": "sealed_historical_final_v1",
+    "reuse_policy": "read_only_regression_reference; create_v2_for_pipeline_or_model_changes",
+    "source_gold": "evaluation/quality_eval/datasets/siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20.json",
+    "gold_sample_count": 281,
+    "query_count": 39,
+    "label_status": "independent_query_holdout_derived_from_frozen_gold",
+    "annotation_authority": "ai_assisted_relevance_labels; not human_query_annotation",
+    "ranking_unit": "fault_code",
+    "multi_answer_policy": "a query is a hit when any relevant_fault_codes item appears in top_k",
+    "metrics": ["Recall@1", "Recall@3", "Recall@5", "Recall@10", "Recall@20", "MRR"],
+    "query_types": {
+      "fault_code": 6,
+      "symptom": 9,
+      "cause": 8,
+      "remedy": 5,
+      "component": 4,
+      "parameter": 5,
+      "alarm_value": 1,
+      "ambiguous_description": 1
+    },
+    "notes": [
+      "This final holdout must not be used to rewrite Gold, tune retrieval weights, choose a model, or adjust query labels.",
+      "Queries use new wording and are independent from Retrieval Evaluation v1; labels are derived from the frozen Gold records.",
+      "Ambiguous queries allow multiple relevant fault codes and use any_relevant_in_top_k for ranking metrics.",
+      "This is an engineering holdout, not a claim of independent human expert query annotation."
+    ]
+  },
+  "queries": [
+    {
+      "query_id": "FT001",
+      "query": "请给出 A01009 的故障定义。",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "relevant_fault_codes": ["A01009"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT002",
+      "query": "故障码 F01001 的含义是什么？",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "relevant_fault_codes": ["F01001"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT003",
+      "query": "A01637 对应哪一种安全报警？",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "relevant_fault_codes": ["A01637"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT004",
+      "query": "查询 PN 故障码 A01900。",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "relevant_fault_codes": ["A01900"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT005",
+      "query": "A30054 是什么类型的电源报警？",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "relevant_fault_codes": ["A30054"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT006",
+      "query": "F01023 的故障现象和含义是什么？",
+      "query_type": "fault_code",
+      "difficulty": "easy",
+      "relevant_fault_codes": ["F01023"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT007",
+      "query": "CU 温度超过允许上限时会出现哪条报警？",
+      "query_type": "symptom",
+      "difficulty": "easy",
+      "relevant_fault_codes": ["A01009"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT008",
+      "query": "向可移动存储介质写数据失败，应该查哪条报警？",
+      "query_type": "symptom",
+      "difficulty": "easy",
+      "relevant_fault_codes": ["A01019"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT009",
+      "query": "驱动器内部 RAM 磁盘无法写入对应什么报警？",
+      "query_type": "symptom",
+      "difficulty": "easy",
+      "relevant_fault_codes": ["A01020"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT010",
+      "query": "启动时发现参数备份文件不完整，会报告什么故障？",
+      "query_type": "symptom",
+      "difficulty": "easy",
+      "relevant_fault_codes": ["A01035"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT011",
+      "query": "控制单元程序存储区发生 CRC 校验错误时是什么故障？",
+      "query_type": "symptom",
+      "difficulty": "easy",
+      "relevant_fault_codes": ["A01064"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT012",
+      "query": "PROFINET 控制器的周期连接断开后对应哪条报警？",
+      "query_type": "symptom",
+      "difficulty": "easy",
+      "relevant_fault_codes": ["A01980"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT013",
+      "query": "交流变频器散热器过热会触发哪些报警？",
+      "query_type": "symptom",
+      "difficulty": "medium",
+      "relevant_fault_codes": ["A05000"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT014",
+      "query": "24/48 V 供电电压低于下限时会产生什么报警？",
+      "query_type": "symptom",
+      "difficulty": "easy",
+      "relevant_fault_codes": ["A30041"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT015",
+      "query": "用于安全运动监控的编码器报告硬件故障，对应哪条报警？",
+      "query_type": "symptom",
+      "difficulty": "medium",
+      "relevant_fault_codes": ["A01750"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT016",
+      "query": "存储卡中的参数备份和当前驱动不匹配，可能是什么原因？",
+      "query_type": "cause",
+      "difficulty": "medium",
+      "relevant_fault_codes": ["A01069"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT017",
+      "query": "安全集成功能已经参数化并启用，但没有有效安全密码，会出现什么报警？",
+      "query_type": "cause",
+      "difficulty": "medium",
+      "relevant_fault_codes": ["A01637"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT018",
+      "query": "上位 F-PLC 的 PROFIsafe 配置和驱动侧参数化不一致，会触发哪条报警？",
+      "query_type": "cause",
+      "difficulty": "medium",
+      "relevant_fault_codes": ["A01654"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT019",
+      "query": "安全参数被改动后要求暖启动或重新上电，这是哪个报警的触发场景？",
+      "query_type": "cause",
+      "difficulty": "medium",
+      "relevant_fault_codes": ["A01693"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT020",
+      "query": "开始制动测试时制动器没有打开，会对应什么报警？",
+      "query_type": "cause",
+      "difficulty": "medium",
+      "relevant_fault_codes": ["A01780"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT021",
+      "query": "制动测试中打开制动器超过 11 秒仍未完成，是什么报警？",
+      "query_type": "cause",
+      "difficulty": "easy",
+      "relevant_fault_codes": ["A01781"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT022",
+      "query": "电机输出相序接错会造成哪种换向角错误？",
+      "query_type": "cause",
+      "difficulty": "easy",
+      "relevant_fault_codes": ["F07412"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT023",
+      "query": "电机回馈能量过大时会导致哪种直流母线问题？",
+      "query_type": "cause",
+      "difficulty": "easy",
+      "relevant_fault_codes": ["F30002"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT024",
+      "query": "调整 p3109 的 UTC 同步容差后，应查看哪条报警？",
+      "query_type": "remedy",
+      "difficulty": "medium",
+      "relevant_fault_codes": ["A01099"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT025",
+      "query": "排查 p9559 设置并执行安全运动监控测试停止，针对哪个报警？",
+      "query_type": "remedy",
+      "difficulty": "medium",
+      "relevant_fault_codes": ["A01697"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT026",
+      "query": "处理 STO 测试停止超时并检查 p9659，应该定位哪条报警？",
+      "query_type": "remedy",
+      "difficulty": "medium",
+      "relevant_fault_codes": ["A01699"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT027",
+      "query": "安全运动监控使用的 Sensor Module 更换后，需要关注什么报警？",
+      "query_type": "remedy",
+      "difficulty": "medium",
+      "relevant_fault_codes": ["A01695"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT028",
+      "query": "修改 p9930 仍不能写入内部 RAM 盘时，应该复核哪个故障？",
+      "query_type": "remedy",
+      "difficulty": "hard",
+      "relevant_fault_codes": ["A01020"],
+      "ambiguity": "insufficient_query_context",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT029",
+      "query": "功率单元的 I2t 过载报警是哪一条？",
+      "query_type": "component",
+      "difficulty": "easy",
+      "relevant_fault_codes": ["A07805"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT030",
+      "query": "PN 组件的周期连接中断对应什么故障？",
+      "query_type": "component",
+      "difficulty": "easy",
+      "relevant_fault_codes": ["A01980"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT031",
+      "query": "SI Motion 中安全编码器的硬件故障是什么报警？",
+      "query_type": "component",
+      "difficulty": "medium",
+      "relevant_fault_codes": ["A01750"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT032",
+      "query": "Drive 侧电机换向角不正确对应哪些故障码？",
+      "query_type": "component",
+      "difficulty": "medium",
+      "relevant_fault_codes": ["F07412"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT033",
+      "query": "r9767 是哪条安全密码报警的关联参数？",
+      "query_type": "parameter",
+      "difficulty": "easy",
+      "relevant_fault_codes": ["A01637"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT034",
+      "query": "p0294 用于哪个功率单元过载报警的诊断？",
+      "query_type": "parameter",
+      "difficulty": "easy",
+      "relevant_fault_codes": ["A07805"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT035",
+      "query": "配置电报错误可能涉及 p8969，这对应哪条故障？",
+      "query_type": "parameter",
+      "difficulty": "medium",
+      "relevant_fault_codes": ["A01900"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT036",
+      "query": "r8936 与哪条 PROFINET 周期连接报警有关？",
+      "query_type": "parameter",
+      "difficulty": "easy",
+      "relevant_fault_codes": ["A01980"],
+      "ambiguity": "none",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT037",
+      "query": "p10202 涉及哪些制动测试报警？",
+      "query_type": "parameter",
+      "difficulty": "medium",
+      "relevant_fault_codes": ["A01780", "A01782"],
+      "ambiguity": "ambiguous_description",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT038",
+      "query": "故障值中的 cross-compared data number 指向哪些监控通道故障？",
+      "query_type": "alarm_value",
+      "difficulty": "hard",
+      "relevant_fault_codes": ["F01611", "F30611"],
+      "ambiguity": "ambiguous_description",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    },
+    {
+      "query_id": "FT039",
+      "query": "只知道驱动报告 STO 或监控通道问题，哪些安全故障需要一起排查？",
+      "query_type": "ambiguous_description",
+      "difficulty": "hard",
+      "relevant_fault_codes": ["F01600", "F01611", "F30600", "F30611"],
+      "ambiguity": "insufficient_query_context",
+      "relevance_policy": "any_relevant_in_top_k",
+      "gold_source": "frozen_siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20"
+    }
+  ]
+}

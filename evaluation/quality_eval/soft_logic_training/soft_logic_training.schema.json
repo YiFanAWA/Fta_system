@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fta-system.local/schemas/soft_logic_training.v1.json",
+  "title": "FTA soft logic training sample",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "sample_id",
+    "split",
+    "task",
+    "input_text",
+    "target",
+    "evidence_spans",
+    "hard_constraints",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {"const": "soft_logic_training.v1"},
+    "sample_id": {"type": "string", "minLength": 1},
+    "split": {"enum": ["train", "dev", "test"]},
+    "task": {"const": "fault_record_and_causal_candidate_extraction"},
+    "input_text": {"type": "string", "minLength": 1},
+    "target": {
+      "type": "object",
+      "required": ["top_event", "records", "relations", "logic_candidates"],
+      "properties": {
+        "top_event": {"type": ["string", "null"]},
+        "records": {"type": "array", "items": {"type": "object"}},
+        "relations": {"type": "array", "items": {"type": "object"}},
+        "logic_candidates": {"type": "array", "items": {"type": "object"}}
+      },
+      "additionalProperties": false
+    },
+    "evidence_spans": {"type": "array", "items": {"type": "object"}},
+    "hard_constraints": {
+      "type": "object",
+      "required": ["allowed_gates", "unknown_gate_policy", "require_evidence_for_records"],
+      "properties": {
+        "allowed_gates": {
+          "type": "array",
+          "items": {"enum": ["AND", "OR", null]}
+        },
+        "unknown_gate_policy": {"const": "keep_unknown"},
+        "require_evidence_for_records": {"const": true}
+      },
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["dataset", "label_status", "human_expert_reviewed"],
+      "properties": {
+        "dataset": {"type": "string", "minLength": 1},
+        "record_id": {"type": ["string", "null"]},
+        "url": {"type": ["string", "null"]},
+        "license": {"type": ["string", "null"]},
+        "label_status": {"type": "string", "minLength": 1},
+        "human_expert_reviewed": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

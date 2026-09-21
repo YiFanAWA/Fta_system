@@ -1,0 +1,65 @@
+{
+  "annotation_info": {
+    "source": "user_provided_expert_review_report",
+    "report_title": "FTA 故障记录专家审核清单（完整版）专家审核结论报告",
+    "report_file": "FTA_故障记录_2.txt",
+    "review_date": "2026-09-19",
+    "reviewer_role": "领域专家",
+    "reviewer_name": null,
+    "independent_of_model_gold": true,
+    "rules": [
+      "规则1：故障码、故障现象是否对应同一条故障记录",
+      "规则2：组件是否属于主组件；原文写组件为无时不强行指定主组件",
+      "规则3：候选原因必须是故障原因或故障场景，而非处理动作",
+      "规则4：参数是否确实属于该故障记录",
+      "规则5：每个字段是否有原文支持证据"
+    ],
+    "decision_counts": {
+      "审核通过": 27,
+      "证据不足": 0,
+      "语义需修改": 0,
+      "无法判断": 0
+    },
+    "field_values_confirmed": true,
+    "evidence_confirmed": true,
+    "logic_gate_confirmed": false,
+    "logic_status": "unknown"
+  },
+  "decisions": {
+    "PH-F01003": {"decision": "审核通过", "review_note": "记录语义和证据均可接受。"},
+    "PH-F01014": {"decision": "审核通过", "review_note": "记录语义和证据均可接受。"},
+    "PH-F01015": {"decision": "审核通过", "review_note": "记录语义和证据均可接受。"},
+    "PH-F01020": {"decision": "审核通过", "review_note": "记录语义和证据均可接受。"},
+    "PH-F01023": {"decision": "审核通过", "review_note": "记录语义和证据均可接受。"},
+    "PH-A01013": {"decision": "审核通过", "review_note": "记录语义和证据均可接受。"},
+    "PH-A01016": {"decision": "审核通过", "review_note": "记录语义和证据均可接受。"},
+    "PH-A01017": {"decision": "审核通过", "review_note": "记录语义和证据均可接受。"},
+    "PH-A01032": {"decision": "审核通过", "review_note": "记录语义和证据均可接受。"},
+    "PH-F01600": {"decision": "审核通过", "review_note": "记录语义和证据均可接受。"},
+    "PH-F01611": {"decision": "审核通过", "review_note": "记录语义和证据均可接受。"},
+    "PH-F01612": {"decision": "审核通过", "review_note": "记录语义和证据均可接受。"},
+    "PH-F01630": {"decision": "审核通过", "review_note": "记录语义和证据均可接受。"},
+    "PH-F01632": {"decision": "审核通过", "review_note": "记录语义和证据均可接受。"},
+    "PH-A01631": {
+      "decision": "审核通过",
+      "review_note": "候选原因中逗号位置可优化为“电机抱闸控制B且SBC使能”，不影响语义正确性。",
+      "corrected_fields": [],
+      "non_blocking_suggestion": "电机抱闸控制，B且SBC使能 → 电机抱闸控制B且SBC使能"
+    },
+    "PH-F01640": {"decision": "审核通过", "review_note": "记录语义和证据均可接受。"},
+    "PH-F01641": {"decision": "审核通过", "review_note": "记录语义和证据均可接受。"},
+    "PH-F01649": {"decision": "审核通过", "review_note": "记录语义和证据均可接受。"},
+    "PH-F01650": {"decision": "审核通过", "review_note": "记录语义和证据均可接受。"},
+    "PH-F01651": {"decision": "审核通过", "review_note": "记录语义和证据均可接受。"},
+    "PH-F01034": {"decision": "审核通过", "review_note": "记录语义和证据均可接受。"},
+    "PH-F01033": {"decision": "审核通过", "review_note": "记录语义和证据均可接受。"},
+    "PH-F01005": {"decision": "审核通过", "review_note": "记录语义和证据均可接受。"},
+    "PH-A01006": {
+      "decision": "审核通过",
+      "review_note": "已正确区分驱动对象声明与组件声明，字段归属问题已修复。"
+    },
+    "PH-A01007": {"decision": "审核通过", "review_note": "记录语义和证据均可接受。"},
+    "PH-F01012": {"decision": "审核通过", "review_note": "记录语义和证据均可接受。"},
+    "PH-F01009": {"decision": "审核通过", "review_note": "记录语义和证据均可接受。"}
+  }
+}

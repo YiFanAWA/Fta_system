@@ -1,0 +1,76 @@
+{
+  "status": "PASS",
+  "baseline": {
+    "path": "siemens_s210_generic_retrieval_parity",
+    "entity_count": 281,
+    "query_count": 39,
+    "candidate_recall": 1.0
+  },
+  "current": {
+    "path": "siemens_s210_generic_retrieval_parity",
+    "entity_count": 281,
+    "query_count": 39,
+    "candidate_recall": 1.0
+  },
+  "checks": {
+    "entity_count_unchanged": true,
+    "query_count_unchanged": true,
+    "candidate_recall_is_complete": true,
+    "candidate_recall_not_regressed": true,
+    "top1_relevant_preserved": true,
+    "core_metrics_not_regressed": true
+  },
+  "metric_checks": {
+    "recall_at_1": {
+      "baseline": 0.9230769230769231,
+      "current": 0.9230769230769231,
+      "delta": 0.0,
+      "pass": true
+    },
+    "recall_at_3": {
+      "baseline": 1.0,
+      "current": 1.0,
+      "delta": 0.0,
+      "pass": true
+    },
+    "recall_at_5": {
+      "baseline": 1.0,
+      "current": 1.0,
+      "delta": 0.0,
+      "pass": true
+    },
+    "recall_at_10": {
+      "baseline": 1.0,
+      "current": 1.0,
+      "delta": 0.0,
+      "pass": true
+    },
+    "recall_at_20": {
+      "baseline": 1.0,
+      "current": 1.0,
+      "delta": 0.0,
+      "pass": true
+    },
+    "mrr": {
+      "baseline": 0.9572649572649572,
+      "current": 0.9572649572649572,
+      "delta": 0.0,
+      "pass": true
+    }
+  },
+  "informational_only": {
+    "candidate_set_exact_match_rate": 0.9230769230769231,
+    "candidate_order_exact_match_rate": 0.717948717948718,
+    "guarded_top_k_sequence_match_rate": {
+      "1": 1.0,
+      "3": 0.7692307692307693,
+      "5": 0.5897435897435898,
+      "10": 0.1282051282051282
+    },
+    "stage_diagnostics_count": 3
+  },
+  "policy": {
+    "candidate_set_exact_and_top_k_sequence_are_diagnostic_only": true,
+    "metric_tolerance": 1e-09
+  }
+}

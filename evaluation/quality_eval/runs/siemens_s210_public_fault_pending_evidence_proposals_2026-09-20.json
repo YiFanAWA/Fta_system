@@ -1,0 +1,21 @@
+{
+  "dataset": "siemens_s210_public_fault_full_review_queue",
+  "proposal_count": 1,
+  "proposals": [
+    {
+      "sample_id": "SIEMENS_S210_2019_F01679",
+      "value_index": 1,
+      "value": "A partial power up (boot) with modified configuration was then performed",
+      "proposed_evidence": {
+        "field": "cause",
+        "source_id": "input_text",
+        "quote": "A partial power up (boot) with modified configuration was then performed",
+        "start": 259,
+        "end": 331,
+        "value_index": 1
+      },
+      "proposal_status": "exact_source_match_needs_expert_acceptance"
+    }
+  ],
+  "decision": "仅为证据补齐建议，不改变审核结论，不自动批准"
+}

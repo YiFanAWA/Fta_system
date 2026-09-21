@@ -52,6 +52,13 @@ def _safe_list(value: Any) -> List[Any]:
     return value if isinstance(value, list) else []
 
 
+def _text_value(value: Any) -> str:
+    """Return a field value without turning an unknown null into 'None'."""
+    if value is None:
+        return ""
+    return str(value).strip()
+
+
 def _extract_pred_records(pred: Dict[str, Any]) -> List[Dict[str, Any]]:
     extracted = pred.get("extracted_faults")
     if isinstance(extracted, dict):
@@ -103,17 +110,25 @@ def _pred_fields_for_hallucination(pred: Dict[str, Any]) -> List[str]:
 
     for rec in records:
         for key in ("fault_code", "component", "description", "name"):
-            v = str(rec.get(key, "")).strip()
+            v = _text_value(rec.get(key, ""))
             if v:
                 values.append(v)
 
         for c in _safe_list(rec.get("causes")):
-            cc = str(c.get("name", c)).strip() if isinstance(c, dict) else str(c).strip()
+            cc = (
+                _text_value(c.get("name", c))
+                if isinstance(c, dict)
+                else _text_value(c)
+            )
             if cc:
                 values.append(cc)
 
         for p in _safe_list(rec.get("parameters")):
-            pp = str(p.get("name", p)).strip() if isinstance(p, dict) else str(p).strip()
+            pp = (
+                _text_value(p.get("name", p))
+                if isinstance(p, dict)
+                else _text_value(p)
+            )
             if pp:
                 values.append(pp)
 
