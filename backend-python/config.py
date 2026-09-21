@@ -84,6 +84,16 @@ S210_GOLD_PATH = os.getenv(
 		/ "siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20.json"
 	),
 )
+S210_RELATION_REGISTRY_PATH = os.getenv(
+	"S210_RELATION_REGISTRY_PATH",
+	str(
+		PROJECT_ROOT
+		/ "evaluation"
+		/ "quality_eval"
+		/ "datasets"
+		/ "siemens_s210_fault_relation_registry_v1.json"
+	),
+)
 S210_EMBEDDING_MODEL = os.getenv("S210_EMBEDDING_MODEL", "BAAI/bge-m3")
 S210_RERANKER_MODEL = os.getenv(
 	"S210_RERANKER_MODEL",

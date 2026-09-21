@@ -14,6 +14,7 @@ from __future__ import annotations
 import json
 import re
 from dataclasses import asdict
+from dataclasses import replace
 from pathlib import Path
 from typing import Any, Iterable, Sequence
 
@@ -23,11 +24,13 @@ from rag_contract import (
     EvidenceCitation,
     FaultContext,
     FaultContextLoader,
+    FaultRelation,
     FaultRetriever,
     GeneratedAnswer,
     RagResponse,
     RetrievedFault,
 )
+from fault_relation_expansion import FaultRelationRegistry
 
 
 class RagServiceError(ValueError):
@@ -265,6 +268,7 @@ class EvidenceBoundPromptBuilder:
                         f"Alarm value section:\n{context.alarm_value or '(none)'}",
                         f"Remedy section:\n{context.remedy or '(none)'}",
                         "Evidence spans:\n" + ("\n".join(evidence_lines) or "(none)"),
+                        self._relation_block(context.relations),
                     ]
                 )
             )
@@ -277,11 +281,30 @@ class EvidenceBoundPromptBuilder:
             "3. 不得把一个 fault 的原因、参数或处理措施混到另一个 fault。\n"
             "4. 原文没有支持的内容必须明确写‘当前证据未说明’，不得补造参数、原因或维修结论。\n"
             "5. 默认只回答上下文中的首位候选故障；只有用户明确询问多个故障，或上下文已标记为同描述且排名接近时，才并列回答多个故障。\n"
-            "6. 不要为了展示候选而主动扩展其他故障；未纳入回答范围的候选不得在回答中引用。\n\n"
+            "6. 不要为了展示候选而主动扩展其他故障；未纳入回答范围的候选不得在回答中引用。\n"
+            "7. 若上下文提供了有证据的 Fault Relation，且用户问题命中该关系触发词，必须说明主故障与关联故障/消息码的关系；不能把关系证据扩展成未被原文支持的参数含义。\n\n"
             f"用户问题：{question.strip()}\n\n"
             "候选故障上下文：\n"
             + "\n\n---\n\n".join(blocks)
         )
+
+    @staticmethod
+    def _relation_block(relations: Sequence[FaultRelation]) -> str:
+        if not relations:
+            return "Fault relations:\n(none)"
+        lines = ["Fault relations:"]
+        for relation in relations:
+            lines.append(
+                f"- relation_id={relation.relation_id}; primary={relation.primary_fault_code}; "
+                f"related={relation.related_fault_code}; type={relation.relation_type}; "
+                f"review_status={relation.review_status}; note={relation.relation_note}"
+            )
+            for evidence in relation.evidence:
+                lines.append(
+                    f"  [{evidence.citation_id}] relation_field={evidence.field}; "
+                    f"quote={evidence.quote}"
+                )
+        return "\n".join(lines)
 
 
 class PromptAnswerGenerator(AnswerGenerator):
@@ -336,10 +359,12 @@ class FaultRagService:
         retriever: FaultRetriever,
         context_loader: FaultContextLoader,
         answer_generator: AnswerGenerator,
+        relation_registry: FaultRelationRegistry | None = None,
     ) -> None:
         self._retriever = retriever
         self._context_loader = context_loader
         self._answer_generator = answer_generator
+        self._relation_registry = relation_registry or FaultRelationRegistry()
 
     @staticmethod
     def _generation_contexts(
@@ -413,14 +438,52 @@ class FaultRagService:
         if not candidates:
             raise RagServiceError("retrieval_empty", "当前问题没有召回候选故障")
 
-        contexts = tuple(self._context_loader.load([candidate.fault_code for candidate in candidates]))
-        if not contexts:
+        candidate_contexts = tuple(
+            self._context_loader.load([candidate.fault_code for candidate in candidates])
+        )
+        if not candidate_contexts:
             raise RagServiceError("context_empty", "候选故障没有可加载的完整上下文")
+        primary_code = candidate_contexts[0].fault_code.upper()
+        related_codes = self._relation_registry.triggered_related_codes(
+            safe_question,
+            primary_code,
+        )
+        related_contexts: tuple[FaultContext, ...] = ()
+        if related_codes:
+            try:
+                related_contexts = tuple(self._context_loader.load(related_codes))
+            except RagServiceError:
+                # A stale optional registry must not take down the base RAG path.
+                related_contexts = ()
+        all_contexts: list[FaultContext] = list(candidate_contexts)
+        loaded_codes = {context.fault_code.upper() for context in all_contexts}
+        for context in related_contexts:
+            if context.fault_code.upper() not in loaded_codes:
+                all_contexts.append(context)
+                loaded_codes.add(context.fault_code.upper())
+        relations = self._relation_registry.expand(
+            safe_question,
+            primary_code,
+            tuple(all_contexts),
+        )
         generation_contexts = self._generation_contexts(
             safe_question,
             candidates,
-            contexts,
+            candidate_contexts,
         )
+        if relations:
+            generation_contexts = tuple(
+                replace(context, relations=relations)
+                if context.fault_code.upper() == primary_code
+                else context
+                for context in generation_contexts
+            )
+            generation_codes = {context.fault_code.upper() for context in generation_contexts}
+            generation_contexts = generation_contexts + tuple(
+                context
+                for context in related_contexts
+                if context.fault_code.upper() not in generation_codes
+            )
         generated = self._answer_generator.generate(safe_question, generation_contexts)
         expected_citations = {
             evidence.citation_id
@@ -434,7 +497,8 @@ class FaultRagService:
             question=safe_question,
             answer=generated,
             retrieved=tuple(candidates),
-            contexts=contexts,
+            contexts=tuple(all_contexts),
+            relations=relations,
             evidence_status=evidence_status,
         )
 

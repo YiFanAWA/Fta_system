@@ -31,6 +31,7 @@ from config import (
     OPENAI_TIMEOUT_SECONDS,
     S210_EMBEDDING_MODEL,
     S210_GOLD_PATH,
+    S210_RELATION_REGISTRY_PATH,
     S210_MODEL_CACHE_DIR,
     S210_RAG_DEVICE,
     S210_RERANKER_MODEL,
@@ -79,6 +80,7 @@ from rag_service import (
     RagServiceError,
     rag_response_to_dict,
 )
+from fault_relation_expansion import FaultRelationRegistry
 from s210_retrieval_adapter import S210BgeRetriever
 from visualizer import export_visuals
 from xml_exporter import export_xml
@@ -1661,7 +1663,13 @@ def _get_s210_rag_service() -> FaultRagService:
         base_url=OPENAI_API_BASE or None,
     )
     generator = PromptAnswerGenerator(model_client, model_name=OPENAI_MODEL)
-    service = FaultRagService(retriever, context_loader, generator)
+    relation_registry = FaultRelationRegistry.from_path(S210_RELATION_REGISTRY_PATH)
+    service = FaultRagService(
+        retriever,
+        context_loader,
+        generator,
+        relation_registry=relation_registry,
+    )
     app.state.s210_rag_service = service
     return service
 
