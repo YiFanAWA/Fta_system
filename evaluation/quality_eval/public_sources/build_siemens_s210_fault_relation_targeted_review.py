@@ -83,6 +83,9 @@ def build_bundle(dataset: dict[str, Any], targeted: dict[str, Any]) -> dict[str,
 
 
 def render_markdown(bundle: dict[str, Any]) -> str:
+    def clean_multiline_text(value: Any) -> str:
+        return "\n".join(line.rstrip() for line in str(value or "").splitlines()).strip()
+
     lines = [
         "# Siemens S210 Fault Relation v1 专家复审清单",
         "",
@@ -116,7 +119,7 @@ def render_markdown(bundle: dict[str, Any]) -> str:
             "### 修正后的模型回答",
             "",
             "```text",
-            str(record["model_answer"].get("text") or "").strip(),
+            clean_multiline_text(record["model_answer"].get("text")),
             "```",
             "",
             "### Fault Relation 结构",
