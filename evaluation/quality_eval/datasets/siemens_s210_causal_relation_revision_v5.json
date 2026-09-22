@@ -1,0 +1,227 @@
+{
+  "dataset_info": {
+    "name": "siemens_s210_causal_relation_revision",
+    "version": "v5",
+    "status": "pending_expert_revision",
+    "review_type": "causal_relation_revision",
+    "source_candidate_bundle": "siemens_s210_causal_relation_candidates_v5_remaining_unreviewed.json",
+    "candidate_count": 2,
+    "expected_reviewer": "刘武",
+    "expert_validated": false,
+    "training_eligible": false,
+    "causal_relations_complete": false,
+    "logic_gates_complete": false,
+    "fta_ready": false,
+    "not_expert_gold": true
+  },
+  "revisions": [
+    {
+      "candidate_id": "CR-CAND-V5-007",
+      "fault_code": "A01691",
+      "original_candidate": {
+        "candidate_id": "CR-CAND-V5-007",
+        "selection_reason": "fifth_batch_unreviewed_causes_round_robin_by_fault_code",
+        "source_record": {
+          "sample_id": "SIEMENS_S210_2019_A01691",
+          "sequence": null,
+          "source_file": "",
+          "fault_code": "A01691",
+          "description": "Ti and To unsuitable for PN cycle"
+        },
+        "source_node": {
+          "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01691:2",
+          "node_type": "cause_candidate",
+          "text": "No isochronous PROFINET: The PN clock cycle must be at least 4x the current controller clock cycle.",
+          "source_field": "causes"
+        },
+        "target_node": {
+          "node_id": "siemens_s210:fault:A01691",
+          "node_type": "fault_entity",
+          "fault_code": "A01691",
+          "description": "Ti and To unsuitable for PN cycle"
+        },
+        "proposed_relation": {
+          "relation_type": "causes",
+          "direction": "source_to_target",
+          "status": "proposed_not_confirmed"
+        },
+        "evidence": [
+          {
+            "evidence_id": "SIEMENS_S210_2019_A01691:cause:5",
+            "source_id": "input_text",
+            "field": "cause",
+            "quote": "No isochronous PROFINET:\nThe PN clock cycle must be at least 4x the current controller clock cycle.",
+            "start": 447,
+            "end": 546,
+            "location": "",
+            "source_span_index": 5
+          }
+        ],
+        "source_context": {
+          "input_text": "A01691 SI Motion: Ti and To unsuitable for PN cycle\nReaction: NONE\nAcknowledge: NONE\nCause: The configured times for PROFINET communication are not permitted and the PN cycle is used as the actual value\nacquisition cycle for the safe movement monitoring functions:\nIsochronous PROFINET:\nThe sum of Ti and To is too high for the selected PN cycle. The PN clock cycle should be at least 1 current controller cycle\ngreater than the sum of Ti and To.\nNo isochronous PROFINET:\nThe PN clock cycle must be at least 4x the current controller clock cycle.\nNotice:\nIf this alarm is not observed, then message A01711 or A30711 – with the value 1020 ... 1021 – can sporadically occur.\nRemedy: Configure Ti and To low so that they are suitable for the PN cycle or increase the PN cycle time.",
+          "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+        },
+        "expert_review": {
+          "status": "pending_expert_review",
+          "causal_status": "pending",
+          "direction": "pending",
+          "relation_type": "pending",
+          "fta_eligible": "pending",
+          "overall_decision": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "expert_reason": "",
+          "modified_relation": null
+        }
+      },
+      "previous_expert_review": {
+        "candidate_id": "CR-CAND-V5-007",
+        "fault_code": "A01691",
+        "source_record": "SIEMENS_S210_2019_A01691",
+        "fault_description": "Ti and To unsuitable for PN cycle",
+        "cause_node": "No isochronous PROFINET: The PN clock cycle must be at least 4x the current controller clock cycle.",
+        "target_fault_entity": "Ti and To unsuitable for PN cycle",
+        "evidence_reference": "SIEMENS_S210_2019_A01691:cause:5",
+        "evidence_char_position": "447-546",
+        "evidence_text": "No isochronous PROFINET: The PN clock cycle must be at least 4x the current controller clock cycle.",
+        "causal_status": "causal",
+        "direction": "source_to_target",
+        "relation_type": "causes",
+        "fta_eligible": true,
+        "overall_decision": "revise",
+        "review_comment": "非等时 PROFINET 分支明确给出 PN clock cycle 的约束，结合上位 Cause 可确认不满足该约束会形成该告警；但当前候选写成“必须至少为 4 倍”的规范要求，而不是实际违规条件。建议规范化为“PN clock cycle is less than 4× the current controller clock cycle”后再入正式 Gold。",
+        "reviewer": "刘武",
+        "review_date": "2026-09-22"
+      },
+      "revision_request": {
+        "suggested_cause_text": "PN clock cycle is less than 4× the current controller clock cycle",
+        "suggested_evidence_action": "保留原 Cause 证据，并确认该规范要求应规范化为实际违规条件。",
+        "expert_must_confirm_or_replace": true
+      },
+      "suggested_evidence": null,
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "final_cause_text": "",
+        "evidence_reference": "",
+        "evidence_text": "",
+        "evidence_start": null,
+        "evidence_end": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": ""
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V5-021",
+      "fault_code": "A01782",
+      "original_candidate": {
+        "candidate_id": "CR-CAND-V5-021",
+        "selection_reason": "fifth_batch_unreviewed_causes_round_robin_by_fault_code",
+        "source_record": {
+          "sample_id": "SIEMENS_S210_2019_A01782",
+          "sequence": null,
+          "source_file": "",
+          "fault_code": "A01782",
+          "description": "SBT brake test incorrect control"
+        },
+        "source_node": {
+          "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01782:2",
+          "node_type": "cause_candidate",
+          "text": "The brake is not configured in p10202. There is a brake test configuration error.",
+          "source_field": "causes"
+        },
+        "target_node": {
+          "node_id": "siemens_s210:fault:A01782",
+          "node_type": "fault_entity",
+          "fault_code": "A01782",
+          "description": "SBT brake test incorrect control"
+        },
+        "proposed_relation": {
+          "relation_type": "causes",
+          "direction": "source_to_target",
+          "status": "proposed_not_confirmed"
+        },
+        "evidence": [
+          {
+            "evidence_id": "SIEMENS_S210_2019_A01782:cause:4",
+            "source_id": "input_text",
+            "field": "cause",
+            "quote": "The safe brake test was canceled by resetting the brake test selection.",
+            "start": 307,
+            "end": 378,
+            "location": "",
+            "source_span_index": 4
+          }
+        ],
+        "source_context": {
+          "input_text": "A01782 SBT brake test incorrect control\nReaction: NONE\nAcknowledge: NONE\nCause: The brake test was canceled as a result of incorrect control.\nAlarm value (r2124, interpret binary):\nAlarm value 0:\nThe brake test was canceled as a result of a fault (brake opening time or brake closing time exceeded).\nBit 0:\nThe safe brake test was canceled by resetting the brake test selection.\nBit 1:\nThe safe brake test was canceled by resetting the brake test start.\nBit 2:\nThe brake is not configured in configured p10202.\nThere is a brake test configuration error. In this case, alarm A01785 is also output.\nNote:\nSBT: Safe Brake Test\nSee also: p10202 (SI Motion SBT brake)\nRemedy: - check parameterization of the brake test (p10202).\n- check as to whether alarm A01785 is present, and if so, evaluate.\n- carry out a safe acknowledgment.\n- if required, restart the brake test.",
+          "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+        },
+        "expert_review": {
+          "status": "pending_expert_review",
+          "causal_status": "pending",
+          "direction": "pending",
+          "relation_type": "pending",
+          "fta_eligible": "pending",
+          "overall_decision": "pending",
+          "reviewer": null,
+          "reviewed_at": null,
+          "expert_reason": "",
+          "modified_relation": null
+        }
+      },
+      "previous_expert_review": {
+        "candidate_id": "CR-CAND-V5-021",
+        "fault_code": "A01782",
+        "source_record": "SIEMENS_S210_2019_A01782",
+        "fault_description": "SBT brake test incorrect control",
+        "cause_node": "The brake is not configured in p10202. There is a brake test configuration error.",
+        "target_fault_entity": "SBT brake test incorrect control",
+        "evidence_reference": "SIEMENS_S210_2019_A01782:cause:4",
+        "evidence_char_position": "307-378",
+        "evidence_text": "The safe brake test was canceled by resetting the brake test selection.",
+        "causal_status": "unsupported",
+        "direction": "unknown",
+        "relation_type": "no_relation",
+        "fta_eligible": false,
+        "overall_decision": "revise",
+        "review_comment": "当前候选文本是“brake 未在 p10202 配置/存在配置错误”，但本条证据引用实际指向 Bit 0 的“resetting the brake test selection”，候选与证据不一致。完整原文的 Bit 2 确实含有该候选语义，但在修正 evidence reference/offset 并重新核验前不得进入 Gold 或 FTA。",
+        "reviewer": "刘武",
+        "review_date": "2026-09-22"
+      },
+      "revision_request": {
+        "suggested_cause_text": "The brake is not configured in configured p10202. There is a brake test configuration error.",
+        "suggested_evidence_action": "将证据改指向完整原文 Bit 2，而不是当前 Bit 0 的 resetting the brake test selection。",
+        "expert_must_confirm_or_replace": true
+      },
+      "suggested_evidence": {
+        "source_id": "input_text",
+        "field": "cause",
+        "quote": "The brake is not configured in configured p10202.\nThere is a brake test configuration error. In this case, alarm A01785 is also output.",
+        "start": 461,
+        "end": 596
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "final_cause_text": "",
+        "evidence_reference": "",
+        "evidence_text": "",
+        "evidence_start": null,
+        "evidence_end": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": ""
+      }
+    }
+  ]
+}

@@ -1,12 +1,12 @@
-# Siemens S210 Causal Relation Gold v5（专家审核进度）
+# Siemens S210 Causal Relation Gold v6（专家审核进度）
 
 ## 当前结论
 
-第一批 30 条、第二批 66 条、第三批 50 条和第四批 50 条候选已经完成刘武专家审核。第四批中 45 条直接通过，1 条 A01730 经修订复审后通过，4 条被排除。当前 `Causal Relation Gold v5` 收录 118 条专家确认的 `causes` 且 `source_to_target` 关系，覆盖 89 个目标故障；其余 78 条候选保存在排除清单中。
+第一批 30 条、第二批 66 条、第三批 50 条、第四批 50 条和第五批 50 条候选已经完成刘武专家审核。A01730 已在 v5 完成修订复审；第五批中 45 条通过并进入 Gold，2 条需要修订，3 条被排除。当前 `Causal Relation Gold v6` 收录 163 条专家确认的 `causes` 且 `source_to_target` 关系，覆盖 114 个目标故障；其余 83 条候选保存在排除清单中。
 
-这仍然是 **四批试点范围的因果 Gold**，不是 281 条数据的全量因果闭环，也不是可直接自动建树的最终数据。当前仍保留 `causal_relations_complete=false`、`logic_gates_complete=false` 和 `fta_ready=false`。
+这仍然是 **五批试点范围的因果 Gold**，不是 281 条数据的全量因果闭环，也不是可直接自动建树的最终数据。当前仍保留 `causal_relations_complete=false`、`logic_gates_complete=false` 和 `fta_ready=false`。
 
-原始来源数据包含 281 条 S210 故障记录、1041 条候选原因和字符级证据。v1 阶段最初从中抽取 30 条分层候选；随后 v2 补充 66 条同故障剩余原因，v3 和 v4 各补充 50 条此前未审核候选，因此当前累计专家审核范围为 196 条。每条候选都保留故障描述、候选原因、原文全文、证据引用和字符位置。
+原始来源数据包含 281 条 S210 故障记录、1041 条候选原因和字符级证据。v1 阶段最初从中抽取 30 条分层候选；随后 v2 补充 66 条同故障剩余原因，v3、v4 和 v5 各补充 50 条此前未审核候选，因此当前累计专家审核范围为 246 条。每条候选都保留故障描述、候选原因、原文全文、证据引用和字符位置。
 
 `causes` 字段只能说明抽取管线把这段内容归入了“候选原因”，不能自动证明：
 
@@ -30,6 +30,7 @@
 | 第四批清单 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_expert_review_checklist_v4_remaining_unreviewed_2026-09-22.md` | 第四批 50 条候选的专家审核底稿 |
 | 第五批清单 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_expert_review_checklist_v5_remaining_unreviewed_2026-09-22.md` | 第五批 50 条候选的专家审核底稿 |
 | 第四批专家审核结果 | `Siemens_S210_Causal_Relation_Expert_Review_v4_LiuWu_FULL_50.json/.md` | 刘武对第四批 50 条候选的逐条审核原件，JSON 为结构化转换输入 |
+| 第五批专家审核结果 | `Siemens_S210_Causal_Relation_Expert_Review_v5_LiuWu_FULL_50.json/.docx` | 刘武对第五批 50 条候选的逐条审核原件，JSON 为结构化转换输入 |
 | 第三批专家审核结果 | `Siemens_S210_Causal_Relation_Expert_Review_v3_LiuWu_FULL_50.json/.md/.docx` | 刘武对第三批 50 条候选的逐条审核原件，JSON 为结构化转换输入 |
 | 正式 Gold | `evaluation/quality_eval/datasets/siemens_s210_causal_relation_gold_v1.json` | 25 条专家确认的因果关系，另含 5 条排除候选 |
 | 合并 Gold v2 | `evaluation/quality_eval/datasets/siemens_s210_causal_relation_gold_v2.json` | 两批合并后的 39 条专家确认因果关系，另含 57 条排除候选 |
@@ -37,6 +38,7 @@
 | 合并 Gold v4 | `evaluation/quality_eval/datasets/siemens_s210_causal_relation_gold_v4.json` | 四批合并后的 117 条专家确认因果关系，另含 79 条排除候选 |
 | A01730 批准材料 | `Siemens_S210_Causal_Relation_Revision_Confirmation_v4_A01730_LiuWu_APPROVED.json/.md/.docx` | 刘武对 A01730 修订候选的批准原件，包含最终原因文本和审批门禁 |
 | 合并 Gold v5 | `evaluation/quality_eval/datasets/siemens_s210_causal_relation_gold_v5.json` | 在 v4 基础上合并 A01730 修订后的 118 条专家确认因果关系，另含 78 条排除候选 |
+| 合并 Gold v6 | `evaluation/quality_eval/datasets/siemens_s210_causal_relation_gold_v6.json` | 在 v5 基础上合并第五批 45 条批准关系，共 163 条专家确认因果关系，另含 83 条排除候选 |
 | 生成器 | `evaluation/quality_eval/public_sources/build_siemens_s210_causal_relation_review_bundle.py` | 从冻结的 S210 Gold 可重复生成候选包与清单 |
 | Word 转换器 | `evaluation/quality_eval/public_sources/convert_siemens_s210_causal_relation_expert_review.py` | 将专家填写的 Word 表转换为正式 Gold |
 | 候选校验器 | `evaluation/quality_eval/public_sources/validate_siemens_s210_causal_relation_candidates.py` | 校验候选字段、证据偏移和“未提前批准”门禁 |
@@ -64,6 +66,13 @@
 | 第五批候选校验报告 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_candidates_v5_remaining_unreviewed_validation_2026-09-22.json` | 50 条候选来源的结构校验结果，尚未专家确认 |
 | 第五批生成器 | `evaluation/quality_eval/public_sources/build_siemens_s210_causal_relation_review_bundle_v5.py` | 排除 v1-v4 已审核候选并按故障码轮询生成第五批 |
 | 第五批生成器测试 | `evaluation/quality_eval/public_sources/test_build_siemens_s210_causal_relation_review_bundle_v5.py` | 校验第五批不重复、数量和证据结构 |
+| 第五批修订包 | `evaluation/quality_eval/datasets/siemens_s210_causal_relation_revision_v5.json` | 保存 A01691、A01782 两条 revise 候选及专家建议，未进入 Gold |
+| 第五批修订清单 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_revision_v5_2026-09-22.md` | 供刘武复核原因文本和 A01782 证据定位 |
+| 第五批修订包生成器 | `evaluation/quality_eval/public_sources/prepare_siemens_s210_causal_relation_revision_v5.py` | 从第五批专家结果中隔离两条 revise 候选 |
+| 第五批修订包测试 | `evaluation/quality_eval/public_sources/test_prepare_siemens_s210_causal_relation_revision_v5.py` | 校验两条修订候选保持 pending |
+| v6 合并器 | `evaluation/quality_eval/public_sources/merge_siemens_s210_causal_relation_gold_v6.py` | 合并第五批已批准关系，并保留 revise/reject 排除项 |
+| v6 合并器测试 | `evaluation/quality_eval/public_sources/test_merge_siemens_s210_causal_relation_gold_v6.py` | 校验仅批准项进入 Gold |
+| 合并 Gold v6 校验报告 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_gold_v6_validation_2026-09-22.json` | 163 条合并关系的结构校验结果 |
 | AND/OR 候选包 | `evaluation/quality_eval/datasets/siemens_s210_and_or_logic_candidates_v1.json` | 6 个多原因故障事件，逻辑门字段全部待审核 |
 | AND/OR 专家清单 | `evaluation/quality_eval/runs/siemens_s210_and_or_logic_expert_review_checklist_v1_2026-09-22.md` | 供专家确认子原因集合和 AND/OR/unknown |
 | AND/OR Gold | `evaluation/quality_eval/datasets/siemens_s210_and_or_logic_gold_v1.json` | 5 个 OR 已确认，F01611 保留 unknown |
@@ -111,11 +120,11 @@ Word 文档前置汇总写成 `causal=26`、`associated_only=3`、`cannot_determ
 当前校验报告保持：
 
 - `expert_validated=true`，且 `expert_validation_scope=reviewed_candidates_only`；
-- `source_candidate_count=1041`、`reviewed_candidate_count=196`、`unreviewed_candidate_count=845`；
+- `source_candidate_count=1041`、`reviewed_candidate_count=246`、`unreviewed_candidate_count=795`；
 - A01730 修订已获刘武批准并进入 Gold v5；其最终原因使用原文 Cause 证据，不再使用原报警值短语；
-- 第五批已生成 50 条待审核候选，覆盖 50 个故障，尚未进入 Gold；
+- 第五批 45 条已批准关系进入 Gold v6，A01691 和 A01782 两条 `revise` 已生成独立修订包，3 条 `reject` 保留在排除清单；
 - `causal_relations_complete=false`；
 - `logic_gates_complete=false`（F01611 为 `unknown`）；
 - `fta_ready=false`。
 
-同时，因果 Gold 目前只覆盖四批已审核候选及 A01730 的一次修订复审，不能代表 281 条记录的全量因果召回。累计审核 196 条候选，其中 118 条进入因果 Gold、78 条被排除；另有第五批 50 条候选等待专家审核，完整候选总量中仍有大量原因尚未审核。当前已经生成 5 个 OR 事件的带证据 FTA Preview，并由后端 FTA Graph 合同完成校验；它只用于查看和验证数据链路，不得写入生产树注册表。F01611 仍不得自动建树；整体 FTA 仍未就绪。
+同时，因果 Gold 目前只覆盖五批已审核候选及 A01730 的一次修订复审，不能代表 281 条记录的全量因果召回。累计审核 246 条候选，其中 163 条进入因果 Gold、83 条被排除或暂缓；候选总量中仍有 795 条原因尚未审核。当前已经生成 5 个 OR 事件的带证据 FTA Preview，并由后端 FTA Graph 合同完成校验；它只用于查看和验证数据链路，不得写入生产树注册表。F01611 仍不得自动建树；整体 FTA 仍未就绪。
