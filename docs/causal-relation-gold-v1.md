@@ -21,8 +21,10 @@
 |---|---|---|
 | 候选数据 | `evaluation/quality_eval/datasets/siemens_s210_causal_relation_candidates_v1.json` | 第一批 30 条候选来源，已完成专家审核 |
 | 第二批候选 | `evaluation/quality_eval/datasets/siemens_s210_causal_relation_candidates_v2_remaining_same_faults.json` | 15 个目标故障的 66 条剩余原因，待专家审核，用于后续 AND/OR 判断 |
+| 第三批候选 | `evaluation/quality_eval/datasets/siemens_s210_causal_relation_candidates_v3_remaining_unreviewed.json` | 排除 v1/v2 后的 50 条未审核候选，覆盖 50 个故障 |
 | 专家清单 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_expert_review_checklist_v1_2026-09-22.md` | 给专家逐条填写因果状态、方向、关系类型、FTA 资格和意见 |
 | 第二批清单 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_expert_review_checklist_v2_remaining_same_faults_2026-09-22.md` | 补齐同一故障的其他原因，避免只审核每个故障的第一条原因 |
+| 第三批清单 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_expert_review_checklist_v3_remaining_unreviewed_2026-09-22.md` | 扩大目标故障覆盖，供专家继续审核 |
 | 正式 Gold | `evaluation/quality_eval/datasets/siemens_s210_causal_relation_gold_v1.json` | 25 条专家确认的因果关系，另含 5 条排除候选 |
 | 合并 Gold v2 | `evaluation/quality_eval/datasets/siemens_s210_causal_relation_gold_v2.json` | 两批合并后的 39 条专家确认因果关系，另含 57 条排除候选 |
 | 生成器 | `evaluation/quality_eval/public_sources/build_siemens_s210_causal_relation_review_bundle.py` | 从冻结的 S210 Gold 可重复生成候选包与清单 |
@@ -34,6 +36,7 @@
 | 第二批 Gold 校验报告 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_gold_v2_remaining_same_faults_validation_2026-09-22.json` | 14 条第二批确认关系的校验结果 |
 | 合并器 | `evaluation/quality_eval/public_sources/merge_siemens_s210_causal_relation_gold_v2.py` | 合并两批专家 Gold，并检查关系 ID 不重复 |
 | 合并 Gold 校验报告 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_gold_v2_validation_2026-09-22.json` | 39 条合并关系的校验结果 |
+| 第三批候选校验报告 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_candidates_v3_remaining_unreviewed_validation_2026-09-22.json` | 50 条 pending 候选的结构校验结果 |
 | AND/OR 候选包 | `evaluation/quality_eval/datasets/siemens_s210_and_or_logic_candidates_v1.json` | 6 个多原因故障事件，逻辑门字段全部待审核 |
 | AND/OR 专家清单 | `evaluation/quality_eval/runs/siemens_s210_and_or_logic_expert_review_checklist_v1_2026-09-22.md` | 供专家确认子原因集合和 AND/OR/unknown |
 | AND/OR Gold | `evaluation/quality_eval/datasets/siemens_s210_and_or_logic_gold_v1.json` | 5 个 OR 已确认，F01611 保留 unknown |
@@ -85,4 +88,4 @@ Word 文档前置汇总写成 `causal=26`、`associated_only=3`、`cannot_determ
 - `logic_gates_complete=false`（F01611 为 `unknown`）；
 - `fta_ready=false`。
 
-同时，因果 Gold 目前只覆盖两批试点候选，不能代表 281 条记录的全量因果召回。当前已经生成 5 个 OR 事件的带证据 FTA Preview，并由后端 FTA Graph 合同完成校验；它只用于查看和验证数据链路，不得写入生产树注册表。F01611 仍不得自动建树；整体 FTA 仍未就绪。
+同时，因果 Gold 目前只覆盖两批已审核候选，不能代表 281 条记录的全量因果召回。已排除前两批 96 条候选后，仍有 945 条未审核候选；第三批已生成 50 条 pending 候选，覆盖 50 个故障。当前已经生成 5 个 OR 事件的带证据 FTA Preview，并由后端 FTA Graph 合同完成校验；它只用于查看和验证数据链路，不得写入生产树注册表。F01611 仍不得自动建树；整体 FTA 仍未就绪。

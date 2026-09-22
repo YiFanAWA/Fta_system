@@ -1,0 +1,2830 @@
+{
+  "dataset_info": {
+    "name": "siemens_s210_causal_relation_candidates",
+    "version": "v3",
+    "status": "pending_expert_review",
+    "review_type": "causal_relation_candidate_bundle",
+    "source_dataset": "siemens_s210_public_fault_full_review_queue",
+    "source_dataset_version": "2026-09-20",
+    "source_record_count": 281,
+    "source_causal_gold": "siemens_s210_causal_relation_gold_v2.json",
+    "source_candidate_bundles": [
+      "siemens_s210_causal_relation_candidates_v1.json",
+      "siemens_s210_causal_relation_candidates_v2_remaining_same_faults.json"
+    ],
+    "reviewed_candidate_count": 96,
+    "remaining_unreviewed_candidate_count": 945,
+    "candidate_count": 50,
+    "target_fault_count": 50,
+    "selection_policy": "Exclude every cause node already present in candidate batches v1/v2, then select unreviewed causes round-robin by fault code to expand target-fault coverage.",
+    "expected_reviewer": "刘武",
+    "gold_source": "pending_named_expert_review",
+    "training_eligible": false,
+    "causal_relations_complete": false,
+    "logic_gates_complete": false,
+    "fta_ready": false,
+    "not_expert_gold": true
+  },
+  "candidates": [
+    {
+      "candidate_id": "CR-CAND-V3-001",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01007",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01007",
+        "description": "POWER ON for DRIVE-CLiQ component required"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01007:0",
+        "node_type": "cause_candidate",
+        "text": "firmware update",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01007",
+        "node_type": "fault_entity",
+        "fault_code": "A01007",
+        "description": "POWER ON for DRIVE-CLiQ component required"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01007:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "firmware update",
+          "start": 165,
+          "end": 180,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01007 POWER ON for DRIVE-CLiQ component required\nReaction: NONE\nAcknowledge: NONE\nCause: A DRIVE-CLiQ component must be switched on again (POWER ON) (e.g. due to a firmware update).\nAlarm value (r2124, interpret decimal):\nComponent number of the DRIVE-CLiQ component.\nNote:\nFor a component number = 1, a POWER ON of the Control Unit is required.\nRemedy: - Switch off the power supply of the specified DRIVE-CLiQ component and switch it on again.\n- For SINUMERIK, auto commissioning is prevented. In this case, a POWER ON is required for all components and the auto\ncommissioning must be restarted.",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-002",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01009",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01009",
+        "description": "Control module overtemperature"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01009:0",
+        "node_type": "cause_candidate",
+        "text": "The temperature of the control module (Control Unit) has exceeded the specified limit value.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01009",
+        "node_type": "fault_entity",
+        "fault_code": "A01009",
+        "description": "Control module overtemperature"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01009:cause:4",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The temperature (r0037[0]) of the control module (Control Unit) has exceeded the specified limit value",
+          "start": 82,
+          "end": 184,
+          "location": "",
+          "source_span_index": 4
+        }
+      ],
+      "source_context": {
+        "input_text": "A01009 CU: Control module overtemperature\nReaction: NONE\nAcknowledge: NONE\nCause: The temperature (r0037[0]) of the control module (Control Unit) has exceeded the specified limit value.\nRemedy: - check the air intake for the Control Unit.\n- check the Control Unit fan.\nNote:\nThe alarm is automatically withdrawn once the limit value has been fallen below.",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-003",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01016",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01016",
+        "description": "Firmware changed"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01016:0",
+        "node_type": "cause_candidate",
+        "text": "At least one firmware file in the directory was illegally changed on the non-volatile memory (memory card/device memory) with respect to the version when shipped from the factory.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01016",
+        "node_type": "fault_entity",
+        "fault_code": "A01016",
+        "description": "Firmware changed"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01016:cause:2",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "At least one firmware file in the directory was illegally changed on the non-volatile memory (memory card/device memory)\nwith respect to the version when shipped from the factory.",
+          "start": 64,
+          "end": 243,
+          "location": "",
+          "source_span_index": 2
+        }
+      ],
+      "source_context": {
+        "input_text": "A01016 Firmware changed\nReaction: NONE\nAcknowledge: NONE\nCause: At least one firmware file in the directory was illegally changed on the non-volatile memory (memory card/device memory)\nwith respect to the version when shipped from the factory.\nAlarm value (r2124, interpret decimal):\n0: Checksum of one file is incorrect.\n1: File missing.\n2: File too many.\n3: Incorrect firmware version.\n4: Incorrect checksum of the back-up file.\nRemedy: For the non-volatile memory for the firmware (memory card/device memory), restore the delivery condition.\nNote:\nThe file involved can be read out using parameter r9925.\nThe status of the firmware check is displayed using r9926.",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-009",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01019",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01019",
+        "description": "Writing to the removable data medium unsuccessful"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01019:0",
+        "node_type": "cause_candidate",
+        "text": "The write access to the removable data medium was unsuccessful.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01019",
+        "node_type": "fault_entity",
+        "fault_code": "A01019",
+        "description": "Writing to the removable data medium unsuccessful"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01019:cause:2",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The write access to the removable data medium was unsuccessful.",
+          "start": 97,
+          "end": 160,
+          "location": "",
+          "source_span_index": 2
+        }
+      ],
+      "source_context": {
+        "input_text": "A01019 Writing to the removable data medium unsuccessful\nReaction: NONE\nAcknowledge: NONE\nCause: The write access to the removable data medium was unsuccessful.\nRemedy: Remove and check the removable data medium. Then run the data backup again.",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-010",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01020",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01020",
+        "description": "Writing to RAM disk unsuccessful"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01020:0",
+        "node_type": "cause_candidate",
+        "text": "A write access to the internal RAM disk was unsuccessful.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01020",
+        "node_type": "fault_entity",
+        "fault_code": "A01020",
+        "description": "Writing to RAM disk unsuccessful"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01020:cause:2",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "A write access to the internal RAM disk was unsuccessful.",
+          "start": 80,
+          "end": 137,
+          "location": "",
+          "source_span_index": 2
+        }
+      ],
+      "source_context": {
+        "input_text": "A01020 Writing to RAM disk unsuccessful\nReaction: NONE\nAcknowledge: NONE\nCause: A write access to the internal RAM disk was unsuccessful.\nRemedy: Adapt the file size for the system logbook to the internal RAM disk (p9930).",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-011",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01035",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01035",
+        "description": "Parameter back-up file corrupted"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01035:0",
+        "node_type": "cause_candidate",
+        "text": "When the Control Unit is booted, no complete data set was found from the parameter back-up files.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01035",
+        "node_type": "fault_entity",
+        "fault_code": "A01035",
+        "description": "Parameter back-up file corrupted"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01035:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "When the Control Unit is booted, no complete data set was found from the parameter back-up files.",
+          "start": 85,
+          "end": 182,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01035 ACX: Parameter back-up file corrupted\nReaction: NONE\nAcknowledge: NONE\nCause: When the Control Unit is booted, no complete data set was found from the parameter back-up files. The last time that the\nparameterization was saved, it was not completely carried out.\nIt is possible that the backup was interrupted by switching off or withdrawing the memory card.\nAlarm value (r2124, interpret hexadecimal):\nddccbbaa hex:\naa = 01 hex:\nPower up was realized without data backup. The drive is in the factory setting.\naa = 02 hex:\nThe last available backup data record was loaded. The parameterization must be checked. It is recommended that the\nparameterization is downloaded again.\ndd, cc, bb:\nOnly for internal Siemens troubleshooting.\nSee also: p0977 (Save all parameters)\nRemedy: - download the project again using the commissioning tool.\n- save all parameters (p0977 = 1 or \"copy RAM to ROM\").\nSee also: p0977 (Save all parameters)",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-014",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01045",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01045",
+        "description": "Configuring data invalid"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01045:0",
+        "node_type": "cause_candidate",
+        "text": "An error was detected when evaluating the parameter files PSxxxyyy.ACX, PTxxxyyy.ACX, CAxxxyyy.ACX, or CCxxxyyy.ACX saved in the non-volatile memory.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01045",
+        "node_type": "fault_entity",
+        "fault_code": "A01045",
+        "description": "Configuring data invalid"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01045:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "An error was detected when evaluating the parameter files PSxxxyyy.ACX, PTxxxyyy.ACX, CAxxxyyy.ACX, or\nCCxxxyyy.ACX saved in the non-volatile memory.",
+          "start": 76,
+          "end": 225,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01045 CU: Configuring data invalid\nReaction: NONE\nAcknowledge: NONE\nCause: An error was detected when evaluating the parameter files PSxxxyyy.ACX, PTxxxyyy.ACX, CAxxxyyy.ACX, or\nCCxxxyyy.ACX saved in the non-volatile memory. Because of this, under certain circumstances, several of the saved\nparameter values were not able to be accepted.\nAlarm value (r2124, interpret hexadecimal):\nOnly for internal Siemens troubleshooting.\nRemedy: - Restore the factory setting using (p0976 = 1) and re-load the project into the drive unit.\nThen save the parameterization using the \"Copy RAM to ROM\" or with p0977 = 1. This overwrites the incorrect parameter\nfiles in the non-volatile memory – and the alarm is withdrawn.",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-015",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01049",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01049",
+        "description": "It is not possible to write to file"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01049:0",
+        "node_type": "cause_candidate",
+        "text": "It is not possible to write into a write-protected file (PSxxxxxx.acx)",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01049",
+        "node_type": "fault_entity",
+        "fault_code": "A01049",
+        "description": "It is not possible to write to file"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01049:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "It is not possible to write into a write-protected file (PSxxxxxx.acx)",
+          "start": 87,
+          "end": 157,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01049 CU: It is not possible to write to file\nReaction: NONE\nAcknowledge: NONE\nCause: It is not possible to write into a write-protected file (PSxxxxxx.acx). The write request was interrupted.\nAlarm value (r2124, interpret decimal):\nDrive object number.\nRemedy: Check whether the \"write protected\" attribute has been set for the files in the non-volatile memory under .../USER/\nSINAMICS/DATA/...\nWhen required, remove write protection and save again (e.g. set p0977 to 1).",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-016",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01064",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01064",
+        "description": "Internal error (CRC)"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01064:0",
+        "node_type": "cause_candidate",
+        "text": "A checksum error (CRC error) has occurred in the Control Unit program memory",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01064",
+        "node_type": "fault_entity",
+        "fault_code": "A01064",
+        "description": "Internal error (CRC)"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01064:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "A checksum error (CRC error) has occurred in the Control Unit program memory",
+          "start": 72,
+          "end": 148,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01064 CU: Internal error (CRC)\nReaction: NONE\nAcknowledge: NONE\nCause: A checksum error (CRC error) has occurred in the Control Unit program memory\n432 Operating Instructions, 01/2019, A5E41702836B AC\nRemedy: - carry out a POWER ON (switch-off/switch-on) for all components.\n- upgrade firmware to later version.\n- contact Technical Support.",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-017",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01073",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01073",
+        "description": "POWER ON required for backup copy on memory card"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01073:0",
+        "node_type": "cause_candidate",
+        "text": "The parameter assignment on the visible partition of the memory card has changed.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01073",
+        "node_type": "fault_entity",
+        "fault_code": "A01073",
+        "description": "POWER ON required for backup copy on memory card"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01073:cause:2",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The parameter assignment on the visible partition of the memory card has changed.",
+          "start": 96,
+          "end": 177,
+          "location": "",
+          "source_span_index": 2
+        }
+      ],
+      "source_context": {
+        "input_text": "A01073 POWER ON required for backup copy on memory card\nReaction: NONE\nAcknowledge: NONE\nCause: The parameter assignment on the visible partition of the memory card has changed.\nIn order that the backup copy on the memory card is updated on the non-visible partition, it is necessary to carry out a\nPOWER ON or hardware reset (p0972) of the Control Unit.\nNote:\nIt is possible that a new POWER ON is requested via this alarm (e.g. after saving with p0971 = 1).\nRemedy: - carry out a POWER ON (switch-off/switch-on) for the Control Unit.\n- carry out a hardware reset (RESET button, p0972).",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-018",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01099",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01099",
+        "description": "UTC synchronization tolerance violated"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01099:0",
+        "node_type": "cause_candidate",
+        "text": "The tolerance (p3109) set for UTC synchronization was violated.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01099",
+        "node_type": "fault_entity",
+        "fault_code": "A01099",
+        "description": "UTC synchronization tolerance violated"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01099:cause:2",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The tolerance (p3109) set for UTC synchronization was violated.",
+          "start": 86,
+          "end": 149,
+          "location": "",
+          "source_span_index": 2
+        }
+      ],
+      "source_context": {
+        "input_text": "A01099 UTC synchronization tolerance violated\nReaction: NONE\nAcknowledge: NONE\nCause: The tolerance (p3109) set for UTC synchronization was violated.\nNote:\nUTC: Universal Time Coordinates\nRemedy: Select the synchronization intervals shorter so that the deviation between the time of day master and drive system lies within\nthe tolerance.\nNote:\nThe deviation when synchronizing is shown in r3107.",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-019",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01251",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01251",
+        "description": "CU-EEPROM incorrect read-write data"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01251:0",
+        "node_type": "cause_candidate",
+        "text": "Error when reading the read-write data of the EEPROM in the Control Unit.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01251",
+        "node_type": "fault_entity",
+        "fault_code": "A01251",
+        "description": "CU-EEPROM incorrect read-write data"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01251:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "Error when reading the read-write data of the EEPROM in the Control Unit.",
+          "start": 87,
+          "end": 160,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01251 CU: CU-EEPROM incorrect read-write data\nReaction: NONE\nAcknowledge: NONE\nCause: Error when reading the read-write data of the EEPROM in the Control Unit.\nAlarm value (r2124, interpret decimal):\nOnly for internal Siemens troubleshooting.\nRemedy: For alarm value r2124 < 256, the following applies:\n- carry out a POWER ON (switch-off/switch-on).\n- replace the Control Unit.\nFor alarm value r2124 >= 256, the following applies:\n- for the drive object with this alarm, clear the fault memory (p0952 = 0).\n- as an alternative, clear the fault memory of all drive objects (p2147 = 1).\n- replace the Control Unit.",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-020",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01304",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01304",
+        "description": "Firmware version of DRIVE-CLiQ component is not up-to-date"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01304:0",
+        "node_type": "cause_candidate",
+        "text": "The non-volatile memory has a more recent firmware version than the one in the connected DRIVE-CLiQ component.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01304",
+        "node_type": "fault_entity",
+        "fault_code": "A01304",
+        "description": "Firmware version of DRIVE-CLiQ component is not up-to-date"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01304:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The non-volatile memory has a more recent firmware version than the one in the connected DRIVE-CLiQ component.",
+          "start": 106,
+          "end": 216,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01304 Firmware version of DRIVE-CLiQ component is not up-to-date\nReaction: NONE\nAcknowledge: NONE\nCause: The non-volatile memory has a more recent firmware version than the one in the connected DRIVE-CLiQ component.\nAlarm value (r2124, interpret decimal):\nComponent number of the DRIVE-CLiQ component involved.\nRemedy: Update the firmware (p7828, p7829 - or commissioning tool).",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-021",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01306",
+        "sequence": 29,
+        "source_file": "S210_Manual_2019.pdf",
+        "fault_code": "A01306",
+        "description": "Firmware of the DRIVE-CLiQ component being updated"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01306:0",
+        "node_type": "cause_candidate",
+        "text": "Firmware update is active for at least one DRIVE-CLiQ component.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01306",
+        "node_type": "fault_entity",
+        "fault_code": "A01306",
+        "description": "Firmware of the DRIVE-CLiQ component being updated"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01306:cause:5",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "Firmware update is active for at least one DRIVE-CLiQ component.",
+          "start": 98,
+          "end": 162,
+          "location": "",
+          "source_span_index": 5
+        }
+      ],
+      "source_context": {
+        "input_text": "A01306 Firmware of the DRIVE-CLiQ component being updated\nReaction: NONE\nAcknowledge: NONE\nCause: Firmware update is active for at least one DRIVE-CLiQ component.\nAlarm value (r2124, interpret decimal):\nComponent number of the DRIVE-CLiQ component.\nRemedy: Not necessary.\nThis alarm is automatically withdrawn after the firmware update has been completed.",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-022",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01330",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01330",
+        "description": "Commissioning not possible"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01330:0",
+        "node_type": "cause_candidate",
+        "text": "The actual topology does not fulfill the requirements.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01330",
+        "node_type": "fault_entity",
+        "fault_code": "A01330",
+        "description": "Commissioning not possible"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01330:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The actual topology does not fulfill the requirements.",
+          "start": 119,
+          "end": 173,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01330 Topology: Commissioning not possible\nReaction: NONE\nAcknowledge: NONE\nCause: Unable to carry out commissioning. The actual topology does not fulfill the requirements.\nRemedy: - check the OCC cable between the converter and motor.\n- carry out a POWER ON (switch-off/switch-on).\n- Check that the connected hardware is supported.\nNote:\nOCC: One Cable Connection (one cable system)\n436 Operating Instructions, 01/2019, A5E41702836B AC",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-023",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01489",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01489",
+        "description": "motor with DRIVE-CLiQ not connected"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01489:0",
+        "node_type": "cause_candidate",
+        "text": "The topology comparison has detected a motor with DRIVE-CLiQ missing in the actual topology with respect to the target topology.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01489",
+        "node_type": "fault_entity",
+        "fault_code": "A01489",
+        "description": "motor with DRIVE-CLiQ not connected"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01489:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The topology comparison has detected a motor with DRIVE-CLiQ missing in the actual topology with respect to the target\ntopology.",
+          "start": 93,
+          "end": 221,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01489 Topology: motor with DRIVE-CLiQ not connected\nReaction: NONE\nAcknowledge: NONE\nCause: The topology comparison has detected a motor with DRIVE-CLiQ missing in the actual topology with respect to the target\ntopology.\nAlarm value (r2124, interpret hexadecimal):\nddccbbaa hex:\ndd = connection number (%4)\ncc = component number (%3)\nbb = component class (% 2)\naa = component number of the component that has not been inserted (% 1)\nNote:\nThe component is described in dd, cc and bb, where the component has not been inserted.\nComponent class and connection number are described in F01375.\nRemedy: Adapting topologies:\n- insert the components involved at the right connection (correct the actual topology).\n- adapt the project/parameterizing in the commissioning tool (correct the target topology).\nCheck the hardware:\n- check the 24 V supply voltage.\n- check DRIVE-CLiQ cables for interruption and contact problems.\n- check that the component is working properly.\nNote:\nUnder \"Topology --> Topology view\" the commissioning tool where relevant offers improved diagnostics capability (e.g.\nsetpoint/actual value comparison).",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-024",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01590",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01590",
+        "description": "Motor maintenance interval expired"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01590:0",
+        "node_type": "cause_candidate",
+        "text": "The selected service/maintenance interval for this motor was reached.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01590",
+        "node_type": "fault_entity",
+        "fault_code": "A01590",
+        "description": "Motor maintenance interval expired"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01590:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The selected service/maintenance interval for this motor was reached.",
+          "start": 89,
+          "end": 158,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01590 Drive: Motor maintenance interval expired\nReaction: NONE\nAcknowledge: NONE\nCause: The selected service/maintenance interval for this motor was reached.\nAlarm value (r2124, interpret decimal):\nMotor data set number.\nRemedy: carry out service/maintenance and reset the service/maintenance interval (p0651).",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-025",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01637",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01637",
+        "description": "Safety password not assigned"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01637:0",
+        "node_type": "cause_candidate",
+        "text": "Safety Integrated is parameterized and enabled. However, a valid safety password has still not been entered.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01637",
+        "node_type": "fault_entity",
+        "fault_code": "A01637",
+        "description": "Safety password not assigned"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01637:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "Safety Integrated is parameterized and enabled. However, a valid safety password has still not been entered.",
+          "start": 80,
+          "end": 188,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01637 SI: Safety password not assigned\nReaction: NONE\nAcknowledge: NONE\nCause: Safety Integrated is parameterized and enabled. However, a valid safety password has still not been entered.\nSee also: r9767 (SI safety password status)\nRemedy: - assign a valid safety password.\n- carry out data save.",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-026",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01638",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01638",
+        "description": "Safety password entered"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01638:0",
+        "node_type": "cause_candidate",
+        "text": "A valid safety password has been entered.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01638",
+        "node_type": "fault_entity",
+        "fault_code": "A01638",
+        "description": "Safety password entered"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01638:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "A valid safety password has been entered.",
+          "start": 75,
+          "end": 116,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01638 SI: Safety password entered\nReaction: NONE\nAcknowledge: NONE\nCause: A valid safety password has been entered. It is possible to change safety parameters in the safety commissioning mode.\nSee also: r9767 (SI safety password status)\nRemedy: Not necessary.\nThis alarm is automatically withdrawn with \"Delete password\" (e.g. after exiting the web server - or after a Power on). The\npassword remains assigned.",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-027",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01654",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01654",
+        "description": "Deviating PROFIsafe configuration"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01654:0",
+        "node_type": "cause_candidate",
+        "text": "The configuration of a PROFIsafe telegram in the higher-level control (F-PLC) does not match the parameterization in the drive.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01654",
+        "node_type": "fault_entity",
+        "fault_code": "A01654",
+        "description": "Deviating PROFIsafe configuration"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01654:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The configuration of a PROFIsafe telegram in the higher-level control (F-PLC) does not match the parameterization in the\ndrive.",
+          "start": 88,
+          "end": 215,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01654 SI P1: Deviating PROFIsafe configuration\nReaction: NONE\nAcknowledge: NONE\nCause: The configuration of a PROFIsafe telegram in the higher-level control (F-PLC) does not match the parameterization in the\ndrive.\nNote:\nThis message does not result in a safety stop response.\nAlarm value (r2124, interpret decimal):\n1:\nA PROFIsafe telegram is configured in the higher-level control, however PROFIsafe is not enabled in the drive (p9601.3).\n2:\nPROFIsafe is parameterized in the drive; however, a PROFIsafe telegram has not been configured in the higher-level\ncontrol.\nRemedy: The following generally applies:\n- check and, if necessary, correct the PROFIsafe configuration in the higher-level control.\nFor alarm value = 1:\n- remove the PROFIsafe configuring in the higher-level F control or enable PROFIsafe in the drive.\nFor alarm value = 2:\n- configure the PROFIsafe telegram to match the parameterization in the higher-level F-control.",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-030",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01691",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01691",
+        "description": "Ti and To unsuitable for PN cycle"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01691:0",
+        "node_type": "cause_candidate",
+        "text": "The configured times for PROFINET communication are not permitted and the PN cycle is used as the actual value acquisition cycle for the safe movement monitoring functions",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01691",
+        "node_type": "fault_entity",
+        "fault_code": "A01691",
+        "description": "Ti and To unsuitable for PN cycle"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01691:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The configured times for PROFINET communication are not permitted and the PN cycle is used as the actual value\nacquisition cycle for the safe movement monitoring functions",
+          "start": 92,
+          "end": 263,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01691 SI Motion: Ti and To unsuitable for PN cycle\nReaction: NONE\nAcknowledge: NONE\nCause: The configured times for PROFINET communication are not permitted and the PN cycle is used as the actual value\nacquisition cycle for the safe movement monitoring functions:\nIsochronous PROFINET:\nThe sum of Ti and To is too high for the selected PN cycle. The PN clock cycle should be at least 1 current controller cycle\ngreater than the sum of Ti and To.\nNo isochronous PROFINET:\nThe PN clock cycle must be at least 4x the current controller clock cycle.\nNotice:\nIf this alarm is not observed, then message A01711 or A30711 – with the value 1020 ... 1021 – can sporadically occur.\nRemedy: Configure Ti and To low so that they are suitable for the PN cycle or increase the PN cycle time.",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-033",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01693",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01693",
+        "description": "Safety parameter settings changed, warm restart/POWER ON required"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01693:0",
+        "node_type": "cause_candidate",
+        "text": "Safety parameters have been changed",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01693",
+        "node_type": "fault_entity",
+        "fault_code": "A01693",
+        "description": "Safety parameter settings changed, warm restart/POWER ON required"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01693:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "Safety parameters have been changed",
+          "start": 120,
+          "end": 155,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01693 SI P1: Safety parameter settings changed, warm restart/POWER ON required\nReaction: NONE\nAcknowledge: NONE\nCause: Safety parameters have been changed; these will only take effect following a warm restart or POWER ON.\nAlarm value (r2124, interpret decimal):\nParameter number of the safety parameter which has changed, necessitating a warm restart or POWER ON.\nRemedy: - carry out a warm restart.\n- carry out a POWER ON (switch-off/switch-on).\nNote:\nA POWER ON is required before carrying out the acceptance test.",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-034",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01695",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01695",
+        "description": "Sensor Module was replaced"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01695:0",
+        "node_type": "cause_candidate",
+        "text": "A Sensor Module, which is used for safe motion monitoring functions, was replaced",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01695",
+        "node_type": "fault_entity",
+        "fault_code": "A01695",
+        "description": "Sensor Module was replaced"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01695:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "A Sensor Module, which is used for safe motion monitoring functions, was replaced",
+          "start": 85,
+          "end": 166,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01695 SI Motion: Sensor Module was replaced\nReaction: NONE\nAcknowledge: NONE\nCause: A Sensor Module, which is used for safe motion monitoring functions, was replaced. The hardware replacement must be\nacknowledged. An acceptance test must be subsequently performed.\nNote:\nThis message does not result in a safety stop response.\nRemedy: - save all parameters\n- acknowledge fault.",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-035",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01696",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01696",
+        "description": "Test stop for the motion monitoring functions selected when booting"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01696:0",
+        "node_type": "cause_candidate",
+        "text": "The forced checking procedure (test stop) for the safe motion monitoring functions is already selected when booting, which is not permissible.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01696",
+        "node_type": "fault_entity",
+        "fault_code": "A01696",
+        "description": "Test stop for the motion monitoring functions selected when booting"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01696:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The forced checking procedure (test stop) for the safe motion monitoring functions is already selected when booting, which\nis not permissible.",
+          "start": 126,
+          "end": 268,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01696 SI Motion: Test stop for the motion monitoring functions selected when booting\nReaction: NONE\nAcknowledge: NONE\nCause: The forced checking procedure (test stop) for the safe motion monitoring functions is already selected when booting, which\nis not permissible.\nThis is the reason that the test is only carried out again after first selecting the forced checking procedure.\nNote:\nThis message does not result in a safety stop response.\n458 Operating Instructions, 01/2019, A5E41702836B AC\nRemedy: Deselect the forced checking procedure (test stop) for the safe motion monitoring functions and then select again.\nSI: Safety Integrated",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-036",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01697",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01697",
+        "description": "Test stop for motion monitoring functions required"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01697:0",
+        "node_type": "cause_candidate",
+        "text": "The time set in p9559 for the forced checking procedure (test stop) for the safe motion monitoring functions has been exceeded.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01697",
+        "node_type": "fault_entity",
+        "fault_code": "A01697",
+        "description": "Test stop for motion monitoring functions required"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01697:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The time set in p9559 for the forced checking procedure (test stop) for the safe motion monitoring functions has been\nexceeded.",
+          "start": 109,
+          "end": 236,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01697 SI Motion: Test stop for motion monitoring functions required\nReaction: NONE\nAcknowledge: NONE\nCause: The time set in p9559 for the forced checking procedure (test stop) for the safe motion monitoring functions has been\nexceeded. A new forced checking procedure is required.\nAfter the next time the forced checking procedure is selected, the message is withdrawn and the monitoring time is reset.\nNote:\n- this message does not result in a safety stop response.\n- As the switch-off signal paths are not automatically checked during booting, an alarm is always issued once booting is\ncomplete.\n- the test must be performed within a defined, maximum time interval (p9559, maximum of 9000 hours) in order to comply\nwith the requirements as laid down in the standards for timely fault detection and the conditions to calculate the failure rates\nof safety functions (PFH value). Operation beyond this maximum time period is permissible if it can be ensured that the\nforced checking procedure is performed before persons enter the hazardous area and who are depending on the safety\nfunctions correctly functioning.\nSee also: p9559 (SI Motion forced checking procedure timer), r9765 (SI Motion forced checking procedure remaining time)\nRemedy: Carry out the forced checking procedure (test stop) for the safe motion monitoring functions.\nNote:\nSI: Safety Integrated",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-037",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01698",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01698",
+        "description": "Commissioning mode active"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01698:0",
+        "node_type": "cause_candidate",
+        "text": "The commissioning of the 'Safety Integrated' function is selected.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01698",
+        "node_type": "fault_entity",
+        "fault_code": "A01698",
+        "description": "Commissioning mode active"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01698:cause:4",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The commissioning of the \"Safety Integrated\" function is selected",
+          "start": 80,
+          "end": 145,
+          "location": "",
+          "source_span_index": 4
+        }
+      ],
+      "source_context": {
+        "input_text": "A01698 SI P1: Commissioning mode active\nReaction: NONE\nAcknowledge: NONE\nCause: The commissioning of the \"Safety Integrated\" function is selected.\nNote:\n- this message does not result in a safety stop response.\n- in the safety commissioning mode, the \"STO\" function is internally selected.\nSee also: p0010 (Drive commissioning parameter filter 2)\nRemedy: Not necessary.\nThis message is automatically withdrawn after the safety functions have been commissioned.\nNote:\nSI: Safety Integrated\nSTO: Safe Torque Off",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-038",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01706",
+        "sequence": 30,
+        "source_file": "S210_Manual_2019.pdf",
+        "fault_code": "A01706",
+        "description": "SAM/SBR limit exceeded"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01706:0",
+        "node_type": "cause_candidate",
+        "text": "Motion monitoring functions with SAM: after initiating SS1 or SS2, the speed exceeded the set tolerance",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01706",
+        "node_type": "fault_entity",
+        "fault_code": "A01706",
+        "description": "SAM/SBR limit exceeded"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01706:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "Motion monitoring functions with SAM (p9506 = 0):\n- after initiating SS1 or SS2, the speed exceeded the set tolerance.",
+          "start": 84,
+          "end": 202,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01706 SI Motion P1: SAM/SBR limit exceeded\nReaction: NONE\nAcknowledge: NONE\nCause: Motion monitoring functions with SAM (p9506 = 0):\n- after initiating SS1 or SS2, the speed exceeded the set tolerance.\nMotion monitoring functions with SBR (p9506 = 2):\n- after initiating SS1 or SLS switchover to the lower speed level, the speed exceeded the set tolerance.\nThe drive is stopped by message F01700.\n460 Operating Instructions, 01/2019, A5E41702836B AC\nRemedy: Check the braking behavior and, if necessary, adapt the parameterization of the parameter settings of the \"SAM\" or the\n\"SBR\" function.\nNote:\nThis message can be acknowledged via PROFIsafe (safe acknowledgment).\nSAM: Safe Acceleration Monitor (safe acceleration monitoring)\nSBR: Safe Brake Ramp (safe ramp monitoring)\nSI: Safety Integrated\nSS1: Safe Stop 1\nSS2: Safe Stop 2\nSLS: Safely-Limited Speed\nSee also: p9548 (SI Motion SAM actual speed tolerance), p9581 (SI Motion brake ramp reference value), p9582 (SI Motion\nbrake ramp delay time), p9583 (SI Motion brake ramp monitoring time)",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-040",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01707",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01707",
+        "description": "Tolerance for safe operating stop exceeded"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01707:0",
+        "node_type": "cause_candidate",
+        "text": "The actual position has moved further away from the target position than the standstill tolerance.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01707",
+        "node_type": "fault_entity",
+        "fault_code": "A01707",
+        "description": "Tolerance for safe operating stop exceeded"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01707:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The actual position has moved further away from the target position than the standstill tolerance.",
+          "start": 104,
+          "end": 202,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01707 SI Motion P1: Tolerance for safe operating stop exceeded\nReaction: NONE\nAcknowledge: NONE\nCause: The actual position has moved further away from the target position than the standstill tolerance.\nThe drive is stopped by message F01701.\nRemedy: - check whether safety faults are present and if required carry out the appropriate diagnostic routines for the particular faults.\n- check whether the standstill tolerance matches the accuracy and control dynamic performance of the axis.\n- carry out a POWER ON (switch-off/switch-on).\nNote:\nSI: Safety Integrated\nSOS: Safe Operating Stop\nSee also: p9530 (SI Motion standstill tolerance)",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-041",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01709",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01709",
+        "description": "SS2E initiated"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01709:0",
+        "node_type": "cause_candidate",
+        "text": "The drive is stopped using SS2E (braking along a path).",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01709",
+        "node_type": "fault_entity",
+        "fault_code": "A01709",
+        "description": "SS2E initiated"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01709:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The drive is stopped using SS2E (braking along a path).",
+          "start": 76,
+          "end": 131,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01709 SI Motion P1: SS2E initiated\nReaction: NONE\nAcknowledge: NONE\nCause: The drive is stopped using SS2E (braking along a path).\n\"Safe Operating Stop\" (SOS) is activated after the parameterized time has expired.\nPossible causes:\nSubsequent response, following messages: A01714, A01716\nSee also: p9553 (SI Motion transition time SS2E to SOS)\nRemedy: - remove the cause of the fault at the control.\n- carry out diagnostics for the active messages (A01714, A01716).\nNote:\nSI: Safety Integrated\nSOS: Safe Operating Stop\nSS2E: Safe Stop 2 External (Safe Stop 2 with external stop)",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-043",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01711",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01711",
+        "description": "Defect in a monitoring channel"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01711:0",
+        "node_type": "cause_candidate",
+        "text": "The drive has identified a difference between the input data or results of the monitoring functions and initiated A01711. Safe operation is no longer possible.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01711",
+        "node_type": "fault_entity",
+        "fault_code": "A01711",
+        "description": "Defect in a monitoring channel"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01711:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The drive has identified a difference between the input data or results of the monitoring functions",
+          "start": 145,
+          "end": 244,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01711 SI Motion P1: Defect in a monitoring channel\nReaction: NONE\nAcknowledge: NONE\n462 Operating Instructions, 01/2019, A5E41702836B AC\nCause: The drive has identified a difference between the input data or results of the monitoring functions and initiated A01711. Safe\noperation is no longer possible.\nAt least one monitoring function is active, so that after the parameterized timer has expired, message F01701 is output.\nThe message value that resulted in this message is shown in r9725.\nThe following described message values involve the data cross-check between the two monitoring channels (safety\nfunctions integrated in the drive).\nThe message values may also occur in the following cases if the cause that is explicitly mentioned does not apply:\n- For message values 3, 44 ... 57, 232 and 1-encoder system, differently set encoder parameters.\n- incorrect synchronization.\nMessage value (r2124, interpret decimal):\n0 to 999: Number of the cross-compared data that resulted in this fault.\nMessage values that are not subsequently listed are only for internal Siemens troubleshooting.\n0: Stop request from another monitoring channel.\n1: Status image of monitoring functions SOS, SLS, SAM/SBR or SDI (result list 1) (r9710[0], r9710[1]).\n2: Status image of monitoring function SSM (result list 2) (r9711[0], r9711[1]).\n3: The position actual value differential (r9713[0/1]) between the two monitoring channels is greater than the tolerance in\np9542.\n4: Error when synchronizing the data cross-check between the two channels.\n5: Enable safe functions (p9501).\n6: Limit value for SLS1 (p9531[0]).\n7: Limit value for SLS2 (p9531[1]).\n8: Limit value for SLS3 (p9531[2]).\n9: Limit value for SLS4 (p9531[3]).\n10: Standstill tolerance (p9530).\n31: Position tolerance (p9542).\n33: Time, speed switchover (p9551)\n35: Delay time STO (p9556).\n36: Test time, STO (p9557).\n37: Transition time SS2 to SOS (p9552).\n38: Transition time SS2E to SOS (p9553).\n42: Shutdown speed STO (p9560).\n43: Memory test stop response (STO).\n44 ... 57: General\nPossible cause 1 (during commissioning or parameter modification)\nThe tolerance value for the monitoring function is not the same on the two monitoring channels.\nPossible cause 2 (during active operation)\nThe limit values are based on the actual value (r9713[0/1]). If the safe actual values on the two monitoring channels do not\nmatch, the limit values, which have been set at a defined interval, will also be different (i.e. corresponding to message value\n3). This can be ascertained by checking the safe actual positions.\nPermissible deviation between the two monitoring channels: p9542.\n44: Position actual value (r9713[0/1]) + limit value SLS1 (p9531[0]) * safety monitoring clock cycle.\n45: Position actual value (r9713[0/1]) + limit value SLS1 (p9531[0]) * safety monitoring clock cycle.\n46: Position actual value (r9713[0/1]) + limit value SLS2 (p9531[1]) * safety monitoring clock cycle.\n47: Position actual value (r9713[0/1]) + limit value SLS2 (p9531[1]) * safety monitoring clock cycle.\n48: Position actual value (r9713[0/1]) + limit value SLS3 (p9531[2]) * safety monitoring clock cycle.\n49: Position actual value (r9713[0/1]) - limit value SLS3 (p9531[2]) * safety monitoring clock cycle.\n50: Position actual value (r9713[0/1]) + limit value SLS4 (p9531[3]) * safety monitoring clock cycle.\n51: Position actual value (r9713[0/1]) - limit value SLS4 (p9531[3]) * safety monitoring clock cycle.\n52: Standstill position + tolerance (p9530).\n53: Standstill position - tolerance (p9530).\n54: Position actual value (r9713[0/1]) + limit value of SSM (p9546) * safety monitoring clock cycle + tolerance (p9542).\n55: Position actual value (r9713[0/1]) + limit value of SSM (p9546) * safety monitoring clock cycle.\n56: Position actual value (r9713[0/1]) - limit value of SSM (p9546) * safety monitoring clock cycle.\n57: Position actual value (r9713[0/1]) - limit value of SSM (p9546) * safety monitoring clock cycle - tolerance (p9542).\n58: Actual stop request.\n75: Velocity limit of SSM (p9546).\nWhen function \"SSM\" is enabled (p9501.16 = 1), then this message value is output - also for a different hysteresis tolerance\n(p9547).\n76: Stop response for SLS1 (p9563[0]).\n77: Stop response for SLS2 (p9563[1]).\n78: Stop response for SLS3 (p9563[2]).\n79: Stop response for SLS4 (p9563[3]).\n81: Velocity tolerance for SAM (p9548).\n82: SGEs for SLS correction factor.\n83: Acceptance test timer (p9558).\n84: Transition time A01711 (p9555).\n89: Encoder limit frequency.\n230: Filter time constant for SSM.\n231: Hysteresis tolerance for SSM.\n232: Smoothed velocity actual value.\n233: Limit value of SSM / safety monitoring clock cycle + hysteresis tolerance.\n234: Limit value of SSM / safety monitoring clock cycle.\n235: -Limit value of SSM / safety monitoring clock cycle.\n236: -Limit value of SSM / safety monitoring clock cycle - hysteresis tolerance.\n237: SGA SSM.\n238: Speed limit value for SAM (p9568 or p9546).\n239: Acceleration for SBR (p9581 and p9583).\n240: Inverse value of acceleration for SBR (p9581 and p9583).\n241: Deceleration time for SBR (p9582).\n242: Function specification (p9506).\n243: Function configuration (p9507).\n247: SDI tolerance (p9564).\n248: SDI positive upper limit (7FFFFFFF hex).\n249: Position actual value (r9713[0/1]) - SDI tolerance (p9564).\n250: Position actual value (r9713[0/1]) + SDI tolerance (p9564).\n251: SDI negative lower limit (80000001 hex).\n252: SDI stop response (p9566).\n253: SDI delay time (p9565).\n256: Status image of monitoring functions SOS, SLS, test stop, SBR, SDI (result list 1 ext) (r9710).\n259: PROFIsafe telegram (p9611) is different between the monitoring channels.\n261: Scaling factor for acceleration for SBR different.\n262: Scaling factor for the inverse value of the acceleration for SBR different.\n265: Status image of all change functions (results list 1) (r9710).\n270: Screen form for SGE image: all functions, which are not supported/enabled for the actual parameterization (p9501,\np9601 and p9506).\n273: speed limit value for flattening the ramp for SAM/SBR different.\n276: Limit value for SLA1 (p9578/p9378).\n277: Stop response for SLA1 (p9579/p9379).\n278: Upper limit value for SLA1.\n279: Lower limit value for SLA1.\n280: Upper limit value for SLA1 (fine resolution).\n281: Lower limit value for SLA1 (fine resolution).\n282: SLA filter time (p9576/p9376).\n283: Acceleration actual value (fine resolution).\n1000: Watchdog timer has expired. Too many signal changes have occurred at safety-relevant inputs.\n1001: Initialization error of watchdog timer.\n464 Operating Instructions, 01/2019, A5E41702836B AC\n1005: STO already active for test stop selection.\n1011: Acceptance test status between the monitoring channels differ.\n1012: Plausibility violation of the encoder actual value.\n1020: Cyc. communication failure between the monit. channels.\n1021: Cyclic communication failure between the monitoring channel and encoder evaluation.\n1022: Sign-of-life error for DRIVE-CLiQ encoders monitoring channel 1.\n1023: Error in the effectiveness test in the DRIVE-CLiQ encoder\n1032: Sign-of-life error for DRIVE-CLiQ encoders monitoring channel 2.\n1033: Error checking offset between POS1 and POS2 for DRIVE-CLiQ encoder monitoring channel 1.\n1034: Error checking offset between POS1 and POS2 for DRIVE-CLiQ encoder monitoring channel 2.\n1035: offset between POS1 and POS2 for DRIVE-CLiQ encoder on one of the monitoring channels has changed since the\nlast commissioning.\n1039: Overflow when calculating the position.\n5000 ... 5140:\nPROFIsafe message values.\nFor these message values, the failsafe control signals (Failsafe Values) are transferred to the safety functions.\n5000, 5014, 5023, 5024, 5030 ... 5032, 5042, 5043, 5052, 5053, 5068, 5072, 5073, 5082 ... 5087, 5090, 5091, 5122 ... 5125,\n5132 ... 5135, 5140:\nAn internal software error has occurred (only for internal Siemens troubleshooting).\n5012: Error when initializing the PROFIsafe driver.\n5013: The result of the initialization is different for the two controllers.\n5022: Error when evaluating the F parameters. The values of the transferred F parameters do not match the expected\nvalues in the PROFIsafe driver.\n5025: The result of the F parameterization is different for the two controllers.\n5026: CRC error for the F parameters. The transferred CRC value of the F parameters does not match the value calculated\nin the PST.\n5065: A communications error was identified when receiving the PROFIsafe telegram.\n5066: A time monitoring error (timeout) was identified when receiving the PROFIsafe telegram.\n6000 ... 6166:\nPROFIsafe message values (PROFIsafe driver for PROFIBUS DP V1/V2 and PROFINET).\nFor these message values, the failsafe control signals (Failsafe Values) are transferred to the safety functions. If \"SS1 after\nfailure of PROFIsafe communication\" is parameterized (p9612), then transfer of the Failsafe Values is delayed.\nThe significance of the individual message values is described in safety fault F01611.\n7000: Difference of the safe position higher than the parameterized tolerance (p9542).\n7002: Cycle counter for transferring the safe position is different in both monitoring channels.\nSee also: p9555 (SI Motion transition time F01711 to SS1), r9725 (SI Motion diagnostics A01711)\nRemedy: For message value = 0:\n- no error was identified in this monitoring channel. Observe the error message of the other monitoring channel (A30711).\nFor message value = 3:\nCommissioning phase:\n- check encoder parameters, and if required, correct (p9516, p9517, p9518, p9520, p9521, p9522, p9526).\nIn operation:\n- check the mechanical design and the encoder signals.\nFor message value = 232:\n- increase the hysteresis tolerance (p9547). Possibly set the filtering higher (p9545).\nFor message value = 278, 279, 280, 281: - check whether the same acceleration limit has been set for both channels. A\ndifferent result depends on whether SLA is enabled and not selected - or enabled and selected. In this case, another\nmessage value is possible.\nFor message value = 1 ... 999:\n- if the message value is listed under cause: Check the cross-checked parameters to which the message value refers.\n- copy safety parameters and confirm the data change (commissioning tool).\n- carry out a POWER ON (switch off/switch on) or a warm restart (p0009 = 30, p0976 = 2, 3).\n- upgrade the drive software.\n- correction of the encoder evaluation. The actual values differ as a result of mechanical faults (V belts, travel to a\nmechanical endstop, wear and window setting that is too narrow, encoder fault, ...).\nFor message value = 1001:\n- carry out a POWER ON (switch off/switch on) or a warm restart (p0009 = 30, p0976 = 2, 3).\n- upgrade the drive software.\nFor message value = 1005:\n- check the conditions for deselecting STO.\nFor message value = 1007:\n- check the PLC for the correct operating state (run state, basic program).\nFor message value = 1011:\n- for diagnostics, refer to parameter (r9571).\nFor message value = 1012:\n- upgrade the encoder evaluation firmware to a newer version.\n- check encoder parameters to ensure that they are the same (p9515, p9519, p9523, p9524, p9525, p9529).\n- start the copy function for encoder parameters (commissioning tool).\n- the parameterized encoder does not correspond to the connected encoder - replace the encoder.\n- check the electrical cabinet design and cable routing for EMC compliance\n- carry out a POWER ON (switch off/switch on) or a warm restart (p0009 = 30, p0976 = 2, 3).\n- replace the hardware.\nFor message value = 1020, 1021:\n- check the communication link.\n- carry out a POWER ON (switch off/switch on) or a warm restart (p0009 = 30, p0976 = 2, 3).\n- replace the hardware.\nFor message value = 1035, if the safety encoder was replaced:\n- acknowledge hardware replacement.\n- save all parameters\n- acknowledge fault.\nFor message value = 1039:\n- check the conversion factors such as spindle pitch or gearbox ratios.\nFor message value = 5000, 5014, 5023, 5024, 5030, 5031, 5032, 5042, 5043, 5052, 5053, 5068, 5072, 5073, 5082 ... 5087,\n5090, 5091, 5122 ... 5125, 5132 ... 5135, 5140:\n- carry out a POWER ON (switch off/switch on) or a warm restart (p0009 = 30, p0976 = 2, 3).\n- upgrade firmware to later version.\n- contact Technical Support.\n- replace drive.\nFor message value = 5012:\n466 Operating Instructions, 01/2019, A5E41702836B AC\n- check the setting of the PROFIsafe address of the drive (p9610). It is not permissible for the PROFIsafe address to be 0\nor FFFF!\n- copy safety parameters and confirm the data change (commissioning tool).\n- carry out a POWER ON (switch off/switch on) or a warm restart (p0009 = 30, p0976 = 2, 3).\nFor message value = 5013, 5025:\n- carry out a POWER ON (switch off/switch on) or a warm restart (p0009 = 30, p0976 = 2, 3).\n- check the setting of the PROFIsafe address of the drive (p9610).\nFor message value = 5022:\n- check the setting of the values of the F parameters at the PROFIsafe slave (F_SIL, F_CRC_Length, F_Par_Version,\nF_Source_Add, F_Dest_add, F_WD_Time).\nFor message value = 5026:\n- check the settings of the values of the F parameters and the F parameter CRC (CRC1) calculated from these at the\nPROFIsafe slave and update.\nFor message value = 5065:\n- check the configuration and communication at the PROFIsafe slave (cons. No. / CRC).\n- check the setting of the value for F parameter F_WD_Time on the PROFIsafe slave and increase if necessary.\nFor message value = 5066:\n- check the setting of the value for F parameter F_WD_Time on the PROFIsafe slave and increase if necessary.\n- evaluate diagnostic information in the F host.\n- check PROFIsafe connection.\nFor message value = 6000 ... 6999:\nSee the description of the message values for fault F01611.\nNote:\nSAM: Safe Acceleration Monitor (safe acceleration monitoring)\nSBR: Safe Brake Ramp (safe ramp monitoring)\nSDI: Safe Direction (safe motion direction)\nSI: Safety Integrated\nSLS: Safely-Limited Speed\nSOS: Safe Operating Stop\nSS1: Safe Stop 1\nSS2: Safe Stop 2\nSSM: Safe Speed Monitor (safety-relevant feedback signal from the speed monitoring)",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-052",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01714",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01714",
+        "description": "Safely-Limited Speed exceeded"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01714:0",
+        "node_type": "cause_candidate",
+        "text": "The drive has moved faster than that specified by the velocity limit value (p9531).",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01714",
+        "node_type": "fault_entity",
+        "fault_code": "A01714",
+        "description": "Safely-Limited Speed exceeded"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01714:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The drive has moved faster than that specified by the velocity limit value (p9531).",
+          "start": 91,
+          "end": 174,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01714 SI Motion P1: Safely-Limited Speed exceeded\nReaction: NONE\nAcknowledge: NONE\nCause: The drive has moved faster than that specified by the velocity limit value (p9531). The drive is stopped by the configured\nstop response (p9563).\nMessage value (r2124, interpret decimal):\n100: SLS1 exceeded.\n200: SLS2 exceeded.\n300: SLS3 exceeded.\n400: SLS4 exceeded.\n1000: Encoder limit frequency exceeded.\nRemedy: - check the traversing/motion program in the control.\n- check limits for SLS and if required adapt accordingly (p9531).\nNote:\nSI: Safety Integrated\nSLS: Safely-Limited Speed\nSee also: p9531 (SI Motion SLS limit values), p9563 (SI Motion SLS-specific stop response)",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-058",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01716",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01716",
+        "description": "Tolerance for safe motion direction exceeded"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01716:0",
+        "node_type": "cause_candidate",
+        "text": "The tolerance for the 'safe motion direction' function was exceeded.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01716",
+        "node_type": "fault_entity",
+        "fault_code": "A01716",
+        "description": "Tolerance for safe motion direction exceeded"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01716:cause:7",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The tolerance for the \"safe motion direction\" function was exceeded",
+          "start": 106,
+          "end": 173,
+          "location": "",
+          "source_span_index": 7
+        }
+      ],
+      "source_context": {
+        "input_text": "A01716 SI Motion P1: Tolerance for safe motion direction exceeded\nReaction: NONE\nAcknowledge: NONE\nCause: The tolerance for the \"safe motion direction\" function was exceeded. The drive is stopped by the configured stop response\n(p9566).\nMessage value (r2124, interpret decimal):\n0: Tolerance for function \"safe motion direction positive\" exceeded.\n1: Tolerance for function \"safe motion direction negative\" exceeded.\nRemedy: - check the traversing/motion program in the control.\n- check the tolerance for \"SDI\" function and if required, adapt (p9564).\nThis message can be acknowledged as follows:\nDeselect/select SDI and perform safe acknowledgment via PROFIsafe.\nNote:\nSDI: Safe Direction (safe motion direction)\nSI: Safety Integrated\nSee also: p9564 (SI Motion SDI tolerance), p9565 (SI Motion SDI delay time), p9566 (SI Motion SDI stop response)",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-061",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01730",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01730",
+        "description": "Reference block for dynamic Safely-Limited Speed invalid"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01730:0",
+        "node_type": "cause_candidate",
+        "text": "The reference block transferred via PROFIsafe is negative",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01730",
+        "node_type": "fault_entity",
+        "fault_code": "A01730",
+        "description": "Reference block for dynamic Safely-Limited Speed invalid"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01730:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The reference block transferred via PROFIsafe is negative",
+          "start": 118,
+          "end": 175,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01730 SI Motion P1: Reference block for dynamic Safely-Limited Speed invalid\nReaction: NONE\nAcknowledge: NONE\nCause: The reference block transferred via PROFIsafe is negative.\nA reference block is used to generate a referred velocity limit value based on the reference quantity \"Velocity limit value\nSLS1\" (p9531[0]).\nThe drive is stopped by the configured stop response (p9563[0]).\nMessage value (r2124, interpret decimal):\nrequested, invalid reference block.\nRemedy: In the PROFIsafe telegram, input data S_SLS_LIMIT_IST must be corrected.\nNote:\nSI: Safety Integrated\nSLS: Safely-Limited Speed",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-063",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01750",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01750",
+        "description": "Hardware fault safety-relevant encoder"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01750:0",
+        "node_type": "cause_candidate",
+        "text": "The encoder that is used for the safety-relevant motion monitoring functions signals a hardware fault.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01750",
+        "node_type": "fault_entity",
+        "fault_code": "A01750",
+        "description": "Hardware fault safety-relevant encoder"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01750:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The encoder that is used for the safety-relevant motion monitoring functions signals a hardware fault.",
+          "start": 100,
+          "end": 202,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01750 SI Motion P1: Hardware fault safety-relevant encoder\nReaction: NONE\nAcknowledge: NONE\nCause: The encoder that is used for the safety-relevant motion monitoring functions signals a hardware fault.\nMessage value (r2124, interpret decimal):\nEncoder status word 1, encoder status word 2 that resulted in the message.\nRemedy: - check the encoder connection.\n- replace encoder.",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-064",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01751",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01751",
+        "description": "Effectivity test fault safety-relevant encoder"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01751:0",
+        "node_type": "cause_candidate",
+        "text": "The DRIVE-CLiQ encoder for safe motion monitoring signals an error for the effectivity tests.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01751",
+        "node_type": "fault_entity",
+        "fault_code": "A01751",
+        "description": "Effectivity test fault safety-relevant encoder"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01751:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The DRIVE-CLiQ encoder for safe motion monitoring signals an error for the effectivity tests.",
+          "start": 108,
+          "end": 201,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01751 SI Motion P1: Effectivity test fault safety-relevant encoder\nReaction: NONE\nAcknowledge: NONE\nCause: The DRIVE-CLiQ encoder for safe motion monitoring signals an error for the effectivity tests.\nMessage value (r2124, interpret decimal):\nOnly for internal Siemens troubleshooting.\nRemedy: - check the encoder connection.\n- replace encoder.\nNote:\nThis message can be acknowledged via PROFIsafe (safe acknowledgment).\n468 Operating Instructions, 01/2019, A5E41702836B AC",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-065",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01781",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01781",
+        "description": "SBT brake opening time exceeded"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01781:0",
+        "node_type": "cause_candidate",
+        "text": "The maximum time (11 s) to open the brake during the brake test was exceeded.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01781",
+        "node_type": "fault_entity",
+        "fault_code": "A01781",
+        "description": "SBT brake opening time exceeded"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01781:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The maximum time (11 s) to open the brake during the brake test was exceeded.",
+          "start": 79,
+          "end": 156,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01781 SBT brake opening time exceeded\nReaction: NONE\nAcknowledge: NONE\nCause: The maximum time (11 s) to open the brake during the brake test was exceeded.\nPossible causes:\n- during the brake test the drive went into a fault condition, and therefore the brake was closed by the drive.\nAlarm value (r2124, interpret binary):\nBit 0 = 1:\nInternal brake was not able to be opened.\nNote:\nSBT: Safe Brake Test\nRemedy: - carry out a safe acknowledgment.\n- restart the brake test.",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-068",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01782",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01782",
+        "description": "SBT brake test incorrect control"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01782:0",
+        "node_type": "cause_candidate",
+        "text": "The brake test was canceled as a result of incorrect control.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01782",
+        "node_type": "fault_entity",
+        "fault_code": "A01782",
+        "description": "SBT brake test incorrect control"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01782:cause:2",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The brake test was canceled as a result of incorrect control.",
+          "start": 80,
+          "end": 141,
+          "location": "",
+          "source_span_index": 2
+        }
+      ],
+      "source_context": {
+        "input_text": "A01782 SBT brake test incorrect control\nReaction: NONE\nAcknowledge: NONE\nCause: The brake test was canceled as a result of incorrect control.\nAlarm value (r2124, interpret binary):\nAlarm value 0:\nThe brake test was canceled as a result of a fault (brake opening time or brake closing time exceeded).\nBit 0:\nThe safe brake test was canceled by resetting the brake test selection.\nBit 1:\nThe safe brake test was canceled by resetting the brake test start.\nBit 2:\nThe brake is not configured in configured p10202.\nThere is a brake test configuration error. In this case, alarm A01785 is also output.\nNote:\nSBT: Safe Brake Test\nSee also: p10202 (SI Motion SBT brake)\nRemedy: - check parameterization of the brake test (p10202).\n- check as to whether alarm A01785 is present, and if so, evaluate.\n- carry out a safe acknowledgment.\n- if required, restart the brake test.",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-071",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01783",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01783",
+        "description": "SBT brake closing time exceeded"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01783:0",
+        "node_type": "cause_candidate",
+        "text": "The maximum time (11 s) to close the brake during the brake test was exceeded.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01783",
+        "node_type": "fault_entity",
+        "fault_code": "A01783",
+        "description": "SBT brake closing time exceeded"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01783:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The maximum time (11 s) to close the brake during the brake test was exceeded.",
+          "start": 79,
+          "end": 157,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01783 SBT brake closing time exceeded\nReaction: NONE\nAcknowledge: NONE\nCause: The maximum time (11 s) to close the brake during the brake test was exceeded.\nAlarm value (r2124, interpret binary):\nBit 0 = 1:\nThe brake was not able to be closed.\nNote:\nSBT: Safe Brake Test\nRemedy: - when using an internal brake with external feedback signal, check whether the feedback signal is correctly interconnected\nwith the extended brake control.\n- carry out a safe acknowledgment.\n- restart the brake test.",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-073",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01784",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01784",
+        "description": "SBT brake test canceled with fault"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01784:0",
+        "node_type": "cause_candidate",
+        "text": "the brake is not opened",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01784",
+        "node_type": "fault_entity",
+        "fault_code": "A01784",
+        "description": "SBT brake test canceled with fault"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01784:cause:2",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "the brake is not opened",
+          "start": 263,
+          "end": 286,
+          "location": "",
+          "source_span_index": 2
+        }
+      ],
+      "source_context": {
+        "input_text": "A01784 SBT brake test canceled with fault\nReaction: NONE\nAcknowledge: NONE\nCause: The safe brake test was canceled as a result of a fault.\nAlarm value (r2124, interpret binary):\nBit 17 = 1: fault in the brake test sequence (cause, see bits 0 ... 10).\nBit 20 = 1: the brake is not opened (p10202).\nBit 21 = 1: axis position during the brake test not valid due to parking axis.\nBit 22 = 1: internal software error.\nBit 23 = 1: the permissible position range of the axis was violated with the brake closed (p10212/p10222).\nBit 24 = 1: the tested internal brake was opened while the brake test was active.\nBit 26 = 1: during the active brake test, the test torque left its tolerance bandwidth (20 %).\nCause for alarm value bit 17:\nBit 0 = 1: operation when selecting the brake test not enabled (r0899.2 = 0).\nBit 1 = 1: external fault occurred (e.g. the brake test that has already started is canceled by the user).\nBit 2 = 1: when selecting the brake test a brake is closed.\nBit 3 = 1: when determining the load torque a brake is closed.\nBit 4 = 1: A fault has occurred with stop response (e.g. OFF1, OFF2 or OFF3) - or the pulse enable was withdrawn (e.g. STO\nselected or operation no longer enabled).\nBit 5 = 1: when selecting the brake test the axis speed setpoint is too high.\nBit 6 = 1: the actual speed (r0063) of the axis is too high (e.g. brake does not hold during the brake test).\nBit 8 = 1: closed-loop control not enabled or function generator active.\nBit 9 = 1: control does not switch over to the brake test (e.g. because PI speed control has not been parameterized).\nBit 10 = 1: torque limit reached (r1407.7, r1408.8).\nNote:\nSBT: Safe Brake Test\nRemedy: - remove the fault cause.\n- carry out a safe acknowledgment.\n- if required, restart the brake test.\nFor bit 17 = 1 with bit 6 = 1 or bit 23 = 1:\nIf the brake closing time of the motor holding brake (p1217) has been set too low, then at the start of the brake test, the brake\nis closed too late. The brake closing time should be adapted (p1217).",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-090",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01785",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01785",
+        "description": "SBT brake test configuration error"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01785:0",
+        "node_type": "cause_candidate",
+        "text": "Error when parameterizing the brake test",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01785",
+        "node_type": "fault_entity",
+        "fault_code": "A01785",
+        "description": "SBT brake test configuration error"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01785:cause:2",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "Error when parameterizing the brake test",
+          "start": 135,
+          "end": 175,
+          "location": "",
+          "source_span_index": 2
+        }
+      ],
+      "source_context": {
+        "input_text": "A01785 SBT brake test configuration error\nReaction: NONE\nAcknowledge: NONE\n470 Operating Instructions, 01/2019, A5E41702836B AC\nCause: Error when parameterizing the brake test.\nIn this configuration, the brake test cannot be started or cannot be started without error.\nAlarm value (r2124, interpret decimal):\n1:\nNo motion monitoring functions have been enabled.\n4:\nNo brake was configured (p10202).\n8:\nThe brake test is configured for an internal brake, however the safety brake control is not enabled (p9602).\n16:\nThe safe brake test and safety without encoder are simultaneously enabled (p9506). This is not permissible.\nNote:\nSBT: Safe Brake Test\nRemedy: Check parameterization of the brake test.",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-095",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01788",
+        "sequence": 31,
+        "source_file": "S210_Manual_2019.pdf",
+        "fault_code": "A01788",
+        "description": "Automatic test stop waits for STO deselection via motion monitoring functions"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01788:0",
+        "node_type": "cause_candidate",
+        "text": "The automatic test stop (forced checking procedure) was not able to be carried out after powering up.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01788",
+        "node_type": "fault_entity",
+        "fault_code": "A01788",
+        "description": "Automatic test stop waits for STO deselection via motion monitoring functions"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01788:cause:6",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The automatic test stop (forced checking procedure) was not able to be carried out after powering up.",
+          "start": 129,
+          "end": 230,
+          "location": "",
+          "source_span_index": 6
+        }
+      ],
+      "source_context": {
+        "input_text": "A01788 SI: Automatic test stop waits for STO deselection via motion monitoring functions\nReaction: NONE\nAcknowledge: NONE\nCause: The automatic test stop (forced checking procedure) was not able to be carried out after powering up.\nPossible causes:\n- the STO function is selected via safe motion monitoring functions.\n- a safety message is present, that resulted in a STO.\nNote:\nSTO: Safe Torque Off\nRemedy: - deselect STO via safe motion monitoring functions.\n- remove the cause of the safety messages and acknowledge the messages.\nNote:\nThe automatic test stop is performed after removing the cause.",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-098",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01796",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01796",
+        "description": "Wait for communication"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01796:0",
+        "node_type": "cause_candidate",
+        "text": "The drive waits for communication to be established to execute the safety-relevant motion monitoring functions.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01796",
+        "node_type": "fault_entity",
+        "fault_code": "A01796",
+        "description": "Wait for communication"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01796:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The drive waits for communication to be established to execute the safety-relevant motion monitoring functions.",
+          "start": 77,
+          "end": 188,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01796 SI P1: Wait for communication\nReaction: NONE\nAcknowledge: NONE\nCause: The drive waits for communication to be established to execute the safety-relevant motion monitoring functions.\nNote:\nSTO is active in this state.\nAlarm value (r2124, interpret decimal):\n3: Wait for communication to be established to PROFIsafe F-Host.\nRemedy: If the message is not automatically withdrawn after a longer period of time, then carry out the following checks:\n- check any other PROFIsafe communication messages/signals present and evaluate them.\n- check the operating state of the F-Host.\n- check the communication connection to the F Host.\nNote:\nSTO: Safe Torque Off\nSee also: p9601 (SI enable, functions integrated in the drive)",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-100",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01798",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01798",
+        "description": "Test stop for motion monitoring functions running"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01798:0",
+        "node_type": "cause_candidate",
+        "text": "The forced checking procedure (test stop) for the safe motion monitoring functions is currently in progress.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01798",
+        "node_type": "fault_entity",
+        "fault_code": "A01798",
+        "description": "Test stop for motion monitoring functions running"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01798:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The forced checking procedure (test stop) for the safe motion monitoring functions is currently in progress.",
+          "start": 111,
+          "end": 219,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01798 SI Motion P1: Test stop for motion monitoring functions running\nReaction: NONE\nAcknowledge: NONE\nCause: The forced checking procedure (test stop) for the safe motion monitoring functions is currently in progress.\nRemedy: Not necessary.\nThe message is automatically withdrawn when the test stop has been completed.\nNote:\nSI: Safety Integrated",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-101",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01839",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01839",
+        "description": "cable fault to the component"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01839:0",
+        "node_type": "cause_candidate",
+        "text": "The fault counter (r9936[0...199]) to monitor the DRIVE-CLiQ connections/cables has been incremented.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01839",
+        "node_type": "fault_entity",
+        "fault_code": "A01839",
+        "description": "cable fault to the component"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01839:cause:2",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The fault counter (r9936[0...199]) to monitor the DRIVE-CLiQ connections/cables has been incremented.",
+          "start": 153,
+          "end": 254,
+          "location": "",
+          "source_span_index": 2
+        }
+      ],
+      "source_context": {
+        "input_text": "A01839 DRIVE-CLiQ diagnostics: cable fault to the component\nReaction: NONE\nAcknowledge: NONE\n472 Operating Instructions, 01/2019, A5E41702836B AC\nCause: The fault counter (r9936[0...199]) to monitor the DRIVE-CLiQ connections/cables has been incremented.\nAlarm value (r2124, interpret decimal):\nComponent number.\nNote:\nThe component number specifies the component whose feeder cable from the direction of the Control Unit is faulted.\nThe alarm is automatically withdrawn after 5 seconds, assuming that no other data transfer error has occurred.\nRemedy: - check the corresponding DRIVE-CLiQ cables.\n- check the electrical cabinet design and cable routing for EMC compliance",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-102",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01900",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01900",
+        "description": "Configuration telegram error"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01900:0",
+        "node_type": "cause_candidate",
+        "text": "A controller attempts to establish a connection using an incorrect configuring telegram.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01900",
+        "node_type": "fault_entity",
+        "fault_code": "A01900",
+        "description": "Configuration telegram error"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01900:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "A controller attempts to establish a connection using an incorrect configuring telegram.",
+          "start": 80,
+          "end": 168,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01900 PN: Configuration telegram error\nReaction: NONE\nAcknowledge: NONE\nCause: A controller attempts to establish a connection using an incorrect configuring telegram.\nAlarm value (r2124, interpret decimal):\n1:\nConnection established to more drive objects than configured in the device. The drive objects for process data exchange\nand their sequence are defined in p0978.\n2:\nToo many PZD data words for output or input to a drive object. The number of possible PZD items in a drive object is\ndetermined by the number of indices in r2050/p2051.\n3:\nUneven number of bytes for input or output.\n4:\nSetting data for synchronization not accepted. For more information, see A01902.\n211:\nUnknown parameterizing block.\n223:\nClock synchronization for the PZD interface set in p8815[0] is not permissible.\nMore than one PZD interface is operated in clock synchronism.\n253:\nPN Shared Device: Illegal mixed configuration of PROFIsafe and PZD.\n254:\nPN Shared Device: Illegal double assignment of a slot/subslot.\n255:\nPN: Configured drive object and existing drive object do not match.\n256:\nPN: configured telegram cannot be set.\n500:\nIllegal PROFIsafe configuration for the interface set in p8815[1].\nMore than one PZD interface is operated with PROFIsafe.\n501:\nPROFIsafe parameter error (e.g. F_dest).\n502:\nPROFIsafe telegram does not match.\n503:\nPROFIsafe connection is rejected as long as there is no isochronous connection (p8969).\nAdditional values:\nOnly for internal Siemens troubleshooting.\nRemedy: Check the bus configuration on the master and the slave sides.\nFor alarm value = 1, 2:\n- check the list of the drive objects with process data exchange (p0978).\nNote:\nWith p0978[x] = 0, all of the following drive objects in the list are excluded from the process data exchange.\nFor alarm value = 2:\n- check the number of data words for output and input to a drive object.\nFor alarm value = 211:\n- Ensure offline version <= online version.\nFor alarm value = 223, 500:\n- check the setting in p8839 and p8815.\n- check for inserted but not configured CBE20.\n- ensure that only one PZD interface is operated in clock synchronism or with PROFIsafe.\nFor alarm value = 255:\n- check configured drive objects.\nFor alarm value = 256:\n- check the configured telegram.\nFor alarm value = 501:\n- check the set PROFIsafe address (p9610).\nFor alarm value = 502:\n- check the set PROFIsafe telegram (p60022, p9611).",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-117",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01902",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01902",
+        "description": "clock cycle synchronous operation parameterization not permissible"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01902:0",
+        "node_type": "cause_candidate",
+        "text": "Parameterization for isochronous operation is not permissible.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01902",
+        "node_type": "fault_entity",
+        "fault_code": "A01902",
+        "description": "clock cycle synchronous operation parameterization not permissible"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01902:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "Parameterization for isochronous operation is not permissible.",
+          "start": 118,
+          "end": 180,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01902 PN: clock cycle synchronous operation parameterization not permissible\nReaction: NONE\nAcknowledge: NONE\nCause: Parameterization for isochronous operation is not permissible.\nAlarm value (r2124, interpret decimal):\n0: Bus cycle time Tdp < 0.5 ms.\n1: Bus cycle time Tdp > 32 ms.\n2: Bus cycle time Tdp is not an integer multiple of the current controller sampling time.\n3: Instant of the actual value sensing Ti > Bus cycle time Tdp or Ti = 0.\n4: Instant of the actual value sensing Ti is not an integer multiple of the current controller sampling time.\n5: Instant of the setpoint acceptance To >= Bus cycle time Tdp or To = 0.\n6: Instant of the setpoint acceptance To is not an integer multiple of the current controller sampling time.\n7: Master application cycle time Tmapc is not an integer multiple of the speed controller sampling time.\n8: Bus reserve bus cycle time Tdp - data exchange time Tdx less than two current controller sampling times.\n10: Instant of the setpoint acceptance To <= data exchange time Tdx + current controller sampling time\n11: Master application cycle time Tmapc > 14 x Tdp or Tmapc = 0.\n12: PLL tolerance window Tpll_w > Tpll_w_max.\n13: Bus cycle time Tdp is not a multiple of all basic clock cycles p0110[x].\n16: For COMM BOARD, the instant in time for the actual value sensing Ti is less than two current controller sampling times.\nRemedy: - adapt the bus parameterization Tdp, Ti, To.\n- adapt the sampling time for the current controller or speed controller.\nFor alarm value = 10:\n- reduce Tdx by using fewer bus participants or shorter telegrams.\nNote:\nPN: PROFINET",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-132",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01932",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01932",
+        "description": "clock cycle synchronization missing for DSC"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01932:0",
+        "node_type": "cause_candidate",
+        "text": "There is no clock synchronization or clock synchronous sign of life and DSC is selected.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01932",
+        "node_type": "fault_entity",
+        "fault_code": "A01932",
+        "description": "clock cycle synchronization missing for DSC"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01932:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "There is no clock synchronization or clock synchronous sign of life and DSC is selected.",
+          "start": 95,
+          "end": 183,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01932 PN: clock cycle synchronization missing for DSC\nReaction: NONE\nAcknowledge: NONE\nCause: There is no clock synchronization or clock synchronous sign of life and DSC is selected.\nNote:\nDSC: Dynamic Servo Control\nSee also: r0922 (PROFIdrive PZD telegram selection)\nRemedy: Set clock synchronization across the bus configuration and transfer clock synchronous sign-of-life.",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-133",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01940",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01940",
+        "description": "Clock cycle synchronism not reached"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01940:0",
+        "node_type": "cause_candidate",
+        "text": "The master does not send a clock synchronous global control telegram although clock synchronous operation was selected when configuring the bus.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01940",
+        "node_type": "fault_entity",
+        "fault_code": "A01940",
+        "description": "Clock cycle synchronism not reached"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01940:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "the master does not send a clock synchronous global control telegram although clock synchronous operation was selected\nwhen configuring the bus.",
+          "start": 291,
+          "end": 435,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01940 PN: Clock cycle synchronism not reached\nReaction: NONE\nAcknowledge: NONE\nCause: The bus is in the data exchange state and clock synchronous operation has been selected using the parameterizing\ntelegram. It was not possible to synchronize to the clock cycle specified by the master.\n- the master does not send a clock synchronous global control telegram although clock synchronous operation was selected\nwhen configuring the bus.\n- the master is using an isochronous DP clock cycle that is different than was transferred to the slave in the parameterizing\ntelegram.\n- at least one drive object has a pulse enable (also not controlled from PROFINET).\nRemedy: - check the master application and bus configuration.\n- check the consistency between the clock cycle input when configuring the slave and clock cycle setting at the master.\n- check that no drive object has a pulse enable. Only enable the pulses after synchronizing the PROFINET drives.\nNote:\nPN: PROFINET",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-136",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01941",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01941",
+        "description": "Clock cycle signal missing when the bus is being established"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01941:0",
+        "node_type": "cause_candidate",
+        "text": "The bus is in the data exchange state and clock synchronous operation has been selected using the parameterizing telegram. The global control telegram for synchronization is not being received.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01941",
+        "node_type": "fault_entity",
+        "fault_code": "A01941",
+        "description": "Clock cycle signal missing when the bus is being established"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01941:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The bus is in the data exchange state and clock synchronous operation has been selected using the parameterizing\ntelegram. The global control telegram for synchronization is not being received.",
+          "start": 112,
+          "end": 305,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01941 PN: Clock cycle signal missing when the bus is being established\nReaction: NONE\nAcknowledge: NONE\nCause: The bus is in the data exchange state and clock synchronous operation has been selected using the parameterizing\ntelegram. The global control telegram for synchronization is not being received.\nRemedy: Check the master application and bus configuration.\nNote:\nPN: PROFINET",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    },
+    {
+      "candidate_id": "CR-CAND-V3-137",
+      "selection_reason": "third_batch_unreviewed_causes_round_robin_by_fault_code",
+      "source_record": {
+        "sample_id": "SIEMENS_S210_2019_A01943",
+        "sequence": null,
+        "source_file": "",
+        "fault_code": "A01943",
+        "description": "Clock cycle signal error when the bus is being established"
+      },
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01943:0",
+        "node_type": "cause_candidate",
+        "text": "The bus is in the data exchange state and clock synchronous operation has been selected using the parameterizing telegram.",
+        "source_field": "causes"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01943",
+        "node_type": "fault_entity",
+        "fault_code": "A01943",
+        "description": "Clock cycle signal error when the bus is being established"
+      },
+      "proposed_relation": {
+        "relation_type": "causes",
+        "direction": "source_to_target",
+        "status": "proposed_not_confirmed"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SIEMENS_S210_2019_A01943:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The bus is in the data exchange state and clock synchronous operation has been selected using the parameterizing\ntelegram.",
+          "start": 110,
+          "end": 232,
+          "location": "",
+          "source_span_index": 3
+        }
+      ],
+      "source_context": {
+        "input_text": "A01943 PN: Clock cycle signal error when the bus is being established\nReaction: NONE\nAcknowledge: NONE\nCause: The bus is in the data exchange state and clock synchronous operation has been selected using the parameterizing\ntelegram.\nThe global control telegram for synchronization is being irregularly received.\n-.the master is sending an irregular global control telegram.\n- the master is using another clock synchronous DP clock cycle than was transferred to the slave in the parameterizing\ntelegram.\nRemedy: - check the master application and bus configuration.\n- check the consistency between the clock cycle input when configuring the slave and clock cycle setting at the master.\nNote:\nPN: PROFINET",
+        "source_record_evidence_policy": "The quoted span is extracted from the current Gold cause evidence; the complete source record is included for expert context."
+      },
+      "expert_review": {
+        "status": "pending_expert_review",
+        "causal_status": "pending",
+        "direction": "pending",
+        "relation_type": "pending",
+        "fta_eligible": "pending",
+        "overall_decision": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "expert_reason": "",
+        "modified_relation": null
+      }
+    }
+  ]
+}
