@@ -1,0 +1,493 @@
+{
+  "dataset": "siemens_s210_rag_boundary_expert_gold_v1",
+  "status": "engineering_boundary_policy_against_expert_gold",
+  "expert_validated": true,
+  "query_count": 24,
+  "metrics": {
+    "query_count": 24,
+    "unsafe_answer_rate": 0.0,
+    "false_reject_rate": 0.0,
+    "warning_precision": 1.0,
+    "warning_recall": 1.0,
+    "out_of_domain_precision": 1.0,
+    "out_of_domain_recall": 1.0,
+    "gold_status_counts": {
+      "supported": 4,
+      "supported_with_warning": 8,
+      "insufficient_evidence": 6,
+      "out_of_domain": 6
+    }
+  },
+  "results": [
+    {
+      "query_id": "BOUNDARY-001",
+      "actual_knowledge_status": "supported",
+      "decision": {
+        "knowledge_status": "supported",
+        "response_policy": "normal",
+        "answer_allowed": true,
+        "confidence_level": "high",
+        "need_additional_info": false,
+        "warning_required": false,
+        "reason": "query contains an S210 identifier or explicit supported-scope signal",
+        "missing_information": [],
+        "matched_scope_signals": [
+          "s210"
+        ],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-002",
+      "actual_knowledge_status": "supported",
+      "decision": {
+        "knowledge_status": "supported",
+        "response_policy": "normal",
+        "answer_allowed": true,
+        "confidence_level": "high",
+        "need_additional_info": false,
+        "warning_required": false,
+        "reason": "query contains an S210 identifier or explicit supported-scope signal",
+        "missing_information": [],
+        "matched_scope_signals": [
+          "siemens",
+          "s210",
+          "siemens s210"
+        ],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-003",
+      "actual_knowledge_status": "supported",
+      "decision": {
+        "knowledge_status": "supported",
+        "response_policy": "normal",
+        "answer_allowed": true,
+        "confidence_level": "high",
+        "need_additional_info": false,
+        "warning_required": false,
+        "reason": "query contains an S210 identifier or explicit supported-scope signal",
+        "missing_information": [],
+        "matched_scope_signals": [
+          "sinamics"
+        ],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-004",
+      "actual_knowledge_status": "supported",
+      "decision": {
+        "knowledge_status": "supported",
+        "response_policy": "normal",
+        "answer_allowed": true,
+        "confidence_level": "high",
+        "need_additional_info": false,
+        "warning_required": false,
+        "reason": "query contains an S210 identifier or explicit supported-scope signal",
+        "missing_information": [],
+        "matched_scope_signals": [
+          "s210"
+        ],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-005",
+      "actual_knowledge_status": "supported_with_warning",
+      "decision": {
+        "knowledge_status": "supported_with_warning",
+        "response_policy": "warning",
+        "answer_allowed": true,
+        "confidence_level": "medium",
+        "need_additional_info": true,
+        "warning_required": true,
+        "reason": "technical query lacks an explicit S210 identity signal",
+        "missing_information": [
+          "fault_code_or_device_model"
+        ],
+        "matched_scope_signals": [
+          "drive-cliq"
+        ],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-006",
+      "actual_knowledge_status": "supported_with_warning",
+      "decision": {
+        "knowledge_status": "supported_with_warning",
+        "response_policy": "warning",
+        "answer_allowed": true,
+        "confidence_level": "medium",
+        "need_additional_info": true,
+        "warning_required": true,
+        "reason": "technical query lacks an explicit S210 identity signal",
+        "missing_information": [
+          "fault_code_or_device_model"
+        ],
+        "matched_scope_signals": [
+          "siemens"
+        ],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-007",
+      "actual_knowledge_status": "supported_with_warning",
+      "decision": {
+        "knowledge_status": "supported_with_warning",
+        "response_policy": "warning",
+        "answer_allowed": true,
+        "confidence_level": "medium",
+        "need_additional_info": true,
+        "warning_required": true,
+        "reason": "technical query lacks an explicit S210 identity signal",
+        "missing_information": [
+          "fault_code_or_device_model"
+        ],
+        "matched_scope_signals": [],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-008",
+      "actual_knowledge_status": "supported_with_warning",
+      "decision": {
+        "knowledge_status": "supported_with_warning",
+        "response_policy": "warning",
+        "answer_allowed": true,
+        "confidence_level": "medium",
+        "need_additional_info": true,
+        "warning_required": true,
+        "reason": "technical query lacks an explicit S210 identity signal",
+        "missing_information": [
+          "fault_code_or_device_model"
+        ],
+        "matched_scope_signals": [],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-009",
+      "actual_knowledge_status": "supported_with_warning",
+      "decision": {
+        "knowledge_status": "supported_with_warning",
+        "response_policy": "warning",
+        "answer_allowed": true,
+        "confidence_level": "medium",
+        "need_additional_info": true,
+        "warning_required": true,
+        "reason": "technical query lacks an explicit S210 identity signal",
+        "missing_information": [
+          "fault_code_or_device_model"
+        ],
+        "matched_scope_signals": [],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-010",
+      "actual_knowledge_status": "supported_with_warning",
+      "decision": {
+        "knowledge_status": "supported_with_warning",
+        "response_policy": "warning",
+        "answer_allowed": true,
+        "confidence_level": "medium",
+        "need_additional_info": true,
+        "warning_required": true,
+        "reason": "technical query lacks an explicit S210 identity signal",
+        "missing_information": [
+          "fault_code_or_device_model"
+        ],
+        "matched_scope_signals": [],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-011",
+      "actual_knowledge_status": "supported_with_warning",
+      "decision": {
+        "knowledge_status": "supported_with_warning",
+        "response_policy": "warning",
+        "answer_allowed": true,
+        "confidence_level": "medium",
+        "need_additional_info": true,
+        "warning_required": true,
+        "reason": "technical query lacks an explicit S210 identity signal",
+        "missing_information": [
+          "fault_code_or_device_model"
+        ],
+        "matched_scope_signals": [],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-012",
+      "actual_knowledge_status": "supported_with_warning",
+      "decision": {
+        "knowledge_status": "supported_with_warning",
+        "response_policy": "warning",
+        "answer_allowed": true,
+        "confidence_level": "medium",
+        "need_additional_info": true,
+        "warning_required": true,
+        "reason": "technical query lacks an explicit S210 identity signal",
+        "missing_information": [
+          "fault_code_or_device_model"
+        ],
+        "matched_scope_signals": [],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-013",
+      "actual_knowledge_status": "insufficient_evidence",
+      "decision": {
+        "knowledge_status": "insufficient_evidence",
+        "response_policy": "clarify",
+        "answer_allowed": false,
+        "confidence_level": "low",
+        "need_additional_info": true,
+        "warning_required": false,
+        "reason": "query does not provide enough technical or S210 context for a reliable answer",
+        "missing_information": [
+          "device_model",
+          "fault_code_or_symptom"
+        ],
+        "matched_scope_signals": [],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-014",
+      "actual_knowledge_status": "insufficient_evidence",
+      "decision": {
+        "knowledge_status": "insufficient_evidence",
+        "response_policy": "clarify",
+        "answer_allowed": false,
+        "confidence_level": "low",
+        "need_additional_info": true,
+        "warning_required": false,
+        "reason": "query does not provide enough technical or S210 context for a reliable answer",
+        "missing_information": [
+          "device_model",
+          "fault_code_or_symptom"
+        ],
+        "matched_scope_signals": [],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-015",
+      "actual_knowledge_status": "insufficient_evidence",
+      "decision": {
+        "knowledge_status": "insufficient_evidence",
+        "response_policy": "clarify",
+        "answer_allowed": false,
+        "confidence_level": "low",
+        "need_additional_info": true,
+        "warning_required": false,
+        "reason": "query does not provide enough technical or S210 context for a reliable answer",
+        "missing_information": [
+          "device_model",
+          "fault_code_or_symptom"
+        ],
+        "matched_scope_signals": [],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-016",
+      "actual_knowledge_status": "insufficient_evidence",
+      "decision": {
+        "knowledge_status": "insufficient_evidence",
+        "response_policy": "clarify",
+        "answer_allowed": false,
+        "confidence_level": "low",
+        "need_additional_info": true,
+        "warning_required": false,
+        "reason": "query does not provide enough technical or S210 context for a reliable answer",
+        "missing_information": [
+          "device_model",
+          "fault_code_or_symptom"
+        ],
+        "matched_scope_signals": [],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-017",
+      "actual_knowledge_status": "insufficient_evidence",
+      "decision": {
+        "knowledge_status": "insufficient_evidence",
+        "response_policy": "clarify",
+        "answer_allowed": false,
+        "confidence_level": "low",
+        "need_additional_info": true,
+        "warning_required": false,
+        "reason": "query does not provide enough technical or S210 context for a reliable answer",
+        "missing_information": [
+          "device_model",
+          "fault_code_or_symptom"
+        ],
+        "matched_scope_signals": [],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-018",
+      "actual_knowledge_status": "insufficient_evidence",
+      "decision": {
+        "knowledge_status": "insufficient_evidence",
+        "response_policy": "clarify",
+        "answer_allowed": false,
+        "confidence_level": "low",
+        "need_additional_info": true,
+        "warning_required": false,
+        "reason": "query does not provide enough technical or S210 context for a reliable answer",
+        "missing_information": [
+          "device_model",
+          "fault_code_or_symptom"
+        ],
+        "matched_scope_signals": [],
+        "matched_external_signals": [],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-019",
+      "actual_knowledge_status": "out_of_domain",
+      "decision": {
+        "knowledge_status": "out_of_domain",
+        "response_policy": "out_of_domain",
+        "answer_allowed": false,
+        "confidence_level": "low",
+        "need_additional_info": false,
+        "warning_required": false,
+        "reason": "query contains explicit signals for a domain outside the S210 knowledge base",
+        "missing_information": [],
+        "matched_scope_signals": [],
+        "matched_external_signals": [
+          "天气"
+        ],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-020",
+      "actual_knowledge_status": "out_of_domain",
+      "decision": {
+        "knowledge_status": "out_of_domain",
+        "response_policy": "out_of_domain",
+        "answer_allowed": false,
+        "confidence_level": "low",
+        "need_additional_info": false,
+        "warning_required": false,
+        "reason": "query contains explicit signals for a domain outside the S210 knowledge base",
+        "missing_information": [],
+        "matched_scope_signals": [],
+        "matched_external_signals": [
+          "股票"
+        ],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-021",
+      "actual_knowledge_status": "out_of_domain",
+      "decision": {
+        "knowledge_status": "out_of_domain",
+        "response_policy": "out_of_domain",
+        "answer_allowed": false,
+        "confidence_level": "low",
+        "need_additional_info": false,
+        "warning_required": false,
+        "reason": "query contains explicit signals for a domain outside the S210 knowledge base",
+        "missing_information": [],
+        "matched_scope_signals": [],
+        "matched_external_signals": [
+          "写一首诗"
+        ],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-022",
+      "actual_knowledge_status": "out_of_domain",
+      "decision": {
+        "knowledge_status": "out_of_domain",
+        "response_policy": "out_of_domain",
+        "answer_allowed": false,
+        "confidence_level": "low",
+        "need_additional_info": false,
+        "warning_required": false,
+        "reason": "query contains explicit signals for a domain outside the S210 knowledge base",
+        "missing_information": [],
+        "matched_scope_signals": [],
+        "matched_external_signals": [
+          "飞机"
+        ],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-023",
+      "actual_knowledge_status": "out_of_domain",
+      "decision": {
+        "knowledge_status": "out_of_domain",
+        "response_policy": "out_of_domain",
+        "answer_allowed": false,
+        "confidence_level": "low",
+        "need_additional_info": false,
+        "warning_required": false,
+        "reason": "query contains explicit signals for a domain outside the S210 knowledge base",
+        "missing_information": [],
+        "matched_scope_signals": [],
+        "matched_external_signals": [
+          "航空",
+          "航空器",
+          "ata"
+        ],
+        "matched_context_evidence": []
+      }
+    },
+    {
+      "query_id": "BOUNDARY-024",
+      "actual_knowledge_status": "out_of_domain",
+      "decision": {
+        "knowledge_status": "out_of_domain",
+        "response_policy": "out_of_domain",
+        "answer_allowed": false,
+        "confidence_level": "low",
+        "need_additional_info": false,
+        "warning_required": false,
+        "reason": "query contains explicit signals for a domain outside the S210 knowledge base",
+        "missing_information": [],
+        "matched_scope_signals": [],
+        "matched_external_signals": [
+          "旅游"
+        ],
+        "matched_context_evidence": []
+      }
+    }
+  ]
+}

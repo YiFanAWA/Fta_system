@@ -89,6 +89,13 @@ _S210_SCOPE_SIGNALS = (
     "profisafe",
     "siemens s210",
 )
+_STRONG_S210_SCOPE_SIGNALS = (
+    "s210",
+    "sinamics",
+    "profinet",
+    "profisafe",
+    "siemens s210",
+)
 _S210_IDENTIFIER_RE = re.compile(
     r"(?<![A-Z0-9])(?:[AFN]\d{5}|[PR]\d{4,5}(?:\[\d+\])?)(?![A-Z0-9])",
     re.IGNORECASE,
@@ -114,6 +121,9 @@ _SPECIFIC_TECHNICAL_SIGNALS = (
     "控制单元",
     "驱动器",
     "驱动",
+    "drive-cliq",
+    "固件",
+    "固件升级",
 )
 _EXTERNAL_SCOPE_SIGNALS = (
     "天气",
@@ -269,6 +279,7 @@ class ResponsePolicyLayer:
         if not text:
             raise ValueError("question cannot be empty")
         scope_signals = _matched_terms(text, _S210_SCOPE_SIGNALS)
+        strong_scope_signals = _matched_terms(text, _STRONG_S210_SCOPE_SIGNALS)
         external_signals = _matched_terms(text, _EXTERNAL_SCOPE_SIGNALS)
         has_identifier = bool(_S210_IDENTIFIER_RE.search(text))
         specific_technical_signals = _matched_terms(text, _SPECIFIC_TECHNICAL_SIGNALS)
@@ -306,7 +317,7 @@ class ResponsePolicyLayer:
                 matched_external_signals=external_signals,
             )
 
-        if has_identifier or scope_signals or context_evidence:
+        if has_identifier or strong_scope_signals or context_evidence:
             return RagBoundaryDecision(
                 knowledge_status="supported",
                 response_policy="normal",

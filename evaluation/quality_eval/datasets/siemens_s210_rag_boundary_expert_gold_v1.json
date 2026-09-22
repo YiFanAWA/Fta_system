@@ -1,0 +1,444 @@
+{
+  "dataset_info": {
+    "name": "siemens_s210_rag_boundary_expert_gold_v1",
+    "version": "v1",
+    "status": "expert_validated",
+    "gold_source": "named_expert_review",
+    "not_for_training": true,
+    "reviewer": "刘武",
+    "reviewed_at": "2026-09-22",
+    "source_file": null,
+    "record_count": 24
+  },
+  "rows": [
+    {
+      "query_id": "BOUNDARY-001",
+      "question": "S210 F01630 是什么故障？",
+      "expert_review": {
+        "expert_status": "reviewed",
+        "expected_knowledge_status": "supported",
+        "answer_allowed": true,
+        "warning_required": false,
+        "need_additional_info": false,
+        "missing_information": [],
+        "expected_action": "answer",
+        "expert_reason": "明确包含S210和具体故障码F01630，可以定位到具体故障实体。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "query_id": "BOUNDARY-002",
+      "question": "Siemens S210 的 p7829 参数有什么作用？",
+      "expert_review": {
+        "expert_status": "reviewed",
+        "expected_knowledge_status": "supported",
+        "answer_allowed": true,
+        "warning_required": false,
+        "need_additional_info": false,
+        "missing_information": [],
+        "expected_action": "answer",
+        "expert_reason": "明确指定S210参数编号，可查询对应参数知识。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "query_id": "BOUNDARY-003",
+      "question": "SINAMICS A01009 控制单元过热怎么办？",
+      "expert_review": {
+        "expert_status": "reviewed",
+        "expected_knowledge_status": "supported",
+        "answer_allowed": true,
+        "warning_required": false,
+        "need_additional_info": false,
+        "missing_information": [],
+        "expected_action": "answer",
+        "expert_reason": "包含产品系列和明确故障码，可基于证据回答。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "query_id": "BOUNDARY-004",
+      "question": "STO 状态不一致对应什么 S210 故障？",
+      "expert_review": {
+        "expert_status": "reviewed",
+        "expected_knowledge_status": "supported",
+        "answer_allowed": true,
+        "warning_required": false,
+        "need_additional_info": false,
+        "missing_information": [],
+        "expected_action": "answer",
+        "expert_reason": "STO是S210安全功能相关技术信号，可以关联故障知识。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "query_id": "BOUNDARY-005",
+      "question": "DRIVE-CLiQ 组件固件升级失败的原因是什么？",
+      "expert_review": {
+        "expert_status": "reviewed",
+        "expected_knowledge_status": "supported_with_warning",
+        "answer_allowed": true,
+        "warning_required": true,
+        "need_additional_info": true,
+        "missing_information": [
+          "具体组件型号",
+          "故障码或报警文本"
+        ],
+        "expected_action": "answer_with_warning",
+        "expert_reason": "属于S210相关技术问题，但缺少具体组件和错误信息，不能确定唯一原因。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "query_id": "BOUNDARY-006",
+      "question": "Siemens 控制单元温度过高，应该检查什么？",
+      "expert_review": {
+        "expert_status": "reviewed",
+        "expected_knowledge_status": "supported_with_warning",
+        "answer_allowed": true,
+        "warning_required": true,
+        "need_additional_info": true,
+        "missing_information": [
+          "设备型号",
+          "故障码"
+        ],
+        "expected_action": "answer_with_warning",
+        "expert_reason": "有厂商和技术现象，但缺少定位信息，需要降低确定性。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "query_id": "BOUNDARY-007",
+      "question": "温度异常怎么办？",
+      "expert_review": {
+        "expert_status": "reviewed",
+        "expected_knowledge_status": "supported_with_warning",
+        "answer_allowed": true,
+        "warning_required": true,
+        "need_additional_info": true,
+        "missing_information": [
+          "设备型号",
+          "报警信息",
+          "故障码"
+        ],
+        "expected_action": "answer_with_warning",
+        "expert_reason": "属于工业故障描述，可以提供方向，但不能确认具体故障。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "query_id": "BOUNDARY-008",
+      "question": "电机通信失败是什么原因？",
+      "expert_review": {
+        "expert_status": "reviewed",
+        "expected_knowledge_status": "supported_with_warning",
+        "answer_allowed": true,
+        "warning_required": true,
+        "need_additional_info": true,
+        "missing_information": [
+          "通信报警码",
+          "设备型号"
+        ],
+        "expected_action": "answer_with_warning",
+        "expert_reason": "通信故障可能对应多个原因，需要补充上下文。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "query_id": "BOUNDARY-009",
+      "question": "编码器信号异常，怎么排查？",
+      "expert_review": {
+        "expert_status": "reviewed",
+        "expected_knowledge_status": "supported_with_warning",
+        "answer_allowed": true,
+        "warning_required": true,
+        "need_additional_info": true,
+        "missing_information": [
+          "编码器信息",
+          "故障码"
+        ],
+        "expected_action": "answer_with_warning",
+        "expert_reason": "可以给排查建议，但不能唯一定位。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "query_id": "BOUNDARY-010",
+      "question": "驱动报警后停止运行，可能是什么问题？",
+      "expert_review": {
+        "expert_status": "reviewed",
+        "expected_knowledge_status": "supported_with_warning",
+        "answer_allowed": true,
+        "warning_required": true,
+        "need_additional_info": true,
+        "missing_information": [
+          "报警码",
+          "设备型号"
+        ],
+        "expected_action": "answer_with_warning",
+        "expert_reason": "存在驱动故障场景，但缺少报警上下文。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "query_id": "BOUNDARY-011",
+      "question": "控制单元过热应该如何处理？",
+      "expert_review": {
+        "expert_status": "reviewed",
+        "expected_knowledge_status": "supported_with_warning",
+        "answer_allowed": true,
+        "warning_required": true,
+        "need_additional_info": true,
+        "missing_information": [
+          "故障码",
+          "型号"
+        ],
+        "expected_action": "answer_with_warning",
+        "expert_reason": "现象明确但范围较大，需要补充信息。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "query_id": "BOUNDARY-012",
+      "question": "参数设置错误导致报警，怎么判断？",
+      "expert_review": {
+        "expert_status": "reviewed",
+        "expected_knowledge_status": "supported_with_warning",
+        "answer_allowed": true,
+        "warning_required": true,
+        "need_additional_info": true,
+        "missing_information": [
+          "参数号",
+          "报警码"
+        ],
+        "expected_action": "answer_with_warning",
+        "expert_reason": "涉及参数关联，但缺少具体参数和报警。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "query_id": "BOUNDARY-013",
+      "question": "设备坏了。",
+      "expert_review": {
+        "expert_status": "reviewed",
+        "expected_knowledge_status": "insufficient_evidence",
+        "answer_allowed": false,
+        "warning_required": false,
+        "need_additional_info": true,
+        "missing_information": [
+          "设备型号",
+          "故障现象",
+          "报警信息"
+        ],
+        "expected_action": "ask_information",
+        "expert_reason": "只有结果描述，没有故障定位依据，不能诊断。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "query_id": "BOUNDARY-014",
+      "question": "报警了怎么办？",
+      "expert_review": {
+        "expert_status": "reviewed",
+        "expected_knowledge_status": "insufficient_evidence",
+        "answer_allowed": false,
+        "warning_required": false,
+        "need_additional_info": true,
+        "missing_information": [
+          "报警文本",
+          "故障码",
+          "设备型号"
+        ],
+        "expected_action": "ask_information",
+        "expert_reason": "报警范围过大，无法定位故障。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "query_id": "BOUNDARY-015",
+      "question": "不工作了。",
+      "expert_review": {
+        "expert_status": "reviewed",
+        "expected_knowledge_status": "insufficient_evidence",
+        "answer_allowed": false,
+        "warning_required": false,
+        "need_additional_info": true,
+        "missing_information": [
+          "设备型号",
+          "故障现象"
+        ],
+        "expected_action": "ask_information",
+        "expert_reason": "缺少对象和现象，无法判断原因。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "query_id": "BOUNDARY-016",
+      "question": "帮我看看这个问题。",
+      "expert_review": {
+        "expert_status": "reviewed",
+        "expected_knowledge_status": "insufficient_evidence",
+        "answer_allowed": false,
+        "warning_required": false,
+        "need_additional_info": true,
+        "missing_information": [
+          "问题描述",
+          "设备信息"
+        ],
+        "expected_action": "ask_information",
+        "expert_reason": "没有提供可分析内容。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "query_id": "BOUNDARY-017",
+      "question": "系统有点异常。",
+      "expert_review": {
+        "expert_status": "reviewed",
+        "expected_knowledge_status": "insufficient_evidence",
+        "answer_allowed": false,
+        "warning_required": false,
+        "need_additional_info": true,
+        "missing_information": [
+          "异常现象",
+          "设备型号"
+        ],
+        "expected_action": "ask_information",
+        "expert_reason": "描述过于宽泛，无法映射故障。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "query_id": "BOUNDARY-018",
+      "question": "这个故障严重吗？",
+      "expert_review": {
+        "expert_status": "reviewed",
+        "expected_knowledge_status": "insufficient_evidence",
+        "answer_allowed": false,
+        "warning_required": false,
+        "need_additional_info": true,
+        "missing_information": [
+          "具体故障码",
+          "故障描述"
+        ],
+        "expected_action": "ask_information",
+        "expert_reason": "没有明确故障对象，无法评价严重程度。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "query_id": "BOUNDARY-019",
+      "question": "今天天气怎么样？",
+      "expert_review": {
+        "expert_status": "reviewed",
+        "expected_knowledge_status": "out_of_domain",
+        "answer_allowed": false,
+        "warning_required": false,
+        "need_additional_info": false,
+        "missing_information": [],
+        "expected_action": "reject",
+        "expert_reason": "天气领域不属于S210故障知识库。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "query_id": "BOUNDARY-020",
+      "question": "帮我推荐一只股票。",
+      "expert_review": {
+        "expert_status": "reviewed",
+        "expected_knowledge_status": "out_of_domain",
+        "answer_allowed": false,
+        "warning_required": false,
+        "need_additional_info": false,
+        "missing_information": [],
+        "expected_action": "reject",
+        "expert_reason": "金融投资问题不属于故障诊断范围。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "query_id": "BOUNDARY-021",
+      "question": "帮我写一首诗。",
+      "expert_review": {
+        "expert_status": "reviewed",
+        "expected_knowledge_status": "out_of_domain",
+        "answer_allowed": false,
+        "warning_required": false,
+        "need_additional_info": false,
+        "missing_information": [],
+        "expected_action": "reject",
+        "expert_reason": "创作任务不属于工业故障知识库。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "query_id": "BOUNDARY-022",
+      "question": "飞机液压系统故障怎么处理？",
+      "expert_review": {
+        "expert_status": "reviewed",
+        "expected_knowledge_status": "out_of_domain",
+        "answer_allowed": false,
+        "warning_required": false,
+        "need_additional_info": false,
+        "missing_information": [],
+        "expected_action": "reject",
+        "expert_reason": "航空器液压系统属于其他领域，不属于S210。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "query_id": "BOUNDARY-023",
+      "question": "请分析这个航空器的 ATA 故障。",
+      "expert_review": {
+        "expert_status": "reviewed",
+        "expected_knowledge_status": "out_of_domain",
+        "answer_allowed": false,
+        "warning_required": false,
+        "need_additional_info": false,
+        "missing_information": [],
+        "expected_action": "reject",
+        "expert_reason": "ATA航空故障体系不属于S210知识范围。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "query_id": "BOUNDARY-024",
+      "question": "帮我做一个旅游计划。",
+      "expert_review": {
+        "expert_status": "reviewed",
+        "expected_knowledge_status": "out_of_domain",
+        "answer_allowed": false,
+        "warning_required": false,
+        "need_additional_info": false,
+        "missing_information": [],
+        "expected_action": "reject",
+        "expert_reason": "旅游规划不属于故障诊断任务。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    }
+  ]
+}

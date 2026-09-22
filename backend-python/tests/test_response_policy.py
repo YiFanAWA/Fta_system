@@ -90,6 +90,24 @@ class ResponsePolicyTests(unittest.TestCase):
         self.assertTrue(result.answer_allowed)
         self.assertEqual("high", result.confidence_level)
 
+    def test_boundary_warns_for_drive_cliq_without_fault_identity(self):
+        result = self.layer.assess_boundary(
+            question="DRIVE-CLiQ 组件固件升级失败的原因是什么？",
+            contexts=[object()],
+        )
+        self.assertEqual("supported_with_warning", result.knowledge_status)
+        self.assertTrue(result.warning_required)
+        self.assertTrue(result.answer_allowed)
+
+    def test_boundary_warns_for_siemens_component_without_fault_identity(self):
+        result = self.layer.assess_boundary(
+            question="Siemens 控制单元温度过高，应该检查什么？",
+            contexts=[object()],
+        )
+        self.assertEqual("supported_with_warning", result.knowledge_status)
+        self.assertTrue(result.warning_required)
+        self.assertTrue(result.answer_allowed)
+
     def test_boundary_does_not_treat_data_as_aircraft_ata_signal(self):
         result = self.layer.assess_boundary(
             question='CU-EEPROM incorrect read-write data',

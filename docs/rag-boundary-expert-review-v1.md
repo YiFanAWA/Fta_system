@@ -2,14 +2,17 @@
 
 ## 当前状态
 
-`siemens_s210_rag_boundary_eval_v1.json` 是工程预标注数据，不是专家 Gold。当前阶段的交付物是给刘武逐条填写的审核清单。只有所有 24 条记录完成审核并通过校验后，才可以把状态改为 `expert_validated`。
+`siemens_s210_rag_boundary_eval_v1.json` 是工程预标注数据。刘武已完成 24 条审核，规范化后的正式 Gold 为 `evaluation/quality_eval/datasets/siemens_s210_rag_boundary_expert_gold_v1.json`。该文件已经通过结构与逻辑校验；确定性 Boundary Policy 回归已完成，但真实 API Regression 仍需运行，不能用确定性策略结果代替完整 API 指标。
 
 ## 审核文件
 
 - 审核清单：`evaluation/quality_eval/runs/siemens_s210_rag_boundary_expert_review_checklist_v1_2026-09-22.md`
 - JSON 填写模板：`evaluation/quality_eval/datasets/siemens_s210_rag_boundary_expert_gold_v1.template.json`
+- 专家 Gold：`evaluation/quality_eval/datasets/siemens_s210_rag_boundary_expert_gold_v1.json`
+- 规范化脚本：`evaluation/quality_eval/public_sources/normalize_rag_boundary_expert_gold.py`
 - 生成脚本：`evaluation/quality_eval/public_sources/build_rag_boundary_expert_review_bundle.py`
 - 校验/指标脚本：`evaluation/quality_eval/public_sources/validate_rag_boundary_expert_gold.py`
+- Boundary 回归脚本：`evaluation/quality_eval/public_sources/evaluate_rag_boundary_expert_gold.py`
 
 ## 专家需要判断的内容
 
@@ -43,4 +46,4 @@
 2. 所有枚举、布尔值和逻辑关系通过校验；
 3. 专家信息和审核日期完整；
 4. API 回归继续使用原有 30 条 RAG Semantic Gold 加 24 条 Boundary Gold；
-5. 未通过前不得宣称 Boundary Gold 完成，也不得进入 FTA 因果层冻结。
+5. 当前确定性 Boundary Policy 回归已通过；真实 API Regression 未通过前，不得冻结最终 RAG 边界合同，也不得进入 FTA 因果层冻结。

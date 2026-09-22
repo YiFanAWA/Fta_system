@@ -14,7 +14,7 @@ router: rule_router_v1
 fault_relation_expansion: current_v1
 response_policy: boundary_policy_v1
 boundary_dataset: siemens_s210_rag_boundary_eval_v1
-boundary_gold_status: pending_expert_review
+boundary_gold_status: expert_validated
 reviewer: 刘武
 training_eligible: false
 ```
@@ -27,8 +27,10 @@ training_eligible: false
 - 24 条 Boundary 工程草案：`evaluation/quality_eval/datasets/siemens_s210_rag_boundary_eval_v1.json`；
 - 工程规则检查脚本：`evaluation/quality_eval/public_sources/evaluate_rag_boundary_policy.py`；
 - 当前工程检查结果：24/24 与预期一致，但这不是专家语义验收成绩；
-- 刘武审核清单：`evaluation/quality_eval/runs/siemens_s210_rag_boundary_expert_review_checklist_v1_2026-09-22.md`。
+- 刘武审核清单：`evaluation/quality_eval/runs/siemens_s210_rag_boundary_expert_review_checklist_v1_2026-09-22.md`；
+- 正式 Boundary Gold：`evaluation/quality_eval/datasets/siemens_s210_rag_boundary_expert_gold_v1.json`；
+- Boundary 策略回归：`evaluation/quality_eval/runs/siemens_s210_rag_boundary_expert_gold_policy_report_v1_2026-09-22.json`。
 
 ## 进入下一阶段的门禁
 
-只有刘武完成 24 条审核、填入 JSON、且 `validate_rag_boundary_expert_gold.py` 返回 `expert_gold_validated` 后，才可以报告 Unsafe Answer Rate、False Reject Rate、Warning Precision/Recall 和 Out-of-domain Precision。之后再执行 30 条 RAG Semantic Gold + 24 条 Boundary Gold 的 API Regression，最后冻结 RAG 层并进入 Fault Relation Gold。
+刘武已完成 24 条审核，规范化文件通过 `validate_rag_boundary_expert_gold.py`；确定性 Boundary Policy 回归也已完成，Unsafe Answer Rate、False Reject Rate、Warning Precision/Recall 和 Out-of-domain Precision 均为 1.0。下一步仍需完成真实 API 回归（30 条 RAG Semantic Gold + 24 条 Boundary Gold），通过后再冻结 RAG 层并进入 Fault Relation Gold。
