@@ -48,6 +48,10 @@
 | v4 合并器 | `evaluation/quality_eval/public_sources/merge_siemens_s210_causal_relation_gold_v4.py` | 校验第四批结构化审核结果并合并到 Gold v4 |
 | v4 合并器测试 | `evaluation/quality_eval/public_sources/test_merge_siemens_s210_causal_relation_gold_v4.py` | 校验 revise 记录不会进入正式 Gold |
 | 合并 Gold v4 校验报告 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_gold_v4_validation_2026-09-22.json` | 117 条合并关系的结构校验结果 |
+| A01730 修订包 | `evaluation/quality_eval/datasets/siemens_s210_causal_relation_revision_v4_a01730.json` | 保存原候选、完整原文、证据和专家待填写字段；未进入 Gold |
+| A01730 修订清单 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_revision_v4_a01730_2026-09-22.md` | 供刘武专家确认规范化候选原因 |
+| 修订包生成器 | `evaluation/quality_eval/public_sources/prepare_siemens_s210_causal_relation_revision_v4.py` | 从第四批候选中隔离指定 revise 候选 |
+| 修订包测试 | `evaluation/quality_eval/public_sources/test_prepare_siemens_s210_causal_relation_revision_v4.py` | 校验原文证据、待审核状态和 Gold 门禁 |
 | 第三批候选校验报告 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_candidates_v3_remaining_unreviewed_validation_2026-09-22.json` | 50 条候选来源的结构校验结果 |
 | 第四批候选校验报告 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_candidates_v4_remaining_unreviewed_validation_2026-09-22.json` | 50 条候选来源的结构校验结果 |
 | AND/OR 候选包 | `evaluation/quality_eval/datasets/siemens_s210_and_or_logic_candidates_v1.json` | 6 个多原因故障事件，逻辑门字段全部待审核 |
@@ -98,7 +102,7 @@ Word 文档前置汇总写成 `causal=26`、`associated_only=3`、`cannot_determ
 
 - `expert_validated=true`，且 `expert_validation_scope=reviewed_candidates_only`；
 - `source_candidate_count=1041`、`reviewed_candidate_count=196`、`unreviewed_candidate_count=845`；
-- 第四批 1 条 `revise` 候选暂不进入 Gold，需专家后续修订确认；
+- 第四批 1 条 `revise` 候选（A01730）已生成独立修订包，暂不进入 Gold，需专家后续确认；
 - `causal_relations_complete=false`；
 - `logic_gates_complete=false`（F01611 为 `unknown`）；
 - `fta_ready=false`。
