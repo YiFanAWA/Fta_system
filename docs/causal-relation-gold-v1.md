@@ -2,9 +2,11 @@
 
 ## 当前结论
 
-当前生成的是 **Causal Relation Candidate Bundle v1**，不是因果关系 Gold，也不是可直接用于 FTA 建树的关系集合。
+第一批 30 条候选已经完成刘武专家审核，并转换为 `Causal Relation Gold v1`。逐条审核表确认 25 条因果关系、4 条仅关联候选、1 条无法判断。正式 Gold 只收录 25 条 `causes` 且 `source_to_target` 的关系，其他 5 条保存在排除清单中。
 
-来源数据包含 281 条 S210 故障记录、1041 条候选原因和字符级证据。现阶段只抽取 30 条分层抽样候选，作为第一批专家审核材料：每条候选都保留故障描述、候选原因、原文全文、证据引用和字符位置，但所有因果结论都保持 `pending`。
+这仍然是 **30 条试点范围的因果 Gold**，不是 281 条数据的全量因果闭环，也不是可直接自动建树的最终数据。
+
+来源数据包含 281 条 S210 故障记录、1041 条候选原因和字符级证据。本批从中抽取 30 条分层抽样候选，作为第一批专家审核材料；每条候选都保留故障描述、候选原因、原文全文、证据引用和字符位置。
 
 `causes` 字段只能说明抽取管线把这段内容归入了“候选原因”，不能自动证明：
 
@@ -19,9 +21,13 @@
 |---|---|---|
 | 候选数据 | `evaluation/quality_eval/datasets/siemens_s210_causal_relation_candidates_v1.json` | 30 条待专家确认的因果候选，未接入运行层 |
 | 专家清单 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_expert_review_checklist_v1_2026-09-22.md` | 给专家逐条填写因果状态、方向、关系类型、FTA 资格和意见 |
+| 正式 Gold | `evaluation/quality_eval/datasets/siemens_s210_causal_relation_gold_v1.json` | 25 条专家确认的因果关系，另含 5 条排除候选 |
 | 生成器 | `evaluation/quality_eval/public_sources/build_siemens_s210_causal_relation_review_bundle.py` | 从冻结的 S210 Gold 可重复生成候选包与清单 |
+| Word 转换器 | `evaluation/quality_eval/public_sources/convert_siemens_s210_causal_relation_expert_review.py` | 将专家填写的 Word 表转换为正式 Gold |
 | 候选校验器 | `evaluation/quality_eval/public_sources/validate_siemens_s210_causal_relation_candidates.py` | 校验候选字段、证据偏移和“未提前批准”门禁 |
+| Gold 校验器 | `evaluation/quality_eval/public_sources/validate_siemens_s210_causal_relation_gold.py` | 校验专家 Gold 的方向、证据和 FTA 未就绪门禁 |
 | 校验报告 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_candidates_v1_validation_2026-09-22.json` | 当前候选包的结构校验结果 |
+| Gold 校验报告 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_gold_v1_validation_2026-09-22.json` | 25 条正式关系的校验结果 |
 
 ## 专家需要确认什么
 
@@ -49,11 +55,17 @@ python evaluation/quality_eval/public_sources/validate_siemens_s210_causal_relat
   --output evaluation/quality_eval/runs/siemens_s210_causal_relation_candidates_v1_validation_2026-09-22.json
 ```
 
-当前校验报告必须保持：
+## 审核统计矛盾
+
+Word 文档前置汇总写成 `causal=26`、`associated_only=3`、`cannot_determine=1`，但逐条审核表实际为 `causal=25`、`associated_only=4`、`cannot_determine=1`。转换器以逐条表格为权威，并在 Gold 的 `dataset_info.summary_discrepancy` 中保留了这项审计差异；没有把第 26 条虚增进入关系 Gold。
+
+## 当前门禁
+
+当前校验报告保持：
 
 - `expert_validated=false`；
 - `causal_relations_complete=false`；
 - `logic_gates_complete=false`；
 - `fta_ready=false`。
 
-只有专家填写后，才能生成独立的 `Causal Relation Gold`，并再次校验证据、方向和审核状态。即使因果 Gold 通过，也仍需单独建立 AND/OR Gold，才能进入自动建树验收。
+同时，因果 Gold 目前只覆盖 30 条试点候选，不能代表 281 条记录的全量因果召回。即使本批因果 Gold 通过，也仍需单独建立 AND/OR Gold，才能进入自动建树验收。

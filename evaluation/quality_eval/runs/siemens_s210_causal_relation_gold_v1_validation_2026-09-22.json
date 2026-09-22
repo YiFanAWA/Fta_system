@@ -1,0 +1,11 @@
+{
+  "status": "causal_relation_gold_validated",
+  "expert_validated": true,
+  "relation_count": 25,
+  "excluded_candidate_count": 5,
+  "causal_relations_complete": false,
+  "logic_gates_complete": false,
+  "fta_ready": false,
+  "summary_discrepancy_present": true,
+  "errors": []
+}

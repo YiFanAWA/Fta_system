@@ -1,0 +1,1001 @@
+{
+  "dataset_info": {
+    "name": "siemens_s210_causal_relation_gold",
+    "version": "v1",
+    "status": "expert_validated",
+    "gold_source": "named_expert_review",
+    "reviewer": "刘武",
+    "reviewed_at": "2026-09-22",
+    "relation_scope": "causal_only",
+    "candidate_scope": "pilot_batch_30",
+    "source_candidate_bundle": "siemens_s210_causal_relation_candidates_v1.json",
+    "source_review_document": "Siemens_S210_Fault_Relation_Gold_Expert_Review_LiuWu_FULL_v1.docx",
+    "source_record_count": 281,
+    "candidate_review_count": 30,
+    "approved_causal_relation_count": 25,
+    "excluded_candidate_count": 5,
+    "causal_relations_complete": false,
+    "logic_gates_complete": false,
+    "fta_ready": false,
+    "runtime_registry_updated": false,
+    "training_eligible": false,
+    "summary_discrepancy": {
+      "claimed_in_document": {
+        "causal": 26,
+        "associated_only": 3,
+        "cannot_determine": 1
+      },
+      "reconciled_from_review_table": {
+        "causal": 25,
+        "associated_only": 4,
+        "cannot_determine": 1,
+        "fta_eligible_true": 25
+      },
+      "resolution": "Use the per-candidate review table as authoritative; keep the discrepancy for audit."
+    }
+  },
+  "relations": [
+    {
+      "relation_id": "S210-CAUSAL-001",
+      "candidate_id": "CR-CAND-001",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01006:0",
+        "node_type": "cause_candidate",
+        "text": "No suitable firmware or firmware version in the component for operation with the Control Unit"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01006",
+        "node_type": "fault_entity",
+        "fault_code": "A01006",
+        "description": "Firmware update for DRIVE-CLiQ component required"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "固件版本不匹配直接导致更新需求，原文明确表达因果。",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_A01006:cause:7",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "no suitable firmware or firmware version in the\ncomponent for operation with the Control Unit",
+          "start": 164,
+          "end": 257
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "固件版本不匹配直接导致更新需求，原文明确表达因果。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-002",
+      "candidate_id": "CR-CAND-002",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01069:0",
+        "node_type": "cause_candidate",
+        "text": "The parameter backup on the memory card and the drive unit do not match."
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01069",
+        "node_type": "fault_entity",
+        "fault_code": "A01069",
+        "description": "Parameter backup and device incompatible"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "存储卡参数备份与设备不匹配导致该故障。",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_A01069:cause:2",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The parameter backup on the memory card and the drive unit do not match.",
+          "start": 88,
+          "end": 160
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "存储卡参数备份与设备不匹配导致该故障。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-003",
+      "candidate_id": "CR-CAND-003",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01631:0",
+        "node_type": "cause_candidate",
+        "text": "A configuration of motor holding brake and SBC was detected that is not practical."
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01631",
+        "node_type": "fault_entity",
+        "fault_code": "A01631",
+        "description": "motor holding brake/SBC configuration not practical"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "参数配置组合导致该消息。",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_A01631:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "A configuration of motor holding brake and SBC was detected that is not practical.",
+          "start": 106,
+          "end": 188
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "参数配置组合导致该消息。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-004",
+      "candidate_id": "CR-CAND-004",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01699:0",
+        "node_type": "cause_candidate",
+        "text": "The time set in p9659 for the forced checking procedure (test stop) for the 'STO' function has been exceeded."
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01699",
+        "node_type": "fault_entity",
+        "fault_code": "A01699",
+        "description": "Test stop for STO required"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "强制检查时间超过设定值导致消息。",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_A01699:cause:5",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The time set in p9659 for the forced checking procedure (test stop) for the \"STO\" function has been exceeded",
+          "start": 81,
+          "end": 189
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "强制检查时间超过设定值导致消息。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-005",
+      "candidate_id": "CR-CAND-005",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01780:0",
+        "node_type": "cause_candidate",
+        "text": "When selecting the brake test or starting the brake test, the brake was not open"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01780",
+        "node_type": "fault_entity",
+        "fault_code": "A01780",
+        "description": "SBT When selected, the brake is closed"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "制动测试时制动器未打开导致故障。",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_A01780:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "When selecting the brake test or starting the brake test, the brake was not open",
+          "start": 86,
+          "end": 166
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "制动测试时制动器未打开导致故障。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-007",
+      "candidate_id": "CR-CAND-007",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01981:0",
+        "node_type": "cause_candidate",
+        "text": "A controller attempts to establish a connection to the drive, and as a consequence exceeds the permitted number of PROFINET connections"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01981",
+        "node_type": "fault_entity",
+        "fault_code": "A01981",
+        "description": "Maximum number of controllers exceeded"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "控制器连接数量超过限制导致报警。",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_A01981:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "A controller attempts to establish a connection to the drive, and as a consequence exceeds the permitted number of\nPROFINET connections",
+          "start": 90,
+          "end": 225
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "控制器连接数量超过限制导致报警。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-008",
+      "candidate_id": "CR-CAND-008",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A07094:0",
+        "node_type": "cause_candidate",
+        "text": "violation of a parameter limit"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A07094",
+        "node_type": "fault_entity",
+        "fault_code": "A07094",
+        "description": "General parameter limit violation"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "参数限制违反导致参数修正。",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_A07094:cause:2",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "violation of a parameter limit",
+          "start": 100,
+          "end": 130
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "参数限制违反导致参数修正。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-009",
+      "candidate_id": "CR-CAND-009",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A13021:0",
+        "node_type": "cause_candidate",
+        "text": "Configuring the converter results in an output frequency greater than 550 Hz"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A13021",
+        "node_type": "fault_entity",
+        "fault_code": "A13021",
+        "description": "Licensing for output frequencies > 550 Hz missing"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "配置输出频率超过授权范围导致许可证需求。",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_A13021:cause:2",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "Configuring the converter results in an output frequency greater than 550 Hz",
+          "start": 97,
+          "end": 173
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "配置输出频率超过授权范围导致许可证需求。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-010",
+      "candidate_id": "CR-CAND-010",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A30044:0",
+        "node_type": "cause_candidate",
+        "text": "For the power unit power supply, the upper threshold has been violated."
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A30044",
+        "node_type": "fault_entity",
+        "fault_code": "A30044",
+        "description": "Overvolt 24/48 V alarm"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "24/48V供电超过阈值导致报警。",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_A30044:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "For the power unit power supply, the upper threshold has been violated.",
+          "start": 82,
+          "end": 153
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "24/48V供电超过阈值导致报警。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-011",
+      "candidate_id": "CR-CAND-011",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A30714:0",
+        "node_type": "cause_candidate",
+        "text": "The drive had moved faster than that specified by the velocity limit value."
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A30714",
+        "node_type": "fault_entity",
+        "fault_code": "A30714",
+        "description": "Safely-Limited Speed exceeded"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "运动速度超过SLS限制导致故障。",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_A30714:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The drive had moved faster than that specified by the velocity limit value.",
+          "start": 91,
+          "end": 166
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "运动速度超过SLS限制导致故障。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-013",
+      "candidate_id": "CR-CAND-013",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_F01030:0",
+        "node_type": "cause_candidate",
+        "text": "For active PC master control, no sign-of-life was received within the monitoring time."
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:F01030",
+        "node_type": "fault_entity",
+        "fault_code": "F01030",
+        "description": "Sign-of-life failure for master control"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "主控心跳未收到导致故障。",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_F01030:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "For active PC master control, no sign-of-life was received within the monitoring time.",
+          "start": 94,
+          "end": 180
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "主控心跳未收到导致故障。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-014",
+      "candidate_id": "CR-CAND-014",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_F01044:0",
+        "node_type": "cause_candidate",
+        "text": "An error was detected when loading the descriptive data saved in the non-volatile memory."
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:F01044",
+        "node_type": "fault_entity",
+        "fault_code": "F01044",
+        "description": "Descriptive data error"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "非易失存储描述数据加载错误导致故障。",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_F01044:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "An error was detected when loading the descriptive data saved in the non-volatile memory.",
+          "start": 78,
+          "end": 167
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "非易失存储描述数据加载错误导致故障。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-015",
+      "candidate_id": "CR-CAND-015",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_F01611:0",
+        "node_type": "cause_candidate",
+        "text": "Stop request from another monitoring channel"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:F01611",
+        "node_type": "fault_entity",
+        "fault_code": "F01611",
+        "description": "Defect in a monitoring channel"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "监控通道故障导致F01611相关状态。",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_F01611:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "Stop request from another monitoring channel",
+          "start": 405,
+          "end": 449
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "监控通道故障导致F01611相关状态。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-016",
+      "candidate_id": "CR-CAND-016",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_F01656:0",
+        "node_type": "cause_candidate",
+        "text": "When accessing the Safety Integrated parameters for monitoring channel 2 in the non-volatile memory, an error has occurred."
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:F01656",
+        "node_type": "fault_entity",
+        "fault_code": "F01656",
+        "description": "Parameters monitoring channel 2 error"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "安全参数访问错误导致故障。",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_F01656:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "When accessing the Safety Integrated parameters for monitoring channel 2 in the non-volatile memory, an error has\noccurred.",
+          "start": 99,
+          "end": 222
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "安全参数访问错误导致故障。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-017",
+      "candidate_id": "CR-CAND-017",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_F01674:0",
+        "node_type": "cause_candidate",
+        "text": "The monitoring function enabled in p9501 and p9601 is not supported by the currently set PROFIsafe telegram (p9611)."
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:F01674",
+        "node_type": "fault_entity",
+        "fault_code": "F01674",
+        "description": "Safety function not supported by PROFIsafe telegram"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "PROFIsafe报文不支持启用功能导致故障。",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_F01674:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The monitoring function enabled in p9501 and p9601 is not supported by the currently set PROFIsafe telegram (p9611).",
+          "start": 117,
+          "end": 233
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "PROFIsafe报文不支持启用功能导致故障。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-018",
+      "candidate_id": "CR-CAND-018",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_F01694:0",
+        "node_type": "cause_candidate",
+        "text": "The firmware version of monitoring channel 2 is older than monitoring channel 1."
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:F01694",
+        "node_type": "fault_entity",
+        "fault_code": "F01694",
+        "description": "Firmware version monitoring channel 2 older than monitoring channel 1"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "监控通道固件版本差异导致消息。",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_F01694:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The firmware version of monitoring channel 2 is older than monitoring channel 1.",
+          "start": 138,
+          "end": 218
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "监控通道固件版本差异导致消息。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-019",
+      "candidate_id": "CR-CAND-019",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_F06310:0",
+        "node_type": "cause_candidate",
+        "text": "The measured DC voltage lies outside the tolerance range after precharging has been completed (1.16 * p0210 < r0070 < 1.6 * p0210)."
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:F06310",
+        "node_type": "fault_entity",
+        "fault_code": "F06310",
+        "description": "Supply voltage (p0210) incorrectly parameterized"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "测量电压超出参数范围导致故障。",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_F06310:cause:4",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "the measured DC voltage lies outside the tolerance range after precharging has been completed.\nThe following applies for the tolerance range: 1.16 * p0210 < r0070 < 1.6 * p0210",
+          "start": 179,
+          "end": 355
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "测量电压超出参数范围导致故障。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-020",
+      "candidate_id": "CR-CAND-020",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_F07433:0",
+        "node_type": "cause_candidate",
+        "text": "The changeover to closed-loop control with encoder is not possible as the encoder has not been unparked."
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:F07433",
+        "node_type": "fault_entity",
+        "fault_code": "F07433",
+        "description": "Closed-loop control with encoder is not possible as the encoder has not been unparked"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "编码器未解除停驻导致无法切换闭环。",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_F07433:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The changeover to closed-loop control with encoder is not possible as the encoder has not been unparked.",
+          "start": 147,
+          "end": 251
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "编码器未解除停驻导致无法切换闭环。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-021",
+      "candidate_id": "CR-CAND-021",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_F07955:0",
+        "node_type": "cause_candidate",
+        "text": "The code number of the actual motor with DRIVE-CLiQ does not match the saved number."
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:F07955",
+        "node_type": "fault_entity",
+        "fault_code": "F07955",
+        "description": "Motor has been changed"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "电机识别码不匹配导致故障。",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_F07955:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The code number of the actual motor with DRIVE-CLiQ does not match the saved number.",
+          "start": 84,
+          "end": 168
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "电机识别码不匹配导致故障。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-022",
+      "candidate_id": "CR-CAND-022",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_F30003:0",
+        "node_type": "cause_candidate",
+        "text": "line supply failure"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:F30003",
+        "node_type": "fault_entity",
+        "fault_code": "F30003",
+        "description": "DC link undervoltage"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "供电异常属于DC Link欠压原因。",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_F30003:cause:8",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "line supply failure",
+          "start": 154,
+          "end": 173
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "供电异常属于DC Link欠压原因。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-023",
+      "candidate_id": "CR-CAND-023",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_F30027:0",
+        "node_type": "cause_candidate",
+        "text": "The power unit DC link was not able to be precharged within the expected time."
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:F30027",
+        "node_type": "fault_entity",
+        "fault_code": "F30027",
+        "description": "Precharging DC link time monitoring"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "预充电失败及其条件明确作为原因。",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_F30027:cause:17",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The power unit DC link was not able to be precharged within the expected time.",
+          "start": 155,
+          "end": 233
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "预充电失败及其条件明确作为原因。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-024",
+      "candidate_id": "CR-CAND-024",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_F30078:0",
+        "node_type": "cause_candidate",
+        "text": "The temperature monitoring of the internal braking resistor or the line reactor has responded."
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:F30078",
+        "node_type": "fault_entity",
+        "fault_code": "F30078",
+        "description": "defective fan or line reactor has overheated"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "温度监测触发明确关联过热原因。",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_F30078:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The temperature monitoring of the internal braking resistor or the line reactor has responded.",
+          "start": 111,
+          "end": 205
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "温度监测触发明确关联过热原因。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-025",
+      "candidate_id": "CR-CAND-025",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_F30657:0",
+        "node_type": "cause_candidate",
+        "text": "The PROFIsafe telegram number that has been set is not valid."
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:F30657",
+        "node_type": "fault_entity",
+        "fault_code": "F30657",
+        "description": "PROFIsafe telegram number invalid"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "PROFIsafe报文编号无效导致故障。",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_F30657:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "The PROFIsafe telegram number that has been set is not valid.",
+          "start": 92,
+          "end": 153
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "PROFIsafe报文编号无效导致故障。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-027",
+      "candidate_id": "CR-CAND-027",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_F31138:0",
+        "node_type": "cause_candidate",
+        "text": "A position determination fault has occurred in the DRIVE-CLiQ encoder."
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:F31138",
+        "node_type": "fault_entity",
+        "fault_code": "F31138",
+        "description": "Fault when determining the position (multiturn)"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "编码器位置确定错误导致故障。",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_F31138:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "A position determination fault has occurred in the DRIVE-CLiQ encoder.",
+          "start": 171,
+          "end": 241
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "编码器位置确定错误导致故障。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-028",
+      "candidate_id": "CR-CAND-028",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_F31836:0",
+        "node_type": "cause_candidate",
+        "text": "A DRIVE-CLiQ communication error has occurred from the Control Unit to the encoder involved. Data were not able to be sent."
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:F31836",
+        "node_type": "fault_entity",
+        "fault_code": "F31836",
+        "description": "Send error for DRIVE-CLiQ data"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "DRIVE-CLiQ通信错误导致发送失败。",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_F31836:cause:4",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "A DRIVE-CLiQ communication error has occurred from the Control Unit to the encoder involved. Data were not able to be\nsent.",
+          "start": 110,
+          "end": 233
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "DRIVE-CLiQ通信错误导致发送失败。",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22"
+      }
+    }
+  ],
+  "excluded_candidates": [
+    {
+      "candidate_id": "CR-CAND-006",
+      "fault_code": "A01799",
+      "causal_status": "associated_only",
+      "direction": "undirected",
+      "relation_type": "associated_with",
+      "fta_eligible": false,
+      "decision": "revise",
+      "expert_comment": "测试模式是当前状态，不作为独立原因节点。",
+      "reviewer": "刘武",
+      "reviewed_at": "2026-09-22"
+    },
+    {
+      "candidate_id": "CR-CAND-012",
+      "fault_code": "F01000",
+      "causal_status": "associated_only",
+      "direction": "undirected",
+      "relation_type": "associated_with",
+      "fta_eligible": false,
+      "decision": "revise",
+      "expert_comment": "内部软件错误是故障描述本身，无法作为外部原因。",
+      "reviewer": "刘武",
+      "reviewed_at": "2026-09-22"
+    },
+    {
+      "candidate_id": "CR-CAND-026",
+      "fault_code": "F30701",
+      "causal_status": "associated_only",
+      "direction": "undirected",
+      "relation_type": "associated_with",
+      "fta_eligible": false,
+      "decision": "revise",
+      "expert_comment": "SS1是安全响应状态，可能由其他消息触发，不能直接作为原因。",
+      "reviewer": "刘武",
+      "reviewed_at": "2026-09-22"
+    },
+    {
+      "candidate_id": "CR-CAND-029",
+      "fault_code": "F31887",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "硬件故障不能排除属于可能性描述，证据不足以建立确定因果。",
+      "reviewer": "刘武",
+      "reviewed_at": "2026-09-22"
+    },
+    {
+      "candidate_id": "CR-CAND-030",
+      "fault_code": "N30800",
+      "causal_status": "associated_only",
+      "direction": "undirected",
+      "relation_type": "associated_with",
+      "fta_eligible": false,
+      "decision": "revise",
+      "expert_comment": "Group signal只是汇总信号，不是根因节点。",
+      "reviewer": "刘武",
+      "reviewed_at": "2026-09-22"
+    }
+  ]
+}
