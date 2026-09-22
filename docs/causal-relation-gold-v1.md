@@ -19,8 +19,10 @@
 
 | 层 | 文件 | 职责 |
 |---|---|---|
-| 候选数据 | `evaluation/quality_eval/datasets/siemens_s210_causal_relation_candidates_v1.json` | 30 条待专家确认的因果候选，未接入运行层 |
+| 候选数据 | `evaluation/quality_eval/datasets/siemens_s210_causal_relation_candidates_v1.json` | 第一批 30 条候选来源，已完成专家审核 |
+| 第二批候选 | `evaluation/quality_eval/datasets/siemens_s210_causal_relation_candidates_v2_remaining_same_faults.json` | 15 个目标故障的 66 条剩余原因，待专家审核，用于后续 AND/OR 判断 |
 | 专家清单 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_expert_review_checklist_v1_2026-09-22.md` | 给专家逐条填写因果状态、方向、关系类型、FTA 资格和意见 |
+| 第二批清单 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_expert_review_checklist_v2_remaining_same_faults_2026-09-22.md` | 补齐同一故障的其他原因，避免只审核每个故障的第一条原因 |
 | 正式 Gold | `evaluation/quality_eval/datasets/siemens_s210_causal_relation_gold_v1.json` | 25 条专家确认的因果关系，另含 5 条排除候选 |
 | 生成器 | `evaluation/quality_eval/public_sources/build_siemens_s210_causal_relation_review_bundle.py` | 从冻结的 S210 Gold 可重复生成候选包与清单 |
 | Word 转换器 | `evaluation/quality_eval/public_sources/convert_siemens_s210_causal_relation_expert_review.py` | 将专家填写的 Word 表转换为正式 Gold |
@@ -68,4 +70,4 @@ Word 文档前置汇总写成 `causal=26`、`associated_only=3`、`cannot_determ
 - `logic_gates_complete=false`；
 - `fta_ready=false`。
 
-同时，因果 Gold 目前只覆盖 30 条试点候选，不能代表 281 条记录的全量因果召回。即使本批因果 Gold 通过，也仍需单独建立 AND/OR Gold，才能进入自动建树验收。
+同时，因果 Gold 目前只覆盖 30 条试点候选，不能代表 281 条记录的全量因果召回。当前 25 条已确认关系没有重复目标故障，因此还不能判断 AND/OR；第二批 66 条审核完成后，再建立 AND/OR Gold。
