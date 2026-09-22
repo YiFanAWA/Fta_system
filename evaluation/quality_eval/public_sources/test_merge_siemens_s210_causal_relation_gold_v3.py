@@ -55,7 +55,12 @@ class MergeCausalRelationGoldV3Tests(unittest.TestCase):
         )
 
         self.assertEqual(gold["dataset_info"]["version"], "v3")
+        self.assertTrue(gold["dataset_info"]["expert_validated"])
         self.assertEqual(gold["dataset_info"]["candidate_review_count"], 146)
+        self.assertEqual(gold["dataset_info"]["expert_validation_scope"], "reviewed_candidates_only")
+        self.assertEqual(gold["dataset_info"]["source_candidate_count"], 1041)
+        self.assertEqual(gold["dataset_info"]["reviewed_candidate_count"], 146)
+        self.assertEqual(gold["dataset_info"]["unreviewed_candidate_count"], 895)
         self.assertEqual(gold["dataset_info"]["approved_causal_relation_count"], 72)
         self.assertEqual(gold["dataset_info"]["excluded_candidate_count"], 74)
         self.assertTrue(gold["dataset_info"]["review_date_missing"])

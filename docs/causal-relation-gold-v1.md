@@ -6,7 +6,7 @@
 
 这仍然是 **三批试点范围的因果 Gold**，不是 281 条数据的全量因果闭环，也不是可直接自动建树的最终数据。当前仍保留 `causal_relations_complete=false`、`logic_gates_complete=false` 和 `fta_ready=false`。
 
-来源数据包含 281 条 S210 故障记录、1041 条候选原因和字符级证据。本批从中抽取 30 条分层抽样候选，作为第一批专家审核材料；每条候选都保留故障描述、候选原因、原文全文、证据引用和字符位置。
+原始来源数据包含 281 条 S210 故障记录、1041 条候选原因和字符级证据。v1 阶段最初从中抽取 30 条分层候选；随后 v2 补充 66 条同故障剩余原因，v3 再补充 50 条此前未审核候选，因此当前累计专家审核范围为 146 条。每条候选都保留故障描述、候选原因、原文全文、证据引用和字符位置。
 
 `causes` 字段只能说明抽取管线把这段内容归入了“候选原因”，不能自动证明：
 
@@ -20,7 +20,7 @@
 | 层 | 文件 | 职责 |
 |---|---|---|
 | 候选数据 | `evaluation/quality_eval/datasets/siemens_s210_causal_relation_candidates_v1.json` | 第一批 30 条候选来源，已完成专家审核 |
-| 第二批候选 | `evaluation/quality_eval/datasets/siemens_s210_causal_relation_candidates_v2_remaining_same_faults.json` | 15 个目标故障的 66 条剩余原因，待专家审核，用于后续 AND/OR 判断 |
+| 第二批候选 | `evaluation/quality_eval/datasets/siemens_s210_causal_relation_candidates_v2_remaining_same_faults.json` | 15 个目标故障的 66 条剩余原因，已完成专家审核，用于补齐同一故障的多原因关系及后续 AND/OR 判断 |
 | 第三批候选 | `evaluation/quality_eval/datasets/siemens_s210_causal_relation_candidates_v3_remaining_unreviewed.json` | 排除 v1/v2 后生成的 50 条候选来源，覆盖 50 个故障 |
 | 专家清单 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_expert_review_checklist_v1_2026-09-22.md` | 给专家逐条填写因果状态、方向、关系类型、FTA 资格和意见 |
 | 第二批清单 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_expert_review_checklist_v2_remaining_same_faults_2026-09-22.md` | 补齐同一故障的其他原因，避免只审核每个故障的第一条原因 |
@@ -88,7 +88,8 @@ Word 文档前置汇总写成 `causal=26`、`associated_only=3`、`cannot_determ
 
 当前校验报告保持：
 
-- `expert_validated=true`（仅针对当前三批 146 条候选范围）；
+- `expert_validated=true`，且 `expert_validation_scope=reviewed_candidates_only`；
+- `source_candidate_count=1041`、`reviewed_candidate_count=146`、`unreviewed_candidate_count=895`；
 - `causal_relations_complete=false`；
 - `logic_gates_complete=false`（F01611 为 `unknown`）；
 - `fta_ready=false`。

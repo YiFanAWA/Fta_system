@@ -199,6 +199,14 @@ def merge_gold(
 
     counts = Counter(row["target_node"]["fault_code"] for row in relations)
     previous_info = dict(previous.get("dataset_info") or {})
+    candidate_info = dict(candidates.get("dataset_info") or {})
+    source_candidate_count = candidate_info.get("source_candidate_count")
+    if source_candidate_count is None:
+        source_candidate_count = candidate_info.get("remaining_unreviewed_candidate_count", 0) + candidate_info.get(
+            "reviewed_candidate_count", 0
+        )
+    if not isinstance(source_candidate_count, int) or source_candidate_count <= 0:
+        raise ValueError("candidate bundle must expose a positive source_candidate_count")
     prior_dates = dict(previous_info.get("review_dates") or {})
     prior_dates["batch_v3"] = reviewed_at
     review_date_missing = any(
@@ -221,6 +229,7 @@ def merge_gold(
             "name": "siemens_s210_causal_relation_gold",
             "version": "v3",
             "status": "expert_validated",
+            "expert_validated": True,
             "gold_source": "named_expert_review",
             "reviewer": reviewer,
             "reviewed_at": reviewed_at,
@@ -234,7 +243,12 @@ def merge_gold(
             "source_candidate_bundles": prior_bundles,
             "source_review_documents": previous_docs,
             "source_record_count": previous_info.get("source_record_count"),
+            "source_candidate_count": source_candidate_count,
             "candidate_review_count": previous_info.get("candidate_review_count", 0) + len(reviews),
+            "expert_validation_scope": "reviewed_candidates_only",
+            "reviewed_candidate_count": previous_info.get("candidate_review_count", 0) + len(reviews),
+            "unreviewed_candidate_count": source_candidate_count
+            - (previous_info.get("candidate_review_count", 0) + len(reviews)),
             "approved_causal_relation_count": len(relations),
             "excluded_candidate_count": len(excluded),
             "target_fault_count": len(counts),
