@@ -43,6 +43,8 @@
 | FTA Preview | `evaluation/quality_eval/datasets/siemens_s210_fta_preview_v1.json` | 5 个 OR 事件，明确标记为 preview_only |
 | FTA Preview 文本报告 | `evaluation/quality_eval/runs/siemens_s210_fta_preview_v1_2026-09-22.md` | 供人工查看的故障树预览 |
 | FTA Preview 校验报告 | `evaluation/quality_eval/runs/siemens_s210_fta_preview_v1_validation_2026-09-22.json` | 证据和生产门禁校验结果 |
+| FTA Graph 合同 | `backend-python/contracts/fta_graph_contract.py` | 后端唯一 owner，校验逻辑门、因果方向、节点唯一性、证据和生产门禁 |
+| FTA Graph 合同测试 | `backend-python/tests/test_fta_graph_contract.py` | 验证 Preview 可通过、生产标记被拒绝、证据缺失被拒绝 |
 
 ## 专家需要确认什么
 
@@ -83,4 +85,4 @@ Word 文档前置汇总写成 `causal=26`、`associated_only=3`、`cannot_determ
 - `logic_gates_complete=false`（F01611 为 `unknown`）；
 - `fta_ready=false`。
 
-同时，因果 Gold 目前只覆盖两批试点候选，不能代表 281 条记录的全量因果召回。当前已经生成 5 个 OR 事件的带证据 FTA Preview，但它只用于查看和验证数据链路，不得写入生产树注册表。F01611 仍不得自动建树；整体 FTA 仍未就绪。
+同时，因果 Gold 目前只覆盖两批试点候选，不能代表 281 条记录的全量因果召回。当前已经生成 5 个 OR 事件的带证据 FTA Preview，并由后端 FTA Graph 合同完成校验；它只用于查看和验证数据链路，不得写入生产树注册表。F01611 仍不得自动建树；整体 FTA 仍未就绪。
