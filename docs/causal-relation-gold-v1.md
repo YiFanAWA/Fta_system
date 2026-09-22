@@ -74,6 +74,9 @@
 | v6 修订确认生成器 | `evaluation/quality_eval/public_sources/build_siemens_s210_causal_relation_revision_confirmation_v6.py` | 从 v5 pending 修订包生成 JSON、Markdown 和 Word 确认单 |
 | v6 修订确认测试 | `evaluation/quality_eval/public_sources/test_build_siemens_s210_causal_relation_revision_confirmation_v6.py` | 校验两条记录保持 pending 且建议证据不覆盖当前错误证据 |
 | AI 模拟预审结果 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_revision_ai_pre_review_v1_2026-09-23.json/.md` | 独立智能体对两条 revise 的准备性意见；不属于专家 Gold，不得直接合并 |
+| AI 临时 v7 数据 | `evaluation/quality_eval/datasets/siemens_s210_causal_relation_gold_v7_ai_provisional.json` | 在 Gold v6 上叠加两条 AI 模拟修订关系的临时视图；不属于正式 Gold |
+| AI 临时 v7 合并器 | `evaluation/quality_eval/public_sources/merge_siemens_s210_causal_relation_ai_provisional_v7.py` | 生成明确标记为 `ai_assisted_provisional` 的临时数据 |
+| AI 临时 v7 合并器测试 | `evaluation/quality_eval/public_sources/test_merge_siemens_s210_causal_relation_ai_provisional_v7.py` | 校验临时关系数量和正式专家门禁不被打开 |
 | 第五批修订包生成器 | `evaluation/quality_eval/public_sources/prepare_siemens_s210_causal_relation_revision_v5.py` | 从第五批专家结果中隔离两条 revise 候选 |
 | 第五批修订包测试 | `evaluation/quality_eval/public_sources/test_prepare_siemens_s210_causal_relation_revision_v5.py` | 校验两条修订候选保持 pending |
 | v6 合并器 | `evaluation/quality_eval/public_sources/merge_siemens_s210_causal_relation_gold_v6.py` | 合并第五批已批准关系，并保留 revise/reject 排除项 |
@@ -128,9 +131,30 @@ Word 文档前置汇总写成 `causal=26`、`associated_only=3`、`cannot_determ
 - `expert_validated=true`，且 `expert_validation_scope=reviewed_candidates_only`；
 - `source_candidate_count=1041`、`reviewed_candidate_count=246`、`unreviewed_candidate_count=795`；
 - A01730 修订已获刘武批准并进入 Gold v5；其最终原因使用原文 Cause 证据，不再使用原报警值短语；
-- 第五批 45 条已批准关系进入 Gold v6，A01691 和 A01782 两条 `revise` 已生成 v6 专家确认包，并另有 AI 模拟预审结果；两条仍保持 pending，3 条 `reject` 保留在排除清单；
+- 第五批 45 条已批准关系进入 Gold v6，A01691 和 A01782 两条 `revise` 已生成 v6 专家确认包，并另有 AI 模拟预审结果；正式 Gold 中两条仍保持 pending，3 条 `reject` 保留在排除清单；另有 165 条关系的 AI 临时 v7 视图，但其中 2 条仅为模拟结果；
 - `causal_relations_complete=false`；
 - `logic_gates_complete=false`（F01611 为 `unknown`）；
 - `fta_ready=false`。
 
 同时，因果 Gold 目前只覆盖五批已审核候选及 A01730 的一次修订复审，不能代表 281 条记录的全量因果召回。累计审核 246 条候选，其中 163 条进入因果 Gold、83 条被排除或暂缓；候选总量中仍有 795 条原因尚未审核。当前已经生成 5 个 OR 事件的带证据 FTA Preview，并由后端 FTA Graph 合同完成校验；它只用于查看和验证数据链路，不得写入生产树注册表。F01611 仍不得自动建树；整体 FTA 仍未就绪。
+
+## 下一阶段目标
+
+当前目标为 **Causal Relation Coverage Expansion v1**：在保持 Gold v6 正式门禁不变的前提下，完成两条 revise 的确认分流，并从剩余 795 条未审核候选中生成下一批可审计审核材料。
+
+### 目标范围
+
+- A01691、A01782：AI 模拟意见只作为预审参考；真实专家确认后才能进入正式 Gold v7。
+- 下一批：从剩余 795 条候选中按既有去重和轮询策略选择 50 条，生成候选包、字符级证据、专家清单和结构校验报告。
+- 每条审核结果继续保留 `causal_status`、`direction`、`relation_type`、`fta_eligible`、`overall_decision`、证据和专家意见。
+
+### 验收条件
+
+- 正式 Gold 只允许真实命名专家 `approve` 的关系进入；AI 模拟关系只能进入临时视图。
+- 新批次与前序候选不重复，证据引用和字符位置通过校验。
+- `reviewed_candidate_count`、`unreviewed_candidate_count`、Gold 数量和排除/暂缓数量能够对账。
+- `causal_relations_complete=false`、`logic_gates_complete=false`、`fta_ready=false` 继续保持，直到全量关系和逻辑门门禁完成。
+
+### 停止条件
+
+在真实专家没有确认 A01691/A01782，或下一批审核材料未通过结构校验前，不生成正式 Gold v7，不更新生产树注册表，不宣布 FTA 就绪。
