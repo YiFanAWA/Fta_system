@@ -2,7 +2,7 @@
 
 ## 定位
 
-v1.1 是在既有 S210 RAG Baseline v1 上增加 Boundary Policy 的冻结记录。它用于后续回归对比，不表示 Boundary Gold 已经完成，也不表示生产就绪。
+v1.1 是在既有 S210 RAG Baseline v1 上增加 Boundary Policy 的冻结记录。它用于后续回归对比；本版本已完成专家 Gold 校验和一次真实 HTTP 回归，但不表示生产就绪。
 
 ## 冻结组件
 
@@ -30,7 +30,10 @@ training_eligible: false
 - 刘武审核清单：`evaluation/quality_eval/runs/siemens_s210_rag_boundary_expert_review_checklist_v1_2026-09-22.md`；
 - 正式 Boundary Gold：`evaluation/quality_eval/datasets/siemens_s210_rag_boundary_expert_gold_v1.json`；
 - Boundary 策略回归：`evaluation/quality_eval/runs/siemens_s210_rag_boundary_expert_gold_policy_report_v1_2026-09-22.json`。
+- 30 条真实 API 语义回归：`evaluation/quality_eval/runs/siemens_s210_rag_baseline_v1_1_semantic_report_2026-09-22.json`；
+- 24 条真实 API Boundary 回归：`evaluation/quality_eval/runs/siemens_s210_rag_baseline_v1_1_boundary_report_2026-09-22.json`；
+- 可复现的 Boundary API 回归入口：`evaluation/quality_eval/public_sources/run_rag_boundary_api_regression.py`。
 
 ## 进入下一阶段的门禁
 
-刘武已完成 24 条审核，规范化文件通过 `validate_rag_boundary_expert_gold.py`；确定性 Boundary Policy 回归也已完成，Unsafe Answer Rate、False Reject Rate、Warning Precision/Recall 和 Out-of-domain Precision 均为 1.0。下一步仍需完成真实 API 回归（30 条 RAG Semantic Gold + 24 条 Boundary Gold），通过后再冻结 RAG 层并进入 Fault Relation Gold。
+刘武已完成 24 条审核，规范化文件通过 `validate_rag_boundary_expert_gold.py`；确定性 Boundary Policy 回归和真实 API 回归均已完成。30 条语义 API 请求全部 HTTP 200，故障码准确率、引用有效性、引用对齐和回答合同通过率均为 1.0。24 条 Boundary API 请求全部 HTTP 200，Unsafe Answer Rate、False Reject Rate、Warning Precision/Recall、Out-of-domain Precision/Recall 均通过：Unsafe/False Reject 为 0，其他指标为 1.0。RAG Baseline v1.1 的本轮回归门禁通过，可以进入 Fault Relation Gold；生产切换和 FTA 因果/逻辑门仍是后续阶段。

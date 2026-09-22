@@ -2,7 +2,7 @@
 
 ## 当前状态
 
-`siemens_s210_rag_boundary_eval_v1.json` 是工程预标注数据。刘武已完成 24 条审核，规范化后的正式 Gold 为 `evaluation/quality_eval/datasets/siemens_s210_rag_boundary_expert_gold_v1.json`。该文件已经通过结构与逻辑校验；确定性 Boundary Policy 回归已完成，但真实 API Regression 仍需运行，不能用确定性策略结果代替完整 API 指标。
+`siemens_s210_rag_boundary_eval_v1.json` 是工程预标注数据。刘武已完成 24 条审核，规范化后的正式 Gold 为 `evaluation/quality_eval/datasets/siemens_s210_rag_boundary_expert_gold_v1.json`。该文件已经通过结构与逻辑校验；确定性 Boundary Policy 回归和真实 API Regression 均已完成，真实 API 结果已单独归档。
 
 ## 审核文件
 
@@ -13,6 +13,7 @@
 - 生成脚本：`evaluation/quality_eval/public_sources/build_rag_boundary_expert_review_bundle.py`
 - 校验/指标脚本：`evaluation/quality_eval/public_sources/validate_rag_boundary_expert_gold.py`
 - Boundary 回归脚本：`evaluation/quality_eval/public_sources/evaluate_rag_boundary_expert_gold.py`
+- Boundary 真实 API 回归脚本：`evaluation/quality_eval/public_sources/run_rag_boundary_api_regression.py`
 
 ## 专家需要判断的内容
 
@@ -46,4 +47,5 @@
 2. 所有枚举、布尔值和逻辑关系通过校验；
 3. 专家信息和审核日期完整；
 4. API 回归继续使用原有 30 条 RAG Semantic Gold 加 24 条 Boundary Gold；
-5. 当前确定性 Boundary Policy 回归已通过；真实 API Regression 未通过前，不得冻结最终 RAG 边界合同，也不得进入 FTA 因果层冻结。
+5. 真实 API 回归结果：30/30 与 24/24 均为 HTTP 200；语义回归的故障码/引用/合同指标均为 1.0，Boundary 的 Unsafe Answer Rate 与 False Reject Rate 为 0，Warning 和 OOD 指标为 1.0；
+6. 本轮 RAG 边界验收门禁已通过；生产切换、Fault Relation Gold、因果关系和 AND/OR 逻辑门仍需独立验收。

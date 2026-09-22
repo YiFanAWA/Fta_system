@@ -11,6 +11,7 @@ import argparse
 import json
 import urllib.error
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Any
 
@@ -50,6 +51,12 @@ def main() -> int:
     parser.add_argument("--report-output", required=True)
     parser.add_argument("--top-k", type=int, default=5)
     parser.add_argument("--timeout", type=float, default=180.0)
+    parser.add_argument(
+        "--workers",
+        type=int,
+        default=1,
+        help="并发 HTTP 请求数；默认 1，评测口径不变，仅缩短真实 API 回归耗时",
+    )
     parser.add_argument("--query-id", action="append")
     parser.add_argument(
         "--dry-run",
@@ -57,6 +64,8 @@ def main() -> int:
         help="只生成待执行查询计划，不访问本地 API 或外部模型",
     )
     args = parser.parse_args()
+    if args.workers < 1:
+        raise SystemExit("--workers must be >= 1")
 
     dataset = load_json(args.dataset)
     selected_ids = set(args.query_id or [])
@@ -100,26 +109,27 @@ def main() -> int:
         print(json.dumps(report, ensure_ascii=False, sort_keys=True))
         return 0
 
-    responses: list[dict[str, Any]] = []
-    for query in queries:
+    def run_one(query: dict[str, Any]) -> dict[str, Any]:
         status, payload = _post_json(
             args.base_url,
             str(query.get("question") or ""),
             args.top_k,
             args.timeout,
         )
-        responses.append(
-            {
-                "query_id": query.get("query_id"),
-                "http_status": status,
-                **(payload if isinstance(payload, dict) else {"payload": payload}),
-            }
-        )
+        return {
+            "query_id": query.get("query_id"),
+            "http_status": status,
+            **(payload if isinstance(payload, dict) else {"payload": payload}),
+        }
+
+    with ThreadPoolExecutor(max_workers=args.workers) as executor:
+        responses = list(executor.map(run_one, queries))
 
     response_payload = {
         "dataset": dataset.get("dataset_info", {}).get("name", ""),
         "base_url": args.base_url,
         "top_k": args.top_k,
+        "workers": args.workers,
         "response_count": len(responses),
         "responses": responses,
     }
