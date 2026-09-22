@@ -1,0 +1,54 @@
+{
+  "dataset_info": {
+    "name": "siemens_s210_causal_relation_revision_ai_pre_review",
+    "version": "v1",
+    "status": "ai_pre_review_only",
+    "reviewer": "Codex simulated Siemens S210 expert",
+    "review_date": "2026-09-23",
+    "source_confirmation_package": "siemens_s210_causal_relation_revision_confirmation_v6_LiuWu.json",
+    "candidate_count": 2,
+    "expert_validated": false,
+    "expert_validation_scope": "none",
+    "eligible_for_gold": false,
+    "causal_relations_complete": false,
+    "logic_gates_complete": false,
+    "fta_ready": false,
+    "note": "This is an AI simulation for preparation only. It is not Liu Wu's formal expert approval."
+  },
+  "records": [
+    {
+      "candidate_id": "CR-CAND-V5-007",
+      "fault_code": "A01691",
+      "simulated_decision": "revise",
+      "suggested_final_cause_text": "No isochronous PROFINET: The PN clock cycle is less than 4x the current controller clock cycle.",
+      "suggested_causal_status": "causal",
+      "suggested_direction": "source_to_target",
+      "suggested_relation_type": "causes",
+      "suggested_fta_eligible": true,
+      "evidence_reference": "SIEMENS_S210_2019_A01691:cause:5",
+      "evidence_text": "No isochronous PROFINET:\nThe PN clock cycle must be at least 4x the current controller clock cycle.",
+      "evidence_start": 447,
+      "evidence_end": 546,
+      "reason": "完整 Cause 和 Remedy 支持把规范要求转换成实际违规条件，但该转换不是原文逐字表述，仍需刘武专家确认。",
+      "human_confirmation_required": true
+    },
+    {
+      "candidate_id": "CR-CAND-V5-021",
+      "fault_code": "A01782",
+      "simulated_decision": "revise",
+      "suggested_final_cause_text": "The brake is not configured in p10202. There is a brake test configuration error.",
+      "suggested_causal_status": "causal",
+      "suggested_direction": "source_to_target",
+      "suggested_relation_type": "causes",
+      "suggested_fta_eligible": true,
+      "evidence_reference": "SIEMENS_S210_2019_A01782:cause:4",
+      "evidence_text": "The brake is not configured in configured p10202.\nThere is a brake test configuration error.",
+      "evidence_start": 461,
+      "evidence_end": 553,
+      "previous_evidence_start": 307,
+      "previous_evidence_end": 378,
+      "reason": "完整原文 Bit 2 直接支持候选语义；原证据 307-378 指向 Bit 0，必须改为 Bit 2 的 461-553。",
+      "human_confirmation_required": true
+    }
+  ]
+}

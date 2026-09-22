@@ -73,6 +73,7 @@
 | v6 修订确认 Word | `evaluation/quality_eval/runs/siemens_s210_causal_relation_revision_confirmation_v6_LiuWu_2026-09-23.docx` | 可下载填写的专家确认单 |
 | v6 修订确认生成器 | `evaluation/quality_eval/public_sources/build_siemens_s210_causal_relation_revision_confirmation_v6.py` | 从 v5 pending 修订包生成 JSON、Markdown 和 Word 确认单 |
 | v6 修订确认测试 | `evaluation/quality_eval/public_sources/test_build_siemens_s210_causal_relation_revision_confirmation_v6.py` | 校验两条记录保持 pending 且建议证据不覆盖当前错误证据 |
+| AI 模拟预审结果 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_revision_ai_pre_review_v1_2026-09-23.json/.md` | 独立智能体对两条 revise 的准备性意见；不属于专家 Gold，不得直接合并 |
 | 第五批修订包生成器 | `evaluation/quality_eval/public_sources/prepare_siemens_s210_causal_relation_revision_v5.py` | 从第五批专家结果中隔离两条 revise 候选 |
 | 第五批修订包测试 | `evaluation/quality_eval/public_sources/test_prepare_siemens_s210_causal_relation_revision_v5.py` | 校验两条修订候选保持 pending |
 | v6 合并器 | `evaluation/quality_eval/public_sources/merge_siemens_s210_causal_relation_gold_v6.py` | 合并第五批已批准关系，并保留 revise/reject 排除项 |
@@ -127,7 +128,7 @@ Word 文档前置汇总写成 `causal=26`、`associated_only=3`、`cannot_determ
 - `expert_validated=true`，且 `expert_validation_scope=reviewed_candidates_only`；
 - `source_candidate_count=1041`、`reviewed_candidate_count=246`、`unreviewed_candidate_count=795`；
 - A01730 修订已获刘武批准并进入 Gold v5；其最终原因使用原文 Cause 证据，不再使用原报警值短语；
-- 第五批 45 条已批准关系进入 Gold v6，A01691 和 A01782 两条 `revise` 已生成 v6 专家确认包，仍保持 pending；3 条 `reject` 保留在排除清单；
+- 第五批 45 条已批准关系进入 Gold v6，A01691 和 A01782 两条 `revise` 已生成 v6 专家确认包，并另有 AI 模拟预审结果；两条仍保持 pending，3 条 `reject` 保留在排除清单；
 - `causal_relations_complete=false`；
 - `logic_gates_complete=false`（F01611 为 `unknown`）；
 - `fta_ready=false`。
