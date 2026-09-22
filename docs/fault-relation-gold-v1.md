@@ -54,7 +54,9 @@ python evaluation/quality_eval/public_sources/validate_siemens_s210_fault_relati
 
 ## 下一阶段
 
-下一阶段建立 `Causal Relation Gold v1`，每条候选至少需要专家确认：
+下一阶段已建立 `Causal Relation Candidate Bundle v1`，详见 `docs/causal-relation-gold-v1.md`。当前只生成待专家确认的候选，不把候选自动写入运行注册表。
+
+每条候选至少需要专家确认：
 
 - source 和 target 是否为可区分的故障实体/原因节点；
 - 是否存在明确因果证据；

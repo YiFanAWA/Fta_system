@@ -1,0 +1,9 @@
+{
+  "status": "candidate_bundle_validated",
+  "expert_validated": false,
+  "candidate_count": 30,
+  "causal_relations_complete": false,
+  "logic_gates_complete": false,
+  "fta_ready": false,
+  "errors": []
+}
