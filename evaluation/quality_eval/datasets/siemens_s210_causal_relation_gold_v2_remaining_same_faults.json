@@ -1,0 +1,1158 @@
+{
+  "dataset_info": {
+    "name": "siemens_s210_causal_relation_gold",
+    "version": "v1",
+    "status": "expert_validated",
+    "gold_source": "named_expert_review",
+    "reviewer": "刘武",
+    "reviewed_at": null,
+    "relation_scope": "causal_only",
+    "candidate_scope": "remaining_same_faults_batch_66",
+    "source_candidate_bundle": "siemens_s210_causal_relation_candidates_v2_remaining_same_faults.json",
+    "source_review_document": "Siemens_S210_Fault_Relation_Gold_V2_LiuWu_Filled_66.docx",
+    "source_record_count": 281,
+    "candidate_review_count": 66,
+    "approved_causal_relation_count": 14,
+    "excluded_candidate_count": 52,
+    "causal_relations_complete": false,
+    "logic_gates_complete": false,
+    "fta_ready": false,
+    "runtime_registry_updated": false,
+    "training_eligible": false,
+    "review_date_missing": true,
+    "ingestion_note": "The source review document does not contain a review date.",
+    "summary_discrepancy": null
+  },
+  "relations": [
+    {
+      "relation_id": "S210-CAUSAL-V2-001",
+      "candidate_id": "CR-CAND-V2-001",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01069:1",
+        "node_type": "cause_candidate",
+        "text": "Devices A and B. are not compatible and a memory card with the parameter backup for device A is inserted in device B."
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01069",
+        "node_type": "fault_entity",
+        "fault_code": "A01069",
+        "description": "Parameter backup and device incompatible"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_A01069:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "Devices A and B. are not compatible and a memory card with the parameter backup for device A is inserted in device B.",
+          "start": 214,
+          "end": 331
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "",
+        "reviewer": "刘武",
+        "reviewed_at": null
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-V2-002",
+      "candidate_id": "CR-CAND-V2-002",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01631:1",
+        "node_type": "cause_candidate",
+        "text": "No motor holding brake available and SBC enabled."
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01631",
+        "node_type": "fault_entity",
+        "fault_code": "A01631",
+        "description": "motor holding brake/SBC configuration not practical"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_A01631:cause:6",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "No motor holding brake available\" (p1215 = 0) and \"SBC\" enabled",
+          "start": 249,
+          "end": 312
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "",
+        "reviewer": "刘武",
+        "reviewed_at": null
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-V2-005",
+      "candidate_id": "CR-CAND-V2-005",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01981:1",
+        "node_type": "cause_candidate",
+        "text": "number of RT connections exceeded"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01981",
+        "node_type": "fault_entity",
+        "fault_code": "A01981",
+        "description": "Maximum number of controllers exceeded"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_A01981:cause:4",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "number of RT connections exceeded",
+          "start": 391,
+          "end": 424
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "",
+        "reviewer": "刘武",
+        "reviewed_at": null
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-V2-006",
+      "candidate_id": "CR-CAND-V2-006",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01981:2",
+        "node_type": "cause_candidate",
+        "text": "number of IRT connections exceeded"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A01981",
+        "node_type": "fault_entity",
+        "fault_code": "A01981",
+        "description": "Maximum number of controllers exceeded"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_A01981:cause:5",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "number of IRT connections exceeded",
+          "start": 437,
+          "end": 471
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "",
+        "reviewer": "刘武",
+        "reviewed_at": null
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-V2-007",
+      "candidate_id": "CR-CAND-V2-007",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A07094:1",
+        "node_type": "cause_candidate",
+        "text": "Minimum limit violated"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A07094",
+        "node_type": "fault_entity",
+        "fault_code": "A07094",
+        "description": "General parameter limit violation"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_A07094:cause:3",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "Minimum limit violated",
+          "start": 181,
+          "end": 203
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "",
+        "reviewer": "刘武",
+        "reviewed_at": null
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-V2-008",
+      "candidate_id": "CR-CAND-V2-008",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A07094:2",
+        "node_type": "cause_candidate",
+        "text": "Maximum limit violated"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A07094",
+        "node_type": "fault_entity",
+        "fault_code": "A07094",
+        "description": "General parameter limit violation"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_A07094:cause:4",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "Maximum limit violated",
+          "start": 247,
+          "end": 269
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "",
+        "reviewer": "刘武",
+        "reviewed_at": null
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-V2-009",
+      "candidate_id": "CR-CAND-V2-009",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A30714:1",
+        "node_type": "cause_candidate",
+        "text": "SLS1 exceeded."
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A30714",
+        "node_type": "fault_entity",
+        "fault_code": "A30714",
+        "description": "Safely-Limited Speed exceeded"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_A30714:cause:4",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "SLS1 exceeded.",
+          "start": 268,
+          "end": 282
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "",
+        "reviewer": "刘武",
+        "reviewed_at": null
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-V2-010",
+      "candidate_id": "CR-CAND-V2-010",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A30714:2",
+        "node_type": "cause_candidate",
+        "text": "SLS2 exceeded."
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A30714",
+        "node_type": "fault_entity",
+        "fault_code": "A30714",
+        "description": "Safely-Limited Speed exceeded"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_A30714:cause:5",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "SLS2 exceeded.",
+          "start": 288,
+          "end": 302
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "",
+        "reviewer": "刘武",
+        "reviewed_at": null
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-V2-011",
+      "candidate_id": "CR-CAND-V2-011",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A30714:3",
+        "node_type": "cause_candidate",
+        "text": "SLS3 exceeded."
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A30714",
+        "node_type": "fault_entity",
+        "fault_code": "A30714",
+        "description": "Safely-Limited Speed exceeded"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_A30714:cause:6",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "SLS3 exceeded.",
+          "start": 308,
+          "end": 322
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "",
+        "reviewer": "刘武",
+        "reviewed_at": null
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-V2-012",
+      "candidate_id": "CR-CAND-V2-012",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A30714:4",
+        "node_type": "cause_candidate",
+        "text": "SLS4 exceeded."
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A30714",
+        "node_type": "fault_entity",
+        "fault_code": "A30714",
+        "description": "Safely-Limited Speed exceeded"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_A30714:cause:7",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "SLS4 exceeded.",
+          "start": 328,
+          "end": 342
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "",
+        "reviewer": "刘武",
+        "reviewed_at": null
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-V2-013",
+      "candidate_id": "CR-CAND-V2-013",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A30714:5",
+        "node_type": "cause_candidate",
+        "text": "Encoder limit frequency exceeded."
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:A30714",
+        "node_type": "fault_entity",
+        "fault_code": "A30714",
+        "description": "Safely-Limited Speed exceeded"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_A30714:cause:8",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "Encoder limit frequency exceeded.",
+          "start": 349,
+          "end": 382
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "",
+        "reviewer": "刘武",
+        "reviewed_at": null
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-V2-014",
+      "candidate_id": "CR-CAND-V2-014",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_F01611:1",
+        "node_type": "cause_candidate",
+        "text": "Watchdog timer has expired"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:F01611",
+        "node_type": "fault_entity",
+        "fault_code": "F01611",
+        "description": "Defect in a monitoring channel"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_F01611:cause:4",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "Watchdog timer has expired",
+          "start": 1083,
+          "end": 1109
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "",
+        "reviewer": "刘武",
+        "reviewed_at": null
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-V2-015",
+      "candidate_id": "CR-CAND-V2-015",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_F01611:2",
+        "node_type": "cause_candidate",
+        "text": "The signal at F-DI for STO/SS1 continually changes with time intervals less than or equal to the discrepancy time (p9650)"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:F01611",
+        "node_type": "fault_entity",
+        "fault_code": "F01611",
+        "description": "Defect in a monitoring channel"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_F01611:cause:5",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "the signal at F-DI for STO/SS1 continually changes with time intervals less than or equal to the discrepancy time (p9650)",
+          "start": 1193,
+          "end": 1314
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "",
+        "reviewer": "刘武",
+        "reviewed_at": null
+      }
+    },
+    {
+      "relation_id": "S210-CAUSAL-V2-016",
+      "candidate_id": "CR-CAND-V2-016",
+      "source_node": {
+        "node_id": "siemens_s210:cause:SIEMENS_S210_2019_F01611:3",
+        "node_type": "cause_candidate",
+        "text": "Via PROFIsafe, STO (also as subsequent response) was continually selected and deselected with time intervals less than or equal to the discrepancy time (p9650)"
+      },
+      "target_node": {
+        "node_id": "siemens_s210:fault:F01611",
+        "node_type": "fault_entity",
+        "fault_code": "F01611",
+        "description": "Defect in a monitoring channel"
+      },
+      "relation_type": "causes",
+      "direction": "source_to_target",
+      "relation_note": "",
+      "evidence": [
+        {
+          "citation_id": "SIEMENS_S210_2019_F01611:cause:6",
+          "source_id": "input_text",
+          "field": "cause",
+          "quote": "via PROFIsafe, STO (also as subsequent response) was continually selected and deselected with time intervals less than\nor equal to the discrepancy time (p9650)",
+          "start": 1318,
+          "end": 1477
+        }
+      ],
+      "expert_review": {
+        "causal_status": "causal",
+        "fta_eligible": true,
+        "overall_decision": "approve",
+        "expert_comment": "",
+        "reviewer": "刘武",
+        "reviewed_at": null
+      }
+    }
+  ],
+  "excluded_candidates": [
+    {
+      "candidate_id": "CR-CAND-V2-003",
+      "fault_code": "A01780",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-004",
+      "fault_code": "A01780",
+      "causal_status": "associated_only",
+      "direction": "unknown",
+      "relation_type": "associated_with",
+      "fta_eligible": false,
+      "decision": "revise",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-017",
+      "fault_code": "F01611",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-018",
+      "fault_code": "F01611",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-019",
+      "fault_code": "F01611",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-020",
+      "fault_code": "F01611",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-021",
+      "fault_code": "F01611",
+      "causal_status": "associated_only",
+      "direction": "unknown",
+      "relation_type": "associated_with",
+      "fta_eligible": false,
+      "decision": "revise",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-022",
+      "fault_code": "F01611",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-023",
+      "fault_code": "F01611",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-024",
+      "fault_code": "F01611",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-025",
+      "fault_code": "F01611",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-026",
+      "fault_code": "F01611",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-027",
+      "fault_code": "F01611",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-028",
+      "fault_code": "F01611",
+      "causal_status": "associated_only",
+      "direction": "unknown",
+      "relation_type": "associated_with",
+      "fta_eligible": false,
+      "decision": "revise",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-029",
+      "fault_code": "F01611",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-030",
+      "fault_code": "F01611",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-031",
+      "fault_code": "F01611",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-032",
+      "fault_code": "F01611",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-033",
+      "fault_code": "F01611",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-034",
+      "fault_code": "F01611",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-035",
+      "fault_code": "F01611",
+      "causal_status": "associated_only",
+      "direction": "unknown",
+      "relation_type": "associated_with",
+      "fta_eligible": false,
+      "decision": "revise",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-036",
+      "fault_code": "F01611",
+      "causal_status": "associated_only",
+      "direction": "unknown",
+      "relation_type": "associated_with",
+      "fta_eligible": false,
+      "decision": "revise",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-037",
+      "fault_code": "F01611",
+      "causal_status": "associated_only",
+      "direction": "unknown",
+      "relation_type": "associated_with",
+      "fta_eligible": false,
+      "decision": "revise",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-038",
+      "fault_code": "F01611",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-039",
+      "fault_code": "F01611",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-040",
+      "fault_code": "F01656",
+      "causal_status": "associated_only",
+      "direction": "unknown",
+      "relation_type": "associated_with",
+      "fta_eligible": false,
+      "decision": "revise",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-041",
+      "fault_code": "F01656",
+      "causal_status": "associated_only",
+      "direction": "unknown",
+      "relation_type": "associated_with",
+      "fta_eligible": false,
+      "decision": "revise",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-042",
+      "fault_code": "F01656",
+      "causal_status": "associated_only",
+      "direction": "unknown",
+      "relation_type": "associated_with",
+      "fta_eligible": false,
+      "decision": "revise",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-043",
+      "fault_code": "F01656",
+      "causal_status": "associated_only",
+      "direction": "unknown",
+      "relation_type": "associated_with",
+      "fta_eligible": false,
+      "decision": "revise",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-044",
+      "fault_code": "F01656",
+      "causal_status": "associated_only",
+      "direction": "unknown",
+      "relation_type": "associated_with",
+      "fta_eligible": false,
+      "decision": "revise",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-045",
+      "fault_code": "F01674",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-046",
+      "fault_code": "F01674",
+      "causal_status": "associated_only",
+      "direction": "unknown",
+      "relation_type": "associated_with",
+      "fta_eligible": false,
+      "decision": "revise",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-047",
+      "fault_code": "F01674",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-048",
+      "fault_code": "F01674",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-049",
+      "fault_code": "F01674",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-050",
+      "fault_code": "F01694",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-051",
+      "fault_code": "F07955",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-052",
+      "fault_code": "F30003",
+      "causal_status": "associated_only",
+      "direction": "unknown",
+      "relation_type": "associated_with",
+      "fta_eligible": false,
+      "decision": "revise",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-053",
+      "fault_code": "F30003",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-054",
+      "fault_code": "F30003",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-055",
+      "fault_code": "F30027",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-056",
+      "fault_code": "F30027",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-057",
+      "fault_code": "F30027",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-058",
+      "fault_code": "F30027",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-059",
+      "fault_code": "F30027",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-060",
+      "fault_code": "F30027",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-061",
+      "fault_code": "F30027",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-062",
+      "fault_code": "F30027",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-063",
+      "fault_code": "F30027",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-064",
+      "fault_code": "F30078",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-065",
+      "fault_code": "F30078",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    },
+    {
+      "candidate_id": "CR-CAND-V2-066",
+      "fault_code": "F31836",
+      "causal_status": "cannot_determine",
+      "direction": "unknown",
+      "relation_type": "no_relation",
+      "fta_eligible": false,
+      "decision": "cannot_determine",
+      "expert_comment": "",
+      "reviewer": "刘武",
+      "reviewed_at": null
+    }
+  ]
+}

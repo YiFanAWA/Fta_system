@@ -35,8 +35,10 @@ def validate(payload: Mapping[str, Any]) -> list[str]:
     for field in ("causal_relations_complete", "logic_gates_complete", "fta_ready", "runtime_registry_updated"):
         if info.get(field) is not False:
             errors.append(f"dataset_info.{field} must remain false for pilot Gold")
-    if not _clean(info.get("reviewer")) or not _clean(info.get("reviewed_at")):
-        errors.append("dataset_info reviewer and reviewed_at are required")
+    if not _clean(info.get("reviewer")):
+        errors.append("dataset_info reviewer is required")
+    if info.get("reviewed_at") is None and info.get("review_date_missing") is not True:
+        errors.append("missing reviewed_at requires review_date_missing=true")
     relations = payload.get("relations")
     if not relations:
         errors.append("relations must be non-empty")
@@ -74,8 +76,10 @@ def validate(payload: Mapping[str, Any]) -> list[str]:
                 errors.append(f"{prefix}.expert_review.fta_eligible must be true")
             if review.get("overall_decision") != "approve":
                 errors.append(f"{prefix}.expert_review.overall_decision must be approve")
-            if not _clean(review.get("reviewer")) or not _clean(review.get("reviewed_at")):
-                errors.append(f"{prefix}.expert_review reviewer fields are required")
+            if not _clean(review.get("reviewer")):
+                errors.append(f"{prefix}.expert_review reviewer is required")
+            if review.get("reviewed_at") is None and info.get("review_date_missing") is not True:
+                errors.append(f"{prefix}.expert_review missing reviewed_at requires review_date_missing=true")
     excluded = payload.get("excluded_candidates")
     if not isinstance(excluded, list):
         errors.append("excluded_candidates must be a list")

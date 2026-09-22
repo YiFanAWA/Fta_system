@@ -1,12 +1,13 @@
 {
-  "status": "blocked_pending_additional_causal_review",
-  "reviewed_causal_relation_count": 25,
+  "status": "ready_for_logic_gate_expert_review",
+  "reviewed_causal_relation_count": 39,
   "unique_target_fault_count": 25,
-  "target_faults_with_two_or_more_confirmed_causal_children": 0,
-  "target_faults_with_additional_unreviewed_causes": 15,
-  "additional_causal_candidates_pending": 66,
+  "target_faults_with_two_or_more_confirmed_causal_children": 6,
+  "target_faults_with_additional_unreviewed_causes": 0,
+  "additional_causal_candidates_pending": 0,
+  "logic_gate_candidate_count": 6,
   "logic_gate_gold_ready": false,
   "fta_ready": false,
-  "reason": "AND/OR cannot be inferred until at least two causal children for the same target fault are independently expert-confirmed.",
-  "next_input": "siemens_s210_causal_relation_candidates_v2_remaining_same_faults.json"
+  "reason": "Six target faults now have at least two independently expert-confirmed causal children; AND/OR still requires separate expert review and cannot be inferred automatically.",
+  "next_input": "siemens_s210_and_or_logic_expert_review_checklist_v1_2026-09-22.md"
 }

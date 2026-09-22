@@ -43,22 +43,24 @@ def extract_review_doc(path: Path) -> tuple[list[dict[str, str]], dict[str, Any]
         raise RuntimeError("python-docx is required to read the review document") from exc
 
     document = Document(path)
-    if not document.tables:
-        raise ValueError("review document has no review table")
-    table = document.tables[0]
-    headers = [_clean(cell.text) for cell in table.rows[0].cells]
-    if headers != EXPECTED_HEADERS:
-        raise ValueError(f"unexpected review table headers: {headers}")
-
     rows: list[dict[str, str]] = []
-    for row in table.rows[1:]:
-        values = [_clean(cell.text) for cell in row.cells]
-        if len(values) != len(EXPECTED_HEADERS):
-            raise ValueError(f"review row has {len(values)} cells instead of 8")
-        rows.append(dict(zip(EXPECTED_HEADERS, values)))
+    if document.tables:
+        table = document.tables[0]
+        headers = [_clean(cell.text) for cell in table.rows[0].cells]
+        if headers != EXPECTED_HEADERS:
+            raise ValueError(f"unexpected review table headers: {headers}")
+        for row in table.rows[1:]:
+            values = [_clean(cell.text) for cell in row.cells]
+            if len(values) != len(EXPECTED_HEADERS):
+                raise ValueError(f"review row has {len(values)} cells instead of 8")
+            rows.append(dict(zip(EXPECTED_HEADERS, values)))
+    else:
+        rows = _extract_paragraph_review_rows(document)
 
     paragraphs = "\n".join(_clean(paragraph.text) for paragraph in document.paragraphs)
-    reviewer_match = re.search(r"专家审核\s*[:：]\s*([^\n]+)", paragraphs)
+    reviewer_match = re.search(r"审核专家\s*[:：]\s*([^\n]+)", paragraphs)
+    if reviewer_match is None:
+        reviewer_match = re.search(r"专家审核\s*[:：]\s*([^\n]+)", paragraphs)
     date_match = re.search(r"审核日期\s*[:：]\s*(\d{4}-\d{2}-\d{2})", paragraphs)
     claimed = {}
     for label in ("causal", "associated_only", "cannot_determine"):
@@ -68,9 +70,56 @@ def extract_review_doc(path: Path) -> tuple[list[dict[str, str]], dict[str, Any]
     metadata = {
         "reviewer": _clean(reviewer_match.group(1)) if reviewer_match else None,
         "reviewed_at": date_match.group(1) if date_match else None,
+        "review_date_missing": date_match is None,
         "claimed_summary": claimed,
     }
     return rows, metadata
+
+
+def _extract_paragraph_review_rows(document: Any) -> list[dict[str, str]]:
+    """Read the paragraph-form checklist used by the second Word batch."""
+
+    heading = re.compile(r"^(CR-CAND-[A-Z0-9-]+\d{3})\s+.*?([A-Z]\d{5})\s*$")
+    blocks: list[tuple[str, list[str]]] = []
+    current_id: str | None = None
+    current_lines: list[str] = []
+    for paragraph in document.paragraphs:
+        text = _clean(paragraph.text)
+        match = heading.match(text)
+        if match:
+            if current_id is not None:
+                blocks.append((current_id, current_lines))
+            current_id = match.group(1)
+            current_lines = []
+        elif current_id is not None and text:
+            current_lines.append(text)
+    if current_id is not None:
+        blocks.append((current_id, current_lines))
+    if not blocks:
+        raise ValueError("paragraph review document contains no candidate headings")
+
+    rows: list[dict[str, str]] = []
+    keys = ("causal_status", "direction", "relation_type", "fta_eligible", "overall_decision")
+    for candidate_id, lines in blocks:
+        status_text = "\n".join(lines)
+        row = {"ID": candidate_id, "Fault": ""}
+        for key in keys:
+            match = re.search(rf"{key}\s*[:：]\s*([^\n]+)", status_text)
+            if not match:
+                raise ValueError(f"{candidate_id} is missing {key}")
+            row[key] = _clean(match.group(1))
+        row["decision"] = row["overall_decision"]
+        status_line_index = next(
+            (index for index, line in enumerate(lines) if line.startswith("causal_status")),
+            len(lines),
+        )
+        comment_lines = []
+        for line in lines[status_line_index + 1 :]:
+            if not any(line.startswith(f"{key}:") or line.startswith(f"{key}：") for key in keys):
+                comment_lines.append(line)
+        row["expert_comment"] = _clean(comment_lines[-1] if comment_lines else "")
+        rows.append(row)
+    return rows
 
 
 def _review_key(row: Mapping[str, str]) -> str:
@@ -95,7 +144,7 @@ def _relation_from_candidate(
             }
         )
     return {
-        "relation_id": f"S210-CAUSAL-{review['ID'].split('-')[-1]}",
+        "relation_id": f"S210-CAUSAL-{review['ID'].replace('CR-CAND-', '')}",
         "candidate_id": review["ID"],
         "source_node": {
             "node_id": source["node_id"],
@@ -128,6 +177,7 @@ def build_gold(
     reviews: list[Mapping[str, str]],
     metadata: Mapping[str, Any],
     source_review_doc: str,
+    source_candidate_bundle: str,
 ) -> dict[str, Any]:
     candidate_map = {item["candidate_id"]: item for item in candidates["candidates"]}
     review_map = {_review_key(row): row for row in reviews}
@@ -139,9 +189,9 @@ def build_gold(
         raise ValueError(f"review IDs do not match candidates; missing={missing}, extra={extra}")
 
     reviewer = _clean(metadata.get("reviewer")) or _clean(candidates["dataset_info"].get("expected_reviewer"))
-    reviewed_at = _clean(metadata.get("reviewed_at"))
-    if not reviewer or not reviewed_at:
-        raise ValueError("reviewer and reviewed_at are required")
+    reviewed_at = _clean(metadata.get("reviewed_at")) or None
+    if not reviewer:
+        raise ValueError("reviewer is required")
 
     relations = []
     excluded = []
@@ -197,8 +247,12 @@ def build_gold(
             "reviewer": reviewer,
             "reviewed_at": reviewed_at,
             "relation_scope": "causal_only",
-            "candidate_scope": "pilot_batch_30",
-            "source_candidate_bundle": "siemens_s210_causal_relation_candidates_v1.json",
+            "candidate_scope": (
+                "pilot_batch_30"
+                if len(reviews) == 30
+                else "remaining_same_faults_batch_66"
+            ),
+            "source_candidate_bundle": source_candidate_bundle,
             "source_review_document": source_review_doc,
             "source_record_count": source_info["source_record_count"],
             "candidate_review_count": len(reviews),
@@ -209,6 +263,12 @@ def build_gold(
             "fta_ready": False,
             "runtime_registry_updated": False,
             "training_eligible": False,
+            "review_date_missing": reviewed_at is None,
+            "ingestion_note": (
+                "The source review document does not contain a review date."
+                if reviewed_at is None
+                else None
+            ),
             "summary_discrepancy": summary_discrepancy,
         },
         "relations": relations,
@@ -226,7 +286,7 @@ def main() -> int:
     review_path = Path(args.review_docx)
     candidates = load_json(candidates_path)
     reviews, metadata = extract_review_doc(review_path)
-    gold = build_gold(candidates, reviews, metadata, review_path.name)
+    gold = build_gold(candidates, reviews, metadata, review_path.name, candidates_path.name)
     output = Path(args.output)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(gold, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
