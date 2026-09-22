@@ -1,0 +1,130 @@
+{
+  "dataset_info": {
+    "name": "siemens_s210_fault_relation_gold_v1",
+    "version": "v1",
+    "status": "expert_validated",
+    "gold_source": "named_expert_review",
+    "reviewer": "刘武",
+    "reviewed_at": "2026-09-21",
+    "relation_scope": "association_only",
+    "causal_relations_complete": false,
+    "logic_gates_complete": false,
+    "training_eligible": false,
+    "source_registry": "siemens_s210_fault_relation_registry_v1.json",
+    "source_review": "siemens_s210_fault_relation_expert_review_v1_2026-09-21.json",
+    "record_count": 5
+  },
+  "relations": [
+    {
+      "relation_id": "S210-REL-001",
+      "endpoints": ["A01693", "F01679"],
+      "relation_type": "paired_fault_message",
+      "direction": "undirected",
+      "query_triggers": ["Safety parameters have been changed"],
+      "relation_note": "两个记录都由 Safety parameters have been changed 证据支持，回答时展示配对故障/消息码。",
+      "evidence": [
+        {"fault_code": "A01693", "citation_id": "A01693:E4", "field": "cause"},
+        {"fault_code": "F01679", "citation_id": "F01679:E4", "field": "cause"}
+      ],
+      "expert_review": {
+        "relation_completeness": "complete",
+        "relation_type_correctness": "correct",
+        "relation_evidence_support": "supported",
+        "unsupported_parameter_semantics": "no",
+        "overall_decision": "pass",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-21"
+      }
+    },
+    {
+      "relation_id": "S210-REL-002",
+      "endpoints": ["A01706", "F01682"],
+      "relation_type": "shared_parameter",
+      "direction": "undirected",
+      "query_triggers": ["p9506"],
+      "relation_note": "p9506 同时出现在两个故障记录中；参数查询应返回关联故障集合，不应只返回首候选。",
+      "evidence": [
+        {"fault_code": "A01706", "citation_id": "A01706:E5", "field": "parameter"},
+        {"fault_code": "F01682", "citation_id": "F01682:E10", "field": "parameter"}
+      ],
+      "expert_review": {
+        "relation_completeness": "complete",
+        "relation_type_correctness": "correct",
+        "relation_evidence_support": "supported",
+        "unsupported_parameter_semantics": "no",
+        "overall_decision": "pass",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-21"
+      }
+    },
+    {
+      "relation_id": "S210-REL-003",
+      "endpoints": ["A01707", "A30707"],
+      "relation_type": "paired_fault_message",
+      "direction": "undirected",
+      "query_triggers": ["p9530"],
+      "relation_note": "两个记录具有相同故障描述并共享 p9530；回答时同时展示两个关联消息。",
+      "evidence": [
+        {"fault_code": "A01707", "citation_id": "A01707:E3", "field": "description"},
+        {"fault_code": "A30707", "citation_id": "A30707:E3", "field": "description"},
+        {"fault_code": "A01707", "citation_id": "A01707:E5", "field": "parameter"},
+        {"fault_code": "A30707", "citation_id": "A30707:E5", "field": "parameter"}
+      ],
+      "expert_review": {
+        "relation_completeness": "complete",
+        "relation_type_correctness": "correct",
+        "relation_evidence_support": "supported",
+        "unsupported_parameter_semantics": "no",
+        "overall_decision": "pass",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-21"
+      }
+    },
+    {
+      "relation_id": "S210-REL-004",
+      "endpoints": ["A01709", "A30709"],
+      "relation_type": "paired_fault_message",
+      "direction": "undirected",
+      "query_triggers": ["p9553"],
+      "relation_note": "两个记录具有相同故障描述并共享 p9553；回答时同时展示关联消息。",
+      "evidence": [
+        {"fault_code": "A01709", "citation_id": "A01709:E3", "field": "description"},
+        {"fault_code": "A30709", "citation_id": "A30709:E3", "field": "description"},
+        {"fault_code": "A01709", "citation_id": "A01709:E5", "field": "parameter"},
+        {"fault_code": "A30709", "citation_id": "A30709:E5", "field": "parameter"}
+      ],
+      "expert_review": {
+        "relation_completeness": "complete",
+        "relation_type_correctness": "correct",
+        "relation_evidence_support": "supported",
+        "unsupported_parameter_semantics": "no",
+        "overall_decision": "pass",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-21"
+      }
+    },
+    {
+      "relation_id": "S210-REL-005",
+      "endpoints": ["A01711", "A30711"],
+      "relation_type": "paired_fault_message",
+      "direction": "undirected",
+      "query_triggers": ["r9725"],
+      "relation_note": "两个记录具有相同故障描述并包含 r9725；只能说明关联存在，不能扩大 r9725 的具体语义。",
+      "evidence": [
+        {"fault_code": "A01711", "citation_id": "A01711:E3", "field": "description"},
+        {"fault_code": "A30711", "citation_id": "A30711:E3", "field": "description"},
+        {"fault_code": "A01711", "citation_id": "A01711:E7", "field": "parameter"},
+        {"fault_code": "A30711", "citation_id": "A30711:E18", "field": "parameter"}
+      ],
+      "expert_review": {
+        "relation_completeness": "complete",
+        "relation_type_correctness": "correct",
+        "relation_evidence_support": "supported",
+        "unsupported_parameter_semantics": "no",
+        "overall_decision": "pass",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-21"
+      }
+    }
+  ]
+}

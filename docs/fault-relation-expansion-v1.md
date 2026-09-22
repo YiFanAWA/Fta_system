@@ -16,13 +16,26 @@ Fault Relation Expansion  ← 本模块
 Evidence-bound RAG Answer
 ```
 
-本轮不修改 embedding、Hybrid Retrieval、Reranker、Router、候选池或既有 281 条 Fault Gold。它也不是 Fault Relation Gold 的最终定稿，更不是自动 FTA 建树。
+本轮不修改 embedding、Hybrid Retrieval、Reranker、Router、候选池或既有 281 条 Fault Gold。运行注册表不是关系语义的唯一真源；关系语义现在由独立的 `Fault Relation Gold v1` 管理。它仍不是因果关系 Gold，也不是自动 FTA 建树。
+
+## 关系 Gold 真源
+
+正式关系 Gold：`evaluation/quality_eval/datasets/siemens_s210_fault_relation_gold_v1.json`。
+
+该版本只覆盖已经由刘武专家复审的 5 条**无方向关联关系**：
+
+- `paired_fault_message`：配对故障/消息码或同描述消息关系；
+- `shared_parameter`：两个故障记录共同出现同一参数的关联关系。
+
+Gold 明确标记 `causal_relations_complete=false` 和 `logic_gates_complete=false`。因此任何消费者都不能把这些关系解释为 `causes`、`leads_to`、AND 或 OR。
+
+运行注册表 `evaluation/quality_eval/datasets/siemens_s210_fault_relation_registry_v1.json` 是 API 运行投影，必须通过 `validate_siemens_s210_fault_relation_gold.py` 与 Gold 对账后才可使用。
 
 ## 当前关系注册表
 
 注册表：`evaluation/quality_eval/datasets/siemens_s210_fault_relation_registry_v1.json`
 
-当前包含 5 条由刘武专家在 RAG 语义审核中指出的关系候选：
+当前包含 5 条由刘武专家在 RAG 语义审核中确认的关系：
 
 | 关系 | 类型 | 触发信息 | 关系证据 |
 |---|---|---|---|
@@ -82,12 +95,19 @@ Evidence-bound RAG Answer
 
 专家只复审了 5 条，不需要重做全部 30 条。结果为 5/5 `pass`，因此关系注册表可以作为 RAG Answer 的正式关系层配置使用；这不等同于已经完成因果关系 Gold、AND/OR 标注或自动 FTA 建树验收。
 
+## Gold 校验
+
+校验脚本：`evaluation/quality_eval/public_sources/validate_siemens_s210_fault_relation_gold.py`。
+
+校验内容包括：关系端点唯一性、关系类型、无方向约束、逐条证据引用、专家结论，以及 Gold 与运行注册表的一致性。校验产物：`evaluation/quality_eval/runs/siemens_s210_fault_relation_gold_v1_validation_2026-09-22.json`。
+
 ## 下一步边界
 
 当前可以继续做：
 
-- 将 5 条已通过关系纳入 RAG Semantic Gold v1 的正式审计记录。
-- 对新问题继续采用同样的“关系证据 + 定向专家复审”流程。
+- 将 5 条已通过关系作为 `Fault Relation Gold v1` 的正式关联关系基线。
+- 建立独立的因果关系候选清单，由专家逐条判断因果方向、证据和是否可进入 FTA。
+- 因果关系审核通过后，再建立 AND/OR Logic Gold；两者都不能由当前 5 条关联关系自动推导。
 
 当前不应做：
 
