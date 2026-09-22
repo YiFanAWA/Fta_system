@@ -1,0 +1,568 @@
+{
+  "dataset_info": {
+    "name": "siemens_s210_rag_boundary_gold_v1",
+    "version": "v1",
+    "status": "pending_expert_review",
+    "gold_source": "pending_named_expert_review",
+    "not_for_training": true,
+    "reviewer": "刘武",
+    "source_draft": "siemens_s210_rag_boundary_eval_v1"
+  },
+  "allowed_values": {
+    "expected_knowledge_status": [
+      "supported",
+      "supported_with_warning",
+      "insufficient_evidence",
+      "out_of_domain"
+    ],
+    "expected_action": [
+      "answer",
+      "answer_with_warning",
+      "ask_information",
+      "reject"
+    ],
+    "expert_status": [
+      "pending",
+      "reviewed"
+    ]
+  },
+  "review_instructions": [
+    "逐条依据 S210 知识库边界和问题本身判断，不把工程预期当成专家结论。",
+    "supported 只表示当前问题有足够身份/证据可以正常回答；不是说答案中的每个事实都已验证。",
+    "supported_with_warning 表示可以检索和回答，但必须降低确定性并提示补充信息。",
+    "insufficient_evidence 表示不能给出确定诊断，必须请求补充信息。",
+    "out_of_domain 表示问题明确超出 Siemens S210 当前知识库，不进入 S210 故障诊断回答。",
+    "若选择 answer_allowed=true，必须说明为什么当前信息足够；若选择 false，必须填写 missing_information 或拒答理由。",
+    "不要依据模型输出或当前实现行为审核；这里只审核边界策略的专家标准。"
+  ],
+  "rows": [
+    {
+      "query_id": "BOUNDARY-001",
+      "question": "S210 F01630 是什么故障？",
+      "engineering_category": "explicit_fault_code",
+      "engineering_expectation": {
+        "knowledge_status": "supported",
+        "response_policy": "normal",
+        "answer_allowed": true
+      },
+      "expert_review": {
+        "expert_status": "pending",
+        "expected_knowledge_status": null,
+        "answer_allowed": null,
+        "warning_required": null,
+        "need_additional_info": null,
+        "missing_information": [],
+        "expected_action": null,
+        "expert_reason": "",
+        "reviewer": "刘武",
+        "reviewed_at": ""
+      }
+    },
+    {
+      "query_id": "BOUNDARY-002",
+      "question": "Siemens S210 的 p7829 参数有什么作用？",
+      "engineering_category": "explicit_parameter",
+      "engineering_expectation": {
+        "knowledge_status": "supported",
+        "response_policy": "normal",
+        "answer_allowed": true
+      },
+      "expert_review": {
+        "expert_status": "pending",
+        "expected_knowledge_status": null,
+        "answer_allowed": null,
+        "warning_required": null,
+        "need_additional_info": null,
+        "missing_information": [],
+        "expected_action": null,
+        "expert_reason": "",
+        "reviewer": "刘武",
+        "reviewed_at": ""
+      }
+    },
+    {
+      "query_id": "BOUNDARY-003",
+      "question": "SINAMICS A01009 控制单元过热怎么办？",
+      "engineering_category": "explicit_system_and_code",
+      "engineering_expectation": {
+        "knowledge_status": "supported",
+        "response_policy": "normal",
+        "answer_allowed": true
+      },
+      "expert_review": {
+        "expert_status": "pending",
+        "expected_knowledge_status": null,
+        "answer_allowed": null,
+        "warning_required": null,
+        "need_additional_info": null,
+        "missing_information": [],
+        "expected_action": null,
+        "expert_reason": "",
+        "reviewer": "刘武",
+        "reviewed_at": ""
+      }
+    },
+    {
+      "query_id": "BOUNDARY-004",
+      "question": "STO 状态不一致对应什么 S210 故障？",
+      "engineering_category": "explicit_safety_signal",
+      "engineering_expectation": {
+        "knowledge_status": "supported",
+        "response_policy": "normal",
+        "answer_allowed": true
+      },
+      "expert_review": {
+        "expert_status": "pending",
+        "expected_knowledge_status": null,
+        "answer_allowed": null,
+        "warning_required": null,
+        "need_additional_info": null,
+        "missing_information": [],
+        "expected_action": null,
+        "expert_reason": "",
+        "reviewer": "刘武",
+        "reviewed_at": ""
+      }
+    },
+    {
+      "query_id": "BOUNDARY-005",
+      "question": "DRIVE-CLiQ 组件固件升级失败的原因是什么？",
+      "engineering_category": "explicit_component_signal",
+      "engineering_expectation": {
+        "knowledge_status": "supported",
+        "response_policy": "normal",
+        "answer_allowed": true
+      },
+      "expert_review": {
+        "expert_status": "pending",
+        "expected_knowledge_status": null,
+        "answer_allowed": null,
+        "warning_required": null,
+        "need_additional_info": null,
+        "missing_information": [],
+        "expected_action": null,
+        "expert_reason": "",
+        "reviewer": "刘武",
+        "reviewed_at": ""
+      }
+    },
+    {
+      "query_id": "BOUNDARY-006",
+      "question": "Siemens 控制单元温度过高，应该检查什么？",
+      "engineering_category": "explicit_manufacturer_and_component",
+      "engineering_expectation": {
+        "knowledge_status": "supported",
+        "response_policy": "normal",
+        "answer_allowed": true
+      },
+      "expert_review": {
+        "expert_status": "pending",
+        "expected_knowledge_status": null,
+        "answer_allowed": null,
+        "warning_required": null,
+        "need_additional_info": null,
+        "missing_information": [],
+        "expected_action": null,
+        "expert_reason": "",
+        "reviewer": "刘武",
+        "reviewed_at": ""
+      }
+    },
+    {
+      "query_id": "BOUNDARY-007",
+      "question": "温度异常怎么办？",
+      "engineering_category": "technical_low_identity",
+      "engineering_expectation": {
+        "knowledge_status": "supported_with_warning",
+        "response_policy": "warning",
+        "answer_allowed": true
+      },
+      "expert_review": {
+        "expert_status": "pending",
+        "expected_knowledge_status": null,
+        "answer_allowed": null,
+        "warning_required": null,
+        "need_additional_info": null,
+        "missing_information": [],
+        "expected_action": null,
+        "expert_reason": "",
+        "reviewer": "刘武",
+        "reviewed_at": ""
+      }
+    },
+    {
+      "query_id": "BOUNDARY-008",
+      "question": "电机通信失败是什么原因？",
+      "engineering_category": "technical_low_identity",
+      "engineering_expectation": {
+        "knowledge_status": "supported_with_warning",
+        "response_policy": "warning",
+        "answer_allowed": true
+      },
+      "expert_review": {
+        "expert_status": "pending",
+        "expected_knowledge_status": null,
+        "answer_allowed": null,
+        "warning_required": null,
+        "need_additional_info": null,
+        "missing_information": [],
+        "expected_action": null,
+        "expert_reason": "",
+        "reviewer": "刘武",
+        "reviewed_at": ""
+      }
+    },
+    {
+      "query_id": "BOUNDARY-009",
+      "question": "编码器信号异常，怎么排查？",
+      "engineering_category": "technical_low_identity",
+      "engineering_expectation": {
+        "knowledge_status": "supported_with_warning",
+        "response_policy": "warning",
+        "answer_allowed": true
+      },
+      "expert_review": {
+        "expert_status": "pending",
+        "expected_knowledge_status": null,
+        "answer_allowed": null,
+        "warning_required": null,
+        "need_additional_info": null,
+        "missing_information": [],
+        "expected_action": null,
+        "expert_reason": "",
+        "reviewer": "刘武",
+        "reviewed_at": ""
+      }
+    },
+    {
+      "query_id": "BOUNDARY-010",
+      "question": "驱动报警后停止运行，可能是什么问题？",
+      "engineering_category": "technical_low_identity",
+      "engineering_expectation": {
+        "knowledge_status": "supported_with_warning",
+        "response_policy": "warning",
+        "answer_allowed": true
+      },
+      "expert_review": {
+        "expert_status": "pending",
+        "expected_knowledge_status": null,
+        "answer_allowed": null,
+        "warning_required": null,
+        "need_additional_info": null,
+        "missing_information": [],
+        "expected_action": null,
+        "expert_reason": "",
+        "reviewer": "刘武",
+        "reviewed_at": ""
+      }
+    },
+    {
+      "query_id": "BOUNDARY-011",
+      "question": "控制单元过热应该如何处理？",
+      "engineering_category": "technical_low_identity",
+      "engineering_expectation": {
+        "knowledge_status": "supported_with_warning",
+        "response_policy": "warning",
+        "answer_allowed": true
+      },
+      "expert_review": {
+        "expert_status": "pending",
+        "expected_knowledge_status": null,
+        "answer_allowed": null,
+        "warning_required": null,
+        "need_additional_info": null,
+        "missing_information": [],
+        "expected_action": null,
+        "expert_reason": "",
+        "reviewer": "刘武",
+        "reviewed_at": ""
+      }
+    },
+    {
+      "query_id": "BOUNDARY-012",
+      "question": "参数设置错误导致报警，怎么判断？",
+      "engineering_category": "technical_low_identity",
+      "engineering_expectation": {
+        "knowledge_status": "supported_with_warning",
+        "response_policy": "warning",
+        "answer_allowed": true
+      },
+      "expert_review": {
+        "expert_status": "pending",
+        "expected_knowledge_status": null,
+        "answer_allowed": null,
+        "warning_required": null,
+        "need_additional_info": null,
+        "missing_information": [],
+        "expected_action": null,
+        "expert_reason": "",
+        "reviewer": "刘武",
+        "reviewed_at": ""
+      }
+    },
+    {
+      "query_id": "BOUNDARY-013",
+      "question": "设备坏了。",
+      "engineering_category": "low_information",
+      "engineering_expectation": {
+        "knowledge_status": "insufficient_evidence",
+        "response_policy": "clarify",
+        "answer_allowed": false
+      },
+      "expert_review": {
+        "expert_status": "pending",
+        "expected_knowledge_status": null,
+        "answer_allowed": null,
+        "warning_required": null,
+        "need_additional_info": null,
+        "missing_information": [],
+        "expected_action": null,
+        "expert_reason": "",
+        "reviewer": "刘武",
+        "reviewed_at": ""
+      }
+    },
+    {
+      "query_id": "BOUNDARY-014",
+      "question": "报警了怎么办？",
+      "engineering_category": "low_information",
+      "engineering_expectation": {
+        "knowledge_status": "insufficient_evidence",
+        "response_policy": "clarify",
+        "answer_allowed": false
+      },
+      "expert_review": {
+        "expert_status": "pending",
+        "expected_knowledge_status": null,
+        "answer_allowed": null,
+        "warning_required": null,
+        "need_additional_info": null,
+        "missing_information": [],
+        "expected_action": null,
+        "expert_reason": "",
+        "reviewer": "刘武",
+        "reviewed_at": ""
+      }
+    },
+    {
+      "query_id": "BOUNDARY-015",
+      "question": "不工作了。",
+      "engineering_category": "low_information",
+      "engineering_expectation": {
+        "knowledge_status": "insufficient_evidence",
+        "response_policy": "clarify",
+        "answer_allowed": false
+      },
+      "expert_review": {
+        "expert_status": "pending",
+        "expected_knowledge_status": null,
+        "answer_allowed": null,
+        "warning_required": null,
+        "need_additional_info": null,
+        "missing_information": [],
+        "expected_action": null,
+        "expert_reason": "",
+        "reviewer": "刘武",
+        "reviewed_at": ""
+      }
+    },
+    {
+      "query_id": "BOUNDARY-016",
+      "question": "帮我看看这个问题。",
+      "engineering_category": "low_information",
+      "engineering_expectation": {
+        "knowledge_status": "insufficient_evidence",
+        "response_policy": "clarify",
+        "answer_allowed": false
+      },
+      "expert_review": {
+        "expert_status": "pending",
+        "expected_knowledge_status": null,
+        "answer_allowed": null,
+        "warning_required": null,
+        "need_additional_info": null,
+        "missing_information": [],
+        "expected_action": null,
+        "expert_reason": "",
+        "reviewer": "刘武",
+        "reviewed_at": ""
+      }
+    },
+    {
+      "query_id": "BOUNDARY-017",
+      "question": "系统有点异常。",
+      "engineering_category": "low_information",
+      "engineering_expectation": {
+        "knowledge_status": "insufficient_evidence",
+        "response_policy": "clarify",
+        "answer_allowed": false
+      },
+      "expert_review": {
+        "expert_status": "pending",
+        "expected_knowledge_status": null,
+        "answer_allowed": null,
+        "warning_required": null,
+        "need_additional_info": null,
+        "missing_information": [],
+        "expected_action": null,
+        "expert_reason": "",
+        "reviewer": "刘武",
+        "reviewed_at": ""
+      }
+    },
+    {
+      "query_id": "BOUNDARY-018",
+      "question": "这个故障严重吗？",
+      "engineering_category": "low_information",
+      "engineering_expectation": {
+        "knowledge_status": "insufficient_evidence",
+        "response_policy": "clarify",
+        "answer_allowed": false
+      },
+      "expert_review": {
+        "expert_status": "pending",
+        "expected_knowledge_status": null,
+        "answer_allowed": null,
+        "warning_required": null,
+        "need_additional_info": null,
+        "missing_information": [],
+        "expected_action": null,
+        "expert_reason": "",
+        "reviewer": "刘武",
+        "reviewed_at": ""
+      }
+    },
+    {
+      "query_id": "BOUNDARY-019",
+      "question": "今天天气怎么样？",
+      "engineering_category": "explicit_external_domain",
+      "engineering_expectation": {
+        "knowledge_status": "out_of_domain",
+        "response_policy": "out_of_domain",
+        "answer_allowed": false
+      },
+      "expert_review": {
+        "expert_status": "pending",
+        "expected_knowledge_status": null,
+        "answer_allowed": null,
+        "warning_required": null,
+        "need_additional_info": null,
+        "missing_information": [],
+        "expected_action": null,
+        "expert_reason": "",
+        "reviewer": "刘武",
+        "reviewed_at": ""
+      }
+    },
+    {
+      "query_id": "BOUNDARY-020",
+      "question": "帮我推荐一只股票。",
+      "engineering_category": "explicit_external_domain",
+      "engineering_expectation": {
+        "knowledge_status": "out_of_domain",
+        "response_policy": "out_of_domain",
+        "answer_allowed": false
+      },
+      "expert_review": {
+        "expert_status": "pending",
+        "expected_knowledge_status": null,
+        "answer_allowed": null,
+        "warning_required": null,
+        "need_additional_info": null,
+        "missing_information": [],
+        "expected_action": null,
+        "expert_reason": "",
+        "reviewer": "刘武",
+        "reviewed_at": ""
+      }
+    },
+    {
+      "query_id": "BOUNDARY-021",
+      "question": "帮我写一首诗。",
+      "engineering_category": "explicit_external_domain",
+      "engineering_expectation": {
+        "knowledge_status": "out_of_domain",
+        "response_policy": "out_of_domain",
+        "answer_allowed": false
+      },
+      "expert_review": {
+        "expert_status": "pending",
+        "expected_knowledge_status": null,
+        "answer_allowed": null,
+        "warning_required": null,
+        "need_additional_info": null,
+        "missing_information": [],
+        "expected_action": null,
+        "expert_reason": "",
+        "reviewer": "刘武",
+        "reviewed_at": ""
+      }
+    },
+    {
+      "query_id": "BOUNDARY-022",
+      "question": "飞机液压系统故障怎么处理？",
+      "engineering_category": "explicit_external_domain",
+      "engineering_expectation": {
+        "knowledge_status": "out_of_domain",
+        "response_policy": "out_of_domain",
+        "answer_allowed": false
+      },
+      "expert_review": {
+        "expert_status": "pending",
+        "expected_knowledge_status": null,
+        "answer_allowed": null,
+        "warning_required": null,
+        "need_additional_info": null,
+        "missing_information": [],
+        "expected_action": null,
+        "expert_reason": "",
+        "reviewer": "刘武",
+        "reviewed_at": ""
+      }
+    },
+    {
+      "query_id": "BOUNDARY-023",
+      "question": "请分析这个航空器的 ATA 故障。",
+      "engineering_category": "explicit_external_domain",
+      "engineering_expectation": {
+        "knowledge_status": "out_of_domain",
+        "response_policy": "out_of_domain",
+        "answer_allowed": false
+      },
+      "expert_review": {
+        "expert_status": "pending",
+        "expected_knowledge_status": null,
+        "answer_allowed": null,
+        "warning_required": null,
+        "need_additional_info": null,
+        "missing_information": [],
+        "expected_action": null,
+        "expert_reason": "",
+        "reviewer": "刘武",
+        "reviewed_at": ""
+      }
+    },
+    {
+      "query_id": "BOUNDARY-024",
+      "question": "帮我做一个旅游计划。",
+      "engineering_category": "explicit_external_domain",
+      "engineering_expectation": {
+        "knowledge_status": "out_of_domain",
+        "response_policy": "out_of_domain",
+        "answer_allowed": false
+      },
+      "expert_review": {
+        "expert_status": "pending",
+        "expected_knowledge_status": null,
+        "answer_allowed": null,
+        "warning_required": null,
+        "need_additional_info": null,
+        "missing_information": [],
+        "expected_action": null,
+        "expert_reason": "",
+        "reviewer": "刘武",
+        "reviewed_at": ""
+      }
+    }
+  ]
+}

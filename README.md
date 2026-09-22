@@ -59,6 +59,7 @@ npm run build --prefix frontend
 
 接口和请求示例见 [API 使用说明](docs/api-usage.md)，产品与技术背景见 [项目说明](docs/project-overview.md)，当前已知问题见 [已知问题](docs/known-issues.md)。
 数据集生命周期、实际 SQLite 导入状态和评测口径见 [数据集状态注册表 v1](docs/dataset-registry.md)。
+S210 RAG 冻结基线见 [RAG Baseline v1.1](docs/rag-baseline-v1.1.md)，边界专家审核规则见 [RAG Boundary Expert Review v1](docs/rag-boundary-expert-review-v1.md)。
 
 ## 评测证据边界
 
