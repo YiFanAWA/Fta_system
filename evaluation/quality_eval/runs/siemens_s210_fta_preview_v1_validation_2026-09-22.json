@@ -1,0 +1,9 @@
+{
+  "status": "fta_preview_validated",
+  "preview_only": true,
+  "tree_count": 5,
+  "excluded_event_count": 1,
+  "production_ready": false,
+  "fta_ready": false,
+  "errors": []
+}

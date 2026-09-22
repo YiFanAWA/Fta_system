@@ -39,6 +39,10 @@
 | AND/OR Gold | `evaluation/quality_eval/datasets/siemens_s210_and_or_logic_gold_v1.json` | 5 个 OR 已确认，F01611 保留 unknown |
 | AND/OR Gold 校验报告 | `evaluation/quality_eval/runs/siemens_s210_and_or_logic_gold_v1_validation_2026-09-22.json` | 6 个事件均已结构校验 |
 | AND/OR 就绪报告 | `evaluation/quality_eval/runs/siemens_s210_and_or_logic_readiness_v1_2026-09-22.md` | 当前因果 Gold 和逻辑门审核门禁 |
+| FTA Preview 生成器 | `evaluation/quality_eval/public_sources/build_siemens_s210_fta_preview.py` | 只从已批准逻辑事件生成带证据预览 |
+| FTA Preview | `evaluation/quality_eval/datasets/siemens_s210_fta_preview_v1.json` | 5 个 OR 事件，明确标记为 preview_only |
+| FTA Preview 文本报告 | `evaluation/quality_eval/runs/siemens_s210_fta_preview_v1_2026-09-22.md` | 供人工查看的故障树预览 |
+| FTA Preview 校验报告 | `evaluation/quality_eval/runs/siemens_s210_fta_preview_v1_validation_2026-09-22.json` | 证据和生产门禁校验结果 |
 
 ## 专家需要确认什么
 
@@ -79,4 +83,4 @@ Word 文档前置汇总写成 `causal=26`、`associated_only=3`、`cannot_determ
 - `logic_gates_complete=false`（F01611 为 `unknown`）；
 - `fta_ready=false`。
 
-同时，因果 Gold 目前只覆盖两批试点候选，不能代表 281 条记录的全量因果召回。当前 5 个 OR 事件可以进入后续 FTA 设计，但 F01611 仍不得自动建树；整体 FTA 仍需等待逻辑 Gold 完整或明确保留 unknown 的产品策略。
+同时，因果 Gold 目前只覆盖两批试点候选，不能代表 281 条记录的全量因果召回。当前已经生成 5 个 OR 事件的带证据 FTA Preview，但它只用于查看和验证数据链路，不得写入生产树注册表。F01611 仍不得自动建树；整体 FTA 仍未就绪。
