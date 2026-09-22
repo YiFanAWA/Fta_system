@@ -1,13 +1,16 @@
 {
-  "status": "ready_for_logic_gate_expert_review",
+  "status": "logic_gate_expert_reviewed_partial",
   "reviewed_causal_relation_count": 39,
   "unique_target_fault_count": 25,
   "target_faults_with_two_or_more_confirmed_causal_children": 6,
   "target_faults_with_additional_unreviewed_causes": 0,
   "additional_causal_candidates_pending": 0,
   "logic_gate_candidate_count": 6,
+  "logic_gate_reviewed_event_count": 6,
+  "logic_gate_approved_event_count": 5,
+  "logic_gate_unknown_count": 1,
   "logic_gate_gold_ready": false,
   "fta_ready": false,
-  "reason": "Six target faults now have at least two independently expert-confirmed causal children; AND/OR still requires separate expert review and cannot be inferred automatically.",
-  "next_input": "siemens_s210_and_or_logic_expert_review_checklist_v1_2026-09-22.md"
+  "reason": "The expert approved OR for five events. F01611 remains unknown because the supplied evidence does not establish whether the causes are AND or OR; logic Gold and FTA therefore remain incomplete.",
+  "next_input": "F01611 supplemental expert review if a resolved logic gate is required"
 }

@@ -1,0 +1,562 @@
+{
+  "dataset_info": {
+    "name": "siemens_s210_and_or_logic_gold",
+    "version": "v1",
+    "status": "expert_validated",
+    "gold_source": "named_expert_review",
+    "reviewer": "刘武",
+    "reviewed_at": "2026-09-22",
+    "review_date_missing": false,
+    "source_candidate_bundle": "siemens_s210_and_or_logic_candidates_v1.json",
+    "source_review_document": "Siemens_S210_AND_OR_Logic_Gold_Expert_Review_LiuWu_v1.docx",
+    "event_count": 6,
+    "approved_event_count": 5,
+    "or_count": 5,
+    "and_count": 0,
+    "unknown_gate_count": 1,
+    "logic_gate_review_complete": true,
+    "logic_gates_complete": false,
+    "causal_relations_complete": false,
+    "fta_ready": false,
+    "runtime_registry_updated": false,
+    "training_eligible": false,
+    "claimed_summary": {
+      "OR": 5
+    },
+    "ingestion_note": null
+  },
+  "events": [
+    {
+      "logic_candidate_id": "S210-LOGIC-CAND-001",
+      "event_node": {
+        "node_id": "siemens_s210:fault:A01069",
+        "node_type": "fault_entity",
+        "fault_code": "A01069",
+        "description": "Parameter backup and device incompatible"
+      },
+      "children": [
+        {
+          "relation_id": "S210-CAUSAL-002",
+          "source_node": {
+            "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01069:0",
+            "node_type": "cause_candidate",
+            "text": "The parameter backup on the memory card and the drive unit do not match."
+          },
+          "relation_type": "causes",
+          "direction": "source_to_target",
+          "evidence": [
+            {
+              "citation_id": "SIEMENS_S210_2019_A01069:cause:2",
+              "source_id": "input_text",
+              "field": "cause",
+              "quote": "The parameter backup on the memory card and the drive unit do not match.",
+              "start": 88,
+              "end": 160
+            }
+          ]
+        },
+        {
+          "relation_id": "S210-CAUSAL-V2-001",
+          "source_node": {
+            "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01069:1",
+            "node_type": "cause_candidate",
+            "text": "Devices A and B. are not compatible and a memory card with the parameter backup for device A is inserted in device B."
+          },
+          "relation_type": "causes",
+          "direction": "source_to_target",
+          "evidence": [
+            {
+              "citation_id": "SIEMENS_S210_2019_A01069:cause:3",
+              "source_id": "input_text",
+              "field": "cause",
+              "quote": "Devices A and B. are not compatible and a memory card with the parameter backup for device A is inserted in device B.",
+              "start": 214,
+              "end": 331
+            }
+          ]
+        }
+      ],
+      "logic_gate": "OR",
+      "expert_review": {
+        "status": "expert_reviewed",
+        "child_set_complete": "complete",
+        "logic_gate": "OR",
+        "evidence_support": "supported",
+        "overall_decision": "approve",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22",
+        "expert_reason": "两个候选描述本质上属于不同的不兼容场景，任一不匹配场景均可导致参数备份与设备不兼容。"
+      }
+    },
+    {
+      "logic_candidate_id": "S210-LOGIC-CAND-002",
+      "event_node": {
+        "node_id": "siemens_s210:fault:A01631",
+        "node_type": "fault_entity",
+        "fault_code": "A01631",
+        "description": "motor holding brake/SBC configuration not practical"
+      },
+      "children": [
+        {
+          "relation_id": "S210-CAUSAL-003",
+          "source_node": {
+            "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01631:0",
+            "node_type": "cause_candidate",
+            "text": "A configuration of motor holding brake and SBC was detected that is not practical."
+          },
+          "relation_type": "causes",
+          "direction": "source_to_target",
+          "evidence": [
+            {
+              "citation_id": "SIEMENS_S210_2019_A01631:cause:3",
+              "source_id": "input_text",
+              "field": "cause",
+              "quote": "A configuration of motor holding brake and SBC was detected that is not practical.",
+              "start": 106,
+              "end": 188
+            }
+          ]
+        },
+        {
+          "relation_id": "S210-CAUSAL-V2-002",
+          "source_node": {
+            "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01631:1",
+            "node_type": "cause_candidate",
+            "text": "No motor holding brake available and SBC enabled."
+          },
+          "relation_type": "causes",
+          "direction": "source_to_target",
+          "evidence": [
+            {
+              "citation_id": "SIEMENS_S210_2019_A01631:cause:6",
+              "source_id": "input_text",
+              "field": "cause",
+              "quote": "No motor holding brake available\" (p1215 = 0) and \"SBC\" enabled",
+              "start": 249,
+              "end": 312
+            }
+          ]
+        }
+      ],
+      "logic_gate": "OR",
+      "expert_review": {
+        "status": "expert_reviewed",
+        "child_set_complete": "complete",
+        "logic_gate": "OR",
+        "evidence_support": "supported",
+        "overall_decision": "approve",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22",
+        "expert_reason": "两个候选均描述可独立触发配置不可行状态，不要求两个条件同时出现。"
+      }
+    },
+    {
+      "logic_candidate_id": "S210-LOGIC-CAND-003",
+      "event_node": {
+        "node_id": "siemens_s210:fault:A01981",
+        "node_type": "fault_entity",
+        "fault_code": "A01981",
+        "description": "Maximum number of controllers exceeded"
+      },
+      "children": [
+        {
+          "relation_id": "S210-CAUSAL-007",
+          "source_node": {
+            "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01981:0",
+            "node_type": "cause_candidate",
+            "text": "A controller attempts to establish a connection to the drive, and as a consequence exceeds the permitted number of PROFINET connections"
+          },
+          "relation_type": "causes",
+          "direction": "source_to_target",
+          "evidence": [
+            {
+              "citation_id": "SIEMENS_S210_2019_A01981:cause:3",
+              "source_id": "input_text",
+              "field": "cause",
+              "quote": "A controller attempts to establish a connection to the drive, and as a consequence exceeds the permitted number of\nPROFINET connections",
+              "start": 90,
+              "end": 225
+            }
+          ]
+        },
+        {
+          "relation_id": "S210-CAUSAL-V2-005",
+          "source_node": {
+            "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01981:1",
+            "node_type": "cause_candidate",
+            "text": "number of RT connections exceeded"
+          },
+          "relation_type": "causes",
+          "direction": "source_to_target",
+          "evidence": [
+            {
+              "citation_id": "SIEMENS_S210_2019_A01981:cause:4",
+              "source_id": "input_text",
+              "field": "cause",
+              "quote": "number of RT connections exceeded",
+              "start": 391,
+              "end": 424
+            }
+          ]
+        },
+        {
+          "relation_id": "S210-CAUSAL-V2-006",
+          "source_node": {
+            "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A01981:2",
+            "node_type": "cause_candidate",
+            "text": "number of IRT connections exceeded"
+          },
+          "relation_type": "causes",
+          "direction": "source_to_target",
+          "evidence": [
+            {
+              "citation_id": "SIEMENS_S210_2019_A01981:cause:5",
+              "source_id": "input_text",
+              "field": "cause",
+              "quote": "number of IRT connections exceeded",
+              "start": 437,
+              "end": 471
+            }
+          ]
+        }
+      ],
+      "logic_gate": "OR",
+      "expert_review": {
+        "status": "expert_reviewed",
+        "child_set_complete": "complete",
+        "logic_gate": "OR",
+        "evidence_support": "supported",
+        "overall_decision": "approve",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22",
+        "expert_reason": "RT连接数和IRT连接数均属于超过允许连接数量的不同触发路径，任一超过均可导致该故障。"
+      }
+    },
+    {
+      "logic_candidate_id": "S210-LOGIC-CAND-004",
+      "event_node": {
+        "node_id": "siemens_s210:fault:A07094",
+        "node_type": "fault_entity",
+        "fault_code": "A07094",
+        "description": "General parameter limit violation"
+      },
+      "children": [
+        {
+          "relation_id": "S210-CAUSAL-008",
+          "source_node": {
+            "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A07094:0",
+            "node_type": "cause_candidate",
+            "text": "violation of a parameter limit"
+          },
+          "relation_type": "causes",
+          "direction": "source_to_target",
+          "evidence": [
+            {
+              "citation_id": "SIEMENS_S210_2019_A07094:cause:2",
+              "source_id": "input_text",
+              "field": "cause",
+              "quote": "violation of a parameter limit",
+              "start": 100,
+              "end": 130
+            }
+          ]
+        },
+        {
+          "relation_id": "S210-CAUSAL-V2-007",
+          "source_node": {
+            "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A07094:1",
+            "node_type": "cause_candidate",
+            "text": "Minimum limit violated"
+          },
+          "relation_type": "causes",
+          "direction": "source_to_target",
+          "evidence": [
+            {
+              "citation_id": "SIEMENS_S210_2019_A07094:cause:3",
+              "source_id": "input_text",
+              "field": "cause",
+              "quote": "Minimum limit violated",
+              "start": 181,
+              "end": 203
+            }
+          ]
+        },
+        {
+          "relation_id": "S210-CAUSAL-V2-008",
+          "source_node": {
+            "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A07094:2",
+            "node_type": "cause_candidate",
+            "text": "Maximum limit violated"
+          },
+          "relation_type": "causes",
+          "direction": "source_to_target",
+          "evidence": [
+            {
+              "citation_id": "SIEMENS_S210_2019_A07094:cause:4",
+              "source_id": "input_text",
+              "field": "cause",
+              "quote": "Maximum limit violated",
+              "start": 247,
+              "end": 269
+            }
+          ]
+        }
+      ],
+      "logic_gate": "OR",
+      "expert_review": {
+        "status": "expert_reviewed",
+        "child_set_complete": "complete",
+        "logic_gate": "OR",
+        "evidence_support": "supported",
+        "overall_decision": "approve",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22",
+        "expert_reason": "最小限制或最大限制违反均属于参数限制违反，任一条件即可触发。"
+      }
+    },
+    {
+      "logic_candidate_id": "S210-LOGIC-CAND-005",
+      "event_node": {
+        "node_id": "siemens_s210:fault:A30714",
+        "node_type": "fault_entity",
+        "fault_code": "A30714",
+        "description": "Safely-Limited Speed exceeded"
+      },
+      "children": [
+        {
+          "relation_id": "S210-CAUSAL-011",
+          "source_node": {
+            "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A30714:0",
+            "node_type": "cause_candidate",
+            "text": "The drive had moved faster than that specified by the velocity limit value."
+          },
+          "relation_type": "causes",
+          "direction": "source_to_target",
+          "evidence": [
+            {
+              "citation_id": "SIEMENS_S210_2019_A30714:cause:3",
+              "source_id": "input_text",
+              "field": "cause",
+              "quote": "The drive had moved faster than that specified by the velocity limit value.",
+              "start": 91,
+              "end": 166
+            }
+          ]
+        },
+        {
+          "relation_id": "S210-CAUSAL-V2-009",
+          "source_node": {
+            "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A30714:1",
+            "node_type": "cause_candidate",
+            "text": "SLS1 exceeded."
+          },
+          "relation_type": "causes",
+          "direction": "source_to_target",
+          "evidence": [
+            {
+              "citation_id": "SIEMENS_S210_2019_A30714:cause:4",
+              "source_id": "input_text",
+              "field": "cause",
+              "quote": "SLS1 exceeded.",
+              "start": 268,
+              "end": 282
+            }
+          ]
+        },
+        {
+          "relation_id": "S210-CAUSAL-V2-010",
+          "source_node": {
+            "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A30714:2",
+            "node_type": "cause_candidate",
+            "text": "SLS2 exceeded."
+          },
+          "relation_type": "causes",
+          "direction": "source_to_target",
+          "evidence": [
+            {
+              "citation_id": "SIEMENS_S210_2019_A30714:cause:5",
+              "source_id": "input_text",
+              "field": "cause",
+              "quote": "SLS2 exceeded.",
+              "start": 288,
+              "end": 302
+            }
+          ]
+        },
+        {
+          "relation_id": "S210-CAUSAL-V2-011",
+          "source_node": {
+            "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A30714:3",
+            "node_type": "cause_candidate",
+            "text": "SLS3 exceeded."
+          },
+          "relation_type": "causes",
+          "direction": "source_to_target",
+          "evidence": [
+            {
+              "citation_id": "SIEMENS_S210_2019_A30714:cause:6",
+              "source_id": "input_text",
+              "field": "cause",
+              "quote": "SLS3 exceeded.",
+              "start": 308,
+              "end": 322
+            }
+          ]
+        },
+        {
+          "relation_id": "S210-CAUSAL-V2-012",
+          "source_node": {
+            "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A30714:4",
+            "node_type": "cause_candidate",
+            "text": "SLS4 exceeded."
+          },
+          "relation_type": "causes",
+          "direction": "source_to_target",
+          "evidence": [
+            {
+              "citation_id": "SIEMENS_S210_2019_A30714:cause:7",
+              "source_id": "input_text",
+              "field": "cause",
+              "quote": "SLS4 exceeded.",
+              "start": 328,
+              "end": 342
+            }
+          ]
+        },
+        {
+          "relation_id": "S210-CAUSAL-V2-013",
+          "source_node": {
+            "node_id": "siemens_s210:cause:SIEMENS_S210_2019_A30714:5",
+            "node_type": "cause_candidate",
+            "text": "Encoder limit frequency exceeded."
+          },
+          "relation_type": "causes",
+          "direction": "source_to_target",
+          "evidence": [
+            {
+              "citation_id": "SIEMENS_S210_2019_A30714:cause:8",
+              "source_id": "input_text",
+              "field": "cause",
+              "quote": "Encoder limit frequency exceeded.",
+              "start": 349,
+              "end": 382
+            }
+          ]
+        }
+      ],
+      "logic_gate": "OR",
+      "expert_review": {
+        "status": "expert_reviewed",
+        "child_set_complete": "complete",
+        "logic_gate": "OR",
+        "evidence_support": "supported",
+        "overall_decision": "approve",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22",
+        "expert_reason": "SLS1-SLS4以及编码器频率限制均属于速度限制超出的不同检测路径，任一超限即可触发。"
+      }
+    },
+    {
+      "logic_candidate_id": "S210-LOGIC-CAND-006",
+      "event_node": {
+        "node_id": "siemens_s210:fault:F01611",
+        "node_type": "fault_entity",
+        "fault_code": "F01611",
+        "description": "Defect in a monitoring channel"
+      },
+      "children": [
+        {
+          "relation_id": "S210-CAUSAL-015",
+          "source_node": {
+            "node_id": "siemens_s210:cause:SIEMENS_S210_2019_F01611:0",
+            "node_type": "cause_candidate",
+            "text": "Stop request from another monitoring channel"
+          },
+          "relation_type": "causes",
+          "direction": "source_to_target",
+          "evidence": [
+            {
+              "citation_id": "SIEMENS_S210_2019_F01611:cause:3",
+              "source_id": "input_text",
+              "field": "cause",
+              "quote": "Stop request from another monitoring channel",
+              "start": 405,
+              "end": 449
+            }
+          ]
+        },
+        {
+          "relation_id": "S210-CAUSAL-V2-014",
+          "source_node": {
+            "node_id": "siemens_s210:cause:SIEMENS_S210_2019_F01611:1",
+            "node_type": "cause_candidate",
+            "text": "Watchdog timer has expired"
+          },
+          "relation_type": "causes",
+          "direction": "source_to_target",
+          "evidence": [
+            {
+              "citation_id": "SIEMENS_S210_2019_F01611:cause:4",
+              "source_id": "input_text",
+              "field": "cause",
+              "quote": "Watchdog timer has expired",
+              "start": 1083,
+              "end": 1109
+            }
+          ]
+        },
+        {
+          "relation_id": "S210-CAUSAL-V2-015",
+          "source_node": {
+            "node_id": "siemens_s210:cause:SIEMENS_S210_2019_F01611:2",
+            "node_type": "cause_candidate",
+            "text": "The signal at F-DI for STO/SS1 continually changes with time intervals less than or equal to the discrepancy time (p9650)"
+          },
+          "relation_type": "causes",
+          "direction": "source_to_target",
+          "evidence": [
+            {
+              "citation_id": "SIEMENS_S210_2019_F01611:cause:5",
+              "source_id": "input_text",
+              "field": "cause",
+              "quote": "the signal at F-DI for STO/SS1 continually changes with time intervals less than or equal to the discrepancy time (p9650)",
+              "start": 1193,
+              "end": 1314
+            }
+          ]
+        },
+        {
+          "relation_id": "S210-CAUSAL-V2-016",
+          "source_node": {
+            "node_id": "siemens_s210:cause:SIEMENS_S210_2019_F01611:3",
+            "node_type": "cause_candidate",
+            "text": "Via PROFIsafe, STO (also as subsequent response) was continually selected and deselected with time intervals less than or equal to the discrepancy time (p9650)"
+          },
+          "relation_type": "causes",
+          "direction": "source_to_target",
+          "evidence": [
+            {
+              "citation_id": "SIEMENS_S210_2019_F01611:cause:6",
+              "source_id": "input_text",
+              "field": "cause",
+              "quote": "via PROFIsafe, STO (also as subsequent response) was continually selected and deselected with time intervals less than\nor equal to the discrepancy time (p9650)",
+              "start": 1318,
+              "end": 1477
+            }
+          ]
+        }
+      ],
+      "logic_gate": "unknown",
+      "expert_review": {
+        "status": "expert_reviewed",
+        "child_set_complete": "complete",
+        "logic_gate": "unknown",
+        "evidence_support": "partial",
+        "overall_decision": "cannot_determine",
+        "reviewer": "刘武",
+        "reviewed_at": "2026-09-22",
+        "expert_reason": "多个候选均为监控通道异常触发条件，但现有证据不足以确认是否存在组合逻辑或任一条件独立触发，因此不强行定义AND/OR。"
+      }
+    }
+  ]
+}

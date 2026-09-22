@@ -36,6 +36,8 @@
 | 合并 Gold 校验报告 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_gold_v2_validation_2026-09-22.json` | 39 条合并关系的校验结果 |
 | AND/OR 候选包 | `evaluation/quality_eval/datasets/siemens_s210_and_or_logic_candidates_v1.json` | 6 个多原因故障事件，逻辑门字段全部待审核 |
 | AND/OR 专家清单 | `evaluation/quality_eval/runs/siemens_s210_and_or_logic_expert_review_checklist_v1_2026-09-22.md` | 供专家确认子原因集合和 AND/OR/unknown |
+| AND/OR Gold | `evaluation/quality_eval/datasets/siemens_s210_and_or_logic_gold_v1.json` | 5 个 OR 已确认，F01611 保留 unknown |
+| AND/OR Gold 校验报告 | `evaluation/quality_eval/runs/siemens_s210_and_or_logic_gold_v1_validation_2026-09-22.json` | 6 个事件均已结构校验 |
 | AND/OR 就绪报告 | `evaluation/quality_eval/runs/siemens_s210_and_or_logic_readiness_v1_2026-09-22.md` | 当前因果 Gold 和逻辑门审核门禁 |
 
 ## 专家需要确认什么
@@ -74,7 +76,7 @@ Word 文档前置汇总写成 `causal=26`、`associated_only=3`、`cannot_determ
 
 - `expert_validated=true`（仅针对当前两批 96 条候选范围）；
 - `causal_relations_complete=false`；
-- `logic_gates_complete=false`；
+- `logic_gates_complete=false`（F01611 为 `unknown`）；
 - `fta_ready=false`。
 
-同时，因果 Gold 目前只覆盖两批试点候选，不能代表 281 条记录的全量因果召回。当前下一步是由专家审核 6 个事件的 AND/OR 清单；在审核完成前，不允许自动建树或把多个原因默认为 OR。
+同时，因果 Gold 目前只覆盖两批试点候选，不能代表 281 条记录的全量因果召回。当前 5 个 OR 事件可以进入后续 FTA 设计，但 F01611 仍不得自动建树；整体 FTA 仍需等待逻辑 Gold 完整或明确保留 unknown 的产品策略。

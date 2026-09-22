@@ -1,0 +1,10 @@
+{
+  "status": "and_or_logic_gold_validated",
+  "expert_validated": true,
+  "event_count": 6,
+  "approved_event_count": 5,
+  "unknown_gate_count": 1,
+  "logic_gates_complete": false,
+  "fta_ready": false,
+  "errors": []
+}
