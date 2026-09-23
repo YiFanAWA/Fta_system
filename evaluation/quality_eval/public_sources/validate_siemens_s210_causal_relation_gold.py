@@ -102,7 +102,9 @@ def main() -> int:
         "causal_relations_complete": info.get("causal_relations_complete"),
         "logic_gates_complete": info.get("logic_gates_complete"),
         "fta_ready": info.get("fta_ready"),
-        "summary_discrepancy_present": bool(info.get("summary_discrepancy")),
+        "summary_discrepancy_present": bool(
+            info.get("summary_discrepancy") or info.get("summary_discrepancies")
+        ),
         "errors": errors,
     }
     if args.output:
