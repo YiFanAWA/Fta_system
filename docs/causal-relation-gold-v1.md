@@ -24,11 +24,13 @@
 | 第三批候选 | `evaluation/quality_eval/datasets/siemens_s210_causal_relation_candidates_v3_remaining_unreviewed.json` | 排除 v1/v2 后生成的 50 条候选来源，覆盖 50 个故障 |
 | 第四批候选 | `evaluation/quality_eval/datasets/siemens_s210_causal_relation_candidates_v4_remaining_unreviewed.json` | 排除 v1/v2/v3 后生成的 50 条候选来源，覆盖 50 个故障 |
 | 第五批候选 | `evaluation/quality_eval/datasets/siemens_s210_causal_relation_candidates_v5_remaining_unreviewed.json` | 排除 v1-v4 后生成的 50 条候选来源，覆盖 50 个故障；已完成专家审核，其中 45 条 approve、2 条 revise、3 条 reject |
+| 第六批候选 | `evaluation/quality_eval/datasets/siemens_s210_causal_relation_candidates_v6_remaining_unreviewed.json` | 排除 v1-v5 后生成的 50 条待审核候选来源，覆盖 50 个故障；尚未专家审核 |
 | 专家清单 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_expert_review_checklist_v1_2026-09-22.md` | 给专家逐条填写因果状态、方向、关系类型、FTA 资格和意见 |
 | 第二批清单 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_expert_review_checklist_v2_remaining_same_faults_2026-09-22.md` | 补齐同一故障的其他原因，避免只审核每个故障的第一条原因 |
 | 第三批清单 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_expert_review_checklist_v3_remaining_unreviewed_2026-09-22.md` | 扩大目标故障覆盖，供专家继续审核 |
 | 第四批清单 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_expert_review_checklist_v4_remaining_unreviewed_2026-09-22.md` | 第四批 50 条候选的专家审核底稿 |
 | 第五批清单 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_expert_review_checklist_v5_remaining_unreviewed_2026-09-22.md` | 第五批 50 条候选的专家审核底稿 |
+| 第六批清单 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_expert_review_checklist_v6_remaining_unreviewed_2026-09-23.md` | 第六批 50 条候选的专家审核底稿 |
 | 第四批专家审核结果 | `Siemens_S210_Causal_Relation_Expert_Review_v4_LiuWu_FULL_50.json/.md/.docx` | 刘武对第四批 50 条候选的逐条审核原件，JSON 为结构化转换输入，MD/DOCX 为审核记录原件 |
 | 第五批专家审核结果 | `Siemens_S210_Causal_Relation_Expert_Review_v5_LiuWu_FULL_50.json/.md/.docx` | 刘武对第五批 50 条候选的逐条审核原件，JSON 为结构化转换输入，MD/DOCX 为审核记录原件 |
 | 第三批专家审核结果 | `Siemens_S210_Causal_Relation_Expert_Review_v3_LiuWu_FULL_50.json/.md/.docx` | 刘武对第三批 50 条候选的逐条审核原件，JSON 为结构化转换输入 |
@@ -64,8 +66,11 @@
 | 第三批候选校验报告 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_candidates_v3_remaining_unreviewed_validation_2026-09-22.json` | 50 条候选来源的结构校验结果 |
 | 第四批候选校验报告 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_candidates_v4_remaining_unreviewed_validation_2026-09-22.json` | 50 条候选来源的结构校验结果 |
 | 第五批候选校验报告 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_candidates_v5_remaining_unreviewed_validation_2026-09-22.json` | 审核前 50 条候选来源的结构校验报告；不代表专家审核状态，最终状态以第五批专家审核结果为准 |
+| 第六批候选校验报告 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_candidates_v6_remaining_unreviewed_validation_2026-09-23.json` | 第六批 50 条候选来源的结构校验报告，已通过；不代表专家审核状态 |
 | 第五批生成器 | `evaluation/quality_eval/public_sources/build_siemens_s210_causal_relation_review_bundle_v5.py` | 排除 v1-v4 已审核候选并按故障码轮询生成第五批 |
 | 第五批生成器测试 | `evaluation/quality_eval/public_sources/test_build_siemens_s210_causal_relation_review_bundle_v5.py` | 校验第五批不重复、数量和证据结构 |
+| 第六批生成器 | `evaluation/quality_eval/public_sources/build_siemens_s210_causal_relation_review_bundle_v6.py` | 排除 v1-v5 已审核候选并按故障码轮询生成第六批 |
+| 第六批生成器测试 | `evaluation/quality_eval/public_sources/test_build_siemens_s210_causal_relation_review_bundle_v6.py` | 校验第六批不重复、数量和证据结构 |
 | 第五批修订包 | `evaluation/quality_eval/datasets/siemens_s210_causal_relation_revision_v5.json` | 保存 A01691、A01782 两条 revise 候选及专家建议，未进入 Gold |
 | 第五批修订清单 | `evaluation/quality_eval/runs/siemens_s210_causal_relation_revision_v5_2026-09-22.md` | 供刘武复核原因文本和 A01782 证据定位 |
 | v6 修订确认包 | `evaluation/quality_eval/datasets/siemens_s210_causal_relation_revision_confirmation_v6_LiuWu.json` | A01691、A01782 的专家确认表单，保持 pending，不代表 Gold 批准 |
@@ -140,12 +145,12 @@ Word 文档前置汇总写成 `causal=26`、`associated_only=3`、`cannot_determ
 
 ## 下一阶段目标
 
-当前目标为 **Causal Relation Coverage Expansion v1**：在保持 Gold v6 正式门禁不变的前提下，完成两条 revise 的确认分流，并从剩余 795 条未审核候选中生成下一批可审计审核材料。
+当前目标为 **Causal Relation Coverage Expansion v1**：在保持 Gold v6 正式门禁不变的前提下，完成两条 revise 的确认分流，并从剩余 795 条未审核候选中生成下一批可审计审核材料。第六批 50 条候选已经生成并通过结构校验，当前等待专家审核。
 
 ### 目标范围
 
 - A01691、A01782：AI 模拟意见只作为预审参考；真实专家确认后才能进入正式 Gold v7。
-- 下一批：从剩余 795 条候选中按既有去重和轮询策略选择 50 条，生成候选包、字符级证据、专家清单和结构校验报告。
+- 第六批：从剩余 795 条候选中按既有去重和轮询策略选择 50 条，已生成候选包、字符级证据、专家清单和结构校验报告。
 - 每条审核结果继续保留 `causal_status`、`direction`、`relation_type`、`fta_eligible`、`overall_decision`、证据和专家意见。
 
 ### 验收条件
