@@ -1,0 +1,122 @@
+{
+  "artifact_type": "fta_event_scope_gate_candidate_repair_manifest",
+  "artifact_version": "v1",
+  "created_at": "2026-09-26",
+  "source_review": "evaluation/quality_eval/runs/siemens_s210_event_scope_gate_primary_ai_role_review_v1_2026-09-26.json",
+  "repair_policy": "只补充能从当前完整 source_text 唯一定位的遗漏候选；重复引文不自动挑位置。修复后仅当事件原因作用域清晰、候选集合完整且同层时才可复核；候选清单不蕴含 AND/OR，未找到直接事件级门证据仍标 unknown。正式 Gold/数据库不变。",
+  "repairs": [
+    {
+      "case_id": "ESG-28969139AC6C",
+      "fault_code": "F30681",
+      "insert_after_child_ref": "C02",
+      "add_children": [
+        {
+          "candidate_text": "If motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1)\nare activated, then PROFIsafe (p9601.3 = 1) is not possible.",
+          "quote": "If motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1)\nare activated, then PROFIsafe (p9601.3 = 1) is not possible."
+        }
+      ],
+      "decision": {
+        "review_status": "reviewed",
+        "scope_appropriate": true,
+        "child_set_complete": true,
+        "children_same_logical_level": true,
+        "gate_label": "unknown",
+        "review_reason": "补入yyyy=1的PROFIsafe配置场景后，xxxx=9301、9347及xxxx=9801下yyyy=1/2/3/5/11/12的八种参数配置故障值场景均有精确证据。它们是同一参数故障的不同编码场景；原文没有直接证明整个事件级原因集合的AND/OR门。"
+      }
+    },
+    {
+      "case_id": "ESG-99E9D1915AF1",
+      "fault_code": "F30011",
+      "insert_after_child_ref": "C02",
+      "add_children": [
+        {
+          "candidate_text": "the capacitance of the DC link capacitor forms a resonance frequency with the line inductance and the reactor integrated\nin the power unit.",
+          "quote": "- the capacitance of the DC link capacitor forms a resonance frequency with the line inductance and the reactor integrated\nin the power unit."
+        }
+      ],
+      "decision": {
+        "review_status": "reviewed",
+        "scope_appropriate": true,
+        "child_set_complete": true,
+        "children_same_logical_level": true,
+        "gate_label": "unknown",
+        "review_reason": "补入电容与线路电感/内置电抗器形成谐振这一项后，Possible causes的六项均被覆盖且同层。原文的并列可能原因列表没有直接说明事件级OR或AND。"
+      }
+    },
+    {
+      "case_id": "ESG-37C3BDFBF2F4",
+      "fault_code": "F30024",
+      "insert_after_child_ref": "C01",
+      "add_children": [
+        {
+          "candidate_text": "insufficient cooling, fan failure.",
+          "quote": "- insufficient cooling, fan failure."
+        }
+      ],
+      "decision": {
+        "review_status": "reviewed",
+        "scope_appropriate": true,
+        "child_set_complete": true,
+        "children_same_logical_level": true,
+        "gate_label": "unknown",
+        "review_reason": "补回Cause列表中的冷却不足/风扇故障项后，五项原因均被覆盖且同层。列表没有直接事件级门证据，标unknown。"
+      }
+    },
+    {
+      "case_id": "ESG-22E63858AF68",
+      "fault_code": "F07801",
+      "insert_after_child_ref": "C03",
+      "add_children": [
+        {
+          "candidate_text": "short-circuit in the motor cable or ground fault.",
+          "quote": "- short-circuit in the motor cable or ground fault."
+        }
+      ],
+      "decision": {
+        "review_status": "reviewed",
+        "scope_appropriate": true,
+        "child_set_complete": true,
+        "children_same_logical_level": true,
+        "gate_label": "unknown",
+        "review_reason": "补入电机电缆短路或接地故障这一复合候选后，Cause列出的五个同层条目均已覆盖。该子项内部的or属于局部复合条件，不能提升为事件顶层OR；顶层没有直接AND/OR证据，故unknown。"
+      }
+    },
+    {
+      "case_id": "ESG-A56A01673204",
+      "fault_code": "F30625",
+      "insert_before_child_ref": "C01",
+      "add_children": [
+        {
+          "candidate_text": "there is either a DRIVE-CLiQ communication error or communication has failed.",
+          "quote": "- there is either a DRIVE-CLiQ communication error or communication has failed."
+        }
+      ],
+      "decision": {
+        "review_status": "reviewed",
+        "scope_appropriate": true,
+        "child_set_complete": true,
+        "children_same_logical_level": true,
+        "gate_label": "unknown",
+        "review_reason": "补入DRIVE-CLiQ通信错误/通信中断这一Cause条目后，三项事件级描述均有证据。该条目内部的either/or不证明它与另外两项之间的顶层门，因此顶层unknown。"
+      }
+    },
+    {
+      "case_id": "ESG-ADFFEF50F40B",
+      "fault_code": "F30027",
+      "add_children": [
+        {
+          "candidate_text": "The DC link has either a ground fault or a short-circuit.",
+          "quote": "9) The DC link has either a ground fault or a short-circuit."
+        }
+      ],
+      "decision": {
+        "review_status": "reviewed",
+        "scope_appropriate": true,
+        "child_set_complete": true,
+        "children_same_logical_level": true,
+        "gate_label": "unknown",
+        "review_reason": "补入编号9的DC link接地故障或短路后，Cause的1至9项均已覆盖且处于同一原因列表。该局部条目含either/or，但不能据此推断九项整体的事件级门，顶层unknown。"
+      }
+    }
+  ]
+}

@@ -1,0 +1,282 @@
+{
+  "artifact_type": "external_diagram_gate_classification_probe",
+  "artifact_version": "v1",
+  "created_at": "2026-09-27T05:31:26.133584+00:00",
+  "status": "completed",
+  "formal_gold": false,
+  "in_project_gold": false,
+  "database_written": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "evaluation_scope": "gate classification from parent/child event wording only; no diagram gate labels or visual evidence are sent to the model",
+  "confidence_semantics": "raw uncalibrated model self-assessment, not event probability",
+  "metadata": {
+    "model_id": "deepseek-flash",
+    "provider_host": "api.deepseek.com",
+    "temperature": 0,
+    "requests_planned": 13,
+    "requests_succeeded": 13,
+    "requests_failed": 0,
+    "source_cluster_count": 1,
+    "source_pdf_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+    "fixture_sha256": "3bf7bbcdab3dc019956fc0c787c38e094802c066e9ca18e7381dd54cf9940a55",
+    "source_pdf_path": "C:\\Users\\爹\\Downloads\\FAA_AST_Guide_to_Reliability_Analysis_v1.pdf"
+  },
+  "summary": {
+    "sample_count": 13,
+    "exact_accuracy": 1.0,
+    "always_OR_baseline_accuracy": 0.7692307692307693,
+    "balanced_accuracy_and_or": 1.0,
+    "macro_f1_and_or": 1.0,
+    "per_gate_recall": {
+      "AND": 1.0,
+      "OR": 1.0
+    },
+    "decisive_coverage": 1.0,
+    "selective_accuracy": 1.0,
+    "unknown_count": 0,
+    "multiclass_brier_raw_self_report_only_not_calibrated": 0.02683076923076923,
+    "confusion_matrix_gold_rows_predicted_columns": {
+      "AND": {
+        "AND": 3,
+        "OR": 0,
+        "unknown": 0
+      },
+      "OR": {
+        "AND": 0,
+        "OR": 10,
+        "unknown": 0
+      }
+    }
+  },
+  "predictions": [
+    {
+      "gate_node_id": "FAA-A4-1-G01",
+      "figure_id": "A.4-1",
+      "pdf_page": 50,
+      "expected_gate": "AND",
+      "predicted_gate": "AND",
+      "gate_probabilities": {
+        "AND": 0.82,
+        "OR": 0.08,
+        "unknown": 0.1
+      },
+      "top_probability": 0.82,
+      "top_margin": 0.72,
+      "correct": true,
+      "prompt_sha256": "43c9fd0ff7dcb9fedfe1f9c82634b73c1e3418bb0a3b0101dfcfc1ceee8319dd",
+      "reason_summary": "两个隔离阀通常串联；截止后仍向推力器供应推进剂，需要两个隔离阀都保持打开，任一关闭即可阻断供应，因此更符合 AND。"
+    },
+    {
+      "gate_node_id": "FAA-A4-1-G02",
+      "figure_id": "A.4-1",
+      "pdf_page": 50,
+      "expected_gate": "OR",
+      "predicted_gate": "OR",
+      "gate_probabilities": {
+        "AND": 0.01,
+        "OR": 0.97,
+        "unknown": 0.02
+      },
+      "top_probability": 0.97,
+      "top_margin": 0.95,
+      "correct": true,
+      "prompt_sha256": "22e562068ca825fb1839dd3237f2a4733c80e0b248f0196fc2f86de86ec2eab4",
+      "reason_summary": "两个直接子事件分别代表操作员未关闭和阀门自身未关闭，任一单独发生都足以导致隔离阀在切断后仍保持开启，因此最符合 OR 关系。"
+    },
+    {
+      "gate_node_id": "FAA-A4-1-G03",
+      "figure_id": "A.4-1",
+      "pdf_page": 50,
+      "expected_gate": "OR",
+      "predicted_gate": "OR",
+      "gate_probabilities": {
+        "AND": 0.05,
+        "OR": 0.9,
+        "unknown": 0.05
+      },
+      "top_probability": 0.9,
+      "top_margin": 0.85,
+      "correct": true,
+      "prompt_sha256": "b5962f098d4145ba1f8f12a54ca68695f5a02546861fd7f4998a1727eee484a0",
+      "reason_summary": "Contamination and mechanical failure are typical alternative failure modes for a valve failing to close; either could independently cause the parent event, so OR is most likely."
+    },
+    {
+      "gate_node_id": "FAA-A4-1-G04",
+      "figure_id": "A.4-1",
+      "pdf_page": 50,
+      "expected_gate": "OR",
+      "predicted_gate": "OR",
+      "gate_probabilities": {
+        "AND": 0.03,
+        "OR": 0.92,
+        "unknown": 0.05
+      },
+      "top_probability": 0.92,
+      "top_margin": 0.87,
+      "correct": true,
+      "prompt_sha256": "6b93b31a99ad4d45409ca63d0c7567d563ef89973181fdb40cfdf1d73d85dcdf",
+      "reason_summary": "操作员未关闭或阀门关闭失败，任一发生均可导致隔离阀在截断后仍保持打开，故最符合 OR 逻辑。"
+    },
+    {
+      "gate_node_id": "FAA-A4-1-G05",
+      "figure_id": "A.4-1",
+      "pdf_page": 50,
+      "expected_gate": "OR",
+      "predicted_gate": "OR",
+      "gate_probabilities": {
+        "AND": 0.05,
+        "OR": 0.85,
+        "unknown": 0.1
+      },
+      "top_probability": 0.85,
+      "top_margin": 0.75,
+      "correct": true,
+      "prompt_sha256": "eab6611f5c7c3fac075fd4315b5678508a486e61376435aeaeb80584084c7c6b",
+      "reason_summary": "污染或机械故障通常任一发生即可导致阀门无法关闭，更符合 OR 逻辑。"
+    },
+    {
+      "gate_node_id": "FAA-B1-3-G01",
+      "figure_id": "B.1-3",
+      "pdf_page": 64,
+      "expected_gate": "OR",
+      "predicted_gate": "OR",
+      "gate_probabilities": {
+        "AND": 0.05,
+        "OR": 0.85,
+        "unknown": 0.1
+      },
+      "top_probability": 0.85,
+      "top_margin": 0.75,
+      "correct": true,
+      "prompt_sha256": "e211e5ca8750695a08173b8fc95d0eb6ba359d3527aa8d4d21932f1a992b9e36",
+      "reason_summary": "失去电力或机械故障通常均可独立导致伺服控制丢失，未显示必须同时发生。"
+    },
+    {
+      "gate_node_id": "FAA-B1-3-G02",
+      "figure_id": "B.1-3",
+      "pdf_page": 64,
+      "expected_gate": "AND",
+      "predicted_gate": "AND",
+      "gate_probabilities": {
+        "AND": 0.95,
+        "OR": 0.03,
+        "unknown": 0.02
+      },
+      "top_probability": 0.95,
+      "top_margin": 0.9199999999999999,
+      "correct": true,
+      "prompt_sha256": "49959f4e3b6f1789548febe59e12a05fda3082a564a9292eb90a3026904f2e92",
+      "reason_summary": "主电源和备用电源通常构成冗余；仅失去主电源或仅失去备用电源不一定导致总电力丧失，通常需两者同时失效。"
+    },
+    {
+      "gate_node_id": "FAA-B2-2-G01",
+      "figure_id": "B.2-2",
+      "pdf_page": 66,
+      "expected_gate": "AND",
+      "predicted_gate": "AND",
+      "gate_probabilities": {
+        "AND": 0.85,
+        "OR": 0.1,
+        "unknown": 0.05
+      },
+      "top_probability": 0.85,
+      "top_margin": 0.75,
+      "correct": true,
+      "prompt_sha256": "3dc53344706a8f4334a1009b97033346fbcb0eab9a1a949678a2248e879ec6d2",
+      "reason_summary": "两个阀门很可能为串联/备用切断路径；仅自动阀或手动阀单一失效通常不足以阻止停机，需两者同时关闭失败，因此倾向 AND。"
+    },
+    {
+      "gate_node_id": "FAA-B2-2-G02",
+      "figure_id": "B.2-2",
+      "pdf_page": 66,
+      "expected_gate": "OR",
+      "predicted_gate": "OR",
+      "gate_probabilities": {
+        "AND": 0.05,
+        "OR": 0.85,
+        "unknown": 0.1
+      },
+      "top_probability": 0.85,
+      "top_margin": 0.75,
+      "correct": true,
+      "prompt_sha256": "64500f45004dc27f4fe0d75ef8e877e64a046e0447d3c72aa6bf1b63e859d19e",
+      "reason_summary": "软件故障或阀门1本身不能关闭，任一情形都可能使自动控制器关闭阀门1失败，因此倾向 OR；但子事件语义和边界存在一定模糊性。"
+    },
+    {
+      "gate_node_id": "FAA-B2-2-G03",
+      "figure_id": "B.2-2",
+      "pdf_page": 66,
+      "expected_gate": "OR",
+      "predicted_gate": "OR",
+      "gate_probabilities": {
+        "AND": 0.05,
+        "OR": 0.85,
+        "unknown": 0.1
+      },
+      "top_probability": 0.85,
+      "top_margin": 0.75,
+      "correct": true,
+      "prompt_sha256": "746438ed3664464ebd56229a243d0b2b417460325beda56b3d943ffe381f14f8",
+      "reason_summary": "Contamination or mechanical failure can each independently prevent Valve 1 from closing; the text does not indicate both must occur."
+    },
+    {
+      "gate_node_id": "FAA-B2-2-G04",
+      "figure_id": "B.2-2",
+      "pdf_page": 66,
+      "expected_gate": "OR",
+      "predicted_gate": "OR",
+      "gate_probabilities": {
+        "AND": 0.05,
+        "OR": 0.9,
+        "unknown": 0.05
+      },
+      "top_probability": 0.9,
+      "top_margin": 0.85,
+      "correct": true,
+      "prompt_sha256": "d43ac69d8f26e6e9ead41b22eef4195179a58423cc1fe9ebe57824a378e85da8",
+      "reason_summary": "两个直接子事件分别代表人员未关闭和阀门自身无法关闭，任一发生均可导致手动阀未能关闭，因此更符合 OR 逻辑。"
+    },
+    {
+      "gate_node_id": "FAA-B2-2-G05",
+      "figure_id": "B.2-2",
+      "pdf_page": 66,
+      "expected_gate": "OR",
+      "predicted_gate": "OR",
+      "gate_probabilities": {
+        "AND": 0.05,
+        "OR": 0.8,
+        "unknown": 0.15
+      },
+      "top_probability": 0.8,
+      "top_margin": 0.65,
+      "correct": true,
+      "prompt_sha256": "55e69760609144b53446da3d4050420e0b9a2d2dd6ef3c090ca827f7736cd5b2",
+      "reason_summary": "Improper training 或 Incorrect procedures 均可独立促成 Operator fails to close，未显示必须同时发生。"
+    },
+    {
+      "gate_node_id": "FAA-B2-2-G06",
+      "figure_id": "B.2-2",
+      "pdf_page": 66,
+      "expected_gate": "OR",
+      "predicted_gate": "OR",
+      "gate_probabilities": {
+        "AND": 0.05,
+        "OR": 0.9,
+        "unknown": 0.05
+      },
+      "top_probability": 0.9,
+      "top_margin": 0.85,
+      "correct": true,
+      "prompt_sha256": "7fda25605ab830acd5bc95317edbb873326a68cd94f321a3ed667b7b73ac791a",
+      "reason_summary": "污染或机械故障均可独立导致阀门无法关闭，因此最可能是 OR 门。"
+    }
+  ],
+  "failures": [],
+  "limitations": [
+    "13 nodes from one illustrative FAA guide are an external structural probe, not independent-source calibration.",
+    "This test does not evaluate text evidence binding, cause extraction, candidate-tree construction, or production integration.",
+    "Unknown abstention is counted as not-correct for exact gate-label accuracy; selective metrics are reported separately.",
+    "Brier score is descriptive only and cannot establish calibration on this small single-source sample."
+  ]
+}

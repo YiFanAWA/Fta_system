@@ -1,0 +1,464 @@
+{
+  "artifact_type": "candidate_fta_raw_source_development_probe",
+  "artifact_version": "v1",
+  "reviewer_provenance": "live_model_development_probe_not_expert_review",
+  "formal_gold": false,
+  "database_written": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "evaluation_scope": "one public raw fault record through the current CandidateFtaApplicationService; development-path observation only, not a blind final test",
+  "source": {
+    "sample_id": "SIEMENS_S120_S150_2023_F35400_P3271_N001",
+    "dataset": "siemens_s120_s150_2023_public_fault_corpus_holdout_v2",
+    "source_document": "SINAMICS S120/S150 List Manual",
+    "edition": "11/2023",
+    "source_document_sha256": "f7684038621ae9faaedbed1780e23c48775c19d76ae0fbd0adce268d69f489f4",
+    "pdf_page_start": 3271,
+    "pdf_page_end": 3271,
+    "input_text_sha256": "fb20a5d44918d08c1dc0d253dd1867a349008147c2311138416821c091b8a708",
+    "input_text_char_count": 1643
+  },
+  "model": {
+    "model_id": "deepseek-flash",
+    "provider_host": "api.deepseek.com",
+    "temperature": 0,
+    "request_attempt_count": 4,
+    "successful_response_count": 4,
+    "configured_max_retries": 0,
+    "configured_timeout_seconds": 90
+  },
+  "model_stage_responses": [
+    {
+      "request_index": 1,
+      "stage": "fault_extraction",
+      "response": "{\n  \"items\": [\n    {\n      \"fault_code\": \"F35400\",\n      \"component\": \"Terminal Module (TM)\",\n      \"related_components\": [],\n      \"description\": \"Temperature fault/alarm threshold channel 4 exceeded\",\n      \"causes\": [\n        \"alarm threshold has been exceeded longer than that set in the timer\",\n        \"fault threshold exceeded\"\n      ],\n      \"parameters\": [\n        \"p4102[8]\",\n        \"p4103[4]\",\n        \"p4102[9]\",\n        \"p4100[4]\",\n        \"r4101[4]\",\n        \"r4105[4]\",\n        \"r0949\",\n        \"p4118[4]\",\n        \"p2100\",\n        \"p2101\",\n        \"p4102\"\n      ]\n    }\n  ]\n}",
+      "response_sha256": "61144d02e249d1f9b79930fd098e7c4fb82e44570ece5619de3ab1cb5a6ff76c"
+    },
+    {
+      "request_index": 2,
+      "stage": "cause_disposition",
+      "response": "{\"cause_dispositions\":[{\"source_cause_index\":0,\"semantic_role\":\"causal_condition\",\"fta_disposition\":\"fta_event_candidate\",\"evidence_quote\":\"alarm threshold has been exceeded longer than that set in the timer\",\"reason_code\":\"direct_causal_or_condition_statement\",\"rationale\":\"原文将其列为触发该故障的条件之一，可作为上游条件事件候选。\"},{\"source_cause_index\":1,\"semantic_role\":\"causal_condition\",\"fta_disposition\":\"fta_event_candidate\",\"evidence_quote\":\"fault threshold exceeded\",\"reason_code\":\"direct_causal_or_condition_statement\",\"rationale\":\"原文将其列为触发该故障的条件之一，可作为上游条件事件候选。\"}]}",
+      "response_sha256": "29df729dff837ef5bff2ac3dea7f27ca563e6e4fcb26b72b9e66825d64e57eb5"
+    },
+    {
+      "request_index": 3,
+      "stage": "structure_decomposition",
+      "response": "{\n  \"structure_status\": \"complete\",\n  \"nodes\": [\n    {\n      \"node_id\": \"cause_0\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"alarm threshold has been exceeded longer than that set in the timer (p4102[8], p4103[4])\",\n      \"source_cause_indices\": [0],\n      \"evidence_quote\": \"alarm threshold has been exceeded longer than that set in the timer (p4102[8], p4103[4])\"\n    },\n    {\n      \"node_id\": \"cause_1\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"fault threshold exceeded (p4102[9])\",\n      \"source_cause_indices\": [1],\n      \"evidence_quote\": \"fault threshold exceeded (p4102[9])\"\n    }\n  ],\n  \"gate_scopes\": [\n    {\n      \"gate_id\": \"scope_top_at_least_one_condition\",\n      \"output_node_id\": \"__top_event__\",\n      \"child_node_ids\": [\"cause_0\", \"cause_1\"],\n      \"scope_type\": \"at_least_one_of_following\",\n      \"scope_quote\": \"Temperature fault/alarm threshold channel 4 exceeded\\nMessage value: %1\\nMessage class: External measured value / signal state outside the permissible range (16)\\nDrive object: A_INF, B_INF, HLA, R_INF, S_INF, SERVO, SERVO_AC, SERVO_I_AC, TM150, TM41, VECTOR, VECTOR_AC, \\nVECTOR_I_AC\\nComponent: Terminal Module (TM) Propagation: BICO\\nResponse: Infeed: OFF2 (NONE, OFF1)\\nServo: OFF2 (NONE, OFF1, OFF3)\\nVector: OFF2 (NONE, OFF1, OFF3)\\nHla: OFF2 (NONE, OFF1, OFF3)\\nAcknowledgment: IMMEDIATELY (POWER ON)\\nCause: For the temperature evaluation via the Terminal Module 150 (TM150), at least one of the following conditions to \\ninitiate this fault is fulfilled:\\n- alarm threshold has been exceeded longer than that set in the timer (p4102[8], p4103[4]).\\nor\\n- fault threshold exceeded (p4102[9]).\",\n      \"cause_set_complete\": true,\n      \"cause_set_leaf_normalized\": true,\n      \"reason\": \"原文在 Cause 段以“at least one of the following conditions to initiate this fault is fulfilled:”引出封闭枚举，并以“or”分隔两个条件；scope_quote 覆盖该枚举及两个直接子项，两个直接子项均为本地原子 cause_candidate，未在其内部发现独立布尔组合。\"\n    }\n  ],\n  \"unresolved_cause_indices\": [],\n  \"reason\": \"两个 fta_event_candidate 索引均已映射为候选 cause_candidate，并通过顶事件下的 at_least_one_of_following 作用域连接到顶事件；未发现需保留的未解析、relation_only 或 exclude_from_tree 节点映射。\"\n}",
+      "response_sha256": "ef848ee9a98eec8babe895f8a3ea2e633293a6af0a1993eeca702da2be832c95"
+    },
+    {
+      "request_index": 4,
+      "stage": "gate_assessment",
+      "response": "{\"gate_assessments\":[{\"gate_id\":\"scope_top_at_least_one_condition\",\"gate_probabilities\":{\"AND\":0.0,\"OR\":0.98,\"unknown\":0.02},\"gate_evidence_quote\":\"at least one of the following conditions to \\ninitiate this fault is fulfilled:\\n- alarm threshold has been exceeded longer than that set in the timer (p4102[8], p4103[4]).\\nor\\n- fault threshold exceeded (p4102[9]).\",\"reason\":\"scope_quote 直接用“at least one of the following conditions ... is fulfilled”引出封闭枚举，并以“or”分隔两个条件；两个 child 均为本地原子 cause_candidate，且 child 集合声明为完整、已叶归一化，因此该局部门型应为 OR。unknown 仅保留极低不确定性。\"}],\"relations\":[],\"reason\":\"唯一 gate_scope 的父子结构已表达顶事件与两个 cause_candidate 之间的“至少一个条件”关系，不另行输出重复的 causes 边；原文未提供其他未被该 gate_scope 覆盖且可唯一绑定两端节点的明示因果关系。\"}",
+      "response_sha256": "dbaa452d29a5708e97656067ba092488878a455c339936a4ceeb78db10110207"
+    }
+  ],
+  "cause_disposition_counts": {
+    "fta_event_candidate": 2
+  },
+  "evidence_integrity": {
+    "extraction": {
+      "reference_count": 18,
+      "all_offsets_exact": true,
+      "quote_uniqueness_required": false,
+      "all_quotes_unique": null,
+      "non_unique_source_quote_count": 4,
+      "failures": []
+    },
+    "candidate_tree_available": true,
+    "candidate_tree": {
+      "reference_count": 5,
+      "all_offsets_exact": true,
+      "quote_uniqueness_required": true,
+      "all_quotes_unique": true,
+      "non_unique_source_quote_count": 0,
+      "failures": []
+    }
+  },
+  "result": {
+    "artifact_type": "candidate_fta_generation_result",
+    "artifact_version": "v3",
+    "source_text_sha256": "fb20a5d44918d08c1dc0d253dd1867a349008147c2311138416821c091b8a708",
+    "extraction": {
+      "result_id": "d73afedf-d038-4838-ba6c-93d294507c48",
+      "status": "success",
+      "records": [
+        {
+          "record_id": "83695fd4-05e4-4c5e-aa06-a6089f8eb2cc",
+          "fault_code": "F35400",
+          "description": "Temperature fault/alarm threshold channel 4 exceeded",
+          "component": "Terminal Module (TM)",
+          "related_components": [],
+          "causes": [
+            "alarm threshold has been exceeded longer than that set in the timer",
+            "fault threshold exceeded"
+          ],
+          "parameters": [
+            "p4102[8]",
+            "p4103[4]",
+            "p4102[9]",
+            "p4100[4]",
+            "r4101[4]",
+            "r4105[4]",
+            "r0949",
+            "p4118[4]",
+            "p2100",
+            "p2101",
+            "p4102"
+          ],
+          "confidence": null
+        }
+      ],
+      "evidence_spans": [
+        {
+          "record_id": "83695fd4-05e4-4c5e-aa06-a6089f8eb2cc",
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "F35400",
+          "start": 0,
+          "end": 6,
+          "value_index": null
+        },
+        {
+          "record_id": "83695fd4-05e4-4c5e-aa06-a6089f8eb2cc",
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "Terminal Module (TM)",
+          "start": 310,
+          "end": 330,
+          "value_index": null
+        },
+        {
+          "record_id": "83695fd4-05e4-4c5e-aa06-a6089f8eb2cc",
+          "field": "description",
+          "source_id": "input_text",
+          "quote": "Temperature fault/alarm threshold channel 4 exceeded",
+          "start": 18,
+          "end": 70,
+          "value_index": null
+        },
+        {
+          "record_id": "83695fd4-05e4-4c5e-aa06-a6089f8eb2cc",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "alarm threshold has been exceeded longer than that set in the timer",
+          "start": 672,
+          "end": 739,
+          "value_index": 0
+        },
+        {
+          "record_id": "83695fd4-05e4-4c5e-aa06-a6089f8eb2cc",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "F35400 (N, A) TM: Temperature fault/alarm threshold channel 4 exceeded\nMessage value: %1\nMessage class: External measured value / signal state outside the permissible range (16)\nDrive object: A_INF, B_INF, HLA, R_INF, S_INF, SERVO, SERVO_AC, SERVO_I_AC, TM150, TM41, VECTOR, VECTOR_AC, \nVECTOR_I_AC\nComponent: Terminal Module (TM) Propagation: BICO\nResponse: Infeed: OFF2 (NONE, OFF1)\nServo: OFF2 (NONE, OFF1, OFF3)\nVector: OFF2 (NONE, OFF1, OFF3)\nHla: OFF2 (NONE, OFF1, OFF3)\nAcknowledgment: IMMEDIATELY (POWER ON)\nCause: For the temperature evaluation via the Terminal Module 150 (TM150), at least one of the following conditions to \ninitiate this fault is fulfilled:\n- alarm threshold has been exceeded longer than that set in the timer (p4102[8], p4103[4]).",
+          "start": 0,
+          "end": 761,
+          "value_index": 0
+        },
+        {
+          "record_id": "83695fd4-05e4-4c5e-aa06-a6089f8eb2cc",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "fault threshold exceeded",
+          "start": 767,
+          "end": 791,
+          "value_index": 1
+        },
+        {
+          "record_id": "83695fd4-05e4-4c5e-aa06-a6089f8eb2cc",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "or\n- fault threshold exceeded (p4102[9]).",
+          "start": 762,
+          "end": 803,
+          "value_index": 1
+        },
+        {
+          "record_id": "83695fd4-05e4-4c5e-aa06-a6089f8eb2cc",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "p4102[8]",
+          "start": 741,
+          "end": 749,
+          "value_index": 0
+        },
+        {
+          "record_id": "83695fd4-05e4-4c5e-aa06-a6089f8eb2cc",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "p4103[4]",
+          "start": 751,
+          "end": 759,
+          "value_index": 1
+        },
+        {
+          "record_id": "83695fd4-05e4-4c5e-aa06-a6089f8eb2cc",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "p4102[9]",
+          "start": 793,
+          "end": 801,
+          "value_index": 2
+        },
+        {
+          "record_id": "83695fd4-05e4-4c5e-aa06-a6089f8eb2cc",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "p4100[4]",
+          "start": 872,
+          "end": 880,
+          "value_index": 3
+        },
+        {
+          "record_id": "83695fd4-05e4-4c5e-aa06-a6089f8eb2cc",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "r4101[4]",
+          "start": 918,
+          "end": 926,
+          "value_index": 4
+        },
+        {
+          "record_id": "83695fd4-05e4-4c5e-aa06-a6089f8eb2cc",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "r4105[4]",
+          "start": 956,
+          "end": 964,
+          "value_index": 5
+        },
+        {
+          "record_id": "83695fd4-05e4-4c5e-aa06-a6089f8eb2cc",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "r0949",
+          "start": 1292,
+          "end": 1297,
+          "value_index": 6
+        },
+        {
+          "record_id": "83695fd4-05e4-4c5e-aa06-a6089f8eb2cc",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "p4118[4]",
+          "start": 1464,
+          "end": 1472,
+          "value_index": 7
+        },
+        {
+          "record_id": "83695fd4-05e4-4c5e-aa06-a6089f8eb2cc",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "p2100",
+          "start": 1522,
+          "end": 1527,
+          "value_index": 8
+        },
+        {
+          "record_id": "83695fd4-05e4-4c5e-aa06-a6089f8eb2cc",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "p2101",
+          "start": 1529,
+          "end": 1534,
+          "value_index": 9
+        },
+        {
+          "record_id": "83695fd4-05e4-4c5e-aa06-a6089f8eb2cc",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "p4102",
+          "start": 741,
+          "end": 746,
+          "value_index": 10
+        }
+      ],
+      "diagnostics": []
+    },
+    "outcomes": [
+      {
+        "record_id": "83695fd4-05e4-4c5e-aa06-a6089f8eb2cc",
+        "fault_code": "F35400",
+        "status": "proposed",
+        "tree": {
+          "artifact_type": "candidate_fta_tree",
+          "artifact_version": "v5",
+          "extraction_result_id": "d73afedf-d038-4838-ba6c-93d294507c48",
+          "record_id": "83695fd4-05e4-4c5e-aa06-a6089f8eb2cc",
+          "fault_code": "F35400",
+          "source_text_sha256": "fb20a5d44918d08c1dc0d253dd1867a349008147c2311138416821c091b8a708",
+          "top_event_id": "event:83695fd4-05e4-4c5e-aa06-a6089f8eb2cc",
+          "nodes": [
+            {
+              "node_id": "event:83695fd4-05e4-4c5e-aa06-a6089f8eb2cc",
+              "node_type": "top_event_candidate",
+              "text": "Temperature fault/alarm threshold channel 4 exceeded",
+              "evidence": [
+                {
+                  "citation_id": "83695fd4-05e4-4c5e-aa06-a6089f8eb2cc:description:18-70",
+                  "source_id": "input_text",
+                  "quote": "Temperature fault/alarm threshold channel 4 exceeded",
+                  "start": 18,
+                  "end": 70
+                }
+              ],
+              "source_cause_indices": []
+            },
+            {
+              "node_id": "cause:83695fd4-05e4-4c5e-aa06-a6089f8eb2cc:cause_0",
+              "node_type": "cause_candidate",
+              "text": "alarm threshold has been exceeded longer than that set in the timer (p4102[8], p4103[4])",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:672-760",
+                  "source_id": "input_text",
+                  "quote": "alarm threshold has been exceeded longer than that set in the timer (p4102[8], p4103[4])",
+                  "start": 672,
+                  "end": 760
+                }
+              ],
+              "source_cause_indices": [
+                0
+              ]
+            },
+            {
+              "node_id": "cause:83695fd4-05e4-4c5e-aa06-a6089f8eb2cc:cause_1",
+              "node_type": "cause_candidate",
+              "text": "fault threshold exceeded (p4102[9])",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:767-802",
+                  "source_id": "input_text",
+                  "quote": "fault threshold exceeded (p4102[9])",
+                  "start": 767,
+                  "end": 802
+                }
+              ],
+              "source_cause_indices": [
+                1
+              ]
+            }
+          ],
+          "cause_dispositions": [
+            {
+              "source_cause_index": 0,
+              "source_cause_text": "alarm threshold has been exceeded longer than that set in the timer",
+              "semantic_role": "causal_condition",
+              "proposed_disposition": "fta_event_candidate",
+              "disposition": "fta_event_candidate",
+              "reason_code": "direct_causal_or_condition_statement",
+              "rationale": "原文将其列为触发该故障的条件之一，可作为上游条件事件候选。",
+              "evidence": [
+                {
+                  "citation_id": "input_text:cause_disposition:672-739",
+                  "source_id": "input_text",
+                  "quote": "alarm threshold has been exceeded longer than that set in the timer",
+                  "start": 672,
+                  "end": 739
+                }
+              ],
+              "review_status": "ai_proposed",
+              "provenance": "fta_cause_disposition_model"
+            },
+            {
+              "source_cause_index": 1,
+              "source_cause_text": "fault threshold exceeded",
+              "semantic_role": "causal_condition",
+              "proposed_disposition": "fta_event_candidate",
+              "disposition": "fta_event_candidate",
+              "reason_code": "direct_causal_or_condition_statement",
+              "rationale": "原文将其列为触发该故障的条件之一，可作为上游条件事件候选。",
+              "evidence": [
+                {
+                  "citation_id": "input_text:cause_disposition:767-791",
+                  "source_id": "input_text",
+                  "quote": "fault threshold exceeded",
+                  "start": 767,
+                  "end": 791
+                }
+              ],
+              "review_status": "ai_proposed",
+              "provenance": "fta_cause_disposition_model"
+            }
+          ],
+          "gate_assessments": [
+            {
+              "gate_node_id": "gate:c15be27f4cdf56e9191b2f64",
+              "output_node_id": "event:83695fd4-05e4-4c5e-aa06-a6089f8eb2cc",
+              "child_node_ids": [
+                "cause:83695fd4-05e4-4c5e-aa06-a6089f8eb2cc:cause_0",
+                "cause:83695fd4-05e4-4c5e-aa06-a6089f8eb2cc:cause_1"
+              ],
+              "scope_type": "at_least_one_of_following",
+              "gate": "unknown",
+              "gate_probabilities": {
+                "AND": 0.0,
+                "OR": 0.98,
+                "unknown": 0.02
+              },
+              "scope_evidence": [
+                {
+                  "citation_id": "input_text:scope:18-803",
+                  "source_id": "input_text",
+                  "quote": "Temperature fault/alarm threshold channel 4 exceeded\nMessage value: %1\nMessage class: External measured value / signal state outside the permissible range (16)\nDrive object: A_INF, B_INF, HLA, R_INF, S_INF, SERVO, SERVO_AC, SERVO_I_AC, TM150, TM41, VECTOR, VECTOR_AC, \nVECTOR_I_AC\nComponent: Terminal Module (TM) Propagation: BICO\nResponse: Infeed: OFF2 (NONE, OFF1)\nServo: OFF2 (NONE, OFF1, OFF3)\nVector: OFF2 (NONE, OFF1, OFF3)\nHla: OFF2 (NONE, OFF1, OFF3)\nAcknowledgment: IMMEDIATELY (POWER ON)\nCause: For the temperature evaluation via the Terminal Module 150 (TM150), at least one of the following conditions to \ninitiate this fault is fulfilled:\n- alarm threshold has been exceeded longer than that set in the timer (p4102[8], p4103[4]).\nor\n- fault threshold exceeded (p4102[9]).",
+                  "start": 18,
+                  "end": 803
+                }
+              ],
+              "gate_evidence": [
+                {
+                  "citation_id": "input_text:gate:591-803",
+                  "source_id": "input_text",
+                  "quote": "at least one of the following conditions to \ninitiate this fault is fulfilled:\n- alarm threshold has been exceeded longer than that set in the timer (p4102[8], p4103[4]).\nor\n- fault threshold exceeded (p4102[9]).",
+                  "start": 591,
+                  "end": 803
+                }
+              ],
+              "cause_set_complete": true,
+              "cause_set_leaf_normalized": true,
+              "confidence_policy_id": null,
+              "confidence_policy_basis": null,
+              "minimum_gate_probability": null,
+              "minimum_gate_margin": null,
+              "decision_reason": "gate_confidence_policy_unavailable; model gate proposal is not accepted; model rationale: scope_quote 直接用“at least one of the following conditions ... is fulfilled”引出封闭枚举，并以“or”分隔两个条件；两个 child 均为本地原子 cause_candidate，且 child 集合声明为完整、已叶归一化，因此该局部门型应为 OR。unknown 仅保留极低不确定性。",
+              "unknown_reason_code": "confidence_policy_unavailable",
+              "blockers": [
+                "gate_confidence_policy_unavailable"
+              ]
+            }
+          ],
+          "unknown_gate_reason_counts": {
+            "confidence_policy_unavailable": 1
+          },
+          "relations": [],
+          "gate_confidence_semantics": "uncalibrated_model_estimate",
+          "status": "candidate_ready_for_review",
+          "blockers": [],
+          "decision_reason": "两个 fta_event_candidate 索引均已映射为候选 cause_candidate，并通过顶事件下的 at_least_one_of_following 作用域连接到顶事件；未发现需保留的未解析、relation_only 或 exclude_from_tree 节点映射。; 唯一 gate_scope 的父子结构已表达顶事件与两个 cause_candidate 之间的“至少一个条件”关系，不另行输出重复的 causes 边；原文未提供其他未被该 gate_scope 覆盖且可唯一绑定两端节点的明示因果关系。",
+          "reviewer_provenance": "user_authorized_ai_expert_role",
+          "human_reviewed": false,
+          "fta_ready": false,
+          "production_ready": false
+        },
+        "diagnostics": []
+      }
+    ]
+  },
+  "outcome_summary": {
+    "status": "proposed",
+    "fault_code": "F35400",
+    "tree_available": true,
+    "node_count": 3,
+    "gate_scopes": [
+      {
+        "scope_type": "at_least_one_of_following",
+        "gate": "unknown",
+        "child_count": 2,
+        "blockers": [
+          "gate_confidence_policy_unavailable"
+        ]
+      }
+    ],
+    "diagnostics": []
+  }
+}

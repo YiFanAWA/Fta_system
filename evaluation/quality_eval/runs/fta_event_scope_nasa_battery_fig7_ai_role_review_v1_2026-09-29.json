@@ -1,0 +1,67 @@
+{
+  "review_schema": "fta_event_scope_ai_role_review_v1",
+  "review_id": "fta_event_scope_nasa_battery_fig7_ai_role_review_v1_2026-09-29",
+  "packet_id": "NASA_GSFC_BATTERY_FIG7_MODULE_FAILURE_DEV_001",
+  "source_cluster_id": "NASA_GSFC_LISOCL2_BATTERY_SAFETY_ANALYSIS_1987",
+  "reviewer": {
+    "role": "ai_role_review",
+    "reviewer_id": "Tesla the 2nd (AI role reviewer)",
+    "human_expert": false,
+    "reviewed_at": "2026-09-29"
+  },
+  "overall_disposition": "reviewed_with_reference_graph_occurrence_correction",
+  "gate_operator_findings": [
+    {
+      "scope_id": "module-failure-gate",
+      "diagram_gate": "OR",
+      "text_observed_operator": "OR",
+      "text_authorized_gate": "OR",
+      "text_operator_directly_supported": true,
+      "exact_scope_authorized": true,
+      "unknown_reason": null,
+      "evidence_quote": "a single cell exploding and the failure of the module vents or a single cell exploding and the module operating nominally"
+    },
+    {
+      "scope_id": "secondary-explosion-gate",
+      "diagram_gate": "AND",
+      "text_observed_operator": "AND",
+      "text_authorized_gate": "AND",
+      "text_operator_directly_supported": true,
+      "exact_scope_authorized": true,
+      "unknown_reason": null,
+      "evidence_quote": "a single cell exploding and the module operating nominally"
+    },
+    {
+      "scope_id": "module-structural-failure-gate",
+      "diagram_gate": "AND",
+      "text_observed_operator": "AND",
+      "text_authorized_gate": "unknown",
+      "text_operator_directly_supported": true,
+      "exact_scope_authorized": false,
+      "unknown_reason": "scope_ambiguity",
+      "evidence_quote": "a single cell exploding and the failure of the module vents"
+    }
+  ],
+  "reference_graph_findings": [
+    {
+      "finding": "duplicate_event_occurrences_must_remain_distinct_nodes",
+      "detail": "Figure 7 draws two separate 'Single cell explodes' event boxes under different branches. The reference graph now uses separate occurrence node IDs.",
+      "status": "corrected"
+    },
+    {
+      "finding": "diagram_child_label_is_more_specific_than_text",
+      "detail": "The diagram's 'Two module vents clog' oval is retained as a diagram-reference basic event. The provided prose says 'failure of the module vents' and does not establish that exactly two vents clog. Although an AND operator is explicitly observed for the broader prose conditions, the exact output/child scope is not text-authorized; the text label is therefore unknown with scope_ambiguity.",
+      "status": "scope_difference_recorded"
+    },
+    {
+      "finding": "diagram_root_label_differs_from_prose_top_event_wording",
+      "detail": "The diagram label 'Module failure' remains a reference-graph label; the prose top event is 'explosion or structural fragmentation of a battery module'. No exact synonym equivalence is asserted.",
+      "status": "scope_difference_recorded"
+    }
+  ],
+  "review_limitations": [
+    "This is an AI-role review, not human domain-expert signoff and not formal Gold.",
+    "Review checks the three Boolean operators and diagram transcription for one seen-development case only; it does not establish model performance, calibration, or generalization.",
+    "The model input did not contain the Figure 7 image, graph, expected gates, or reviewer labels."
+  ]
+}

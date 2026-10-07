@@ -35,6 +35,10 @@ _EXPLICIT_CAUSE_RE = re.compile(
 )
 _PREVENTIVE_CAUSE_CONTEXT_RE = re.compile(r"(?:避免|防止|以免|预防)\s*$")
 _DOWNSTREAM_FAULT_RE = re.compile(r"(?:二次|次生|后续)\s*故障|secondary\s+fault|downstream\s+fault", re.IGNORECASE)
+_CAUSE_CONTEXT_BOUNDARY_RE = re.compile(
+    r"[。！？!?；;]|(?<!\d)\.(?!\d)|\n\s*\n"
+)
+_MAX_CAUSE_CONTEXT_CHARS = 1200
 _EXPLICIT_CAUSE_SECTION_RE = re.compile(
     r"(?ims)^\s*(?:cause|可能原因|候选原因)\s*[:：]\s*"
     r"(?P<body>.*?)(?=^\s*(?:note|fault\s+value|remedy|reaction|acknowledge|故障处理|处理建议)\s*[:：]|\Z)"
@@ -61,6 +65,12 @@ _CAUSE_EVIDENCE_ALIASES = {
     "不存在电机抱闸且SBC使能": ("不存在电机抱闸", "SBC使能"),
     "电机抱闸控制，B且SBC使能": ("电机抱闸控制，B", "SBC使能"),
 }
+_EVIDENCE_QUOTE_CHARACTERS = frozenset("\"'“”‘’")
+_INLINE_PARAMETER_ANNOTATION_RE = re.compile(
+    r"\(\s*(?:[pr]\d{3,5}(?:\.\d+)?)(?:\s*=\s*[\w.-]+)?"
+    r"(?:\s*[,;]\s*[pr]\d{3,5}(?:\.\d+)?(?:\s*=\s*[\w.-]+)?)*\s*\)",
+    re.IGNORECASE,
+)
 class TextExtractionAdapter:
     """Adapt a model client into one complete text-extraction operation.
 
@@ -408,6 +418,27 @@ class TextExtractionAdapter:
                                 ),
                             ),
                         )
+                        if field is EvidenceField.CAUSE:
+                            context_bounds = cls._cause_context_bounds(
+                                source_text,
+                                start,
+                                end,
+                                source_start,
+                                source_end,
+                            )
+                            if context_bounds is not None:
+                                context_start, context_end = context_bounds
+                                spans.append(
+                                    EvidenceSpan(
+                                        record_id=record.record_id,
+                                        field=EvidenceField.CAUSE_CONTEXT,
+                                        source_id="input_text",
+                                        quote=source_text[context_start:context_end],
+                                        start=leading_offset + context_start,
+                                        end=leading_offset + context_end,
+                                        value_index=value_index,
+                                    )
+                                )
             if record.component is None:
                 declaration = cls._find_component_declaration(
                     source_text,
@@ -429,6 +460,39 @@ class TextExtractionAdapter:
         return cls._deduplicate_evidence_spans(spans)
 
     @staticmethod
+    def _cause_context_bounds(
+        source_text: str,
+        cause_start: int,
+        cause_end: int,
+        record_start: int,
+        record_end: int,
+    ) -> tuple[int, int] | None:
+        """Return a bounded source sentence around a cause span, if available."""
+        context_start = record_start
+        context_end = record_end
+        for boundary in _CAUSE_CONTEXT_BOUNDARY_RE.finditer(
+            source_text,
+            record_start,
+            record_end,
+        ):
+            if boundary.end() <= cause_start:
+                context_start = boundary.end()
+                continue
+            if boundary.start() >= cause_end:
+                context_end = boundary.end()
+                break
+
+        while context_start < cause_start and source_text[context_start].isspace():
+            context_start += 1
+        while context_end > cause_end and source_text[context_end - 1].isspace():
+            context_end -= 1
+        if context_end <= context_start:
+            return None
+        if context_end - context_start > _MAX_CAUSE_CONTEXT_CHARS:
+            return None
+        return context_start, context_end
+
+    @staticmethod
     def _deduplicate_evidence_spans(
         spans: Iterable[EvidenceSpan],
     ) -> tuple[EvidenceSpan, ...]:
@@ -442,6 +506,7 @@ class TextExtractionAdapter:
                 span.source_id,
                 span.start,
                 span.end,
+                span.value_index if span.field is EvidenceField.CAUSE_CONTEXT else None,
             )
             existing_index = by_location.get(key)
             if existing_index is None:
@@ -468,6 +533,11 @@ class TextExtractionAdapter:
         value: str,
         field: EvidenceField,
     ) -> tuple[tuple[int, int], ...]:
+        if field is EvidenceField.CAUSE:
+            locations = cls._find_literal_spans(source_text, value)
+            if locations:
+                return locations
+
         location = cls._find_literal_span(source_text, value)
         if location is not None:
             return (location,)
@@ -484,9 +554,9 @@ class TextExtractionAdapter:
 
         alias_locations: list[tuple[int, int]] = []
         for evidence_value in _CAUSE_EVIDENCE_ALIASES.get(value, ()):
-            alias_location = cls._find_literal_span(source_text, evidence_value)
-            if alias_location is not None and alias_location not in alias_locations:
-                alias_locations.append(alias_location)
+            for alias_location in cls._find_literal_spans(source_text, evidence_value):
+                if alias_location not in alias_locations:
+                    alias_locations.append(alias_location)
         if alias_locations:
             return tuple(alias_locations)
 
@@ -499,10 +569,140 @@ class TextExtractionAdapter:
         for part in parts:
             if len(part.strip()) < 2:
                 continue
-            part_location = cls._find_literal_span(source_text, part.strip())
-            if part_location is not None and part_location not in locations:
-                locations.append(part_location)
+            for part_location in cls._find_literal_spans(source_text, part.strip()):
+                if part_location not in locations:
+                    locations.append(part_location)
         return tuple(locations)
+
+    @staticmethod
+    def _find_literal_spans(source_text: str, value: str) -> tuple[tuple[int, int], ...]:
+        """Find every cause match, preserving original offsets and ambiguity.
+
+        Model output may normalize whitespace/quote style or omit inline
+        parameter annotations. All matching occurrences are returned so
+        downstream review can reject ambiguous evidence instead of silently
+        binding only the first occurrence. The returned source span still
+        includes any omitted inline annotation verbatim.
+        """
+
+        def normalize(
+            text: str,
+            *,
+            keep_offsets: bool,
+            omit_parameter_annotations: bool = False,
+            trim_terminal_punctuation: bool = False,
+        ) -> tuple[str, list[int]]:
+            if trim_terminal_punctuation:
+                text = text.rstrip(".,;:!?。；！？")
+            normalized: list[str] = []
+            source_indexes: list[int] = []
+            omitted_ranges = (
+                tuple(_INLINE_PARAMETER_ANNOTATION_RE.finditer(text))
+                if keep_offsets and omit_parameter_annotations
+                else ()
+            )
+            omitted_range_index = 0
+            for index, character in enumerate(text):
+                while (
+                    omitted_range_index < len(omitted_ranges)
+                    and index >= omitted_ranges[omitted_range_index].end()
+                ):
+                    omitted_range_index += 1
+                if (
+                    omitted_range_index < len(omitted_ranges)
+                    and omitted_ranges[omitted_range_index].start() <= index
+                    < omitted_ranges[omitted_range_index].end()
+                ):
+                    continue
+                if character.isspace():
+                    continue
+                folded = (
+                    '"'
+                    if character in _EVIDENCE_QUOTE_CHARACTERS
+                    else character.casefold()
+                )
+                normalized.extend(folded)
+                if keep_offsets:
+                    source_indexes.extend([index] * len(folded))
+            return "".join(normalized), source_indexes
+
+        def find_matches(
+            normalized_source: str,
+            source_indexes: list[int],
+            normalized_value: str,
+            *,
+            include_trailing_annotation: bool = False,
+        ) -> tuple[tuple[int, int], ...]:
+            if not normalized_value:
+                return ()
+            locations: list[tuple[int, int]] = []
+            search_from = 0
+            while True:
+                normalized_start = normalized_source.find(
+                    normalized_value,
+                    search_from,
+                )
+                if normalized_start < 0:
+                    break
+                normalized_end = normalized_start + len(normalized_value)
+                location_start = source_indexes[normalized_start]
+                location_end = source_indexes[normalized_end - 1] + 1
+                if include_trailing_annotation:
+                    annotation_start = location_end
+                    while (
+                        annotation_start < len(source_text)
+                        and source_text[annotation_start].isspace()
+                    ):
+                        annotation_start += 1
+                    annotation = _INLINE_PARAMETER_ANNOTATION_RE.match(
+                        source_text,
+                        annotation_start,
+                    )
+                    if annotation is not None:
+                        location_end = annotation.end()
+                        while (
+                            location_end < len(source_text)
+                            and source_text[location_end] in ".,;:!?。；！？"
+                        ):
+                            location_end += 1
+                location = (location_start, location_end)
+                if location not in locations:
+                    locations.append(location)
+                search_from = normalized_start + 1
+            return tuple(locations)
+
+        normalized_source, source_indexes = normalize(
+            source_text,
+            keep_offsets=True,
+        )
+        normalized_value, _ = normalize(value, keep_offsets=False)
+        exact_locations = find_matches(
+            normalized_source,
+            source_indexes,
+            normalized_value,
+        )
+        if exact_locations:
+            return exact_locations
+
+        # If the model omitted inline parameter annotations or final sentence
+        # punctuation, retry a conservative source-only normalization. The
+        # emitted quote still spans the original source, including annotations.
+        normalized_source, source_indexes = normalize(
+            source_text,
+            keep_offsets=True,
+            omit_parameter_annotations=True,
+        )
+        normalized_value, _ = normalize(
+            value,
+            keep_offsets=False,
+            trim_terminal_punctuation=True,
+        )
+        return find_matches(
+            normalized_source,
+            source_indexes,
+            normalized_value,
+            include_trailing_annotation=True,
+        )
 
     @staticmethod
     def _find_literal_span(source_text: str, value: str) -> tuple[int, int] | None:

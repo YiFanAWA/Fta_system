@@ -1,0 +1,61 @@
+{
+  "artifact_type": "candidate_fta_cause_disposition_independent_review",
+  "artifact_version": "v1",
+  "reviewer_provenance": "ai_subagent_role_review_not_human_expert",
+  "review_date": "2026-09-28",
+  "review_scope": {
+    "sample_id": "SIEMENS_S210_2019_F01681",
+    "run_artifact": "evaluation/quality_eval/runs/siemens_s210_f01681_raw_candidate_fta_cause_disposition_v3_2026-09-28.json",
+    "prompt_version": "fta-cause-disposition-v3",
+    "read_only": true,
+    "model_calls_made_by_reviewer": 0,
+    "files_modified_by_reviewer": 0
+  },
+  "conclusion": "needs_revision",
+  "findings": [
+    {
+      "finding_id": "diagnostic_mapping_policy_compliance",
+      "severity": "pass",
+      "finding": "Source cause indices 1 through 15 are fault-value/parameter diagnostic explanations. All are relation_only; none enters tree nodes or independent causal relations.",
+      "evidence": {
+        "disposition_counts": {"relation_only": 15},
+        "tree_source_cause_indices": [0],
+        "relations_count": 0
+      }
+    },
+    {
+      "finding_id": "cause_index_0_semantic_restatement_risk",
+      "severity": "blocking_semantic_review",
+      "finding": "Cause index 0 is explicitly in the Cause section and may qualify under the literal natural-language-cause rule, but its meaning nearly restates the top event rather than adding a distinct upstream mechanism. Connecting it as the only child may create a circular or tautological explanation.",
+      "evidence": {
+        "top_event": "Incorrect parameter value",
+        "cause_text": "The parameter cannot be parameterized with this value.",
+        "cause_index": 0,
+        "tree_candidate": true
+      },
+      "required_action": "Keep as an AI proposal only; do not semantically approve or add to Gold. Refine the disposition boundary to distinguish an informative cause/trigger condition from a generic restatement of the top event, then add a regression before considering another model replay."
+    },
+    {
+      "finding_id": "evidence_and_candidate_status",
+      "severity": "pass",
+      "finding": "The three candidate-tree references match the source at their offsets and are unique. The output remains a proposed candidate, not Gold or production-ready.",
+      "evidence": {
+        "tree_reference_count": 3,
+        "all_offsets_exact": true,
+        "all_quotes_unique": true,
+        "outcome_status": "proposed",
+        "tree_status": "candidate_ready_for_review",
+        "human_reviewed": false,
+        "formal_gold": false,
+        "database_written": false,
+        "fta_ready": false,
+        "production_ready": false
+      }
+    }
+  ],
+  "formal_gold": false,
+  "human_expert_review": false,
+  "database_written": false,
+  "fta_ready": false,
+  "production_ready": false
+}

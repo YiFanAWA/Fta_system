@@ -1,0 +1,168 @@
+{
+  "artifact_type": "fta_gate_node_confidence_probe",
+  "artifact_version": "v1",
+  "created_at": "2026-09-27T04:42:51.832360+00:00",
+  "status": "completed",
+  "reviewer_provenance": "model_inference_probe_not_review",
+  "confidence_semantics": "uncalibrated_model_estimate_not_event_probability",
+  "gate_policy_applied": false,
+  "threshold_selected": false,
+  "metadata": {
+    "model_id": "deepseek-flash",
+    "provider_host": "api.deepseek.com",
+    "prompt_builder": "fta_gate_node_confidence_probe_v1",
+    "generation_parameters": "temperature=0; one request per gate node; provider randomness not explicitly seeded"
+  },
+  "prediction_count": 5,
+  "failure_count": 0,
+  "predictions": [
+    {
+      "gate_node_id": "gate:c33e67173197f37110ce8eb2",
+      "fault_code": "F35400",
+      "source_cluster_id": "external_source:f7684038621ae9faaedbed1780e23c48775c19d76ae0fbd0adce268d69f489f4",
+      "scope_type": "event_cause_set",
+      "source_sha256": "fb20a5d44918d08c1dc0d253dd1867a349008147c2311138416821c091b8a708",
+      "prompt_sha256": "45b6a700ff288e9a8770157738736bdf4c315433fcbd86ec01d8201505f2e02f",
+      "scope_anchor": {
+        "quote": "For the temperature evaluation via the Terminal Module 150 (TM150), at least one of the following conditions to \ninitiate this fault is fulfilled:\n- alarm threshold has been exceeded longer than that set in the timer (p4102[8], p4103[4]).\nor\n- fault threshold exceeded (p4102[9]).",
+        "start": 523,
+        "end": 803
+      },
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 1.0,
+        "unknown": 0.0
+      },
+      "model_top_gate_unaccepted": "OR",
+      "top_probability": 1.0,
+      "top_margin": 1.0,
+      "gate_evidence_quote": "at least one of the following conditions to \ninitiate this fault is fulfilled:\n- alarm threshold has been exceeded longer than that set in the timer (p4102[8], p4103[4]).\nor\n- fault threshold exceeded (p4102[9]).",
+      "gate_evidence_offsets": [
+        591,
+        803
+      ],
+      "proposal_blockers": [],
+      "model_reason_summary": "原文明确使用“at least one of the following conditions”以及“or”连接两个子项，直接表明为 OR 逻辑。"
+    },
+    {
+      "gate_node_id": "gate:d8b64082a03482aad0a66134",
+      "fault_code": "F06000",
+      "source_cluster_id": "external_source:f7684038621ae9faaedbed1780e23c48775c19d76ae0fbd0adce268d69f489f4",
+      "scope_type": "event_cause_set",
+      "source_sha256": "ef53729a1ccdcb79aa139bed95898f4e6f4a089d83ecadb30cd554d53dcdad1b",
+      "prompt_sha256": "8b89383850bc7dfd1c4e8717f53f649fe202e0d5a86f160be3a27ac39bc56ca8",
+      "scope_anchor": {
+        "quote": "The end of the DC link precharging was not able to be completed for one of the following reasons:\n1) There is no line voltage connected.\n2) The line contactor/line side switch has not been closed.\n3) The line voltage is too low.\n4) Line voltage incorrectly set (p0210).\n5) The precharging resistors are overheated as there were too many precharging operations per time unit.\n6) The precharging resistors are overheated as the DC link capacitance is too high.\n7) The precharging resistors are overheated because when there is no \"ready for operation\" (r0863.0) of the infeed \nunit, power is taken from the DC link.\n8) The precharging resistors are overheated as the line contactor was closed during the DC link fast discharge \nthrough the Braking Module.\n9) The DC link has either a ground fault or a short-circuit.\n10) The precharging circuit is possibly defective (only for chassis units).",
+        "start": 360,
+        "end": 1250
+      },
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 1.0,
+        "unknown": 0.0
+      },
+      "model_top_gate_unaccepted": "OR",
+      "top_probability": 1.0,
+      "top_margin": 1.0,
+      "gate_evidence_quote": "The end of the DC link precharging was not able to be completed for one of the following reasons:",
+      "gate_evidence_offsets": [
+        360,
+        457
+      ],
+      "proposal_blockers": [],
+      "model_reason_summary": "原文明确说明未完成预充电可由“以下原因之一”导致，直接支持所列子项之间为 OR 关系。"
+    },
+    {
+      "gate_node_id": "gate:a4ebaf031f7d2212862574a4",
+      "fault_code": "F06000",
+      "source_cluster_id": "external_source:f7684038621ae9faaedbed1780e23c48775c19d76ae0fbd0adce268d69f489f4",
+      "scope_type": "local_cause_expression",
+      "source_sha256": "ef53729a1ccdcb79aa139bed95898f4e6f4a089d83ecadb30cd554d53dcdad1b",
+      "prompt_sha256": "34cc4b3f1acd81b90e30ed7aa4bddc2482ed9fc41a7a0e495ebd3d7855b5f68c",
+      "scope_anchor": {
+        "quote": "either a ground fault or a short-circuit.",
+        "start": 1133,
+        "end": 1174
+      },
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 0.95,
+        "unknown": 0.05
+      },
+      "model_top_gate_unaccepted": "OR",
+      "top_probability": 0.95,
+      "top_margin": 0.8999999999999999,
+      "gate_evidence_quote": "either a ground fault or a short-circuit.",
+      "gate_evidence_offsets": [
+        1133,
+        1174
+      ],
+      "proposal_blockers": [],
+      "model_reason_summary": "原文使用“either ... or ...”明确表示两个候选原因之间的择一关系，直接支持 OR 逻辑。"
+    },
+    {
+      "gate_node_id": "gate:4a3900d5ff85e756d7f2492b",
+      "fault_code": "A30079",
+      "source_cluster_id": "external_source:f7684038621ae9faaedbed1780e23c48775c19d76ae0fbd0adce268d69f489f4",
+      "scope_type": "event_cause_set",
+      "source_sha256": "b65d123954bd11b6a9beef8a62d0f6cae96ab78c09ef48ccd7c6d3b12adf1122",
+      "prompt_sha256": "3b6f7d19af90e5061940c234e2fc99a704b66dcdd9dbe815a31e1c6830c03216",
+      "scope_anchor": {
+        "quote": "The alarm is output if the following conditions are simultaneously satisfied:\n1. The device supply voltage (p0210) was reduced.\n2. A DC link voltage is present, which is too high when referred to the new supply voltage.",
+        "start": 268,
+        "end": 487
+      },
+      "gate_probabilities": {
+        "AND": 1.0,
+        "OR": 0.0,
+        "unknown": 0.0
+      },
+      "model_top_gate_unaccepted": "AND",
+      "top_probability": 1.0,
+      "top_margin": 1.0,
+      "gate_evidence_quote": "The alarm is output if the following conditions are simultaneously satisfied:",
+      "gate_evidence_offsets": [
+        268,
+        345
+      ],
+      "proposal_blockers": [],
+      "model_reason_summary": "原文明确说明告警在所列条件同时满足时输出，直接支持 AND 逻辑。"
+    },
+    {
+      "gate_node_id": "gate:07d95cade1922369843b14ca",
+      "fault_code": "F08702",
+      "source_cluster_id": "external_source:f7684038621ae9faaedbed1780e23c48775c19d76ae0fbd0adce268d69f489f4",
+      "scope_type": "local_cause_expression",
+      "source_sha256": "ca8a81682b795377c7b93c8d3ffa424ec5bfc50612a9ff1954c9fdd5cd8f0c10",
+      "prompt_sha256": "7312769056d6f6f3f9983d3978efe93ddcb43df622c5d6061ce5eab942b1456c",
+      "scope_anchor": {
+        "quote": "The monitoring time of the CANopen RPDO telegram has expired because the bus connection was either interrupted \nor the CANopen Master was switched-off.",
+        "start": 570,
+        "end": 721
+      },
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 1.0,
+        "unknown": 0.0
+      },
+      "model_top_gate_unaccepted": "OR",
+      "top_probability": 1.0,
+      "top_margin": 1.0,
+      "gate_evidence_quote": "because the bus connection was either interrupted \nor the CANopen Master was switched-off",
+      "gate_evidence_offsets": [
+        631,
+        720
+      ],
+      "proposal_blockers": [],
+      "model_reason_summary": "原文使用“either ... or”明确给出两个原因之间的择一关系，因此判定为 OR。"
+    }
+  ],
+  "failures": [],
+  "interpretation_note": "These probabilities are raw model self-assessments, not calibrated confidence or event-occurrence probabilities. They are paired with AI-reviewed node labels only for exploratory agreement diagnostics under the input artifact's source grouping; a single external source cluster cannot establish independent generalization or calibration. They must not change AND/OR without direct evidence, and this artifact cannot select a runtime threshold.",
+  "input_artifacts": {
+    "review_dataset_sha256": "73fd9a0efc44efd29b3c5a9b8dc8a5a1a50995edbfbbafd407b129c2ad769781",
+    "source_corpus_sha256": "3da11f44f35ab8286f509a57ae474fdefdb98b8313603b408974c5a082906232",
+    "review_dataset_path": "evaluation\\quality_eval\\runs\\siemens_s120_s150_gate_node_ai_role_review_pilot_v1_2026-09-27.json",
+    "source_corpus_path": "evaluation\\quality_eval\\datasets\\siemens_s120_s150_2023_public_fault_corpus_holdout_v2.jsonl"
+  }
+}

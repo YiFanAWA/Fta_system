@@ -1,0 +1,183 @@
+{
+  "artifact_type": "unlabeled_fta_gate_review_candidate_bundle",
+  "artifact_version": "1.0.0",
+  "created_date": "2026-09-27",
+  "status": "candidate_bundle_pending_ai_role_review",
+  "reviewer_provenance": null,
+  "reviewer_is_human_expert": false,
+  "formal_gold": false,
+  "database_written": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "candidate_selection_policy": "A four-record pilot was selected from the S120/S150 overlap audit's unseen-fault-code, no exact/partial full causes_text overlap stratum. Selection is for scope review only and does not imply that any case has an AND/OR gate.",
+  "review_policy": [
+    "Review the exact local scope and the complete same-level child set before assigning a gate.",
+    "AND/OR requires direct evidence within that scope; a list, parameter code, fault-value key, or ordinary conjunction is not enough.",
+    "Distinguish cause conditions from diagnostic modes, signal logic, effects, and remedies.",
+    "If evidence, scope, child identity, or completeness is uncertain, use unknown or not_applicable and explain why.",
+    "AI-role review is not a human expert signature, calibrated probability, or formal Gold label."
+  ],
+  "summary": {
+    "candidate_count": 4,
+    "unique_fault_code_count": 4,
+    "source_cluster_count": 1,
+    "reviewed_count": 0,
+    "pending_count": 4
+  },
+  "input_artifacts": {
+    "s120_s150_corpus_path": "C:\\Users\\爹\\Documents\\Codex\\2026-09-11\\ni\\work\\Fta_system\\evaluation\\quality_eval\\datasets\\siemens_s120_s150_2023_public_fault_corpus_holdout_v2.jsonl",
+    "s120_s150_corpus_sha256": "3da11f44f35ab8286f509a57ae474fdefdb98b8313603b408974c5a082906232",
+    "overlap_audit_path": "evaluation\\quality_eval\\runs\\siemens_s120_s150_s210_overlap_audit_v3_2026-09-27.json",
+    "overlap_audit_sha256": "2899b86ef7dde2e88c007e4564f2e1630a8135bc8fa9929af233d4167779e206"
+  },
+  "cases": [
+    {
+      "candidate_id": "S120-PILOT-001",
+      "review_status": "pending",
+      "sample_id": "SIEMENS_S120_S150_2023_F35400_P3271_N001",
+      "fault_code": "F35400",
+      "description": "(N, A) TM: Temperature fault/alarm threshold channel 4 exceeded",
+      "input_text": "F35400 (N, A) TM: Temperature fault/alarm threshold channel 4 exceeded\nMessage value: %1\nMessage class: External measured value / signal state outside the permissible range (16)\nDrive object: A_INF, B_INF, HLA, R_INF, S_INF, SERVO, SERVO_AC, SERVO_I_AC, TM150, TM41, VECTOR, VECTOR_AC, \nVECTOR_I_AC\nComponent: Terminal Module (TM) Propagation: BICO\nResponse: Infeed: OFF2 (NONE, OFF1)\nServo: OFF2 (NONE, OFF1, OFF3)\nVector: OFF2 (NONE, OFF1, OFF3)\nHla: OFF2 (NONE, OFF1, OFF3)\nAcknowledgment: IMMEDIATELY (POWER ON)\nCause: For the temperature evaluation via the Terminal Module 150 (TM150), at least one of the following conditions to \ninitiate this fault is fulfilled:\n- alarm threshold has been exceeded longer than that set in the timer (p4102[8], p4103[4]).\nor\n- fault threshold exceeded (p4102[9]).\nNote:\nFor sensor type \"PTC thermistor\" and \"Bimetallic NC contact\" (p4100[4] = 1, 4), the following applies:\n- if r4101[4] > 1650 ohms, the temperature r4105[4] = 250 °C\n- if r4101[4] <= 1650 ohms, the temperature r4105[4] = -50 °C\nThe temperature actual value is displayed via connector output r4105[4] and can be interconnected.\nNotice:\nThis fault only causes the drive to shut down if there is at least one BICO interconnection between the drive and the \nTerminal Module.\nFault value (r0949, interpret decimal):\nTemperature actual value at the time of initiation [0.1 °C].\nRemedy: - allow the temperature sensor to cool down to below p4102[9] - hysteresis (p4118[4]).\n- if required, set the fault response to NONE (p2100, p2101).\nSee also: p4102\nResponse upon: N: NONE\nAcknowl. upon N: NONE\nResponse upon: A: NONE\nAcknowl. upon A: NONE\n",
+      "parser_cause_sections": [
+        {
+          "cause_section_id": "cause-01",
+          "quote": "For the temperature evaluation via the Terminal Module 150 (TM150), at least one of the following conditions to \ninitiate this fault is fulfilled:\n- alarm threshold has been exceeded longer than that set in the timer (p4102[8], p4103[4]).\nor\n- fault threshold exceeded (p4102[9]).",
+          "start": 523,
+          "end": 803
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S120/S150 List Manual",
+        "edition": "11/2023",
+        "source_cluster_id": "external_source:f7684038621ae9faaedbed1780e23c48775c19d76ae0fbd0adce268d69f489f4",
+        "source_pdf_sha256": "f7684038621ae9faaedbed1780e23c48775c19d76ae0fbd0adce268d69f489f4",
+        "pdf_page_start": 3271,
+        "pdf_page_end": 3271,
+        "source_offset_start": 1781356,
+        "source_offset_end": 1782999,
+        "record_text_sha256": "fb20a5d44918d08c1dc0d253dd1867a349008147c2311138416821c091b8a708"
+      },
+      "overlap_audit_stratum": "unseen_fault_code_no_exact_full_cause_text_overlap",
+      "review_template": {
+        "scope_type": null,
+        "scope_anchor": null,
+        "children": [],
+        "child_set_complete": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": ""
+      }
+    },
+    {
+      "candidate_id": "S120-PILOT-002",
+      "review_status": "pending",
+      "sample_id": "SIEMENS_S120_S150_2023_F06000_P2792_N001",
+      "fault_code": "F06000",
+      "description": "Infeed: Precharging monitoring time expired",
+      "input_text": "F06000 Infeed: Precharging monitoring time expired\nMessage value: -\nMessage class: Infeed faulted (13)\nDrive object: A_INF, B_INF, R_INF, S_INF\nComponent: Power Module Propagation: GLOBAL\nResponse: OFF2 (OFF1)\nAcknowledgment: IMMEDIATELY\nCause: After the line contactor closes the power unit does not signal the READY state within the monitoring time (p0857).\nThe end of the DC link precharging was not able to be completed for one of the following reasons:\n1) There is no line voltage connected.\n2) The line contactor/line side switch has not been closed.\n3) The line voltage is too low.\n4) Line voltage incorrectly set (p0210).\n5) The precharging resistors are overheated as there were too many precharging operations per time unit.\n6) The precharging resistors are overheated as the DC link capacitance is too high.\n7) The precharging resistors are overheated because when there is no \"ready for operation\" (r0863.0) of the infeed \nunit, power is taken from the DC link.\n8) The precharging resistors are overheated as the line contactor was closed during the DC link fast discharge \nthrough the Braking Module.\n9) The DC link has either a ground fault or a short-circuit.\n10) The precharging circuit is possibly defective (only for chassis units).\nSee also: p0210 (Drive unit supply voltage), p0857 (Power unit monitoring time)\n\f\nSINAMICS S120/S150\nList Manual, 11/2023, A5E34501852 2793\n4 Faults and alarms\n4.2 List of faults and alarms\nRemedy: In general:\n- check the line voltage at the connecting terminals.\n- check the line voltage setting (p0210).\n- check the monitoring time and, if required, increase (p0857).\n- where relevant, observe additional power unit messages/signals (e.g. F30027).\n- the following applies to booksize units: Wait (approx. 8 min.) until the precharging resistors have cooled down. For \nthis purpose, preferably disconnect the infeed unit from the line supply.\nFor 5):\n- carefully observe the permissible precharging frequency (refer to the appropriate Equipment Manual).\nFor 6):\n- check the total capacitance of the DC link and reduce in accordance with the maximum permissible DC link \ncapacitance if necessary (refer to the appropriate Equipment Manual)\nFor 7):\n- interconnect the ready-for-operation signal from the infeed unit (r0863.0) in the enable logic of the drives connected \nto this DC link\nFor 8):\n- check the connections of the external line contactor. The line contactor must be open during DC link fast discharge.\nFor 9):\n- check the DC link for ground faults or short circuits.\n",
+      "parser_cause_sections": [
+        {
+          "cause_section_id": "cause-01",
+          "quote": "After the line contactor closes the power unit does not signal the READY state within the monitoring time (p0857).\nThe end of the DC link precharging was not able to be completed for one of the following reasons:\n1) There is no line voltage connected.\n2) The line contactor/line side switch has not been closed.\n3) The line voltage is too low.\n4) Line voltage incorrectly set (p0210).\n5) The precharging resistors are overheated as there were too many precharging operations per time unit.\n6) The precharging resistors are overheated as the DC link capacitance is too high.\n7) The precharging resistors are overheated because when there is no \"ready for operation\" (r0863.0) of the infeed \nunit, power is taken from the DC link.\n8) The precharging resistors are overheated as the line contactor was closed during the DC link fast discharge \nthrough the Braking Module.\n9) The DC link has either a ground fault or a short-circuit.\n10) The precharging circuit is possibly defective (only for chassis units).",
+          "start": 245,
+          "end": 1250
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S120/S150 List Manual",
+        "edition": "11/2023",
+        "source_cluster_id": "external_source:f7684038621ae9faaedbed1780e23c48775c19d76ae0fbd0adce268d69f489f4",
+        "source_pdf_sha256": "f7684038621ae9faaedbed1780e23c48775c19d76ae0fbd0adce268d69f489f4",
+        "pdf_page_start": 2792,
+        "pdf_page_end": 2793,
+        "source_offset_start": 546153,
+        "source_offset_end": 548682,
+        "record_text_sha256": "ef53729a1ccdcb79aa139bed95898f4e6f4a089d83ecadb30cd554d53dcdad1b"
+      },
+      "overlap_audit_stratum": "unseen_fault_code_no_exact_full_cause_text_overlap",
+      "review_template": {
+        "scope_type": null,
+        "scope_anchor": null,
+        "children": [],
+        "child_set_complete": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": ""
+      }
+    },
+    {
+      "candidate_id": "S120-PILOT-003",
+      "review_status": "pending",
+      "sample_id": "SIEMENS_S120_S150_2023_A30079_P3008_N001",
+      "fault_code": "A30079",
+      "description": "(N) Power unit: referred to the supply voltage, the DC link voltage is too high",
+      "input_text": "A30079 (N) Power unit: referred to the supply voltage, the DC link voltage is too high\nMessage value: %1\nMessage class: Infeed faulted (13)\nDrive object: SERVO, SERVO_AC, SERVO_I_AC\nComponent: Power Module Propagation: LOCAL\nResponse: NONE\nAcknowledgment: NONE\nCause: The alarm is output if the following conditions are simultaneously satisfied:\n1. The device supply voltage (p0210) was reduced.\n2. A DC link voltage is present, which is too high when referred to the new supply voltage.\nDC link precharging cannot be completed as this could place some converter components at risk.\nAlarm value (r2124, interpret decimal):\nVoltage value to which the DC link voltage must, in the meantime, be reduced in order to complete precharging [V].\nSee also: p0210 (Drive unit supply voltage)\nRemedy: As a minimum, reduce the DC link voltage to the voltage specified in the alarm value.\nNote:\nThe alarm is automatically withdrawn if the DC link voltage drops below the voltage specified in the alarm value.\nFault F07802 is output if an attempt is made to enable the pulses even though an alarm is active.\nResponse upon: N: NONE\nAcknowl. upon N: NONE\n",
+      "parser_cause_sections": [
+        {
+          "cause_section_id": "cause-01",
+          "quote": "The alarm is output if the following conditions are simultaneously satisfied:\n1. The device supply voltage (p0210) was reduced.\n2. A DC link voltage is present, which is too high when referred to the new supply voltage.\nDC link precharging cannot be completed as this could place some converter components at risk.\nAlarm value (r2124, interpret decimal):\nVoltage value to which the DC link voltage must, in the meantime, be reduced in order to complete precharging [V].",
+          "start": 268,
+          "end": 737
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S120/S150 List Manual",
+        "edition": "11/2023",
+        "source_cluster_id": "external_source:f7684038621ae9faaedbed1780e23c48775c19d76ae0fbd0adce268d69f489f4",
+        "source_pdf_sha256": "f7684038621ae9faaedbed1780e23c48775c19d76ae0fbd0adce268d69f489f4",
+        "pdf_page_start": 3008,
+        "pdf_page_end": 3008,
+        "source_offset_start": 1116172,
+        "source_offset_end": 1117311,
+        "record_text_sha256": "b65d123954bd11b6a9beef8a62d0f6cae96ab78c09ef48ccd7c6d3b12adf1122"
+      },
+      "overlap_audit_stratum": "unseen_fault_code_no_exact_full_cause_text_overlap",
+      "review_template": {
+        "scope_type": null,
+        "scope_anchor": null,
+        "children": [],
+        "child_set_complete": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": ""
+      }
+    },
+    {
+      "candidate_id": "S120-PILOT-004",
+      "review_status": "pending",
+      "sample_id": "SIEMENS_S120_S150_2023_F08702_P2967_N001",
+      "fault_code": "F08702",
+      "description": "(A) CAN: RPDO Timeout",
+      "input_text": "F08702 (A) CAN: RPDO Timeout\nMessage value: -\nMessage class: Communication error to the higher-level control system (9)\nDrive object: A_INF, B_INF, CU_LINK, CU_S120_DP, CU_S120_PN, CU_S150_DP, CU_S150_PN, ENC, HLA, HUB, R_INF, \nS_INF, SERVO, SERVO_AC, SERVO_I_AC, TB30, TM120, TM15, TM150, TM15DI_DO, TM17, TM31, TM41, \nTM54F_MA, TM54F_SL, VECTOR, VECTOR_AC, VECTOR_I_AC\nComponent: None Propagation: GLOBAL\nResponse: Infeed: OFF2 (NONE, OFF1)\nServo: OFF3 (NONE, OFF1, OFF2)\nVector: OFF3 (NONE, OFF1, OFF2)\nHla: OFF3 (NONE, OFF1, OFF2)\nAcknowledgment: IMMEDIATELY\nCause: The monitoring time of the CANopen RPDO telegram has expired because the bus connection was either interrupted \nor the CANopen Master was switched-off.\nSee also r8843.0 IF2 PZD status - setpoint failure or r8843.2 IF2 PZD status - fieldbus running.\nSee also: p8699 (CAN: RPDO monitoring time), r8843 (IF2 PZD state)\nRemedy: - check the bus cable\n- check the master.\n- If required, increase the monitoring time (p8699).\nResponse upon: A: NONE\nAcknowl. upon A: NONE\n",
+      "parser_cause_sections": [
+        {
+          "cause_section_id": "cause-01",
+          "quote": "The monitoring time of the CANopen RPDO telegram has expired because the bus connection was either interrupted \nor the CANopen Master was switched-off.\nSee also r8843.0 IF2 PZD status - setpoint failure or r8843.2 IF2 PZD status - fieldbus running.",
+          "start": 570,
+          "end": 818
+        }
+      ],
+      "provenance": {
+        "source_document": "SINAMICS S120/S150 List Manual",
+        "edition": "11/2023",
+        "source_cluster_id": "external_source:f7684038621ae9faaedbed1780e23c48775c19d76ae0fbd0adce268d69f489f4",
+        "source_pdf_sha256": "f7684038621ae9faaedbed1780e23c48775c19d76ae0fbd0adce268d69f489f4",
+        "pdf_page_start": 2967,
+        "pdf_page_end": 2967,
+        "source_offset_start": 1013244,
+        "source_offset_end": 1014278,
+        "record_text_sha256": "ca8a81682b795377c7b93c8d3ffa424ec5bfc50612a9ff1954c9fdd5cd8f0c10"
+      },
+      "overlap_audit_stratum": "unseen_fault_code_no_exact_full_cause_text_overlap",
+      "review_template": {
+        "scope_type": null,
+        "scope_anchor": null,
+        "children": [],
+        "child_set_complete": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": ""
+      }
+    }
+  ]
+}

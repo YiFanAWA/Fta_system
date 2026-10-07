@@ -1,0 +1,50 @@
+{
+  "artifact_type": "fta_event_scope_model_inference_run",
+  "artifact_version": "v1",
+  "status": "succeeded",
+  "recorded_at_utc": "2026-09-29T03:39:24+00:00",
+  "case": {
+    "packet_id": "NASA_GSFC_BATTERY_FIG7_MODULE_FAILURE_DEV_001",
+    "source_cluster_id": "NASA_GSFC_LISOCL2_BATTERY_SAFETY_ANALYSIS_1987",
+    "exposure_status": "seen_development_only",
+    "packet_path": "evaluation/quality_eval/datasets/fta_event_scope_nasa_battery_fig7_module_failure_dev_v1.json",
+    "model_input_sha256": "1e77b80a8f2a6ae62443468d21b075e4a213a3544cdc2b882a5d69b6ba6d4325"
+  },
+  "request": {
+    "request_count": 1,
+    "retry_count": 0,
+    "retry_policy": "disabled_one_attempt_only",
+    "provider_host": "api.deepseek.com",
+    "requested_model": "deepseek-flash",
+    "returned_model": "deepseek-flash",
+    "temperature": 0,
+    "max_tokens": 3000,
+    "timeout_seconds": 120,
+    "sdk_max_retries": 0,
+    "prompt_version": "event-scope-text-only-tree-v1",
+    "prompt_sha256": "47c59de09f312c6a4d26cd63885e484a9f92bfcc4fbfa61072285b68035456ef",
+    "openai_package_version": "2.24.0",
+    "provider_request_id": null,
+    "usage": {
+      "prompt_tokens": 853,
+      "completion_tokens": 3000,
+      "total_tokens": 3853
+    },
+    "finish_reason": "length"
+  },
+  "model_output": {
+    "raw_text": "",
+    "parsed_json": null,
+    "parse_error": "response_is_not_strict_json",
+    "raw_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "claim_boundaries": {
+    "development_only": true,
+    "human_expert_gold": false,
+    "independent_final_validation": false,
+    "accuracy_or_calibration_claim_allowed": false,
+    "production_or_database_write": false,
+    "fta_ready": false,
+    "production_ready": false
+  }
+}

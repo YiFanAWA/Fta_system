@@ -1,0 +1,407 @@
+{
+  "artifact_type": "siemens_s210_ai_authorized_fta_preview",
+  "artifact_version": "v2",
+  "reviewer_provenance": "user_authorized_ai_expert_role",
+  "dataset_info": {
+    "status": "preview_only",
+    "production_ready": false,
+    "fta_ready": false,
+    "automatic_causal_inference": false,
+    "evidence_required": true,
+    "tree_count": 3,
+    "excluded_event_count": 1,
+    "source_manifest": null,
+    "source_logic_review": "siemens_s210_recursive_fta_preview_review_overlay",
+    "source_dataset": "siemens_s210_public_fault_final_gold_ai_assisted_2026-09-20.json",
+    "source_dataset_sha256": "ffbeafa7d9e997a413ae44c1becc953e6319f41ace9ada83885cad6f1b96ac38",
+    "source_overlay": "siemens_s210_recursive_fta_preview_review_overlay",
+    "source_overlay_schema_version": "1.0",
+    "source_overlay_canonical_sha256": "1e33267afe2ee1c7c849bad1857c892a453976a1b3ec40c57f2bb36b545bcfe5",
+    "human_expert_signature": false,
+    "formal_gold_mutated": false,
+    "database_written": false,
+    "verified_source_span_count": 18,
+    "verified_tree_span_count": 17,
+    "verified_exclusion_span_count": 1,
+    "preview_scope": "manual-documented-trigger-conditions-only"
+  },
+  "trees": [
+    {
+      "preview_tree_id": "S210-AI-FTA-PREVIEW-001",
+      "top_event": {
+        "node_id": "siemens_s210:fault:F01911",
+        "node_type": "fault_entity",
+        "fault_code": "F01911",
+        "description": "PN: Clock synchronous operation, clock cycle failure"
+      },
+      "gate": "OR",
+      "gate_evidence": [
+        {
+          "citation_id": "F01911-gate-or",
+          "source_id": "SIEMENS_S210_2019_F01911",
+          "start": 107,
+          "end": 341,
+          "quote": "The global control telegram to synchronize the clock cycles has failed - in cyclic operation - for several DP clock cycles or\nhas violated the time grid specified in the parameterizing telegram over several consecutive DP clock cycles"
+        }
+      ],
+      "gate_provenance": {
+        "logic_candidate_id": "preview-local-gate:F01911:or",
+        "reviewer_provenance": "user_authorized_ai_expert_role",
+        "reviewed_at": "2026-09-26",
+        "candidate_set_completeness": "complete_within_two_manual_stated_trigger_conditions_only",
+        "cause_set_complete_scope": "The two direct trigger conditions stated in the manual only; not lower-level physical root causes or a device-instance observation.",
+        "preview_scope_complete": true,
+        "source_candidate_ids": [
+          "CR-CAND-V8-304"
+        ],
+        "review_status": "ai_authorized_reviewed",
+        "evidence_support": "supported",
+        "physical_root_cause_claim": false
+      },
+      "children": [
+        {
+          "relation_id": "preview-local-rel:F01911:branch-1",
+          "relation_type": "causes",
+          "direction": "source_to_target",
+          "evidence": [
+            {
+              "citation_id": "F01911-branch-1-evidence",
+              "source_id": "SIEMENS_S210_2019_F01911",
+              "start": 107,
+              "end": 229,
+              "quote": "The global control telegram to synchronize the clock cycles has failed - in cyclic operation - for several DP clock cycles"
+            }
+          ],
+          "node": {
+            "node_id": "preview-local-node:F01911:branch-1",
+            "node_type": "trigger_condition",
+            "identity_status": "preview_local_derived_not_gold",
+            "text": "全局控制报文在循环运行中连续多个 DP 周期失效"
+          }
+        },
+        {
+          "relation_id": "preview-local-rel:F01911:branch-2",
+          "relation_type": "causes",
+          "direction": "source_to_target",
+          "evidence": [
+            {
+              "citation_id": "F01911-branch-2-evidence",
+              "source_id": "SIEMENS_S210_2019_F01911",
+              "start": 233,
+              "end": 341,
+              "quote": "has violated the time grid specified in the parameterizing telegram over several consecutive DP clock cycles"
+            }
+          ],
+          "node": {
+            "node_id": "preview-local-node:F01911:branch-2",
+            "node_type": "trigger_condition",
+            "identity_status": "preview_local_derived_not_gold",
+            "text": "参数设置报文规定的时间网格在连续多个 DP 周期内遭到违反"
+          }
+        }
+      ],
+      "status": "preview_only"
+    },
+    {
+      "preview_tree_id": "S210-AI-FTA-PREVIEW-002",
+      "top_event": {
+        "node_id": "siemens_s210:fault:F07901",
+        "node_type": "fault_entity",
+        "fault_code": "F07901",
+        "description": "Motor overspeed"
+      },
+      "gate": "OR",
+      "gate_evidence": [
+        {
+          "citation_id": "F07901-gate-or",
+          "source_id": "SIEMENS_S210_2019_F07901",
+          "start": 77,
+          "end": 151,
+          "quote": "The maximum permissible speed was either positively or negatively exceeded"
+        }
+      ],
+      "gate_provenance": {
+        "logic_candidate_id": "preview-local-gate:F07901:or",
+        "reviewer_provenance": "user_authorized_ai_expert_role",
+        "reviewed_at": "2026-09-26",
+        "candidate_set_completeness": "complete_within_positive_or_negative_speed_exceedance_directions_only",
+        "cause_set_complete_scope": "Only the positive/negative permissible-speed exceedance directions stated in the manual; no actual instance speed/direction and no deeper physical cause.",
+        "preview_scope_complete": true,
+        "source_candidate_ids": [
+          "CR-CAND-V9-323"
+        ],
+        "review_status": "ai_authorized_reviewed",
+        "evidence_support": "supported",
+        "physical_root_cause_claim": false
+      },
+      "children": [
+        {
+          "relation_id": "preview-local-rel:F07901:positive",
+          "relation_type": "causes",
+          "direction": "source_to_target",
+          "evidence": [
+            {
+              "citation_id": "F07901-positive-evidence",
+              "source_id": "SIEMENS_S210_2019_F07901",
+              "start": 77,
+              "end": 151,
+              "quote": "The maximum permissible speed was either positively or negatively exceeded"
+            }
+          ],
+          "node": {
+            "node_id": "preview-local-node:F07901:positive",
+            "node_type": "trigger_condition",
+            "identity_status": "preview_local_derived_not_gold",
+            "text": "正向超过最大允许速度"
+          }
+        },
+        {
+          "relation_id": "preview-local-rel:F07901:negative",
+          "relation_type": "causes",
+          "direction": "source_to_target",
+          "evidence": [
+            {
+              "citation_id": "F07901-negative-evidence",
+              "source_id": "SIEMENS_S210_2019_F07901",
+              "start": 77,
+              "end": 151,
+              "quote": "The maximum permissible speed was either positively or negatively exceeded"
+            }
+          ],
+          "node": {
+            "node_id": "preview-local-node:F07901:negative",
+            "node_type": "trigger_condition",
+            "identity_status": "preview_local_derived_not_gold",
+            "text": "负向超过最大允许速度"
+          }
+        }
+      ],
+      "status": "preview_only"
+    },
+    {
+      "preview_tree_id": "S210-AI-FTA-PREVIEW-003",
+      "top_event": {
+        "node_id": "siemens_s210:fault:F07900",
+        "node_type": "fault_entity",
+        "fault_code": "F07900",
+        "description": "Motor blocked/speed controller at its limit"
+      },
+      "gate": "OR",
+      "gate_evidence": [
+        {
+          "citation_id": "F07900-gate-path-1",
+          "source_id": "SIEMENS_S210_2019_F07900",
+          "start": 105,
+          "end": 207,
+          "quote": "The motor operates longer than 0.2 seconds at the torque limit and below the speed threshold in p2175."
+        },
+        {
+          "citation_id": "F07900-gate-connector",
+          "source_id": "SIEMENS_S210_2019_F07900",
+          "start": 208,
+          "end": 244,
+          "quote": "This signal can also be initiated if"
+        },
+        {
+          "citation_id": "F07900-gate-path-2",
+          "source_id": "SIEMENS_S210_2019_F07900",
+          "start": 245,
+          "end": 344,
+          "quote": "the speed actual value is oscillating and the speed controller output repeatedly goes to\nits limit."
+        }
+      ],
+      "gate_provenance": {
+        "logic_candidate_id": "preview-local-gate:F07900:or-of-and",
+        "reviewer_provenance": "user_authorized_ai_expert_role",
+        "reviewed_at": "2026-09-26",
+        "candidate_set_completeness": "complete_within_two_manual_stated_trigger_paths_only",
+        "cause_set_complete_scope": "Only the two trigger paths stated in the manual; not exhaustive physical root causes or an instance observation. In path 1, the scope of the 0.2-second duration modifier is not further interpreted.",
+        "preview_scope_complete": true,
+        "source_candidate_ids": [
+          "CR-CAND-V9-321",
+          "CR-CAND-V10-273"
+        ],
+        "review_status": "ai_authorized_reviewed",
+        "evidence_support": "supported",
+        "physical_root_cause_claim": false
+      },
+      "children": [
+        {
+          "relation_id": "preview-local-rel:F07900:path-1",
+          "relation_type": "causes",
+          "direction": "source_to_target",
+          "evidence": [
+            {
+              "citation_id": "F07900-path-1-evidence",
+              "source_id": "SIEMENS_S210_2019_F07900",
+              "start": 105,
+              "end": 207,
+              "quote": "The motor operates longer than 0.2 seconds at the torque limit and below the speed threshold in p2175."
+            }
+          ],
+          "node": {
+            "node_id": "preview-local-node:F07900:path-1",
+            "node_type": "trigger_path",
+            "identity_status": "preview_local_derived_not_gold",
+            "text": "手册列明的第一条触发路径（0.2 秒时长修饰范围不作额外推断）",
+            "gate": "AND",
+            "gate_provenance": {
+              "review_status": "ai_authorized_reviewed",
+              "evidence_support": "supported",
+              "reason": "原文第一句以 and 连接扭矩限值状态与 p2175 速度阈值条件；不进一步解释时长修饰范围。"
+            },
+            "gate_evidence": [
+              {
+                "citation_id": "F07900-path-1-and",
+                "source_id": "SIEMENS_S210_2019_F07900",
+                "start": 105,
+                "end": 207,
+                "quote": "The motor operates longer than 0.2 seconds at the torque limit and below the speed threshold in p2175."
+              }
+            ],
+            "children": [
+              {
+                "relation_id": "preview-local-rel:F07900:path-1-condition-a",
+                "relation_type": "causes",
+                "direction": "source_to_target",
+                "evidence": [
+                  {
+                    "citation_id": "F07900-path-1-condition-a-evidence",
+                    "source_id": "SIEMENS_S210_2019_F07900",
+                    "start": 105,
+                    "end": 167,
+                    "quote": "The motor operates longer than 0.2 seconds at the torque limit"
+                  }
+                ],
+                "node": {
+                  "node_id": "preview-local-node:F07900:path-1-condition-a",
+                  "node_type": "trigger_condition",
+                  "identity_status": "preview_local_derived_not_gold",
+                  "text": "电机在转矩限制处运行超过 0.2 秒（时长修饰范围按原句保留，不另作解释）"
+                }
+              },
+              {
+                "relation_id": "preview-local-rel:F07900:path-1-condition-b",
+                "relation_type": "causes",
+                "direction": "source_to_target",
+                "evidence": [
+                  {
+                    "citation_id": "F07900-path-1-condition-b-evidence",
+                    "source_id": "SIEMENS_S210_2019_F07900",
+                    "start": 172,
+                    "end": 206,
+                    "quote": "below the speed threshold in p2175"
+                  }
+                ],
+                "node": {
+                  "node_id": "preview-local-node:F07900:path-1-condition-b",
+                  "node_type": "trigger_condition",
+                  "identity_status": "preview_local_derived_not_gold",
+                  "text": "转速低于 p2175 设定阈值"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "relation_id": "preview-local-rel:F07900:path-2",
+          "relation_type": "causes",
+          "direction": "source_to_target",
+          "evidence": [
+            {
+              "citation_id": "F07900-path-2-evidence",
+              "source_id": "SIEMENS_S210_2019_F07900",
+              "start": 245,
+              "end": 344,
+              "quote": "the speed actual value is oscillating and the speed controller output repeatedly goes to\nits limit."
+            }
+          ],
+          "node": {
+            "node_id": "preview-local-node:F07900:path-2",
+            "node_type": "trigger_path",
+            "identity_status": "preview_local_derived_not_gold",
+            "text": "手册列明的第二条触发路径",
+            "gate": "AND",
+            "gate_provenance": {
+              "review_status": "ai_authorized_reviewed",
+              "evidence_support": "supported",
+              "reason": "原文以 and 明确连接实际转速振荡与速度控制器输出反复到限值。"
+            },
+            "gate_evidence": [
+              {
+                "citation_id": "F07900-path-2-and",
+                "source_id": "SIEMENS_S210_2019_F07900",
+                "start": 245,
+                "end": 344,
+                "quote": "the speed actual value is oscillating and the speed controller output repeatedly goes to\nits limit."
+              }
+            ],
+            "children": [
+              {
+                "relation_id": "preview-local-rel:F07900:path-2-condition-a",
+                "relation_type": "causes",
+                "direction": "source_to_target",
+                "evidence": [
+                  {
+                    "citation_id": "F07900-path-2-condition-a-evidence",
+                    "source_id": "SIEMENS_S210_2019_F07900",
+                    "start": 245,
+                    "end": 282,
+                    "quote": "the speed actual value is oscillating"
+                  }
+                ],
+                "node": {
+                  "node_id": "preview-local-node:F07900:path-2-condition-a",
+                  "node_type": "trigger_condition",
+                  "identity_status": "preview_local_derived_not_gold",
+                  "text": "实际转速值振荡"
+                }
+              },
+              {
+                "relation_id": "preview-local-rel:F07900:path-2-condition-b",
+                "relation_type": "causes",
+                "direction": "source_to_target",
+                "evidence": [
+                  {
+                    "citation_id": "F07900-path-2-condition-b-evidence",
+                    "source_id": "SIEMENS_S210_2019_F07900",
+                    "start": 287,
+                    "end": 344,
+                    "quote": "the speed controller output repeatedly goes to\nits limit."
+                  }
+                ],
+                "node": {
+                  "node_id": "preview-local-node:F07900:path-2-condition-b",
+                  "node_type": "trigger_condition",
+                  "identity_status": "preview_local_derived_not_gold",
+                  "text": "速度控制器输出反复达到限值"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "status": "preview_only"
+    }
+  ],
+  "excluded_events": [
+    {
+      "fault_code": "F30655",
+      "logic_gate": "unknown",
+      "source_candidate_ids": [
+        "CR-CAND-V13-282"
+      ],
+      "reason": "The two communication phrases may describe the same underlying condition.; The cause set is not complete and no branch-level identities are justified.",
+      "evidence": [
+        {
+          "citation_id": "F30655-unresolved-compound-cause",
+          "source_id": "SIEMENS_S210_2019_F30655",
+          "start": 329,
+          "end": 406,
+          "quote": "there is either a DRIVE-CLiQ communication error or communication has failed."
+        }
+      ]
+    }
+  ],
+  "review_note": "AI-authorized expert-role review preview only; not a human Siemens expert sign-off, not an instance diagnosis, and not a production FTA."
+}

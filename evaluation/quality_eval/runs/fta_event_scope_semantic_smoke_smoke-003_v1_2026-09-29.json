@@ -1,0 +1,147 @@
+{
+  "artifact_type": "fta_event_scope_semantic_smoke_run",
+  "artifact_version": "v1",
+  "status": "response_received",
+  "recorded_at_utc": "2026-09-29T12:35:20+00:00",
+  "case": {
+    "case_id": "SMOKE-003",
+    "dataset_status": "constructed_behavioral_smoke_inputs_not_source_corpus",
+    "input_dataset_path": "evaluation/quality_eval/datasets/fta_event_scope_semantic_smoke_inputs_v1.json",
+    "input_dataset_sha256": "1cb2148df154112db4b6209b23f9144946b6aa5637c3fee809efcafcff32d044",
+    "model_input_sha256": "e1ed38162043bd255233becaae75b74be663a7709fa36a88c563e6418dd2138b",
+    "model_input": {
+      "event_scope_id": "scope-003",
+      "top_event": {
+        "text": "pump shutdown",
+        "evidence": {
+          "segment_id": "synthetic-source-003",
+          "quote": "Possible contributors to pump shutdown"
+        }
+      },
+      "source_segments": [
+        {
+          "segment_id": "synthetic-source-003",
+          "page_number": 1,
+          "section_locator": "Constructed semantic smoke passage 3 (not a manual excerpt)",
+          "text": "Possible contributors to pump shutdown include thermal load, sensor drift, and poor ventilation. The source does not explain how these factors combine or state that any single factor can independently produce the shutdown."
+        }
+      ]
+    }
+  },
+  "request": {
+    "request_count": 1,
+    "retry_count": 0,
+    "retry_policy": "disabled_one_attempt_only",
+    "provider_host": "api.deepseek.com",
+    "requested_model": "deepseek-flash",
+    "temperature": 0,
+    "max_tokens": 8192,
+    "response_format": {
+      "type": "json_object"
+    },
+    "thinking_mode": {
+      "type": "disabled"
+    },
+    "timeout_seconds": 120,
+    "sdk_max_retries": 0,
+    "prompt_version": "event-scope-text-only-tree-v8-semantic-gate-evidence",
+    "prompt_sha256": "4101d4195e55381298344c8d42fb60ffae9bcb59da185b225d49ee231f5ac2d0",
+    "reference_labels_loaded": false,
+    "gold_included_in_model_input": false,
+    "choice_count": 1,
+    "finish_reason": "stop",
+    "visible_content_character_count": 1164,
+    "reasoning_content_present": false,
+    "reasoning_content_character_count": 0,
+    "reasoning_text_persisted": false,
+    "reasoning_tokens": null,
+    "usage": {
+      "prompt_tokens": 1734,
+      "completion_tokens": 291,
+      "total_tokens": 2025
+    },
+    "returned_model": "deepseek-flash",
+    "provider_request_id": null,
+    "openai_package_version": "2.24.0"
+  },
+  "model_output": {
+    "raw_text": "{\"structure_status\":\"unresolved\",\"nodes\":[{\"id\":\"E1\",\"text\":\"pump shutdown\",\"type\":\"top_event\",\"evidence\":{\"segment_id\":\"synthetic-source-003\",\"quote\":\"Possible contributors to pump shutdown\"}},{\"id\":\"E2\",\"text\":\"thermal load\",\"type\":\"basic_event\",\"evidence\":{\"segment_id\":\"synthetic-source-003\",\"quote\":\"thermal load\"}},{\"id\":\"E3\",\"text\":\"sensor drift\",\"type\":\"basic_event\",\"evidence\":{\"segment_id\":\"synthetic-source-003\",\"quote\":\"sensor drift\"}},{\"id\":\"E4\",\"text\":\"poor ventilation\",\"type\":\"basic_event\",\"evidence\":{\"segment_id\":\"synthetic-source-003\",\"quote\":\"poor ventilation\"}}],\"gates\":[{\"scope_id\":\"S1\",\"output_node_id\":\"E1\",\"child_node_ids\":[\"E2\",\"E3\",\"E4\"],\"gate\":\"unknown\",\"scope_evidence\":{\"segment_id\":\"synthetic-source-003\",\"quote\":\"Possible contributors to pump shutdown include thermal load, sensor drift, and poor ventilation.\"},\"logic_evidence\":null,\"unknown_reason\":\"no_direct_logic_evidence\"}],\"unresolved_questions\":[\"The source does not explain how thermal load, sensor drift, and poor ventilation combine or whether any single factor can independently produce pump shutdown, so the gate type between E2, E3, E4 and E1 cannot be determined.\"]}",
+    "parsed_json": {
+      "structure_status": "unresolved",
+      "nodes": [
+        {
+          "id": "E1",
+          "text": "pump shutdown",
+          "type": "top_event",
+          "evidence": {
+            "segment_id": "synthetic-source-003",
+            "quote": "Possible contributors to pump shutdown"
+          }
+        },
+        {
+          "id": "E2",
+          "text": "thermal load",
+          "type": "basic_event",
+          "evidence": {
+            "segment_id": "synthetic-source-003",
+            "quote": "thermal load"
+          }
+        },
+        {
+          "id": "E3",
+          "text": "sensor drift",
+          "type": "basic_event",
+          "evidence": {
+            "segment_id": "synthetic-source-003",
+            "quote": "sensor drift"
+          }
+        },
+        {
+          "id": "E4",
+          "text": "poor ventilation",
+          "type": "basic_event",
+          "evidence": {
+            "segment_id": "synthetic-source-003",
+            "quote": "poor ventilation"
+          }
+        }
+      ],
+      "gates": [
+        {
+          "scope_id": "S1",
+          "output_node_id": "E1",
+          "child_node_ids": [
+            "E2",
+            "E3",
+            "E4"
+          ],
+          "gate": "unknown",
+          "scope_evidence": {
+            "segment_id": "synthetic-source-003",
+            "quote": "Possible contributors to pump shutdown include thermal load, sensor drift, and poor ventilation."
+          },
+          "logic_evidence": null,
+          "unknown_reason": "no_direct_logic_evidence"
+        }
+      ],
+      "unresolved_questions": [
+        "The source does not explain how thermal load, sensor drift, and poor ventilation combine or whether any single factor can independently produce pump shutdown, so the gate type between E2, E3, E4 and E1 cannot be determined."
+      ]
+    },
+    "parse_error": null,
+    "raw_text_sha256": "8b9b79947c4f027b89cbba6d07ae330fc2562facb2231da61bf95411b4ed3e6a"
+  },
+  "claim_boundaries": {
+    "constructed_behavioral_smoke_only": true,
+    "source_corpus_evaluation": false,
+    "human_expert_gold": false,
+    "accuracy_or_calibration_claim_allowed": false,
+    "reference_comparison_performed": false,
+    "gold_or_database_written": false,
+    "automatic_repair_performed": false,
+    "automatic_retry_performed": false,
+    "production_or_database_write": false,
+    "fta_ready": false,
+    "production_ready": false
+  }
+}

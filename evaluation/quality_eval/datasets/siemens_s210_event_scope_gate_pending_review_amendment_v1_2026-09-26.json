@@ -1,0 +1,149 @@
+{
+  "artifact_type": "fta_event_scope_gate_pending_ai_role_review_amendment",
+  "artifact_version": "v1",
+  "created_at": "2026-09-26",
+  "reviewer_provenance": "primary_ai_role_review",
+  "reviewer_is_human_expert": false,
+  "independent_review": false,
+  "formal_gold": false,
+  "database_written": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "source_review": "evaluation/quality_eval/runs/siemens_s210_event_scope_gate_primary_ai_role_review_v5_2026-09-26.json",
+  "source_bundle": "evaluation/quality_eval/runs/siemens_s210_event_scope_gate_blind_review_bundle_v2_2026-09-26.json",
+  "policy": "只收录可由唯一精确原文跨度闭合的完整作用域；AND/OR须有直接门语义证据。单纯列表、编码枚举、参数值和标点不推出门型；完整原因集合但门型无文本依据记unknown；范围混杂或完整性不能确认则保留pending。",
+  "amendments": [
+    {
+      "case_id": "ESG-343D289A4A32",
+      "fault_code": "F30021",
+      "operation": "replace_children",
+      "scope_type": "event_cause_set",
+      "scope_anchor_quote": "Possible causes:\n- ground fault in the power cables.\n- ground fault at the motor.\n- when the brake closes, this causes the hardware DC current monitoring to respond.\n- short-circuit at the braking resistor.",
+      "children": [
+        {"candidate_text": "ground fault in the power cables", "quote": "ground fault in the power cables."},
+        {"candidate_text": "ground fault at the motor", "quote": "ground fault at the motor."},
+        {"candidate_text": "brake closing causes the hardware DC current monitoring to respond", "quote": "when the brake closes, this causes the hardware DC current monitoring to respond."},
+        {"candidate_text": "short-circuit at the braking resistor", "quote": "Possible causes:\n- ground fault in the power cables.\n- ground fault at the motor.\n- when the brake closes, this causes the hardware DC current monitoring to respond.\n- short-circuit at the braking resistor."}
+      ],
+      "decision": {
+        "review_status": "reviewed",
+        "scope_appropriate": true,
+        "child_set_complete": true,
+        "children_same_logical_level": true,
+        "gate_label": "unknown",
+        "gate_evidence": [],
+        "review_reason": "作用域限定为Possible causes标题下的四个同层原因，完整纳入该列表；重复出现的制动电阻短路引文使用完整列表跨度定位，避免自动选择故障值子节中的重复句。原文没有说明这些原因的布尔门关系，因此不推断OR。故障值0的说明属于诊断细分，不并入此cause集合。"
+      }
+    },
+    {
+      "case_id": "ESG-B29023430EC5",
+      "fault_code": "F30630",
+      "operation": "review_existing_children",
+      "scope_type": "event_cause_set",
+      "scope_anchor_quote": "OCC cable shield is not correctly connected.\n- defect in the brake control circuit of the drive.",
+      "scope_child_refs": ["C01", "C02"],
+      "decision": {
+        "review_status": "reviewed",
+        "scope_appropriate": true,
+        "child_set_complete": true,
+        "children_same_logical_level": true,
+        "gate_label": "unknown",
+        "gate_evidence": [],
+        "review_reason": "限定于Cause段列出的两项同层原因；后续故障值按打开/闭合制动等诊断子模式展开，不与这两项顶层Cause混为同层原因。原文没有AND/OR直接门语义，故记unknown。"
+      }
+    },
+    {
+      "case_id": "ESG-3999F873BD12",
+      "fault_code": "F01700",
+      "operation": "replace_children",
+      "scope_type": "event_cause_set",
+      "scope_anchor_quote": "Possible causes:\n- stop request from another monitoring channel.\n- STO not active after parameterized time (p9557) after test stop selection.\n- subsequent response, following messages: A01706, A01714, F01701, A01716",
+      "children": [
+        {"candidate_text": "stop request from another monitoring channel", "quote": "stop request from another monitoring channel."},
+        {"candidate_text": "STO not active after the parameterized time following test-stop selection", "quote": "STO not active after parameterized time (p9557) after test stop selection."},
+        {"candidate_text": "subsequent response associated with messages A01706, A01714, F01701, and A01716", "quote": "subsequent response, following messages: A01706, A01714, F01701, A01716"}
+      ],
+      "decision": {
+        "review_status": "reviewed",
+        "scope_appropriate": true,
+        "child_set_complete": true,
+        "children_same_logical_level": true,
+        "gate_label": "unknown",
+        "gate_evidence": [],
+        "review_reason": "Possible causes标题明确界定完整范围，三项均保留，包括手册归入该列表的后续响应/相关消息项；不将消息编号另拆成原因。列表语义不足以证明AND或OR门，故记unknown。"
+      }
+    },
+    {
+      "case_id": "ESG-4FBAD5BD43C4",
+      "fault_code": "F31887",
+      "operation": "replace_children",
+      "scope_type": "fault_cause_mode_set",
+      "scope_anchor_quote": "Fault cause:\n32 (= 20 hex):\nError in the telegram header.\n35 (= 23 hex):\nReceive error: The telegram buffer memory contains an error.\n66 (= 42 hex):\nSend error: The telegram buffer memory contains an error.\n67 (= 43 hex):\nSend error: The telegram buffer memory contains an error.\n96 (= 60 hex):\nResponse received too late during runtime measurement.\n97 (= 61 hex):\nTime taken to exchange characteristic data too long.",
+      "children": [
+        {"candidate_text": "Fault-cause mode 32: error in the telegram header", "quote": "32 (= 20 hex):\nError in the telegram header."},
+        {"candidate_text": "Fault-cause mode 35: receive error in the telegram buffer memory", "quote": "35 (= 23 hex):\nReceive error: The telegram buffer memory contains an error."},
+        {"candidate_text": "Fault-cause mode 66: send error in the telegram buffer memory", "quote": "66 (= 42 hex):\nSend error: The telegram buffer memory contains an error."},
+        {"candidate_text": "Fault-cause mode 67: send error in the telegram buffer memory", "quote": "67 (= 43 hex):\nSend error: The telegram buffer memory contains an error."},
+        {"candidate_text": "Fault-cause mode 96: response received too late during runtime measurement", "quote": "96 (= 60 hex):\nResponse received too late during runtime measurement."},
+        {"candidate_text": "Fault-cause mode 97: characteristic-data exchange took too long", "quote": "97 (= 61 hex):\nTime taken to exchange characteristic data too long."}
+      ],
+      "decision": {
+        "review_status": "reviewed",
+        "scope_appropriate": true,
+        "child_set_complete": true,
+        "children_same_logical_level": true,
+        "gate_label": "unknown",
+        "gate_evidence": [],
+        "review_reason": "作用域只涵盖Fault cause标题下六个完整的编码模式；一般性硬件不确定描述不作为模式子项。66与67的说明文字相同，证据通过各自唯一的编码行定位。编码枚举说明模式集合完整，但不证明FTA布尔门，故记unknown。"
+      }
+    },
+    {
+      "case_id": "ESG-7DFEC417046C",
+      "fault_code": "F30001",
+      "operation": "replace_children",
+      "scope_type": "event_cause_set",
+      "scope_anchor_quote": "closed-loop control is incorrectly parameterized.\n- motor has a short-circuit or fault to ground (frame).\n- the rated motor current is significantly higher than that of the drive.\n- infeed: High discharge and post-charging currents for line voltage dip.\n- infeed: High post-charging currents for overload when motoring and DC link voltage dip.\n- infeed: Short-circuit currents at switch-on as there is no commutating reactor.\n- power cables are not correctly connected.\n- the power cables exceed the maximum permissible length.\n- defective drive.\n- line phase interrupted.",
+      "children": [
+        {"candidate_text": "closed-loop control is incorrectly parameterized", "quote": "closed-loop control is incorrectly parameterized."},
+        {"candidate_text": "motor has a short-circuit or frame ground fault", "quote": "motor has a short-circuit or fault to ground (frame)."},
+        {"candidate_text": "rated motor current is significantly higher than the drive rating", "quote": "the rated motor current is significantly higher than that of the drive."},
+        {"candidate_text": "infeed discharge and post-charging currents are high during a line-voltage dip", "quote": "infeed: High discharge and post-charging currents for line voltage dip."},
+        {"candidate_text": "infeed post-charging current is high under motor overload and DC-link voltage dip", "quote": "infeed: High post-charging currents for overload when motoring and DC link voltage dip."},
+        {"candidate_text": "infeed switch-on short-circuit currents occur because no commutating reactor is installed", "quote": "infeed: Short-circuit currents at switch-on as there is no commutating reactor."},
+        {"candidate_text": "power cables are incorrectly connected", "quote": "power cables are not correctly connected."},
+        {"candidate_text": "power cables exceed the maximum permissible length", "quote": "the power cables exceed the maximum permissible length."},
+        {"candidate_text": "drive is defective", "quote": "defective drive."},
+        {"candidate_text": "line phase is interrupted", "quote": "line phase interrupted."}
+      ],
+      "decision": {
+        "review_status": "reviewed",
+        "scope_appropriate": true,
+        "child_set_complete": true,
+        "children_same_logical_level": true,
+        "gate_label": "unknown",
+        "gate_evidence": [],
+        "review_reason": "Cause段落的完整故障原因列表为十项；其中infeed是原因描述的适用场景限定，不另建逻辑组。所有项目均作为原因候选保留，但来源仅列举原因，未直接陈述AND/OR关系，故记unknown。故障值位说明是故障部位诊断信息，不并入原因集合。"
+      }
+    },
+    {
+      "case_id": "ESG-5501BDD43EC5",
+      "fault_code": "F30052",
+      "operation": "replace_children",
+      "scope_type": "fault_cause_mode_set",
+      "scope_anchor_quote": "0, 2, 3, 4:\nThe EEPROM data read in from the power unit module are incorrect.\n1:\nEEPROM data is not compatible to the firmware of the power unit application.",
+      "children": [
+        {"candidate_text": "Fault-value mode 0/2/3/4: EEPROM data read from the power-unit module are incorrect", "quote": "0, 2, 3, 4:\nThe EEPROM data read in from the power unit module are incorrect."},
+        {"candidate_text": "Fault-value mode 1: EEPROM data is incompatible with the power-unit application firmware", "quote": "1:\nEEPROM data is not compatible to the firmware of the power unit application."}
+      ],
+      "decision": {
+        "review_status": "reviewed",
+        "scope_appropriate": true,
+        "child_set_complete": true,
+        "children_same_logical_level": true,
+        "gate_label": "unknown",
+        "gate_evidence": [],
+        "review_reason": "Fault value解释给出两个完整的故障模式映射，按各自值域与描述保留为同层模式；这只说明诊断分类，不足以证明事件级AND/OR门，故记unknown。"
+      }
+    }
+  ]
+}

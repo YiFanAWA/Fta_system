@@ -1,0 +1,49 @@
+{
+  "artifact_type": "fta_event_scope_semantic_smoke_reference",
+  "schema_version": "v1",
+  "reference_status": "authored_policy_reference_not_expert_reviewed",
+  "human_expert_gold": false,
+  "accuracy_claim_allowed": false,
+  "cases": [
+    {
+      "case_id": "SMOKE-001",
+      "expected_candidate_gate": "OR",
+      "rationale": "Two distinct failure paths are each stated to produce the same pump-shutdown output; no literal OR/AND operator occurs in the source passage.",
+      "decisive_source_quote": "A coolant hose rupture can drain the loop, which causes pump shutdown. A separate circulation-motor failure can also produce pump shutdown."
+    },
+    {
+      "case_id": "SMOKE-002",
+      "expected_candidate_gate": "AND",
+      "rationale": "The source describes a combined condition and explicitly says neither condition alone is sufficient; no literal AND operator occurs in the source passage.",
+      "decisive_source_quote": "Pressure vessel rupture occurs only when the wall has been weakened by corrosion together with internal pressure above the design limit. Neither a weakened wall by itself nor pressure above the limit by itself is sufficient."
+    },
+    {
+      "case_id": "SMOKE-003",
+      "expected_candidate_gate": "unknown",
+      "rationale": "A list of possible contributors does not state whether any item is independently sufficient or whether the items jointly determine the output.",
+      "decisive_source_quote": "Possible contributors to pump shutdown include thermal load, sensor drift, and poor ventilation. The source does not explain how these factors combine or state that any single factor can independently produce the shutdown."
+    },
+    {
+      "case_id": "SMOKE-004",
+      "expected_candidate_gate": "unknown",
+      "rationale": "Co-occurrence and temporal order are reported, while the source explicitly withholds a causal or logical-combination conclusion.",
+      "decisive_source_quote": "During incident 17, a pressure increase and a temperature increase were observed before tank rupture. The report records both observations but does not conclude that both were required or that either one alone was sufficient."
+    },
+    {
+      "case_id": "SMOKE-005",
+      "expected_candidate_gate": "unknown",
+      "rationale": "Alarm co-occurrence does not establish a gate to pump shutdown; the literal OR connects display colors, not the candidate alarm causes and the top event.",
+      "decisive_source_quote": "In pump shutdown incident 17, alarms A and B were both logged; the source does not say whether either caused the shutdown or whether both were required. The panel indicator may show red or amber, a separate display choice."
+    }
+  ],
+  "guardrails": {
+    "input_dataset_path": "evaluation/quality_eval/datasets/fta_event_scope_semantic_smoke_inputs_v1.json",
+    "input_dataset_hash_required": true,
+    "included_in_model_request": false,
+    "human_expert_gold": false,
+    "accuracy_claim_allowed": false,
+    "database_written": false,
+    "fta_ready": false,
+    "production_ready": false
+  }
+}

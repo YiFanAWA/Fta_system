@@ -1,0 +1,38 @@
+{
+  "artifact_type": "fta_event_scope_semantic_smoke_offline_comparison",
+  "artifact_version": "v1",
+  "recorded_at_utc": "2026-09-29T11:19:18+00:00",
+  "case_id": "SMOKE-002",
+  "status": "matched_authored_policy_expectation_not_expert_validation",
+  "comparison": {
+    "expected_gate": "AND",
+    "observed_gate": "AND",
+    "gate_matches_policy_expectation": true,
+    "logic_evidence_exactly_matches_decisive_quote": true,
+    "structure_contract_valid": true,
+    "evidence_locations_checked": 5,
+    "evidence_locations_valid": 5,
+    "qualitative_smoke_match": true
+  },
+  "provenance": {
+    "run_path": "evaluation/quality_eval/runs/fta_event_scope_semantic_smoke_smoke-002_v1_2026-09-29.json",
+    "run_sha256": "1ede1650cf6db593d968284cbeb5a30ff11876201513c6a45e90d5ea82f480d4",
+    "assessment_path": "evaluation/quality_eval/runs/fta_event_scope_semantic_smoke_smoke-002_v1_2026-09-29_assessment.json",
+    "assessment_sha256": "2c4774485cd5ed8288229180fd6130f32ebefc5c6d5be362ea735bd69d412b86",
+    "reference_path": "evaluation/quality_eval/datasets/fta_event_scope_semantic_smoke_reference_v1.json",
+    "reference_sha256": "1b6008d8f834d8cfe249d90787e2a62b8b0826f9d7c3816cb17d3310cb784915",
+    "reference_status": "authored_policy_reference_not_expert_reviewed"
+  },
+  "claim_boundaries": {
+    "synthetic_behavioral_smoke_only": true,
+    "source_corpus_evaluation": false,
+    "human_expert_gold": false,
+    "semantic_correctness_expert_assessed": false,
+    "accuracy_or_calibration_claim_allowed": false,
+    "aggregate_metric_claim_allowed": false,
+    "gold_or_database_written": false,
+    "production_or_readiness_changed": false,
+    "fta_ready": false,
+    "production_ready": false
+  }
+}

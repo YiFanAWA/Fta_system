@@ -1,0 +1,94 @@
+{
+  "artifact_type": "external_text_evidence_gate_abstention_fixture",
+  "artifact_version": "v1-extension",
+  "created_at": "2026-09-27",
+  "formal_gold": false,
+  "in_project_gold": false,
+  "database_written": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "label_provenance": {
+    "reviewer_role": "independent_ai_expert_role_review",
+    "reviewer_is_human_expert": false,
+    "review_scope": "whether the quoted source evidence directly supports AND/OR among the supplied same-scope candidate causes",
+    "rule": "A possible-cause list or grammatical conjunction alone does not establish a gate. AND requires direct evidence that all supplied children must co-occur; otherwise preserve unknown.",
+    "review_note": "Exploratory AI role review only; not human domain-expert sign-off or project Gold."
+  },
+  "source_document_count": 2,
+  "source_cluster_count": 2,
+  "inference_input_policy": "Model receives only parent event, direct child event texts, and the exact transcribed source scope evidence. Source identity, document metadata, expected labels, reviewer notes, and expected gate evidence are withheld.",
+  "scope_note": "Incremental external text-evidence probe adding one direct textual AND positive and one independent possible-cause-list unknown case to the v1 baseline. Not an end-to-end FTA test, calibration set, or production policy test.",
+  "sources": [
+    {
+      "source_id": "NASA_TP_2000_209902",
+      "source_cluster_id": "NASA_TP_2000_209902_document",
+      "document_title": "Comprehensive Design Reliability Activities for Aerospace Propulsion Systems",
+      "authors_or_organization": "R. L. Christenson, M. R. Whitley, and K. C. Knight; NASA Marshall Space Flight Center / Sverdrup Technology",
+      "publication_date": "2000-01",
+      "record_url": "https://ntrs.nasa.gov/citations/20000021229",
+      "source_pdf_url": "https://ntrs.nasa.gov/api/citations/20000021229/downloads/20000021229.pdf",
+      "source_pdf_sha256": "0082fc8d440b4fb73ff830067320b8d8e03f2dd35d4b89bc758bfd3d5718cb63",
+      "source_location": "Printed page 49, Figure 28 explanatory paragraph; PDF page index 63 (zero-based).",
+      "quote_verification": "Exact text and page verified from a direct download of the official NASA NTRS PDF; SHA-256 recorded."
+    },
+    {
+      "source_id": "NASA_TM_104382",
+      "source_cluster_id": "NASA_TM_104382_document",
+      "document_title": "Destructive Physical Analysis Results of Ni/H2 Cells Cycled in LEO Regime",
+      "authors_or_organization": "H. S. Lim, G. R. Zelter, J. J. Smithrick, and S. W. Hall; NASA Lewis Research Center and partner organizations",
+      "publication_date": "1991",
+      "record_url": "https://ntrs.nasa.gov/citations/19910013920",
+      "source_pdf_url": "https://ntrs.nasa.gov/api/citations/19910013920/downloads/19910013920.pdf",
+      "source_pdf_sha256": "b1bdc60f065e16ab8ab81d456ac3770ad8e1e1da3ddfcaab6fac4e18fc0f192e",
+      "source_location": "NASA NTRS abstract; matching text also appears in the report's concluding remarks (PDF page index 3, zero-based).",
+      "quote_verification": "Exact text and page occurrence verified from a direct download of the official NASA NTRS PDF; SHA-256 recorded."
+    }
+  ],
+  "gate_nodes": [
+    {
+      "gate_node_id": "NASA-TP2000-FIG28-CATASTROPHIC-AND-001",
+      "source_id": "NASA_TP_2000_209902",
+      "source_cluster_id": "NASA_TP_2000_209902_document",
+      "scope_type": "explicit_joint_condition_in_failure_description",
+      "parent_event": "Catastrophic fire or explosion of the pump system.",
+      "parent_evidence": "Catastrophic Fire/Explosion",
+      "candidate_set_heading": "Figure 28 explanatory paragraph",
+      "candidate_set_evidence": "However, both a critical pump failure and a safety system failure to mitigate the failure must occur for a catastrophic fire/explosion to occur.",
+      "children": [
+        "Critical pump failure.",
+        "Safety system fails to mitigate the failure."
+      ],
+      "expected_gate": "AND",
+      "expected_gate_evidence": "However, both a critical pump failure and a safety system failure to mitigate the failure must occur for a catastrophic fire/explosion to occur.",
+      "label_rationale": "The source directly says both supplied child conditions must occur for the parent event. The decisive wording is inside the child-cause scope, not inferred from a list or from model confidence."
+    },
+    {
+      "gate_node_id": "NASA-TM104382-NICKEL-CAPACITY-POSSIBLE-CAUSES-001",
+      "source_id": "NASA_TM_104382",
+      "source_cluster_id": "NASA_TM_104382_document",
+      "scope_type": "possible_cause_list_with_grammatical_conjunction",
+      "parent_event": "Cycling failure associated with decreased nickel-electrode capacity.",
+      "parent_evidence": "The cycling failure was due to decrease of nickel electrode capacity.",
+      "candidate_set_heading": "As possible causes of the capacity decrease",
+      "candidate_set_evidence": "As possible causes of the capacity decrease, we have observed electrode expansion, rupture and corrosion of the nickel electrode substrate, active material redistribution, and accumulation of electrochemically undischargeable active material with cycling.",
+      "children": [
+        "Electrode expansion.",
+        "Rupture of the nickel-electrode substrate.",
+        "Corrosion of the nickel-electrode substrate.",
+        "Active-material redistribution.",
+        "Accumulation of electrochemically undischargeable active material with cycling."
+      ],
+      "expected_gate": "unknown",
+      "expected_gate_evidence": null,
+      "label_rationale": "The excerpt calls the listed items possible causes and coordinates them grammatically, but does not say each one alone is sufficient or that all listed changes must co-occur. The conjunction in the list is not direct AND-gate evidence."
+    }
+  ],
+  "limitations": [
+    "This extension contains only two nodes from two document clusters: one AND positive and one additional unknown case; class-specific performance remains statistically uninformative.",
+    "The NASA report is an explicit textual AND control, so this is a direct-evidence smoke test, not a test of broad paraphrase generalization.",
+    "The possible-cause-list sample tests abstention when the source uses grammatical 'and'; its label concerns only the quoted scope and does not assert that the physical system has no Boolean relation.",
+    "Labels were reviewed by an AI role reviewer, not a human domain expert; this is not human-expert Gold.",
+    "Model self-reported scores are uncalibrated and cannot be interpreted as event probabilities or used as a production threshold.",
+    "This extension does not test source-document extraction, cause completeness, recursive tree construction, production gate policy, or runtime integration."
+  ]
+}

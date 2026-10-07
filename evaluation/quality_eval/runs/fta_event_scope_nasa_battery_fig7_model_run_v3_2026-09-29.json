@@ -1,0 +1,140 @@
+{
+  "artifact_type": "fta_event_scope_model_inference_run",
+  "artifact_version": "v3",
+  "status": "response_received",
+  "recorded_at_utc": "2026-09-29T05:19:58+00:00",
+  "case": {
+    "packet_id": "NASA_GSFC_BATTERY_FIG7_MODULE_FAILURE_DEV_001",
+    "source_cluster_id": "NASA_GSFC_LISOCL2_BATTERY_SAFETY_ANALYSIS_1987",
+    "exposure_status": "seen_development_only",
+    "packet_path": "evaluation/quality_eval/datasets/fta_event_scope_nasa_battery_fig7_module_failure_dev_v1.json",
+    "model_input_sha256": "1e77b80a8f2a6ae62443468d21b075e4a213a3544cdc2b882a5d69b6ba6d4325"
+  },
+  "request": {
+    "request_count": 1,
+    "retry_count": 0,
+    "retry_policy": "disabled_one_attempt_only",
+    "provider_host": "api.deepseek.com",
+    "requested_model": "deepseek-flash",
+    "temperature": 0,
+    "max_tokens": 8192,
+    "response_format": {
+      "type": "json_object"
+    },
+    "thinking_mode": {
+      "type": "disabled"
+    },
+    "timeout_seconds": 120,
+    "sdk_max_retries": 0,
+    "prompt_version": "event-scope-text-only-tree-v2-compact-json",
+    "prompt_sha256": "ba3fd871f6681b50f7bce0adfa72bfdbe5432d76d93a1075e4b7762a6100d127",
+    "comparison_lock": "v2 prompt/model/token budget/JSON format held; only thinking mode is explicitly disabled",
+    "choice_count": 1,
+    "finish_reason": "stop",
+    "visible_content_character_count": 2450,
+    "reasoning_content_present": false,
+    "reasoning_content_character_count": 0,
+    "reasoning_text_persisted": false,
+    "reasoning_tokens": null,
+    "usage": {
+      "prompt_tokens": 695,
+      "completion_tokens": 538,
+      "total_tokens": 1233
+    },
+    "returned_model": "deepseek-flash",
+    "provider_request_id": null,
+    "openai_package_version": "2.24.0"
+  },
+  "model_output": {
+    "raw_text": "{\"nodes\":[{\"id\":\"E1\",\"text\":\"explosion or structural fragmentation of a battery module\",\"type\":\"top_event\",\"parent_id\":null,\"evidence_quote\":\"the explosion or structural fragmentation of a battery module\"},{\"id\":\"E2\",\"text\":\"single cell explodes\",\"type\":\"intermediate_event\",\"parent_id\":\"E1\",\"evidence_quote\":\"a single cell exploding and the failure of the module vents or a single cell exploding and the module operating nominally but with a sympathetic secondary explosion occurring can lead to the Top Event\"},{\"id\":\"E3\",\"text\":\"failure of the module vents\",\"type\":\"basic_event\",\"parent_id\":\"E2\",\"evidence_quote\":\"a single cell exploding and the failure of the module vents\"},{\"id\":\"E4\",\"text\":\"module operating nominally but with a sympathetic secondary explosion occurring\",\"type\":\"intermediate_event\",\"parent_id\":\"E2\",\"evidence_quote\":\"a single cell exploding and the module operating nominally but with a sympathetic secondary explosion occurring\"},{\"id\":\"E5\",\"text\":\"sympathetic secondary explosion\",\"type\":\"basic_event\",\"parent_id\":\"E4\",\"evidence_quote\":\"a second sympathetic explosion\"}],\"gates\":[{\"scope_id\":\"S1\",\"output_node_id\":\"E1\",\"child_node_ids\":[\"E2\",\"E3\",\"E4\"],\"gate\":\"OR\",\"evidence_quote\":\"a single cell exploding and the failure of the module vents or a single cell exploding and the module operating nominally but with a sympathetic secondary explosion occurring can lead to the Top Event\",\"reason\":\"Text presents two alternative combinations leading to the Top Event, joined by 'or'.\"},{\"scope_id\":\"S2\",\"output_node_id\":\"E2\",\"child_node_ids\":[\"E3\"],\"gate\":\"unknown\",\"evidence_quote\":\"a single cell exploding and the failure of the module vents\",\"reason\":\"Text states conjunction but does not specify a gate type or full child set for this branch.\"},{\"scope_id\":\"S3\",\"output_node_id\":\"E4\",\"child_node_ids\":[\"E5\"],\"gate\":\"unknown\",\"evidence_quote\":\"a single cell exploding and the module operating nominally but with a sympathetic secondary explosion occurring\",\"reason\":\"Text states conjunction but does not specify a gate type or full child set for this branch.\"}],\"unresolved_questions\":[\"Gate type for the combination of single cell explodes and failure of module vents is not explicitly stated.\",\"Gate type for the combination of single cell explodes and sympathetic secondary explosion is not explicitly stated.\",\"Whether 'module operating nominally' is a separate event or condition is not explicitly modeled as a node.\"]}",
+    "parsed_json": {
+      "nodes": [
+        {
+          "id": "E1",
+          "text": "explosion or structural fragmentation of a battery module",
+          "type": "top_event",
+          "parent_id": null,
+          "evidence_quote": "the explosion or structural fragmentation of a battery module"
+        },
+        {
+          "id": "E2",
+          "text": "single cell explodes",
+          "type": "intermediate_event",
+          "parent_id": "E1",
+          "evidence_quote": "a single cell exploding and the failure of the module vents or a single cell exploding and the module operating nominally but with a sympathetic secondary explosion occurring can lead to the Top Event"
+        },
+        {
+          "id": "E3",
+          "text": "failure of the module vents",
+          "type": "basic_event",
+          "parent_id": "E2",
+          "evidence_quote": "a single cell exploding and the failure of the module vents"
+        },
+        {
+          "id": "E4",
+          "text": "module operating nominally but with a sympathetic secondary explosion occurring",
+          "type": "intermediate_event",
+          "parent_id": "E2",
+          "evidence_quote": "a single cell exploding and the module operating nominally but with a sympathetic secondary explosion occurring"
+        },
+        {
+          "id": "E5",
+          "text": "sympathetic secondary explosion",
+          "type": "basic_event",
+          "parent_id": "E4",
+          "evidence_quote": "a second sympathetic explosion"
+        }
+      ],
+      "gates": [
+        {
+          "scope_id": "S1",
+          "output_node_id": "E1",
+          "child_node_ids": [
+            "E2",
+            "E3",
+            "E4"
+          ],
+          "gate": "OR",
+          "evidence_quote": "a single cell exploding and the failure of the module vents or a single cell exploding and the module operating nominally but with a sympathetic secondary explosion occurring can lead to the Top Event",
+          "reason": "Text presents two alternative combinations leading to the Top Event, joined by 'or'."
+        },
+        {
+          "scope_id": "S2",
+          "output_node_id": "E2",
+          "child_node_ids": [
+            "E3"
+          ],
+          "gate": "unknown",
+          "evidence_quote": "a single cell exploding and the failure of the module vents",
+          "reason": "Text states conjunction but does not specify a gate type or full child set for this branch."
+        },
+        {
+          "scope_id": "S3",
+          "output_node_id": "E4",
+          "child_node_ids": [
+            "E5"
+          ],
+          "gate": "unknown",
+          "evidence_quote": "a single cell exploding and the module operating nominally but with a sympathetic secondary explosion occurring",
+          "reason": "Text states conjunction but does not specify a gate type or full child set for this branch."
+        }
+      ],
+      "unresolved_questions": [
+        "Gate type for the combination of single cell explodes and failure of module vents is not explicitly stated.",
+        "Gate type for the combination of single cell explodes and sympathetic secondary explosion is not explicitly stated.",
+        "Whether 'module operating nominally' is a separate event or condition is not explicitly modeled as a node."
+      ]
+    },
+    "parse_error": null,
+    "raw_text_sha256": "e9eb4537a57eb005f666647b7f694a976f951dc5c19c76ab94d5c64b038e3cec"
+  },
+  "claim_boundaries": {
+    "development_only": true,
+    "human_expert_gold": false,
+    "independent_final_validation": false,
+    "accuracy_or_calibration_claim_allowed": false,
+    "production_or_database_write": false,
+    "fta_ready": false,
+    "production_ready": false
+  }
+}

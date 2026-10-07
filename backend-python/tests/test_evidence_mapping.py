@@ -8,6 +8,9 @@ sys.path.insert(0, str(BACKEND))
 
 from contracts.extraction_contract import EvidenceField  # noqa: E402
 from core.model_client import CallableModelClient  # noqa: E402
+from extraction.causal_candidate_preparation_service import (  # noqa: E402
+    CausalCandidatePreparationService,
+)
 from extraction.text_extraction_adapter import TextExtractionAdapter  # noqa: E402
 from workflows.ai_module import _evidence_span_to_legacy_dict  # noqa: E402
 
@@ -30,7 +33,7 @@ class EvidenceMappingTests(unittest.TestCase):
         result = self._adapter(response).extract(source)
 
         self.assertEqual("success", result.status.value)
-        self.assertEqual(5, len(result.evidence_spans))
+        self.assertEqual(6, len(result.evidence_spans))
         self.assertTrue(all(span.matches(source) for span in result.evidence_spans))
         self.assertEqual(
             {
@@ -38,9 +41,239 @@ class EvidenceMappingTests(unittest.TestCase):
                 EvidenceField.DESCRIPTION,
                 EvidenceField.PRIMARY_COMPONENT,
                 EvidenceField.CAUSE,
+                EvidenceField.CAUSE_CONTEXT,
                 EvidenceField.PARAMETER,
             },
             {span.field for span in result.evidence_spans},
+        )
+
+    def test_cause_keeps_exact_span_and_adds_sentence_context(self):
+        response = (
+            '{"items":[{"fault_code":"F01630",'
+            '"description":"电机抱闸控制故障",'
+            '"causes":["制动绕组发生短路"]}]}'
+        )
+        source = (
+            "故障码：F01630。故障现象：电机抱闸控制故障。"
+            "原因：制动绕组发生短路，导致抱闸无法正常控制。"
+        )
+
+        result = self._adapter(response).extract(source)
+
+        cause_span = next(
+            span for span in result.evidence_spans
+            if span.field is EvidenceField.CAUSE
+        )
+        context_span = next(
+            span for span in result.evidence_spans
+            if span.field is EvidenceField.CAUSE_CONTEXT
+        )
+        self.assertEqual("制动绕组发生短路", cause_span.quote)
+        self.assertEqual(
+            "原因：制动绕组发生短路，导致抱闸无法正常控制。",
+            context_span.quote,
+        )
+        self.assertTrue(cause_span.matches(source))
+        self.assertTrue(context_span.matches(source))
+        self.assertEqual(
+            source[context_span.start:context_span.end],
+            context_span.quote,
+        )
+
+    def test_cause_evidence_matches_quote_style_variants_and_source_whitespace(self):
+        response = (
+            '{"items":[{"fault_code":"F01681",'
+            '"description":"Incorrect parameter value",'
+            '"causes":["Enabling function \'SSM\' (p9501.16) is not '
+            'permissible in combination with the \'Extended functions without '
+            'selection\' function (p9601.5)."]}]}'
+        )
+        source = (
+            'F01681. Cause: Enabling function "SSM" (p9501.16) is not '
+            'permissible in combination with the "Extended functions without '
+            'selection"\nfunction (p9601.5).'
+        )
+
+        result = self._adapter(response).extract(source)
+
+        cause_span = next(
+            span for span in result.evidence_spans
+            if span.field is EvidenceField.CAUSE
+        )
+        self.assertEqual(
+            'Enabling function "SSM" (p9501.16) is not permissible in '
+            'combination with the "Extended functions without selection"\n'
+            'function (p9601.5).',
+            cause_span.quote,
+        )
+        self.assertEqual(0, cause_span.value_index)
+        self.assertTrue(cause_span.matches(source))
+
+    def test_cause_evidence_span_includes_omitted_inline_parameter_annotations(self):
+        response = (
+            '{"items":[{"fault_code":"F01681",'
+            '"description":"Incorrect parameter value",'
+            '"causes":["Enabling function \'SSM\' is not permissible in '
+            'combination with the \'Extended functions without selection\' function."]}]}'
+        )
+        source = (
+            'F01681. Cause: Enabling function "SSM" (p9501.16) is not '
+            'permissible in combination with the "Extended functions without '
+            'selection"\nfunction (p9601.5).'
+        )
+
+        result = self._adapter(response).extract(source)
+
+        cause_span = next(
+            span for span in result.evidence_spans
+            if span.field is EvidenceField.CAUSE
+        )
+        self.assertEqual(source.index('Enabling function "SSM"'), cause_span.start)
+        self.assertEqual(
+            source.index("(p9601.5).") + len("(p9601.5)."),
+            cause_span.end,
+        )
+        self.assertIn("(p9501.16)", cause_span.quote)
+        self.assertIn("(p9601.5)", cause_span.quote)
+        self.assertTrue(cause_span.matches(source))
+
+    def test_repeated_cause_source_matches_are_left_ambiguous_for_manual_location(self):
+        response = (
+            '{"items":[{"fault_code":"F00001",'
+            '"description":"Internal error",'
+            '"causes":["Communication error"]}]}'
+        )
+        source = (
+            "F00001. Cause: Communication error. "
+            "Note: Communication error may also be reported."
+        )
+
+        result = self._adapter(response).extract(source)
+
+        cause_spans = [
+            span for span in result.evidence_spans
+            if span.field is EvidenceField.CAUSE
+        ]
+        self.assertEqual(2, len(cause_spans))
+        self.assertEqual({0}, {span.value_index for span in cause_spans})
+        self.assertEqual(
+            [source.index("Communication error"), source.rindex("Communication error")],
+            [span.start for span in cause_spans],
+        )
+        candidate = CausalCandidatePreparationService().prepare(result).candidates[0]
+        self.assertEqual("ambiguous", candidate["evidence_status"])
+        self.assertFalse(
+            any(item["field"] == "cause" for item in candidate["evidence"])
+        )
+        self.assertEqual(2, len(candidate["evidence"]))
+
+    def test_f30021_cause_repeated_in_possible_causes_and_fault_value_stays_ambiguous(self):
+        response = (
+            '{"items":[{"fault_code":"F30021","description":"ground fault",'
+            '"component":"Drive","causes":["short-circuit at the braking resistor"],'
+            '"parameters":["r0949"]}]}'
+        )
+        source = (
+            "F30021 Drive: ground fault\n"
+            "Reaction: OFF2\n"
+            "Acknowledge: IMMEDIATELY\n"
+            "496 Operating Instructions, 01/2019, A5E41702836B AC\n"
+            "Cause: The drive has detected a ground fault.\n"
+            "Possible causes:\n"
+            "- ground fault in the power cables.\n"
+            "- ground fault at the motor.\n"
+            "- when the brake closes, this causes the hardware DC current monitoring to respond.\n"
+            "- short-circuit at the braking resistor.\n"
+            "Fault value (r0949, interpret decimal):\n"
+            "0:\n"
+            "- the hardware DC current monitoring has responded.\n"
+            "- short-circuit at the braking resistor.\n"
+            "> 0:\nAbsolute value summation current amplitude.\n"
+            "Remedy: - check the power cable connections.\n"
+        )
+
+        result = self._adapter(response).extract(source)
+
+        cause_spans = [
+            span for span in result.evidence_spans
+            if span.field is EvidenceField.CAUSE and span.value_index == 0
+        ]
+        contexts = [
+            span for span in result.evidence_spans
+            if span.field is EvidenceField.CAUSE_CONTEXT and span.value_index == 0
+        ]
+        self.assertEqual(2, len(cause_spans))
+        self.assertEqual(
+            [
+                source.index("short-circuit at the braking resistor"),
+                source.rindex("short-circuit at the braking resistor"),
+            ],
+            [span.start for span in cause_spans],
+        )
+        self.assertTrue(all(span.matches(source) for span in cause_spans))
+        self.assertEqual(2, len(contexts))
+        self.assertTrue(all(span.matches(source) for span in contexts))
+
+        candidate = CausalCandidatePreparationService().prepare(result).candidates[0]
+        self.assertEqual("ambiguous", candidate["evidence_status"])
+        self.assertFalse(
+            any(item["field"] == "cause" for item in candidate["evidence"])
+        )
+
+    def test_cause_context_does_not_cross_fault_record_boundaries(self):
+        response = (
+            '{"items":['
+            '{"fault_code":"F01630","description":"Brake failure",'
+            '"causes":["Winding short circuit"]},'
+            '{"fault_code":"F01631","description":"Fan failure",'
+            '"causes":["Fan worn"]}]} '
+        )
+        source = (
+            "F01630。Brake failure caused by winding short circuit. "
+            "F01631。Fan failure caused by fan worn."
+        )
+
+        result = self._adapter(response).extract(source)
+
+        contexts_by_code = {
+            record.fault_code: next(
+                span.quote
+                for span in result.evidence_spans
+                if span.record_id == record.record_id
+                and span.field is EvidenceField.CAUSE_CONTEXT
+            )
+            for record in result.records
+        }
+        self.assertEqual(
+            "Brake failure caused by winding short circuit.",
+            contexts_by_code["F01630"],
+        )
+        self.assertEqual(
+            "Fan failure caused by fan worn.",
+            contexts_by_code["F01631"],
+        )
+
+    def test_cause_context_is_omitted_when_source_segment_exceeds_bound(self):
+        response = (
+            '{"items":[{"fault_code":"F01630",'
+            '"description":"Brake failure",'
+            '"causes":["Winding short circuit"]}]}'
+        )
+        source = (
+            "F01630。Brake failure: winding short circuit "
+            + ("context" * 180)
+        )
+
+        result = self._adapter(response).extract(source)
+
+        self.assertTrue(
+            any(span.field is EvidenceField.CAUSE for span in result.evidence_spans)
+        )
+        self.assertFalse(
+            any(
+                span.field is EvidenceField.CAUSE_CONTEXT
+                for span in result.evidence_spans
+            )
         )
 
     def test_whitespace_normalized_model_value_uses_original_quote(self):

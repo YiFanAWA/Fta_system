@@ -1,0 +1,166 @@
+{
+  "artifact_type": "external_text_evidence_gate_abstention_probe",
+  "artifact_version": "v1",
+  "created_at": "2026-09-27T09:28:17.456040+00:00",
+  "status": "completed",
+  "formal_gold": false,
+  "in_project_gold": false,
+  "database_written": false,
+  "gate_policy_applied": false,
+  "threshold_selected": false,
+  "probability_calibrated": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "evaluation_scope": "Incremental external-source probe adding paraphrased direct AND/OR evidence and two conjunction near-misses. This is a smoke-test extension, not a representative benchmark, calibration set, or production policy test.",
+  "reviewer_provenance": "primary_ai_agent_pre_inference_evidence_review",
+  "reviewer_is_human_expert": false,
+  "confidence_semantics": "raw uncalibrated model self-assessment, not event probability",
+  "metadata": {
+    "model_id": "deepseek-flash",
+    "provider_host": "api.deepseek.com",
+    "temperature": 0,
+    "requests_planned": 6,
+    "requests_succeeded": 6,
+    "requests_failed": 0,
+    "source_document_count": 5,
+    "source_cluster_count": 5,
+    "fixture_sha256": "7b8c4852b2e186128182aa2116fb8084db2ec9937d4c6d0e8f4fd9ad2d8be6e3"
+  },
+  "summary": {
+    "sample_count": 6,
+    "top1_accuracy": 1.0,
+    "unknown_gold_count": 2,
+    "unknown_correct_count": 2,
+    "unknown_recall": 1.0,
+    "unknown_unsafe_accept_count": 0,
+    "known_gate_count": 4,
+    "known_gate_correct_count": 4,
+    "decisive_coverage": 0.6666666666666666,
+    "decisive_quote_substring_match_count": 4,
+    "decisive_quote_count": 4,
+    "label_counts": {
+      "AND": 3,
+      "OR": 1,
+      "unknown": 2
+    },
+    "prediction_counts": {
+      "AND": 3,
+      "OR": 1,
+      "unknown": 2
+    }
+  },
+  "predictions": [
+    {
+      "gate_node_id": "NASA-VESELY-RESISTOR-CRITICAL-PATH-AND-001",
+      "expected_gate": "AND",
+      "predicted_gate": "AND",
+      "gate_probabilities": {
+        "AND": 1.0,
+        "OR": 0.0,
+        "unknown": 0.0
+      },
+      "top_probability": 1.0,
+      "top_margin": 1.0,
+      "gate_evidence_quote": "Resistor 1 must fail in Mode A and Resistor 2 must fail in Mode B in order for the system failure or accident to occur.",
+      "quote_is_exact_substring_of_child_evidence": true,
+      "correct": true,
+      "prompt_sha256": "0fb72f4d0f7f56ff0ee47ded662dd92fed339d182fd5c4e47f6c05ec96e9fdca",
+      "reason": "The source explicitly states that both child failures must occur together for the parent event, so the gate is AND."
+    },
+    {
+      "gate_node_id": "NASA-TM86404-CAREIII-ALL-EVENTS-AND-001",
+      "expected_gate": "AND",
+      "predicted_gate": "AND",
+      "gate_probabilities": {
+        "AND": 1.0,
+        "OR": 0.0,
+        "unknown": 0.0
+      },
+      "top_probability": 1.0,
+      "top_margin": 1.0,
+      "gate_evidence_quote": "all events m thru z must occur (fail)",
+      "quote_is_exact_substring_of_child_evidence": true,
+      "correct": true,
+      "prompt_sha256": "0928a681f12a555f30846765a3f833497e9c4be4aa391e3a089552306826ecf0",
+      "reason": "The source directly states that all listed child events must occur for the parent gate, indicating an AND relationship."
+    },
+    {
+      "gate_node_id": "NASA-TM86404-CAREIII-ANY-INPUT-OR-001",
+      "expected_gate": "OR",
+      "predicted_gate": "OR",
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 1.0,
+        "unknown": 0.0
+      },
+      "top_probability": 1.0,
+      "top_margin": 1.0,
+      "gate_evidence_quote": "if any of the events m thru z occur (fail), event k occurs",
+      "quote_is_exact_substring_of_child_evidence": true,
+      "correct": true,
+      "prompt_sha256": "b86503f9ebd97112aa986ad37d6573a7fec8977ff7c9baaf269745eef03db3b2",
+      "reason": "The text directly states that if any event from m through z occurs, event k occurs, indicating that any one child can independently cause the parent, so the gate is OR."
+    },
+    {
+      "gate_node_id": "NASA-CR72723-HVSA-COEXISTENCE-AND-001",
+      "expected_gate": "AND",
+      "predicted_gate": "AND",
+      "gate_probabilities": {
+        "AND": 1.0,
+        "OR": 0.0,
+        "unknown": 0.0
+      },
+      "top_probability": 1.0,
+      "top_margin": 1.0,
+      "gate_evidence_quote": "the coexistence of all input events is required to produce the output event",
+      "quote_is_exact_substring_of_child_evidence": true,
+      "correct": true,
+      "prompt_sha256": "b754564ff8ba4621ce8bd80cc9bb8693627d1477598a6d5194587e9d0e842789",
+      "reason": "The source explicitly states that all input events must coexist to produce the output, which directly indicates an AND relationship."
+    },
+    {
+      "gate_node_id": "NASA-TM111876-CONDENSATE-POSSIBLE-CAUSE-LIST-UNKNOWN-001",
+      "expected_gate": "unknown",
+      "predicted_gate": "unknown",
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 0.0,
+        "unknown": 1.0
+      },
+      "top_probability": 1.0,
+      "top_margin": 1.0,
+      "gate_evidence_quote": null,
+      "quote_is_exact_substring_of_child_evidence": null,
+      "correct": true,
+      "prompt_sha256": "b280f5812e1d8dd72503058c49c14cf9786adce26fbf0073f65cf160a1dfe9f4",
+      "reason": "The source only lists possible causes and does not directly state whether any one cause alone can lead to inconsistent tracking or whether multiple causes must jointly occur."
+    },
+    {
+      "gate_node_id": "NASA-APOLLO13-PRESSURE-TEMPERATURE-RUPTURE-UNKNOWN-001",
+      "expected_gate": "unknown",
+      "predicted_gate": "unknown",
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 0.0,
+        "unknown": 1.0
+      },
+      "top_probability": 1.0,
+      "top_margin": 1.0,
+      "gate_evidence_quote": null,
+      "quote_is_exact_substring_of_child_evidence": null,
+      "correct": true,
+      "prompt_sha256": "070cf75af772b4f0413620053bdd0569bdc950aa341d9622d003dbc77362905f",
+      "reason": "The source text only states that pressure and temperature increased before rupture; it does not specify whether both increases were jointly necessary or whether either alone could cause rupture."
+    }
+  ],
+  "failures": [],
+  "limitations": [
+    "This extension has six nodes from five source documents; two gate labels share the same CARE III manual and therefore are not independent source clusters.",
+    "Several positive controls are explanatory gate definitions rather than independently validated real-system fault trees; they test text interpretation, not domain fault-tree completeness.",
+    "The possible-cause-list sample uses the official NASA NTRS abstract because that record exposes no downloadable PDF.",
+    "The Apollo 13 near-miss is intentionally conservative: the quoted chronology reports two co-occurring states before rupture, not a proof that the physical mechanism had no Boolean relation.",
+    "Labels were assigned by the primary AI role reviewer before model inference; they are not human expert Gold or independent second-agent findings.",
+    "Model self-reported scores are uncalibrated and cannot be interpreted as event probabilities or used as production thresholds.",
+    "This extension does not test source-document extraction, cause completeness, recursive tree generation, formal gate-policy selection, database integration, or production readiness."
+  ]
+}

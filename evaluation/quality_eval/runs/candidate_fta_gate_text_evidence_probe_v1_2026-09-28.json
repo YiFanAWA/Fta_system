@@ -1,0 +1,253 @@
+{
+  "artifact_type": "candidate_fta_gate_text_evidence_probe",
+  "artifact_version": "v1",
+  "created_at": "2026-09-28T06:15:25.194492+00:00",
+  "status": "completed",
+  "dataset_role": "development_error_analysis_only",
+  "formal_gold": false,
+  "in_project_gold": false,
+  "database_written": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "reviewer_provenance": "ai_source_text_evidence_review_not_human_expert",
+  "reviewer_is_human_expert": false,
+  "evaluation_scope": "Runs the repository's candidate gate-assessment prompt and probability/quote validation over fixed external diagram parent/child scopes plus cited source-PDF excerpts. This is not raw-source fault extraction or end-to-end candidate-tree evaluation.",
+  "decision_semantics": {
+    "model_probabilities": "uncalibrated gate-type self-assessment, not event probabilities",
+    "runtime_gate_policy": "not applied; current service without an injected confidence policy fails closed to unknown"
+  },
+  "metadata": {
+    "model_id": "deepseek-flash",
+    "provider_host": "api.deepseek.com",
+    "temperature": 0,
+    "requests_planned": 11,
+    "requests_succeeded": 11,
+    "requests_failed": 0,
+    "source_review_sha256": "ea902038904de13f9b9c921b6ad13c2420e3025aac827db595be8d278fba02ca",
+    "source_document_count": 3,
+    "source_cluster_count": 3,
+    "prompt_builder": "build_candidate_fta_gate_assessment_prompt",
+    "gate_probability_validator": "CandidateFtaExtractionService._validate_probabilities",
+    "source_quote_binder": "CandidateFtaExtractionService._bind_unique_quote"
+  },
+  "summary": {
+    "evaluated_count": 11,
+    "failed_count": 0,
+    "accuracy": 1.0,
+    "known_gate_count": 9,
+    "known_gate_accuracy": 1.0,
+    "unknown_count": 2,
+    "unknown_recall": 1.0,
+    "unknown_unsafe_accept_count": 0,
+    "decisive_prediction_count": 9,
+    "decisive_quote_valid_count": 9,
+    "label_counts": {
+      "AND": 4,
+      "OR": 5,
+      "unknown": 2
+    },
+    "prediction_counts": {
+      "AND": 4,
+      "OR": 5,
+      "unknown": 2
+    }
+  },
+  "predictions": [
+    {
+      "blind_id": "Q01",
+      "expected_gate": "unknown",
+      "predicted_gate": "unknown",
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 0.0,
+        "unknown": 1.0
+      },
+      "top_probability": 1.0,
+      "top_margin": 1.0,
+      "gate_evidence_quote": null,
+      "gate_evidence_quote_unique_and_in_scope": null,
+      "correct": true,
+      "prompt_sha256": "c718c34f1b85f6395db71884fa1bd3eff3ae62d2ced2c87887eb0db4372a193f",
+      "reason": "scope_quote 未直接描述这些 child 与 top_event 之间为 AND 或 OR 门；仅提到压力泄放阀排出气体及分析 sub-top events，不能直接支持布尔门型。尽管 cause_set_complete 与 leaf_normalized 为 true，仍因缺少直接门型证据而 unknown 占优。"
+    },
+    {
+      "blind_id": "Q02",
+      "expected_gate": "unknown",
+      "predicted_gate": "unknown",
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 0.0,
+        "unknown": 1.0
+      },
+      "top_probability": 1.0,
+      "top_margin": 1.0,
+      "gate_evidence_quote": null,
+      "gate_evidence_quote_unique_and_in_scope": null,
+      "correct": true,
+      "prompt_sha256": "5fd5d0d6d391f655a442b10a043b3fb3b3f77add59d89186bfa3d0ad96cc421d",
+      "reason": "The scope_quote only says that causes are shown with the appropriate logic gate; it does not directly identify whether this scope is AND or OR. Although the child set is marked complete and leaf-normalized, there is no direct textual evidence for a specific Boolean gate, so unknown is highest."
+    },
+    {
+      "blind_id": "Q03",
+      "expected_gate": "OR",
+      "predicted_gate": "OR",
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 0.9,
+        "unknown": 0.1
+      },
+      "top_probability": 0.9,
+      "top_margin": 0.8,
+      "gate_evidence_quote": "In this sample, there are three possible causes of engine failure: fuel flow, coolant, or ignition failure.",
+      "gate_evidence_quote_unique_and_in_scope": true,
+      "correct": true,
+      "prompt_sha256": "b8a0950a889c312d38d21890f096329cfa69420e9c2189209f6885a294bef110",
+      "reason": "The scope quote explicitly lists three possible causes joined by 'or' for engine failure, directly supporting an OR gate among the complete, leaf-normalized child set."
+    },
+    {
+      "blind_id": "Q04",
+      "expected_gate": "OR",
+      "predicted_gate": "OR",
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 0.95,
+        "unknown": 0.05
+      },
+      "top_probability": 0.95,
+      "top_margin": 0.8999999999999999,
+      "gate_evidence_quote": "fuel flow failures can be caused by either a failed fuel pump or a blocked fuel filter.",
+      "gate_evidence_quote_unique_and_in_scope": true,
+      "correct": true,
+      "prompt_sha256": "6eb741eac9ab89bfbe2ee51eb885b1407ac0556577f6dde317728358e22221d8",
+      "reason": "原文使用“either ... or”直接表明两个原因可择一导致顶事件；child 集合完整且已叶归一化，因此判为 OR。"
+    },
+    {
+      "blind_id": "Q05",
+      "expected_gate": "AND",
+      "predicted_gate": "AND",
+      "gate_probabilities": {
+        "AND": 0.99,
+        "OR": 0.01,
+        "unknown": 0.0
+      },
+      "top_probability": 0.99,
+      "top_margin": 0.98,
+      "gate_evidence_quote": "That is, both must fail for the engine to fail.",
+      "gate_evidence_quote_unique_and_in_scope": true,
+      "correct": true,
+      "prompt_sha256": "f2f73298592c973022d3d9097e98e71488e94711cfae3e543cc99b57ab0c38dc",
+      "reason": "The scope quote directly states that both child failures must occur for the top event to occur, which supports an AND gate. The child set is complete and leaf-normalized."
+    },
+    {
+      "blind_id": "Q06",
+      "expected_gate": "AND",
+      "predicted_gate": "AND",
+      "gate_probabilities": {
+        "AND": 0.98,
+        "OR": 0.01,
+        "unknown": 0.01
+      },
+      "top_probability": 0.98,
+      "top_margin": 0.97,
+      "gate_evidence_quote": "In this example, all sub-systems must fail in order for the system to fail.",
+      "gate_evidence_quote_unique_and_in_scope": true,
+      "correct": true,
+      "prompt_sha256": "5418ccf3697a820b6d4270373d4297b5b542b3a10ae4d7b6404540e1e9ba4603",
+      "reason": "The scope quote directly states that all sub-systems must fail for the system to fail, and also describes system failure as resulting from combined failures of sub-systems 1, 2 and 3. The child set is complete and leaf-normalized, so an AND gate is directly supported."
+    },
+    {
+      "blind_id": "Q07",
+      "expected_gate": "AND",
+      "predicted_gate": "AND",
+      "gate_probabilities": {
+        "AND": 0.98,
+        "OR": 0.01,
+        "unknown": 0.01
+      },
+      "top_probability": 0.98,
+      "top_margin": 0.97,
+      "gate_evidence_quote": "In this example, all sub-systems must fail in order for the system to fail.",
+      "gate_evidence_quote_unique_and_in_scope": true,
+      "correct": true,
+      "prompt_sha256": "70fa7a1e2e1843a3b0f317e4a13cab8820ae38166c7e56561b7d7b6f54887b5f",
+      "reason": "The scope directly states that all sub-systems must fail for the system to fail, which supports an AND gate for the listed child failures. The child set is complete and leaf-normalized."
+    },
+    {
+      "blind_id": "Q08",
+      "expected_gate": "OR",
+      "predicted_gate": "OR",
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 0.95,
+        "unknown": 0.05
+      },
+      "top_probability": 0.95,
+      "top_margin": 0.8999999999999999,
+      "gate_evidence_quote": "failure to successfully receive the data might be due either to a failure of the spaceborne subsystem or to a failure of the ground-based subsystem (the receiver).",
+      "gate_evidence_quote_unique_and_in_scope": true,
+      "correct": true,
+      "prompt_sha256": "d70c69170c25f60290fa39e3d59438caf3d049e4965d87e4381740c68e189dc0",
+      "reason": "The scope quote directly lists two alternative causes using 'either ... or ...', supporting an OR gate. The child set is complete and leaf-normalized."
+    },
+    {
+      "blind_id": "Q09",
+      "expected_gate": "OR",
+      "predicted_gate": "OR",
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 0.95,
+        "unknown": 0.05
+      },
+      "top_probability": 0.95,
+      "top_margin": 0.8999999999999999,
+      "gate_evidence_quote": "could be due either to a failure of the transmitter subsystem or to a failure of the processing subsystem.",
+      "gate_evidence_quote_unique_and_in_scope": true,
+      "correct": true,
+      "prompt_sha256": "28ba00169c57620f4c4d7ef0830848b661e5b1fdb3275c5987fc41eb1d649a13",
+      "reason": "The scope_quote directly presents the top event as due either to one child failure or to the other child failure, supporting an OR gate. The child set is complete and leaf-normalized."
+    },
+    {
+      "blind_id": "Q10",
+      "expected_gate": "AND",
+      "predicted_gate": "AND",
+      "gate_probabilities": {
+        "AND": 0.95,
+        "OR": 0.02,
+        "unknown": 0.03
+      },
+      "top_probability": 0.95,
+      "top_margin": 0.9199999999999999,
+      "gate_evidence_quote": "A failure of the transmitter subsystem requires the failure of both transmitters.",
+      "gate_evidence_quote_unique_and_in_scope": true,
+      "correct": true,
+      "prompt_sha256": "5b7b6fc8733d70648f8f9c48f1166327ff20cbcbc2b8ee0f8cc4036592b27945",
+      "reason": "The scope text directly states that transmitter subsystem failure requires failure of both transmitters, matching an AND relationship between the two child causes. The child set is complete and leaf-normalized, so AND is strongly supported."
+    },
+    {
+      "blind_id": "Q11",
+      "expected_gate": "OR",
+      "predicted_gate": "OR",
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 0.99,
+        "unknown": 0.01
+      },
+      "top_probability": 0.99,
+      "top_margin": 0.98,
+      "gate_evidence_quote": "either the processor or the bus",
+      "gate_evidence_quote_unique_and_in_scope": true,
+      "correct": true,
+      "prompt_sha256": "a7439cdd9c1494f2b82a2192c4a1be8a2683413a34cc46ddccec08b5f53d81ee",
+      "reason": "The scope quote directly uses 'either ... or' to relate processor failure and bus failure as alternatives causing processing subsystem failure. The child set is stated complete and leaf-normalized, so an OR gate is strongly supported."
+    }
+  ],
+  "failures": [],
+  "limitations": [
+    "The 11 nodes are purposively selected from three source-document clusters and are not representative or independent per-node samples.",
+    "Labels come from an AI evidence review, not a human expert or formal Gold.",
+    "Only the gate-assessment stage is evaluated; cause disposition, raw extraction, recursive structure generation, connectivity, and full tree contract are not run.",
+    "The model receives selected source-PDF excerpts, not each complete manual; the prompt's complete_source_text field denotes the complete excerpt packet supplied for this probe.",
+    "A provisional confidence threshold is intentionally not selected or fitted on this development set.",
+    "Passing this probe cannot change the frozen baseline manifest, Gold, database, or readiness flags."
+  ]
+}

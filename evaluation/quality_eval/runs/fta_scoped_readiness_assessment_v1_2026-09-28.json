@@ -1,0 +1,416 @@
+{
+  "schema": "fta_scoped_readiness_report_v1",
+  "assessment_id": "fta_scoped_readiness_assessment_v1_2026-09-28",
+  "assessed_at": "2026-09-28",
+  "baseline": {
+    "manifest_id": "candidate_fta_research_baseline_v15",
+    "version": "v15",
+    "path": "evaluation/quality_eval/fta_baseline_manifest_v15.json",
+    "sha256": "2c11db1aaffd47bf395ff463f6cb98af2a0dae3679fa8f2987cf031db4b5c1a3"
+  },
+  "scope": {
+    "scope_id": "fta_v15_seen_regression_and_public_diagram_development",
+    "domain": "cross-source FTA gate evidence and contract evaluation",
+    "description": "Only the 36 seen-case fixture/contract/evidence-boundary regression cases and 11 public-diagram development cases are assessed. This is not current-model accuracy, complete causal-structure, full S210, independent-final, or production acceptance.",
+    "inclusion_rule": "Include exactly the two pinned sets below; do not generalize their results outside this scope.",
+    "case_count": 47,
+    "source_cluster_count": 18,
+    "included_sets": [
+      {
+        "set_id": "fta_gate_contract_boundary_regression_v1",
+        "role": "seen_case_contract_boundary_regression_not_model_accuracy",
+        "case_count": 36,
+        "source_cluster_count": 15,
+        "source_cluster_ids": [
+          "FAA_AC_65_15A_document",
+          "HERMES_CUBESAT_2010_document",
+          "NASA_APOLLO13_REVIEW_BOARD_DOCUMENT",
+          "NASA_APOLLO15_PARACHUTE_REPORT_document",
+          "NASA_CONF_1972_VESELY_DOCUMENT",
+          "NASA_CR_72723_DOCUMENT",
+          "NASA_FTH_2002_document",
+          "NASA_TM_104382_document",
+          "NASA_TM_111876_DOCUMENT",
+          "NASA_TM_86404_DOCUMENT",
+          "NASA_TP_2000_209902_document",
+          "NRC_NUREG_0492_document",
+          "US_ARMY_TM_8_630_document",
+          "US_ARMY_TM_9_803_document",
+          "source-sha256:66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94"
+        ],
+        "dataset_artifacts": [
+          {
+            "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_ablation_v1.json",
+            "dataset_sha256": "81412b07b09387b2824c0c5b4e3743ae68f5fcdd8c5ccbab0eb5944c20c906e7",
+            "case_count": 6
+          },
+          {
+            "dataset_path": "evaluation/quality_eval/datasets/fta_gate_multisource_diagram_external_test_v1.json",
+            "dataset_sha256": "5484f4760097ede28c5e4d52aa76e22b9b9fb8ea563984684c98342f7a755b55",
+            "case_count": 5
+          },
+          {
+            "dataset_path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+            "dataset_sha256": "3bf7bbcdab3dc019956fc0c787c38e094802c066e9ca18e7381dd54cf9940a55",
+            "case_count": 13
+          },
+          {
+            "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_external_test_v1.json",
+            "dataset_sha256": "2e09ddaeaeb456ee7b8eb1556044710d553c73fb262b3fbe6542125ed689c076",
+            "case_count": 4
+          },
+          {
+            "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v1.json",
+            "dataset_sha256": "cd23b9a388bc3f4f2cc7b77346113e39eb1e563d9008c9b97e0b71a03a75b95b",
+            "case_count": 2
+          },
+          {
+            "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v2.json",
+            "dataset_sha256": "7b8c4852b2e186128182aa2116fb8084db2ec9937d4c6d0e8f4fd9ad2d8be6e3",
+            "case_count": 6
+          }
+        ],
+        "manifest_ref": "evaluation/quality_eval/fta_baseline_manifest_v15.json#/seen_case_regression_suite"
+      },
+      {
+        "set_id": "public-diagram-gate-development-v1",
+        "role": "public_diagram_development_not_raw_text_fta_validation",
+        "case_count": 11,
+        "source_cluster_count": 3,
+        "source_cluster_ids": [
+          "DOE_HDBK_1100_2004_document",
+          "FAA_SRM_GUIDANCE_2024_document",
+          "NASA_TM_103953_1993_document"
+        ],
+        "dataset_artifacts": [
+          {
+            "dataset_path": "evaluation/quality_eval/datasets/fta_gate_diagram_development_v1.json",
+            "dataset_sha256": "ba91cb0cd70e4434a8ecaaddbc4d6cfa96612439a0dcf24a138e3e687dff6eb1",
+            "case_count": 11
+          }
+        ],
+        "manifest_ref": "evaluation/quality_eval/fta_baseline_manifest_v15.json#/development_gate_suite"
+      }
+    ],
+    "excluded_sets": [
+      {
+        "set_id": "independent_final_validation",
+        "status": "not_created",
+        "case_count": 0,
+        "source_cluster_count": 0,
+        "reason": "All currently acquired source documents are allocated to regression or development; no independent Final source is available."
+      },
+      {
+        "set_id": "live_model_gate_behavior_evaluation",
+        "status": "not_run",
+        "case_count": 0,
+        "source_cluster_count": 0,
+        "reason": "This report audits evidence availability and readiness only; no model inference was run."
+      },
+      {
+        "set_id": "real_device_probability_observations",
+        "status": "not_available",
+        "case_count": 0,
+        "source_cluster_count": 0,
+        "reason": "No S210 field event-rate/probability dataset with exposure denominator and observation window is available."
+      }
+    ],
+    "source_clusters": [
+      {
+        "source_id": "FAA_AC_65_15A",
+        "source_cluster_id": "FAA_AC_65_15A_document",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "db5dfc68045fa7f71ea5bc79a30439db2718ca5b1aa210194d9d4ab43b15a310",
+        "allocation_set_id": "fta_gate_contract_boundary_regression_v1"
+      },
+      {
+        "source_id": "HERMES_CUBESAT_2010",
+        "source_cluster_id": "HERMES_CUBESAT_2010_document",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "dd460be8ffa487cef47d13534235155f884411c5c0dd143b89c9b0ee2158672e",
+        "allocation_set_id": "fta_gate_contract_boundary_regression_v1"
+      },
+      {
+        "source_id": "NASA_APOLLO13_REVIEW_BOARD_TRANSCRIPT",
+        "source_cluster_id": "NASA_APOLLO13_REVIEW_BOARD_DOCUMENT",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "8804b8ccbb69abe4eb239a73f22b9581be3a67c484aa43284efcd71b9da30391",
+        "allocation_set_id": "fta_gate_contract_boundary_regression_v1"
+      },
+      {
+        "source_id": "NASA_APOLLO15_PARACHUTE_REPORT",
+        "source_cluster_id": "NASA_APOLLO15_PARACHUTE_REPORT_document",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "5a33b82a1b3f05085640f24eea63923b4b05b26df41ed27bf57a01458af80945",
+        "allocation_set_id": "fta_gate_contract_boundary_regression_v1"
+      },
+      {
+        "source_id": "NASA_CONF_1972_VESELY_FAULT_TREE",
+        "source_cluster_id": "NASA_CONF_1972_VESELY_DOCUMENT",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "1d90c6c326bfbeeb9daf805da3c8ea8bdf78d16ad8aad5e3e35246f5f963f37b",
+        "allocation_set_id": "fta_gate_contract_boundary_regression_v1"
+      },
+      {
+        "source_id": "NASA_CR_72723_HVSA",
+        "source_cluster_id": "NASA_CR_72723_DOCUMENT",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "8986aea488a48c76abf3d8f8affbd85c6fa45bdd0e717d81e4a13360a6000f95",
+        "allocation_set_id": "fta_gate_contract_boundary_regression_v1"
+      },
+      {
+        "source_id": "NASA_FTH_2002",
+        "source_cluster_id": "NASA_FTH_2002_document",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "bf841d8aeee4985c02858318a0e7fc5763c0dd2940d46251d189578d81419bb3",
+        "allocation_set_id": "fta_gate_contract_boundary_regression_v1"
+      },
+      {
+        "source_id": "NASA_TM_104382",
+        "source_cluster_id": "NASA_TM_104382_document",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "b1bdc60f065e16ab8ab81d456ac3770ad8e1e1da3ddfcaab6fac4e18fc0f192e",
+        "allocation_set_id": "fta_gate_contract_boundary_regression_v1"
+      },
+      {
+        "source_id": "NASA_TM_111876_CONDENSATE",
+        "source_cluster_id": "NASA_TM_111876_DOCUMENT",
+        "source_hash_type": "source_text_sha256",
+        "source_sha256": "ac380bfb3681013e2a030e91e4e26745e60eeb30fe00100c62d0cb1c96d6f178",
+        "allocation_set_id": "fta_gate_contract_boundary_regression_v1"
+      },
+      {
+        "source_id": "NASA_TM_86404_CARE_III",
+        "source_cluster_id": "NASA_TM_86404_DOCUMENT",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "8c4ba56de57a41ad562c9009d5e700d09cf6dfbb71ed67c9b4161c7669a5ce65",
+        "allocation_set_id": "fta_gate_contract_boundary_regression_v1"
+      },
+      {
+        "source_id": "NASA_TP_2000_209902",
+        "source_cluster_id": "NASA_TP_2000_209902_document",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "0082fc8d440b4fb73ff830067320b8d8e03f2dd35d4b89bc758bfd3d5718cb63",
+        "allocation_set_id": "fta_gate_contract_boundary_regression_v1"
+      },
+      {
+        "source_id": "NRC_NUREG_0492",
+        "source_cluster_id": "NRC_NUREG_0492_document",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "d90c4b7641f6b0625fcb63816925f6111c4638ad12134c12c22fd2da34aa6b55",
+        "allocation_set_id": "fta_gate_contract_boundary_regression_v1"
+      },
+      {
+        "source_id": "US_ARMY_TM_8_630",
+        "source_cluster_id": "US_ARMY_TM_8_630_document",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "8b016f35eb848a19e5f184fb0f9e70bf245ce9519a31f7e9e9170ec84f25fee4",
+        "allocation_set_id": "fta_gate_contract_boundary_regression_v1"
+      },
+      {
+        "source_id": "US_ARMY_TM_9_803",
+        "source_cluster_id": "US_ARMY_TM_9_803_document",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "c776551ddecdfce5aa738791e7a88695144939bacc8090adc71ae42b7e374de9",
+        "allocation_set_id": "fta_gate_contract_boundary_regression_v1"
+      },
+      {
+        "source_id": "faa_ast_guide_v1",
+        "source_cluster_id": "source-sha256:66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+        "allocation_set_id": "fta_gate_contract_boundary_regression_v1"
+      },
+      {
+        "source_id": "DOE_HDBK_1100_2004_REAFF_2022",
+        "source_cluster_id": "DOE_HDBK_1100_2004_document",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "176e0c7f7ce14630ded87afd4e8d864f4d20c3f99445265f9ff876d904e98630",
+        "allocation_set_id": "public-diagram-gate-development-v1"
+      },
+      {
+        "source_id": "FAA_SRM_GUIDANCE_2024",
+        "source_cluster_id": "FAA_SRM_GUIDANCE_2024_document",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "71c7632034a67e822ec270a16890c27454ab4f2611bec6fc0e9e0fbe05f62bf6",
+        "allocation_set_id": "public-diagram-gate-development-v1"
+      },
+      {
+        "source_id": "NASA_TM_103953_1993",
+        "source_cluster_id": "NASA_TM_103953_1993_document",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "ae788e386d3217fa27a46b67a1a75d3ab60412cfc7bab3502ceab5c7d3f23a0d",
+        "allocation_set_id": "public-diagram-gate-development-v1"
+      }
+    ],
+    "scope_boundary_notes": [
+      "The six-event named-human logic Gold is separately reported and is not part of the 47-case readiness denominator; it has zero AND examples and insufficient calibration support.",
+      "AI-role event/gate reviews are not human expert Gold and do not become human-reviewed evidence in this report.",
+      "The 11 development cases are already-labelled gates in public diagrams; they do not validate extraction of complete trees from raw fault text.",
+      "Unknown, blocked, and excluded evidence is not removed from the declared scope to improve readiness status."
+    ],
+    "source_split_policy": "Whole source documents/source clusters stay in one allocation; no case-level split is used."
+  },
+  "assessment_provenance": {
+    "method": "read_only_manifest_contract_and_acceptance_audit",
+    "model_inference_run": false,
+    "human_expert_reviewed": false,
+    "reviewer_role": "engineering_audit",
+    "reviewer_provenance": "primary_agent_read_only_audit_with_independent_ai_read_only_contract_review",
+    "note": "This records readiness evidence and blockers; AI review is not represented as human domain-expert approval."
+  },
+  "evaluation_configuration": {
+    "candidate_contract": "candidate_fta_tree_v5",
+    "cause_disposition_prompt": "fta-cause-disposition-v4",
+    "model_inference_status": "not_run",
+    "model_id": null,
+    "code_scope": "read-only evaluation of pinned baseline and its artifacts; no runtime/API path was exercised"
+  },
+  "structure_readiness": {
+    "status": "blocked",
+    "criteria": [
+      {
+        "criterion_id": "scope_datasets_and_source_clusters_are_pinned",
+        "result": "met",
+        "evidence_refs": [
+          "evaluation/quality_eval/fta_baseline_manifest_v15.json#/seen_case_regression_suite",
+          "evaluation/quality_eval/fta_baseline_manifest_v15.json#/development_gate_suite"
+        ]
+      },
+      {
+        "criterion_id": "source_cluster_split_has_no_seen_regression_development_overlap",
+        "result": "met",
+        "evidence_refs": [
+          "evaluation/quality_eval/fta_baseline_manifest_v15.json#/development_gate_suite/overlap_with_seen_case_regression",
+          "evaluation/quality_eval/fta_baseline_manifest_v15.json#/source_cluster_allocation"
+        ]
+      },
+      {
+        "criterion_id": "candidate_model_currently_evaluated_on_the_declared_structure_scope",
+        "result": "unknown",
+        "evidence_refs": [
+          "evaluation/quality_eval/fta_baseline_manifest_v15.json#/seen_case_regression_suite/verification_scope",
+          "evaluation/quality_eval/fta_baseline_manifest_v15.json#/independent_final_validation"
+        ]
+      },
+      {
+        "criterion_id": "complete_cause_disposition_and_relation_connectivity_assessed_for_each_fault_tree_scope",
+        "result": "unknown",
+        "evidence_refs": [
+          "docs/candidate-fta-generation-v1.md",
+          "docs/fta-validation-reliability-plan-v1.md"
+        ]
+      },
+      {
+        "criterion_id": "direct_gate_evidence_and_complete_child_sets_reviewed_for_each_claimed_gate",
+        "result": "unknown",
+        "evidence_refs": [
+          "docs/candidate-fta-generation-v1.md",
+          "evaluation/quality_eval/fta_baseline_manifest_v15.json#/label_and_evaluation_scope/human_logic_gold"
+        ]
+      },
+      {
+        "criterion_id": "reviewer_provenance_is_explicit_and_not_mislabeled_as_human",
+        "result": "met",
+        "evidence_refs": [
+          "evaluation/quality_eval/fta_baseline_manifest_v15.json#/label_and_evaluation_scope/event_scope_v8",
+          "evaluation/quality_eval/fta_baseline_manifest_v15.json#/label_and_evaluation_scope/gate_node_v6",
+          "evaluation/quality_eval/fta_baseline_manifest_v15.json#/label_and_evaluation_scope/human_logic_gold"
+        ]
+      },
+      {
+        "criterion_id": "preview_and_contract_boundary_tests_are_present",
+        "result": "met",
+        "evidence_refs": [
+          "docs/acceptance.md",
+          "evaluation/quality_eval/fta_baseline_manifest_v15.json#/artifacts"
+        ]
+      }
+    ],
+    "blockers": [
+      "no live model run evaluates the declared structure scope",
+      "the declared sets do not contain complete raw-text causal structures for each fault-tree scope",
+      "available gate labels do not provide sufficient class-complete calibration truth: the separate six-event named-human Gold has zero AND examples, while other review labels are explicitly AI-role or pre-labelled development data",
+      "independent final source validation has not been created"
+    ]
+  },
+  "quantitative_readiness": {
+    "status": "blocked",
+    "criteria": [
+      {
+        "criterion_id": "structure_readiness_is_met_in_the_same_scope",
+        "result": "unmet",
+        "evidence_refs": [
+          "evaluation/quality_eval/fta_baseline_manifest_v15.json#/active_baseline/fta_ready",
+          "evaluation/quality_eval/runs/fta_scoped_readiness_assessment_v1_2026-09-28.json#/structure_readiness"
+        ]
+      },
+      {
+        "criterion_id": "real_event_rates_or_probabilities_have_exposure_denominators",
+        "result": "unmet",
+        "evidence_refs": [
+          "docs/fta-validation-reliability-plan-v1.md",
+          "evaluation/quality_eval/fta_baseline_manifest_v15.json#/independent_final_validation"
+        ]
+      },
+      {
+        "criterion_id": "population_and_observation_window_are_defined",
+        "result": "unmet",
+        "evidence_refs": [
+          "docs/fta-validation-reliability-plan-v1.md"
+        ]
+      },
+      {
+        "criterion_id": "event_dependencies_and_uncertainty_propagation_are_validated",
+        "result": "unknown",
+        "evidence_refs": [
+          "docs/fta-validation-reliability-plan-v1.md"
+        ]
+      },
+      {
+        "criterion_id": "probability_calculation_is_verified_against_independent_examples",
+        "result": "unknown",
+        "evidence_refs": [
+          "docs/fta-validation-reliability-plan-v1.md"
+        ]
+      }
+    ],
+    "blockers": [
+      "structure readiness is blocked for the same declared scope",
+      "real device event-rate/probability data, population denominator, and observation window are unavailable",
+      "dependency assumptions, calculation validation, and uncertainty propagation have not been assessed"
+    ]
+  },
+  "related_non_readiness_gaps": [
+    {
+      "gap_id": "fta_preview_fta_ready_flag_negative_test",
+      "status": "resolved_in_current_worktree",
+      "evidence_refs": [
+        "backend-python/contracts/fta_graph_contract.py",
+        "backend-python/tests/test_fta_graph_contract.py"
+      ],
+      "note": "The validator rejects dataset_info.fta_ready=true, and test_preview_cannot_be_marked_fta_ready directly asserts that rejection in the current worktree. This closes the contract-test coverage gap; it does not establish semantic FTA generation accuracy or readiness."
+    },
+    {
+      "gap_id": "gate_confidence_calibration",
+      "status": "insufficient_evidence",
+      "evidence_refs": [
+        "evaluation/quality_eval/fta_baseline_manifest_v15.json#/label_and_evaluation_scope/gate_node_split_v6/calibration_status",
+        "evaluation/quality_eval/fta_baseline_manifest_v15.json#/label_and_evaluation_scope/human_logic_gold"
+      ],
+      "note": "Model gate confidence is a structural decision signal, not an event probability; it cannot satisfy quantitative readiness."
+    },
+    {
+      "gap_id": "independent_final_source_validation",
+      "status": "not_created",
+      "evidence_refs": [
+        "evaluation/quality_eval/fta_baseline_manifest_v15.json#/independent_final_validation"
+      ]
+    }
+  ],
+  "global_readiness": {
+    "fta_ready": false,
+    "production_ready": false,
+    "scope_can_promote_global_readiness": false
+  }
+}

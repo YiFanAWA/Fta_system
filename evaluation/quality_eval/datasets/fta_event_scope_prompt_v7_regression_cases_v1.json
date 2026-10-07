@@ -1,0 +1,62 @@
+{
+  "artifact_type": "fta_event_scope_prompt_regression_cases",
+  "schema_version": "v1",
+  "prompt_version": "event-scope-text-only-tree-v7-bound-logic-evidence",
+  "dataset_status": "offline_policy_regressions_not_gold",
+  "human_expert_gold": false,
+  "accuracy_claim_allowed": false,
+  "cases": [
+    {
+      "case_id": "FIG7-S1-OR-EVIDENCE-BINDING",
+      "case_kind": "observed_seen_development_gap",
+      "source_packet_path": "evaluation/quality_eval/datasets/fta_event_scope_nasa_battery_fig7_module_failure_dev_v1.json",
+      "source_segment_id": "source-pdf-p3-p4-section-5",
+      "output_node_id": "E1",
+      "child_node_ids": ["E6", "E7"],
+      "source_quote": "Figures 7 and 8 show that a single cell exploding and the failure of the module vents or a single cell exploding and the module operating nominally but with a sympathetic secondary explosion occurring can lead to the Top Event.",
+      "expected_candidate_gate": "OR",
+      "required_logic_evidence": "A single continuous quote must identify both alternative branch descriptions and state that they can lead to the same Top Event.",
+      "final_gate_approved": false,
+      "auto_repair_allowed": false
+    },
+    {
+      "case_id": "EXPLICIT-JOINT-CONDITION-AND",
+      "case_kind": "authored_policy_example",
+      "source_quote": "The top event occurs only when condition A and condition B are both present.",
+      "output_node_id": "T",
+      "child_node_ids": ["A", "B"],
+      "expected_candidate_gate": "AND",
+      "required_logic_evidence": "The quote must explicitly state that both child conditions jointly apply to the same top event.",
+      "final_gate_approved": false
+    },
+    {
+      "case_id": "COOCCURRENCE-IS-NOT-AND",
+      "case_kind": "authored_policy_example",
+      "source_quote": "Condition A and condition B were both recorded during the incident; the text does not say whether both are required for the top event.",
+      "output_node_id": "T",
+      "child_node_ids": ["A", "B"],
+      "expected_candidate_gate": "unknown",
+      "required_logic_evidence": "No direct joint-logic evidence; do not infer AND from co-occurrence.",
+      "final_gate_approved": false
+    },
+    {
+      "case_id": "UNSCOPED-ALTERNATIVE-IS-NOT-OR",
+      "case_kind": "authored_policy_example",
+      "source_quote": "A or B may occur. The text separately says that condition C can lead to top event T.",
+      "output_node_id": "T",
+      "child_node_ids": ["A", "B"],
+      "expected_candidate_gate": "unknown",
+      "required_logic_evidence": "The alternative connector does not link these children to output T.",
+      "final_gate_approved": false
+    }
+  ],
+  "guardrails": {
+    "cases_are_model_predictions": false,
+    "gold_written": false,
+    "database_written": false,
+    "production_behavior_changed": false,
+    "model_request_performed": false,
+    "fta_ready": false,
+    "production_ready": false
+  }
+}

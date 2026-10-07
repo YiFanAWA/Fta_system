@@ -1,0 +1,3073 @@
+{
+  "manifest_schema": "fta_baseline_manifest_v1",
+  "manifest_id": "candidate_fta_research_baseline_v5",
+  "baseline_version": "v5",
+  "captured_at": "2026-09-28",
+  "lifecycle_status": "active_research_reference_baseline",
+  "scope": {
+    "includes": [
+      "candidate FTA tree output contract v5 and offline preview implementation",
+      "current event-scope and gate-node review artifacts",
+      "human logic Gold and explicitly non-Gold AI-role reviews",
+      "source-cluster split and S120/S150 near-transfer audit",
+      "selected probe inputs and candidate preview snapshots",
+      "cause semantic role/disposition contract and complete per-cause preview audit ledger",
+      "deterministic unknown-gate reason contract, policy, and legacy blocker mapping",
+      "v6 gate-review provenance, source-cluster split integrity, and corrected S120/S150 near-transfer audit",
+      "36 previously-used public gate probes frozen as source-pinned behavior regressions; independent final validation remains uncreated"
+    ],
+    "excludes": [
+      "production FTA API or database writes",
+      "full S210 causal/gate Gold completion",
+      "calibrated gate thresholds",
+      "real device event probabilities",
+      "production readiness",
+      "unseen independent final gate validation results"
+    ]
+  },
+  "active_baseline": {
+    "candidate_contract": "candidate_fta_tree_v5",
+    "event_scope_review": "siemens_s210_event_scope_gate_primary_ai_role_review_v8_2026-09-27",
+    "gate_node_review_set": "siemens_s210_gate_node_review_dataset_v6_locator_reconciled_ai_role_review",
+    "gate_node_split": "siemens_s210_gate_node_source_cluster_splits_v6",
+    "named_human_logic_gold": "siemens_s210_and_or_logic_gold_v1",
+    "preview_schema_owner": "backend-python/contracts/candidate_fta_contract.py",
+    "preview_only": true,
+    "fta_ready": false,
+    "production_ready": false,
+    "cause_disposition_contract": "fta_cause_disposition_v1",
+    "cause_disposition_prompt": "fta-cause-disposition-v1",
+    "unresolved_cause_policy": "retain_in_audit_ledger_and_block_whole_candidate_tree",
+    "unknown_gate_reason_policy": "unknown_gate_reason_policy_v1",
+    "legacy_unknown_reason_policy": "map_known_structured_blockers_else_legacy_unspecified"
+  },
+  "label_and_evaluation_scope": {
+    "human_logic_gold": {
+      "path": "evaluation/quality_eval/datasets/siemens_s210_and_or_logic_gold_v1.json",
+      "reviewer": "刘武",
+      "reviewed_at": "2026-09-22",
+      "events": 6,
+      "and": 0,
+      "or": 5,
+      "unknown": 1,
+      "calibration_status": "insufficient_evidence"
+    },
+    "event_scope_v8": {
+      "reviewed": 37,
+      "not_applicable": 2,
+      "pending": 0,
+      "and": 0,
+      "or": 1,
+      "unknown": 36,
+      "provenance": "user-authorized AI role review; not human expert Gold"
+    },
+    "gate_node_v6": {
+      "nodes": 55,
+      "reviewed": 55,
+      "pending": 0,
+      "and": 12,
+      "or": 17,
+      "unknown": 26,
+      "provenance": "user-authorized AI role review; not human expert Gold or calibration truth",
+      "class_counts": {
+        "AND": 12,
+        "OR": 17,
+        "unknown": 26
+      },
+      "reviewer_is_human_expert": false,
+      "formal_gold": false,
+      "reviewer_provenance_counts": {
+        "independent_ai_gate_node_review": 25,
+        "user_authorized_ai_consolidated_event_review": 17,
+        "user_authorized_ai_event_scope_review_v8_reconciled": 9,
+        "user_authorized_ai_independent_gate_review_reconciled_v1": 4
+      }
+    },
+    "gate_node_split_v6": {
+      "source_clusters": 48,
+      "fault_source_groups": 47,
+      "same_fault_code_cross_calibration_validation": false,
+      "independent_source_validation": false,
+      "cross_split_fault_code_count": 0,
+      "cross_split_source_cluster_count": 0,
+      "split_class_support": {
+        "calibration": {
+          "gate_nodes": 43,
+          "fault_codes": 37,
+          "source_clusters": 38,
+          "gate_counts": {
+            "AND": 8,
+            "OR": 14,
+            "unknown": 21
+          }
+        },
+        "validation": {
+          "gate_nodes": 12,
+          "fault_codes": 10,
+          "source_clusters": 10,
+          "gate_counts": {
+            "AND": 4,
+            "OR": 3,
+            "unknown": 5
+          }
+        }
+      },
+      "calibration_status": "insufficient_evidence",
+      "calibration_limit_reasons": [
+        "gate-node labels are user-authorized AI-role review, not human expert Gold",
+        "named human logic Gold has six events and zero AND examples",
+        "the validation subset is small and is descriptive only",
+        "calibration and validation are within the S210 source, not an independent source validation"
+      ]
+    },
+    "model_probe_limits": [
+      "The named-human-Gold probe has only six events and no AND examples; it is descriptive, not a calibration set.",
+      "The 54-row exploratory probe matches the superseded v5 AI review snapshot and must not be reported as a v6 result.",
+      "S120/S150 is same-vendor near-transfer evidence, not independent cross-domain generalization."
+    ]
+  },
+  "s120_s150_overlap_audit": {
+    "audit_artifact": "evaluation/quality_eval/runs/siemens_s120_s150_s210_overlap_audit_v4_2026-09-28.json",
+    "s120_s150_records": 1532,
+    "s120_s150_unique_fault_codes": 1443,
+    "s210_records": 281,
+    "shared_fault_codes": 250,
+    "s120_s150_records_with_shared_fault_code": 290,
+    "s210_gate_review_artifact": "siemens_s210_gate_node_review_dataset_v6_locator_reconciled_ai_role_review.json",
+    "s210_gate_nodes": 55,
+    "gate_nodes_with_same_code_in_s120_s150": 53,
+    "scope_quotes_exactly_repeated_among_same_code_nodes": 34,
+    "overall_exact_scope_quote_overlap_ratio": "34/55",
+    "conditional_exact_scope_quote_overlap_ratio": "34/53",
+    "classification": "same-vendor cross-manual/version near-transfer; not independent cross-domain holdout",
+    "calibration_claim": "insufficient_evidence; this single S120/S150 source cluster does not support calibration"
+  },
+  "artifacts": [
+    {
+      "artifact_id": "candidate-fta-design-truth",
+      "kind": "current_contract_document",
+      "lifecycle": "current",
+      "path": "docs/candidate-fta-generation-v1.md",
+      "sha256": "08f79febf26dae6c9f47522f3463fa4dada977bae8c45449a1481a2e329c211d",
+      "note": "Current candidate FTA narrative; links active manifest v5 and preserves preview-only boundaries."
+    },
+    {
+      "artifact_id": "candidate-fta-output-contract",
+      "kind": "runtime_contract",
+      "lifecycle": "current",
+      "path": "backend-python/contracts/candidate_fta_contract.py",
+      "sha256": "da71c2d8acde99544c7a27f10c756c793c46d13afe3d82757c7eabac952e1ca5",
+      "note": "Owns candidate tree v5, the cause disposition ledger, and exactly one validated primary reason for every unknown gate."
+    },
+    {
+      "artifact_id": "candidate-fta-extraction-owner",
+      "kind": "runtime_implementation",
+      "lifecycle": "current",
+      "path": "backend-python/fta/candidate_fta_extraction_service.py",
+      "sha256": "769bd764dee33fbcfd8008cf2065c655f1d99f712437392a0ee416cac6c140de",
+      "note": "Runs cause disposition before structure/gate stages and derives unknown gate reason codes from structured evidence, blockers, and policy outcomes."
+    },
+    {
+      "artifact_id": "candidate-fta-application-orchestration",
+      "kind": "runtime_implementation",
+      "lifecycle": "current",
+      "path": "backend-python/fta/candidate_fta_application_service.py",
+      "sha256": "976aade536f27f1286bba389e845b376deb1b376515b665545c29e4f2388553e",
+      "note": "Current per-record orchestration and retry boundary."
+    },
+    {
+      "artifact_id": "gate-confidence-policy",
+      "kind": "runtime_policy",
+      "lifecycle": "current",
+      "path": "backend-python/fta/gate_confidence_policy.py",
+      "sha256": "21c0d349c06d08aaf0817d3dbeda1d1f1df1bae5e4e58e796e3bd851eee4d490",
+      "note": "Current policy surface is provisional; no calibrated threshold is selected."
+    },
+    {
+      "artifact_id": "event-probability-consistency",
+      "kind": "runtime_calculation",
+      "lifecycle": "implemented_not_connected_to_real_data",
+      "path": "backend-python/fta/event_probability_consistency.py",
+      "sha256": "b6f05804fb9c0abd08471bfbc54f59450f9c31cfc695de00d543c6c4d7df5686",
+      "note": "Utility exists; real S210 event-probability observations are unavailable and the candidate application path is not fed them."
+    },
+    {
+      "artifact_id": "candidate-fta-extraction-tests",
+      "kind": "contract_regression_tests",
+      "lifecycle": "current",
+      "path": "backend-python/tests/test_candidate_fta_extraction_service.py",
+      "sha256": "d3c0997e524e41870ab92c30cc50d4b4aa23f36d69c670573e15a5828dff38da"
+    },
+    {
+      "artifact_id": "recursive-candidate-fta-tests",
+      "kind": "contract_regression_tests",
+      "lifecycle": "current",
+      "path": "backend-python/tests/test_recursive_candidate_fta_extraction_service.py",
+      "sha256": "076d8cd2f00ccbc796790a0e2d91cdf56114e382f0b3af27ef66efbb629606d1"
+    },
+    {
+      "artifact_id": "candidate-fta-application-tests",
+      "kind": "application_regression_tests",
+      "lifecycle": "current",
+      "path": "backend-python/tests/test_candidate_fta_application_service.py",
+      "sha256": "00049dde24050e9e30c4bda2d0e3f9ac9a9f2a3278415082d1e0f5295949495d"
+    },
+    {
+      "artifact_id": "event-probability-consistency-tests",
+      "kind": "calculation_tests",
+      "lifecycle": "current",
+      "path": "backend-python/tests/test_event_probability_consistency.py",
+      "sha256": "fbd7c58b1a85205ab5ff42c369df60fa6a2717d23dc2b629f3bd52d2802f44ea"
+    },
+    {
+      "artifact_id": "recursive-preview-builder",
+      "kind": "evaluation_builder",
+      "lifecycle": "current",
+      "path": "evaluation/quality_eval/public_sources/build_siemens_s210_recursive_fta_preview_v2.py",
+      "sha256": "d9e62d09ec1e96a1250251fb4aa52cc05e52135466e1bd5efb3ce28ab1867d31"
+    },
+    {
+      "artifact_id": "recursive-preview-builder-tests",
+      "kind": "evaluation_builder_tests",
+      "lifecycle": "current",
+      "path": "evaluation/quality_eval/public_sources/test_build_siemens_s210_recursive_fta_preview_v2.py",
+      "sha256": "5673a90622a43174e345deecf63b2a192d42c05f2390b50674ee322e9e4dc0dc"
+    },
+    {
+      "artifact_id": "named-expert-logic-gold-v1",
+      "kind": "human_reviewed_gold",
+      "lifecycle": "current_small_descriptive_gold",
+      "path": "evaluation/quality_eval/datasets/siemens_s210_and_or_logic_gold_v1.json",
+      "sha256": "23235e6893b411cae298dfee5d28bcec4da324288b2fd490985926e0658c9c53",
+      "note": "Six events; reviewer 刘武; five OR, one unknown, zero AND. Not sufficient for three-class calibration."
+    },
+    {
+      "artifact_id": "named-expert-logic-gold-validation-v1",
+      "kind": "gold_structure_validation",
+      "lifecycle": "current_validation_record",
+      "path": "evaluation/quality_eval/runs/siemens_s210_and_or_logic_gold_v1_validation_2026-09-22.json",
+      "sha256": "8b0ad441a9252cd1c014829f54283d0d00d3ced6e14961828290c39cbd11bd6b"
+    },
+    {
+      "artifact_id": "event-scope-review-v8",
+      "kind": "ai_role_review",
+      "lifecycle": "current_non_gold_review",
+      "path": "evaluation/quality_eval/runs/siemens_s210_event_scope_gate_primary_ai_role_review_v8_2026-09-27.json",
+      "sha256": "d60d293af9651a243985d9bf5e2ea593de3327d5181e1704dd1a1974a8f712bd",
+      "note": "37 reviewed, two not_applicable, zero pending; AI-role provenance, not human expert Gold."
+    },
+    {
+      "artifact_id": "event-scope-blind-input-v2",
+      "kind": "review_input_bundle",
+      "lifecycle": "source_for_ai_review",
+      "path": "evaluation/quality_eval/runs/siemens_s210_event_scope_gate_blind_review_bundle_v2_2026-09-26.json",
+      "sha256": "a3ce21384ccb0ef8bb9154c5a82eeaa180c752d4b6731590dc925fa9e41c5f08"
+    },
+    {
+      "artifact_id": "gate-node-review-v6",
+      "kind": "ai_role_review_dataset",
+      "lifecycle": "current_non_gold_review",
+      "path": "evaluation/quality_eval/datasets/siemens_s210_gate_node_review_dataset_v6_locator_reconciled_ai_role_review.json",
+      "sha256": "aaebc7c22c8756d4e6daabc2678256faf9e6d9dde8fa8dd0ceff8fa7ce4c07ed",
+      "note": "55 reviewed nodes: 12 AND, 17 OR, 26 unknown; AI-role review, not human expert Gold."
+    },
+    {
+      "artifact_id": "gate-node-source-split-v6",
+      "kind": "source_cluster_split",
+      "lifecycle": "current_ai_review_split",
+      "path": "evaluation/quality_eval/datasets/siemens_s210_gate_node_source_cluster_splits_v6.json",
+      "sha256": "b38fd2be0e5f92e2657073da02964ffcab4623fd9d6270efed98c8c3ccac25fd",
+      "note": "48 source clusters, 47 fault/source groups; internal split safety does not create independent external evidence."
+    },
+    {
+      "artifact_id": "human-gold-probe-six-events",
+      "kind": "descriptive_model_probe",
+      "lifecycle": "historical_diagnostic_not_calibration",
+      "path": "evaluation/quality_eval/runs/siemens_s210_gate_confidence_probe_named_gold_v1_2026-09-26.json",
+      "sha256": "3e0dc64c3be21b095236e6dd270fa3a56c187b55fc46bbdaade5bce91cab25b6",
+      "note": "Six labels with no AND class; descriptive only, no threshold selection."
+    },
+    {
+      "artifact_id": "ai-review-probe-v5-54-nodes",
+      "kind": "exploratory_model_probe",
+      "lifecycle": "historical_not_comparable_to_gate-node-v6",
+      "path": "evaluation/quality_eval/runs/siemens_s210_gate_node_confidence_probe_v5_exploratory_2026-09-27.json",
+      "sha256": "cea64c7f10aa9f43a12ee6645f6908871af5addcb70da1566389de84ee59f28a",
+      "note": "Probe used the superseded 54-node v5 review snapshot; not a v6 result and not engineering-truth calibration."
+    },
+    {
+      "artifact_id": "s210-corpus-v1",
+      "kind": "source_corpus",
+      "lifecycle": "current_source_for_s210_examples",
+      "path": "evaluation/quality_eval/datasets/siemens_s210_public_fault_corpus_v1.jsonl",
+      "sha256": "b42535d37ae27b63ba0048c88e947916e846da53e1bf18b3e5825c1853c1f483"
+    },
+    {
+      "artifact_id": "s210-corpus-v1-manifest",
+      "kind": "source_corpus_manifest",
+      "lifecycle": "current_source_manifest",
+      "path": "evaluation/quality_eval/datasets/siemens_s210_public_fault_corpus_v1.manifest.json",
+      "sha256": "19778d337db1b9d4478940c2b3259b185cf1343f30cd3347d1bf2b3b5f64696c"
+    },
+    {
+      "artifact_id": "s120-s150-corpus-v2",
+      "kind": "external_same-vendor_near-transfer_corpus",
+      "lifecycle": "current_near_transfer_only",
+      "path": "evaluation/quality_eval/datasets/siemens_s120_s150_2023_public_fault_corpus_holdout_v2.jsonl",
+      "sha256": "3da11f44f35ab8286f509a57ae474fdefdb98b8313603b408974c5a082906232",
+      "note": "Same manufacturer/product family; not independent cross-domain validation."
+    },
+    {
+      "artifact_id": "s120-s150-corpus-v2-manifest",
+      "kind": "external_corpus_manifest",
+      "lifecycle": "current_near_transfer_only",
+      "path": "evaluation/quality_eval/datasets/siemens_s120_s150_2023_public_fault_corpus_holdout_v2.manifest.json",
+      "sha256": "22abb595869f7c6797d733ef983ea0101d940a9c8146a6026f15b3a0dbf48934"
+    },
+    {
+      "artifact_id": "s120-s150-s210-overlap-audit-v3-json",
+      "kind": "source_overlap_audit",
+      "lifecycle": "historical_superseded_evidence",
+      "path": "evaluation/quality_eval/runs/siemens_s120_s150_s210_overlap_audit_v3_2026-09-27.json",
+      "sha256": "2899b86ef7dde2e88c007e4564f2e1630a8135bc8fa9929af233d4167779e206",
+      "note": "Historical audit of the superseded v5 54-node review set; not the active v6 overlap denominator."
+    },
+    {
+      "artifact_id": "s120-s150-s210-overlap-audit-v3-report",
+      "kind": "source_overlap_audit_report",
+      "lifecycle": "historical_superseded_evidence",
+      "path": "evaluation/quality_eval/runs/siemens_s120_s150_s210_overlap_audit_v3_2026-09-27.md",
+      "sha256": "58d28799f571ee581762fa245570fbe63539412476957d9c5da2a504943114b7",
+      "note": "Historical report of v5 54-node scope overlap; retained unchanged for audit history."
+    },
+    {
+      "artifact_id": "s120-s150-overlap-audit-tool",
+      "kind": "audit_tool",
+      "lifecycle": "current_reproducibility_tool",
+      "path": "evaluation/quality_eval/public_sources/audit_siemens_s120_s150_holdout_overlap_v1.py",
+      "sha256": "78c5efb7b801ef8fa8c7ba7755154f6e8412a0cf223002a3bd217b7316e8762b",
+      "note": "Current reproducible overlap audit tool; defaults to the current S210 gate review v6 and records the supplied review artifact/provenance dynamically."
+    },
+    {
+      "artifact_id": "s120-s150-overlap-audit-tests",
+      "kind": "audit_regression_tests",
+      "lifecycle": "current_reproducibility_tests",
+      "path": "evaluation/quality_eval/public_sources/test_audit_siemens_s120_s150_holdout_overlap_v1.py",
+      "sha256": "c6319ff034acbd2b719d065e92e6ee0c0d776dd0e5b6977cc67cbee79d567c0c",
+      "note": "Regression tests for overlap strata, same-code scope matching, and dynamic review-set provenance."
+    },
+    {
+      "artifact_id": "s120-s150-ai-review-pilot",
+      "kind": "ai_role_pilot_review",
+      "lifecycle": "exploratory_not_gold",
+      "path": "evaluation/quality_eval/runs/siemens_s120_s150_gate_node_ai_role_review_pilot_v1_2026-09-27.json",
+      "sha256": "73fd9a0efc44efd29b3c5a9b8dc8a5a1a50995edbfbbafd407b129c2ad769781"
+    },
+    {
+      "artifact_id": "gate-node-confidence-audit-code",
+      "kind": "evaluation_method",
+      "lifecycle": "current_diagnostic_method",
+      "path": "evaluation/quality_eval/fta_gate_node_confidence_audit.py",
+      "sha256": "75d01b2232a7bdd048fa1f5eb4e388d92de8b4334df1fb616af866653d0ead42"
+    },
+    {
+      "artifact_id": "gate-confidence-calibration-code",
+      "kind": "evaluation_method",
+      "lifecycle": "current_not_authorized_without_sufficient_gold",
+      "path": "evaluation/quality_eval/fta_gate_confidence_calibration.py",
+      "sha256": "e20ab4c80626d5be320cd4d35a05d3dd91a18a202564c8617dabce093274612d"
+    },
+    {
+      "artifact_id": "human-gold-validator",
+      "kind": "gold_structure_validator",
+      "lifecycle": "current",
+      "path": "evaluation/quality_eval/public_sources/validate_siemens_s210_and_or_logic_gold.py",
+      "sha256": "9661822f5d5172f4c4482d79d6daa67b6beacefdc521ade9a65916a9f4e70972"
+    },
+    {
+      "artifact_id": "regression-v1-behavior_regression_input-3d28c40a112c",
+      "kind": "behavior_regression_input",
+      "lifecycle": "seen_behavior_regression_input_not_final_test",
+      "path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+      "sha256": "3bf7bbcdab3dc019956fc0c787c38e094802c066e9ca18e7381dd54cf9940a55",
+      "note": "Regression suite faa-ast-diagram-v1; 13 cases; not independent Final Test."
+    },
+    {
+      "artifact_id": "regression-v1-behavior_regression_input-88ed5e95b1d2",
+      "kind": "behavior_regression_input",
+      "lifecycle": "seen_behavior_regression_input_not_final_test",
+      "path": "evaluation/quality_eval/datasets/fta_gate_multisource_diagram_external_test_v1.json",
+      "sha256": "5484f4760097ede28c5e4d52aa76e22b9b9fb8ea563984684c98342f7a755b55",
+      "note": "Regression suite multisource-diagram-v1; 5 cases; not independent Final Test."
+    },
+    {
+      "artifact_id": "regression-v1-behavior_regression_input-28c396accb38",
+      "kind": "behavior_regression_input",
+      "lifecycle": "seen_behavior_regression_input_not_final_test",
+      "path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_ablation_v1.json",
+      "sha256": "81412b07b09387b2824c0c5b4e3743ae68f5fcdd8c5ccbab0eb5944c20c906e7",
+      "note": "Regression suite text-evidence-ablation-v1; 6 cases; not independent Final Test."
+    },
+    {
+      "artifact_id": "regression-v1-behavior_regression_input-9a2ff4f9220a",
+      "kind": "behavior_regression_input",
+      "lifecycle": "seen_behavior_regression_input_not_final_test",
+      "path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_external_test_v1.json",
+      "sha256": "2e09ddaeaeb456ee7b8eb1556044710d553c73fb262b3fbe6542125ed689c076",
+      "note": "Regression suite text-abstention-external-v1; 4 cases; not independent Final Test."
+    },
+    {
+      "artifact_id": "regression-v1-behavior_regression_input-81b45663085f",
+      "kind": "behavior_regression_input",
+      "lifecycle": "seen_behavior_regression_input_not_final_test",
+      "path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v1.json",
+      "sha256": "cd23b9a388bc3f4f2cc7b77346113e39eb1e563d9008c9b97e0b71a03a75b95b",
+      "note": "Regression suite text-abstention-extension-v1; 2 cases; not independent Final Test."
+    },
+    {
+      "artifact_id": "regression-v1-behavior_regression_input-8eca6e0bda1b",
+      "kind": "behavior_regression_input",
+      "lifecycle": "seen_behavior_regression_input_not_final_test",
+      "path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v2.json",
+      "sha256": "7b8c4852b2e186128182aa2116fb8084db2ec9937d4c6d0e8f4fd9ad2d8be6e3",
+      "note": "Regression suite text-abstention-extension-v2; 6 cases; not independent Final Test."
+    },
+    {
+      "artifact_id": "recursive-preview-s210-snapshot-v2",
+      "kind": "candidate_preview_snapshot",
+      "lifecycle": "historical_development_snapshot",
+      "path": "evaluation/quality_eval/runs/siemens_s210_recursive_fta_preview_v2_2026-09-26.json",
+      "sha256": "a18fee6fcdcab26ef6311ab48885b512d36580c3fb93fb14476578bc18d7992f"
+    },
+    {
+      "artifact_id": "f01681-preview-polarity-guard-v5",
+      "kind": "candidate_preview_snapshot",
+      "lifecycle": "historical_regression_fixture_blocked",
+      "path": "evaluation/quality_eval/runs/siemens_s210_2019_f01681_candidate_fta_polarity_and_gate_disclaimer_v5_2026-09-27.json",
+      "sha256": "7e5c8b00d60dd9a15102a0bc317991863686fd598913b78de76902caba0857a1"
+    },
+    {
+      "artifact_id": "f30021-preview-polarity-guard-v5",
+      "kind": "candidate_preview_snapshot",
+      "lifecycle": "historical_regression_fixture_blocked",
+      "path": "evaluation/quality_eval/runs/siemens_s210_2019_f30021_candidate_fta_polarity_and_gate_disclaimer_v5_2026-09-27.json",
+      "sha256": "d0eff5e9198902bcfc974d1e3d44210030e3fd428d71b462272aa3e6f6e2688e"
+    },
+    {
+      "artifact_id": "f30027-preview-polarity-guard-v5",
+      "kind": "candidate_preview_snapshot",
+      "lifecycle": "historical_regression_fixture_reviewable_not_approved",
+      "path": "evaluation/quality_eval/runs/siemens_s210_2019_f30027_candidate_fta_polarity_and_gate_disclaimer_v5_2026-09-27.json",
+      "sha256": "8fa0aee4a5c9037b0cc4bd7a3d34145939057af86c44308f9d9c38b0c50eb5cf"
+    },
+    {
+      "artifact_id": "f06000-s120-s150-nested-preview-v3",
+      "kind": "candidate_preview_snapshot",
+      "lifecycle": "historical_near_transfer_development_snapshot_unknown_gates",
+      "path": "evaluation/quality_eval/runs/siemens_s120_s150_f06000_nested_scope_candidate_fta_v3_2026-09-27.json",
+      "sha256": "e1fdd964bac922b25e153756f6e6d9ef55a4e93053a4325c2e7916444129993e"
+    },
+    {
+      "artifact_id": "fta-baseline-manifest-validator",
+      "kind": "reproducibility_tool",
+      "lifecycle": "current",
+      "path": "evaluation/quality_eval/validate_fta_baseline_manifest.py",
+      "sha256": "7b120ec6e41935ff03e2ea096fbd07b18c2569bb43de3a111fe751cc25cabf3b",
+      "note": "Validates repository-relative artifact paths and SHA-256 fingerprints; defaults to active v5 snapshot."
+    },
+    {
+      "artifact_id": "cause-disposition-contract-v1",
+      "kind": "runtime_contract",
+      "lifecycle": "current_preview_only",
+      "path": "backend-python/contracts/fta_cause_disposition_contract.py",
+      "note": "Complete per-source-cause semantic role/disposition audit contract; unresolved entries are fail-closed.",
+      "sha256": "54af7c508a41ec8f813212154d427f56b26b181cae239c0f578df414884fc5c0"
+    },
+    {
+      "artifact_id": "cause-disposition-service-v1",
+      "kind": "runtime_implementation",
+      "lifecycle": "current_preview_only",
+      "path": "backend-python/fta/cause_disposition_service.py",
+      "note": "AI-proposed cause classification; unique exact source binding only; missing/ambiguous evidence remains unresolved.",
+      "sha256": "bba937aea2f82f0c3e3ae9d8c53d8d4c59eb00bf5186769714cb6b5a40706889"
+    },
+    {
+      "artifact_id": "cause-disposition-contract-tests-v1",
+      "kind": "contract_regression_tests",
+      "lifecycle": "current",
+      "path": "backend-python/tests/test_fta_cause_disposition.py",
+      "note": "Covers completeness, duplicate/missing classifications, evidence ambiguity, and role/disposition conflicts.",
+      "sha256": "93409669a317f2356891720e55764f3bfc7c033fa5a2532be21a294f5b79500f"
+    },
+    {
+      "artifact_id": "fta-reliability-plan-current",
+      "kind": "engineering_plan",
+      "lifecycle": "current_execution_plan",
+      "path": "docs/fta-validation-reliability-plan-v1.md",
+      "note": "Status ledger records the frozen 36-case seen regression corpus and the still-uncreated independent Final Test.",
+      "sha256": "11927db5894cbb4fac409e091373e7f1a600c79bef436563b9498c4c5a04e3b4"
+    },
+    {
+      "artifact_id": "fta-internal-doc-index-current",
+      "kind": "internal_document_index",
+      "lifecycle": "current",
+      "path": "docs/README.md",
+      "note": "Internal source-of-truth index points to active FTA baseline manifest v5 and the frozen seen-case regression boundary.",
+      "sha256": "2361f4486c6d84f36acfc566d3b40b922fea714492b80aba598976ce19a6e981"
+    },
+    {
+      "artifact_id": "fta-baseline-manifest-v1-snapshot",
+      "kind": "baseline_manifest_snapshot",
+      "lifecycle": "immutable_superseded_snapshot",
+      "path": "evaluation/quality_eval/fta_baseline_manifest_v1.json",
+      "note": "Original v1 manifest retained byte-for-byte as the historical pre-disposition baseline.",
+      "sha256": "e79083b027a6f8a354fc0d008915dd77324fef8f66c92185f478de55921a2a00"
+    },
+    {
+      "artifact_id": "fta-baseline-manifest-v2-builder",
+      "kind": "reproducibility_tool",
+      "lifecycle": "superseded_historical_tool",
+      "path": "evaluation/quality_eval/build_fta_baseline_manifest_v2.py",
+      "note": "Historical v2 builder; v3 is the current manifest builder and validator target.",
+      "sha256": "ea5d8c3c9cb4b1c523d33af4ad1b6aafa88262c81722470f461a65162e73da01"
+    },
+    {
+      "artifact_id": "fta-baseline-manifest-validation-tests",
+      "kind": "reproducibility_tests",
+      "lifecycle": "current",
+      "path": "evaluation/quality_eval/test_validate_fta_baseline_manifest.py",
+      "note": "Tests the active v5 manifest path and rejects missing, duplicate, escaped, or changed artifacts.",
+      "sha256": "26068112ed52e0f8c81f3d0b89944925bb7c21c2bf64f814061bec6660194c34"
+    },
+    {
+      "artifact_id": "unknown-gate-reason-policy-v1",
+      "kind": "runtime_policy",
+      "lifecycle": "current_preview_only",
+      "path": "backend-python/fta/unknown_gate_reason_policy.py",
+      "note": "Maps structured gate blockers and policy outcomes to one deterministic primary unknown reason; never parses free text.",
+      "sha256": "33c9360197357d729672aa21ab900ecf3da6433b9597b7c3f03b802d829712b0"
+    },
+    {
+      "artifact_id": "unknown-gate-reason-policy-tests-v1",
+      "kind": "contract_regression_tests",
+      "lifecycle": "current",
+      "path": "backend-python/tests/test_unknown_gate_reason_policy.py",
+      "note": "Covers precedence, known legacy blocker mappings, and explicit legacy_unspecified fallback.",
+      "sha256": "73ed2e3c22466ac22f23f15db844180894acf361bb4a5b343126b6de1c3d7266"
+    },
+    {
+      "artifact_id": "fta-baseline-manifest-v2-snapshot",
+      "kind": "baseline_manifest_snapshot",
+      "lifecycle": "immutable_superseded_snapshot",
+      "path": "evaluation/quality_eval/fta_baseline_manifest_v2.json",
+      "note": "Retained byte-for-byte as the cause-disposition baseline preceding the unknown-gate reason contract.",
+      "sha256": "44ee37beae78e144d20117e9e6e4ac01c844ac4bdfb2c83ddaa6edcf53a5c212"
+    },
+    {
+      "artifact_id": "fta-baseline-manifest-v3-builder",
+      "kind": "reproducibility_tool",
+      "lifecycle": "superseded_historical_tool",
+      "path": "evaluation/quality_eval/build_fta_baseline_manifest_v3.py",
+      "note": "Historical v3 manifest builder retained for reproducibility; v4 is the active baseline builder.",
+      "sha256": "494014cc7352bc5bb9b6b0993ac8970460821db23c4bc5bf85fb9a87b8e3090c"
+    },
+    {
+      "artifact_id": "s120-s150-s210-overlap-audit-v4-json",
+      "kind": "source_overlap_audit",
+      "lifecycle": "current_overlap_evidence",
+      "path": "evaluation/quality_eval/runs/siemens_s120_s150_s210_overlap_audit_v4_2026-09-28.json",
+      "note": "Recomputed against the current 55-node gate review v6; descriptive same-vendor near-transfer evidence only.",
+      "sha256": "cde2d5c709cb834130ed0136224b3d0054bde86366b5d82fb723cf5dfc5ea830"
+    },
+    {
+      "artifact_id": "s120-s150-s210-overlap-audit-v4-report",
+      "kind": "source_overlap_audit_report",
+      "lifecycle": "current_overlap_evidence",
+      "path": "evaluation/quality_eval/runs/siemens_s120_s150_s210_overlap_audit_v4_2026-09-28.md",
+      "note": "Reports the current v6 denominators and explicitly avoids independent cross-domain or calibration claims.",
+      "sha256": "a04071a92136d244108920c5585b361164d3714f1d1c1211854d0b19d2ed3352"
+    },
+    {
+      "artifact_id": "fta-baseline-manifest-v3-snapshot",
+      "kind": "baseline_manifest_snapshot",
+      "lifecycle": "immutable_superseded_snapshot",
+      "path": "evaluation/quality_eval/fta_baseline_manifest_v3.json",
+      "note": "Retained unchanged as the previous active baseline; its overlap summary used the v5 54-node review population.",
+      "sha256": "a3e1294a2ec171ea5d8e6eee900558fb400c89c19cdae3d3dae4ad85fd543081"
+    },
+    {
+      "artifact_id": "fta-baseline-manifest-v4-builder",
+      "kind": "reproducibility_tool",
+      "lifecycle": "current",
+      "path": "evaluation/quality_eval/build_fta_baseline_manifest_v4.py",
+      "note": "Recomputes gate provenance and source-cluster split summaries from v6 inputs and links the current overlap audit.",
+      "sha256": "3d8772aa2bbed09c2fcf799ed40fc4aa0d0f04d77b9c4386f6967b94a39711fe"
+    },
+    {
+      "artifact_id": "fta-baseline-manifest-v4-tests",
+      "kind": "manifest_regression_tests",
+      "lifecycle": "current",
+      "path": "evaluation/quality_eval/test_build_fta_baseline_manifest_v4.py",
+      "note": "Checks current review provenance, split leakage, overlap denominators, readiness boundaries, and artifact fingerprints.",
+      "sha256": "cca7924044f8948bcd5a0645eee07a7a386806f8fc5b606f2af4226b68936bbc"
+    },
+    {
+      "artifact_id": "fta-baseline-manifest-v4-snapshot",
+      "kind": "baseline_manifest_snapshot",
+      "lifecycle": "immutable_superseded_snapshot",
+      "path": "evaluation/quality_eval/fta_baseline_manifest_v4.json",
+      "note": "Retained unchanged as the previous active baseline; v5 adds the seen-case regression inventory and keeps Final Test explicitly uncreated.",
+      "sha256": "fdc3f434fbb7b0cf731608b235bdedd327ebb360f32de4a7d1591d117584cc39"
+    },
+    {
+      "artifact_id": "fta-baseline-manifest-v5-builder",
+      "kind": "reproducibility_tool",
+      "lifecycle": "current",
+      "path": "evaluation/quality_eval/build_fta_baseline_manifest_v5.py",
+      "note": "Builds the v5 baseline and source-pinned regression inventory from immutable v4 plus the six current fixture inputs.",
+      "sha256": "ec9cf835c7b8c8a2f71cc2a865ed01aeb94783ac76f70ebe01219e9d7655504e"
+    },
+    {
+      "artifact_id": "fta-baseline-manifest-v5-tests",
+      "kind": "manifest_regression_tests",
+      "lifecycle": "current",
+      "path": "evaluation/quality_eval/test_build_fta_baseline_manifest_v5.py",
+      "note": "Checks counts, source clusters, evidence-mode invariants, seen/final separation, and hashes for the regression inventory.",
+      "sha256": "3469066e39367409179ebf884027e7e2e5c69c99f9649cf9af269e73697aff67"
+    },
+    {
+      "artifact_id": "regression-v1-probe_script-66325332d302",
+      "kind": "probe_script",
+      "lifecycle": "current_regression_support",
+      "path": "evaluation/quality_eval/public_sources/probe_fta_gate_text_evidence_abstention_v1.py",
+      "note": "Regression suite text-abstention-extension-v2; 6 cases; not independent Final Test.",
+      "sha256": "1db8614606ad0b2af103346032b575d461cfbee35fb9292174cba5e8a06dbfd7"
+    },
+    {
+      "artifact_id": "regression-v1-fixture_regression_test-9253660e4752",
+      "kind": "fixture_regression_test",
+      "lifecycle": "current_regression_support",
+      "path": "evaluation/quality_eval/public_sources/test_probe_fta_gate_text_evidence_abstention_v1.py",
+      "note": "Regression suite text-abstention-extension-v2; 6 cases; not independent Final Test.",
+      "sha256": "210b97b0757352d11086bb9296ac90405155e913cbf4f9e59e54a281a8e8eb40"
+    },
+    {
+      "artifact_id": "regression-v1-historical_probe_run-2aa8b58e6c6f",
+      "kind": "historical_probe_run",
+      "lifecycle": "historical_probe_output_not_accuracy_claim",
+      "path": "evaluation/quality_eval/runs/fta_gate_text_evidence_ablation_v1_2026-09-27.json",
+      "note": "Regression suite text-evidence-ablation-v1; 6 cases; not independent Final Test.",
+      "sha256": "ca8266b750e9e17bd7b87249c921d33285593e0018d0f6da1c0d31f17a43766d"
+    },
+    {
+      "artifact_id": "regression-v1-probe_script-36091ab08de9",
+      "kind": "probe_script",
+      "lifecycle": "current_regression_support",
+      "path": "evaluation/quality_eval/public_sources/probe_multisource_fta_gate_external_v1.py",
+      "note": "Regression suite multisource-diagram-v1; 5 cases; not independent Final Test.",
+      "sha256": "c96c5ac33ca3832de35bd2bea234ec75323cbbe8e6e6171ed5a5cf12d0d2dbbd"
+    },
+    {
+      "artifact_id": "regression-v1-fixture_regression_test-7b87dee61417",
+      "kind": "fixture_regression_test",
+      "lifecycle": "current_regression_support",
+      "path": "evaluation/quality_eval/public_sources/test_probe_multisource_fta_gate_external_v1.py",
+      "note": "Regression suite multisource-diagram-v1; 5 cases; not independent Final Test.",
+      "sha256": "35de1bb680f247d59fda19341988c7674141ceee3ae951b106d75e67603cfeeb"
+    },
+    {
+      "artifact_id": "regression-v1-historical_probe_run-af48d4cb892f",
+      "kind": "historical_probe_run",
+      "lifecycle": "historical_probe_output_not_accuracy_claim",
+      "path": "evaluation/quality_eval/runs/fta_gate_multisource_external_probe_v1_2026-09-27.json",
+      "note": "Regression suite multisource-diagram-v1; 5 cases; not independent Final Test.",
+      "sha256": "b092b69901ab93ba54b136e3e4793971aab7e4fcf47d9cac8d58b293397e7579"
+    },
+    {
+      "artifact_id": "regression-v1-probe_script-93d57680a043",
+      "kind": "probe_script",
+      "lifecycle": "current_regression_support",
+      "path": "evaluation/quality_eval/public_sources/probe_faa_ast_fta_gate_external_v1.py",
+      "note": "Regression suite faa-ast-diagram-v1; 13 cases; not independent Final Test.",
+      "sha256": "81ce53b4bc8c2a779ce902a6b7f4a9ece3e6851f37d764a03e178d82b36dec61"
+    },
+    {
+      "artifact_id": "regression-v1-fixture_regression_test-e4d1c38979ed",
+      "kind": "fixture_regression_test",
+      "lifecycle": "current_regression_support",
+      "path": "evaluation/quality_eval/public_sources/test_probe_faa_ast_fta_gate_external_v1.py",
+      "note": "Regression suite faa-ast-diagram-v1; 13 cases; not independent Final Test.",
+      "sha256": "3e81802dacf5eb4f08ce538b8ebd3688c21f372af54581b89d9e9b0ac7caf7f9"
+    },
+    {
+      "artifact_id": "regression-v1-historical_probe_run-ea1ca8b88c6f",
+      "kind": "historical_probe_run",
+      "lifecycle": "historical_probe_output_not_accuracy_claim",
+      "path": "evaluation/quality_eval/runs/faa_ast_fta_gate_external_probe_v1_2026-09-27.json",
+      "note": "Regression suite faa-ast-diagram-v1; 13 cases; not independent Final Test.",
+      "sha256": "daffcd37a057908a57c8d513f27ca1349b3fb13bd0bae2962a7b2464ca9eafe1"
+    },
+    {
+      "artifact_id": "regression-v1-historical_probe_run-9d9d200294cc",
+      "kind": "historical_probe_run",
+      "lifecycle": "historical_probe_output_not_accuracy_claim",
+      "path": "evaluation/quality_eval/runs/fta_gate_text_evidence_abstention_probe_v1_2026-09-27.json",
+      "note": "Regression suite text-abstention-external-v1; 4 cases; not independent Final Test.",
+      "sha256": "6684e76a7b295b2cae47e4d6cdd6e002fc65bd4246ba3a90d3eb807d385bbd1e"
+    },
+    {
+      "artifact_id": "regression-v1-historical_probe_run-7352ba38d249",
+      "kind": "historical_probe_run",
+      "lifecycle": "historical_probe_output_not_accuracy_claim",
+      "path": "evaluation/quality_eval/runs/fta_gate_text_evidence_abstention_extension_v1_2026-09-27.json",
+      "note": "Regression suite text-abstention-extension-v1; 2 cases; not independent Final Test.",
+      "sha256": "f1ebd30808246f0f5cbf2645379be8009d8e23d7355c69446f9600bb39c1f808"
+    },
+    {
+      "artifact_id": "regression-v1-historical_probe_run-83cd9a5d4835",
+      "kind": "historical_probe_run",
+      "lifecycle": "historical_probe_output_not_accuracy_claim",
+      "path": "evaluation/quality_eval/runs/fta_gate_text_evidence_abstention_extension_v2_2026-09-27.json",
+      "note": "Regression suite text-abstention-extension-v2; 6 cases; not independent Final Test.",
+      "sha256": "3eb1237695da3d6ad30f646e0a4146ee995ceadef4efd1e715754bc758ed9983"
+    }
+  ],
+  "superseded": [
+    {
+      "artifact_family": "siemens_s210_event_scope_gate_primary_ai_role_review",
+      "superseded_versions": [
+        "v1",
+        "v2",
+        "v3",
+        "v4",
+        "v5",
+        "v6",
+        "v7"
+      ],
+      "current_version": "v8",
+      "reason": "append-only review/amendment chain; v8 closes the previous pending scope decisions"
+    },
+    {
+      "artifact_family": "siemens_s210_gate_node_review_dataset",
+      "superseded_versions": [
+        "v1",
+        "v2",
+        "v3",
+        "v4",
+        "v5"
+      ],
+      "current_version": "v6",
+      "reason": "scope/eligibility/locator reconciliation; historical sets are not current calibration labels"
+    },
+    {
+      "artifact_family": "siemens_s210_gate_node_source_cluster_splits",
+      "superseded_versions": [
+        "v1",
+        "v2",
+        "v3",
+        "v4",
+        "v5"
+      ],
+      "current_version": "v6",
+      "reason": "v6 follows the current gate-node v6 population and locator reconciliation"
+    },
+    {
+      "artifact_family": "siemens_s120_s150_public_fault_corpus_holdout",
+      "superseded_versions": [
+        "v1"
+      ],
+      "current_version": "v2",
+      "reason": "v2 preserves nested Fault value structure and is the only version allowed for later work"
+    },
+    {
+      "artifact_id": "ai-review-probe-v5-54-nodes",
+      "superseded_by": "gate-node-review-v6",
+      "reason": "probe population is the old 54-node v5 review set; no v6 paired prediction exists"
+    },
+    {
+      "artifact_family": "candidate_fta_tree_contract",
+      "superseded_versions": [
+        "v3"
+      ],
+      "current_version": "v4",
+      "reason": "v4 adds a complete auditable cause role/disposition ledger; non-tree and unresolved causes are no longer forced into nodes."
+    },
+    {
+      "artifact_family": "fta_baseline_manifest",
+      "superseded_versions": [
+        "v1"
+      ],
+      "current_version": "v2",
+      "reason": "v1 remains an immutable historical snapshot; v2 fingerprints the current cause-disposition contract and implementation."
+    },
+    {
+      "artifact_family": "candidate_fta_tree_contract",
+      "superseded_versions": [
+        "v4"
+      ],
+      "current_version": "v5",
+      "reason": "v5 adds exactly one machine-validated primary reason code for each unknown gate; existing blockers remain secondary details and free-text decision_reason is not parsed."
+    },
+    {
+      "artifact_family": "fta_baseline_manifest",
+      "superseded_versions": [
+        "v2"
+      ],
+      "current_version": "v3",
+      "reason": "v2 remains an immutable historical snapshot; v3 fingerprints the current unknown-gate reason contract and implementation."
+    },
+    {
+      "artifact_family": "s120_s150_s210_overlap_audit",
+      "superseded_versions": [
+        "v3"
+      ],
+      "current_version": "v4",
+      "reason": "v3 audited the v5 54-node population; v4 recomputes against the current v6 55-node review set and records the correct 34/55 and 34/53 denominators."
+    },
+    {
+      "artifact_family": "fta_baseline_manifest",
+      "superseded_versions": [
+        "v3"
+      ],
+      "current_version": "v4",
+      "reason": "v3 remains an unchanged historical snapshot; v4 records current v6 provenance/split evidence and the corrected overlap audit."
+    },
+    {
+      "artifact_family": "fta_baseline_manifest",
+      "superseded_versions": [
+        "v4"
+      ],
+      "current_version": "v5",
+      "reason": "v5 explicitly freezes the 36 previously-used labeled gate probes as behavior regression data, records their source/evidence identity, and states that an independent Final Test has not yet been created."
+    }
+  ],
+  "baseline_change_policy": {
+    "immutable_snapshot": true,
+    "when_referenced_artifact_changes": "create a new manifest version; do not rewrite this v1 snapshot to match new code",
+    "required_review": "verify all paths, provenance labels, supersession links, and SHA-256 values before activating a new manifest version"
+  },
+  "supersedes_manifest": {
+    "manifest_id": "candidate_fta_research_baseline_v4",
+    "path": "evaluation/quality_eval/fta_baseline_manifest_v4.json",
+    "reason": "Freezes all previously-used public gate probes as a source-pinned behavior regression corpus and explicitly keeps independent final validation uncreated until new untouched source clusters are acquired."
+  },
+  "behavior_regression_suite": {
+    "suite_id": "fta_gate_behavior_regression_v1",
+    "status": "frozen_seen_behavior_regression",
+    "purpose": "Protect known evidence, abstention, diagram-label, and scope behaviors; not an independent accuracy estimate.",
+    "formal_gold": false,
+    "training_set": false,
+    "accuracy_claim_allowed": false,
+    "sample_count": 36,
+    "unique_case_count": 36,
+    "source_cluster_count": 15,
+    "label_counts": {
+      "AND": 9,
+      "OR": 15,
+      "unknown": 12
+    },
+    "source_clusters": [
+      {
+        "source_id": "FAA_AC_65_15A",
+        "source_cluster_id": "FAA_AC_65_15A_document",
+        "document_title": "AC 65-15A: Airframe & Powerplant Mechanics—Airframe Handbook",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "db5dfc68045fa7f71ea5bc79a30439db2718ca5b1aa210194d9d4ab43b15a310",
+        "source_location": "Figure 14-44, printed page 586; historical excerpt, source gate sentence withheld from model input.",
+        "fixture_paths": [
+          "evaluation/quality_eval/datasets/fta_gate_text_evidence_ablation_v1.json",
+          "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_external_test_v1.json"
+        ]
+      },
+      {
+        "source_id": "HERMES_CUBESAT_2010",
+        "source_cluster_id": "HERMES_CUBESAT_2010_document",
+        "document_title": "Fault Tree Analysis of the HERMES CubeSat",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "dd460be8ffa487cef47d13534235155f884411c5c0dd143b89c9b0ee2158672e",
+        "source_location": null,
+        "fixture_paths": [
+          "evaluation/quality_eval/datasets/fta_gate_multisource_diagram_external_test_v1.json"
+        ]
+      },
+      {
+        "source_id": "NASA_APOLLO13_REVIEW_BOARD_TRANSCRIPT",
+        "source_cluster_id": "NASA_APOLLO13_REVIEW_BOARD_DOCUMENT",
+        "document_title": "Apollo 13 Review Board report, Appendix H transcript excerpt",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "8804b8ccbb69abe4eb239a73f22b9581be3a67c484aa43284efcd71b9da30391",
+        "source_location": "Appendix H, transcript page H-20; PDF page index 207 (zero-based).",
+        "fixture_paths": [
+          "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v2.json"
+        ]
+      },
+      {
+        "source_id": "NASA_APOLLO15_PARACHUTE_REPORT",
+        "source_cluster_id": "NASA_APOLLO15_PARACHUTE_REPORT_document",
+        "document_title": "Apollo 15 main-parachute failure",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "5a33b82a1b3f05085640f24eea63923b4b05b26df41ed27bf57a01458af80945",
+        "source_location": "NTRS abstract; abstract excerpt has no printed page number",
+        "fixture_paths": [
+          "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_external_test_v1.json"
+        ]
+      },
+      {
+        "source_id": "NASA_CONF_1972_VESELY_FAULT_TREE",
+        "source_cluster_id": "NASA_CONF_1972_VESELY_DOCUMENT",
+        "document_title": "Fault tree applications within the safety program of Idaho Nuclear Corporation",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "1d90c6c326bfbeeb9daf805da3c8ea8bdf78d16ad8aad5e3e35246f5f963f37b",
+        "source_location": "Printed page 210; PDF page index 188 (zero-based), resistor example.",
+        "fixture_paths": [
+          "evaluation/quality_eval/datasets/fta_gate_text_evidence_ablation_v1.json",
+          "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v2.json"
+        ]
+      },
+      {
+        "source_id": "NASA_CR_72723_HVSA",
+        "source_cluster_id": "NASA_CR_72723_DOCUMENT",
+        "document_title": "High Voltage Solar Array Electrical Configuration Study: Final Report",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "8986aea488a48c76abf3d8f8affbd85c6fa45bdd0e717d81e4a13360a6000f95",
+        "source_location": "Printed page 126, logic-operation table; PDF page index 131 (zero-based).",
+        "fixture_paths": [
+          "evaluation/quality_eval/datasets/fta_gate_text_evidence_ablation_v1.json",
+          "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v2.json"
+        ]
+      },
+      {
+        "source_id": "NASA_FTH_2002",
+        "source_cluster_id": "NASA_FTH_2002_document",
+        "document_title": "Fault Tree Handbook with Aerospace Applications, Version 1.1",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "bf841d8aeee4985c02858318a0e7fc5763c0dd2940d46251d189578d81419bb3",
+        "source_location": null,
+        "fixture_paths": [
+          "evaluation/quality_eval/datasets/fta_gate_multisource_diagram_external_test_v1.json"
+        ]
+      },
+      {
+        "source_id": "NASA_TM_104382",
+        "source_cluster_id": "NASA_TM_104382_document",
+        "document_title": "Destructive Physical Analysis Results of Ni/H2 Cells Cycled in LEO Regime",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "b1bdc60f065e16ab8ab81d456ac3770ad8e1e1da3ddfcaab6fac4e18fc0f192e",
+        "source_location": "NASA NTRS abstract; matching text also appears in the report's concluding remarks (PDF page index 3, zero-based).",
+        "fixture_paths": [
+          "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v1.json"
+        ]
+      },
+      {
+        "source_id": "NASA_TM_111876_CONDENSATE",
+        "source_cluster_id": "NASA_TM_111876_DOCUMENT",
+        "document_title": "Condensate Recycling in Closed Plant Growth Chambers",
+        "source_hash_type": "source_text_sha256",
+        "source_sha256": "ac380bfb3681013e2a030e91e4e26745e60eeb30fe00100c62d0cb1c96d6f178",
+        "source_location": "NASA NTRS abstract, which is the available source text for this record; NTRS lists no downloadable PDF.",
+        "fixture_paths": [
+          "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v2.json"
+        ]
+      },
+      {
+        "source_id": "NASA_TM_86404_CARE_III",
+        "source_cluster_id": "NASA_TM_86404_DOCUMENT",
+        "document_title": "CARE III Model Overview and User's Guide (First Revision)",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "8c4ba56de57a41ad562c9009d5e700d09cf6dfbb71ed67c9b4161c7669a5ce65",
+        "source_location": "Section 3.5.1, System Fault Tree Rules and Procedures; PDF page index 41 (zero-based).",
+        "fixture_paths": [
+          "evaluation/quality_eval/datasets/fta_gate_text_evidence_ablation_v1.json",
+          "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v2.json"
+        ]
+      },
+      {
+        "source_id": "NASA_TP_2000_209902",
+        "source_cluster_id": "NASA_TP_2000_209902_document",
+        "document_title": "Comprehensive Design Reliability Activities for Aerospace Propulsion Systems",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "0082fc8d440b4fb73ff830067320b8d8e03f2dd35d4b89bc758bfd3d5718cb63",
+        "source_location": "Figure 28 explanatory paragraph, printed page 49; PDF page index 63 (zero-based).",
+        "fixture_paths": [
+          "evaluation/quality_eval/datasets/fta_gate_text_evidence_ablation_v1.json",
+          "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v1.json"
+        ]
+      },
+      {
+        "source_id": "NRC_NUREG_0492",
+        "source_cluster_id": "NRC_NUREG_0492_document",
+        "document_title": "Fault Tree Handbook, NUREG-0492",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "d90c4b7641f6b0625fcb63816925f6111c4638ad12134c12c22fd2da34aa6b55",
+        "source_location": null,
+        "fixture_paths": [
+          "evaluation/quality_eval/datasets/fta_gate_multisource_diagram_external_test_v1.json"
+        ]
+      },
+      {
+        "source_id": "US_ARMY_TM_8_630",
+        "source_cluster_id": "US_ARMY_TM_8_630_document",
+        "document_title": "TM 8-630: X-ray field unit generator maintenance instructions",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "8b016f35eb848a19e5f184fb0f9e70bf245ce9519a31f7e9e9170ec84f25fee4",
+        "source_location": null,
+        "fixture_paths": [
+          "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_external_test_v1.json"
+        ]
+      },
+      {
+        "source_id": "US_ARMY_TM_9_803",
+        "source_cluster_id": "US_ARMY_TM_9_803_document",
+        "document_title": "TM 9-803: 1/4-ton 4x4 truck (Willys-Overland Model MB and Ford Model GPW)",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "c776551ddecdfce5aa738791e7a88695144939bacc8090adc71ae42b7e374de9",
+        "source_location": null,
+        "fixture_paths": [
+          "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_external_test_v1.json"
+        ]
+      },
+      {
+        "source_id": "faa_ast_guide_v1",
+        "source_cluster_id": "source-sha256:66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+        "document_title": "FAA Guide to Reusable Launch and Reentry Vehicle Reliability Analysis, Version 1.0, April 2005",
+        "source_hash_type": "source_pdf_sha256",
+        "source_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+        "source_location": [
+          {
+            "figure_id": "A.4-1",
+            "printed_page": 44,
+            "pdf_page": 50
+          },
+          {
+            "figure_id": "B.1-3",
+            "printed_page": 58,
+            "pdf_page": 64
+          },
+          {
+            "figure_id": "B.2-2",
+            "printed_page": 60,
+            "pdf_page": 66
+          }
+        ],
+        "fixture_paths": [
+          "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json"
+        ]
+      }
+    ],
+    "dataset_suites": [
+      {
+        "suite_id": "text-evidence-ablation-v1",
+        "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_ablation_v1.json",
+        "dataset_sha256": "81412b07b09387b2824c0c5b4e3743ae68f5fcdd8c5ccbab0eb5944c20c906e7",
+        "artifact_type": "external_text_evidence_gate_abstention_fixture",
+        "artifact_version": "evidence-ablation-v1",
+        "sample_count": 6,
+        "source_cluster_count": 5,
+        "label_counts": {
+          "unknown": 6
+        },
+        "label_provenance": {
+          "reviewer_role": "primary_ai_agent_pre_inference_evidence_review",
+          "reviewer_is_human_expert": false,
+          "review_scope": "whether the exposed parent/child payload contains direct evidence for an AND/OR gate after the original decisive gate sentence is withheld",
+          "rule": "When decisive gate evidence is absent from the model-visible scope, classify as unknown even if the original source elsewhere contains a gate statement; this is a paired counterfactual evidence-ablation control, not a source-level re-labeling.",
+          "review_note": "The user confirmed that co-occurrence alone is not an AND gate. These labels test evidence dependence under the declared FTA semantics; they are not human domain-expert Gold or independent second-agent findings."
+        },
+        "formal_gold": false,
+        "in_project_gold": false,
+        "previously_used_in_probe": true,
+        "final_test_eligible": false,
+        "evidence_mode": "decisive_text_evidence_withheld_control",
+        "invariant_family": "withheld_evidence_must_abstain",
+        "offline_test_command": "python -m unittest evaluation.quality_eval.public_sources.test_probe_fta_gate_text_evidence_abstention_v1 -v",
+        "probe_script_path": "evaluation/quality_eval/public_sources/probe_fta_gate_text_evidence_abstention_v1.py",
+        "test_file_path": "evaluation/quality_eval/public_sources/test_probe_fta_gate_text_evidence_abstention_v1.py",
+        "historical_probe_run": {
+          "path": "evaluation/quality_eval/runs/fta_gate_text_evidence_ablation_v1_2026-09-27.json",
+          "sha256": "ca8266b750e9e17bd7b87249c921d33285593e0018d0f6da1c0d31f17a43766d",
+          "role": "historical_model_probe_output_not_accuracy_claim"
+        },
+        "cases": [
+          {
+            "gate_node_id": "FAA-AC65-15A-F14-44-CAUSE-002-ABLATION",
+            "source_id": "FAA_AC_65_15A",
+            "source_cluster_id": "FAA_AC_65_15A_document",
+            "expected_gate": "unknown",
+            "evidence_mode": "decisive_text_evidence_withheld_control",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_ablation_v1.json",
+              "source_document_title": "AC 65-15A: Airframe & Powerplant Mechanics—Airframe Handbook",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "db5dfc68045fa7f71ea5bc79a30439db2718ca5b1aa210194d9d4ab43b15a310",
+              "reference_type": "no_decisive_gate_quote_in_model_visible_scope",
+              "field": "expected_gate_evidence",
+              "quote_sha256": null,
+              "ablation_control": true
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "do_not_force_and_or_without_direct_gate_evidence",
+              "withheld_decisive_evidence_must_remain_unknown"
+            ],
+            "scope_type": "decisive_gate_evidence_withheld_control",
+            "paired_original_node_id": "FAA-AC65-15A-F14-44-CAUSE-002"
+          },
+          {
+            "gate_node_id": "NASA-TP2000-FIG28-CATASTROPHIC-AND-001-ABLATION",
+            "source_id": "NASA_TP_2000_209902",
+            "source_cluster_id": "NASA_TP_2000_209902_document",
+            "expected_gate": "unknown",
+            "evidence_mode": "decisive_text_evidence_withheld_control",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_ablation_v1.json",
+              "source_document_title": "Comprehensive Design Reliability Activities for Aerospace Propulsion Systems",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "0082fc8d440b4fb73ff830067320b8d8e03f2dd35d4b89bc758bfd3d5718cb63",
+              "reference_type": "no_decisive_gate_quote_in_model_visible_scope",
+              "field": "expected_gate_evidence",
+              "quote_sha256": null,
+              "ablation_control": true
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "do_not_force_and_or_without_direct_gate_evidence",
+              "withheld_decisive_evidence_must_remain_unknown"
+            ],
+            "scope_type": "decisive_gate_evidence_withheld_control",
+            "paired_original_node_id": "NASA-TP2000-FIG28-CATASTROPHIC-AND-001"
+          },
+          {
+            "gate_node_id": "NASA-VESELY-RESISTOR-CRITICAL-PATH-AND-001-ABLATION",
+            "source_id": "NASA_CONF_1972_VESELY_FAULT_TREE",
+            "source_cluster_id": "NASA_CONF_1972_VESELY_DOCUMENT",
+            "expected_gate": "unknown",
+            "evidence_mode": "decisive_text_evidence_withheld_control",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_ablation_v1.json",
+              "source_document_title": "Fault tree applications within the safety program of Idaho Nuclear Corporation",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "1d90c6c326bfbeeb9daf805da3c8ea8bdf78d16ad8aad5e3e35246f5f963f37b",
+              "reference_type": "no_decisive_gate_quote_in_model_visible_scope",
+              "field": "expected_gate_evidence",
+              "quote_sha256": null,
+              "ablation_control": true
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "do_not_force_and_or_without_direct_gate_evidence",
+              "withheld_decisive_evidence_must_remain_unknown"
+            ],
+            "scope_type": "decisive_gate_evidence_withheld_control",
+            "paired_original_node_id": "NASA-VESELY-RESISTOR-CRITICAL-PATH-AND-001"
+          },
+          {
+            "gate_node_id": "NASA-TM86404-CAREIII-ALL-EVENTS-AND-001-ABLATION",
+            "source_id": "NASA_TM_86404_CARE_III",
+            "source_cluster_id": "NASA_TM_86404_DOCUMENT",
+            "expected_gate": "unknown",
+            "evidence_mode": "decisive_text_evidence_withheld_control",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_ablation_v1.json",
+              "source_document_title": "CARE III Model Overview and User's Guide (First Revision)",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "8c4ba56de57a41ad562c9009d5e700d09cf6dfbb71ed67c9b4161c7669a5ce65",
+              "reference_type": "no_decisive_gate_quote_in_model_visible_scope",
+              "field": "expected_gate_evidence",
+              "quote_sha256": null,
+              "ablation_control": true
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "do_not_force_and_or_without_direct_gate_evidence",
+              "withheld_decisive_evidence_must_remain_unknown"
+            ],
+            "scope_type": "decisive_gate_evidence_withheld_control",
+            "paired_original_node_id": "NASA-TM86404-CAREIII-ALL-EVENTS-AND-001"
+          },
+          {
+            "gate_node_id": "NASA-TM86404-CAREIII-ANY-INPUT-OR-001-ABLATION",
+            "source_id": "NASA_TM_86404_CARE_III",
+            "source_cluster_id": "NASA_TM_86404_DOCUMENT",
+            "expected_gate": "unknown",
+            "evidence_mode": "decisive_text_evidence_withheld_control",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_ablation_v1.json",
+              "source_document_title": "CARE III Model Overview and User's Guide (First Revision)",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "8c4ba56de57a41ad562c9009d5e700d09cf6dfbb71ed67c9b4161c7669a5ce65",
+              "reference_type": "no_decisive_gate_quote_in_model_visible_scope",
+              "field": "expected_gate_evidence",
+              "quote_sha256": null,
+              "ablation_control": true
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "do_not_force_and_or_without_direct_gate_evidence",
+              "withheld_decisive_evidence_must_remain_unknown"
+            ],
+            "scope_type": "decisive_gate_evidence_withheld_control",
+            "paired_original_node_id": "NASA-TM86404-CAREIII-ANY-INPUT-OR-001"
+          },
+          {
+            "gate_node_id": "NASA-CR72723-HVSA-COEXISTENCE-AND-001-ABLATION",
+            "source_id": "NASA_CR_72723_HVSA",
+            "source_cluster_id": "NASA_CR_72723_DOCUMENT",
+            "expected_gate": "unknown",
+            "evidence_mode": "decisive_text_evidence_withheld_control",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_ablation_v1.json",
+              "source_document_title": "High Voltage Solar Array Electrical Configuration Study: Final Report",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "8986aea488a48c76abf3d8f8affbd85c6fa45bdd0e717d81e4a13360a6000f95",
+              "reference_type": "no_decisive_gate_quote_in_model_visible_scope",
+              "field": "expected_gate_evidence",
+              "quote_sha256": null,
+              "ablation_control": true
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "do_not_force_and_or_without_direct_gate_evidence",
+              "withheld_decisive_evidence_must_remain_unknown"
+            ],
+            "scope_type": "decisive_gate_evidence_withheld_control",
+            "paired_original_node_id": "NASA-CR72723-HVSA-COEXISTENCE-AND-001"
+          }
+        ]
+      },
+      {
+        "suite_id": "multisource-diagram-v1",
+        "dataset_path": "evaluation/quality_eval/datasets/fta_gate_multisource_diagram_external_test_v1.json",
+        "dataset_sha256": "5484f4760097ede28c5e4d52aa76e22b9b9fb8ea563984684c98342f7a755b55",
+        "artifact_type": "external_diagram_gate_classification_fixture",
+        "artifact_version": "v1",
+        "sample_count": 5,
+        "source_cluster_count": 3,
+        "label_counts": {
+          "AND": 2,
+          "OR": 3
+        },
+        "label_provenance": "transcribed_from_explicit_figure_gate_symbols_or_captions_and_checked_against_source_page; not project_expert_gold",
+        "formal_gold": false,
+        "in_project_gold": false,
+        "previously_used_in_probe": true,
+        "final_test_eligible": false,
+        "evidence_mode": "explicit_diagram_or_caption_label",
+        "invariant_family": "match_explicit_source_gate",
+        "offline_test_command": "python -m unittest evaluation.quality_eval.public_sources.test_probe_multisource_fta_gate_external_v1 -v",
+        "probe_script_path": "evaluation/quality_eval/public_sources/probe_multisource_fta_gate_external_v1.py",
+        "test_file_path": "evaluation/quality_eval/public_sources/test_probe_multisource_fta_gate_external_v1.py",
+        "historical_probe_run": {
+          "path": "evaluation/quality_eval/runs/fta_gate_multisource_external_probe_v1_2026-09-27.json",
+          "sha256": "b092b69901ab93ba54b136e3e4793971aab7e4fcf47d9cac8d58b293397e7579",
+          "role": "historical_model_probe_output_not_accuracy_claim"
+        },
+        "cases": [
+          {
+            "gate_node_id": "NASA-FTH-2002-F4-3-G001",
+            "source_id": "NASA_FTH_2002",
+            "source_cluster_id": "NASA_FTH_2002_document",
+            "expected_gate": "OR",
+            "evidence_mode": "explicit_diagram_or_caption_label",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/fta_gate_multisource_diagram_external_test_v1.json",
+              "source_document_title": "Fault Tree Handbook with Aerospace Applications, Version 1.1",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "bf841d8aeee4985c02858318a0e7fc5763c0dd2940d46251d189578d81419bb3",
+              "reference_type": "source_label_evidence",
+              "field": "label_evidence",
+              "evidence_kind": "figure_caption",
+              "quote_sha256": "6a2ae553dd42a44f13043066da204d608fbfd1038ec0bf67e32d06608de7ae39",
+              "locator": {
+                "printed_page": 36,
+                "pdf_page": 49
+              }
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "gate_label_must_be_supported_by_pinned_source_reference"
+            ]
+          },
+          {
+            "gate_node_id": "NASA-FTH-2002-F5-5-G001",
+            "source_id": "NASA_FTH_2002",
+            "source_cluster_id": "NASA_FTH_2002_document",
+            "expected_gate": "AND",
+            "evidence_mode": "explicit_diagram_or_caption_label",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/fta_gate_multisource_diagram_external_test_v1.json",
+              "source_document_title": "Fault Tree Handbook with Aerospace Applications, Version 1.1",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "bf841d8aeee4985c02858318a0e7fc5763c0dd2940d46251d189578d81419bb3",
+              "reference_type": "source_label_evidence",
+              "field": "label_evidence",
+              "evidence_kind": "figure_plus_following_explanatory_text",
+              "quote_sha256": "c2dc9553675700c73a73755841deb20187e5af046e929d7a167bdaa5de845476",
+              "locator": {
+                "printed_page": 66,
+                "pdf_page": 79
+              }
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "gate_label_must_be_supported_by_pinned_source_reference"
+            ]
+          },
+          {
+            "gate_node_id": "NRC-NUREG-0492-FIV-6-G001",
+            "source_id": "NRC_NUREG_0492",
+            "source_cluster_id": "NRC_NUREG_0492_document",
+            "expected_gate": "AND",
+            "evidence_mode": "explicit_diagram_or_caption_label",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/fta_gate_multisource_diagram_external_test_v1.json",
+              "source_document_title": "Fault Tree Handbook, NUREG-0492",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "d90c4b7641f6b0625fcb63816925f6111c4638ad12134c12c22fd2da34aa6b55",
+              "reference_type": "source_label_evidence",
+              "field": "label_evidence",
+              "evidence_kind": "figure_caption_and_explanatory_text",
+              "quote_sha256": "fce9088bd1ac283fe6f232f49b7fafff28b48778380adf9716135b7f92064ac0",
+              "locator": {
+                "printed_page": "IV-7",
+                "pdf_page": 40
+              }
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "gate_label_must_be_supported_by_pinned_source_reference"
+            ]
+          },
+          {
+            "gate_node_id": "HERMES-2010-F4-G001",
+            "source_id": "HERMES_CUBESAT_2010",
+            "source_cluster_id": "HERMES_CUBESAT_2010_document",
+            "expected_gate": "OR",
+            "evidence_mode": "explicit_diagram_or_caption_label",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/fta_gate_multisource_diagram_external_test_v1.json",
+              "source_document_title": "Fault Tree Analysis of the HERMES CubeSat",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "dd460be8ffa487cef47d13534235155f884411c5c0dd143b89c9b0ee2158672e",
+              "reference_type": "source_label_evidence",
+              "field": "label_evidence",
+              "evidence_kind": "figure_gate_glyph_cross_checked_against_figure_3_legend",
+              "quote_sha256": null,
+              "locator": {
+                "printed_page": null,
+                "pdf_page": 3
+              }
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "gate_label_must_be_supported_by_pinned_source_reference"
+            ]
+          },
+          {
+            "gate_node_id": "HERMES-2010-F4-G002",
+            "source_id": "HERMES_CUBESAT_2010",
+            "source_cluster_id": "HERMES_CUBESAT_2010_document",
+            "expected_gate": "OR",
+            "evidence_mode": "explicit_diagram_or_caption_label",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/fta_gate_multisource_diagram_external_test_v1.json",
+              "source_document_title": "Fault Tree Analysis of the HERMES CubeSat",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "dd460be8ffa487cef47d13534235155f884411c5c0dd143b89c9b0ee2158672e",
+              "reference_type": "source_label_evidence",
+              "field": "label_evidence",
+              "evidence_kind": "figure_gate_glyph_cross_checked_against_figure_3_legend",
+              "quote_sha256": null,
+              "locator": {
+                "printed_page": null,
+                "pdf_page": 3
+              }
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "gate_label_must_be_supported_by_pinned_source_reference"
+            ]
+          }
+        ]
+      },
+      {
+        "suite_id": "faa-ast-diagram-v1",
+        "dataset_path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+        "dataset_sha256": "3bf7bbcdab3dc019956fc0c787c38e094802c066e9ca18e7381dd54cf9940a55",
+        "artifact_type": "external_diagram_gate_classification_fixture",
+        "artifact_version": "v1",
+        "sample_count": 13,
+        "source_cluster_count": 1,
+        "label_counts": {
+          "AND": 3,
+          "OR": 10
+        },
+        "label_provenance": "manually_transcribed_from_explicit_gate_symbols_in_source_figures; not human-expert-reviewed",
+        "formal_gold": false,
+        "in_project_gold": false,
+        "previously_used_in_probe": true,
+        "final_test_eligible": false,
+        "evidence_mode": "explicit_diagram_gate_symbol",
+        "invariant_family": "match_explicit_source_gate",
+        "offline_test_command": "python -m unittest evaluation.quality_eval.public_sources.test_probe_faa_ast_fta_gate_external_v1 -v",
+        "probe_script_path": "evaluation/quality_eval/public_sources/probe_faa_ast_fta_gate_external_v1.py",
+        "test_file_path": "evaluation/quality_eval/public_sources/test_probe_faa_ast_fta_gate_external_v1.py",
+        "historical_probe_run": {
+          "path": "evaluation/quality_eval/runs/faa_ast_fta_gate_external_probe_v1_2026-09-27.json",
+          "sha256": "daffcd37a057908a57c8d513f27ca1349b3fb13bd0bae2962a7b2464ca9eafe1",
+          "role": "historical_model_probe_output_not_accuracy_claim"
+        },
+        "cases": [
+          {
+            "gate_node_id": "FAA-A4-1-G01",
+            "source_id": "faa_ast_guide_v1",
+            "source_cluster_id": "source-sha256:66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+            "expected_gate": "AND",
+            "evidence_mode": "explicit_diagram_gate_symbol",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+              "source_document_title": "FAA Guide to Reusable Launch and Reentry Vehicle Reliability Analysis, Version 1.0, April 2005",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+              "reference_type": "explicit_diagram_gate_symbol",
+              "field": "source_figure",
+              "locator": {
+                "figure_id": "A.4-1",
+                "printed_page": 44,
+                "pdf_page": 50
+              }
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "gate_label_must_be_supported_by_pinned_source_reference",
+              "use_figure_gate_symbol_not_parent_child_wording_as_label_evidence"
+            ]
+          },
+          {
+            "gate_node_id": "FAA-A4-1-G02",
+            "source_id": "faa_ast_guide_v1",
+            "source_cluster_id": "source-sha256:66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+            "expected_gate": "OR",
+            "evidence_mode": "explicit_diagram_gate_symbol",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+              "source_document_title": "FAA Guide to Reusable Launch and Reentry Vehicle Reliability Analysis, Version 1.0, April 2005",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+              "reference_type": "explicit_diagram_gate_symbol",
+              "field": "source_figure",
+              "locator": {
+                "figure_id": "A.4-1",
+                "printed_page": 44,
+                "pdf_page": 50
+              }
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "gate_label_must_be_supported_by_pinned_source_reference",
+              "use_figure_gate_symbol_not_parent_child_wording_as_label_evidence"
+            ]
+          },
+          {
+            "gate_node_id": "FAA-A4-1-G03",
+            "source_id": "faa_ast_guide_v1",
+            "source_cluster_id": "source-sha256:66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+            "expected_gate": "OR",
+            "evidence_mode": "explicit_diagram_gate_symbol",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+              "source_document_title": "FAA Guide to Reusable Launch and Reentry Vehicle Reliability Analysis, Version 1.0, April 2005",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+              "reference_type": "explicit_diagram_gate_symbol",
+              "field": "source_figure",
+              "locator": {
+                "figure_id": "A.4-1",
+                "printed_page": 44,
+                "pdf_page": 50
+              }
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "gate_label_must_be_supported_by_pinned_source_reference",
+              "use_figure_gate_symbol_not_parent_child_wording_as_label_evidence"
+            ]
+          },
+          {
+            "gate_node_id": "FAA-A4-1-G04",
+            "source_id": "faa_ast_guide_v1",
+            "source_cluster_id": "source-sha256:66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+            "expected_gate": "OR",
+            "evidence_mode": "explicit_diagram_gate_symbol",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+              "source_document_title": "FAA Guide to Reusable Launch and Reentry Vehicle Reliability Analysis, Version 1.0, April 2005",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+              "reference_type": "explicit_diagram_gate_symbol",
+              "field": "source_figure",
+              "locator": {
+                "figure_id": "A.4-1",
+                "printed_page": 44,
+                "pdf_page": 50
+              }
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "gate_label_must_be_supported_by_pinned_source_reference",
+              "use_figure_gate_symbol_not_parent_child_wording_as_label_evidence"
+            ]
+          },
+          {
+            "gate_node_id": "FAA-A4-1-G05",
+            "source_id": "faa_ast_guide_v1",
+            "source_cluster_id": "source-sha256:66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+            "expected_gate": "OR",
+            "evidence_mode": "explicit_diagram_gate_symbol",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+              "source_document_title": "FAA Guide to Reusable Launch and Reentry Vehicle Reliability Analysis, Version 1.0, April 2005",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+              "reference_type": "explicit_diagram_gate_symbol",
+              "field": "source_figure",
+              "locator": {
+                "figure_id": "A.4-1",
+                "printed_page": 44,
+                "pdf_page": 50
+              }
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "gate_label_must_be_supported_by_pinned_source_reference",
+              "use_figure_gate_symbol_not_parent_child_wording_as_label_evidence"
+            ]
+          },
+          {
+            "gate_node_id": "FAA-B1-3-G01",
+            "source_id": "faa_ast_guide_v1",
+            "source_cluster_id": "source-sha256:66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+            "expected_gate": "OR",
+            "evidence_mode": "explicit_diagram_gate_symbol",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+              "source_document_title": "FAA Guide to Reusable Launch and Reentry Vehicle Reliability Analysis, Version 1.0, April 2005",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+              "reference_type": "explicit_diagram_gate_symbol",
+              "field": "source_figure",
+              "locator": {
+                "figure_id": "B.1-3",
+                "printed_page": 58,
+                "pdf_page": 64
+              }
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "gate_label_must_be_supported_by_pinned_source_reference",
+              "use_figure_gate_symbol_not_parent_child_wording_as_label_evidence"
+            ]
+          },
+          {
+            "gate_node_id": "FAA-B1-3-G02",
+            "source_id": "faa_ast_guide_v1",
+            "source_cluster_id": "source-sha256:66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+            "expected_gate": "AND",
+            "evidence_mode": "explicit_diagram_gate_symbol",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+              "source_document_title": "FAA Guide to Reusable Launch and Reentry Vehicle Reliability Analysis, Version 1.0, April 2005",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+              "reference_type": "explicit_diagram_gate_symbol",
+              "field": "source_figure",
+              "locator": {
+                "figure_id": "B.1-3",
+                "printed_page": 58,
+                "pdf_page": 64
+              }
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "gate_label_must_be_supported_by_pinned_source_reference",
+              "use_figure_gate_symbol_not_parent_child_wording_as_label_evidence"
+            ]
+          },
+          {
+            "gate_node_id": "FAA-B2-2-G01",
+            "source_id": "faa_ast_guide_v1",
+            "source_cluster_id": "source-sha256:66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+            "expected_gate": "AND",
+            "evidence_mode": "explicit_diagram_gate_symbol",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+              "source_document_title": "FAA Guide to Reusable Launch and Reentry Vehicle Reliability Analysis, Version 1.0, April 2005",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+              "reference_type": "explicit_diagram_gate_symbol",
+              "field": "source_figure",
+              "locator": {
+                "figure_id": "B.2-2",
+                "printed_page": 60,
+                "pdf_page": 66
+              }
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "gate_label_must_be_supported_by_pinned_source_reference",
+              "use_figure_gate_symbol_not_parent_child_wording_as_label_evidence"
+            ]
+          },
+          {
+            "gate_node_id": "FAA-B2-2-G02",
+            "source_id": "faa_ast_guide_v1",
+            "source_cluster_id": "source-sha256:66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+            "expected_gate": "OR",
+            "evidence_mode": "explicit_diagram_gate_symbol",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+              "source_document_title": "FAA Guide to Reusable Launch and Reentry Vehicle Reliability Analysis, Version 1.0, April 2005",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+              "reference_type": "explicit_diagram_gate_symbol",
+              "field": "source_figure",
+              "locator": {
+                "figure_id": "B.2-2",
+                "printed_page": 60,
+                "pdf_page": 66
+              }
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "gate_label_must_be_supported_by_pinned_source_reference",
+              "use_figure_gate_symbol_not_parent_child_wording_as_label_evidence"
+            ]
+          },
+          {
+            "gate_node_id": "FAA-B2-2-G03",
+            "source_id": "faa_ast_guide_v1",
+            "source_cluster_id": "source-sha256:66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+            "expected_gate": "OR",
+            "evidence_mode": "explicit_diagram_gate_symbol",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+              "source_document_title": "FAA Guide to Reusable Launch and Reentry Vehicle Reliability Analysis, Version 1.0, April 2005",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+              "reference_type": "explicit_diagram_gate_symbol",
+              "field": "source_figure",
+              "locator": {
+                "figure_id": "B.2-2",
+                "printed_page": 60,
+                "pdf_page": 66
+              }
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "gate_label_must_be_supported_by_pinned_source_reference",
+              "use_figure_gate_symbol_not_parent_child_wording_as_label_evidence"
+            ]
+          },
+          {
+            "gate_node_id": "FAA-B2-2-G04",
+            "source_id": "faa_ast_guide_v1",
+            "source_cluster_id": "source-sha256:66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+            "expected_gate": "OR",
+            "evidence_mode": "explicit_diagram_gate_symbol",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+              "source_document_title": "FAA Guide to Reusable Launch and Reentry Vehicle Reliability Analysis, Version 1.0, April 2005",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+              "reference_type": "explicit_diagram_gate_symbol",
+              "field": "source_figure",
+              "locator": {
+                "figure_id": "B.2-2",
+                "printed_page": 60,
+                "pdf_page": 66
+              }
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "gate_label_must_be_supported_by_pinned_source_reference",
+              "use_figure_gate_symbol_not_parent_child_wording_as_label_evidence"
+            ]
+          },
+          {
+            "gate_node_id": "FAA-B2-2-G05",
+            "source_id": "faa_ast_guide_v1",
+            "source_cluster_id": "source-sha256:66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+            "expected_gate": "OR",
+            "evidence_mode": "explicit_diagram_gate_symbol",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+              "source_document_title": "FAA Guide to Reusable Launch and Reentry Vehicle Reliability Analysis, Version 1.0, April 2005",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+              "reference_type": "explicit_diagram_gate_symbol",
+              "field": "source_figure",
+              "locator": {
+                "figure_id": "B.2-2",
+                "printed_page": 60,
+                "pdf_page": 66
+              }
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "gate_label_must_be_supported_by_pinned_source_reference",
+              "use_figure_gate_symbol_not_parent_child_wording_as_label_evidence"
+            ]
+          },
+          {
+            "gate_node_id": "FAA-B2-2-G06",
+            "source_id": "faa_ast_guide_v1",
+            "source_cluster_id": "source-sha256:66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+            "expected_gate": "OR",
+            "evidence_mode": "explicit_diagram_gate_symbol",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+              "source_document_title": "FAA Guide to Reusable Launch and Reentry Vehicle Reliability Analysis, Version 1.0, April 2005",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+              "reference_type": "explicit_diagram_gate_symbol",
+              "field": "source_figure",
+              "locator": {
+                "figure_id": "B.2-2",
+                "printed_page": 60,
+                "pdf_page": 66
+              }
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "gate_label_must_be_supported_by_pinned_source_reference",
+              "use_figure_gate_symbol_not_parent_child_wording_as_label_evidence"
+            ]
+          }
+        ]
+      },
+      {
+        "suite_id": "text-abstention-external-v1",
+        "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_external_test_v1.json",
+        "dataset_sha256": "2e09ddaeaeb456ee7b8eb1556044710d553c73fb262b3fbe6542125ed689c076",
+        "artifact_type": "external_text_evidence_gate_abstention_fixture",
+        "artifact_version": "v1",
+        "sample_count": 4,
+        "source_cluster_count": 4,
+        "label_counts": {
+          "OR": 1,
+          "unknown": 3
+        },
+        "label_provenance": {
+          "reviewer_role": "independent_ai_expert_role_review",
+          "reviewer_is_human_expert": false,
+          "review_scope": "whether the quoted source evidence directly supports AND/OR among the supplied same-scope candidate causes",
+          "rule": "A list of possible causes alone does not establish OR; a list conjunction alone does not establish AND; use unknown when the source excerpt does not state the combination relation.",
+          "review_note": "AI role review only; not human domain-expert sign-off or project Gold."
+        },
+        "formal_gold": false,
+        "in_project_gold": false,
+        "previously_used_in_probe": true,
+        "final_test_eligible": false,
+        "evidence_mode": "direct_text_gate_evidence_or_insufficient_scope",
+        "invariant_family": "text_gate_evidence_and_abstention",
+        "offline_test_command": "python -m unittest evaluation.quality_eval.public_sources.test_probe_fta_gate_text_evidence_abstention_v1 -v",
+        "probe_script_path": "evaluation/quality_eval/public_sources/probe_fta_gate_text_evidence_abstention_v1.py",
+        "test_file_path": "evaluation/quality_eval/public_sources/test_probe_fta_gate_text_evidence_abstention_v1.py",
+        "historical_probe_run": {
+          "path": "evaluation/quality_eval/runs/fta_gate_text_evidence_abstention_probe_v1_2026-09-27.json",
+          "sha256": "6684e76a7b295b2cae47e4d6cdd6e002fc65bd4246ba3a90d3eb807d385bbd1e",
+          "role": "historical_model_probe_output_not_accuracy_claim"
+        },
+        "cases": [
+          {
+            "gate_node_id": "NASA-APOLLO15-ABSTRACT-CAUSESET-001",
+            "source_id": "NASA_APOLLO15_PARACHUTE_REPORT",
+            "source_cluster_id": "NASA_APOLLO15_PARACHUTE_REPORT_document",
+            "expected_gate": "unknown",
+            "evidence_mode": "direct_text_gate_evidence_or_insufficient_scope",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_external_test_v1.json",
+              "source_document_title": "Apollo 15 main-parachute failure",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "5a33b82a1b3f05085640f24eea63923b4b05b26df41ed27bf57a01458af80945",
+              "reference_type": "no_decisive_gate_quote_in_model_visible_scope",
+              "field": "expected_gate_evidence",
+              "quote_sha256": null,
+              "ablation_control": false
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "do_not_force_and_or_without_direct_gate_evidence"
+            ],
+            "scope_type": "suspect_cause_set_in_abstract"
+          },
+          {
+            "gate_node_id": "TM8-630-P23-ENGINE-STOPS-001",
+            "source_id": "US_ARMY_TM_8_630",
+            "source_cluster_id": "US_ARMY_TM_8_630_document",
+            "expected_gate": "unknown",
+            "evidence_mode": "direct_text_gate_evidence_or_insufficient_scope",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_external_test_v1.json",
+              "source_document_title": "TM 8-630: X-ray field unit generator maintenance instructions",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "8b016f35eb848a19e5f184fb0f9e70bf245ce9519a31f7e9e9170ec84f25fee4",
+              "reference_type": "no_decisive_gate_quote_in_model_visible_scope",
+              "field": "expected_gate_evidence",
+              "quote_sha256": null,
+              "ablation_control": false
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "do_not_force_and_or_without_direct_gate_evidence"
+            ],
+            "scope_type": "possible_cause_table_rows"
+          },
+          {
+            "gate_node_id": "TM9-803-P86-FUEL-CAUSESET-001",
+            "source_id": "US_ARMY_TM_9_803",
+            "source_cluster_id": "US_ARMY_TM_9_803_document",
+            "expected_gate": "unknown",
+            "evidence_mode": "direct_text_gate_evidence_or_insufficient_scope",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_external_test_v1.json",
+              "source_document_title": "TM 9-803: 1/4-ton 4x4 truck (Willys-Overland Model MB and Ford Model GPW)",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "c776551ddecdfce5aa738791e7a88695144939bacc8090adc71ae42b7e374de9",
+              "reference_type": "no_decisive_gate_quote_in_model_visible_scope",
+              "field": "expected_gate_evidence",
+              "quote_sha256": null,
+              "ablation_control": false
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "do_not_force_and_or_without_direct_gate_evidence"
+            ],
+            "scope_type": "possible_cause_table_rows"
+          },
+          {
+            "gate_node_id": "FAA-AC65-15A-F14-44-CAUSE-002",
+            "source_id": "FAA_AC_65_15A",
+            "source_cluster_id": "FAA_AC_65_15A_document",
+            "expected_gate": "OR",
+            "evidence_mode": "direct_text_gate_evidence_or_insufficient_scope",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_external_test_v1.json",
+              "source_document_title": "AC 65-15A: Airframe & Powerplant Mechanics—Airframe Handbook",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "db5dfc68045fa7f71ea5bc79a30439db2718ca5b1aa210194d9d4ab43b15a310",
+              "reference_type": "direct_text_quote",
+              "field": "expected_gate_evidence",
+              "quote_sha256": "99b25e9469b562fb669704d8c22ce6afabbc7871c3b573c499b2b9593270811e",
+              "quote_length_chars": 72
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "gate_label_must_be_supported_by_pinned_source_reference"
+            ],
+            "scope_type": "explicit_alternative_cause_pair"
+          }
+        ]
+      },
+      {
+        "suite_id": "text-abstention-extension-v1",
+        "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v1.json",
+        "dataset_sha256": "cd23b9a388bc3f4f2cc7b77346113e39eb1e563d9008c9b97e0b71a03a75b95b",
+        "artifact_type": "external_text_evidence_gate_abstention_fixture",
+        "artifact_version": "v1-extension",
+        "sample_count": 2,
+        "source_cluster_count": 2,
+        "label_counts": {
+          "AND": 1,
+          "unknown": 1
+        },
+        "label_provenance": {
+          "reviewer_role": "independent_ai_expert_role_review",
+          "reviewer_is_human_expert": false,
+          "review_scope": "whether the quoted source evidence directly supports AND/OR among the supplied same-scope candidate causes",
+          "rule": "A possible-cause list or grammatical conjunction alone does not establish a gate. AND requires direct evidence that all supplied children must co-occur; otherwise preserve unknown.",
+          "review_note": "Exploratory AI role review only; not human domain-expert sign-off or project Gold."
+        },
+        "formal_gold": false,
+        "in_project_gold": false,
+        "previously_used_in_probe": true,
+        "final_test_eligible": false,
+        "evidence_mode": "direct_text_gate_evidence_or_insufficient_scope",
+        "invariant_family": "text_gate_evidence_and_abstention",
+        "offline_test_command": "python -m unittest evaluation.quality_eval.public_sources.test_probe_fta_gate_text_evidence_abstention_v1 -v",
+        "probe_script_path": "evaluation/quality_eval/public_sources/probe_fta_gate_text_evidence_abstention_v1.py",
+        "test_file_path": "evaluation/quality_eval/public_sources/test_probe_fta_gate_text_evidence_abstention_v1.py",
+        "historical_probe_run": {
+          "path": "evaluation/quality_eval/runs/fta_gate_text_evidence_abstention_extension_v1_2026-09-27.json",
+          "sha256": "f1ebd30808246f0f5cbf2645379be8009d8e23d7355c69446f9600bb39c1f808",
+          "role": "historical_model_probe_output_not_accuracy_claim"
+        },
+        "cases": [
+          {
+            "gate_node_id": "NASA-TP2000-FIG28-CATASTROPHIC-AND-001",
+            "source_id": "NASA_TP_2000_209902",
+            "source_cluster_id": "NASA_TP_2000_209902_document",
+            "expected_gate": "AND",
+            "evidence_mode": "direct_text_gate_evidence_or_insufficient_scope",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v1.json",
+              "source_document_title": "Comprehensive Design Reliability Activities for Aerospace Propulsion Systems",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "0082fc8d440b4fb73ff830067320b8d8e03f2dd35d4b89bc758bfd3d5718cb63",
+              "reference_type": "direct_text_quote",
+              "field": "expected_gate_evidence",
+              "quote_sha256": "4f0455c5e1a01bcaecb134ba1b4391315ee47b06b34893fdae3ff1039a483236",
+              "quote_length_chars": 144
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "gate_label_must_be_supported_by_pinned_source_reference"
+            ],
+            "scope_type": "explicit_joint_condition_in_failure_description"
+          },
+          {
+            "gate_node_id": "NASA-TM104382-NICKEL-CAPACITY-POSSIBLE-CAUSES-001",
+            "source_id": "NASA_TM_104382",
+            "source_cluster_id": "NASA_TM_104382_document",
+            "expected_gate": "unknown",
+            "evidence_mode": "direct_text_gate_evidence_or_insufficient_scope",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v1.json",
+              "source_document_title": "Destructive Physical Analysis Results of Ni/H2 Cells Cycled in LEO Regime",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "b1bdc60f065e16ab8ab81d456ac3770ad8e1e1da3ddfcaab6fac4e18fc0f192e",
+              "reference_type": "no_decisive_gate_quote_in_model_visible_scope",
+              "field": "expected_gate_evidence",
+              "quote_sha256": null,
+              "ablation_control": false
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "do_not_force_and_or_without_direct_gate_evidence"
+            ],
+            "scope_type": "possible_cause_list_with_grammatical_conjunction"
+          }
+        ]
+      },
+      {
+        "suite_id": "text-abstention-extension-v2",
+        "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v2.json",
+        "dataset_sha256": "7b8c4852b2e186128182aa2116fb8084db2ec9937d4c6d0e8f4fd9ad2d8be6e3",
+        "artifact_type": "external_text_evidence_gate_abstention_fixture",
+        "artifact_version": "v2-extension",
+        "sample_count": 6,
+        "source_cluster_count": 5,
+        "label_counts": {
+          "AND": 3,
+          "OR": 1,
+          "unknown": 2
+        },
+        "label_provenance": {
+          "reviewer_role": "primary_ai_agent_pre_inference_evidence_review",
+          "reviewer_is_human_expert": false,
+          "review_scope": "whether the quoted public-source evidence directly supports AND/OR among the supplied same-scope child events",
+          "rule": "AND requires direct evidence all supplied child events must co-occur; OR requires direct evidence that any one supplied child or path is sufficient; co-listed possible causes or co-occurring states alone remain unknown.",
+          "review_note": "Exploratory AI role review performed before model inference. Not human domain-expert sign-off, not a second-agent review, and not project Gold."
+        },
+        "formal_gold": false,
+        "in_project_gold": false,
+        "previously_used_in_probe": true,
+        "final_test_eligible": false,
+        "evidence_mode": "direct_text_gate_evidence_or_insufficient_scope",
+        "invariant_family": "text_gate_evidence_and_abstention",
+        "offline_test_command": "python -m unittest evaluation.quality_eval.public_sources.test_probe_fta_gate_text_evidence_abstention_v1 -v",
+        "probe_script_path": "evaluation/quality_eval/public_sources/probe_fta_gate_text_evidence_abstention_v1.py",
+        "test_file_path": "evaluation/quality_eval/public_sources/test_probe_fta_gate_text_evidence_abstention_v1.py",
+        "historical_probe_run": {
+          "path": "evaluation/quality_eval/runs/fta_gate_text_evidence_abstention_extension_v2_2026-09-27.json",
+          "sha256": "3eb1237695da3d6ad30f646e0a4146ee995ceadef4efd1e715754bc758ed9983",
+          "role": "historical_model_probe_output_not_accuracy_claim"
+        },
+        "cases": [
+          {
+            "gate_node_id": "NASA-VESELY-RESISTOR-CRITICAL-PATH-AND-001",
+            "source_id": "NASA_CONF_1972_VESELY_FAULT_TREE",
+            "source_cluster_id": "NASA_CONF_1972_VESELY_DOCUMENT",
+            "expected_gate": "AND",
+            "evidence_mode": "direct_text_gate_evidence_or_insufficient_scope",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v2.json",
+              "source_document_title": "Fault tree applications within the safety program of Idaho Nuclear Corporation",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "1d90c6c326bfbeeb9daf805da3c8ea8bdf78d16ad8aad5e3e35246f5f963f37b",
+              "reference_type": "direct_text_quote",
+              "field": "expected_gate_evidence",
+              "quote_sha256": "397a93454d0e4965ad8b7b514fc71d09fdd743621a9cc0890e4dd6d7aebac2a5",
+              "quote_length_chars": 119
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "gate_label_must_be_supported_by_pinned_source_reference"
+            ],
+            "scope_type": "explicit_joint_critical_path"
+          },
+          {
+            "gate_node_id": "NASA-TM86404-CAREIII-ALL-EVENTS-AND-001",
+            "source_id": "NASA_TM_86404_CARE_III",
+            "source_cluster_id": "NASA_TM_86404_DOCUMENT",
+            "expected_gate": "AND",
+            "evidence_mode": "direct_text_gate_evidence_or_insufficient_scope",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v2.json",
+              "source_document_title": "CARE III Model Overview and User's Guide (First Revision)",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "8c4ba56de57a41ad562c9009d5e700d09cf6dfbb71ed67c9b4161c7669a5ce65",
+              "reference_type": "direct_text_quote",
+              "field": "expected_gate_evidence",
+              "quote_sha256": "36420c2209f6f26ee2c9c59c8670daac138f16097b7ba08c2bb60e72e2a847ca",
+              "quote_length_chars": 37
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "gate_label_must_be_supported_by_pinned_source_reference"
+            ],
+            "scope_type": "all_supplied_inputs_required"
+          },
+          {
+            "gate_node_id": "NASA-TM86404-CAREIII-ANY-INPUT-OR-001",
+            "source_id": "NASA_TM_86404_CARE_III",
+            "source_cluster_id": "NASA_TM_86404_DOCUMENT",
+            "expected_gate": "OR",
+            "evidence_mode": "direct_text_gate_evidence_or_insufficient_scope",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v2.json",
+              "source_document_title": "CARE III Model Overview and User's Guide (First Revision)",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "8c4ba56de57a41ad562c9009d5e700d09cf6dfbb71ed67c9b4161c7669a5ce65",
+              "reference_type": "direct_text_quote",
+              "field": "expected_gate_evidence",
+              "quote_sha256": "2e212cbffb5119cefea1711d75edb4c19047f8b117d7e19a5e2c4a34c4612c18",
+              "quote_length_chars": 42
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "gate_label_must_be_supported_by_pinned_source_reference"
+            ],
+            "scope_type": "any_one_supplied_input_sufficient"
+          },
+          {
+            "gate_node_id": "NASA-CR72723-HVSA-COEXISTENCE-AND-001",
+            "source_id": "NASA_CR_72723_HVSA",
+            "source_cluster_id": "NASA_CR_72723_DOCUMENT",
+            "expected_gate": "AND",
+            "evidence_mode": "direct_text_gate_evidence_or_insufficient_scope",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v2.json",
+              "source_document_title": "High Voltage Solar Array Electrical Configuration Study: Final Report",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "8986aea488a48c76abf3d8f8affbd85c6fa45bdd0e717d81e4a13360a6000f95",
+              "reference_type": "direct_text_quote",
+              "field": "expected_gate_evidence",
+              "quote_sha256": "edb791368a20c4ec0808074489d9a4f9681697a024eb6b89046620ecf52e8437",
+              "quote_length_chars": 102
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "gate_label_must_be_supported_by_pinned_source_reference"
+            ],
+            "scope_type": "coexistence_of_all_inputs_required"
+          },
+          {
+            "gate_node_id": "NASA-TM111876-CONDENSATE-POSSIBLE-CAUSE-LIST-UNKNOWN-001",
+            "source_id": "NASA_TM_111876_CONDENSATE",
+            "source_cluster_id": "NASA_TM_111876_DOCUMENT",
+            "expected_gate": "unknown",
+            "evidence_mode": "direct_text_gate_evidence_or_insufficient_scope",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v2.json",
+              "source_document_title": "Condensate Recycling in Closed Plant Growth Chambers",
+              "source_hash_type": "source_text_sha256",
+              "source_sha256": "ac380bfb3681013e2a030e91e4e26745e60eeb30fe00100c62d0cb1c96d6f178",
+              "reference_type": "no_decisive_gate_quote_in_model_visible_scope",
+              "field": "expected_gate_evidence",
+              "quote_sha256": null,
+              "ablation_control": false
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "do_not_force_and_or_without_direct_gate_evidence"
+            ],
+            "scope_type": "possible_cause_list_with_grammatical_conjunction"
+          },
+          {
+            "gate_node_id": "NASA-APOLLO13-PRESSURE-TEMPERATURE-RUPTURE-UNKNOWN-001",
+            "source_id": "NASA_APOLLO13_REVIEW_BOARD_TRANSCRIPT",
+            "source_cluster_id": "NASA_APOLLO13_REVIEW_BOARD_DOCUMENT",
+            "expected_gate": "unknown",
+            "evidence_mode": "direct_text_gate_evidence_or_insufficient_scope",
+            "source_reference": {
+              "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v2.json",
+              "source_document_title": "Apollo 13 Review Board report, Appendix H transcript excerpt",
+              "source_hash_type": "source_pdf_sha256",
+              "source_sha256": "8804b8ccbb69abe4eb239a73f22b9581be3a67c484aa43284efcd71b9da30391",
+              "reference_type": "no_decisive_gate_quote_in_model_visible_scope",
+              "field": "expected_gate_evidence",
+              "quote_sha256": null,
+              "ablation_control": false
+            },
+            "expected_invariants": [
+              "gate_node_identity_preserved",
+              "source_cluster_identity_preserved",
+              "do_not_force_and_or_without_direct_gate_evidence"
+            ],
+            "scope_type": "co_occurring_states_without_necessity_statement"
+          }
+        ]
+      }
+    ],
+    "cases": [
+      {
+        "gate_node_id": "FAA-AC65-15A-F14-44-CAUSE-002-ABLATION",
+        "source_id": "FAA_AC_65_15A",
+        "source_cluster_id": "FAA_AC_65_15A_document",
+        "expected_gate": "unknown",
+        "evidence_mode": "decisive_text_evidence_withheld_control",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_ablation_v1.json",
+          "source_document_title": "AC 65-15A: Airframe & Powerplant Mechanics—Airframe Handbook",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "db5dfc68045fa7f71ea5bc79a30439db2718ca5b1aa210194d9d4ab43b15a310",
+          "reference_type": "no_decisive_gate_quote_in_model_visible_scope",
+          "field": "expected_gate_evidence",
+          "quote_sha256": null,
+          "ablation_control": true
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "do_not_force_and_or_without_direct_gate_evidence",
+          "withheld_decisive_evidence_must_remain_unknown"
+        ],
+        "scope_type": "decisive_gate_evidence_withheld_control",
+        "paired_original_node_id": "FAA-AC65-15A-F14-44-CAUSE-002"
+      },
+      {
+        "gate_node_id": "NASA-TP2000-FIG28-CATASTROPHIC-AND-001-ABLATION",
+        "source_id": "NASA_TP_2000_209902",
+        "source_cluster_id": "NASA_TP_2000_209902_document",
+        "expected_gate": "unknown",
+        "evidence_mode": "decisive_text_evidence_withheld_control",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_ablation_v1.json",
+          "source_document_title": "Comprehensive Design Reliability Activities for Aerospace Propulsion Systems",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "0082fc8d440b4fb73ff830067320b8d8e03f2dd35d4b89bc758bfd3d5718cb63",
+          "reference_type": "no_decisive_gate_quote_in_model_visible_scope",
+          "field": "expected_gate_evidence",
+          "quote_sha256": null,
+          "ablation_control": true
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "do_not_force_and_or_without_direct_gate_evidence",
+          "withheld_decisive_evidence_must_remain_unknown"
+        ],
+        "scope_type": "decisive_gate_evidence_withheld_control",
+        "paired_original_node_id": "NASA-TP2000-FIG28-CATASTROPHIC-AND-001"
+      },
+      {
+        "gate_node_id": "NASA-VESELY-RESISTOR-CRITICAL-PATH-AND-001-ABLATION",
+        "source_id": "NASA_CONF_1972_VESELY_FAULT_TREE",
+        "source_cluster_id": "NASA_CONF_1972_VESELY_DOCUMENT",
+        "expected_gate": "unknown",
+        "evidence_mode": "decisive_text_evidence_withheld_control",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_ablation_v1.json",
+          "source_document_title": "Fault tree applications within the safety program of Idaho Nuclear Corporation",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "1d90c6c326bfbeeb9daf805da3c8ea8bdf78d16ad8aad5e3e35246f5f963f37b",
+          "reference_type": "no_decisive_gate_quote_in_model_visible_scope",
+          "field": "expected_gate_evidence",
+          "quote_sha256": null,
+          "ablation_control": true
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "do_not_force_and_or_without_direct_gate_evidence",
+          "withheld_decisive_evidence_must_remain_unknown"
+        ],
+        "scope_type": "decisive_gate_evidence_withheld_control",
+        "paired_original_node_id": "NASA-VESELY-RESISTOR-CRITICAL-PATH-AND-001"
+      },
+      {
+        "gate_node_id": "NASA-TM86404-CAREIII-ALL-EVENTS-AND-001-ABLATION",
+        "source_id": "NASA_TM_86404_CARE_III",
+        "source_cluster_id": "NASA_TM_86404_DOCUMENT",
+        "expected_gate": "unknown",
+        "evidence_mode": "decisive_text_evidence_withheld_control",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_ablation_v1.json",
+          "source_document_title": "CARE III Model Overview and User's Guide (First Revision)",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "8c4ba56de57a41ad562c9009d5e700d09cf6dfbb71ed67c9b4161c7669a5ce65",
+          "reference_type": "no_decisive_gate_quote_in_model_visible_scope",
+          "field": "expected_gate_evidence",
+          "quote_sha256": null,
+          "ablation_control": true
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "do_not_force_and_or_without_direct_gate_evidence",
+          "withheld_decisive_evidence_must_remain_unknown"
+        ],
+        "scope_type": "decisive_gate_evidence_withheld_control",
+        "paired_original_node_id": "NASA-TM86404-CAREIII-ALL-EVENTS-AND-001"
+      },
+      {
+        "gate_node_id": "NASA-TM86404-CAREIII-ANY-INPUT-OR-001-ABLATION",
+        "source_id": "NASA_TM_86404_CARE_III",
+        "source_cluster_id": "NASA_TM_86404_DOCUMENT",
+        "expected_gate": "unknown",
+        "evidence_mode": "decisive_text_evidence_withheld_control",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_ablation_v1.json",
+          "source_document_title": "CARE III Model Overview and User's Guide (First Revision)",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "8c4ba56de57a41ad562c9009d5e700d09cf6dfbb71ed67c9b4161c7669a5ce65",
+          "reference_type": "no_decisive_gate_quote_in_model_visible_scope",
+          "field": "expected_gate_evidence",
+          "quote_sha256": null,
+          "ablation_control": true
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "do_not_force_and_or_without_direct_gate_evidence",
+          "withheld_decisive_evidence_must_remain_unknown"
+        ],
+        "scope_type": "decisive_gate_evidence_withheld_control",
+        "paired_original_node_id": "NASA-TM86404-CAREIII-ANY-INPUT-OR-001"
+      },
+      {
+        "gate_node_id": "NASA-CR72723-HVSA-COEXISTENCE-AND-001-ABLATION",
+        "source_id": "NASA_CR_72723_HVSA",
+        "source_cluster_id": "NASA_CR_72723_DOCUMENT",
+        "expected_gate": "unknown",
+        "evidence_mode": "decisive_text_evidence_withheld_control",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_ablation_v1.json",
+          "source_document_title": "High Voltage Solar Array Electrical Configuration Study: Final Report",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "8986aea488a48c76abf3d8f8affbd85c6fa45bdd0e717d81e4a13360a6000f95",
+          "reference_type": "no_decisive_gate_quote_in_model_visible_scope",
+          "field": "expected_gate_evidence",
+          "quote_sha256": null,
+          "ablation_control": true
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "do_not_force_and_or_without_direct_gate_evidence",
+          "withheld_decisive_evidence_must_remain_unknown"
+        ],
+        "scope_type": "decisive_gate_evidence_withheld_control",
+        "paired_original_node_id": "NASA-CR72723-HVSA-COEXISTENCE-AND-001"
+      },
+      {
+        "gate_node_id": "NASA-FTH-2002-F4-3-G001",
+        "source_id": "NASA_FTH_2002",
+        "source_cluster_id": "NASA_FTH_2002_document",
+        "expected_gate": "OR",
+        "evidence_mode": "explicit_diagram_or_caption_label",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/fta_gate_multisource_diagram_external_test_v1.json",
+          "source_document_title": "Fault Tree Handbook with Aerospace Applications, Version 1.1",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "bf841d8aeee4985c02858318a0e7fc5763c0dd2940d46251d189578d81419bb3",
+          "reference_type": "source_label_evidence",
+          "field": "label_evidence",
+          "evidence_kind": "figure_caption",
+          "quote_sha256": "6a2ae553dd42a44f13043066da204d608fbfd1038ec0bf67e32d06608de7ae39",
+          "locator": {
+            "printed_page": 36,
+            "pdf_page": 49
+          }
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "gate_label_must_be_supported_by_pinned_source_reference"
+        ]
+      },
+      {
+        "gate_node_id": "NASA-FTH-2002-F5-5-G001",
+        "source_id": "NASA_FTH_2002",
+        "source_cluster_id": "NASA_FTH_2002_document",
+        "expected_gate": "AND",
+        "evidence_mode": "explicit_diagram_or_caption_label",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/fta_gate_multisource_diagram_external_test_v1.json",
+          "source_document_title": "Fault Tree Handbook with Aerospace Applications, Version 1.1",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "bf841d8aeee4985c02858318a0e7fc5763c0dd2940d46251d189578d81419bb3",
+          "reference_type": "source_label_evidence",
+          "field": "label_evidence",
+          "evidence_kind": "figure_plus_following_explanatory_text",
+          "quote_sha256": "c2dc9553675700c73a73755841deb20187e5af046e929d7a167bdaa5de845476",
+          "locator": {
+            "printed_page": 66,
+            "pdf_page": 79
+          }
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "gate_label_must_be_supported_by_pinned_source_reference"
+        ]
+      },
+      {
+        "gate_node_id": "NRC-NUREG-0492-FIV-6-G001",
+        "source_id": "NRC_NUREG_0492",
+        "source_cluster_id": "NRC_NUREG_0492_document",
+        "expected_gate": "AND",
+        "evidence_mode": "explicit_diagram_or_caption_label",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/fta_gate_multisource_diagram_external_test_v1.json",
+          "source_document_title": "Fault Tree Handbook, NUREG-0492",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "d90c4b7641f6b0625fcb63816925f6111c4638ad12134c12c22fd2da34aa6b55",
+          "reference_type": "source_label_evidence",
+          "field": "label_evidence",
+          "evidence_kind": "figure_caption_and_explanatory_text",
+          "quote_sha256": "fce9088bd1ac283fe6f232f49b7fafff28b48778380adf9716135b7f92064ac0",
+          "locator": {
+            "printed_page": "IV-7",
+            "pdf_page": 40
+          }
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "gate_label_must_be_supported_by_pinned_source_reference"
+        ]
+      },
+      {
+        "gate_node_id": "HERMES-2010-F4-G001",
+        "source_id": "HERMES_CUBESAT_2010",
+        "source_cluster_id": "HERMES_CUBESAT_2010_document",
+        "expected_gate": "OR",
+        "evidence_mode": "explicit_diagram_or_caption_label",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/fta_gate_multisource_diagram_external_test_v1.json",
+          "source_document_title": "Fault Tree Analysis of the HERMES CubeSat",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "dd460be8ffa487cef47d13534235155f884411c5c0dd143b89c9b0ee2158672e",
+          "reference_type": "source_label_evidence",
+          "field": "label_evidence",
+          "evidence_kind": "figure_gate_glyph_cross_checked_against_figure_3_legend",
+          "quote_sha256": null,
+          "locator": {
+            "printed_page": null,
+            "pdf_page": 3
+          }
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "gate_label_must_be_supported_by_pinned_source_reference"
+        ]
+      },
+      {
+        "gate_node_id": "HERMES-2010-F4-G002",
+        "source_id": "HERMES_CUBESAT_2010",
+        "source_cluster_id": "HERMES_CUBESAT_2010_document",
+        "expected_gate": "OR",
+        "evidence_mode": "explicit_diagram_or_caption_label",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/fta_gate_multisource_diagram_external_test_v1.json",
+          "source_document_title": "Fault Tree Analysis of the HERMES CubeSat",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "dd460be8ffa487cef47d13534235155f884411c5c0dd143b89c9b0ee2158672e",
+          "reference_type": "source_label_evidence",
+          "field": "label_evidence",
+          "evidence_kind": "figure_gate_glyph_cross_checked_against_figure_3_legend",
+          "quote_sha256": null,
+          "locator": {
+            "printed_page": null,
+            "pdf_page": 3
+          }
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "gate_label_must_be_supported_by_pinned_source_reference"
+        ]
+      },
+      {
+        "gate_node_id": "FAA-A4-1-G01",
+        "source_id": "faa_ast_guide_v1",
+        "source_cluster_id": "source-sha256:66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+        "expected_gate": "AND",
+        "evidence_mode": "explicit_diagram_gate_symbol",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+          "source_document_title": "FAA Guide to Reusable Launch and Reentry Vehicle Reliability Analysis, Version 1.0, April 2005",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+          "reference_type": "explicit_diagram_gate_symbol",
+          "field": "source_figure",
+          "locator": {
+            "figure_id": "A.4-1",
+            "printed_page": 44,
+            "pdf_page": 50
+          }
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "gate_label_must_be_supported_by_pinned_source_reference",
+          "use_figure_gate_symbol_not_parent_child_wording_as_label_evidence"
+        ]
+      },
+      {
+        "gate_node_id": "FAA-A4-1-G02",
+        "source_id": "faa_ast_guide_v1",
+        "source_cluster_id": "source-sha256:66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+        "expected_gate": "OR",
+        "evidence_mode": "explicit_diagram_gate_symbol",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+          "source_document_title": "FAA Guide to Reusable Launch and Reentry Vehicle Reliability Analysis, Version 1.0, April 2005",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+          "reference_type": "explicit_diagram_gate_symbol",
+          "field": "source_figure",
+          "locator": {
+            "figure_id": "A.4-1",
+            "printed_page": 44,
+            "pdf_page": 50
+          }
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "gate_label_must_be_supported_by_pinned_source_reference",
+          "use_figure_gate_symbol_not_parent_child_wording_as_label_evidence"
+        ]
+      },
+      {
+        "gate_node_id": "FAA-A4-1-G03",
+        "source_id": "faa_ast_guide_v1",
+        "source_cluster_id": "source-sha256:66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+        "expected_gate": "OR",
+        "evidence_mode": "explicit_diagram_gate_symbol",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+          "source_document_title": "FAA Guide to Reusable Launch and Reentry Vehicle Reliability Analysis, Version 1.0, April 2005",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+          "reference_type": "explicit_diagram_gate_symbol",
+          "field": "source_figure",
+          "locator": {
+            "figure_id": "A.4-1",
+            "printed_page": 44,
+            "pdf_page": 50
+          }
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "gate_label_must_be_supported_by_pinned_source_reference",
+          "use_figure_gate_symbol_not_parent_child_wording_as_label_evidence"
+        ]
+      },
+      {
+        "gate_node_id": "FAA-A4-1-G04",
+        "source_id": "faa_ast_guide_v1",
+        "source_cluster_id": "source-sha256:66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+        "expected_gate": "OR",
+        "evidence_mode": "explicit_diagram_gate_symbol",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+          "source_document_title": "FAA Guide to Reusable Launch and Reentry Vehicle Reliability Analysis, Version 1.0, April 2005",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+          "reference_type": "explicit_diagram_gate_symbol",
+          "field": "source_figure",
+          "locator": {
+            "figure_id": "A.4-1",
+            "printed_page": 44,
+            "pdf_page": 50
+          }
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "gate_label_must_be_supported_by_pinned_source_reference",
+          "use_figure_gate_symbol_not_parent_child_wording_as_label_evidence"
+        ]
+      },
+      {
+        "gate_node_id": "FAA-A4-1-G05",
+        "source_id": "faa_ast_guide_v1",
+        "source_cluster_id": "source-sha256:66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+        "expected_gate": "OR",
+        "evidence_mode": "explicit_diagram_gate_symbol",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+          "source_document_title": "FAA Guide to Reusable Launch and Reentry Vehicle Reliability Analysis, Version 1.0, April 2005",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+          "reference_type": "explicit_diagram_gate_symbol",
+          "field": "source_figure",
+          "locator": {
+            "figure_id": "A.4-1",
+            "printed_page": 44,
+            "pdf_page": 50
+          }
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "gate_label_must_be_supported_by_pinned_source_reference",
+          "use_figure_gate_symbol_not_parent_child_wording_as_label_evidence"
+        ]
+      },
+      {
+        "gate_node_id": "FAA-B1-3-G01",
+        "source_id": "faa_ast_guide_v1",
+        "source_cluster_id": "source-sha256:66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+        "expected_gate": "OR",
+        "evidence_mode": "explicit_diagram_gate_symbol",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+          "source_document_title": "FAA Guide to Reusable Launch and Reentry Vehicle Reliability Analysis, Version 1.0, April 2005",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+          "reference_type": "explicit_diagram_gate_symbol",
+          "field": "source_figure",
+          "locator": {
+            "figure_id": "B.1-3",
+            "printed_page": 58,
+            "pdf_page": 64
+          }
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "gate_label_must_be_supported_by_pinned_source_reference",
+          "use_figure_gate_symbol_not_parent_child_wording_as_label_evidence"
+        ]
+      },
+      {
+        "gate_node_id": "FAA-B1-3-G02",
+        "source_id": "faa_ast_guide_v1",
+        "source_cluster_id": "source-sha256:66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+        "expected_gate": "AND",
+        "evidence_mode": "explicit_diagram_gate_symbol",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+          "source_document_title": "FAA Guide to Reusable Launch and Reentry Vehicle Reliability Analysis, Version 1.0, April 2005",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+          "reference_type": "explicit_diagram_gate_symbol",
+          "field": "source_figure",
+          "locator": {
+            "figure_id": "B.1-3",
+            "printed_page": 58,
+            "pdf_page": 64
+          }
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "gate_label_must_be_supported_by_pinned_source_reference",
+          "use_figure_gate_symbol_not_parent_child_wording_as_label_evidence"
+        ]
+      },
+      {
+        "gate_node_id": "FAA-B2-2-G01",
+        "source_id": "faa_ast_guide_v1",
+        "source_cluster_id": "source-sha256:66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+        "expected_gate": "AND",
+        "evidence_mode": "explicit_diagram_gate_symbol",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+          "source_document_title": "FAA Guide to Reusable Launch and Reentry Vehicle Reliability Analysis, Version 1.0, April 2005",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+          "reference_type": "explicit_diagram_gate_symbol",
+          "field": "source_figure",
+          "locator": {
+            "figure_id": "B.2-2",
+            "printed_page": 60,
+            "pdf_page": 66
+          }
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "gate_label_must_be_supported_by_pinned_source_reference",
+          "use_figure_gate_symbol_not_parent_child_wording_as_label_evidence"
+        ]
+      },
+      {
+        "gate_node_id": "FAA-B2-2-G02",
+        "source_id": "faa_ast_guide_v1",
+        "source_cluster_id": "source-sha256:66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+        "expected_gate": "OR",
+        "evidence_mode": "explicit_diagram_gate_symbol",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+          "source_document_title": "FAA Guide to Reusable Launch and Reentry Vehicle Reliability Analysis, Version 1.0, April 2005",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+          "reference_type": "explicit_diagram_gate_symbol",
+          "field": "source_figure",
+          "locator": {
+            "figure_id": "B.2-2",
+            "printed_page": 60,
+            "pdf_page": 66
+          }
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "gate_label_must_be_supported_by_pinned_source_reference",
+          "use_figure_gate_symbol_not_parent_child_wording_as_label_evidence"
+        ]
+      },
+      {
+        "gate_node_id": "FAA-B2-2-G03",
+        "source_id": "faa_ast_guide_v1",
+        "source_cluster_id": "source-sha256:66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+        "expected_gate": "OR",
+        "evidence_mode": "explicit_diagram_gate_symbol",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+          "source_document_title": "FAA Guide to Reusable Launch and Reentry Vehicle Reliability Analysis, Version 1.0, April 2005",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+          "reference_type": "explicit_diagram_gate_symbol",
+          "field": "source_figure",
+          "locator": {
+            "figure_id": "B.2-2",
+            "printed_page": 60,
+            "pdf_page": 66
+          }
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "gate_label_must_be_supported_by_pinned_source_reference",
+          "use_figure_gate_symbol_not_parent_child_wording_as_label_evidence"
+        ]
+      },
+      {
+        "gate_node_id": "FAA-B2-2-G04",
+        "source_id": "faa_ast_guide_v1",
+        "source_cluster_id": "source-sha256:66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+        "expected_gate": "OR",
+        "evidence_mode": "explicit_diagram_gate_symbol",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+          "source_document_title": "FAA Guide to Reusable Launch and Reentry Vehicle Reliability Analysis, Version 1.0, April 2005",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+          "reference_type": "explicit_diagram_gate_symbol",
+          "field": "source_figure",
+          "locator": {
+            "figure_id": "B.2-2",
+            "printed_page": 60,
+            "pdf_page": 66
+          }
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "gate_label_must_be_supported_by_pinned_source_reference",
+          "use_figure_gate_symbol_not_parent_child_wording_as_label_evidence"
+        ]
+      },
+      {
+        "gate_node_id": "FAA-B2-2-G05",
+        "source_id": "faa_ast_guide_v1",
+        "source_cluster_id": "source-sha256:66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+        "expected_gate": "OR",
+        "evidence_mode": "explicit_diagram_gate_symbol",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+          "source_document_title": "FAA Guide to Reusable Launch and Reentry Vehicle Reliability Analysis, Version 1.0, April 2005",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+          "reference_type": "explicit_diagram_gate_symbol",
+          "field": "source_figure",
+          "locator": {
+            "figure_id": "B.2-2",
+            "printed_page": 60,
+            "pdf_page": 66
+          }
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "gate_label_must_be_supported_by_pinned_source_reference",
+          "use_figure_gate_symbol_not_parent_child_wording_as_label_evidence"
+        ]
+      },
+      {
+        "gate_node_id": "FAA-B2-2-G06",
+        "source_id": "faa_ast_guide_v1",
+        "source_cluster_id": "source-sha256:66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+        "expected_gate": "OR",
+        "evidence_mode": "explicit_diagram_gate_symbol",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+          "source_document_title": "FAA Guide to Reusable Launch and Reentry Vehicle Reliability Analysis, Version 1.0, April 2005",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+          "reference_type": "explicit_diagram_gate_symbol",
+          "field": "source_figure",
+          "locator": {
+            "figure_id": "B.2-2",
+            "printed_page": 60,
+            "pdf_page": 66
+          }
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "gate_label_must_be_supported_by_pinned_source_reference",
+          "use_figure_gate_symbol_not_parent_child_wording_as_label_evidence"
+        ]
+      },
+      {
+        "gate_node_id": "NASA-APOLLO15-ABSTRACT-CAUSESET-001",
+        "source_id": "NASA_APOLLO15_PARACHUTE_REPORT",
+        "source_cluster_id": "NASA_APOLLO15_PARACHUTE_REPORT_document",
+        "expected_gate": "unknown",
+        "evidence_mode": "direct_text_gate_evidence_or_insufficient_scope",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_external_test_v1.json",
+          "source_document_title": "Apollo 15 main-parachute failure",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "5a33b82a1b3f05085640f24eea63923b4b05b26df41ed27bf57a01458af80945",
+          "reference_type": "no_decisive_gate_quote_in_model_visible_scope",
+          "field": "expected_gate_evidence",
+          "quote_sha256": null,
+          "ablation_control": false
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "do_not_force_and_or_without_direct_gate_evidence"
+        ],
+        "scope_type": "suspect_cause_set_in_abstract"
+      },
+      {
+        "gate_node_id": "TM8-630-P23-ENGINE-STOPS-001",
+        "source_id": "US_ARMY_TM_8_630",
+        "source_cluster_id": "US_ARMY_TM_8_630_document",
+        "expected_gate": "unknown",
+        "evidence_mode": "direct_text_gate_evidence_or_insufficient_scope",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_external_test_v1.json",
+          "source_document_title": "TM 8-630: X-ray field unit generator maintenance instructions",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "8b016f35eb848a19e5f184fb0f9e70bf245ce9519a31f7e9e9170ec84f25fee4",
+          "reference_type": "no_decisive_gate_quote_in_model_visible_scope",
+          "field": "expected_gate_evidence",
+          "quote_sha256": null,
+          "ablation_control": false
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "do_not_force_and_or_without_direct_gate_evidence"
+        ],
+        "scope_type": "possible_cause_table_rows"
+      },
+      {
+        "gate_node_id": "TM9-803-P86-FUEL-CAUSESET-001",
+        "source_id": "US_ARMY_TM_9_803",
+        "source_cluster_id": "US_ARMY_TM_9_803_document",
+        "expected_gate": "unknown",
+        "evidence_mode": "direct_text_gate_evidence_or_insufficient_scope",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_external_test_v1.json",
+          "source_document_title": "TM 9-803: 1/4-ton 4x4 truck (Willys-Overland Model MB and Ford Model GPW)",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "c776551ddecdfce5aa738791e7a88695144939bacc8090adc71ae42b7e374de9",
+          "reference_type": "no_decisive_gate_quote_in_model_visible_scope",
+          "field": "expected_gate_evidence",
+          "quote_sha256": null,
+          "ablation_control": false
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "do_not_force_and_or_without_direct_gate_evidence"
+        ],
+        "scope_type": "possible_cause_table_rows"
+      },
+      {
+        "gate_node_id": "FAA-AC65-15A-F14-44-CAUSE-002",
+        "source_id": "FAA_AC_65_15A",
+        "source_cluster_id": "FAA_AC_65_15A_document",
+        "expected_gate": "OR",
+        "evidence_mode": "direct_text_gate_evidence_or_insufficient_scope",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_external_test_v1.json",
+          "source_document_title": "AC 65-15A: Airframe & Powerplant Mechanics—Airframe Handbook",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "db5dfc68045fa7f71ea5bc79a30439db2718ca5b1aa210194d9d4ab43b15a310",
+          "reference_type": "direct_text_quote",
+          "field": "expected_gate_evidence",
+          "quote_sha256": "99b25e9469b562fb669704d8c22ce6afabbc7871c3b573c499b2b9593270811e",
+          "quote_length_chars": 72
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "gate_label_must_be_supported_by_pinned_source_reference"
+        ],
+        "scope_type": "explicit_alternative_cause_pair"
+      },
+      {
+        "gate_node_id": "NASA-TP2000-FIG28-CATASTROPHIC-AND-001",
+        "source_id": "NASA_TP_2000_209902",
+        "source_cluster_id": "NASA_TP_2000_209902_document",
+        "expected_gate": "AND",
+        "evidence_mode": "direct_text_gate_evidence_or_insufficient_scope",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v1.json",
+          "source_document_title": "Comprehensive Design Reliability Activities for Aerospace Propulsion Systems",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "0082fc8d440b4fb73ff830067320b8d8e03f2dd35d4b89bc758bfd3d5718cb63",
+          "reference_type": "direct_text_quote",
+          "field": "expected_gate_evidence",
+          "quote_sha256": "4f0455c5e1a01bcaecb134ba1b4391315ee47b06b34893fdae3ff1039a483236",
+          "quote_length_chars": 144
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "gate_label_must_be_supported_by_pinned_source_reference"
+        ],
+        "scope_type": "explicit_joint_condition_in_failure_description"
+      },
+      {
+        "gate_node_id": "NASA-TM104382-NICKEL-CAPACITY-POSSIBLE-CAUSES-001",
+        "source_id": "NASA_TM_104382",
+        "source_cluster_id": "NASA_TM_104382_document",
+        "expected_gate": "unknown",
+        "evidence_mode": "direct_text_gate_evidence_or_insufficient_scope",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v1.json",
+          "source_document_title": "Destructive Physical Analysis Results of Ni/H2 Cells Cycled in LEO Regime",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "b1bdc60f065e16ab8ab81d456ac3770ad8e1e1da3ddfcaab6fac4e18fc0f192e",
+          "reference_type": "no_decisive_gate_quote_in_model_visible_scope",
+          "field": "expected_gate_evidence",
+          "quote_sha256": null,
+          "ablation_control": false
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "do_not_force_and_or_without_direct_gate_evidence"
+        ],
+        "scope_type": "possible_cause_list_with_grammatical_conjunction"
+      },
+      {
+        "gate_node_id": "NASA-VESELY-RESISTOR-CRITICAL-PATH-AND-001",
+        "source_id": "NASA_CONF_1972_VESELY_FAULT_TREE",
+        "source_cluster_id": "NASA_CONF_1972_VESELY_DOCUMENT",
+        "expected_gate": "AND",
+        "evidence_mode": "direct_text_gate_evidence_or_insufficient_scope",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v2.json",
+          "source_document_title": "Fault tree applications within the safety program of Idaho Nuclear Corporation",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "1d90c6c326bfbeeb9daf805da3c8ea8bdf78d16ad8aad5e3e35246f5f963f37b",
+          "reference_type": "direct_text_quote",
+          "field": "expected_gate_evidence",
+          "quote_sha256": "397a93454d0e4965ad8b7b514fc71d09fdd743621a9cc0890e4dd6d7aebac2a5",
+          "quote_length_chars": 119
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "gate_label_must_be_supported_by_pinned_source_reference"
+        ],
+        "scope_type": "explicit_joint_critical_path"
+      },
+      {
+        "gate_node_id": "NASA-TM86404-CAREIII-ALL-EVENTS-AND-001",
+        "source_id": "NASA_TM_86404_CARE_III",
+        "source_cluster_id": "NASA_TM_86404_DOCUMENT",
+        "expected_gate": "AND",
+        "evidence_mode": "direct_text_gate_evidence_or_insufficient_scope",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v2.json",
+          "source_document_title": "CARE III Model Overview and User's Guide (First Revision)",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "8c4ba56de57a41ad562c9009d5e700d09cf6dfbb71ed67c9b4161c7669a5ce65",
+          "reference_type": "direct_text_quote",
+          "field": "expected_gate_evidence",
+          "quote_sha256": "36420c2209f6f26ee2c9c59c8670daac138f16097b7ba08c2bb60e72e2a847ca",
+          "quote_length_chars": 37
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "gate_label_must_be_supported_by_pinned_source_reference"
+        ],
+        "scope_type": "all_supplied_inputs_required"
+      },
+      {
+        "gate_node_id": "NASA-TM86404-CAREIII-ANY-INPUT-OR-001",
+        "source_id": "NASA_TM_86404_CARE_III",
+        "source_cluster_id": "NASA_TM_86404_DOCUMENT",
+        "expected_gate": "OR",
+        "evidence_mode": "direct_text_gate_evidence_or_insufficient_scope",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v2.json",
+          "source_document_title": "CARE III Model Overview and User's Guide (First Revision)",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "8c4ba56de57a41ad562c9009d5e700d09cf6dfbb71ed67c9b4161c7669a5ce65",
+          "reference_type": "direct_text_quote",
+          "field": "expected_gate_evidence",
+          "quote_sha256": "2e212cbffb5119cefea1711d75edb4c19047f8b117d7e19a5e2c4a34c4612c18",
+          "quote_length_chars": 42
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "gate_label_must_be_supported_by_pinned_source_reference"
+        ],
+        "scope_type": "any_one_supplied_input_sufficient"
+      },
+      {
+        "gate_node_id": "NASA-CR72723-HVSA-COEXISTENCE-AND-001",
+        "source_id": "NASA_CR_72723_HVSA",
+        "source_cluster_id": "NASA_CR_72723_DOCUMENT",
+        "expected_gate": "AND",
+        "evidence_mode": "direct_text_gate_evidence_or_insufficient_scope",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v2.json",
+          "source_document_title": "High Voltage Solar Array Electrical Configuration Study: Final Report",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "8986aea488a48c76abf3d8f8affbd85c6fa45bdd0e717d81e4a13360a6000f95",
+          "reference_type": "direct_text_quote",
+          "field": "expected_gate_evidence",
+          "quote_sha256": "edb791368a20c4ec0808074489d9a4f9681697a024eb6b89046620ecf52e8437",
+          "quote_length_chars": 102
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "gate_label_must_be_supported_by_pinned_source_reference"
+        ],
+        "scope_type": "coexistence_of_all_inputs_required"
+      },
+      {
+        "gate_node_id": "NASA-TM111876-CONDENSATE-POSSIBLE-CAUSE-LIST-UNKNOWN-001",
+        "source_id": "NASA_TM_111876_CONDENSATE",
+        "source_cluster_id": "NASA_TM_111876_DOCUMENT",
+        "expected_gate": "unknown",
+        "evidence_mode": "direct_text_gate_evidence_or_insufficient_scope",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v2.json",
+          "source_document_title": "Condensate Recycling in Closed Plant Growth Chambers",
+          "source_hash_type": "source_text_sha256",
+          "source_sha256": "ac380bfb3681013e2a030e91e4e26745e60eeb30fe00100c62d0cb1c96d6f178",
+          "reference_type": "no_decisive_gate_quote_in_model_visible_scope",
+          "field": "expected_gate_evidence",
+          "quote_sha256": null,
+          "ablation_control": false
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "do_not_force_and_or_without_direct_gate_evidence"
+        ],
+        "scope_type": "possible_cause_list_with_grammatical_conjunction"
+      },
+      {
+        "gate_node_id": "NASA-APOLLO13-PRESSURE-TEMPERATURE-RUPTURE-UNKNOWN-001",
+        "source_id": "NASA_APOLLO13_REVIEW_BOARD_TRANSCRIPT",
+        "source_cluster_id": "NASA_APOLLO13_REVIEW_BOARD_DOCUMENT",
+        "expected_gate": "unknown",
+        "evidence_mode": "direct_text_gate_evidence_or_insufficient_scope",
+        "source_reference": {
+          "dataset_path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v2.json",
+          "source_document_title": "Apollo 13 Review Board report, Appendix H transcript excerpt",
+          "source_hash_type": "source_pdf_sha256",
+          "source_sha256": "8804b8ccbb69abe4eb239a73f22b9581be3a67c484aa43284efcd71b9da30391",
+          "reference_type": "no_decisive_gate_quote_in_model_visible_scope",
+          "field": "expected_gate_evidence",
+          "quote_sha256": null,
+          "ablation_control": false
+        },
+        "expected_invariants": [
+          "gate_node_identity_preserved",
+          "source_cluster_identity_preserved",
+          "do_not_force_and_or_without_direct_gate_evidence"
+        ],
+        "scope_type": "co_occurring_states_without_necessity_statement"
+      }
+    ],
+    "future_split_policy": {
+      "split_unit": "source_cluster",
+      "existing_cases_are_seen": true,
+      "new_development_source_clusters_must_be_disjoint_from_final": true,
+      "final_test_must_be_sealed_until_model_prompt_and_rules_are_frozen": true,
+      "if_final_results_are_used_for_tuning": "reclassify_as_development_or_regression_and_collect_a_new_final_set",
+      "source_cluster_overlap_with_this_regression_suite_for_final": "forbidden"
+    }
+  },
+  "independent_final_validation": {
+    "status": "not_created",
+    "sample_count": 0,
+    "source_cluster_count": 0,
+    "reason": "All currently available 36 labeled gate cases have already been used in exploratory probes; no untouched source-cluster holdout exists.",
+    "required_before_creation": [
+      "acquire new source documents/clusters not present in the frozen regression suite",
+      "freeze model, prompt, policy, and parser before opening final labels",
+      "record population, source hashes, provenance, per-class support, selective risk/coverage, and failure cases"
+    ]
+  }
+}

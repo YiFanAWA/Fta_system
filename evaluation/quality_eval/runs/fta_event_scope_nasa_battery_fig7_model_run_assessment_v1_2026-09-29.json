@@ -1,0 +1,53 @@
+{
+  "artifact_type": "fta_event_scope_model_run_assessment",
+  "artifact_version": "v1",
+  "assessment_status": "completed_request_but_no_usable_output",
+  "run_artifact": "evaluation/quality_eval/runs/fta_event_scope_nasa_battery_fig7_model_run_v1_2026-09-29.json",
+  "attempt_receipt": "evaluation/quality_eval/runs/fta_event_scope_nasa_battery_fig7_model_run_v1_2026-09-29.attempt.json",
+  "case": {
+    "packet_id": "NASA_GSFC_BATTERY_FIG7_MODULE_FAILURE_DEV_001",
+    "source_cluster_id": "NASA_GSFC_LISOCL2_BATTERY_SAFETY_ANALYSIS_1987",
+    "exposure_status": "seen_development_only",
+    "model_input_sha256": "1e77b80a8f2a6ae62443468d21b075e4a213a3544cdc2b882a5d69b6ba6d4325"
+  },
+  "request_observation": {
+    "provider_host": "api.deepseek.com",
+    "requested_model": "deepseek-flash",
+    "returned_model": "deepseek-flash",
+    "request_count": 1,
+    "retry_count": 0,
+    "temperature": 0,
+    "max_tokens": 3000,
+    "finish_reason": "length",
+    "usage": {
+      "prompt_tokens": 853,
+      "completion_tokens": 3000,
+      "total_tokens": 3853
+    },
+    "prompt_sha256": "47c59de09f312c6a4d26cd63885e484a9f92bfcc4fbfa61072285b68035456ef"
+  },
+  "output_assessment": {
+    "raw_text_character_count": 0,
+    "strict_json_parsed": false,
+    "parse_error": "response_is_not_strict_json",
+    "predicted_gate_scope_count": 0,
+    "evidence_quote_assessment": "not_available",
+    "comparison_to_reference_gold": "not_performed",
+    "gate_metrics": null
+  },
+  "interpretation": {
+    "observed": "The provider returned a completion marked finish_reason=length after consuming the full 3000-token completion limit, but the stored final message content was empty.",
+    "inference": "The output budget was insufficient for a usable final JSON response, potentially because generation/reasoning consumed the available completion budget.",
+    "inference_is_not_proven": true,
+    "action_taken": "Stopped after the single authorized request; no retry or follow-up model call was made."
+  },
+  "claim_boundaries": {
+    "development_only": true,
+    "human_expert_gold": false,
+    "accuracy_or_calibration_claim_allowed": false,
+    "independent_final_validation": false,
+    "production_or_database_write": false,
+    "fta_ready": false,
+    "production_ready": false
+  }
+}

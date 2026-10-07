@@ -1,0 +1,183 @@
+{
+  "artifact_type": "external_diagram_gate_classification_fixture",
+  "artifact_version": "v1",
+  "created_at": "2026-09-27",
+  "formal_gold": false,
+  "in_project_gold": false,
+  "database_written": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "label_provenance": "transcribed_from_explicit_figure_gate_symbols_or_captions_and_checked_against_source_page; not project_expert_gold",
+  "source_document_count": 3,
+  "source_cluster_count": 3,
+  "sources": [
+    {
+      "source_id": "NASA_FTH_2002",
+      "source_cluster_id": "NASA_FTH_2002_document",
+      "document_title": "Fault Tree Handbook with Aerospace Applications, Version 1.1",
+      "authors_or_organization": "NASA",
+      "publication_date": "2002-08",
+      "source_url": "https://extapps.ksc.nasa.gov/reliability/Documents/Fault_Tree_Handbook_with_Aerospace_Applications_August_2002.pdf",
+      "source_pdf_sha256": "bf841d8aeee4985c02858318a0e7fc5763c0dd2940d46251d189578d81419bb3",
+      "source_pages_used": [49, 78, 79],
+      "label_basis": "figure_caption_and_explicit_explanatory_text",
+      "independence_note": "One source-document cluster; do not count each gate as an independent source."
+    },
+    {
+      "source_id": "NRC_NUREG_0492",
+      "source_cluster_id": "NRC_NUREG_0492_document",
+      "document_title": "Fault Tree Handbook, NUREG-0492",
+      "authors_or_organization": "U.S. Nuclear Regulatory Commission",
+      "publication_date": "1981",
+      "source_url": "https://www.govinfo.gov/content/pkg/GOVPUB-Y3_N88-PURL-gpo80924/pdf/GOVPUB-Y3_N88-PURL-gpo80924.pdf",
+      "source_pdf_sha256": "d90c4b7641f6b0625fcb63816925f6111c4638ad12134c12c22fd2da34aa6b55",
+      "source_pages_used": [40],
+      "label_basis": "figure_caption_and_explicit_explanatory_text",
+      "independence_note": "One source-document cluster."
+    },
+    {
+      "source_id": "HERMES_CUBESAT_2010",
+      "source_cluster_id": "HERMES_CUBESAT_2010_document",
+      "document_title": "Fault Tree Analysis of the HERMES CubeSat",
+      "authors_or_organization": "Felix Bidner, University of Colorado at Boulder; hosted by NASA SSRI Knowledge Base",
+      "publication_date": "2010-03-29",
+      "source_url": "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/CUSRS10_14%20Fault%20Tree%20Analysis%20of%20the%20HERMES%20CubeSat.pdf",
+      "source_pdf_sha256": "dd460be8ffa487cef47d13534235155f884411c5c0dd143b89c9b0ee2158672e",
+      "source_pages_used": [3, 4],
+      "label_basis": "figure_gate_glyph_cross_checked_against_this_document_s_figure_3_symbol_legend",
+      "independence_note": "University project paper, not a NASA-authored standard; cites the NASA Fault Tree Handbook, so the sources are not methodologically independent."
+    }
+  ],
+  "inference_input_policy": "The model receives only parent_event and direct_child_events. Source identity, figure/page, diagram, gate glyph, caption, label evidence, and expected gate are withheld.",
+  "scope_note": "Small descriptive external classification probe only. It tests whether the model can infer the diagram gate from event wording; it does not test evidence-backed gate authorization from raw fault text. Unknown/insufficient-evidence behavior must be evaluated separately and is not represented as a diagram gate label.",
+  "excluded_examples": [
+    {
+      "source_id": "NASA_FTH_2002",
+      "figure_id": "4-2 / 4-5",
+      "reason": "Abstract Q/A/B examples have no event semantics; scoring their hidden diagram labels as text-inferable would conflate diagram truth with evidence sufficiency."
+    },
+    {
+      "source_id": "NASA_FTH_2002",
+      "figure_id": "6-7",
+      "reason": "The child text 'B OR C' exposes the nested gate label and is an algebraic illustration repeated in another handbook."
+    },
+    {
+      "source_id": "HERMES_CUBESAT_2010",
+      "figure_id": "1",
+      "reason": "The event text itself contains 'or', leaking the expected label."
+    },
+    {
+      "source_id": "NASA_FTH_2002",
+      "figure_id": "4-6",
+      "reason": "Omitted to avoid double-weighting the same all-power-sources-failed scenario represented by NRC Figure IV-6."
+    }
+  ],
+  "gate_nodes": [
+    {
+      "gate_node_id": "NASA-FTH-2002-F4-3-G001",
+      "source_id": "NASA_FTH_2002",
+      "source_cluster_id": "NASA_FTH_2002_document",
+      "figure_id": "4-3",
+      "printed_page": 36,
+      "pdf_page": 49,
+      "parent_event": "Valve is failed closed",
+      "children": [
+        "Valve is closed due to hardware failure",
+        "Valve is closed due to human error",
+        "Valve is closed due to testing"
+      ],
+      "expected_gate": "OR",
+      "label_evidence": {
+        "kind": "figure_caption",
+        "quote": "Figure 4-3. Specific Example of the OR-Gate.",
+        "printed_page": 36,
+        "pdf_page": 49
+      }
+    },
+    {
+      "gate_node_id": "NASA-FTH-2002-F5-5-G001",
+      "source_id": "NASA_FTH_2002",
+      "source_cluster_id": "NASA_FTH_2002_document",
+      "figure_id": "5-5",
+      "printed_page": 65,
+      "pdf_page": 78,
+      "parent_event": "Hydrazine leak occurs in fuel and results in explosion",
+      "children": [
+        "Hydrazine leak occurs in fuel pump",
+        "Hydrazine leak in fuel pump is of sufficient size to explode given a leak",
+        "Hydrazine in fuel explodes given leak occurs and is of a sufficient size"
+      ],
+      "expected_gate": "AND",
+      "label_evidence": {
+        "kind": "figure_plus_following_explanatory_text",
+        "quote": "As observed in the above fault tree structure, the sequence is modeled as an AND gate.",
+        "printed_page": 66,
+        "pdf_page": 79
+      }
+    },
+    {
+      "gate_node_id": "NRC-NUREG-0492-FIV-6-G001",
+      "source_id": "NRC_NUREG_0492",
+      "source_cluster_id": "NRC_NUREG_0492_document",
+      "figure_id": "IV-6",
+      "printed_page": "IV-7",
+      "pdf_page": 40,
+      "parent_event": "All onsite DC power is failed",
+      "children": [
+        "Diesel generator 1 is failed",
+        "Diesel generator 2 is failed",
+        "Battery is failed"
+      ],
+      "expected_gate": "AND",
+      "label_evidence": {
+        "kind": "figure_caption_and_explanatory_text",
+        "quote": "Figure IV-6. Specific Example of an AND-Gate",
+        "supporting_quote": "A failure of both diesel generators and of the battery will result in a failure of all onsite DC power.",
+        "printed_page": "IV-7",
+        "pdf_page": 40
+      }
+    },
+    {
+      "gate_node_id": "HERMES-2010-F4-G001",
+      "source_id": "HERMES_CUBESAT_2010",
+      "source_cluster_id": "HERMES_CUBESAT_2010_document",
+      "figure_id": "4",
+      "printed_page": null,
+      "pdf_page": 4,
+      "parent_event": "Antenna pointing accuracy outside of plus or minus 20 degrees",
+      "children": [
+        "Error in coding determination algorithm",
+        "Magnetometer"
+      ],
+      "expected_gate": "OR",
+      "label_evidence": {
+        "kind": "figure_gate_glyph_cross_checked_against_figure_3_legend",
+        "printed_page": null,
+        "pdf_page": 3,
+        "figure_page": 4,
+        "note": "The figure 4 gate glyph matches the OR symbol defined in figure 3."
+      }
+    },
+    {
+      "gate_node_id": "HERMES-2010-F4-G002",
+      "source_id": "HERMES_CUBESAT_2010",
+      "source_cluster_id": "HERMES_CUBESAT_2010_document",
+      "figure_id": "4",
+      "printed_page": null,
+      "pdf_page": 4,
+      "parent_event": "Magnetometer",
+      "children": [
+        "No power provided to magnetometer",
+        "Pin failure"
+      ],
+      "expected_gate": "OR",
+      "label_evidence": {
+        "kind": "figure_gate_glyph_cross_checked_against_figure_3_legend",
+        "printed_page": null,
+        "pdf_page": 3,
+        "figure_page": 4,
+        "note": "The figure 4 gate glyph matches the OR symbol defined in figure 3."
+      }
+    }
+  ]
+}

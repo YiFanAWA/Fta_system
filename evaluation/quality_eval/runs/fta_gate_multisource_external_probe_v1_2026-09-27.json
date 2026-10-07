@@ -1,0 +1,250 @@
+{
+  "artifact_type": "external_multisource_diagram_gate_classification_probe",
+  "artifact_version": "v1",
+  "created_at": "2026-09-27T07:52:36.445557+00:00",
+  "status": "completed",
+  "formal_gold": false,
+  "in_project_gold": false,
+  "database_written": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "evaluation_scope": "Small descriptive external classification probe only. It tests whether the model can infer the diagram gate from event wording; it does not test evidence-backed gate authorization from raw fault text. Unknown/insufficient-evidence behavior must be evaluated separately and is not represented as a diagram gate label.",
+  "confidence_semantics": "raw uncalibrated model self-assessment, not event probability",
+  "metadata": {
+    "model_id": "deepseek-flash",
+    "provider_host": "api.deepseek.com",
+    "temperature": 0,
+    "requests_planned": 5,
+    "requests_succeeded": 5,
+    "requests_failed": 0,
+    "source_document_count": 3,
+    "source_cluster_count": 3,
+    "fixture_sha256": "5484f4760097ede28c5e4d52aa76e22b9b9fb8ea563984684c98342f7a755b55",
+    "verified_source_pdf_sha256": {
+      "NASA_FTH_2002": "bf841d8aeee4985c02858318a0e7fc5763c0dd2940d46251d189578d81419bb3",
+      "NRC_NUREG_0492": "d90c4b7641f6b0625fcb63816925f6111c4638ad12134c12c22fd2da34aa6b55",
+      "HERMES_CUBESAT_2010": "dd460be8ffa487cef47d13534235155f884411c5c0dd143b89c9b0ee2158672e"
+    },
+    "source_pdf_paths": {
+      "NASA_FTH_2002": "C:\\Users\\爹\\Documents\\Codex\\2026-09-11\\ni\\work\\Fta_system\\tmp\\pdfs\\fta-multisource-probe-20260927\\nasa_fta_handbook_2002.pdf",
+      "NRC_NUREG_0492": "C:\\Users\\爹\\Documents\\Codex\\2026-09-11\\ni\\work\\Fta_system\\tmp\\pdfs\\fta-multisource-probe-20260927\\nrc_nureg_0492.pdf",
+      "HERMES_CUBESAT_2010": "C:\\Users\\爹\\Documents\\Codex\\2026-09-11\\ni\\work\\Fta_system\\tmp\\pdfs\\fta-multisource-probe-20260927\\nasa_hermes_cubesat_fta_2010.pdf"
+    }
+  },
+  "summary": {
+    "sample_count": 5,
+    "exact_accuracy": 1.0,
+    "always_OR_baseline_accuracy": 0.6,
+    "balanced_accuracy_and_or": 1.0,
+    "macro_f1_and_or": 1.0,
+    "per_gate_recall": {
+      "AND": 1.0,
+      "OR": 1.0
+    },
+    "decisive_coverage": 1.0,
+    "selective_accuracy": 1.0,
+    "unknown_count": 0,
+    "multiclass_brier_raw_self_report_only_not_calibrated": 0.06756000000000001,
+    "confusion_matrix_gold_rows_predicted_columns": {
+      "AND": {
+        "AND": 2,
+        "OR": 0,
+        "unknown": 0
+      },
+      "OR": {
+        "AND": 0,
+        "OR": 3,
+        "unknown": 0
+      }
+    }
+  },
+  "per_source_summary": {
+    "NASA_FTH_2002": {
+      "sample_count": 2,
+      "exact_accuracy": 1.0,
+      "always_OR_baseline_accuracy": 0.5,
+      "balanced_accuracy_and_or": 1.0,
+      "macro_f1_and_or": 1.0,
+      "per_gate_recall": {
+        "AND": 1.0,
+        "OR": 1.0
+      },
+      "decisive_coverage": 1.0,
+      "selective_accuracy": 1.0,
+      "unknown_count": 0,
+      "multiclass_brier_raw_self_report_only_not_calibrated": 0.0664,
+      "confusion_matrix_gold_rows_predicted_columns": {
+        "AND": {
+          "AND": 1,
+          "OR": 0,
+          "unknown": 0
+        },
+        "OR": {
+          "AND": 0,
+          "OR": 1,
+          "unknown": 0
+        }
+      }
+    },
+    "NRC_NUREG_0492": {
+      "sample_count": 1,
+      "exact_accuracy": 1.0,
+      "always_OR_baseline_accuracy": 0.0,
+      "balanced_accuracy_and_or": 0.5,
+      "macro_f1_and_or": 0.5,
+      "per_gate_recall": {
+        "AND": 1.0,
+        "OR": 0.0
+      },
+      "decisive_coverage": 1.0,
+      "selective_accuracy": 1.0,
+      "unknown_count": 0,
+      "multiclass_brier_raw_self_report_only_not_calibrated": 0.014999999999999996,
+      "confusion_matrix_gold_rows_predicted_columns": {
+        "AND": {
+          "AND": 1,
+          "OR": 0,
+          "unknown": 0
+        },
+        "OR": {
+          "AND": 0,
+          "OR": 0,
+          "unknown": 0
+        }
+      }
+    },
+    "HERMES_CUBESAT_2010": {
+      "sample_count": 2,
+      "exact_accuracy": 1.0,
+      "always_OR_baseline_accuracy": 1.0,
+      "balanced_accuracy_and_or": 0.5,
+      "macro_f1_and_or": 0.5,
+      "per_gate_recall": {
+        "AND": 0.0,
+        "OR": 1.0
+      },
+      "decisive_coverage": 1.0,
+      "selective_accuracy": 1.0,
+      "unknown_count": 0,
+      "multiclass_brier_raw_self_report_only_not_calibrated": 0.09500000000000001,
+      "confusion_matrix_gold_rows_predicted_columns": {
+        "AND": {
+          "AND": 0,
+          "OR": 0,
+          "unknown": 0
+        },
+        "OR": {
+          "AND": 0,
+          "OR": 2,
+          "unknown": 0
+        }
+      }
+    }
+  },
+  "predictions": [
+    {
+      "gate_node_id": "NASA-FTH-2002-F4-3-G001",
+      "source_id": "NASA_FTH_2002",
+      "source_cluster_id": "NASA_FTH_2002_document",
+      "figure_id": "4-3",
+      "pdf_page": 49,
+      "expected_gate": "OR",
+      "predicted_gate": "OR",
+      "gate_probabilities": {
+        "AND": 0.03,
+        "OR": 0.85,
+        "unknown": 0.12
+      },
+      "top_probability": 0.85,
+      "top_margin": 0.73,
+      "correct": true,
+      "prompt_sha256": "5c916cbeefc2187d82dc257a4d9851b3f3b982f0f72b57ed60b543a6ef805011",
+      "reason_summary": "The listed events are alternative independent causes that can each result in the valve being closed/failed closed, so an OR gate is most likely; there is slight ambiguity because 'testing' may not always imply a failure state."
+    },
+    {
+      "gate_node_id": "NASA-FTH-2002-F5-5-G001",
+      "source_id": "NASA_FTH_2002",
+      "source_cluster_id": "NASA_FTH_2002_document",
+      "figure_id": "5-5",
+      "pdf_page": 78,
+      "expected_gate": "AND",
+      "predicted_gate": "AND",
+      "gate_probabilities": {
+        "AND": 0.75,
+        "OR": 0.15,
+        "unknown": 0.1
+      },
+      "top_probability": 0.75,
+      "top_margin": 0.6,
+      "correct": true,
+      "prompt_sha256": "cd912a1cad7fe08b397b1701e1c4b5b1eda051175b4c481ab9a933b894671d81",
+      "reason_summary": "父事件需要泄漏发生、泄漏足够大并最终引发爆炸；这些子事件更像必须同时满足的条件链，而非任一单独事件即可导致父事件。"
+    },
+    {
+      "gate_node_id": "NRC-NUREG-0492-FIV-6-G001",
+      "source_id": "NRC_NUREG_0492",
+      "source_cluster_id": "NRC_NUREG_0492_document",
+      "figure_id": "IV-6",
+      "pdf_page": 40,
+      "expected_gate": "AND",
+      "predicted_gate": "AND",
+      "gate_probabilities": {
+        "AND": 0.9,
+        "OR": 0.05,
+        "unknown": 0.05
+      },
+      "top_probability": 0.9,
+      "top_margin": 0.85,
+      "correct": true,
+      "prompt_sha256": "e6c851a74a50d9f08e1637274b4ebe639204f50a1edcd8990f8af30baa427e3f",
+      "reason_summary": "To lose all onsite DC power, both redundant diesel generators and the battery must be unavailable; any functioning source would prevent complete loss, so the listed failures must coincide (AND)."
+    },
+    {
+      "gate_node_id": "HERMES-2010-F4-G001",
+      "source_id": "HERMES_CUBESAT_2010",
+      "source_cluster_id": "HERMES_CUBESAT_2010_document",
+      "figure_id": "4",
+      "pdf_page": 4,
+      "expected_gate": "OR",
+      "predicted_gate": "OR",
+      "gate_probabilities": {
+        "AND": 0.05,
+        "OR": 0.7,
+        "unknown": 0.25
+      },
+      "top_probability": 0.7,
+      "top_margin": 0.44999999999999996,
+      "correct": true,
+      "prompt_sha256": "c74641b92dd7bd646a8bc85b894990eff6773dc7a98711fb589926ba958c2854",
+      "reason_summary": "两个子事件分别可解释为编码确定算法错误或磁强计异常，任一异常都可能单独导致天线指向精度超出阈值；但未显式给出门逻辑，且“Magnetometer”故障模式表述不完整，因此保留一定不确定性。"
+    },
+    {
+      "gate_node_id": "HERMES-2010-F4-G002",
+      "source_id": "HERMES_CUBESAT_2010",
+      "source_cluster_id": "HERMES_CUBESAT_2010_document",
+      "figure_id": "4",
+      "pdf_page": 4,
+      "expected_gate": "OR",
+      "predicted_gate": "OR",
+      "gate_probabilities": {
+        "AND": 0.05,
+        "OR": 0.85,
+        "unknown": 0.1
+      },
+      "top_probability": 0.85,
+      "top_margin": 0.75,
+      "correct": true,
+      "prompt_sha256": "2406981d896f64f4cc0db23b6e91189724d66a914391e064165f539d80b23515",
+      "reason_summary": "两个直接子事件均可独立导致磁力计失效或不可用，文本未显示必须同时发生，因此更倾向 OR。"
+    }
+  ],
+  "failures": [],
+  "limitations": [
+    "Only five gate nodes from three document clusters; this is a descriptive smoke test, not calibration or a representative accuracy estimate.",
+    "All labels are AND/OR transcribed from explicit source diagrams; there are no unknown/insufficient-evidence examples in this fixture.",
+    "A diagram's true gate is not proof that the original fault prose alone supports that gate. This is not an evidence-backed text-to-FTA test.",
+    "The HERMES paper cites the NASA handbook and includes two gates from one tree; rows are clustered, not independent observations.",
+    "This probe does not evaluate event completeness, evidence binding, source-text extraction, candidate-tree generation, or production policy.",
+    "Raw model self-reported probabilities and the descriptive Brier score do not establish calibration or justify a runtime threshold."
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "artifact_type": "fta_gate_node_evidence_locator_review",
+  "artifact_version": "v1",
+  "review_id": "S210-F30021-C04-LOCATOR-2026-09-27-01",
+  "reviewer_provenance": "user_authorized_ai_subagent_review_with_main_agent_offset_verification",
+  "reviewer_is_human_expert": false,
+  "formal_gold": false,
+  "database_written": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "review_scope": "Resolve only the source occurrence for F30021-C04 within the already reviewed Possible causes scope. Do not infer or change an AND/OR gate.",
+  "source": {
+    "sample_id": "SIEMENS_S210_2019_F30021",
+    "fault_code": "F30021",
+    "source_cluster_id": "source:f3178a6c9c46aa2109a44eb118c6a8730ebfdd6d9a6f5660147529f01ce41d31",
+    "source_sha256": "f3178a6c9c46aa2109a44eb118c6a8730ebfdd6d9a6f5660147529f01ce41d31",
+    "offset_object": "input_text",
+    "offset_unit": "Unicode code point",
+    "offset_convention": "zero-based half-open [start,end)"
+  },
+  "scope_anchor": {
+    "quote": "Possible causes:\n- ground fault in the power cables.\n- ground fault at the motor.\n- when the brake closes, this causes the hardware DC current monitoring to respond.\n- short-circuit at the braking resistor.",
+    "start": 166,
+    "end": 372,
+    "occurrence_count_in_source": 1
+  },
+  "child": {
+    "child_id": "F30021-C04",
+    "text": "short-circuit at the braking resistor",
+    "exact_quote": "- short-circuit at the braking resistor."
+  },
+  "all_exact_occurrences": [
+    {
+      "start": 332,
+      "end": 372,
+      "section": "Possible causes list",
+      "inside_reviewed_scope": true,
+      "context": "Possible causes:\n- ground fault in the power cables.\n- ground fault at the motor.\n- when the brake closes, this causes the hardware DC current monitoring to respond.\n- short-circuit at the braking resistor."
+    },
+    {
+      "start": 468,
+      "end": 508,
+      "section": "Fault value (r0949), value 0 diagnostic detail",
+      "inside_reviewed_scope": false,
+      "context": "Fault value (r0949, interpret decimal):\n0:\n- the hardware DC current monitoring has responded.\n- short-circuit at the braking resistor.\n> 0:\nAbsolute value summation current amplitude."
+    }
+  ],
+  "decision": "resolved_by_scoped_occurrence",
+  "selected_evidence": {
+    "quote": "- short-circuit at the braking resistor.",
+    "start": 332,
+    "end": 372
+  },
+  "decision_reason": "The exact child line occurs twice globally. The uniquely occurring Possible causes scope anchor contains the occurrence at [332,372); the other occurrence at [468,508) is in the later r0949 fault-value section, outside the reviewed cause-set scope. Selection is based on scope membership, not first-match order or a gate inference.",
+  "gate_label_before": "unknown",
+  "gate_label_after": "unknown",
+  "gate_evidence_added": false,
+  "human_expert_signoff": false,
+  "limitations": [
+    "This AI review resolves evidence location only.",
+    "The source lists four Possible causes but does not state their Boolean combination; the gate remains unknown.",
+    "This artifact is not human-expert Gold, probability calibration, database approval, or production authorization."
+  ]
+}

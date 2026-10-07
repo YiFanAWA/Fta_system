@@ -1,0 +1,48 @@
+{
+  "dataset": "siemens_s120_s150_2023_public_fault_corpus_external_holdout",
+  "version": "2.0.0",
+  "supersedes_artifact": "siemens_s120_s150_2023_public_fault_corpus_holdout_v1",
+  "supersession_reason": "The cause-section boundary parser now keeps Fault/Alarm value subheadings that occur inside a Cause field. Raw extracted input_text and its offsets are unchanged.",
+  "artifact_type": "unlabeled_external_source_holdout_corpus_manifest",
+  "label_status": "unlabeled_public_corpus",
+  "human_expert_reviewed": false,
+  "formal_gold": false,
+  "database_written": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "source_document": "SINAMICS S120/S150 List Manual",
+  "edition": "11/2023",
+  "source_pdf": "SINAMICS_S120_S150_List_Manual_11-2023_EN.pdf",
+  "source_pdf_sha256": "f7684038621ae9faaedbed1780e23c48775c19d76ae0fbd0adce268d69f489f4",
+  "source_url": "https://cache.industry.siemens.com/dl/files/046/109827046/att_1164654/v1/S120_S150_list_man_1123_en-US.pdf?download=true",
+  "official_reference_url": "https://support.industry.siemens.com/cs/ww/en/view/109827046",
+  "section": "4.2 List of faults and alarms",
+  "page_range": {
+    "start": 2579,
+    "end": 3352
+  },
+  "record_count": 1532,
+  "unique_fault_code_count": 1443,
+  "record_type_counts": {
+    "fault": 884,
+    "alarm": 628,
+    "internal_message": 20
+  },
+  "extracted_section_sha256": "325542dbb6adb2a69e4d802cd98116e6f2206bfefbf124fcb8c51cddc4fdef3b",
+  "corpus_jsonl_sha256": "3da11f44f35ab8286f509a57ae474fdefdb98b8313603b408974c5a082906232",
+  "extraction": {
+    "tool": "pypdf",
+    "page_separator": "\n\f\n",
+    "sample_identity": "fault code + first PDF page + occurrence ordinal for repeated codes",
+    "source_offsets": "Python Unicode character offsets within the assembled extracted section text"
+  },
+  "holdout_policy": "The entire S120/S150 List Manual document is an external source holdout. Do not use these records to fit thresholds, select a model, or tune prompts. This is a different manual/version, not a cross-industry test.",
+  "license_note": "The manual is publicly accessible but is not marked as an open-data license here. Keep the PDF and derived corpus local; preserve source provenance and verify Siemens reuse terms before redistribution.",
+  "limitations": [
+    "weak_record and cause_sections are parser outputs, not expert labels",
+    "a cause list, multiple bullets, or the mere presence of 'and'/'or' does not establish an FTA gate",
+    "gate labels and direct evidence require separate review; absent direct gate evidence remains unknown",
+    "this single manual is one independent source cluster, regardless of record count"
+  ],
+  "retrieved_date": "2026-09-27"
+}

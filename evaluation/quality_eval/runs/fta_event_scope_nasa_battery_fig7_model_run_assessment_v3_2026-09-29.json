@@ -1,0 +1,73 @@
+{
+  "artifact_type": "fta_event_scope_model_run_assessment",
+  "artifact_version": "v3",
+  "run_artifact": "evaluation/quality_eval/runs/fta_event_scope_nasa_battery_fig7_model_run_v3_2026-09-29.json",
+  "attempt_receipt": "evaluation/quality_eval/runs/fta_event_scope_nasa_battery_fig7_model_run_v3_2026-09-29.attempt.json",
+  "case": {
+    "packet_id": "NASA_GSFC_BATTERY_FIG7_MODULE_FAILURE_DEV_001",
+    "source_cluster_id": "NASA_GSFC_LISOCL2_BATTERY_SAFETY_ANALYSIS_1987",
+    "exposure_status": "seen_development_only",
+    "packet_path": "evaluation/quality_eval/datasets/fta_event_scope_nasa_battery_fig7_module_failure_dev_v1.json",
+    "model_input_sha256": "1e77b80a8f2a6ae62443468d21b075e4a213a3544cdc2b882a5d69b6ba6d4325"
+  },
+  "request_observation": {
+    "request_count": 1,
+    "retry_count": 0,
+    "retry_policy": "disabled_one_attempt_only",
+    "provider_host": "api.deepseek.com",
+    "requested_model": "deepseek-flash",
+    "temperature": 0,
+    "max_tokens": 8192,
+    "response_format": {
+      "type": "json_object"
+    },
+    "thinking_mode": {
+      "type": "disabled"
+    },
+    "timeout_seconds": 120,
+    "sdk_max_retries": 0,
+    "prompt_version": "event-scope-text-only-tree-v2-compact-json",
+    "prompt_sha256": "ba3fd871f6681b50f7bce0adfa72bfdbe5432d76d93a1075e4b7762a6100d127",
+    "comparison_lock": "v2 prompt/model/token budget/JSON format held; only thinking mode is explicitly disabled",
+    "choice_count": 1,
+    "finish_reason": "stop",
+    "visible_content_character_count": 2450,
+    "reasoning_content_present": false,
+    "reasoning_content_character_count": 0,
+    "reasoning_text_persisted": false,
+    "reasoning_tokens": null,
+    "usage": {
+      "prompt_tokens": 695,
+      "completion_tokens": 538,
+      "total_tokens": 1233
+    },
+    "returned_model": "deepseek-flash",
+    "provider_request_id": null,
+    "openai_package_version": "2.24.0"
+  },
+  "output_assessment": {
+    "assessment_status": "structure_and_quotes_checked",
+    "finish_reason": "stop",
+    "strict_json_parsed": true,
+    "node_count": 5,
+    "gate_scope_count": 3,
+    "quote_checks": 8,
+    "invalid_quotes": 0,
+    "structural_errors": [],
+    "gold_comparison": "not_performed",
+    "semantic_correctness": "not_assessed",
+    "accuracy_or_calibration_claim_allowed": false,
+    "human_expert_gold": false,
+    "fta_ready": false,
+    "production_ready": false
+  },
+  "claim_boundaries": {
+    "development_only": true,
+    "human_expert_gold": false,
+    "independent_final_validation": false,
+    "accuracy_or_calibration_claim_allowed": false,
+    "production_or_database_write": false,
+    "fta_ready": false,
+    "production_ready": false
+  }
+}

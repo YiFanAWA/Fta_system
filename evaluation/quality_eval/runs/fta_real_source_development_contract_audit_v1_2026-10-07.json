@@ -1,0 +1,121 @@
+{
+  "artifact_type": "fta_real_source_development_contract_audit",
+  "artifact_version": "v1",
+  "audit_date": "2026-10-07",
+  "reviewer_provenance": "agent_engineering_audit_not_human_expert_review",
+  "audit_status": "completed_read_only_contract_and_historical_run_audit",
+  "current_runtime": {
+    "cause_disposition_prompt_version": "fta-cause-disposition-v5",
+    "owner": "backend-python/fta/cause_disposition_service.py",
+    "candidate_fta_owner": "backend-python/fta/candidate_fta_extraction_service.py",
+    "gate_policy": "when no calibrated confidence policy is configured, multi-child gates remain unknown",
+    "source_evidence_policy": "quote location and semantic support are separate checks; exact offsets do not prove cause, identity, hierarchy, completeness, or gate semantics"
+  },
+  "safety_scope": {
+    "model_requests_performed": 0,
+    "gold_read_as_model_input": false,
+    "gold_changed": false,
+    "database_written": false,
+    "production_api_called": false,
+    "readiness_promoted": false,
+    "fta_ready": false,
+    "production_ready": false
+  },
+  "offline_verification": [
+    {
+      "command": "python -m unittest discover -s backend-python/tests -p 'test_*candidate_fta*.py' -q",
+      "result": "passed",
+      "tests": 35
+    },
+    {
+      "command": "python -m unittest discover -s backend-python/tests -p 'test_fta_cause_disposition.py' -q",
+      "result": "passed",
+      "tests": 16
+    },
+    {
+      "command": "python -m unittest evaluation.quality_eval.test_event_scope_tree_prompt_v8 evaluation.quality_eval.test_run_fta_event_scope_model_v6 -q",
+      "result": "passed",
+      "tests": 8
+    },
+    {
+      "command": "python evaluation/quality_eval/validate_fta_baseline_manifest.py --manifest evaluation/quality_eval/fta_baseline_manifest_v48.json",
+      "result": "passed",
+      "artifacts_verified": 367
+    }
+  ],
+  "cases": [
+    {
+      "case_id": "F01681",
+      "historical_run": "evaluation/quality_eval/runs/siemens_s210_f01681_raw_candidate_fta_cause_disposition_v4_2026-09-28.json",
+      "historical_prompt": "fta-cause-disposition-v4",
+      "cause_classification": "16 dispositions: 1 top-event summary retained as relation_only and 15 diagnostic/fault-value mappings retained as relation_only",
+      "event_identity": "no FTA event candidates; no tree construction stage ran",
+      "hierarchy": "not_evaluated",
+      "child_set": "not_evaluated; Cause/Fault-value/Remedy boundary was unresolved for xxxx=9507",
+      "gate_evidence": "not_evaluated",
+      "audit_result": "historical evidence supports the old v4 disposition only; not a v5 semantic regression"
+    },
+    {
+      "case_id": "F30027",
+      "historical_run": "evaluation/quality_eval/runs/siemens_s210_f30027_raw_candidate_fta_cause_disposition_v2_2026-09-28.json",
+      "historical_prompt": "fta-cause-disposition-v2",
+      "cause_classification": "9 causes were admitted as fta_event_candidate by the old disposition",
+      "event_identity": "the nested either/or branch is represented by a group node and two alternative leaves; retain as a local event group, not two new top-level causes",
+      "hierarchy": "top-level cause scope and local either/or scope remain separate",
+      "child_set": "old output maps the 9 top-level candidates and the 2 local alternatives; both scopes claimed complete",
+      "gate_evidence": "local either/or wording was cited, but both multi-child gates remain unknown because no confidence policy is configured",
+      "audit_result": "promising historical structure; cause-role policy is stale and no current v5 rerun exists"
+    },
+    {
+      "case_id": "F30021",
+      "historical_run": "evaluation/quality_eval/runs/siemens_s210_f30021_raw_candidate_fta_cause_disposition_v2_2026-09-28.json",
+      "historical_prompt": "fta-cause-disposition-v2",
+      "cause_classification": "4 causes were admitted as candidates by the old disposition",
+      "event_identity": "candidate tree contains the top event plus four cause nodes; one cause citation is missing and the quoted top-event wording is also duplicated",
+      "hierarchy": "one four-child possible-causes scope; old output is blocked",
+      "child_set": "four children were emitted; semantic completeness is not established independently",
+      "gate_evidence": "gate remains unknown; duplicate evidence and missing cause evidence block acceptance",
+      "audit_result": "keep blocked; a separate AI locator note identifies a scoped occurrence for C04 but did not amend or rerun the archived tree"
+    },
+    {
+      "case_id": "F06000",
+      "historical_run": "evaluation/quality_eval/runs/siemens_s120_s150_f06000_raw_candidate_fta_cause_disposition_v2_2026-09-28.json",
+      "historical_prompt": "fta-cause-disposition-v2",
+      "cause_classification": "11 causes were admitted as candidates by the old disposition",
+      "event_identity": "15 nodes were emitted; cause 0 overlaps the top-event wording and the precharge-not-completed group may be a summary rather than an independent intermediate event",
+      "hierarchy": "two single-child scopes are not Boolean gates; the 10-child outer list and 2-child nested either/or scope are preserved separately",
+      "child_set": "old output marks the multi-child scopes complete and leaf-normalized; the suspected summary/identity overlap remains semantically unresolved",
+      "gate_evidence": "one-of/either-or text is present, but multi-child gates remain unknown without a configured confidence policy",
+      "audit_result": "historical structure is mechanically well evidenced (21/21 exact unique tree quotes), but role and event identity need a current v5 rerun"
+    },
+    {
+      "case_id": "F35400",
+      "historical_run": "evaluation/quality_eval/runs/siemens_s120_s150_f35400_raw_candidate_fta_cause_disposition_v2_2026-09-28.json",
+      "historical_prompt": "fta-cause-disposition-v2",
+      "cause_classification": "two threshold conditions were admitted as candidates by the old disposition",
+      "event_identity": "one top event and two distinct threshold-condition children",
+      "hierarchy": "single two-child at_least_one_of scope; no nested group is needed",
+      "child_set": "the source states at least one listed condition and gives both alternatives; old output marks the set complete and leaf-normalized",
+      "gate_evidence": "source contains at-least-one and or wording; gate remains unknown solely because no confidence policy is configured",
+      "audit_result": "best historical bounded positive for source-supported alternatives, but not a v5 model result or calibrated gate decision"
+    },
+    {
+      "case_id": "NASA-Figure-7",
+      "historical_run": "evaluation/quality_eval/runs/fta_event_scope_nasa_battery_fig7_model_run_v6_2026-09-29.json",
+      "historical_prompt": "event-scope-text-only-tree-v6-single-hierarchy",
+      "cause_classification": "not the CauseDisposition/CandidateFtaApplicationService pipeline; it is a separate event-scope tree runner",
+      "event_identity": "the same single-cell-explosion concept is duplicated as E2/E4; E5 is an over-composite causal/consequence chain and E6/E7 are composite branches",
+      "hierarchy": "7 nodes and 3 scopes satisfy the structural contract, but predicted nodes do not map cleanly to the reference intermediate-event identities/granularity",
+      "child_set": "scope child-set semantics are not accepted from structure validity alone; diagram-only detail is kept separate from text-authorized labels",
+      "gate_evidence": "S1 source has explicit or and S3 has explicit and, but v6 returned unknown without bound logic evidence; S2 unknown is defensible from the text-only input",
+      "audit_result": "10/10 quote locations are exact, but identity, granularity and logic-evidence findings remain open; v6 is not the current v8 real-source run"
+    }
+  ],
+  "p2_status": {
+    "contract_audit": "complete",
+    "historical_case_semantic_audit": "complete_read_only",
+    "current_v5_real_source_runs": "pending_separate_explicit_authorization",
+    "semantic_defects_closed": 0,
+    "reason": "archived model responses predate the active cause-disposition v5 prompt; no new model request was authorized in this audit"
+  }
+}

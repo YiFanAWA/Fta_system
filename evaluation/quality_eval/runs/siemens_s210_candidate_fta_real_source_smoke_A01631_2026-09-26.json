@@ -1,0 +1,35 @@
+{
+  "artifact_type": "candidate_fta_real_source_smoke",
+  "artifact_version": "v1",
+  "created_at": "2026-09-26T15:55:51+08:00",
+  "reviewer_provenance": "live_model_smoke_not_expert_review",
+  "model_call_scope": "one configured extraction-model call; gate model was not called because preflight blockers were present",
+  "source": {
+    "dataset": "siemens_s210_public_fault_corpus_v1",
+    "sample_id": "SIEMENS_S210_2019_A01631",
+    "sha256": "87c7f8f4e3c14ec060a0ad0915f676e1490a73ff8c8f7db756f0241bb95c604a"
+  },
+  "extraction": {
+    "status": "success",
+    "fault_code": "A01631",
+    "description": "motor holding brake/SBC configuration not practical",
+    "causes": [
+      "No motor holding brake available and SBC enabled"
+    ],
+    "cause_evidence_spans": []
+  },
+  "candidate": {
+    "status": "blocked",
+    "gate": "unknown",
+    "gate_model_called": false,
+    "blockers": [
+      "cause_evidence_unavailable:0",
+      "fewer_than_two_cause_candidates"
+    ],
+    "formal_gold_mutated": false,
+    "database_written": false,
+    "fta_ready": false,
+    "production_ready": false
+  },
+  "interpretation": "The fail-closed behavior worked. The raw-text extractor normalized a compound source condition into one cause value but did not provide a bound source span for it. The current flat extraction/candidate contracts cannot preserve its internal AND structure; this run does not establish a gate label or confidence calibration."
+}

@@ -1,0 +1,169 @@
+{
+  "artifact_type": "external_text_evidence_gate_abstention_fixture",
+  "artifact_version": "evidence-ablation-v1",
+  "created_at": "2026-09-27",
+  "formal_gold": false,
+  "in_project_gold": false,
+  "database_written": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "label_provenance": {
+    "reviewer_role": "primary_ai_agent_pre_inference_evidence_review",
+    "reviewer_is_human_expert": false,
+    "review_scope": "whether the exposed parent/child payload contains direct evidence for an AND/OR gate after the original decisive gate sentence is withheld",
+    "rule": "When decisive gate evidence is absent from the model-visible scope, classify as unknown even if the original source elsewhere contains a gate statement; this is a paired counterfactual evidence-ablation control, not a source-level re-labeling.",
+    "review_note": "The user confirmed that co-occurrence alone is not an AND gate. These labels test evidence dependence under the declared FTA semantics; they are not human domain-expert Gold or independent second-agent findings."
+  },
+  "source_document_count": 5,
+  "source_cluster_count": 5,
+  "inference_input_policy": "The model receives the same parent and direct-child text as the paired known-gate case, plus parent-scope context. The decisive candidate-set heading and gate sentence are withheld. Pair IDs, source identity, original label, and original decisive quote are withheld.",
+  "scope_note": "Paired evidence-ablation probe: six previously tested positive AND/OR examples are re-presented with their decisive gate wording and candidate-set heading removed. All exposed-scope labels are unknown. This tests dependence on provided evidence and abstention, not natural-distribution accuracy or source-level truth.",
+  "sources": [
+    {
+      "source_id": "FAA_AC_65_15A",
+      "source_cluster_id": "FAA_AC_65_15A_document",
+      "document_title": "AC 65-15A: Airframe & Powerplant Mechanics—Airframe Handbook",
+      "authors_or_organization": "U.S. Federal Aviation Administration",
+      "publication_date": "1976-01-01",
+      "document_status_note": "Cancelled 2025-03-21 and superseded; historical text-classification test only, not current maintenance guidance.",
+      "source_url": "https://www.faa.gov/documentlibrary/media/advisory_circular/ac_65-15a.pdf",
+      "catalog_url": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentid/23018",
+      "source_pdf_sha256": "db5dfc68045fa7f71ea5bc79a30439db2718ca5b1aa210194d9d4ab43b15a310",
+      "source_location": "Figure 14-44, printed page 586; historical excerpt, source gate sentence withheld from model input."
+    },
+    {
+      "source_id": "NASA_TP_2000_209902",
+      "source_cluster_id": "NASA_TP_2000_209902_document",
+      "document_title": "Comprehensive Design Reliability Activities for Aerospace Propulsion Systems",
+      "authors_or_organization": "NASA",
+      "record_url": "https://ntrs.nasa.gov/citations/20000021229",
+      "source_pdf_url": "https://ntrs.nasa.gov/api/citations/20000021229/downloads/20000021229.pdf",
+      "source_pdf_sha256": "0082fc8d440b4fb73ff830067320b8d8e03f2dd35d4b89bc758bfd3d5718cb63",
+      "source_location": "Figure 28 explanatory paragraph, printed page 49; PDF page index 63 (zero-based)."
+    },
+    {
+      "source_id": "NASA_CONF_1972_VESELY_FAULT_TREE",
+      "source_cluster_id": "NASA_CONF_1972_VESELY_DOCUMENT",
+      "document_title": "Fault tree applications within the safety program of Idaho Nuclear Corporation",
+      "authors_or_organization": "W. E. Vesely; Idaho Nuclear Corporation; NASA Government-Industry System Safety Conference proceedings",
+      "record_url": "https://ntrs.nasa.gov/citations/19720018331",
+      "source_pdf_url": "https://ntrs.nasa.gov/api/citations/19720018311/downloads/19720018311.pdf",
+      "source_pdf_sha256": "1d90c6c326bfbeeb9daf805da3c8ea8bdf78d16ad8aad5e3e35246f5f963f37b",
+      "source_location": "Printed page 210; PDF page index 188 (zero-based), resistor example."
+    },
+    {
+      "source_id": "NASA_TM_86404_CARE_III",
+      "source_cluster_id": "NASA_TM_86404_DOCUMENT",
+      "document_title": "CARE III Model Overview and User's Guide (First Revision)",
+      "authors_or_organization": "S. J. Bavuso and P. L. Petersen; NASA Langley Research Center",
+      "record_url": "https://ntrs.nasa.gov/citations/19850017881",
+      "source_pdf_url": "https://ntrs.nasa.gov/api/citations/19850017881/downloads/19850017881.pdf",
+      "source_pdf_sha256": "8c4ba56de57a41ad562c9009d5e700d09cf6dfbb71ed67c9b4161c7669a5ce65",
+      "source_location": "Section 3.5.1, System Fault Tree Rules and Procedures; PDF page index 41 (zero-based)."
+    },
+    {
+      "source_id": "NASA_CR_72723_HVSA",
+      "source_cluster_id": "NASA_CR_72723_DOCUMENT",
+      "document_title": "High Voltage Solar Array Electrical Configuration Study: Final Report",
+      "authors_or_organization": "W. F. Springgate; Boeing Company, for NASA Lewis Research Center",
+      "record_url": "https://ntrs.nasa.gov/citations/19700026276",
+      "source_pdf_url": "https://ntrs.nasa.gov/api/citations/19700026276/downloads/19700026276.pdf",
+      "source_pdf_sha256": "8986aea488a48c76abf3d8f8affbd85c6fa45bdd0e717d81e4a13360a6000f95",
+      "source_location": "Printed page 126, logic-operation table; PDF page index 131 (zero-based)."
+    }
+  ],
+  "gate_nodes": [
+    {
+      "gate_node_id": "FAA-AC65-15A-F14-44-CAUSE-002-ABLATION",
+      "paired_original_node_id": "FAA-AC65-15A-F14-44-CAUSE-002",
+      "source_id": "FAA_AC_65_15A",
+      "source_cluster_id": "FAA_AC_65_15A_document",
+      "scope_type": "decisive_gate_evidence_withheld_control",
+      "parent_event": "Cabin temperature does not respond to control during auto or manual operation.",
+      "parent_evidence": "Trouble: Cabin temperature too high or too low (will not respond to control during auto or manual operation).",
+      "candidate_set_evidence": "",
+      "children": ["Defective temperature control.", "Refrigeration bypass valve inoperative."],
+      "expected_gate": "unknown",
+      "expected_gate_evidence": null,
+      "label_rationale": "The source's explicit cause relation and disjunction are withheld; the exposed parent context contains 'or' about high/low cabin temperature, which is not evidence for a gate among these two child causes."
+    },
+    {
+      "gate_node_id": "NASA-TP2000-FIG28-CATASTROPHIC-AND-001-ABLATION",
+      "paired_original_node_id": "NASA-TP2000-FIG28-CATASTROPHIC-AND-001",
+      "source_id": "NASA_TP_2000_209902",
+      "source_cluster_id": "NASA_TP_2000_209902_document",
+      "scope_type": "decisive_gate_evidence_withheld_control",
+      "parent_event": "Catastrophic fire or explosion of the pump system.",
+      "parent_evidence": "Catastrophic Fire/Explosion",
+      "candidate_set_evidence": "",
+      "children": ["Critical pump failure.", "Safety system fails to mitigate the failure."],
+      "expected_gate": "unknown",
+      "expected_gate_evidence": null,
+      "label_rationale": "The direct statement requiring both child events is withheld. The 'or' in the parent event names alternative outcomes, not the relation between these child events."
+    },
+    {
+      "gate_node_id": "NASA-VESELY-RESISTOR-CRITICAL-PATH-AND-001-ABLATION",
+      "paired_original_node_id": "NASA-VESELY-RESISTOR-CRITICAL-PATH-AND-001",
+      "source_id": "NASA_CONF_1972_VESELY_FAULT_TREE",
+      "source_cluster_id": "NASA_CONF_1972_VESELY_DOCUMENT",
+      "scope_type": "decisive_gate_evidence_withheld_control",
+      "parent_event": "System failure or accident occurs by the specified critical path.",
+      "parent_evidence": "The source identifies the system failure or accident as the top event.",
+      "candidate_set_evidence": "",
+      "children": ["Resistor 1 fails in Mode A.", "Resistor 2 fails in Mode B."],
+      "expected_gate": "unknown",
+      "expected_gate_evidence": null,
+      "label_rationale": "The text requiring both resistor failures is withheld. The 'or' in the parent names top-event outcomes, not the child gate."
+    },
+    {
+      "gate_node_id": "NASA-TM86404-CAREIII-ALL-EVENTS-AND-001-ABLATION",
+      "paired_original_node_id": "NASA-TM86404-CAREIII-ALL-EVENTS-AND-001",
+      "source_id": "NASA_TM_86404_CARE_III",
+      "source_cluster_id": "NASA_TM_86404_DOCUMENT",
+      "scope_type": "decisive_gate_evidence_withheld_control",
+      "parent_event": "Failure of event k.",
+      "parent_evidence": "The source describes a system fault-tree gate whose output is event k.",
+      "candidate_set_evidence": "",
+      "children": ["Event m fails.", "Event n fails.", "Event o fails.", "Event p fails.", "Event q fails.", "Event r fails.", "Event s fails.", "Event t fails.", "Event u fails.", "Event v fails.", "Event w fails.", "Event x fails.", "Event y fails.", "Event z fails."],
+      "expected_gate": "unknown",
+      "expected_gate_evidence": null,
+      "label_rationale": "The all-inputs-required rule is withheld. Knowing that a gate exists and seeing its child events does not reveal the gate type."
+    },
+    {
+      "gate_node_id": "NASA-TM86404-CAREIII-ANY-INPUT-OR-001-ABLATION",
+      "paired_original_node_id": "NASA-TM86404-CAREIII-ANY-INPUT-OR-001",
+      "source_id": "NASA_TM_86404_CARE_III",
+      "source_cluster_id": "NASA_TM_86404_DOCUMENT",
+      "scope_type": "decisive_gate_evidence_withheld_control",
+      "parent_event": "Failure of event k.",
+      "parent_evidence": "The source describes a system fault-tree gate whose output is event k.",
+      "candidate_set_evidence": "",
+      "children": ["Event m fails.", "Event n fails.", "Event o fails.", "Event p fails.", "Event q fails.", "Event r fails.", "Event s fails.", "Event t fails.", "Event u fails.", "Event v fails.", "Event w fails.", "Event x fails.", "Event y fails.", "Event z fails."],
+      "expected_gate": "unknown",
+      "expected_gate_evidence": null,
+      "label_rationale": "The any-input-sufficient rule is withheld. Knowing the event names and that the source has a gate does not reveal whether it is AND or OR."
+    },
+    {
+      "gate_node_id": "NASA-CR72723-HVSA-COEXISTENCE-AND-001-ABLATION",
+      "paired_original_node_id": "NASA-CR72723-HVSA-COEXISTENCE-AND-001",
+      "source_id": "NASA_CR_72723_HVSA",
+      "source_cluster_id": "NASA_CR_72723_DOCUMENT",
+      "scope_type": "decisive_gate_evidence_withheld_control",
+      "parent_event": "The output event occurs.",
+      "parent_evidence": "The source defines the event produced by a logic operation as its output event.",
+      "candidate_set_evidence": "",
+      "children": ["Input event A occurs.", "Input event B occurs."],
+      "expected_gate": "unknown",
+      "expected_gate_evidence": null,
+      "label_rationale": "The definition requiring all inputs to coexist is withheld; parent/child event names alone do not establish a Boolean gate."
+    }
+  ],
+  "limitations": [
+    "All six rows are paired synthetic evidence-ablation controls derived from six previously tested positive cases, not six naturally sampled source passages.",
+    "Two CARE III controls share the same document cluster, so there are six nodes from five source clusters.",
+    "The FAA source is cancelled/superseded and is included only as a historical text-classification control, not current maintenance guidance.",
+    "The paired original decisive quote is withheld from model input but remains in the separate original fixture and source documents; model pretraining exposure cannot be ruled out.",
+    "Labels are AI-assigned from the evidence shown to the model before inference, not human expert Gold or independent second-agent review.",
+    "This probe tests abstention when gate wording is absent from the supplied scope; it does not estimate natural-distribution accuracy, calibrate confidence, or validate source extraction, cause completeness, recursive FTA generation, database integration, or production readiness."
+  ]
+}

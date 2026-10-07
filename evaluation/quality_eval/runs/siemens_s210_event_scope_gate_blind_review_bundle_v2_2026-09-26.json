@@ -1,0 +1,2442 @@
+{
+  "artifact_type": "fta_event_scope_gate_blind_review_bundle",
+  "artifact_version": "v1",
+  "reviewer_provenance": "pending_blind_ai_role_review",
+  "reviewer_is_human_expert": false,
+  "formal_gold": false,
+  "database_written": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "selection_is_prevalence_sample": false,
+  "source_corpus_sha256": "b42535d37ae27b63ba0048c88e947916e846da53e1bf18b3e5825c1853c1f483",
+  "review_instructions": "逐条只依据 source_text、scope_anchor 和所列候选子项及其精确证据独立审核整个 event_cause_set。不要根据故障码猜门型，不要把局部子表达式的 AND/OR 自动提升为整个事件的门。先核实作用域、原因集合是否完整、子项是否同层；任一未能确认则 review_status=pending 且 gate_label=null。只有范围和子项完整时才给 AND、OR 或 unknown。unknown 表示原文没有直接证据确定该作用域的 AND/OR；AND/OR 必须给出唯一、精确、能直接支持当前事件作用域门型的原文引用及字符位置。不要把 AI 审核称作真人专家签署或正式 Gold。",
+  "summary": {
+    "case_count": 39,
+    "scope_type_counts": {
+      "event_cause_set": 39
+    },
+    "reviewed_label_count": 0,
+    "pending_review_count": 39
+  },
+  "cases": [
+    {
+      "case_id": "ESG-444BF690870A",
+      "fault_code": "F07955",
+      "sample_id": "SIEMENS_S210_2019_F07955",
+      "source_sha256": "bf517284b7de75de6a1be15f44f5be14c7bf9f73aaa1c27b0345f3dd8fbdcb15",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "The code number of the actual motor with DRIVE-CLiQ does not match the saved number. If available: The code numbers\nof the bearings, gearbox or brake do not match the saved numbers.",
+        "start": 84,
+        "end": 265
+      },
+      "source_text": "F07955 Drive: Motor has been changed\nReaction: NONE\nAcknowledge: IMMEDIATELY\nCause: The code number of the actual motor with DRIVE-CLiQ does not match the saved number. If available: The code numbers\nof the bearings, gearbox or brake do not match the saved numbers.\nRemedy: Connect the original motor, and switch on the Control Unit again (POWER ON) - or restore the factory settings. The data\nfor bearings, gearbox and brake are reloaded.",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "The code number of the actual motor with DRIVE-CLiQ does not match the saved number.",
+          "evidence": [
+            {
+              "quote": "The code number of the actual motor with DRIVE-CLiQ does not match the saved number.",
+              "start": 84,
+              "end": 168
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "If available: The code numbers\nof the bearings, gearbox or brake do not match the saved numbers.",
+          "evidence": [
+            {
+              "quote": "If available: The code numbers\nof the bearings, gearbox or brake do not match the saved numbers.",
+              "start": 169,
+              "end": 265
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-343D289A4A32",
+      "fault_code": "F30021",
+      "sample_id": "SIEMENS_S210_2019_F30021",
+      "source_sha256": "f3178a6c9c46aa2109a44eb118c6a8730ebfdd6d9a6f5660147529f01ce41d31",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "Possible causes:\n- ground fault in the power cables.\n- ground fault at the motor.\n- when the brake closes, this causes the hardware DC current monitoring to respond.\n- short-circuit at the braking resistor.\nFault value (r0949, interpret decimal):\n0:\n- the hardware DC current monitoring has responded.\n- short-circuit at the braking resistor.",
+        "start": 166,
+        "end": 508
+      },
+      "source_text": "F30021 Drive: ground fault\nReaction: OFF2\nAcknowledge: IMMEDIATELY\n496 Operating Instructions, 01/2019, A5E41702836B AC\nCause: The drive has detected a ground fault.\nPossible causes:\n- ground fault in the power cables.\n- ground fault at the motor.\n- when the brake closes, this causes the hardware DC current monitoring to respond.\n- short-circuit at the braking resistor.\nFault value (r0949, interpret decimal):\n0:\n- the hardware DC current monitoring has responded.\n- short-circuit at the braking resistor.\n> 0:\nAbsolute value summation current amplitude.\nRemedy: - check the power cable connections.\n- check the motor.\n- check the cables and contacts of the brake connection (a wire is possibly broken).\n- check the braking resistor.",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "ground fault in the power cables.",
+          "evidence": [
+            {
+              "quote": "ground fault in the power cables.",
+              "start": 185,
+              "end": 218
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "ground fault at the motor.",
+          "evidence": [
+            {
+              "quote": "ground fault at the motor.",
+              "start": 221,
+              "end": 247
+            }
+          ]
+        },
+        {
+          "child_ref": "C03",
+          "candidate_text": "short-circuit at the braking resistor.",
+          "evidence": [
+            {
+              "quote": "Possible causes:\n- ground fault in the power cables.\n- ground fault at the motor.\n- when the brake closes, this causes the hardware DC current monitoring to respond.\n- short-circuit at the braking resistor.",
+              "start": 166,
+              "end": 372
+            },
+            {
+              "quote": "0:\n- the hardware DC current monitoring has responded.\n- short-circuit at the braking resistor.",
+              "start": 413,
+              "end": 508
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-6CB7A96EDD3E",
+      "fault_code": "A01780",
+      "sample_id": "SIEMENS_S210_2019_A01780",
+      "source_sha256": "c4024e4a94b1fd698599fab147a1a758976e15a550166ec1bc327a8d725c82b4",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "A01780 SBT When selected, the brake is closed\nReaction: NONE\nAcknowledge: NONE\nCause: When selecting the brake test or starting the brake test, the brake was not open.\nAlarm value (r2124, interpret binary):\nBit 0 = 1:\nThe internal brake is closed.\nNote:\nThe alarm is also signaled if no brake is configured in p10202.\nSBT: Safe Brake Test\nSee also: p10202 (SI Motion SBT brake)\nRemedy: Open the brake and reselect the brake test.",
+        "start": 0,
+        "end": 429
+      },
+      "source_text": "A01780 SBT When selected, the brake is closed\nReaction: NONE\nAcknowledge: NONE\nCause: When selecting the brake test or starting the brake test, the brake was not open.\nAlarm value (r2124, interpret binary):\nBit 0 = 1:\nThe internal brake is closed.\nNote:\nThe alarm is also signaled if no brake is configured in p10202.\nSBT: Safe Brake Test\nSee also: p10202 (SI Motion SBT brake)\nRemedy: Open the brake and reselect the brake test.",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "When selecting the brake test or starting the brake test, the brake was not open；A01780 SBT When selected, the brake is closed\nReaction: NONE\nAcknowledge: NONE\nCause: When selecting the brake test or starting the brake test, the brake was not open.",
+          "evidence": [
+            {
+              "quote": "When selecting the brake test or starting the brake test, the brake was not open",
+              "start": 86,
+              "end": 166
+            },
+            {
+              "quote": "A01780 SBT When selected, the brake is closed\nReaction: NONE\nAcknowledge: NONE\nCause: When selecting the brake test or starting the brake test, the brake was not open.",
+              "start": 0,
+              "end": 167
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "The alarm is also signaled if no brake is configured in p10202.；Note:\nThe alarm is also signaled if no brake is configured in p10202.\nSBT: Safe Brake Test\nSee also: p10202 (SI Motion SBT brake)\nRemedy: Open the brake and reselect the brake test.",
+          "evidence": [
+            {
+              "quote": "The alarm is also signaled if no brake is configured in p10202.",
+              "start": 254,
+              "end": 317
+            },
+            {
+              "quote": "Note:\nThe alarm is also signaled if no brake is configured in p10202.\nSBT: Safe Brake Test\nSee also: p10202 (SI Motion SBT brake)\nRemedy: Open the brake and reselect the brake test.",
+              "start": 248,
+              "end": 429
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-CAAB9BE528A8",
+      "fault_code": "F30068",
+      "sample_id": "SIEMENS_S210_2019_F30068",
+      "source_sha256": "5bb875517863fb18467e51b078a7ce570f1dd2fe7d06a65763bbe62efcd55eae",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "Possible causes:\n- the power unit is being operated at an ambient temperature that lies below the permissible range.\n- the temperature sensor evaluation is defective.",
+        "start": 184,
+        "end": 350
+      },
+      "source_text": "F30068 Power unit: undertemperature inverter heat sink\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The actual inverter heat sink temperature is below the permissible minimum value.\nPossible causes:\n- the power unit is being operated at an ambient temperature that lies below the permissible range.\n- the temperature sensor evaluation is defective.\nFault value (r0949, interpret decimal):\nInverter heat sink temperature [0.1 °C].\nRemedy: - ensure that higher ambient temperatures prevail.\n- replace the power unit.",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "the power unit is being operated at an ambient temperature that lies below the permissible range.",
+          "evidence": [
+            {
+              "quote": "the power unit is being operated at an ambient temperature that lies below the permissible range.",
+              "start": 203,
+              "end": 300
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "the temperature sensor evaluation is defective.",
+          "evidence": [
+            {
+              "quote": "the temperature sensor evaluation is defective.",
+              "start": 303,
+              "end": 350
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-B29023430EC5",
+      "fault_code": "F30630",
+      "sample_id": "SIEMENS_S210_2019_F30630",
+      "source_sha256": "5cbc2bce35ba25818e3ed1cc66d1d713f93cdb6ca8a192832a4c1752512d2691",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "OCC cable shield is not correctly connected.\n- defect in the brake control circuit of the drive.",
+        "start": 278,
+        "end": 374
+      },
+      "source_text": "F30630 SI P2: Brake control error\nReaction: OFF2\nAcknowledge: IMMEDIATELY\n508 Operating Instructions, 01/2019, A5E41702836B AC\nCause: The \"Safety Integrated\" function integrated in the drive has identified a brake control fault in monitoring channel 2, and has\ninitiated STO.\n- OCC cable shield is not correctly connected.\n- defect in the brake control circuit of the drive.\nFault value (r0949, decimal interpretation):\n100, 101, 102:\nFault in \"open brake\" operation.\n- brake not closed or interrupted cable.\n- ground fault in brake cable.\n300, 301, 302:\nFault in \"close brake\" operation.\n- brake not closed or interrupted cable.\n200, 201, 202:\nFault in the \"Brake open\" state.\n- short-circuit in brake winding.\n- defective hardware.\n400, 401, 402:\nFault in \"brake closed\" state.\n60, 70:\nFault in the brake control of the drive or a communication error between the monitoring channels (brake control diagnostics).\nRemedy: - select STO and then deselect again.\n- check the motor holding brake connection.\n- check the function of the motor holding brake.\n- carry out a diagnostics routine for the faults involved.\n- check for EMC-compliant control cabinet design and cable routing (e.g. shield OCC cable with shield terminal and shield\nplate, check the connection of the brake conductors).\n- replace drive.\nNote:\nOCC: One Cable Connection (one cable system)\nSBC: Safe Brake Control\nSI: Safety Integrated\nSTO: Safe Torque Off",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "OCC cable shield is not correctly connected.",
+          "evidence": [
+            {
+              "quote": "OCC cable shield is not correctly connected.",
+              "start": 278,
+              "end": 322
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "defect in the brake control circuit of the drive.",
+          "evidence": [
+            {
+              "quote": "defect in the brake control circuit of the drive.",
+              "start": 325,
+              "end": 374
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-28969139AC6C",
+      "fault_code": "F30681",
+      "sample_id": "SIEMENS_S210_2019_F30681",
+      "source_sha256": "285fa3b0048f12f08a51d15ffdb56f492d26bb5684271bcf74373bd3a84953c7",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "xxxx = 9301:\nEnabling function \"SSM\" (p9501.16) is not permissible in combination with the \"Extended functions without selection\"\nfunction (p9601.5).\nxxxx = 9347:\nThe hysteresis tolerance is not permissible.\nxxxx = 9801 and yyyy = 1:\nIf motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1)\nare activated, then PROFIsafe (p9601.3 = 1) is not possible.\nxxxx = 9801 and yyyy = 2:\nExtended functions without selection (p9601.5 =1) are enabled without enabling motion monitoring functions integrated in\nthe drive (p9601.2).\nxxxx = 9801 and yyyy = 3:\nOnboard F-DI are enabled without enabling motion monitoring functions integrated in the drive (p9601.2).\nxxxx = 9801 and yyyy = 5:\nTransfer of the SLS limit value via PROFIsafe (p9501.24) has been enabled, without enabling PROFIsafe.\nxxxx = 9801 and yyyy = 11:\nSS2E (p9501.18 = 1) is enabled without PROFIsafe being enabled.\nxxxx = 9801 and yyyy = 12:\nSCA (p9501.28 = 1) is enabled without enabling PROFIsafe.",
+        "start": 416,
+        "end": 1438
+      },
+      "source_text": "F30681 SI Motion P1: Incorrect parameter value\nReaction: OFF2\nAcknowledge: IMMEDIATELY\n512 Operating Instructions, 01/2019, A5E41702836B AC\nCause: The parameter cannot be parameterized with this value.\nNote:\nThis message does not result in a safety stop response.\nFault value (r0949, interpret decimal):\nyyyyxxxx dec: yyyy = supplementary information, xxxx = parameter\nyyyy = 0:\nNo additional information available.\nxxxx = 9301:\nEnabling function \"SSM\" (p9501.16) is not permissible in combination with the \"Extended functions without selection\"\nfunction (p9601.5).\nxxxx = 9347:\nThe hysteresis tolerance is not permissible.\nxxxx = 9801 and yyyy = 1:\nIf motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1)\nare activated, then PROFIsafe (p9601.3 = 1) is not possible.\nxxxx = 9801 and yyyy = 2:\nExtended functions without selection (p9601.5 =1) are enabled without enabling motion monitoring functions integrated in\nthe drive (p9601.2).\nxxxx = 9801 and yyyy = 3:\nOnboard F-DI are enabled without enabling motion monitoring functions integrated in the drive (p9601.2).\nxxxx = 9801 and yyyy = 5:\nTransfer of the SLS limit value via PROFIsafe (p9501.24) has been enabled, without enabling PROFIsafe.\nxxxx = 9801 and yyyy = 11:\nSS2E (p9501.18 = 1) is enabled without PROFIsafe being enabled.\nxxxx = 9801 and yyyy = 12:\nSCA (p9501.28 = 1) is enabled without enabling PROFIsafe.\nRemedy: Correct parameter (if required, also on another monitoring channel, p9601).\nNote:\nFor different values in the two monitoring channels: using the commissioning tool, copy the safety parameters and confirm\nthe data change.\nFor xxxx = 9301:\nDeselect Extended Functions without selection (p9601.5).\nFor xxxx = 9317:\nFurther, p9516.0 should be checked.\nFor xxxx = 9347:\nUsing the commissioning tool, copy the safety parameters and confirm the data change.\nFor xxxx = 9801:\nUsing the commissioning tool, copy the safety parameters, confirm the data change and carry out a POWER ON.",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "Enabling function 'SSM' is not permissible in combination with the 'Extended functions without selection' function.",
+          "evidence": [
+            {
+              "quote": "xxxx = 9301:\nEnabling function \"SSM\" (p9501.16) is not permissible in combination with the \"Extended functions without selection\"\nfunction (p9601.5).",
+              "start": 416,
+              "end": 565
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "The hysteresis tolerance is not permissible.",
+          "evidence": [
+            {
+              "quote": "xxxx = 9347:\nThe hysteresis tolerance is not permissible.",
+              "start": 566,
+              "end": 623
+            }
+          ]
+        },
+        {
+          "child_ref": "C03",
+          "candidate_text": "Extended functions without selection are enabled without enabling motion monitoring functions integrated in the drive.",
+          "evidence": [
+            {
+              "quote": "xxxx = 9801 and yyyy = 2:\nExtended functions without selection (p9601.5 =1) are enabled without enabling motion monitoring functions integrated in\nthe drive (p9601.2).",
+              "start": 835,
+              "end": 1002
+            }
+          ]
+        },
+        {
+          "child_ref": "C04",
+          "candidate_text": "Onboard F-DI are enabled without enabling motion monitoring functions integrated in the drive.",
+          "evidence": [
+            {
+              "quote": "xxxx = 9801 and yyyy = 3:\nOnboard F-DI are enabled without enabling motion monitoring functions integrated in the drive (p9601.2).",
+              "start": 1003,
+              "end": 1133
+            }
+          ]
+        },
+        {
+          "child_ref": "C05",
+          "candidate_text": "Transfer of the SLS limit value via PROFIsafe has been enabled, without enabling PROFIsafe.",
+          "evidence": [
+            {
+              "quote": "xxxx = 9801 and yyyy = 5:\nTransfer of the SLS limit value via PROFIsafe (p9501.24) has been enabled, without enabling PROFIsafe.",
+              "start": 1134,
+              "end": 1262
+            }
+          ]
+        },
+        {
+          "child_ref": "C06",
+          "candidate_text": "SS2E is enabled without PROFIsafe being enabled.",
+          "evidence": [
+            {
+              "quote": "xxxx = 9801 and yyyy = 11:\nSS2E (p9501.18 = 1) is enabled without PROFIsafe being enabled.",
+              "start": 1263,
+              "end": 1353
+            }
+          ]
+        },
+        {
+          "child_ref": "C07",
+          "candidate_text": "SCA is enabled without enabling PROFIsafe.",
+          "evidence": [
+            {
+              "quote": "xxxx = 9801 and yyyy = 12:\nSCA (p9501.28 = 1) is enabled without enabling PROFIsafe.",
+              "start": 1354,
+              "end": 1438
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-625B05E225FC",
+      "fault_code": "A30502",
+      "sample_id": "SIEMENS_S210_2019_A30502",
+      "source_sha256": "4579d69ffc3262e339835eb0c54984a3cc4152cf8e466f3684354af268e534a0",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "device supply voltage too high.\n- line reactor incorrectly dimensioned",
+        "start": 156,
+        "end": 226
+      },
+      "source_text": "A30502 Power unit: DC link overvoltage\nReaction: NONE\nAcknowledge: NONE\nCause: The power unit has detected overvoltage in the DC link on a pulse inhibit.\n- device supply voltage too high.\n- line reactor incorrectly dimensioned.\nAlarm value (r0949, interpret decimal):\nDC link voltage [1 bit = 100 mV].\nSee also: r0070 (Actual DC link voltage)\nRemedy: - check the device supply voltage (p0210).\n- check the dimensioning of the line reactor.\nSee also: p0210 (Drive unit line supply voltage)",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "device supply voltage too high",
+          "evidence": [
+            {
+              "quote": "device supply voltage too high",
+              "start": 156,
+              "end": 186
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "line reactor incorrectly dimensioned",
+          "evidence": [
+            {
+              "quote": "line reactor incorrectly dimensioned",
+              "start": 190,
+              "end": 226
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-A06020BA674F",
+      "fault_code": "F30600",
+      "sample_id": "SIEMENS_S210_2019_F30600",
+      "source_sha256": "a7200732bd01cf7616f3049a38e6daa17cfa1f51a47a8c44e52435844a840d68",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "- forced checking procedure (test stop) of the safety switch-off signal path of monitoring channel 2 unsuccessful.\n- subsequent response to fault F30611 (defect in a monitoring channel).\nFault value (r0949, decimal interpretation):\n0: Stop request from another monitoring channel.",
+        "start": 203,
+        "end": 483
+      },
+      "source_text": "F30600 SI P2: STO initiated\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The \"Safety Integrated\" function integrated in the drive has identified a fault in monitoring channel 2, and has initiated STO.\n- forced checking procedure (test stop) of the safety switch-off signal path of monitoring channel 2 unsuccessful.\n- subsequent response to fault F30611 (defect in a monitoring channel).\nFault value (r0949, decimal interpretation):\n0: Stop request from another monitoring channel.\n1005: STO active, although no STO is selected and no stop response with STO is active.\n1010: STO inactive, although STO is selected or a stop response with STO is active.\n1011: internal error for STO deselected in monitoring channel 2.\n9999: Subsequent response to fault F30611.\nRemedy: - select Safe Torque Off and deselect again.\n- carry out a POWER ON (switch-off/switch-on) for all components.\n- replace drive.\nFor fault value = 9999:\n- carry out diagnostics for fault F30611.\nNote:\nSI: Safety Integrated\nSTO: Safe Torque Off",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "forced checking procedure (test stop) of the safety switch-off signal path of monitoring channel 2 unsuccessful.",
+          "evidence": [
+            {
+              "quote": "- forced checking procedure (test stop) of the safety switch-off signal path of monitoring channel 2 unsuccessful.",
+              "start": 203,
+              "end": 317
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "Stop request from another monitoring channel.",
+          "evidence": [
+            {
+              "quote": "0: Stop request from another monitoring channel.",
+              "start": 435,
+              "end": 483
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-E5E3C8C46D8E",
+      "fault_code": "A01940",
+      "sample_id": "SIEMENS_S210_2019_A01940",
+      "source_sha256": "f6a60a22976e11f746c14a9b117018a24e3e9877a93db52199c8bfff1107cc6c",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "the master does not send a clock synchronous global control telegram although clock synchronous operation was selected\nwhen configuring the bus.\n- the master is using an isochronous DP clock cycle that is different than was transferred to the slave in the parameterizing\ntelegram.\n- at least one drive object has a pulse enable (also not controlled from PROFINET).",
+        "start": 291,
+        "end": 655
+      },
+      "source_text": "A01940 PN: Clock cycle synchronism not reached\nReaction: NONE\nAcknowledge: NONE\nCause: The bus is in the data exchange state and clock synchronous operation has been selected using the parameterizing\ntelegram. It was not possible to synchronize to the clock cycle specified by the master.\n- the master does not send a clock synchronous global control telegram although clock synchronous operation was selected\nwhen configuring the bus.\n- the master is using an isochronous DP clock cycle that is different than was transferred to the slave in the parameterizing\ntelegram.\n- at least one drive object has a pulse enable (also not controlled from PROFINET).\nRemedy: - check the master application and bus configuration.\n- check the consistency between the clock cycle input when configuring the slave and clock cycle setting at the master.\n- check that no drive object has a pulse enable. Only enable the pulses after synchronizing the PROFINET drives.\nNote:\nPN: PROFINET",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "the master does not send a clock synchronous global control telegram although clock synchronous operation was selected\nwhen configuring the bus.",
+          "evidence": [
+            {
+              "quote": "the master does not send a clock synchronous global control telegram although clock synchronous operation was selected\nwhen configuring the bus.",
+              "start": 291,
+              "end": 435
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "the master is using an isochronous DP clock cycle that is different than was transferred to the slave in the parameterizing\ntelegram.",
+          "evidence": [
+            {
+              "quote": "the master is using an isochronous DP clock cycle that is different than was transferred to the slave in the parameterizing\ntelegram.",
+              "start": 438,
+              "end": 571
+            }
+          ]
+        },
+        {
+          "child_ref": "C03",
+          "candidate_text": "at least one drive object has a pulse enable (also not controlled from PROFINET).",
+          "evidence": [
+            {
+              "quote": "at least one drive object has a pulse enable (also not controlled from PROFINET).",
+              "start": 574,
+              "end": 655
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-9000F13C0503",
+      "fault_code": "F30895",
+      "sample_id": "SIEMENS_S210_2019_F30895",
+      "source_sha256": "763d5d94aa943d98b6a57d1603e3faa52f50c39336a5519ceeefe9d2d2a7eb52",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "Cause: A DRIVE-CLiQ communication error has occurred from the power unit to the Control Unit involved.\nFault cause:\n11 (= 0B hex):\nSynchronization error during alternating cyclic data transfer.",
+        "start": 111,
+        "end": 304
+      },
+      "source_text": "F30895 power module DRIVE-CLiQ: Alternating cyclic data transfer error\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: A DRIVE-CLiQ communication error has occurred from the power unit to the Control Unit involved.\nFault cause:\n11 (= 0B hex):\nSynchronization error during alternating cyclic data transfer.\nNote regarding the message value:\nThe individual information is coded as follows in the message value (r0949/r2124):\n0000yyxx hex: yy = component number, xx = error cause\nRemedy: Carry out a POWER ON (switch-off/switch-on).",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "A DRIVE-CLiQ communication error has occurred from the power unit to the Control Unit involved.",
+          "evidence": [
+            {
+              "quote": "Cause: A DRIVE-CLiQ communication error has occurred from the power unit to the Control Unit involved.",
+              "start": 111,
+              "end": 213
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "Synchronization error during alternating cyclic data transfer.",
+          "evidence": [
+            {
+              "quote": "Fault cause:",
+              "start": 214,
+              "end": 226
+            },
+            {
+              "quote": "11 (= 0B hex):",
+              "start": 227,
+              "end": 241
+            },
+            {
+              "quote": "Synchronization error during alternating cyclic data transfer.",
+              "start": 242,
+              "end": 304
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-99E9D1915AF1",
+      "fault_code": "F30011",
+      "sample_id": "SIEMENS_S210_2019_F30011",
+      "source_sha256": "fd13612347e1a7f94f2dc62637fbdd155f6273bc4ca729bf936a7dcf161ad30c",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "a line phase has failed.\n- the 3 line phases are inadmissibly asymmetrical.\n- the capacitance of the DC link capacitor forms a resonance frequency with the line inductance and the reactor integrated\nin the power unit.\n- the fuse of a phase of a main circuit has ruptured.\n- a motor phase has failed.\n- for power units operated on a single phase, the permissible active power was exceeded.",
+        "start": 208,
+        "end": 596
+      },
+      "source_text": "F30011 Power unit: Line phase failure in main circuit\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: At the power unit, the DC link voltage ripple has exceeded the permissible limit value.\nPossible causes:\n- a line phase has failed.\n- the 3 line phases are inadmissibly asymmetrical.\n- the capacitance of the DC link capacitor forms a resonance frequency with the line inductance and the reactor integrated\nin the power unit.\n- the fuse of a phase of a main circuit has ruptured.\n- a motor phase has failed.\n- for power units operated on a single phase, the permissible active power was exceeded.\nFault value (r0949, interpret decimal):\nOnly for internal Siemens troubleshooting.\nRemedy: - check the main circuit fuses.\n- check whether a single-phase load is distorting the line voltages.\n- Detune the resonant frequency with the line inductance by using an upstream line reactor.\n- Dampen the resonant frequency with the line inductance by switching over the DC link voltage compensation in the\nsoftware (see p1810) – or increase the smoothing (see p1806). However, this can have a negative impact on the torque\nripple at the motor output.\n- check the motor feeder cables.",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "a line phase has failed.",
+          "evidence": [
+            {
+              "quote": "a line phase has failed.",
+              "start": 208,
+              "end": 232
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "the 3 line phases are inadmissibly asymmetrical.",
+          "evidence": [
+            {
+              "quote": "the 3 line phases are inadmissibly asymmetrical.",
+              "start": 235,
+              "end": 283
+            }
+          ]
+        },
+        {
+          "child_ref": "C03",
+          "candidate_text": "the fuse of a phase of a main circuit has ruptured.",
+          "evidence": [
+            {
+              "quote": "the fuse of a phase of a main circuit has ruptured.",
+              "start": 428,
+              "end": 479
+            }
+          ]
+        },
+        {
+          "child_ref": "C04",
+          "candidate_text": "a motor phase has failed.",
+          "evidence": [
+            {
+              "quote": "a motor phase has failed.",
+              "start": 482,
+              "end": 507
+            }
+          ]
+        },
+        {
+          "child_ref": "C05",
+          "candidate_text": "for power units operated on a single phase, the permissible active power was exceeded.",
+          "evidence": [
+            {
+              "quote": "for power units operated on a single phase, the permissible active power was exceeded.",
+              "start": 510,
+              "end": 596
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-3999F873BD12",
+      "fault_code": "F01700",
+      "sample_id": "SIEMENS_S210_2019_F01700",
+      "source_sha256": "f65286e18cee917f836961f9b54d2e0277eff234b8c4fe476b809bc94d927260",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "Possible causes:\n- stop request from another monitoring channel.\n- STO not active after parameterized time (p9557) after test stop selection.\n- subsequent response, following messages: A01706, A01714, F01701, A01716",
+        "start": 114,
+        "end": 329
+      },
+      "source_text": "F01700 SI Motion P1: STO initiated\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The drive is stopped using STO.\nPossible causes:\n- stop request from another monitoring channel.\n- STO not active after parameterized time (p9557) after test stop selection.\n- subsequent response, following messages: A01706, A01714, F01701, A01716\nRemedy: - remove the cause of the fault on the second monitoring channel.\n- carry out diagnostics for the active messages (A01706, A01714, F01701, A01716).\n- check the value in p9557 (where available), increase the value if necessary, and carry out a POWER ON\n- check the switch-off signal path of monitoring channel 1 (check DRIVE-CLiQ communication if it has been implemented)\n- replace drive.\nNote:\nSAM: Safe Acceleration Monitor (safe acceleration monitoring)\nSI: Safety Integrated\nSTO: Safe Torque Off",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "STO not active after parameterized time (p9557) after test stop selection.",
+          "evidence": [
+            {
+              "quote": "STO not active after parameterized time (p9557) after test stop selection.",
+              "start": 181,
+              "end": 255
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "stop request from another monitoring channel.",
+          "evidence": [
+            {
+              "quote": "stop request from another monitoring channel.",
+              "start": 133,
+              "end": 178
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-2635E15B1F92",
+      "fault_code": "F30004",
+      "sample_id": "SIEMENS_S210_2019_F30004",
+      "source_sha256": "9f3cf31cdf2fdec952b74a5b9d8e5c448867d535dd8d945cb632100dd5b11d1c",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "- insufficient cooling, fan failure.\n- overload.\n- ambient temperature too high.\n- pulse frequency too high.",
+        "start": 190,
+        "end": 298
+      },
+      "source_text": "F30004 Power unit: Overtemperature heat sink AC inverter\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The temperature of the power unit heat sink has exceeded the permissible limit value.\n- insufficient cooling, fan failure.\n- overload.\n- ambient temperature too high.\n- pulse frequency too high.\nFault value (r0949, interpret decimal):\nTemperature [0.01 °C].\nRemedy: - check whether the fan is running.\n- check the fan elements.\n- check whether the ambient temperature is in the permissible range.\n- check the motor load.\n- reduce the pulse frequency if this is higher than the rated pulse frequency.\nNotice:\nThis fault can only be acknowledged after the alarm threshold for alarm A05000 has been undershot.",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "insufficient cooling, fan failure",
+          "evidence": [
+            {
+              "quote": "insufficient cooling, fan failure",
+              "start": 192,
+              "end": 225
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "overload",
+          "evidence": [
+            {
+              "quote": "overload",
+              "start": 229,
+              "end": 237
+            }
+          ]
+        },
+        {
+          "child_ref": "C03",
+          "candidate_text": "ambient temperature too high",
+          "evidence": [
+            {
+              "quote": "ambient temperature too high",
+              "start": 241,
+              "end": 269
+            }
+          ]
+        },
+        {
+          "child_ref": "C04",
+          "candidate_text": "pulse frequency too high",
+          "evidence": [
+            {
+              "quote": "pulse frequency too high",
+              "start": 273,
+              "end": 297
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-ACB38B98BFC1",
+      "fault_code": "F30003",
+      "sample_id": "SIEMENS_S210_2019_F30003",
+      "source_sha256": "74c10ec65e82010d4b0b0176b3c91138b040348f73a8969f09aecbd96d9c0bc7",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "line supply voltage below the permissible value.\n- line supply infeed failed or interrupted.\n- line phase interrupted",
+        "start": 176,
+        "end": 293
+      },
+      "source_text": "F30003 Drive: DC link undervoltage\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The power unit has detected an undervoltage condition in the DC link.\n- line supply failure\n- line supply voltage below the permissible value.\n- line supply infeed failed or interrupted.\n- line phase interrupted.\nRemedy: - check the line supply voltage\n- check the line supply infeed and observe the fault messages relating to it (if there are any)\n- check the line supply phases.\n- check the line supply voltage setting (p0210).\nSee also: p0210 (Drive unit line supply voltage)",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "line supply voltage below the permissible value",
+          "evidence": [
+            {
+              "quote": "line supply voltage below the permissible value",
+              "start": 176,
+              "end": 223
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "line supply infeed failed or interrupted",
+          "evidence": [
+            {
+              "quote": "line supply infeed failed or interrupted",
+              "start": 227,
+              "end": 267
+            }
+          ]
+        },
+        {
+          "child_ref": "C03",
+          "candidate_text": "line phase interrupted",
+          "evidence": [
+            {
+              "quote": "line phase interrupted",
+              "start": 271,
+              "end": 293
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-78985E149D25",
+      "fault_code": "F01910",
+      "sample_id": "SIEMENS_S210_2019_F01910",
+      "source_sha256": "70d4e6637cbf80a233600b8acc9fa96300727396edcd3c59f96ff506b08b53f4",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "bus connection interrupted.\n- controller switched off.\n- controller set into the STOP state.",
+        "start": 246,
+        "end": 338
+      },
+      "source_text": "F01910 Fieldbus: setpoint timeout\nReaction: OFF3\nAcknowledge: IMMEDIATELY\n474 Operating Instructions, 01/2019, A5E41702836B AC\nCause: The reception of setpoints from the fieldbus interface (onboard, PROFIBUS/PROFINET/USS) has been interrupted.\n- bus connection interrupted.\n- controller switched off.\n- controller set into the STOP state.\nRemedy: Restore the bus connection and set the controller to RUN.\nNote regarding PROFIBUS slave redundancy:\nFor operation on a Y link, it must be ensured that \"DP alarm mode = DPV1\" is set in the slave parameterization.",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "bus connection interrupted.",
+          "evidence": [
+            {
+              "quote": "bus connection interrupted.",
+              "start": 246,
+              "end": 273
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "controller switched off.",
+          "evidence": [
+            {
+              "quote": "controller switched off.",
+              "start": 276,
+              "end": 300
+            }
+          ]
+        },
+        {
+          "child_ref": "C03",
+          "candidate_text": "controller set into the STOP state.",
+          "evidence": [
+            {
+              "quote": "controller set into the STOP state.",
+              "start": 303,
+              "end": 338
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-37C3BDFBF2F4",
+      "fault_code": "F30024",
+      "sample_id": "SIEMENS_S210_2019_F30024",
+      "source_sha256": "f778bb9fde4b2842f808f48e2c1ab471b1c47fe3578f1f06a960d78692cf7bb2",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "the permissible load duty cycle was not maintained.\n- insufficient cooling, fan failure.\n- overload.\n- ambient temperature too high.\n- pulse frequency too high",
+        "start": 198,
+        "end": 357
+      },
+      "source_text": "F30024 Power unit: Overtemperature thermal model\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The temperature difference between the heat sink and chip has exceeded the permissible limit value.\n- the permissible load duty cycle was not maintained.\n- insufficient cooling, fan failure.\n- overload.\n- ambient temperature too high.\n- pulse frequency too high.\nSee also: r0037 (Drive temperatures)\nRemedy: - adapt the load duty cycle.\n- check whether the fan is running.\n- check the fan elements.\n- check whether the ambient temperature is in the permissible range.\n- check the motor load.\n- reduce the pulse frequency if this is higher than the rated pulse frequency.",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "the permissible load duty cycle was not maintained",
+          "evidence": [
+            {
+              "quote": "the permissible load duty cycle was not maintained",
+              "start": 198,
+              "end": 248
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "overload",
+          "evidence": [
+            {
+              "quote": "overload",
+              "start": 289,
+              "end": 297
+            }
+          ]
+        },
+        {
+          "child_ref": "C03",
+          "candidate_text": "ambient temperature too high",
+          "evidence": [
+            {
+              "quote": "ambient temperature too high",
+              "start": 301,
+              "end": 329
+            }
+          ]
+        },
+        {
+          "child_ref": "C04",
+          "candidate_text": "pulse frequency too high",
+          "evidence": [
+            {
+              "quote": "pulse frequency too high",
+              "start": 333,
+              "end": 357
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-447159AE6122",
+      "fault_code": "F01018",
+      "sample_id": "SIEMENS_S210_2019_F01018",
+      "source_sha256": "1d92b5898441e98ec7c770e61afa3a862ab22e69726c68f92378998c384a8207",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "Possible reasons for booting being interrupted:\n- power supply interrupted.\n- CPU crashed.\n- parameterization invalid",
+        "start": 201,
+        "end": 318
+      },
+      "source_text": "F01018 Booting has been interrupted several times\nReaction: NONE\nAcknowledge: POWER ON\nCause: Module booting was interrupted several times. As a consequence, the module boots with the factory setting.\nPossible reasons for booting being interrupted:\n- power supply interrupted.\n- CPU crashed.\n- parameterization invalid.\nRemedy: - carry out a POWER ON (switch-off/switch-on). After switching on, the module reboots from the valid parameterization (if\navailable).\n- restore the valid parameterization.\nExamples:\na) Carry out a first commissioning, save, carry out a POWER ON (switch-off/switch-on).\nb) Load another valid parameter backup (e.g. from the memory card), save, carry out a POWER ON (switch-off/switch-on).\nNote:\nIf the fault situation is repeated, then this fault is again output after several interrupted boots.",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "power supply interrupted",
+          "evidence": [
+            {
+              "quote": "power supply interrupted",
+              "start": 251,
+              "end": 275
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "CPU crashed",
+          "evidence": [
+            {
+              "quote": "CPU crashed",
+              "start": 279,
+              "end": 290
+            }
+          ]
+        },
+        {
+          "child_ref": "C03",
+          "candidate_text": "parameterization invalid",
+          "evidence": [
+            {
+              "quote": "parameterization invalid",
+              "start": 294,
+              "end": 318
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-22E63858AF68",
+      "fault_code": "F07801",
+      "sample_id": "SIEMENS_S210_2019_F07801",
+      "source_sha256": "ffce74e3af86807fc87030bc194ade023ff756df80dcb060388f90f46d841438",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "active current limit too low.\n- current controller not correctly set.\n- load is too high.\n- short-circuit in the motor cable or ground fault.\n- motor current does not match the drive current.",
+        "start": 131,
+        "end": 322
+      },
+      "source_text": "F07801 Drive: Motor overcurrent\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The permissible motor limit current was exceeded.\n- active current limit too low.\n- current controller not correctly set.\n- load is too high.\n- short-circuit in the motor cable or ground fault.\n- motor current does not match the drive current.\nRemedy: - reduce the load.\n- check the motor and motor cables for short-circuit and ground fault.\n- check the drive and motor combination.",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "active current limit too low.",
+          "evidence": [
+            {
+              "quote": "active current limit too low.",
+              "start": 131,
+              "end": 160
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "current controller not correctly set.",
+          "evidence": [
+            {
+              "quote": "current controller not correctly set.",
+              "start": 163,
+              "end": 200
+            }
+          ]
+        },
+        {
+          "child_ref": "C03",
+          "candidate_text": "load is too high.",
+          "evidence": [
+            {
+              "quote": "load is too high.",
+              "start": 203,
+              "end": 220
+            }
+          ]
+        },
+        {
+          "child_ref": "C04",
+          "candidate_text": "motor current does not match the drive current.",
+          "evidence": [
+            {
+              "quote": "motor current does not match the drive current.",
+              "start": 275,
+              "end": 322
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-4FBAD5BD43C4",
+      "fault_code": "F31887",
+      "sample_id": "SIEMENS_S210_2019_F31887",
+      "source_sha256": "f2b0efb58bbcb7e91e408c89a80cebc06e69ad229c2830218256705f36a365b6",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "Faulty hardware cannot be\nexcluded.\nFault cause:\n32 (= 20 hex):\nError in the telegram header.\n35 (= 23 hex):\nReceive error: The telegram buffer memory contains an error.\n66 (= 42 hex):\nSend error: The telegram buffer memory contains an error.\n67 (= 43 hex):\nSend error: The telegram buffer memory contains an error.\n96 (= 60 hex):\nResponse received too late during runtime measurement.\n97 (= 61 hex):\nTime taken to exchange characteristic data too long.",
+        "start": 183,
+        "end": 636
+      },
+      "source_text": "F31887 Encoder 1 DRIVE-CLiQ (CU): Component fault\nReaction: ENCODER\nAcknowledge: IMMEDIATELY\nCause: Fault detected on the DRIVE-CLiQ component involved (Sensor Module for encoder 1). Faulty hardware cannot be\nexcluded.\nFault cause:\n32 (= 20 hex):\nError in the telegram header.\n35 (= 23 hex):\nReceive error: The telegram buffer memory contains an error.\n66 (= 42 hex):\nSend error: The telegram buffer memory contains an error.\n67 (= 43 hex):\nSend error: The telegram buffer memory contains an error.\n96 (= 60 hex):\nResponse received too late during runtime measurement.\n97 (= 61 hex):\nTime taken to exchange characteristic data too long.\nNote regarding the message value:\nThe individual information is coded as follows in the message value (r0949/r2124):\n0000yyxx hex: yy = component number, xx = error cause\nRemedy: - check the DRIVE-CLiQ wiring (interrupted cable, contacts, ...).\n- check the electrical cabinet design and cable routing for EMC compliance\n- if required, use another DRIVE-CLiQ socket (p9904).\n- replace the component involved.",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "Faulty hardware cannot be excluded.",
+          "evidence": [
+            {
+              "quote": "Faulty hardware cannot be\nexcluded.",
+              "start": 183,
+              "end": 218
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "Error in the telegram header.",
+          "evidence": [
+            {
+              "quote": "Error in the telegram header.",
+              "start": 247,
+              "end": 276
+            }
+          ]
+        },
+        {
+          "child_ref": "C03",
+          "candidate_text": "Receive error: The telegram buffer memory contains an error.",
+          "evidence": [
+            {
+              "quote": "Receive error: The telegram buffer memory contains an error.",
+              "start": 292,
+              "end": 352
+            }
+          ]
+        },
+        {
+          "child_ref": "C04",
+          "candidate_text": "Send error: The telegram buffer memory contains an error.",
+          "evidence": [
+            {
+              "quote": "66 (= 42 hex):\nSend error: The telegram buffer memory contains an error.\n67 (= 43 hex):\nSend error: The telegram buffer memory contains an error.",
+              "start": 353,
+              "end": 498
+            }
+          ]
+        },
+        {
+          "child_ref": "C05",
+          "candidate_text": "Response received too late during runtime measurement.",
+          "evidence": [
+            {
+              "quote": "Response received too late during runtime measurement.",
+              "start": 514,
+              "end": 568
+            }
+          ]
+        },
+        {
+          "child_ref": "C06",
+          "candidate_text": "Time taken to exchange characteristic data too long.",
+          "evidence": [
+            {
+              "quote": "Time taken to exchange characteristic data too long.",
+              "start": 584,
+              "end": 636
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-BFDD2CFA274A",
+      "fault_code": "F13102",
+      "sample_id": "SIEMENS_S210_2019_F13102",
+      "source_sha256": "fc5a039ff8bcdeed9a7428ceb438523655ee55c973c332c4a404f7fff1850e84",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "A file has a checksum error.\nxxxx = 2:\nThe files are not consistent with one another.\nxxxx = 3:\nThe project files, which were loaded into the file system via load (download from the memory card), are inconsistent.",
+        "start": 419,
+        "end": 632
+      },
+      "source_text": "F13102 Know-how protection: Consistency error of the protected data\nReaction: OFF1\nAcknowledge: IMMEDIATELY\n492 Operating Instructions, 01/2019, A5E41702836B AC\nCause: An error was identified when checking the consistency of the protected files. As a consequence, the project on the memory\ncard cannot be run.\nFault value (r0949, interpret hexadecimal):\nyyyyxxxx hex: yyyy = object number, xxxx = fault cause\nxxxx = 1:\nA file has a checksum error.\nxxxx = 2:\nThe files are not consistent with one another.\nxxxx = 3:\nThe project files, which were loaded into the file system via load (download from the memory card), are inconsistent.\nNote:\nKHP: Know-How Protection\nRemedy: - Replace the project on the memory card or replace project files for download from the memory card.\n- Restore the factory setting and download again.",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "A file has a checksum error.",
+          "evidence": [
+            {
+              "quote": "A file has a checksum error.",
+              "start": 419,
+              "end": 447
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "The files are not consistent with one another.",
+          "evidence": [
+            {
+              "quote": "The files are not consistent with one another.",
+              "start": 458,
+              "end": 504
+            }
+          ]
+        },
+        {
+          "child_ref": "C03",
+          "candidate_text": "The project files, which were loaded into the file system via load (download from the memory card), are inconsistent.",
+          "evidence": [
+            {
+              "quote": "The project files, which were loaded into the file system via load (download from the memory card), are inconsistent.",
+              "start": 515,
+              "end": 632
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-AC4F9A8701CA",
+      "fault_code": "A07094",
+      "sample_id": "SIEMENS_S210_2019_A07094",
+      "source_sha256": "8a393b18e1a9d295a0c053df3bb462a1cb9adf6e3223d14dcac202a5dab61d73",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "Minimum limit violated --> parameter is set to the minimum value.\nMaximum limit violated --> parameter is set to the maximum value.\n",
+        "start": 181,
+        "end": 313
+      },
+      "source_text": "A07094 General parameter limit violation\nReaction: NONE\nAcknowledge: NONE\nCause: As a result of the violation of a parameter limit, the parameter value was automatically corrected.\nMinimum limit violated --> parameter is set to the minimum value.\nMaximum limit violated --> parameter is set to the maximum value.\nAlarm value (r2124, interpret decimal):\nParameter number, whose value had to be adapted.\nRemedy: Check the adapted parameter values and if required correct.",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "Minimum limit violated",
+          "evidence": [
+            {
+              "quote": "Minimum limit violated",
+              "start": 181,
+              "end": 203
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "Maximum limit violated",
+          "evidence": [
+            {
+              "quote": "Maximum limit violated",
+              "start": 247,
+              "end": 269
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-7DFEC417046C",
+      "fault_code": "F30001",
+      "sample_id": "SIEMENS_S210_2019_F30001",
+      "source_sha256": "55a4ba493b8074d8fe7b8368e6c56aa2dfbb0b9811261a940fa7edf8257e1034",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "closed-loop control is incorrectly parameterized.\n- motor has a short-circuit or fault to ground (frame).\n- the rated motor current is significantly higher than that of the drive.\n- infeed: High discharge and post-charging currents for line voltage dip.\n- infeed: High post-charging currents for overload when motoring and DC link voltage dip.\n- infeed: Short-circuit currents at switch-on as there is no commutating reactor.\n- power cables are not correctly connected.\n- the power cables exceed the maximum permissible length.\n- defective drive.\n- line phase interrupted.",
+        "start": 124,
+        "end": 696
+      },
+      "source_text": "F30001 Drive: overcurrent\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The drive has detected an overcurrent condition.\n- closed-loop control is incorrectly parameterized.\n- motor has a short-circuit or fault to ground (frame).\n- the rated motor current is significantly higher than that of the drive.\n- infeed: High discharge and post-charging currents for line voltage dip.\n- infeed: High post-charging currents for overload when motoring and DC link voltage dip.\n- infeed: Short-circuit currents at switch-on as there is no commutating reactor.\n- power cables are not correctly connected.\n- the power cables exceed the maximum permissible length.\n- defective drive.\n- line phase interrupted.\nFault value (r0949, interpret bitwise binary):\nBit 0: Phase U.\nBit 1: Phase V.\nBit 2: Phase W.\nBit 3: Overcurrent in the DC link.\nNote:\nFault value = 0 means that the phase with overcurrent is not recognized.\nRemedy: - check the motor data - if required, carry out commissioning.\n- check the assignment of the rated motor and drive currents.\n- infeed: Check the line supply quality.\n- infeed: Reduce the motor load.\n- infeed: Check the correct connection of the line filter and the line commutating reactor.\n- check the power cable connections.\n- check the power cables for short-circuit or ground fault.\n- check the length of the power cables.\n- replace drive.\n- check the line supply phases.",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "closed-loop control is incorrectly parameterized.",
+          "evidence": [
+            {
+              "quote": "closed-loop control is incorrectly parameterized.",
+              "start": 124,
+              "end": 173
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "the rated motor current is significantly higher than that of the drive.",
+          "evidence": [
+            {
+              "quote": "the rated motor current is significantly higher than that of the drive.",
+              "start": 232,
+              "end": 303
+            }
+          ]
+        },
+        {
+          "child_ref": "C03",
+          "candidate_text": "infeed: High discharge and post-charging currents for line voltage dip.",
+          "evidence": [
+            {
+              "quote": "infeed: High discharge and post-charging currents for line voltage dip.",
+              "start": 306,
+              "end": 377
+            }
+          ]
+        },
+        {
+          "child_ref": "C04",
+          "candidate_text": "infeed: High post-charging currents for overload when motoring and DC link voltage dip.",
+          "evidence": [
+            {
+              "quote": "infeed: High post-charging currents for overload when motoring and DC link voltage dip.",
+              "start": 380,
+              "end": 467
+            }
+          ]
+        },
+        {
+          "child_ref": "C05",
+          "candidate_text": "power cables are not correctly connected.",
+          "evidence": [
+            {
+              "quote": "power cables are not correctly connected.",
+              "start": 552,
+              "end": 593
+            }
+          ]
+        },
+        {
+          "child_ref": "C06",
+          "candidate_text": "the power cables exceed the maximum permissible length.",
+          "evidence": [
+            {
+              "quote": "the power cables exceed the maximum permissible length.",
+              "start": 596,
+              "end": 651
+            }
+          ]
+        },
+        {
+          "child_ref": "C07",
+          "candidate_text": "line phase interrupted.",
+          "evidence": [
+            {
+              "quote": "line phase interrupted.",
+              "start": 673,
+              "end": 696
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-5F86F03A2BE2",
+      "fault_code": "F30036",
+      "sample_id": "SIEMENS_S210_2019_F30036",
+      "source_sha256": "9038a3d05a494ee96493204652739ffb1a289a8fd2c879cadec0f2dacd5d440d",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "insufficient cooling, fan failure.\n- overload.\n- ambient temperature too high",
+        "start": 172,
+        "end": 249
+      },
+      "source_text": "F30036 Power unit: Internal overtemperature\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The temperature inside the converter has exceeded the permissible limit value.\n- insufficient cooling, fan failure.\n- overload.\n- ambient temperature too high.\nFault value (r0949, interpret binary):\nBit 0 = 1: Overtemperature in the control electronics area.\nBit 1 = 1: Overtemperature in the power electronics area.\nBit 2 = 1: Overtemperature in the processor area.\nBit 3 = 1: Overtemperature in the processor area.\nBit 4 = 1: Overtemperature when the internal fan is defective.\nBit 5 = 1: Intake air overtemperature.\nRemedy: - check the internal fan.\n- check the fan elements.\n- check whether the ambient temperature is in the permissible range.\nNotice:\nThis fault can only be acknowledged once the permissible temperature limit minus 5 K has been fallen below.",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "insufficient cooling",
+          "evidence": [
+            {
+              "quote": "insufficient cooling",
+              "start": 172,
+              "end": 192
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "fan failure",
+          "evidence": [
+            {
+              "quote": "fan failure",
+              "start": 194,
+              "end": 205
+            }
+          ]
+        },
+        {
+          "child_ref": "C03",
+          "candidate_text": "overload",
+          "evidence": [
+            {
+              "quote": "overload",
+              "start": 209,
+              "end": 217
+            }
+          ]
+        },
+        {
+          "child_ref": "C04",
+          "candidate_text": "ambient temperature too high",
+          "evidence": [
+            {
+              "quote": "ambient temperature too high",
+              "start": 221,
+              "end": 249
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-0B7DDEDB739A",
+      "fault_code": "F13000",
+      "sample_id": "SIEMENS_S210_2019_F13000",
+      "source_sha256": "f4ecae35d21bc204d0197149ed555346de8120dfbf171209cc4e5b924767cef7",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "an error occurred when checking the existing licenses.\nFault value (r0949, decimal interpretation):\n0:\nThe existing license is not sufficient.\n1:\nAn adequate license was not able to be determined as the memory card with the required licensing data was withdrawn in\noperation.\n2:\nAn adequate license was not able to be determined as there is no licensing data available on the memory card.\n3:\nAn adequate license was not able to be determined as there is a checksum error in the license key.\n4:\nAn internal error occurred when checking the license",
+        "start": 186,
+        "end": 732
+      },
+      "source_text": "F13000 License not adequate\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: - for the drive unit, the options that require a license are being used but the licenses are not sufficient.\n- an error occurred when checking the existing licenses.\nFault value (r0949, decimal interpretation):\n0:\nThe existing license is not sufficient.\n1:\nAn adequate license was not able to be determined as the memory card with the required licensing data was withdrawn in\noperation.\n2:\nAn adequate license was not able to be determined as there is no licensing data available on the memory card.\n3:\nAn adequate license was not able to be determined as there is a checksum error in the license key.\n4:\nAn internal error occurred when checking the license.\nRemedy: For fault value = 0:\nAdditional licenses are required and these must be activated (p9920, p9921).\nFor fault value = 1:\nWith the system powered down, re-insert the memory card that matches the system.\nFor fault value = 2:\nEnter and activate the license key (p9920, p9921).\nFor fault value = 3:\nCompare the license key (p9920) entered with the license key on the certificate of license.\nRe-enter the license key and activate (p9920, p9921).\nFor fault value = 4:\n- carry out a POWER ON.\n- upgrade firmware to later version.\n- contact Technical Support.\nNote:\nAn overview of the drive device functions requiring a license can be displayed using a commissioning tool in the online\nmode. Depending on the commissioning tool, you can obtain the necessary licenses (serial number, license Key, Trial\nLicense Mode).",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "an error occurred when checking the existing licenses",
+          "evidence": [
+            {
+              "quote": "an error occurred when checking the existing licenses",
+              "start": 186,
+              "end": 239
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "An adequate license was not able to be determined as the memory card with the required licensing data was withdrawn in\noperation",
+          "evidence": [
+            {
+              "quote": "An adequate license was not able to be determined as the memory card with the required licensing data was withdrawn in\noperation",
+              "start": 332,
+              "end": 460
+            }
+          ]
+        },
+        {
+          "child_ref": "C03",
+          "candidate_text": "An adequate license was not able to be determined as there is no licensing data available on the memory card",
+          "evidence": [
+            {
+              "quote": "An adequate license was not able to be determined as there is no licensing data available on the memory card",
+              "start": 465,
+              "end": 573
+            }
+          ]
+        },
+        {
+          "child_ref": "C04",
+          "candidate_text": "An adequate license was not able to be determined as there is a checksum error in the license key",
+          "evidence": [
+            {
+              "quote": "An adequate license was not able to be determined as there is a checksum error in the license key",
+              "start": 578,
+              "end": 675
+            }
+          ]
+        },
+        {
+          "child_ref": "C05",
+          "candidate_text": "An internal error occurred when checking the license",
+          "evidence": [
+            {
+              "quote": "An internal error occurred when checking the license",
+              "start": 680,
+              "end": 732
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-4FF41CF1177A",
+      "fault_code": "F07414",
+      "sample_id": "SIEMENS_S210_2019_F07414",
+      "source_sha256": "91cd462b5fa198554755f689eef4c61c7d63e848ab87dc5875339e2da701a0ca",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "Cause 1:\n- the encoder was replaced.\nCause 2:\n- a third-party, built-in or linear motor was re-commissioned.\nCause 3:\n- the motor with integrated and adjusted encoder was replaced.\nCause 4:\n- the firmware was updated to a version that checks the encoder serial number.",
+        "start": 325,
+        "end": 593
+      },
+      "source_text": "F07414 Drive: Encoder serial number changed\nReaction: ENCODER\nAcknowledge: IMMEDIATELY\nCause: The serial number of the motor encoder of a synchronous motor has changed. The change was only checked for encoders\nwith serial number (e.g. EnDat encoders) and build-in motors (e.g. p0300 = 401) or third-party motors (p0300 = 2).\nCause 1:\n- the encoder was replaced.\nCause 2:\n- a third-party, built-in or linear motor was re-commissioned.\nCause 3:\n- the motor with integrated and adjusted encoder was replaced.\nCause 4:\n- the firmware was updated to a version that checks the encoder serial number.\nNote:\nWith closed-loop position control, the serial number is accepted when starting the adjustment (p2507 = 2).\nWhen the encoder is adjusted (p2507 = 3), the serial number is checked for changes and if required, the adjustment is reset\n(p2507 = 1).\nProceed as follows to hide serial number monitoring:\n- set the following serial numbers for the corresponding Encoder Data Set: p0441= FF, p0442 = 0, p0443 = 0, p0444 = 0,\np0445 = 0.\n- parameterize F07414 as message type N (p2118, p2119).\nRemedy: For causes 1, 2:\nCarry out an automatic adjustment using the pole position identification routine. Acknowledge fault. Initiate the pole position\nidentification routine with p1990 = 1. Then check that the pole position identification routine is correctly executed.\nSERVO:\nIf a pole position identification technique is selected in p1980, and if p0301 does not contain a motor type with an encoder\nadjusted in the factory, then p1990 is automatically activated.\nor\nSet the adjustment via p0431. In this case, the new serial number is automatically accepted.\nor\nMechanically adjust the encoder. Accept the new serial number with p0440 = 1.\nFor causes 3, 4:\nAccept the new serial number with p0440 = 1.",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "the encoder was replaced",
+          "evidence": [
+            {
+              "quote": "the encoder was replaced",
+              "start": 336,
+              "end": 360
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "a third-party, built-in or linear motor was re-commissioned",
+          "evidence": [
+            {
+              "quote": "a third-party, built-in or linear motor was re-commissioned",
+              "start": 373,
+              "end": 432
+            }
+          ]
+        },
+        {
+          "child_ref": "C03",
+          "candidate_text": "the motor with integrated and adjusted encoder was replaced",
+          "evidence": [
+            {
+              "quote": "the motor with integrated and adjusted encoder was replaced",
+              "start": 445,
+              "end": 504
+            }
+          ]
+        },
+        {
+          "child_ref": "C04",
+          "candidate_text": "the firmware was updated to a version that checks the encoder serial number",
+          "evidence": [
+            {
+              "quote": "the firmware was updated to a version that checks the encoder serial number",
+              "start": 517,
+              "end": 592
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-8113E48CB3B5",
+      "fault_code": "F30002",
+      "sample_id": "SIEMENS_S210_2019_F30002",
+      "source_sha256": "c7075835d18dba8e8632f13523c57d5a97abbdff32f2749c841e66442b1117da",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "- motor regenerates too much energy.\n- device supply voltage too high.\n- line phase interrupted.",
+        "start": 145,
+        "end": 241
+      },
+      "source_text": "F30002 Drive: DC link overvoltage\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The drive has detected an overvoltage condition in the DC link.\n- motor regenerates too much energy.\n- device supply voltage too high.\n- line phase interrupted.\nFault value (r0949, interpret decimal):\nDC link voltage at the time of trip [0.1 V].\nRemedy: - increase the ramp-down time\n- use a braking resistor.\n- use a drive with a higher power rating.\n- check the device supply voltage (p0210).\n- check the line supply phases.\nSee also: p0210 (Drive unit line supply voltage)",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "motor regenerates too much energy",
+          "evidence": [
+            {
+              "quote": "motor regenerates too much energy",
+              "start": 147,
+              "end": 180
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "device supply voltage too high",
+          "evidence": [
+            {
+              "quote": "device supply voltage too high",
+              "start": 184,
+              "end": 214
+            }
+          ]
+        },
+        {
+          "child_ref": "C03",
+          "candidate_text": "line phase interrupted",
+          "evidence": [
+            {
+              "quote": "line phase interrupted",
+              "start": 218,
+              "end": 240
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-A56A01673204",
+      "fault_code": "F30625",
+      "sample_id": "SIEMENS_S210_2019_F30625",
+      "source_sha256": "142c30a5eb552f4822408b5cf39004089f2cfa9907e4b322de6f2c913dbc7d2e",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "a time slice overflow of the safety software has occurred.\n- the enable of the safety functions in both monitoring channels is inconsistent",
+        "start": 345,
+        "end": 484
+      },
+      "source_text": "F30625 SI P2: Sign-of-life error in safety data\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The \"Safety Integrated\" function integrated in the drive has identified an error in the sign-of-life of the safety data in\nmonitoring channel 2, and has initiated STO.\n- there is either a DRIVE-CLiQ communication error or communication has failed.\n- a time slice overflow of the safety software has occurred.\n- the enable of the safety functions in both monitoring channels is inconsistent.\nFault value (r0949, interpret decimal):\nOnly for internal Siemens troubleshooting.\nRemedy: - select STO and then deselect again.\n- carry out a POWER ON (switch-off/switch-on).\n- check whether there is a DRIVE-CLiQ communication error between the two monitoring channels and, if required, carry\nout a diagnostics routine for the faults identified.\n- deselect all drive functions that are not absolutely necessary.\n- check the electrical cabinet design and cable routing for EMC compliance\n- check whether the safety functions are enabled (p9601), copy the safety parameters using the commissioning tool, and\nconfirm the data change.\nNote:\nP2: processor 2\nSI: Safety Integrated\nSTO: Safe Torque Off",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "a time slice overflow of the safety software has occurred",
+          "evidence": [
+            {
+              "quote": "a time slice overflow of the safety software has occurred",
+              "start": 345,
+              "end": 402
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "the enable of the safety functions in both monitoring channels is inconsistent",
+          "evidence": [
+            {
+              "quote": "the enable of the safety functions in both monitoring channels is inconsistent",
+              "start": 406,
+              "end": 484
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-ADFFEF50F40B",
+      "fault_code": "F30027",
+      "sample_id": "SIEMENS_S210_2019_F30027",
+      "source_sha256": "fc4d7593653aca73af9c1d8b57bd515b2ed8ff27d9295d1cd75b5232590a00c7",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "There is no line supply voltage connected.\n2) The line contactor/line side switch has not been closed.\n3) The line supply voltage is too low.\n4) Line supply voltage incorrectly set (p0210).\n5) The precharging resistors are overheated as there were too many precharging operations per time unit.\n6) The precharging resistors are overheated as the DC link capacitance is too high.\n7) The precharging resistors are overheated because when there is no \"ready for operation\" (r0863.0) of the infeed unit,\npower is taken from the DC link.\n8) The precharging resistors are overheated as the line contactor was closed during the DC link fast discharge through the\nBraking Module.",
+        "start": 237,
+        "end": 908
+      },
+      "source_text": "F30027 Power unit: Precharging DC link time monitoring\nReaction: OFF2\nAcknowledge: IMMEDIATELY\n498 Operating Instructions, 01/2019, A5E41702836B AC\nCause: The power unit DC link was not able to be precharged within the expected time.\n1) There is no line supply voltage connected.\n2) The line contactor/line side switch has not been closed.\n3) The line supply voltage is too low.\n4) Line supply voltage incorrectly set (p0210).\n5) The precharging resistors are overheated as there were too many precharging operations per time unit.\n6) The precharging resistors are overheated as the DC link capacitance is too high.\n7) The precharging resistors are overheated because when there is no \"ready for operation\" (r0863.0) of the infeed unit,\npower is taken from the DC link.\n8) The precharging resistors are overheated as the line contactor was closed during the DC link fast discharge through the\nBraking Module.\n9) The DC link has either a ground fault or a short-circuit.\nFault value (r0949, interpret binary):\nyyyyxxxx hex:\nyyyy = power unit state\n0: Fault status (wait for OFF and fault acknowledgment).\n1: Restart inhibit (wait for OFF).\n2: Overvoltage condition detected -> change into the fault state.\n3: Undervoltage condition detected -> change into the fault state.\n4: Wait for bridging contactor to open -> change into the fault state.\n5: Wait for bridging contactor to open -> change into restart inhibit.\n6: Wait for bypass contactor to open\n7: Commissioning.\n8: Ready for precharging.\n9: Precharging started, DC link voltage lower than the minimum switch-on voltage\n10: Precharging, DC link voltage end of precharging still not detected\n11: Wait for the end of the de-bounce time of the main contactor after precharging has been completed.\n12: Precharging completed, ready for pulse enable.\n13: It was detected that the STO terminal was energized at the power unit\nxxxx = Missing internal enable signals, power unit (inverted bit-coded, FFFF hex -> all internal enable signals available)\nBit 0: Power supply of the IGBT gating shut down.\nBit 1: Ground fault detected.\nBit 2: Peak current intervention.\nBit 3: I2t exceeded.\nBit 4. Thermal model overtemperature calculated.\nBit 5: (heat sink, gating module, power unit) overtemperature measured.\nBit 6: Reserved.\nBit 7: Overvoltage detected.\nBit 8: Power unit has completed precharging, ready for pulse enable.\nBit 9: STO terminal missing.\nBit 10: Overcurrent detected.\nBit 11: Armature short-circuit active.\nBit 12: DRIVE-CLiQ fault active.\nBit 13: Vce fault detected, transistor de-saturated due to overcurrent/short-circuit.\nBit 14: Undervoltage detected.\nSee also: p0210 (Drive unit line supply voltage)\nRemedy: In general:\n- check the line supply voltage at the input terminals.\n- check the line supply voltage setting (p0210).\nFor 5):\n- carefully observe the permissible precharging frequency (refer to the appropriate Manual).\nFor 6):\n- check the total capacitance of the DC link and reduce in accordance with the maximum permissible DC link capacitance\nif necessary (refer to the appropriate Manual).\nFor 7):\n- interconnect the ready-for-operation signal from the infeed unit (r0863.0) in the enable logic of the drives connected to this\nDC link\nFor 8):\n- check the connections of the external line contactor. The line contactor must be open during DC link fast discharge.\nFor 9):\n- check the DC link for ground faults or short circuits.\nFor 11):\n- check the DC link voltage of the infeed (r0070) and Motor Modules (r0070).\nIf the DC link voltage generated by the infeed (or external) is not displayed for the Motor Modules (r0070), then a fuse has\nruptured in the Motor Module.\nSee also: p0210 (Drive unit line supply voltage)",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "There is no line supply voltage connected.",
+          "evidence": [
+            {
+              "quote": "There is no line supply voltage connected.",
+              "start": 237,
+              "end": 279
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "The line contactor/line side switch has not been closed.",
+          "evidence": [
+            {
+              "quote": "The line contactor/line side switch has not been closed.",
+              "start": 283,
+              "end": 339
+            }
+          ]
+        },
+        {
+          "child_ref": "C03",
+          "candidate_text": "The line supply voltage is too low.",
+          "evidence": [
+            {
+              "quote": "The line supply voltage is too low.",
+              "start": 343,
+              "end": 378
+            }
+          ]
+        },
+        {
+          "child_ref": "C04",
+          "candidate_text": "Line supply voltage incorrectly set.",
+          "evidence": [
+            {
+              "quote": "4) Line supply voltage incorrectly set (p0210).",
+              "start": 379,
+              "end": 426
+            }
+          ]
+        },
+        {
+          "child_ref": "C05",
+          "candidate_text": "The precharging resistors are overheated as there were too many precharging operations per time unit.",
+          "evidence": [
+            {
+              "quote": "The precharging resistors are overheated as there were too many precharging operations per time unit.",
+              "start": 430,
+              "end": 531
+            }
+          ]
+        },
+        {
+          "child_ref": "C06",
+          "candidate_text": "The precharging resistors are overheated as the DC link capacitance is too high.",
+          "evidence": [
+            {
+              "quote": "The precharging resistors are overheated as the DC link capacitance is too high.",
+              "start": 535,
+              "end": 615
+            }
+          ]
+        },
+        {
+          "child_ref": "C07",
+          "candidate_text": "The precharging resistors are overheated because when there is no 'ready for operation' of the infeed unit, power is taken from the DC link.",
+          "evidence": [
+            {
+              "quote": "7) The precharging resistors are overheated because when there is no \"ready for operation\" (r0863.0) of the infeed unit,\npower is taken from the DC link.",
+              "start": 616,
+              "end": 769
+            }
+          ]
+        },
+        {
+          "child_ref": "C08",
+          "candidate_text": "The precharging resistors are overheated as the line contactor was closed during the DC link fast discharge through the Braking Module.",
+          "evidence": [
+            {
+              "quote": "The precharging resistors are overheated as the line contactor was closed during the DC link fast discharge through the\nBraking Module.",
+              "start": 773,
+              "end": 908
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-1613A34C70B5",
+      "fault_code": "F07085",
+      "sample_id": "SIEMENS_S210_2019_F07085",
+      "source_sha256": "e047eaf3b21c24f2261786bead59ee42c3aae4ac90056887f8cf09b4de21f61e",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "As a result of other parameters, they have exceeded the dynamic limits.\n2. They cannot be used due to the fact that the hardware detected not having certain features.\n3. The value is estimated as the thermal time constant is missing.\n4. Motor temperature model 1 is activated as thermal motor protection is missing.",
+        "start": 195,
+        "end": 510
+      },
+      "source_text": "F07085 Drive: Open-loop/closed-loop control parameters changed\nReaction: NONE\nAcknowledge: IMMEDIATELY\nCause: Open-loop/closed-loop control parameters have had to be changed.\nPossible causes:\n1. As a result of other parameters, they have exceeded the dynamic limits.\n2. They cannot be used due to the fact that the hardware detected not having certain features.\n3. The value is estimated as the thermal time constant is missing.\n4. Motor temperature model 1 is activated as thermal motor protection is missing.\nSee also: p1082 (Maximum speed)\nRemedy: Not necessary.\nIt is not necessary to change the parameters as they have already been correctly limited.",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "As a result of other parameters, they have exceeded the dynamic limits.",
+          "evidence": [
+            {
+              "quote": "As a result of other parameters, they have exceeded the dynamic limits.",
+              "start": 195,
+              "end": 266
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "They cannot be used due to the fact that the hardware detected not having certain features.",
+          "evidence": [
+            {
+              "quote": "They cannot be used due to the fact that the hardware detected not having certain features.",
+              "start": 270,
+              "end": 361
+            }
+          ]
+        },
+        {
+          "child_ref": "C03",
+          "candidate_text": "The value is estimated as the thermal time constant is missing.",
+          "evidence": [
+            {
+              "quote": "The value is estimated as the thermal time constant is missing.",
+              "start": 365,
+              "end": 428
+            }
+          ]
+        },
+        {
+          "child_ref": "C04",
+          "candidate_text": "Motor temperature model 1 is activated as thermal motor protection is missing.",
+          "evidence": [
+            {
+              "quote": "Motor temperature model 1 is activated as thermal motor protection is missing.",
+              "start": 432,
+              "end": 510
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-C9D820F0E552",
+      "fault_code": "F08501",
+      "sample_id": "SIEMENS_S210_2019_F08501",
+      "source_sha256": "6ade35413871930f0b40c0dbbbbc6d0e97432b31b2dc2f0fe97560076c64f899",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "bus connection interrupted.\n- controller switched off.\n- controller set into the STOP state.\n- COMM BOARD defective.",
+        "start": 157,
+        "end": 273
+      },
+      "source_text": "F08501 PN/COMM BOARD: Setpoint timeout\nReaction: OFF3\nAcknowledge: IMMEDIATELY\nCause: The reception of setpoints from the COMM BOARD has been interrupted.\n- bus connection interrupted.\n- controller switched off.\n- controller set into the STOP state.\n- COMM BOARD defective.\nRemedy: - Restore the bus connection and set the controller to RUN.\n- if the error is repeated, check the update time set in the bus configuration (HW Config).",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "bus connection interrupted.",
+          "evidence": [
+            {
+              "quote": "bus connection interrupted.",
+              "start": 157,
+              "end": 184
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "controller switched off.",
+          "evidence": [
+            {
+              "quote": "controller switched off.",
+              "start": 187,
+              "end": 211
+            }
+          ]
+        },
+        {
+          "child_ref": "C03",
+          "candidate_text": "controller set into the STOP state.",
+          "evidence": [
+            {
+              "quote": "controller set into the STOP state.",
+              "start": 214,
+              "end": 249
+            }
+          ]
+        },
+        {
+          "child_ref": "C04",
+          "candidate_text": "COMM BOARD defective.",
+          "evidence": [
+            {
+              "quote": "COMM BOARD defective.",
+              "start": 252,
+              "end": 273
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-0787B0ECB55C",
+      "fault_code": "F07011",
+      "sample_id": "SIEMENS_S210_2019_F07011",
+      "source_sha256": "161442179ad1971ffde13e20ff61bacfdedb8c7aa3d588a7ebff304637884463",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "motor overloaded.\n- motor ambient temperature too high.\n- sensor wire breakage",
+        "start": 148,
+        "end": 226
+      },
+      "source_text": "F07011 Drive: Motor overtemperature\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The calculated motor temperature is too high.\nPossible causes:\n- motor overloaded.\n- motor ambient temperature too high.\n- sensor wire breakage\nFault value (r0949, interpret decimal):\n200:\nMotor temperature model 1 (I2t): temperature too high.\n300:\nMotor temperature model 3: after the monitoring time has expired, the temperature is still higher than the alarm threshold.\n301:\nMotor temperature model 3: temperature is too high, or the model has not been parameterized.\n302:\nMotor temperature model 3: Encoder temperature is not within the valid range.\nRemedy: - reduce the motor load.\n- check the ambient temperature and the motor ventilation.\n- check the wiring and temperature sensor connection.\n- check monitoring limits.",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "motor overloaded.",
+          "evidence": [
+            {
+              "quote": "motor overloaded.",
+              "start": 148,
+              "end": 165
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "motor ambient temperature too high.",
+          "evidence": [
+            {
+              "quote": "motor ambient temperature too high.",
+              "start": 168,
+              "end": 203
+            }
+          ]
+        },
+        {
+          "child_ref": "C03",
+          "candidate_text": "sensor wire breakage",
+          "evidence": [
+            {
+              "quote": "sensor wire breakage",
+              "start": 206,
+              "end": 226
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-EC987BCC7B1D",
+      "fault_code": "F30650",
+      "sample_id": "SIEMENS_S210_2019_F30650",
+      "source_sha256": "d327a94dc0e773466a0c276f5c73c8a17abdf461a973fb4dfe30e95262c99b1f",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "1000: Reference and actual checksum in monitoring channel 2 are not identical (booting).\n- safety parameters set offline and loaded to the drive.\n- at least one checksum-checked piece of data is defective.\n2000: Reference and actual checksum in monitoring channel 2 are not identical (commissioning mode).",
+        "start": 435,
+        "end": 740
+      },
+      "source_text": "F30650 SI P2: Acceptance test required\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The \"Safety Integrated\" function on monitoring channel 2 requires an acceptance test.\nNote:\nThis fault results in an STO that can be acknowledged.\nFault value (r0949, interpret decimal):\n130: Safety parameters for monitoring channel 2 not available.\nNote:\nThis fault value is always output when Safety Integrated is commissioned for the first time.\n1000: Reference and actual checksum in monitoring channel 2 are not identical (booting).\n- safety parameters set offline and loaded to the drive.\n- at least one checksum-checked piece of data is defective.\n2000: Reference and actual checksum in monitoring channel 2 are not identical (commissioning mode).\n2003: Acceptance test is required as a safety parameter has been changed.\n3003: Acceptance test is required as a hardware-related safety parameter has been changed.\n9999: Subsequent response of another safety-related fault that occurred when booting that requires an acceptance test.\nRemedy: For fault value = 130:\n- carry out safety commissioning routine.\nFor fault value = 1000:\n- again carry out safety commissioning routine.\n- replace the memory card or drive.\nFor fault value = 2000:\n- confirm the data change using the commissioning tool.\nFor fault value = 2003:\n- carry out an acceptance test and generate an acceptance report.\nFor fault value = 3003:\n- carry out the function checks for the modified hardware and generate an acceptance report.\nFor fault value = 9999:\n- carry out diagnostics for the other safety-related fault that is present.\nNote:\nSI: Safety Integrated\nSTO: Safe Torque Off",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "Safety parameters set offline and loaded to the drive.",
+          "evidence": [
+            {
+              "quote": "1000: Reference and actual checksum in monitoring channel 2 are not identical (booting).\n- safety parameters set offline and loaded to the drive.",
+              "start": 435,
+              "end": 580
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "At least one checksum-checked piece of data is defective.",
+          "evidence": [
+            {
+              "quote": "1000: Reference and actual checksum in monitoring channel 2 are not identical (booting).\n- safety parameters set offline and loaded to the drive.\n- at least one checksum-checked piece of data is defective.",
+              "start": 435,
+              "end": 640
+            }
+          ]
+        },
+        {
+          "child_ref": "C03",
+          "candidate_text": "Reference and actual checksum in monitoring channel 2 are not identical (commissioning mode).",
+          "evidence": [
+            {
+              "quote": "Reference and actual checksum in monitoring channel 2 are not identical (commissioning mode).",
+              "start": 647,
+              "end": 740
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-C8B3DE67590D",
+      "fault_code": "A07012",
+      "sample_id": "SIEMENS_S210_2019_A07012",
+      "source_sha256": "cf0fbfe5e1105160b3129baefb99347fe5c4e3c19259a53a9cf028e5068356f2",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "Alarm value (r2124, interpret decimal):\n200:\nMotor temperature model 1 (I2t): temperature too high.\n300:\nMotor temperature model 3: temperature too high.\n",
+        "start": 194,
+        "end": 348
+      },
+      "source_text": "A07012 Drive: Motor temperature model 1/3 overtemperature\nReaction: NONE\nAcknowledge: NONE\nCause: The motor temperature model 1/3 identified that the alarm threshold was exceeded.\nHysteresis:2K\nAlarm value (r2124, interpret decimal):\n200:\nMotor temperature model 1 (I2t): temperature too high.\n300:\nMotor temperature model 3: temperature too high.\nSee also: r0034 (Motor utilization thermal), p0613 (Motor temperature model ambient temperature)\nRemedy: - check the motor load and if required, reduce.\n- check the motor ambient temperature.\nSee also: r0034 (Motor utilization thermal)",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "Motor temperature model 1 (I2t): temperature too high.",
+          "evidence": [
+            {
+              "quote": "Motor temperature model 1 (I2t): temperature too high.",
+              "start": 239,
+              "end": 293
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "Motor temperature model 3: temperature too high.",
+          "evidence": [
+            {
+              "quote": "Motor temperature model 3: temperature too high.",
+              "start": 299,
+              "end": 347
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-5501BDD43EC5",
+      "fault_code": "F30052",
+      "sample_id": "SIEMENS_S210_2019_F30052",
+      "source_sha256": "ad560da767725d00fbbcb563819ce387e910924979c99749bb523cae0df63283",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "The EEPROM data read in from the power unit module are incorrect.\n1:\nEEPROM data is not compatible to the firmware of the power unit application.",
+        "start": 165,
+        "end": 310
+      },
+      "source_text": "F30052 EEPROM data error\nReaction: OFF2\nAcknowledge: POWER ON\nCause: EEPROM data error of the power unit module.\nFault value (r0949, interpret decimal):\n0, 2, 3, 4:\nThe EEPROM data read in from the power unit module are incorrect.\n1:\nEEPROM data is not compatible to the firmware of the power unit application.\nAdditional values:\nOnly for internal Siemens troubleshooting.\nRemedy: For fault value = 0, 2, 3, 4:\nReplace the power unit module or update the EEPROM data.\nFor fault value = 1:\nThe following applies for CU31x and CUA31:\nUpdate the firmware \\SIEMENS\\SINAMICS\\CODE\\SAC\\cu31xi.ufw (cua31.ufw)",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "The EEPROM data read in from the power unit module are incorrect.",
+          "evidence": [
+            {
+              "quote": "The EEPROM data read in from the power unit module are incorrect.",
+              "start": 165,
+              "end": 230
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "EEPROM data is not compatible to the firmware of the power unit application.",
+          "evidence": [
+            {
+              "quote": "EEPROM data is not compatible to the firmware of the power unit application.",
+              "start": 234,
+              "end": 310
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-34FCC3D3E2E7",
+      "fault_code": "A30788",
+      "sample_id": "SIEMENS_S210_2019_A30788",
+      "source_sha256": "4e6420bb517201b904b97b70c77155879980b3a193b5b3eac6f3faa4b4a9173c",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "Possible causes:\n- the STO function is selected via Safety Extended Functions.\n- a safety message is present, that resulted in a STO.",
+        "start": 175,
+        "end": 308
+      },
+      "source_text": "A30788 Automatic test stop: wait for STO deselection via SMM\nReaction: NONE\nAcknowledge: NONE\nCause: The automatic test stop was not able to be carried out after powering up.\nPossible causes:\n- the STO function is selected via Safety Extended Functions.\n- a safety message is present, that resulted in a STO.\nNote:\nSTO: Safe Torque Off\nRemedy: - Deselect STO via Safety Extended Functions.\n- remove the cause of the safety messages and acknowledge the messages.\nNote:\nThe automatic test stop is performed after removing the cause.",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "the STO function is selected via Safety Extended Functions.",
+          "evidence": [
+            {
+              "quote": "the STO function is selected via Safety Extended Functions.",
+              "start": 194,
+              "end": 253
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "a safety message is present, that resulted in a STO.",
+          "evidence": [
+            {
+              "quote": "a safety message is present, that resulted in a STO.",
+              "start": 256,
+              "end": 308
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-018FC69668C6",
+      "fault_code": "F01679",
+      "sample_id": "SIEMENS_S210_2019_F01679",
+      "source_sha256": "4aa69b39637aa3893174da32353788d9a8c78d62dfea25be22a6e1f5706964b9",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "Safety parameters have been changed; these will only take effect following a warm restart or POWER ON (see alarm\nA01693).\nA partial power up (boot) with modified configuration was then performed",
+        "start": 137,
+        "end": 331
+      },
+      "source_text": "F01679 SI P1: Safety parameter settings and topology changed, warm restart/POWER ON required\nReaction: OFF2\nAcknowledge: POWER ON\nCause: Safety parameters have been changed; these will only take effect following a warm restart or POWER ON (see alarm\nA01693).\nA partial power up (boot) with modified configuration was then performed.\nRemedy: - carry out a warm restart.\n- carry out a POWER ON (switch-off/switch-on).",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "Safety parameters have been changed",
+          "evidence": [
+            {
+              "quote": "Safety parameters have been changed",
+              "start": 137,
+              "end": 172
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "A partial power up (boot) with modified configuration was then performed",
+          "evidence": [
+            {
+              "quote": "A partial power up (boot) with modified configuration was then performed",
+              "start": 259,
+              "end": 331
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-30E57F6F356E",
+      "fault_code": "F30017",
+      "sample_id": "SIEMENS_S210_2019_F30017",
+      "source_sha256": "8adab06c77fe1caef49242bfd94f282ccaf9cf54b3c9f6ce475b8905ca649da6",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "load on the infeed is too high.\n- line reactor missing or the incorrect type.\n- power unit defective.\nThe following applies to Motor Modules:\n- closed-loop control is incorrectly parameterized.\n- fault in the motor or in the power cables.\n- the power cables exceed the maximum permissible length.\n- motor load too high",
+        "start": 410,
+        "end": 728
+      },
+      "source_text": "F30017 Power unit: Hardware current limit has responded too often\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The hardware current limitation in the relevant phase (see A30031, A30032, A30033) has responded too often. The number\nof times the limit has been exceeded depends on the design and type of power unit.\nFor infeed units, the following applies:\n- closed-loop control is incorrectly parameterized.\n- load on the infeed is too high.\n- line reactor missing or the incorrect type.\n- power unit defective.\nThe following applies to Motor Modules:\n- closed-loop control is incorrectly parameterized.\n- fault in the motor or in the power cables.\n- the power cables exceed the maximum permissible length.\n- motor load too high\n- power unit defective.\nFault value (r0949, interpret binary):\nBit 3: phase U\nBit 4: phase V\nBit 5: phase W\nAdditional bits:\nOnly for internal Siemens troubleshooting.\nNote:\nFault value = 0 means that the phase with current limiting is not recognized (e.g. for blocksize device).\nRemedy: For infeed units, the following applies:\n- check the controller settings and reset and identify the controller if necessary (p0340 = 2, p3410 = 5)\n- reduce the load and increase the DC link capacitance or use a higher-rating infeed if necessary\n- check the connection and technical data of the commutating reactor.\n- check the power cables for short-circuit or ground fault.\n- replace power unit.\nThe following applies to Motor Modules:\n- check the motor data and if required, recalculate the controller parameters (p0340 = 3). As an alternative, run a motor data\nidentification (p1910 = 1, p1960 = 1).\n- check the motor circuit configuration (star-delta).\n- check the motor load.\n- check the power cable connections.\n- check the power cables for short-circuit or ground fault.\n- check the length of the power cables.\n- replace power unit.",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "load on the infeed is too high",
+          "evidence": [
+            {
+              "quote": "load on the infeed is too high",
+              "start": 410,
+              "end": 440
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "the power cables exceed the maximum permissible length",
+          "evidence": [
+            {
+              "quote": "the power cables exceed the maximum permissible length",
+              "start": 651,
+              "end": 705
+            }
+          ]
+        },
+        {
+          "child_ref": "C03",
+          "candidate_text": "motor load too high",
+          "evidence": [
+            {
+              "quote": "motor load too high",
+              "start": 709,
+              "end": 728
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-55E468614383",
+      "fault_code": "F07802",
+      "sample_id": "SIEMENS_S210_2019_F07802",
+      "source_sha256": "5825c04649414d1697a122b2458917e69f5de93185ab95a0cfe862a6f68c70e2",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "DC link voltage is not present.\n- defective drive.\n- supply voltage incorrectly set.",
+        "start": 157,
+        "end": 241
+      },
+      "source_text": "F07802 Drive: Infeed not ready\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The drive does not signal a ready state after an internal switch-on command.\n- DC link voltage is not present.\n- defective drive.\n- supply voltage incorrectly set.\nRemedy: - check the enable signals for the drive.\n- replace the drive.\n- check the line supply voltage setting (p0210).",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "DC link voltage is not present.",
+          "evidence": [
+            {
+              "quote": "DC link voltage is not present.",
+              "start": 157,
+              "end": 188
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "defective drive.",
+          "evidence": [
+            {
+              "quote": "defective drive.",
+              "start": 191,
+              "end": 207
+            }
+          ]
+        },
+        {
+          "child_ref": "C03",
+          "candidate_text": "supply voltage incorrectly set.",
+          "evidence": [
+            {
+              "quote": "supply voltage incorrectly set.",
+              "start": 210,
+              "end": 241
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    },
+    {
+      "case_id": "ESG-9E494C3FCC57",
+      "fault_code": "F30005",
+      "sample_id": "SIEMENS_S210_2019_F30005",
+      "source_sha256": "b34ab929e41435f08ab727196fb39f47533e55da7c1a3b70cda38e36f6352555",
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "the permissible rated power unit current was exceeded for an inadmissibly long time.\n- the permissible load duty cycle was not maintained",
+        "start": 181,
+        "end": 318
+      },
+      "source_text": "F30005 Power unit: Overload I2t\nReaction: OFF2\nAcknowledge: IMMEDIATELY\n494 Operating Instructions, 01/2019, A5E41702836B AC\nCause: The power unit was overloaded (r0036 = 100 %).\n- the permissible rated power unit current was exceeded for an inadmissibly long time.\n- the permissible load duty cycle was not maintained.\nFault value (r0949, interpret decimal):\nI2t [100 % = 16384].\nRemedy: - reduce the continuous load.\n- adapt the load duty cycle.\n- check the motor and power unit rated currents.\nSee also: r0307 (Rated motor power)",
+      "candidate_children_note": "这些是待审核的候选子项，不代表已确认完整、同层或适合作为 FTA 输入。",
+      "children": [
+        {
+          "child_ref": "C01",
+          "candidate_text": "the permissible rated power unit current was exceeded for an inadmissibly long time",
+          "evidence": [
+            {
+              "quote": "the permissible rated power unit current was exceeded for an inadmissibly long time",
+              "start": 181,
+              "end": 264
+            }
+          ]
+        },
+        {
+          "child_ref": "C02",
+          "candidate_text": "the permissible load duty cycle was not maintained",
+          "evidence": [
+            {
+              "quote": "the permissible load duty cycle was not maintained",
+              "start": 268,
+              "end": 318
+            }
+          ]
+        }
+      ],
+      "review_form": {
+        "review_status": null,
+        "scope_appropriate": null,
+        "child_set_complete": null,
+        "children_same_logical_level": null,
+        "gate_label": null,
+        "gate_evidence": [],
+        "review_reason": null
+      }
+    }
+  ]
+}

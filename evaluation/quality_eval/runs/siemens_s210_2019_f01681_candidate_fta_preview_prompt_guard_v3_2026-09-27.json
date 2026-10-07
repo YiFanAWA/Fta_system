@@ -1,0 +1,1322 @@
+{
+  "artifact_type": "candidate_fta_real_source_preview_probe",
+  "artifact_version": "v1",
+  "reviewer_provenance": "live_model_development_probe_not_expert_review",
+  "formal_gold": false,
+  "database_written": false,
+  "gate_policy_selected": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "evaluation_scope": "single public Siemens S210 F01681 raw fault text through extraction and recursive candidate FTA preview",
+  "source": {
+    "sample_id": "SIEMENS_S210_2019_F01681",
+    "dataset": "siemens_s210_public_fault_corpus_v1.jsonl",
+    "corpus_sha256": "b42535d37ae27b63ba0048c88e947916e846da53e1bf18b3e5825c1853c1f483",
+    "input_text_sha256": "5517c4e678dfa57286a7ae5426e4d40ed7322a4c88241593b6a55d068f0e994b",
+    "provenance": {
+      "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+      "source_pdf": "S210_Manual_2019.pdf",
+      "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+      "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+      "section": "15.2 List of faults and alarms",
+      "pdf_page_start": 455,
+      "pdf_page_end": 457,
+      "source_offset_start": 75195,
+      "source_offset_end": 79293,
+      "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+      "retrieved_date": "2026-09-19"
+    }
+  },
+  "model": {
+    "model_id": "deepseek-flash",
+    "provider_host": "api.deepseek.com",
+    "temperature": 0,
+    "request_attempt_count": 3,
+    "note": "The configured model receives only the raw source text and extracted payload; no gate label or review result is supplied. Retries count as extra attempts."
+  },
+  "model_stage_responses": [
+    {
+      "stage": "fault_extraction",
+      "responses": [
+        "{\n  \"items\": [\n    {\n      \"fault_code\": \"F01681\",\n      \"component\": \"SI Motion P1\",\n      \"related_components\": [],\n      \"description\": \"Incorrect parameter value\",\n      \"causes\": [\n        \"The parameter cannot be parameterized with this value.\",\n        \"Enabling function 'SSM' (p9501.16) is not permissible in combination with the 'Extended functions without selection' function (p9601.5).\",\n        \"Referencing via SCC (p9501.27 = 1) and epos (r0108.4 = 1) are simultaneously enabled.\",\n        \"Parameter p9506 differs between the monitoring channels\",\n        \"The gear stage was set too high.\",\n        \"The hysteresis tolerance is not permissible.\",\n        \"If motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1) are enabled, then PROFIsafe (p9601.3 = 1) or onboard F-DI (p9601.4 = 1) is not possible.\",\n        \"Extended functions without selection (p9601.5 =1) are enabled without enabling motion monitoring functions integrated in the drive (p9601.2).\",\n        \"Onboard F-DI are enabled without enabling motion monitoring functions integrated in the drive (p9601.2).\",\n        \"Onboard F-DI are enabled. Then, it is not permissible to simultaneously set PROFIsafe and F-DI via PROFIsafe (p9501.30).\",\n        \"Transfer of the SLS limit value via PROFIsafe (p9501.24) has been enabled, without enabling PROFIsafe.\",\n        \"Transfer of the safe position via PROFIsafe (p9501.25) has been enabled, without enabling PROFIsafe.\",\n        \"Safe switchover of the gearbox stages (p9501.26) has been enabled without enabling PROFIsafe.\",\n        \"SS2E (p9501.18 = 1) is enabled without PROFIsafe being enabled.\",\n        \"SCA (p9501.28 = 1) is enabled without enabling PROFIsafe.\",\n        \"Extended functions (p9601.2 = 1) have been enabled without enabling PROFIsafe (p9601.3).\"\n      ],\n      \"parameters\": [\n        \"r0949\",\n        \"p9501.16\",\n        \"p9601.5\",\n        \"p9501.27\",\n        \"r0108.4\",\n        \"p9506\",\n        \"p9601.2\",\n        \"p9601.3\",\n        \"p9601.4\",\n        \"p9501.30\",\n        \"p9501.24\",\n        \"p9501.25\",\n        \"p9501.26\",\n        \"p9501.18\",\n        \"p9501.28\",\n        \"p9546\",\n        \"p9547\",\n        \"p9501.3\",\n        \"p9549\"\n      ]\n    }\n  ]\n}"
+      ]
+    },
+    {
+      "stage": "structure_decomposition_and_gate_assessment",
+      "responses": [
+        "{\n  \"structure_status\": \"unresolved\",\n  \"nodes\": [\n    {\n      \"node_id\": \"n0\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"The parameter cannot be parameterized with this value.\",\n      \"source_cause_indices\": [0],\n      \"evidence_quote\": \"The parameter cannot be parameterized with this value.\"\n    },\n    {\n      \"node_id\": \"n1\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"Enabling function \\\"SSM\\\" (p9501.16) is not permissible in combination with the \\\"Extended functions without selection\\\"\\nfunction (p9601.5).\",\n      \"source_cause_indices\": [1],\n      \"evidence_quote\": \"Enabling function \\\"SSM\\\" (p9501.16) is not permissible in combination with the \\\"Extended functions without selection\\\"\\nfunction (p9601.5).\"\n    },\n    {\n      \"node_id\": \"n2\",\n      \"node_type\": \"intermediate_event_candidate\",\n      \"text\": \"Referencing via SCC (p9501.27 = 1) and epos (r0108.4 = 1) are simultaneously enabled.\",\n      \"source_cause_indices\": [2],\n      \"evidence_quote\": \"Referencing via SCC (p9501.27 = 1) and epos (r0108.4 = 1) are simultaneously enabled.\"\n    },\n    {\n      \"node_id\": \"n2_a\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"Referencing via SCC (p9501.27 = 1)\",\n      \"source_cause_indices\": [2],\n      \"evidence_quote\": \"Referencing via SCC (p9501.27 = 1)\"\n    },\n    {\n      \"node_id\": \"n2_b\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"epos (r0108.4 = 1)\",\n      \"source_cause_indices\": [2],\n      \"evidence_quote\": \"epos (r0108.4 = 1)\"\n    },\n    {\n      \"node_id\": \"n3\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"Parameter p9506 differs between the monitoring channels\",\n      \"source_cause_indices\": [3],\n      \"evidence_quote\": \"Parameter p9506 differs between the monitoring channels\"\n    },\n    {\n      \"node_id\": \"n4\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"The gear stage was set too high.\",\n      \"source_cause_indices\": [4],\n      \"evidence_quote\": \"The gear stage was set too high.\"\n    },\n    {\n      \"node_id\": \"n5\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"The hysteresis tolerance is not permissible.\",\n      \"source_cause_indices\": [5],\n      \"evidence_quote\": \"The hysteresis tolerance is not permissible.\"\n    },\n    {\n      \"node_id\": \"n6\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"If motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1)\\nare enabled, then PROFIsafe (p9601.3 = 1) or onboard F-DI (p9601.4 = 1) is not possible.\",\n      \"source_cause_indices\": [6],\n      \"evidence_quote\": \"If motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1)\\nare enabled, then PROFIsafe (p9601.3 = 1) or onboard F-DI (p9601.4 = 1) is not possible.\"\n    },\n    {\n      \"node_id\": \"n6_cond\",\n      \"node_type\": \"intermediate_event_candidate\",\n      \"text\": \"motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1)\\nare enabled\",\n      \"source_cause_indices\": [6],\n      \"evidence_quote\": \"motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1)\\nare enabled\"\n    },\n    {\n      \"node_id\": \"n6_cond_a\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"motion monitoring functions integrated in the drive (p9601.2 = 1)\",\n      \"source_cause_indices\": [6],\n      \"evidence_quote\": \"motion monitoring functions integrated in the drive (p9601.2 = 1)\"\n    },\n    {\n      \"node_id\": \"n6_cond_b\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"extended functions without selection (p9601.5 = 1)\",\n      \"source_cause_indices\": [6],\n      \"evidence_quote\": \"extended functions without selection (p9601.5 = 1)\"\n    },\n    {\n      \"node_id\": \"n6_cons\",\n      \"node_type\": \"intermediate_event_candidate\",\n      \"text\": \"PROFIsafe (p9601.3 = 1) or onboard F-DI (p9601.4 = 1) is not possible\",\n      \"source_cause_indices\": [6],\n      \"evidence_quote\": \"PROFIsafe (p9601.3 = 1) or onboard F-DI (p9601.4 = 1) is not possible\"\n    },\n    {\n      \"node_id\": \"n6_cons_a\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"PROFIsafe (p9601.3 = 1)\",\n      \"source_cause_indices\": [6],\n      \"evidence_quote\": \"PROFIsafe (p9601.3 = 1)\"\n    },\n    {\n      \"node_id\": \"n6_cons_b\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"onboard F-DI (p9601.4 = 1)\",\n      \"source_cause_indices\": [6],\n      \"evidence_quote\": \"onboard F-DI (p9601.4 = 1)\"\n    },\n    {\n      \"node_id\": \"n7\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"Extended functions without selection (p9601.5 =1) are enabled without enabling motion monitoring functions integrated in\\nthe drive (p9601.2).\",\n      \"source_cause_indices\": [7],\n      \"evidence_quote\": \"Extended functions without selection (p9601.5 =1) are enabled without enabling motion monitoring functions integrated in\\nthe drive (p9601.2).\"\n    },\n    {\n      \"node_id\": \"n8\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"Onboard F-DI are enabled without enabling motion monitoring functions integrated in the drive (p9601.2).\",\n      \"source_cause_indices\": [8],\n      \"evidence_quote\": \"Onboard F-DI are enabled without enabling motion monitoring functions integrated in the drive (p9601.2).\"\n    },\n    {\n      \"node_id\": \"n9\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"Onboard F-DI are enabled. Then, it is not permissible to simultaneously set PROFIsafe and F-DI via PROFIsafe (p9501.30).\",\n      \"source_cause_indices\": [9],\n      \"evidence_quote\": \"Onboard F-DI are enabled. Then, it is not permissible to simultaneously set PROFIsafe and F-DI via PROFIsafe (p9501.30).\"\n    },\n    {\n      \"node_id\": \"n10\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"Transfer of the SLS limit value via PROFIsafe (p9501.24) has been enabled, without enabling PROFIsafe.\",\n      \"source_cause_indices\": [10],\n      \"evidence_quote\": \"Transfer of the SLS limit value via PROFIsafe (p9501.24) has been enabled, without enabling PROFIsafe.\"\n    },\n    {\n      \"node_id\": \"n11\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"Transfer of the safe position via PROFIsafe (p9501.25) has been enabled, without enabling PROFIsafe.\",\n      \"source_cause_indices\": [11],\n      \"evidence_quote\": \"Transfer of the safe position via PROFIsafe (p9501.25) has been enabled, without enabling PROFIsafe.\"\n    },\n    {\n      \"node_id\": \"n12\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"Safe switchover of the gearbox stages (p9501.26) has been enabled without enabling PROFIsafe.\",\n      \"source_cause_indices\": [12],\n      \"evidence_quote\": \"Safe switchover of the gearbox stages (p9501.26) has been enabled without enabling PROFIsafe.\"\n    },\n    {\n      \"node_id\": \"n13\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"SS2E (p9501.18 = 1) is enabled without PROFIsafe being enabled.\",\n      \"source_cause_indices\": [13],\n      \"evidence_quote\": \"SS2E (p9501.18 = 1) is enabled without PROFIsafe being enabled.\"\n    },\n    {\n      \"node_id\": \"n14\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"SCA (p9501.28 = 1) is enabled without enabling PROFIsafe.\",\n      \"source_cause_indices\": [14],\n      \"evidence_quote\": \"SCA (p9501.28 = 1) is enabled without enabling PROFIsafe.\"\n    },\n    {\n      \"node_id\": \"n15\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"Extended functions (p9601.2 = 1) have been enabled without enabling PROFIsafe (p9601.3).\",\n      \"source_cause_indices\": [15],\n      \"evidence_quote\": \"Extended functions (p9601.2 = 1) have been enabled without enabling PROFIsafe (p9601.3).\"\n    }\n  ],\n  \"gate_scopes\": [\n    {\n      \"gate_id\": \"s2\",\n      \"output_node_id\": \"n2\",\n      \"child_node_ids\": [\"n2_a\", \"n2_b\"],\n      \"scope_type\": \"and_simultaneous_condition\",\n      \"scope_quote\": \"Referencing via SCC (p9501.27 = 1) and epos (r0108.4 = 1) are simultaneously enabled.\",\n      \"cause_set_complete\": false,\n      \"cause_set_leaf_normalized\": true,\n      \"reason\": \"显式同时启用两个状态的局部组合；仅建立局部结构，不连接到顶事件。\"\n    },\n    {\n      \"gate_id\": \"s6_cond\",\n      \"output_node_id\": \"n6_cond\",\n      \"child_node_ids\": [\"n6_cond_a\", \"n6_cond_b\"],\n      \"scope_type\": \"and_condition\",\n      \"scope_quote\": \"motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1)\\nare enabled\",\n      \"cause_set_complete\": false,\n      \"cause_set_leaf_normalized\": true,\n      \"reason\": \"cause_index 6 内部条件子句的显式 and 组合；仅建立局部结构。\"\n    },\n    {\n      \"gate_id\": \"s6_cons\",\n      \"output_node_id\": \"n6_cons\",\n      \"child_node_ids\": [\"n6_cons_a\", \"n6_cons_b\"],\n      \"scope_type\": \"or_alternatives\",\n      \"scope_quote\": \"PROFIsafe (p9601.3 = 1) or onboard F-DI (p9601.4 = 1) is not possible\",\n      \"cause_set_complete\": false,\n      \"cause_set_leaf_normalized\": true,\n      \"reason\": \"cause_index 6 内部结果子句的显式 or 备选项；仅建立局部结构。\"\n    }\n  ],\n  \"unresolved_cause_indices\": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],\n  \"reason\": \"没有实例读数；F01681 的 fault-value 查表映射（cause_index 1-15）和通用 Cause 摘要（cause_index 0）均不能作为 __top_event__ 根 scope 的直接 child。未建立到 __top_event__ 的 gate_scope；所有候选保留为断开节点。局部 scope 仅表达显式内部布尔组合（cause_index 2 和 6）。宿主应因根连通性缺失阻断整棵候选树。\"\n}",
+        "{\n  \"gate_assessments\": [\n    {\n      \"gate_id\": \"s2\",\n      \"gate_probabilities\": {\n        \"AND\": 0.0,\n        \"OR\": 0.0,\n        \"unknown\": 1.0\n      },\n      \"gate_evidence_quote\": \"Referencing via SCC (p9501.27 = 1) and epos (r0108.4 = 1) are simultaneously enabled.\",\n      \"reason\": \"scope_quote 明确显示两个子条件同时启用，形态上支持 AND；但 cause_set_complete=false，child 集合未完整，故门型判定以 unknown 为主。\"\n    },\n    {\n      \"gate_id\": \"s6_cond\",\n      \"gate_probabilities\": {\n        \"AND\": 0.0,\n        \"OR\": 0.0,\n        \"unknown\": 1.0\n      },\n      \"gate_evidence_quote\": \"motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1)\\nare enabled\",\n      \"reason\": \"scope_quote 明确使用 and 连接两个条件，形态上支持 AND；但 cause_set_complete=false，child 集合未完整，故门型判定以 unknown 为主。\"\n    },\n    {\n      \"gate_id\": \"s6_cons\",\n      \"gate_probabilities\": {\n        \"AND\": 0.0,\n        \"OR\": 0.0,\n        \"unknown\": 1.0\n      },\n      \"gate_evidence_quote\": \"PROFIsafe (p9601.3 = 1) or onboard F-DI (p9601.4 = 1) is not possible\",\n      \"reason\": \"scope_quote 明确使用 or 连接两个备选结果，形态上支持 OR；但 cause_set_complete=false，child 集合未完整，故门型判定以 unknown 为主。\"\n    }\n  ],\n  \"relations\": [\n    {\n      \"source_node_id\": \"n6_cond\",\n      \"target_node_id\": \"n6_cons\",\n      \"relation_type\": \"causes\",\n      \"relation_scope_quote\": \"If motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1)\\nare enabled, then PROFIsafe (p9601.3 = 1) or onboard F-DI (p9601.4 = 1) is not possible.\",\n      \"evidence_quote\": \"If motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1)\\nare enabled, then PROFIsafe (p9601.3 = 1) or onboard F-DI (p9601.4 = 1) is not possible.\"\n    }\n  ],\n  \"reason\": \"所有 gate scope 的 cause_set_complete=false，因此即使局部原文显示 AND/OR 形态，门型仍以 unknown 为主。relations 仅保留原文显式 if-then 且未被 gate_scope 父子结构重复表达的 n6_cond 到 n6_cons 关系；故障值映射未用于连接顶事件。\"\n}"
+      ]
+    }
+  ],
+  "outcome_summaries": [
+    {
+      "fault_code": "F01681",
+      "status": "blocked",
+      "tree_status": "blocked",
+      "node_count": 25,
+      "gate_assessments": [
+        {
+          "scope_type": "and_simultaneous_condition",
+          "gate": "unknown",
+          "child_count": 2,
+          "decision_reason": "gate_confidence_policy_unavailable; scope_quote 明确显示两个子条件同时启用，形态上支持 AND；但 cause_set_complete=false，child 集合未完整，故门型判定以 unknown 为主。",
+          "blockers": [
+            "cause_set_incomplete_or_not_leaf_normalized",
+            "gate_confidence_policy_unavailable"
+          ]
+        },
+        {
+          "scope_type": "and_condition",
+          "gate": "unknown",
+          "child_count": 2,
+          "decision_reason": "gate_confidence_policy_unavailable; scope_quote 明确使用 and 连接两个条件，形态上支持 AND；但 cause_set_complete=false，child 集合未完整，故门型判定以 unknown 为主。",
+          "blockers": [
+            "cause_set_incomplete_or_not_leaf_normalized",
+            "gate_confidence_policy_unavailable"
+          ]
+        },
+        {
+          "scope_type": "or_alternatives",
+          "gate": "unknown",
+          "child_count": 2,
+          "decision_reason": "gate_confidence_policy_unavailable; scope_quote 明确使用 or 连接两个备选结果，形态上支持 OR；但 cause_set_complete=false，child 集合未完整，故门型判定以 unknown 为主。",
+          "blockers": [
+            "cause_set_incomplete_or_not_leaf_normalized",
+            "gate_confidence_policy_unavailable"
+          ]
+        }
+      ],
+      "tree_blockers": [
+        "cause_structure_unresolved:0",
+        "cause_structure_unresolved:1",
+        "cause_structure_unresolved:2",
+        "cause_structure_unresolved:3",
+        "cause_structure_unresolved:4",
+        "cause_structure_unresolved:5",
+        "cause_structure_unresolved:6",
+        "cause_structure_unresolved:7",
+        "cause_structure_unresolved:8",
+        "cause_structure_unresolved:9",
+        "cause_structure_unresolved:10",
+        "cause_structure_unresolved:11",
+        "cause_structure_unresolved:12",
+        "cause_structure_unresolved:13",
+        "cause_structure_unresolved:14",
+        "cause_structure_unresolved:15",
+        "node_evidence_missing_or_ambiguous:n6_cond_a",
+        "node_evidence_missing_or_ambiguous:n6_cons_a",
+        "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n0",
+        "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n1",
+        "node_disconnected_from_top_event:intermediate_event:f381f779-cfa2-48eb-88ef-e1a2a6813243:n2",
+        "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n2_a",
+        "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n2_b",
+        "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n3",
+        "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n4",
+        "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n5",
+        "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6",
+        "node_disconnected_from_top_event:intermediate_event:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6_cond",
+        "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6_cond_a",
+        "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6_cond_b",
+        "node_disconnected_from_top_event:intermediate_event:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6_cons",
+        "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6_cons_a",
+        "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6_cons_b",
+        "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n7",
+        "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n8",
+        "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n9",
+        "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n10",
+        "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n11",
+        "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n12",
+        "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n13",
+        "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n14",
+        "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n15"
+      ]
+    }
+  ],
+  "evidence_audit": {
+    "extraction": {
+      "reference_count": 52,
+      "all_offsets_exact": true,
+      "model_bound_quote_count": 0,
+      "all_model_bound_quotes_unique": true,
+      "issues": []
+    },
+    "candidate_tree": {
+      "reference_count": 31,
+      "all_offsets_exact": true,
+      "model_bound_quote_count": 30,
+      "all_model_bound_quotes_unique": true,
+      "issues": [],
+      "nodes_missing_evidence": [
+        "cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6_cond_a",
+        "cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6_cons_a"
+      ]
+    }
+  },
+  "result": {
+    "artifact_type": "candidate_fta_generation_result",
+    "artifact_version": "v3",
+    "source_text_sha256": "5517c4e678dfa57286a7ae5426e4d40ed7322a4c88241593b6a55d068f0e994b",
+    "extraction": {
+      "result_id": "e8ededa7-1c92-41a5-add3-566153dd7787",
+      "status": "success",
+      "records": [
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "fault_code": "F01681",
+          "description": "Incorrect parameter value",
+          "component": "SI Motion",
+          "related_components": [],
+          "causes": [
+            "The parameter cannot be parameterized with this value.",
+            "Enabling function 'SSM' (p9501.16) is not permissible in combination with the 'Extended functions without selection' function (p9601.5).",
+            "Referencing via SCC (p9501.27 = 1) and epos (r0108.4 = 1) are simultaneously enabled.",
+            "Parameter p9506 differs between the monitoring channels",
+            "The gear stage was set too high.",
+            "The hysteresis tolerance is not permissible.",
+            "If motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1) are enabled, then PROFIsafe (p9601.3 = 1) or onboard F-DI (p9601.4 = 1) is not possible.",
+            "Extended functions without selection (p9601.5 =1) are enabled without enabling motion monitoring functions integrated in the drive (p9601.2).",
+            "Onboard F-DI are enabled without enabling motion monitoring functions integrated in the drive (p9601.2).",
+            "Onboard F-DI are enabled. Then, it is not permissible to simultaneously set PROFIsafe and F-DI via PROFIsafe (p9501.30).",
+            "Transfer of the SLS limit value via PROFIsafe (p9501.24) has been enabled, without enabling PROFIsafe.",
+            "Transfer of the safe position via PROFIsafe (p9501.25) has been enabled, without enabling PROFIsafe.",
+            "Safe switchover of the gearbox stages (p9501.26) has been enabled without enabling PROFIsafe.",
+            "SS2E (p9501.18 = 1) is enabled without PROFIsafe being enabled.",
+            "SCA (p9501.28 = 1) is enabled without enabling PROFIsafe.",
+            "Extended functions (p9601.2 = 1) have been enabled without enabling PROFIsafe (p9601.3)."
+          ],
+          "parameters": [
+            "r0949",
+            "p9501.16",
+            "p9601.5",
+            "p9501.27",
+            "r0108.4",
+            "p9506",
+            "p9601.2",
+            "p9601.3",
+            "p9601.4",
+            "p9501.30",
+            "p9501.24",
+            "p9501.25",
+            "p9501.26",
+            "p9501.18",
+            "p9501.28",
+            "p9546",
+            "p9547",
+            "p9501.3",
+            "p9549"
+          ],
+          "confidence": null
+        }
+      ],
+      "evidence_spans": [
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "F01681",
+          "start": 0,
+          "end": 6,
+          "value_index": null
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "SI Motion",
+          "start": 7,
+          "end": 16,
+          "value_index": null
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "description",
+          "source_id": "input_text",
+          "quote": "Incorrect parameter value",
+          "start": 21,
+          "end": 46,
+          "value_index": null
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "The parameter cannot be parameterized with this value.",
+          "start": 94,
+          "end": 148,
+          "value_index": 0
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "F01681 SI Motion P1: Incorrect parameter value\nReaction: OFF2\nAcknowledge: IMMEDIATELY\nCause: The parameter cannot be parameterized with this value.\nNote:\nThis message does not result in a safety stop response.",
+          "start": 0,
+          "end": 210,
+          "value_index": 0
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "Referencing via SCC (p9501.27 = 1) and epos (r0108.4 = 1) are simultaneously enabled.",
+          "start": 540,
+          "end": 625,
+          "value_index": 2
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "xxxx = 9501 and yyyy = 10:\nReferencing via SCC (p9501.27 = 1) and epos (r0108.4 = 1) are simultaneously enabled.\nxxxx = 9506 and yyyy = 1:\nParameter p9506 differs between the monitoring channels\nxxxx = 9522:\nThe gear stage was set too high.",
+          "start": 513,
+          "end": 753,
+          "value_index": 2
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "Parameter p9506 differs between the monitoring channels",
+          "start": 652,
+          "end": 707,
+          "value_index": 3
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "xxxx = 9506 and yyyy = 1:\nParameter p9506 differs between the monitoring channels\nxxxx = 9522:\nThe gear stage was set too high.",
+          "start": 626,
+          "end": 753,
+          "value_index": 3
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "The gear stage was set too high.",
+          "start": 721,
+          "end": 753,
+          "value_index": 4
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "xxxx = 9506 and yyyy = 1:\nParameter p9506 differs between the monitoring channels\nxxxx = 9522:\nThe gear stage was set too high.\nxxxx = 9547:\nThe hysteresis tolerance is not permissible.",
+          "start": 626,
+          "end": 811,
+          "value_index": 4
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "The hysteresis tolerance is not permissible.",
+          "start": 767,
+          "end": 811,
+          "value_index": 5
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "xxxx = 9547:\nThe hysteresis tolerance is not permissible.\nxxxx = 9601 and yyyy = 1:\nIf motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1)\nare enabled, then PROFIsafe (p9601.3 = 1) or onboard F-DI (p9601.4 = 1) is not possible.",
+          "start": 754,
+          "end": 1050,
+          "value_index": 5
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "If motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1)\nare enabled, then PROFIsafe (p9601.3 = 1) or onboard F-DI (p9601.4 = 1) is not possible.",
+          "start": 838,
+          "end": 1050,
+          "value_index": 6
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "xxxx = 9601 and yyyy = 1:\nIf motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1)\nare enabled, then PROFIsafe (p9601.3 = 1) or onboard F-DI (p9601.4 = 1) is not possible.\nxxxx = 9601 and yyyy = 2:\nExtended functions without selection (p9601.5 =1) are enabled without enabling motion monitoring functions integrated in\nthe drive (p9601.2).",
+          "start": 812,
+          "end": 1218,
+          "value_index": 6
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "Extended functions without selection (p9601.5 =1) are enabled without enabling motion monitoring functions integrated in\nthe drive (p9601.2).",
+          "start": 1077,
+          "end": 1218,
+          "value_index": 7
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "xxxx = 9601 and yyyy = 2:\nExtended functions without selection (p9601.5 =1) are enabled without enabling motion monitoring functions integrated in\nthe drive (p9601.2).\nxxxx = 9601 and yyyy = 3:\nOnboard F-DI are enabled without enabling motion monitoring functions integrated in the drive (p9601.2).",
+          "start": 1051,
+          "end": 1349,
+          "value_index": 7
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "Onboard F-DI are enabled without enabling motion monitoring functions integrated in the drive (p9601.2).",
+          "start": 1245,
+          "end": 1349,
+          "value_index": 8
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "xxxx = 9601 and yyyy = 3:\nOnboard F-DI are enabled without enabling motion monitoring functions integrated in the drive (p9601.2).\nxxxx = 9601 and yyyy = 4:\nOnboard F-DI are enabled.",
+          "start": 1219,
+          "end": 1401,
+          "value_index": 8
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "Onboard F-DI are enabled. Then, it is not permissible to simultaneously set PROFIsafe and F-DI via PROFIsafe (p9501.30).",
+          "start": 1376,
+          "end": 1496,
+          "value_index": 9
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "xxxx = 9601 and yyyy = 4:\nOnboard F-DI are enabled. Then, it is not permissible to simultaneously set PROFIsafe and F-DI via PROFIsafe (p9501.30).\nxxxx = 9601 and yyyy = 5:\nTransfer of the SLS limit value via PROFIsafe (p9501.24) has been enabled, without enabling PROFIsafe.",
+          "start": 1350,
+          "end": 1625,
+          "value_index": 9
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "Transfer of the SLS limit value via PROFIsafe (p9501.24) has been enabled, without enabling PROFIsafe.",
+          "start": 1523,
+          "end": 1625,
+          "value_index": 10
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "xxxx = 9601 and yyyy = 5:\nTransfer of the SLS limit value via PROFIsafe (p9501.24) has been enabled, without enabling PROFIsafe.\nxxxx = 9601 and yyyy = 6:\nTransfer of the safe position via PROFIsafe (p9501.25) has been enabled, without enabling PROFIsafe.",
+          "start": 1497,
+          "end": 1752,
+          "value_index": 10
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "Transfer of the safe position via PROFIsafe (p9501.25) has been enabled, without enabling PROFIsafe.",
+          "start": 1652,
+          "end": 1752,
+          "value_index": 11
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "xxxx = 9601 and yyyy = 6:\nTransfer of the safe position via PROFIsafe (p9501.25) has been enabled, without enabling PROFIsafe.\nxxxx = 9601 and yyyy = 7:\nSafe switchover of the gearbox stages (p9501.26) has been enabled without enabling PROFIsafe.",
+          "start": 1626,
+          "end": 1872,
+          "value_index": 11
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "Safe switchover of the gearbox stages (p9501.26) has been enabled without enabling PROFIsafe.",
+          "start": 1779,
+          "end": 1872,
+          "value_index": 12
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "xxxx = 9601 and yyyy = 7:\nSafe switchover of the gearbox stages (p9501.26) has been enabled without enabling PROFIsafe.\nxxxx = 9601 and yyyy = 11:\nSS2E (p9501.18 = 1) is enabled without PROFIsafe being enabled.",
+          "start": 1753,
+          "end": 1963,
+          "value_index": 12
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "SS2E (p9501.18 = 1) is enabled without PROFIsafe being enabled.",
+          "start": 1900,
+          "end": 1963,
+          "value_index": 13
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "xxxx = 9601 and yyyy = 11:\nSS2E (p9501.18 = 1) is enabled without PROFIsafe being enabled.\nxxxx = 9601 and yyyy = 12:\nSCA (p9501.28 = 1) is enabled without enabling PROFIsafe.",
+          "start": 1873,
+          "end": 2048,
+          "value_index": 13
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "SCA (p9501.28 = 1) is enabled without enabling PROFIsafe.",
+          "start": 1991,
+          "end": 2048,
+          "value_index": 14
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "xxxx = 9601 and yyyy = 12:\nSCA (p9501.28 = 1) is enabled without enabling PROFIsafe.\nxxxx = 9601 and yyyy = 13:\nExtended functions (p9601.2 = 1) have been enabled without enabling PROFIsafe (p9601.3).",
+          "start": 1964,
+          "end": 2164,
+          "value_index": 14
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "Extended functions (p9601.2 = 1) have been enabled without enabling PROFIsafe (p9601.3).",
+          "start": 2076,
+          "end": 2164,
+          "value_index": 15
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "xxxx = 9601 and yyyy = 13:\nExtended functions (p9601.2 = 1) have been enabled without enabling PROFIsafe (p9601.3).\n454 Operating Instructions, 01/2019, A5E41702836B AC\nRemedy: Correct parameters:\nIf xxxx = 9501:\n- deselect extended functions without selection (p9601.5).",
+          "start": 2049,
+          "end": 2320,
+          "value_index": 15
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "r0949",
+          "start": 224,
+          "end": 229,
+          "value_index": 0
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "p9501.16",
+          "start": 401,
+          "end": 409,
+          "value_index": 1
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "p9601.5",
+          "start": 503,
+          "end": 510,
+          "value_index": 2
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "p9501.27",
+          "start": 561,
+          "end": 569,
+          "value_index": 3
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "r0108.4",
+          "start": 585,
+          "end": 592,
+          "value_index": 4
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "p9506",
+          "start": 662,
+          "end": 667,
+          "value_index": 5
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "p9601.2",
+          "start": 894,
+          "end": 901,
+          "value_index": 6
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "p9601.3",
+          "start": 991,
+          "end": 998,
+          "value_index": 7
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "p9601.4",
+          "start": 1021,
+          "end": 1028,
+          "value_index": 8
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "p9501.30",
+          "start": 1486,
+          "end": 1494,
+          "value_index": 9
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "p9501.24",
+          "start": 1570,
+          "end": 1578,
+          "value_index": 10
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "p9501.25",
+          "start": 1697,
+          "end": 1705,
+          "value_index": 11
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "p9501.26",
+          "start": 1818,
+          "end": 1826,
+          "value_index": 12
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "p9501.18",
+          "start": 1906,
+          "end": 1914,
+          "value_index": 13
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "p9501.28",
+          "start": 1996,
+          "end": 2004,
+          "value_index": 14
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "p9546",
+          "start": 2871,
+          "end": 2876,
+          "value_index": 15
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "p9547",
+          "start": 2881,
+          "end": 2886,
+          "value_index": 16
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "p9501.3",
+          "start": 1486,
+          "end": 1493,
+          "value_index": 17
+        },
+        {
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "p9549",
+          "start": 3057,
+          "end": 3062,
+          "value_index": 18
+        }
+      ],
+      "diagnostics": []
+    },
+    "outcomes": [
+      {
+        "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+        "fault_code": "F01681",
+        "status": "blocked",
+        "tree": {
+          "artifact_type": "candidate_fta_tree",
+          "artifact_version": "v3",
+          "extraction_result_id": "e8ededa7-1c92-41a5-add3-566153dd7787",
+          "record_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "fault_code": "F01681",
+          "source_text_sha256": "5517c4e678dfa57286a7ae5426e4d40ed7322a4c88241593b6a55d068f0e994b",
+          "top_event_id": "event:f381f779-cfa2-48eb-88ef-e1a2a6813243",
+          "nodes": [
+            {
+              "node_id": "event:f381f779-cfa2-48eb-88ef-e1a2a6813243",
+              "node_type": "top_event_candidate",
+              "text": "Incorrect parameter value",
+              "evidence": [
+                {
+                  "citation_id": "f381f779-cfa2-48eb-88ef-e1a2a6813243:description:21-46",
+                  "source_id": "input_text",
+                  "quote": "Incorrect parameter value",
+                  "start": 21,
+                  "end": 46
+                }
+              ],
+              "source_cause_indices": []
+            },
+            {
+              "node_id": "cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n0",
+              "node_type": "cause_candidate",
+              "text": "The parameter cannot be parameterized with this value.",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:94-148",
+                  "source_id": "input_text",
+                  "quote": "The parameter cannot be parameterized with this value.",
+                  "start": 94,
+                  "end": 148
+                }
+              ],
+              "source_cause_indices": [
+                0
+              ]
+            },
+            {
+              "node_id": "cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n1",
+              "node_type": "cause_candidate",
+              "text": "Enabling function \"SSM\" (p9501.16) is not permissible in combination with the \"Extended functions without selection\"\nfunction (p9601.5).",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:376-512",
+                  "source_id": "input_text",
+                  "quote": "Enabling function \"SSM\" (p9501.16) is not permissible in combination with the \"Extended functions without selection\"\nfunction (p9601.5).",
+                  "start": 376,
+                  "end": 512
+                }
+              ],
+              "source_cause_indices": [
+                1
+              ]
+            },
+            {
+              "node_id": "intermediate_event:f381f779-cfa2-48eb-88ef-e1a2a6813243:n2",
+              "node_type": "intermediate_event_candidate",
+              "text": "Referencing via SCC (p9501.27 = 1) and epos (r0108.4 = 1) are simultaneously enabled.",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:540-625",
+                  "source_id": "input_text",
+                  "quote": "Referencing via SCC (p9501.27 = 1) and epos (r0108.4 = 1) are simultaneously enabled.",
+                  "start": 540,
+                  "end": 625
+                }
+              ],
+              "source_cause_indices": [
+                2
+              ]
+            },
+            {
+              "node_id": "cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n2_a",
+              "node_type": "cause_candidate",
+              "text": "Referencing via SCC (p9501.27 = 1)",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:540-574",
+                  "source_id": "input_text",
+                  "quote": "Referencing via SCC (p9501.27 = 1)",
+                  "start": 540,
+                  "end": 574
+                }
+              ],
+              "source_cause_indices": [
+                2
+              ]
+            },
+            {
+              "node_id": "cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n2_b",
+              "node_type": "cause_candidate",
+              "text": "epos (r0108.4 = 1)",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:579-597",
+                  "source_id": "input_text",
+                  "quote": "epos (r0108.4 = 1)",
+                  "start": 579,
+                  "end": 597
+                }
+              ],
+              "source_cause_indices": [
+                2
+              ]
+            },
+            {
+              "node_id": "cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n3",
+              "node_type": "cause_candidate",
+              "text": "Parameter p9506 differs between the monitoring channels",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:652-707",
+                  "source_id": "input_text",
+                  "quote": "Parameter p9506 differs between the monitoring channels",
+                  "start": 652,
+                  "end": 707
+                }
+              ],
+              "source_cause_indices": [
+                3
+              ]
+            },
+            {
+              "node_id": "cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n4",
+              "node_type": "cause_candidate",
+              "text": "The gear stage was set too high.",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:721-753",
+                  "source_id": "input_text",
+                  "quote": "The gear stage was set too high.",
+                  "start": 721,
+                  "end": 753
+                }
+              ],
+              "source_cause_indices": [
+                4
+              ]
+            },
+            {
+              "node_id": "cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n5",
+              "node_type": "cause_candidate",
+              "text": "The hysteresis tolerance is not permissible.",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:767-811",
+                  "source_id": "input_text",
+                  "quote": "The hysteresis tolerance is not permissible.",
+                  "start": 767,
+                  "end": 811
+                }
+              ],
+              "source_cause_indices": [
+                5
+              ]
+            },
+            {
+              "node_id": "cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6",
+              "node_type": "cause_candidate",
+              "text": "If motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1)\nare enabled, then PROFIsafe (p9601.3 = 1) or onboard F-DI (p9601.4 = 1) is not possible.",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:838-1050",
+                  "source_id": "input_text",
+                  "quote": "If motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1)\nare enabled, then PROFIsafe (p9601.3 = 1) or onboard F-DI (p9601.4 = 1) is not possible.",
+                  "start": 838,
+                  "end": 1050
+                }
+              ],
+              "source_cause_indices": [
+                6
+              ]
+            },
+            {
+              "node_id": "intermediate_event:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6_cond",
+              "node_type": "intermediate_event_candidate",
+              "text": "motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1)\nare enabled",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:841-973",
+                  "source_id": "input_text",
+                  "quote": "motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1)\nare enabled",
+                  "start": 841,
+                  "end": 973
+                }
+              ],
+              "source_cause_indices": [
+                6
+              ]
+            },
+            {
+              "node_id": "cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6_cond_a",
+              "node_type": "cause_candidate",
+              "text": "motion monitoring functions integrated in the drive (p9601.2 = 1)",
+              "evidence": [],
+              "source_cause_indices": [
+                6
+              ]
+            },
+            {
+              "node_id": "cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6_cond_b",
+              "node_type": "cause_candidate",
+              "text": "extended functions without selection (p9601.5 = 1)",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:911-961",
+                  "source_id": "input_text",
+                  "quote": "extended functions without selection (p9601.5 = 1)",
+                  "start": 911,
+                  "end": 961
+                }
+              ],
+              "source_cause_indices": [
+                6
+              ]
+            },
+            {
+              "node_id": "intermediate_event:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6_cons",
+              "node_type": "intermediate_event_candidate",
+              "text": "PROFIsafe (p9601.3 = 1) or onboard F-DI (p9601.4 = 1) is not possible",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:980-1049",
+                  "source_id": "input_text",
+                  "quote": "PROFIsafe (p9601.3 = 1) or onboard F-DI (p9601.4 = 1) is not possible",
+                  "start": 980,
+                  "end": 1049
+                }
+              ],
+              "source_cause_indices": [
+                6
+              ]
+            },
+            {
+              "node_id": "cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6_cons_a",
+              "node_type": "cause_candidate",
+              "text": "PROFIsafe (p9601.3 = 1)",
+              "evidence": [],
+              "source_cause_indices": [
+                6
+              ]
+            },
+            {
+              "node_id": "cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6_cons_b",
+              "node_type": "cause_candidate",
+              "text": "onboard F-DI (p9601.4 = 1)",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:1007-1033",
+                  "source_id": "input_text",
+                  "quote": "onboard F-DI (p9601.4 = 1)",
+                  "start": 1007,
+                  "end": 1033
+                }
+              ],
+              "source_cause_indices": [
+                6
+              ]
+            },
+            {
+              "node_id": "cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n7",
+              "node_type": "cause_candidate",
+              "text": "Extended functions without selection (p9601.5 =1) are enabled without enabling motion monitoring functions integrated in\nthe drive (p9601.2).",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:1077-1218",
+                  "source_id": "input_text",
+                  "quote": "Extended functions without selection (p9601.5 =1) are enabled without enabling motion monitoring functions integrated in\nthe drive (p9601.2).",
+                  "start": 1077,
+                  "end": 1218
+                }
+              ],
+              "source_cause_indices": [
+                7
+              ]
+            },
+            {
+              "node_id": "cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n8",
+              "node_type": "cause_candidate",
+              "text": "Onboard F-DI are enabled without enabling motion monitoring functions integrated in the drive (p9601.2).",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:1245-1349",
+                  "source_id": "input_text",
+                  "quote": "Onboard F-DI are enabled without enabling motion monitoring functions integrated in the drive (p9601.2).",
+                  "start": 1245,
+                  "end": 1349
+                }
+              ],
+              "source_cause_indices": [
+                8
+              ]
+            },
+            {
+              "node_id": "cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n9",
+              "node_type": "cause_candidate",
+              "text": "Onboard F-DI are enabled. Then, it is not permissible to simultaneously set PROFIsafe and F-DI via PROFIsafe (p9501.30).",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:1376-1496",
+                  "source_id": "input_text",
+                  "quote": "Onboard F-DI are enabled. Then, it is not permissible to simultaneously set PROFIsafe and F-DI via PROFIsafe (p9501.30).",
+                  "start": 1376,
+                  "end": 1496
+                }
+              ],
+              "source_cause_indices": [
+                9
+              ]
+            },
+            {
+              "node_id": "cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n10",
+              "node_type": "cause_candidate",
+              "text": "Transfer of the SLS limit value via PROFIsafe (p9501.24) has been enabled, without enabling PROFIsafe.",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:1523-1625",
+                  "source_id": "input_text",
+                  "quote": "Transfer of the SLS limit value via PROFIsafe (p9501.24) has been enabled, without enabling PROFIsafe.",
+                  "start": 1523,
+                  "end": 1625
+                }
+              ],
+              "source_cause_indices": [
+                10
+              ]
+            },
+            {
+              "node_id": "cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n11",
+              "node_type": "cause_candidate",
+              "text": "Transfer of the safe position via PROFIsafe (p9501.25) has been enabled, without enabling PROFIsafe.",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:1652-1752",
+                  "source_id": "input_text",
+                  "quote": "Transfer of the safe position via PROFIsafe (p9501.25) has been enabled, without enabling PROFIsafe.",
+                  "start": 1652,
+                  "end": 1752
+                }
+              ],
+              "source_cause_indices": [
+                11
+              ]
+            },
+            {
+              "node_id": "cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n12",
+              "node_type": "cause_candidate",
+              "text": "Safe switchover of the gearbox stages (p9501.26) has been enabled without enabling PROFIsafe.",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:1779-1872",
+                  "source_id": "input_text",
+                  "quote": "Safe switchover of the gearbox stages (p9501.26) has been enabled without enabling PROFIsafe.",
+                  "start": 1779,
+                  "end": 1872
+                }
+              ],
+              "source_cause_indices": [
+                12
+              ]
+            },
+            {
+              "node_id": "cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n13",
+              "node_type": "cause_candidate",
+              "text": "SS2E (p9501.18 = 1) is enabled without PROFIsafe being enabled.",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:1900-1963",
+                  "source_id": "input_text",
+                  "quote": "SS2E (p9501.18 = 1) is enabled without PROFIsafe being enabled.",
+                  "start": 1900,
+                  "end": 1963
+                }
+              ],
+              "source_cause_indices": [
+                13
+              ]
+            },
+            {
+              "node_id": "cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n14",
+              "node_type": "cause_candidate",
+              "text": "SCA (p9501.28 = 1) is enabled without enabling PROFIsafe.",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:1991-2048",
+                  "source_id": "input_text",
+                  "quote": "SCA (p9501.28 = 1) is enabled without enabling PROFIsafe.",
+                  "start": 1991,
+                  "end": 2048
+                }
+              ],
+              "source_cause_indices": [
+                14
+              ]
+            },
+            {
+              "node_id": "cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n15",
+              "node_type": "cause_candidate",
+              "text": "Extended functions (p9601.2 = 1) have been enabled without enabling PROFIsafe (p9601.3).",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:2076-2164",
+                  "source_id": "input_text",
+                  "quote": "Extended functions (p9601.2 = 1) have been enabled without enabling PROFIsafe (p9601.3).",
+                  "start": 2076,
+                  "end": 2164
+                }
+              ],
+              "source_cause_indices": [
+                15
+              ]
+            }
+          ],
+          "gate_assessments": [
+            {
+              "gate_node_id": "gate:a62d628ec83894cdf6df173e",
+              "output_node_id": "intermediate_event:f381f779-cfa2-48eb-88ef-e1a2a6813243:n2",
+              "child_node_ids": [
+                "cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n2_a",
+                "cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n2_b"
+              ],
+              "scope_type": "and_simultaneous_condition",
+              "gate": "unknown",
+              "gate_probabilities": {
+                "AND": 0.0,
+                "OR": 0.0,
+                "unknown": 1.0
+              },
+              "scope_evidence": [
+                {
+                  "citation_id": "input_text:scope:540-625",
+                  "source_id": "input_text",
+                  "quote": "Referencing via SCC (p9501.27 = 1) and epos (r0108.4 = 1) are simultaneously enabled.",
+                  "start": 540,
+                  "end": 625
+                }
+              ],
+              "gate_evidence": [
+                {
+                  "citation_id": "input_text:gate:540-625",
+                  "source_id": "input_text",
+                  "quote": "Referencing via SCC (p9501.27 = 1) and epos (r0108.4 = 1) are simultaneously enabled.",
+                  "start": 540,
+                  "end": 625
+                }
+              ],
+              "cause_set_complete": false,
+              "cause_set_leaf_normalized": true,
+              "confidence_policy_id": null,
+              "confidence_policy_basis": null,
+              "minimum_gate_probability": null,
+              "minimum_gate_margin": null,
+              "decision_reason": "gate_confidence_policy_unavailable; scope_quote 明确显示两个子条件同时启用，形态上支持 AND；但 cause_set_complete=false，child 集合未完整，故门型判定以 unknown 为主。",
+              "blockers": [
+                "cause_set_incomplete_or_not_leaf_normalized",
+                "gate_confidence_policy_unavailable"
+              ]
+            },
+            {
+              "gate_node_id": "gate:7d59cb677a23bc13a22fe9c6",
+              "output_node_id": "intermediate_event:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6_cond",
+              "child_node_ids": [
+                "cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6_cond_a",
+                "cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6_cond_b"
+              ],
+              "scope_type": "and_condition",
+              "gate": "unknown",
+              "gate_probabilities": {
+                "AND": 0.0,
+                "OR": 0.0,
+                "unknown": 1.0
+              },
+              "scope_evidence": [
+                {
+                  "citation_id": "input_text:scope:841-973",
+                  "source_id": "input_text",
+                  "quote": "motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1)\nare enabled",
+                  "start": 841,
+                  "end": 973
+                }
+              ],
+              "gate_evidence": [
+                {
+                  "citation_id": "input_text:gate:841-973",
+                  "source_id": "input_text",
+                  "quote": "motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1)\nare enabled",
+                  "start": 841,
+                  "end": 973
+                }
+              ],
+              "cause_set_complete": false,
+              "cause_set_leaf_normalized": true,
+              "confidence_policy_id": null,
+              "confidence_policy_basis": null,
+              "minimum_gate_probability": null,
+              "minimum_gate_margin": null,
+              "decision_reason": "gate_confidence_policy_unavailable; scope_quote 明确使用 and 连接两个条件，形态上支持 AND；但 cause_set_complete=false，child 集合未完整，故门型判定以 unknown 为主。",
+              "blockers": [
+                "cause_set_incomplete_or_not_leaf_normalized",
+                "gate_confidence_policy_unavailable"
+              ]
+            },
+            {
+              "gate_node_id": "gate:1c45449c5d28e4ea0e554e95",
+              "output_node_id": "intermediate_event:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6_cons",
+              "child_node_ids": [
+                "cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6_cons_a",
+                "cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6_cons_b"
+              ],
+              "scope_type": "or_alternatives",
+              "gate": "unknown",
+              "gate_probabilities": {
+                "AND": 0.0,
+                "OR": 0.0,
+                "unknown": 1.0
+              },
+              "scope_evidence": [
+                {
+                  "citation_id": "input_text:scope:980-1049",
+                  "source_id": "input_text",
+                  "quote": "PROFIsafe (p9601.3 = 1) or onboard F-DI (p9601.4 = 1) is not possible",
+                  "start": 980,
+                  "end": 1049
+                }
+              ],
+              "gate_evidence": [
+                {
+                  "citation_id": "input_text:gate:980-1049",
+                  "source_id": "input_text",
+                  "quote": "PROFIsafe (p9601.3 = 1) or onboard F-DI (p9601.4 = 1) is not possible",
+                  "start": 980,
+                  "end": 1049
+                }
+              ],
+              "cause_set_complete": false,
+              "cause_set_leaf_normalized": true,
+              "confidence_policy_id": null,
+              "confidence_policy_basis": null,
+              "minimum_gate_probability": null,
+              "minimum_gate_margin": null,
+              "decision_reason": "gate_confidence_policy_unavailable; scope_quote 明确使用 or 连接两个备选结果，形态上支持 OR；但 cause_set_complete=false，child 集合未完整，故门型判定以 unknown 为主。",
+              "blockers": [
+                "cause_set_incomplete_or_not_leaf_normalized",
+                "gate_confidence_policy_unavailable"
+              ]
+            }
+          ],
+          "relations": [
+            {
+              "relation_id": "relation:f381f779-cfa2-48eb-88ef-e1a2a6813243:0",
+              "source_node_id": "intermediate_event:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6_cond",
+              "target_node_id": "intermediate_event:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6_cons",
+              "relation_type": "causes",
+              "scope_evidence": [
+                {
+                  "citation_id": "input_text:relation_scope:838-1050",
+                  "source_id": "input_text",
+                  "quote": "If motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1)\nare enabled, then PROFIsafe (p9601.3 = 1) or onboard F-DI (p9601.4 = 1) is not possible.",
+                  "start": 838,
+                  "end": 1050
+                }
+              ],
+              "evidence": [
+                {
+                  "citation_id": "input_text:relation:838-1050",
+                  "source_id": "input_text",
+                  "quote": "If motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1)\nare enabled, then PROFIsafe (p9601.3 = 1) or onboard F-DI (p9601.4 = 1) is not possible.",
+                  "start": 838,
+                  "end": 1050
+                }
+              ]
+            }
+          ],
+          "gate_confidence_semantics": "uncalibrated_model_estimate",
+          "status": "blocked",
+          "blockers": [
+            "cause_structure_unresolved:0",
+            "cause_structure_unresolved:1",
+            "cause_structure_unresolved:2",
+            "cause_structure_unresolved:3",
+            "cause_structure_unresolved:4",
+            "cause_structure_unresolved:5",
+            "cause_structure_unresolved:6",
+            "cause_structure_unresolved:7",
+            "cause_structure_unresolved:8",
+            "cause_structure_unresolved:9",
+            "cause_structure_unresolved:10",
+            "cause_structure_unresolved:11",
+            "cause_structure_unresolved:12",
+            "cause_structure_unresolved:13",
+            "cause_structure_unresolved:14",
+            "cause_structure_unresolved:15",
+            "node_evidence_missing_or_ambiguous:n6_cond_a",
+            "node_evidence_missing_or_ambiguous:n6_cons_a",
+            "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n0",
+            "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n1",
+            "node_disconnected_from_top_event:intermediate_event:f381f779-cfa2-48eb-88ef-e1a2a6813243:n2",
+            "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n2_a",
+            "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n2_b",
+            "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n3",
+            "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n4",
+            "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n5",
+            "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6",
+            "node_disconnected_from_top_event:intermediate_event:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6_cond",
+            "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6_cond_a",
+            "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6_cond_b",
+            "node_disconnected_from_top_event:intermediate_event:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6_cons",
+            "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6_cons_a",
+            "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n6_cons_b",
+            "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n7",
+            "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n8",
+            "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n9",
+            "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n10",
+            "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n11",
+            "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n12",
+            "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n13",
+            "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n14",
+            "node_disconnected_from_top_event:cause:f381f779-cfa2-48eb-88ef-e1a2a6813243:n15"
+          ],
+          "decision_reason": "没有实例读数；F01681 的 fault-value 查表映射（cause_index 1-15）和通用 Cause 摘要（cause_index 0）均不能作为 __top_event__ 根 scope 的直接 child。未建立到 __top_event__ 的 gate_scope；所有候选保留为断开节点。局部 scope 仅表达显式内部布尔组合（cause_index 2 和 6）。宿主应因根连通性缺失阻断整棵候选树。; 所有 gate scope 的 cause_set_complete=false，因此即使局部原文显示 AND/OR 形态，门型仍以 unknown 为主。relations 仅保留原文显式 if-then 且未被 gate_scope 父子结构重复表达的 n6_cond 到 n6_cons 关系；故障值映射未用于连接顶事件。",
+          "reviewer_provenance": "user_authorized_ai_expert_role",
+          "human_reviewed": false,
+          "fta_ready": false,
+          "production_ready": false
+        },
+        "diagnostics": []
+      }
+    ]
+  }
+}

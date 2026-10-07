@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:fta-system:schemas:fta_event_scope_reference_gold_v1",
+  "title": "FTA event-scope diagram reference and text-authorized gate labels v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["gold_schema", "packet_id", "model_input_sha256", "source_cluster_id", "source_document_id", "source_document_sha256", "root_node_id", "nodes", "diagram_gates", "text_gate_reviews"],
+  "properties": {
+    "gold_schema": { "const": "fta_event_scope_reference_gold_v1" },
+    "packet_id": { "$ref": "#/$defs/nonEmptyString" },
+    "model_input_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "source_cluster_id": { "$ref": "#/$defs/nonEmptyString" },
+    "source_document_id": { "$ref": "#/$defs/nonEmptyString" },
+    "source_document_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "root_node_id": { "$ref": "#/$defs/nonEmptyString" },
+    "nodes": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 500,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["node_id", "text", "node_type", "page_number", "figure_id"],
+        "properties": {
+          "node_id": { "$ref": "#/$defs/nonEmptyString" },
+          "text": { "type": "string", "minLength": 1, "maxLength": 12000, "pattern": "\\S" },
+          "node_type": { "enum": ["top_event", "intermediate_event", "basic_event", "undeveloped_event"] },
+          "page_number": { "type": "integer", "minimum": 1 },
+          "figure_id": { "$ref": "#/$defs/nonEmptyString" }
+        }
+      }
+    },
+    "diagram_gates": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 250,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["scope_id", "output_node_id", "child_node_ids", "diagram_reference_gate", "page_number", "figure_id"],
+        "properties": {
+          "scope_id": { "$ref": "#/$defs/nonEmptyString" },
+          "output_node_id": { "$ref": "#/$defs/nonEmptyString" },
+          "child_node_ids": { "type": "array", "minItems": 2, "uniqueItems": true, "items": { "$ref": "#/$defs/nonEmptyString" } },
+          "diagram_reference_gate": { "enum": ["AND", "OR", "NOT", "VOTING", "OTHER", "UNREADABLE"] },
+          "page_number": { "type": "integer", "minimum": 1 },
+          "figure_id": { "$ref": "#/$defs/nonEmptyString" }
+        }
+      }
+    },
+    "text_gate_reviews": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 250,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["scope_id", "text_authorized_gate", "unknown_reason", "evidence", "review_provenance"],
+        "properties": {
+          "scope_id": { "$ref": "#/$defs/nonEmptyString" },
+          "text_authorized_gate": { "enum": ["AND", "OR", "unknown"] },
+          "unknown_reason": { "type": ["string", "null"], "enum": ["no_direct_logic_evidence", "incomplete_child_set", "scope_ambiguity", "input_context_unavailable", null] },
+          "evidence": { "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/evidenceReference" }] },
+          "review_provenance": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["reviewer_role", "reviewer_id", "review_status", "reviewed_at"],
+            "properties": {
+              "reviewer_role": { "enum": ["human_expert", "ai_role_review", "engineering_review", "unreviewed"] },
+              "reviewer_id": { "type": ["string", "null"] },
+              "review_status": { "enum": ["pending", "reviewed"] },
+              "reviewed_at": { "type": ["string", "null"], "format": "date" }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "nonEmptyString": { "type": "string", "minLength": 1, "pattern": "\\S" },
+    "evidenceReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["segment_id", "quote"],
+      "properties": {
+        "segment_id": { "$ref": "#/$defs/nonEmptyString" },
+        "quote": { "$ref": "#/$defs/nonEmptyString" }
+      }
+    }
+  }
+}

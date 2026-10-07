@@ -1,0 +1,33 @@
+{
+  "artifact_type": "external_diagram_gate_classification_fixture",
+  "artifact_version": "v1",
+  "created_at": "2026-09-27",
+  "formal_gold": false,
+  "in_project_gold": false,
+  "label_provenance": "manually_transcribed_from_explicit_gate_symbols_in_source_figures; not human-expert-reviewed",
+  "source_cluster_count": 1,
+  "source_document": "FAA Guide to Reusable Launch and Reentry Vehicle Reliability Analysis, Version 1.0, April 2005",
+  "source_pdf_sha256": "66a4a55f6d030f73b9a4bcff0746a38338225d548d7c5c1f37e3b39226a68c94",
+  "source_figures": [
+    {"figure_id": "A.4-1", "printed_page": 44, "pdf_page": 50},
+    {"figure_id": "B.1-3", "printed_page": 58, "pdf_page": 64},
+    {"figure_id": "B.2-2", "printed_page": 60, "pdf_page": 66}
+  ],
+  "scope_note": "B.1-3 is explicitly a partial FTA. Only its two locally complete, fully visible gate nodes are included; dashed/incomplete branches are excluded.",
+  "inference_input_policy": "The model receives only parent-event and direct-child event text. Figure labels, expected gate types, figure/page identifiers, and source identity are withheld from the model prompt.",
+  "gate_nodes": [
+    {"gate_node_id":"FAA-A4-1-G01","figure_id":"A.4-1","printed_page":44,"pdf_page":50,"parent_event":"Thruster supplied with propellant after cutoff","children":["Isolation valve 1 remains open after cutoff","Isolation valve 2 remains open after cutoff"],"expected_gate":"AND"},
+    {"gate_node_id":"FAA-A4-1-G02","figure_id":"A.4-1","printed_page":44,"pdf_page":50,"parent_event":"Isolation valve 1 remains open after cutoff","children":["Operator fails to close","Valve fails to close"],"expected_gate":"OR"},
+    {"gate_node_id":"FAA-A4-1-G03","figure_id":"A.4-1","printed_page":44,"pdf_page":50,"parent_event":"Valve fails to close (valve 1 branch)","children":["Contamination","Mechanical Failure"],"expected_gate":"OR"},
+    {"gate_node_id":"FAA-A4-1-G04","figure_id":"A.4-1","printed_page":44,"pdf_page":50,"parent_event":"Isolation valve 2 remains open after cutoff","children":["Operator fails to close","Valve fails to close"],"expected_gate":"OR"},
+    {"gate_node_id":"FAA-A4-1-G05","figure_id":"A.4-1","printed_page":44,"pdf_page":50,"parent_event":"Valve fails to close (valve 2 branch)","children":["Contamination","Mechanical Failure"],"expected_gate":"OR"},
+    {"gate_node_id":"FAA-B1-3-G01","figure_id":"B.1-3","printed_page":58,"pdf_page":64,"parent_event":"Loss of Servo Control","children":["Loss of Electrical Power","Mechanical Failure"],"expected_gate":"OR"},
+    {"gate_node_id":"FAA-B1-3-G02","figure_id":"B.1-3","printed_page":58,"pdf_page":64,"parent_event":"Loss of Electrical Power","children":["Loss of Main Power","Loss of Backup Power"],"expected_gate":"AND"},
+    {"gate_node_id":"FAA-B2-2-G01","figure_id":"B.2-2","printed_page":60,"pdf_page":66,"parent_event":"Unable to shut down engine after cutoff","children":["Automatic controller fails to close valve (valve 1)","Failure to close manual valve (valve 2)"],"expected_gate":"AND"},
+    {"gate_node_id":"FAA-B2-2-G02","figure_id":"B.2-2","printed_page":60,"pdf_page":66,"parent_event":"Automatic controller fails to close valve (valve 1)","children":["Valve 1 fails to close","Software fault"],"expected_gate":"OR"},
+    {"gate_node_id":"FAA-B2-2-G03","figure_id":"B.2-2","printed_page":60,"pdf_page":66,"parent_event":"Valve 1 fails to close","children":["Contamination","Mechanical failure"],"expected_gate":"OR"},
+    {"gate_node_id":"FAA-B2-2-G04","figure_id":"B.2-2","printed_page":60,"pdf_page":66,"parent_event":"Failure to close manual valve (valve 2)","children":["Operator fails to close","Valve 2 fails to close"],"expected_gate":"OR"},
+    {"gate_node_id":"FAA-B2-2-G05","figure_id":"B.2-2","printed_page":60,"pdf_page":66,"parent_event":"Operator fails to close","children":["Improper training","Incorrect procedures"],"expected_gate":"OR"},
+    {"gate_node_id":"FAA-B2-2-G06","figure_id":"B.2-2","printed_page":60,"pdf_page":66,"parent_event":"Valve 2 fails to close","children":["Contamination","Mechanical failure"],"expected_gate":"OR"}
+  ]
+}

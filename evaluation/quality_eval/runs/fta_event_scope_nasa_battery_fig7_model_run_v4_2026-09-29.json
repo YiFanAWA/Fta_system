@@ -1,0 +1,173 @@
+{
+  "artifact_type": "fta_event_scope_model_inference_run",
+  "artifact_version": "v4",
+  "status": "response_received",
+  "recorded_at_utc": "2026-09-29T06:50:29+00:00",
+  "case": {
+    "packet_id": "NASA_GSFC_BATTERY_FIG7_MODULE_FAILURE_DEV_001",
+    "source_cluster_id": "NASA_GSFC_LISOCL2_BATTERY_SAFETY_ANALYSIS_1987",
+    "exposure_status": "seen_development_only",
+    "packet_path": "evaluation/quality_eval/datasets/fta_event_scope_nasa_battery_fig7_module_failure_dev_v1.json",
+    "model_input_sha256": "1e77b80a8f2a6ae62443468d21b075e4a213a3544cdc2b882a5d69b6ba6d4325"
+  },
+  "request": {
+    "request_count": 1,
+    "retry_count": 0,
+    "retry_policy": "disabled_one_attempt_only",
+    "provider_host": "api.deepseek.com",
+    "requested_model": "deepseek-flash",
+    "temperature": 0,
+    "max_tokens": 8192,
+    "response_format": {
+      "type": "json_object"
+    },
+    "thinking_mode": {
+      "type": "disabled"
+    },
+    "timeout_seconds": 120,
+    "sdk_max_retries": 0,
+    "prompt_version": "event-scope-text-only-tree-v4-located-evidence",
+    "prompt_sha256": "a1d532cd253c2ca4ab7deb4ba71740d76b862c369a8278d4c84573e762c4a3e2",
+    "gold_included_in_model_input": false,
+    "choice_count": 1,
+    "finish_reason": "stop",
+    "visible_content_character_count": 4160,
+    "reasoning_content_present": false,
+    "reasoning_content_character_count": 0,
+    "reasoning_text_persisted": false,
+    "reasoning_tokens": null,
+    "usage": {
+      "prompt_tokens": 1045,
+      "completion_tokens": 918,
+      "total_tokens": 1963
+    },
+    "returned_model": "deepseek-flash",
+    "provider_request_id": null,
+    "openai_package_version": "2.24.0"
+  },
+  "model_output": {
+    "raw_text": "{\"structure_status\":\"unresolved\",\"nodes\":[{\"id\":\"E1\",\"text\":\"explosion or structural fragmentation of a battery module\",\"type\":\"top_event\",\"evidence\":{\"segment_id\":\"source-pdf-p3-p4-section-5\",\"quote\":\"the explosion or structural fragmentation of a battery module\"}},{\"id\":\"E2\",\"text\":\"a single cell explosion\",\"type\":\"intermediate_event\",\"evidence\":{\"segment_id\":\"source-pdf-p3-p4-section-5\",\"quote\":\"A single cell explosion may lead to the Top Event if the module container fails to operate as designed and relieve the overpressure condition\"}},{\"id\":\"E3\",\"text\":\"the module container fails to operate as designed and relieve the overpressure condition\",\"type\":\"undeveloped_event\",\"evidence\":{\"segment_id\":\"source-pdf-p3-p4-section-5\",\"quote\":\"A single cell explosion may lead to the Top Event if the module container fails to operate as designed and relieve the overpressure condition\"}},{\"id\":\"E4\",\"text\":\"a single cell explosion may cause the Top Event to occur by creating overpressure and overtemperature conditions inside the battery pack which damage or make other neighboring batteries unstable leading to a second sympathetic explosion\",\"type\":\"intermediate_event\",\"evidence\":{\"segment_id\":\"source-pdf-p3-p4-section-5\",\"quote\":\"a single cell explosion may cause the Top Event to occur by creating overpressure and overtemperature conditions inside the battery pack which damage or make other neighboring batteries unstable leading to a second sympathetic explosion\"}},{\"id\":\"E5\",\"text\":\"a single cell exploding and the failure of the module vents\",\"type\":\"intermediate_event\",\"evidence\":{\"segment_id\":\"source-pdf-p3-p4-section-5\",\"quote\":\"a single cell exploding and the failure of the module vents\"}},{\"id\":\"E6\",\"text\":\"a single cell exploding and the module operating nominally but with a sympathetic secondary explosion occurring\",\"type\":\"intermediate_event\",\"evidence\":{\"segment_id\":\"source-pdf-p3-p4-section-5\",\"quote\":\"a single cell exploding and the module operating nominally but with a sympathetic secondary explosion occurring\"}}],\"gates\":[{\"scope_id\":\"S1\",\"output_node_id\":\"E1\",\"child_node_ids\":[\"E2\",\"E4\"],\"gate\":\"unknown\",\"scope_evidence\":{\"segment_id\":\"source-pdf-p3-p4-section-5\",\"quote\":\"A single cell explosion may lead to the Top Event if the module container fails to operate as designed and relieve the overpressure condition; thus, a primary explosion may cause the Top Event. In addition, a single cell explosion may cause the Top Event to occur by creating overpressure and overtemperature conditions inside the battery pack which damage or make other neighboring batteries unstable leading to a second sympathetic explosion\"},\"logic_evidence\":null,\"unknown_reason\":\"no_direct_logic_evidence\"},{\"scope_id\":\"S2\",\"output_node_id\":\"E2\",\"child_node_ids\":[\"E3\"],\"gate\":\"unknown\",\"scope_evidence\":{\"segment_id\":\"source-pdf-p3-p4-section-5\",\"quote\":\"A single cell explosion may lead to the Top Event if the module container fails to operate as designed and relieve the overpressure condition\"},\"logic_evidence\":null,\"unknown_reason\":\"incomplete_child_set\"},{\"scope_id\":\"S3\",\"output_node_id\":\"E4\",\"child_node_ids\":[\"E5\",\"E6\"],\"gate\":\"unknown\",\"scope_evidence\":{\"segment_id\":\"source-pdf-p3-p4-section-5\",\"quote\":\"Figures 7 and 8 show that a single cell exploding and the failure of the module vents or a single cell exploding and the module operating nominally but with a sympathetic secondary explosion occurring can lead to the Top Event\"},\"logic_evidence\":null,\"unknown_reason\":\"no_direct_logic_evidence\"}],\"unresolved_questions\":[\"The text describes multiple possible pathways from single cell explosion to the Top Event, but does not directly state whether the Top Event is represented by an OR gate combining these pathways.\",\"The scope S2 for E2 has only one child E3, which cannot form a valid gate scope with at least two distinct children; the full child set for E2 is not directly specified.\",\"The relationship between E4 and its child nodes E5/E6 is not directly supported by explicit logic gate evidence; the text uses 'or' in a descriptive sentence but does not explicitly assign an OR gate to this intermediate event.\"]}",
+    "parsed_json": {
+      "structure_status": "unresolved",
+      "nodes": [
+        {
+          "id": "E1",
+          "text": "explosion or structural fragmentation of a battery module",
+          "type": "top_event",
+          "evidence": {
+            "segment_id": "source-pdf-p3-p4-section-5",
+            "quote": "the explosion or structural fragmentation of a battery module"
+          }
+        },
+        {
+          "id": "E2",
+          "text": "a single cell explosion",
+          "type": "intermediate_event",
+          "evidence": {
+            "segment_id": "source-pdf-p3-p4-section-5",
+            "quote": "A single cell explosion may lead to the Top Event if the module container fails to operate as designed and relieve the overpressure condition"
+          }
+        },
+        {
+          "id": "E3",
+          "text": "the module container fails to operate as designed and relieve the overpressure condition",
+          "type": "undeveloped_event",
+          "evidence": {
+            "segment_id": "source-pdf-p3-p4-section-5",
+            "quote": "A single cell explosion may lead to the Top Event if the module container fails to operate as designed and relieve the overpressure condition"
+          }
+        },
+        {
+          "id": "E4",
+          "text": "a single cell explosion may cause the Top Event to occur by creating overpressure and overtemperature conditions inside the battery pack which damage or make other neighboring batteries unstable leading to a second sympathetic explosion",
+          "type": "intermediate_event",
+          "evidence": {
+            "segment_id": "source-pdf-p3-p4-section-5",
+            "quote": "a single cell explosion may cause the Top Event to occur by creating overpressure and overtemperature conditions inside the battery pack which damage or make other neighboring batteries unstable leading to a second sympathetic explosion"
+          }
+        },
+        {
+          "id": "E5",
+          "text": "a single cell exploding and the failure of the module vents",
+          "type": "intermediate_event",
+          "evidence": {
+            "segment_id": "source-pdf-p3-p4-section-5",
+            "quote": "a single cell exploding and the failure of the module vents"
+          }
+        },
+        {
+          "id": "E6",
+          "text": "a single cell exploding and the module operating nominally but with a sympathetic secondary explosion occurring",
+          "type": "intermediate_event",
+          "evidence": {
+            "segment_id": "source-pdf-p3-p4-section-5",
+            "quote": "a single cell exploding and the module operating nominally but with a sympathetic secondary explosion occurring"
+          }
+        }
+      ],
+      "gates": [
+        {
+          "scope_id": "S1",
+          "output_node_id": "E1",
+          "child_node_ids": [
+            "E2",
+            "E4"
+          ],
+          "gate": "unknown",
+          "scope_evidence": {
+            "segment_id": "source-pdf-p3-p4-section-5",
+            "quote": "A single cell explosion may lead to the Top Event if the module container fails to operate as designed and relieve the overpressure condition; thus, a primary explosion may cause the Top Event. In addition, a single cell explosion may cause the Top Event to occur by creating overpressure and overtemperature conditions inside the battery pack which damage or make other neighboring batteries unstable leading to a second sympathetic explosion"
+          },
+          "logic_evidence": null,
+          "unknown_reason": "no_direct_logic_evidence"
+        },
+        {
+          "scope_id": "S2",
+          "output_node_id": "E2",
+          "child_node_ids": [
+            "E3"
+          ],
+          "gate": "unknown",
+          "scope_evidence": {
+            "segment_id": "source-pdf-p3-p4-section-5",
+            "quote": "A single cell explosion may lead to the Top Event if the module container fails to operate as designed and relieve the overpressure condition"
+          },
+          "logic_evidence": null,
+          "unknown_reason": "incomplete_child_set"
+        },
+        {
+          "scope_id": "S3",
+          "output_node_id": "E4",
+          "child_node_ids": [
+            "E5",
+            "E6"
+          ],
+          "gate": "unknown",
+          "scope_evidence": {
+            "segment_id": "source-pdf-p3-p4-section-5",
+            "quote": "Figures 7 and 8 show that a single cell exploding and the failure of the module vents or a single cell exploding and the module operating nominally but with a sympathetic secondary explosion occurring can lead to the Top Event"
+          },
+          "logic_evidence": null,
+          "unknown_reason": "no_direct_logic_evidence"
+        }
+      ],
+      "unresolved_questions": [
+        "The text describes multiple possible pathways from single cell explosion to the Top Event, but does not directly state whether the Top Event is represented by an OR gate combining these pathways.",
+        "The scope S2 for E2 has only one child E3, which cannot form a valid gate scope with at least two distinct children; the full child set for E2 is not directly specified.",
+        "The relationship between E4 and its child nodes E5/E6 is not directly supported by explicit logic gate evidence; the text uses 'or' in a descriptive sentence but does not explicitly assign an OR gate to this intermediate event."
+      ]
+    },
+    "parse_error": null,
+    "raw_text_sha256": "4418a9086e649b7df2d350025d40f863c44794f07275e11eff9a5b73b7261bc2"
+  },
+  "claim_boundaries": {
+    "development_only": true,
+    "human_expert_gold": false,
+    "independent_final_validation": false,
+    "accuracy_or_calibration_claim_allowed": false,
+    "gold_or_database_written": false,
+    "production_or_database_write": false,
+    "fta_ready": false,
+    "production_ready": false
+  }
+}

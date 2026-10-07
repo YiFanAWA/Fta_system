@@ -1,0 +1,137 @@
+{
+  "artifact_type": "fta_event_scope_semantic_smoke_run",
+  "artifact_version": "v1",
+  "status": "response_received",
+  "recorded_at_utc": "2026-09-29T12:53:03+00:00",
+  "case": {
+    "case_id": "SMOKE-004",
+    "dataset_status": "constructed_behavioral_smoke_inputs_not_source_corpus",
+    "input_dataset_path": "evaluation/quality_eval/datasets/fta_event_scope_semantic_smoke_inputs_v1.json",
+    "input_dataset_sha256": "1cb2148df154112db4b6209b23f9144946b6aa5637c3fee809efcafcff32d044",
+    "model_input_sha256": "e8bfd7e10acd7eb416f65e6fee12ebcabca0bc6066e591f4e4cb079fa2bfa805",
+    "model_input": {
+      "event_scope_id": "scope-004",
+      "top_event": {
+        "text": "tank rupture",
+        "evidence": {
+          "segment_id": "synthetic-source-004",
+          "quote": "before tank rupture"
+        }
+      },
+      "source_segments": [
+        {
+          "segment_id": "synthetic-source-004",
+          "page_number": 1,
+          "section_locator": "Constructed semantic smoke passage 4 (not a manual excerpt)",
+          "text": "During incident 17, a pressure increase and a temperature increase were observed before tank rupture. The report records both observations but does not conclude that both were required or that either one alone was sufficient."
+        }
+      ]
+    }
+  },
+  "request": {
+    "request_count": 1,
+    "retry_count": 0,
+    "retry_policy": "disabled_one_attempt_only",
+    "provider_host": "api.deepseek.com",
+    "requested_model": "deepseek-flash",
+    "temperature": 0,
+    "max_tokens": 8192,
+    "response_format": {
+      "type": "json_object"
+    },
+    "thinking_mode": {
+      "type": "disabled"
+    },
+    "timeout_seconds": 120,
+    "sdk_max_retries": 0,
+    "prompt_version": "event-scope-text-only-tree-v8-semantic-gate-evidence",
+    "prompt_sha256": "bd386a8c257a55745971940a13eecd4c3900d7a5a6406ed681678144694975a9",
+    "reference_labels_loaded": false,
+    "gold_included_in_model_input": false,
+    "choice_count": 1,
+    "finish_reason": "stop",
+    "visible_content_character_count": 887,
+    "reasoning_content_present": false,
+    "reasoning_content_character_count": 0,
+    "reasoning_text_persisted": false,
+    "reasoning_tokens": null,
+    "usage": {
+      "prompt_tokens": 1734,
+      "completion_tokens": 251,
+      "total_tokens": 1985
+    },
+    "returned_model": "deepseek-flash",
+    "provider_request_id": null,
+    "openai_package_version": "2.24.0"
+  },
+  "model_output": {
+    "raw_text": "{\"structure_status\":\"unresolved\",\"nodes\":[{\"id\":\"E1\",\"text\":\"tank rupture\",\"type\":\"top_event\",\"evidence\":{\"segment_id\":\"synthetic-source-004\",\"quote\":\"before tank rupture\"}},{\"id\":\"E2\",\"text\":\"a pressure increase\",\"type\":\"basic_event\",\"evidence\":{\"segment_id\":\"synthetic-source-004\",\"quote\":\"a pressure increase\"}},{\"id\":\"E3\",\"text\":\"a temperature increase\",\"type\":\"basic_event\",\"evidence\":{\"segment_id\":\"synthetic-source-004\",\"quote\":\"a temperature increase\"}}],\"gates\":[{\"scope_id\":\"S1\",\"output_node_id\":\"E1\",\"child_node_ids\":[\"E2\",\"E3\"],\"gate\":\"unknown\",\"scope_evidence\":{\"segment_id\":\"synthetic-source-004\",\"quote\":\"During incident 17, a pressure increase and a temperature increase were observed before tank rupture.\"},\"logic_evidence\":null,\"unknown_reason\":\"no_direct_logic_evidence\"}],\"unresolved_questions\":[\"原文仅记录压力升高与温度升高在储罐破裂前被观察到，未说明二者是共同必要条件、任一单独充分条件或替代路径，无法确定 AND/OR 门型。\"]}",
+    "parsed_json": {
+      "structure_status": "unresolved",
+      "nodes": [
+        {
+          "id": "E1",
+          "text": "tank rupture",
+          "type": "top_event",
+          "evidence": {
+            "segment_id": "synthetic-source-004",
+            "quote": "before tank rupture"
+          }
+        },
+        {
+          "id": "E2",
+          "text": "a pressure increase",
+          "type": "basic_event",
+          "evidence": {
+            "segment_id": "synthetic-source-004",
+            "quote": "a pressure increase"
+          }
+        },
+        {
+          "id": "E3",
+          "text": "a temperature increase",
+          "type": "basic_event",
+          "evidence": {
+            "segment_id": "synthetic-source-004",
+            "quote": "a temperature increase"
+          }
+        }
+      ],
+      "gates": [
+        {
+          "scope_id": "S1",
+          "output_node_id": "E1",
+          "child_node_ids": [
+            "E2",
+            "E3"
+          ],
+          "gate": "unknown",
+          "scope_evidence": {
+            "segment_id": "synthetic-source-004",
+            "quote": "During incident 17, a pressure increase and a temperature increase were observed before tank rupture."
+          },
+          "logic_evidence": null,
+          "unknown_reason": "no_direct_logic_evidence"
+        }
+      ],
+      "unresolved_questions": [
+        "原文仅记录压力升高与温度升高在储罐破裂前被观察到，未说明二者是共同必要条件、任一单独充分条件或替代路径，无法确定 AND/OR 门型。"
+      ]
+    },
+    "parse_error": null,
+    "raw_text_sha256": "b8078b0ce63f506b72bec2d3ed648a2ed704200541ce7ffd16b5fc01c622a1e1"
+  },
+  "claim_boundaries": {
+    "constructed_behavioral_smoke_only": true,
+    "source_corpus_evaluation": false,
+    "human_expert_gold": false,
+    "accuracy_or_calibration_claim_allowed": false,
+    "reference_comparison_performed": false,
+    "gold_or_database_written": false,
+    "automatic_repair_performed": false,
+    "automatic_retry_performed": false,
+    "production_or_database_write": false,
+    "fta_ready": false,
+    "production_ready": false
+  }
+}

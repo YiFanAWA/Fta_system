@@ -58,6 +58,7 @@ npm run build --prefix frontend
 ```
 
 接口和请求示例见 [API 使用说明](docs/api-usage.md)，产品与技术背景见 [项目说明](docs/project-overview.md)，当前已知问题见 [已知问题](docs/known-issues.md)。
+项目内部真源入口见[项目内部真源索引](docs/README.md)，其中汇总当前状态审计、架构边界与验收门禁。
 数据集生命周期、实际 SQLite 导入状态和评测口径见 [数据集状态注册表 v1](docs/dataset-registry.md)。
 S210 RAG 冻结基线见 [RAG Baseline v1.1](docs/rag-baseline-v1.1.md)，边界专家审核规则见 [RAG Boundary Expert Review v1](docs/rag-boundary-expert-review-v1.md)。
 
@@ -72,6 +73,8 @@ S210 RAG 冻结基线见 [RAG Baseline v1.1](docs/rag-baseline-v1.1.md)，边界
 项目自身手册的证据集见 [项目手册证据集](evaluation/quality_eval/project_gold/README.md)，当前从手册中生成 27 条带原文证据的样本，仍不是专家确认的工程金标。
 
 当前抽取器的修复后只读基线报告为 [项目抽取基线](evaluation/quality_eval/runs/fta_project_handbook_extraction_baseline_after_evidence.json)：8 条均返回成功，证据跨度为 56/56 且全部通过原文偏移校验；这只证明证据绑定链路可用，不代表工程因果或逻辑门已经得到专家确认。
+
+Siemens S210 因果候选的 AI 授权事件级复核进度、证据边界与 preview-only 门禁见 [事件级审核进度记录](docs/siemens-s210-ai-authorized-review-v1.md)；该记录不是真人专家签署，也不等同于正式 Gold 或生产 FTA 就绪。
 
 针对记录边界、A 类故障码和 r 类参数规则修正后，最新 [27 条项目抽取基线](evaluation/quality_eval/runs/fta_project_handbook_extraction_baseline_semantic_v2.json) 中 27 条请求均成功，且每条样本均归并为一条故障记录。预测证据跨度 196/196 在结构上可回指输入文本；当前临时标注期望 154 条，差异部分来自多组件字段的后台证据。故障码 F1=1.0000、故障现象 F1=0.9630、组件 F1=0.9167、故障值场景候选 F1=0.4167、参数 F1=0.9931。该报告用于验证抽取规则改善，不代表专家语义金标。
 

@@ -1,0 +1,129 @@
+{
+  "artifact_type": "external_text_evidence_gate_abstention_probe",
+  "artifact_version": "v1",
+  "created_at": "2026-09-27T08:47:05.819451+00:00",
+  "status": "completed",
+  "formal_gold": false,
+  "in_project_gold": false,
+  "database_written": false,
+  "gate_policy_applied": false,
+  "threshold_selected": false,
+  "probability_calibrated": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "evaluation_scope": "Small external text-evidence abstention probe. It tests whether the model distinguishes an enumerated possible-cause set from explicit logical evidence and preserves unknown; it is not an end-to-end FTA test, calibration set, or production policy test.",
+  "reviewer_provenance": "independent_ai_expert_role_review",
+  "reviewer_is_human_expert": false,
+  "confidence_semantics": "raw uncalibrated model self-assessment, not event probability",
+  "metadata": {
+    "model_id": "deepseek-flash",
+    "provider_host": "api.deepseek.com",
+    "temperature": 0,
+    "requests_planned": 4,
+    "requests_succeeded": 4,
+    "requests_failed": 0,
+    "source_document_count": 4,
+    "source_cluster_count": 4,
+    "fixture_sha256": "1671137387c76d145fdffa0746a2cb1c67755eb7fb9f8c9048e37f307b24cd25"
+  },
+  "summary": {
+    "sample_count": 4,
+    "top1_accuracy": 1.0,
+    "unknown_gold_count": 3,
+    "unknown_correct_count": 3,
+    "unknown_recall": 1.0,
+    "unknown_unsafe_accept_count": 0,
+    "known_gate_count": 1,
+    "known_gate_correct_count": 1,
+    "decisive_coverage": 0.25,
+    "decisive_quote_substring_match_count": 1,
+    "decisive_quote_count": 1,
+    "label_counts": {
+      "unknown": 3,
+      "OR": 1
+    },
+    "prediction_counts": {
+      "unknown": 3,
+      "OR": 1
+    }
+  },
+  "predictions": [
+    {
+      "gate_node_id": "NASA-APOLLO15-ABSTRACT-CAUSESET-001",
+      "expected_gate": "unknown",
+      "predicted_gate": "unknown",
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 0.0,
+        "unknown": 1.0
+      },
+      "top_probability": 1.0,
+      "top_margin": 1.0,
+      "gate_evidence_quote": null,
+      "quote_is_exact_substring_of_child_evidence": null,
+      "correct": true,
+      "prompt_sha256": "709dbcde0871caeac5493c4ce5e3cc60d13e1379710cfe86047913b87f35eaac",
+      "reason": "The source lists the three conditions only as possible causes of the failure. It does not clearly state that any one could independently cause the failure or that they must jointly occur, so the gate is unknown."
+    },
+    {
+      "gate_node_id": "TM8-630-P23-ENGINE-STOPS-001",
+      "expected_gate": "unknown",
+      "predicted_gate": "unknown",
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 0.0,
+        "unknown": 1.0
+      },
+      "top_probability": 1.0,
+      "top_margin": 1.0,
+      "gate_evidence_quote": null,
+      "quote_is_exact_substring_of_child_evidence": null,
+      "correct": true,
+      "prompt_sha256": "23e3e8450d4ef713469c6e29543a89a44d77b5336020d9fc439ab112416b5496",
+      "reason": "The provided evidence only lists possible causes under a heading. It does not explicitly state whether any child cause alone can cause the parent event or whether multiple child causes must occur together."
+    },
+    {
+      "gate_node_id": "TM9-803-P86-FUEL-CAUSESET-001",
+      "expected_gate": "unknown",
+      "predicted_gate": "unknown",
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 0.0,
+        "unknown": 1.0
+      },
+      "top_probability": 1.0,
+      "top_margin": 1.0,
+      "gate_evidence_quote": null,
+      "quote_is_exact_substring_of_child_evidence": null,
+      "correct": true,
+      "prompt_sha256": "9edf1f9cd95b8e141c15ab5678e76f80305513adde0e4553c70f6f7252a6c31c",
+      "reason": "The source only lists possible causes under 'Possible Cause' without directly stating whether they are alternatives or must co-occur. Therefore the gate relation is unknown."
+    },
+    {
+      "gate_node_id": "FAA-AC65-15A-F14-44-CAUSE-002",
+      "expected_gate": "OR",
+      "predicted_gate": "OR",
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 1.0,
+        "unknown": 0.0
+      },
+      "top_probability": 1.0,
+      "top_margin": 1.0,
+      "gate_evidence_quote": "Defective temperature control or refrigeration bypass valve inoperative.",
+      "quote_is_exact_substring_of_child_evidence": true,
+      "correct": true,
+      "prompt_sha256": "a71d4811a786075230e56a7dc51387165cd0149211c667fddc6cdb328dcf4735",
+      "reason": "The candidate cause text directly uses \"or\" between the two child events, expressing that either can independently be the possible cause."
+    }
+  ],
+  "failures": [],
+  "limitations": [
+    "Only four nodes from four source-document clusters; three unknown cases and one OR positive control are a small exploratory probe, not representative validation.",
+    "Three unknown labels mean the quoted excerpt does not explicitly support a gate; they do not prove the physical system has no Boolean relation.",
+    "The FAA handbook is cancelled/superseded and is included only as a historical explicit-OR text control, not as current maintenance advice.",
+    "Labels were reviewed by an AI role reviewer, not a human domain expert; this is not human-expert Gold.",
+    "Model self-reported scores are uncalibrated and cannot be interpreted as event probabilities or used as a production threshold.",
+    "This probe does not test source-document extraction, cause completeness, recursive tree construction, production gate policy, or runtime integration."
+  ]
+}

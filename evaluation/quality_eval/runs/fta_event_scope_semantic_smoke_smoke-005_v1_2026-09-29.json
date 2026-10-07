@@ -1,0 +1,128 @@
+{
+  "artifact_type": "fta_event_scope_semantic_smoke_run",
+  "artifact_version": "v1",
+  "status": "response_received",
+  "recorded_at_utc": "2026-09-29T13:03:45+00:00",
+  "case": {
+    "case_id": "SMOKE-005",
+    "dataset_status": "constructed_behavioral_smoke_inputs_not_source_corpus",
+    "input_dataset_path": "evaluation/quality_eval/datasets/fta_event_scope_semantic_smoke_inputs_v1.json",
+    "input_dataset_sha256": "1cb2148df154112db4b6209b23f9144946b6aa5637c3fee809efcafcff32d044",
+    "model_input_sha256": "60af7a9d11f22622df93d6e8ba5b7c6b8408b7d85eb6536f3941d4f528354a8b",
+    "model_input": {
+      "event_scope_id": "scope-005",
+      "top_event": {
+        "text": "pump shutdown",
+        "evidence": {
+          "segment_id": "synthetic-source-005",
+          "quote": "pump shutdown incident 17"
+        }
+      },
+      "source_segments": [
+        {
+          "segment_id": "synthetic-source-005",
+          "page_number": 1,
+          "section_locator": "Constructed semantic smoke passage 5 (not a manual excerpt)",
+          "text": "In pump shutdown incident 17, alarms A and B were both logged; the source does not say whether either caused the shutdown or whether both were required. The panel indicator may show red or amber, a separate display choice."
+        }
+      ]
+    }
+  },
+  "request": {
+    "request_count": 1,
+    "retry_count": 0,
+    "retry_policy": "disabled_one_attempt_only",
+    "provider_host": "api.deepseek.com",
+    "requested_model": "deepseek-flash",
+    "temperature": 0,
+    "max_tokens": 8192,
+    "response_format": {
+      "type": "json_object"
+    },
+    "thinking_mode": {
+      "type": "disabled"
+    },
+    "timeout_seconds": 120,
+    "sdk_max_retries": 0,
+    "prompt_version": "event-scope-text-only-tree-v8-semantic-gate-evidence",
+    "prompt_sha256": "c468bea2091784391bbc6ca81e290ef43963f79d8a7c76fc291ff9ca7e08f1f8",
+    "reference_labels_loaded": false,
+    "gold_included_in_model_input": false,
+    "choice_count": 1,
+    "finish_reason": "stop",
+    "visible_content_character_count": 854,
+    "reasoning_content_present": false,
+    "reasoning_content_character_count": 0,
+    "reasoning_text_persisted": false,
+    "reasoning_tokens": null,
+    "usage": {
+      "prompt_tokens": 1743,
+      "completion_tokens": 258,
+      "total_tokens": 2001
+    },
+    "returned_model": "deepseek-flash",
+    "provider_request_id": null,
+    "openai_package_version": "2.24.0"
+  },
+  "model_output": {
+    "raw_text": "{\"structure_status\":\"unresolved\",\"nodes\":[{\"id\":\"E1\",\"text\":\"pump shutdown\",\"type\":\"top_event\",\"evidence\":{\"segment_id\":\"synthetic-source-005\",\"quote\":\"pump shutdown incident 17\"}},{\"id\":\"E2\",\"text\":\"alarms A and B were both logged\",\"type\":\"undeveloped_event\",\"evidence\":{\"segment_id\":\"synthetic-source-005\",\"quote\":\"alarms A and B were both logged\"}}],\"gates\":[{\"scope_id\":\"S1\",\"output_node_id\":\"E1\",\"child_node_ids\":[\"E2\"],\"gate\":\"unknown\",\"scope_evidence\":{\"segment_id\":\"synthetic-source-005\",\"quote\":\"In pump shutdown incident 17, alarms A and B were both logged\"},\"logic_evidence\":null,\"unknown_reason\":\"no_direct_logic_evidence\"}],\"unresolved_questions\":[\"原文仅说明 alarms A 和 B 均被记录，未说明任一是否导致 shutdown，也未说明两者是否共同为必要条件，无法确定 A、B 与顶事件之间的门型或层级关系。\",\"原文中 'The panel indicator may show red or amber, a separate display choice.' 与 pump shutdown 无因果关系，未纳入树。\"]}",
+    "parsed_json": {
+      "structure_status": "unresolved",
+      "nodes": [
+        {
+          "id": "E1",
+          "text": "pump shutdown",
+          "type": "top_event",
+          "evidence": {
+            "segment_id": "synthetic-source-005",
+            "quote": "pump shutdown incident 17"
+          }
+        },
+        {
+          "id": "E2",
+          "text": "alarms A and B were both logged",
+          "type": "undeveloped_event",
+          "evidence": {
+            "segment_id": "synthetic-source-005",
+            "quote": "alarms A and B were both logged"
+          }
+        }
+      ],
+      "gates": [
+        {
+          "scope_id": "S1",
+          "output_node_id": "E1",
+          "child_node_ids": [
+            "E2"
+          ],
+          "gate": "unknown",
+          "scope_evidence": {
+            "segment_id": "synthetic-source-005",
+            "quote": "In pump shutdown incident 17, alarms A and B were both logged"
+          },
+          "logic_evidence": null,
+          "unknown_reason": "no_direct_logic_evidence"
+        }
+      ],
+      "unresolved_questions": [
+        "原文仅说明 alarms A 和 B 均被记录，未说明任一是否导致 shutdown，也未说明两者是否共同为必要条件，无法确定 A、B 与顶事件之间的门型或层级关系。",
+        "原文中 'The panel indicator may show red or amber, a separate display choice.' 与 pump shutdown 无因果关系，未纳入树。"
+      ]
+    },
+    "parse_error": null,
+    "raw_text_sha256": "d49196322e3b9b3425d3229d859e2a3f59e5cafbf49baa2286eb3bbff6933d09"
+  },
+  "claim_boundaries": {
+    "constructed_behavioral_smoke_only": true,
+    "source_corpus_evaluation": false,
+    "human_expert_gold": false,
+    "accuracy_or_calibration_claim_allowed": false,
+    "reference_comparison_performed": false,
+    "gold_or_database_written": false,
+    "automatic_repair_performed": false,
+    "automatic_retry_performed": false,
+    "production_or_database_write": false,
+    "fta_ready": false,
+    "production_ready": false
+  }
+}

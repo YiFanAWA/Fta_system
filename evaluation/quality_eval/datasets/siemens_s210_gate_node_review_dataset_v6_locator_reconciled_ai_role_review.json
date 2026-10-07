@@ -1,0 +1,3682 @@
+{
+  "artifact_type": "fta_gate_node_review_dataset",
+  "artifact_version": "v6",
+  "reviewer_provenance": "user_authorized_ai_event_scope_review_v8_plus_scoped_locator_review_v1",
+  "reviewer_is_human_expert": false,
+  "formal_gold": false,
+  "database_written": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "review_scope": "AI-role-reviewed logical-gate scopes only. F30021-C04 evidence location was resolved by matching the exact line to its unique reviewed Possible causes scope; the event gate remains unknown. This is not human-expert Gold, calibrated model confidence, observed event probability, or production authorization.",
+  "supersedes_artifact": "siemens_s210_gate_node_review_dataset_v5_independent_ai_role_review.json",
+  "supersession_reason": "The only v5 pending locator, F30021-C04, was resolved in a user-authorized AI subagent review and independently verified against the raw corpus: the phrase occurs twice globally, but only [332,372) lies in the unique Possible causes scope [166,372); [468,508) is in the r0949 value-0 diagnostic section. The child citation is narrowed to [332,372), its historical validation split is restored, and its event gate remains unknown. No other node label, formal Gold, database, calibration, or production state changed.",
+  "split_policy": "Keep all v4 split assignments. For the three formerly pending source clusters with v1 assignments, restore only their historical cluster placement, not their superseded v1 labels. Assign the newly reviewed F01659 cluster to calibration only. Group by shared fault_code/source cluster and fail closed on conflicts or missing class support.",
+  "summary": {
+    "gate_node_count": 55,
+    "unique_fault_count": 47,
+    "independent_source_cluster_count": 48,
+    "fault_and_source_split_group_count": 47,
+    "class_counts_reviewed_only": {
+      "AND": 12,
+      "OR": 17,
+      "unknown": 26
+    },
+    "scope_type_class_counts_reviewed_only": {
+      "configuration_condition_group": {
+        "AND": 4,
+        "OR": 0,
+        "unknown": 0
+      },
+      "detection_source_or_location": {
+        "AND": 0,
+        "OR": 2,
+        "unknown": 0
+      },
+      "enable_attempt_group": {
+        "AND": 1,
+        "OR": 0,
+        "unknown": 0
+      },
+      "event_cause_set": {
+        "AND": 0,
+        "OR": 0,
+        "unknown": 26
+      },
+      "event_state_expression": {
+        "AND": 0,
+        "OR": 4,
+        "unknown": 0
+      },
+      "event_trigger_context": {
+        "AND": 0,
+        "OR": 2,
+        "unknown": 0
+      },
+      "fault_value_configuration_group": {
+        "AND": 2,
+        "OR": 0,
+        "unknown": 0
+      },
+      "inconsistent_configuration_group": {
+        "AND": 1,
+        "OR": 0,
+        "unknown": 0
+      },
+      "local_cause_expression": {
+        "AND": 0,
+        "OR": 8,
+        "unknown": 0
+      },
+      "operating_condition_group": {
+        "AND": 1,
+        "OR": 0,
+        "unknown": 0
+      },
+      "related_message_trigger": {
+        "AND": 0,
+        "OR": 1,
+        "unknown": 0
+      },
+      "signal_condition_group": {
+        "AND": 1,
+        "OR": 0,
+        "unknown": 0
+      },
+      "trigger_condition_group": {
+        "AND": 2,
+        "OR": 0,
+        "unknown": 0
+      }
+    },
+    "split_class_support_reviewed_only": {
+      "calibration": {
+        "AND": 8,
+        "OR": 14,
+        "unknown": 21
+      },
+      "validation": {
+        "AND": 4,
+        "OR": 3,
+        "unknown": 5
+      }
+    },
+    "review_status_counts": {
+      "reviewed": 55,
+      "pending": 0,
+      "excluded": 0
+    },
+    "non_gate_scope_review_count": 5,
+    "cross_split_fault_code_count": 0,
+    "source_cluster_split_delta": {
+      "prior_cluster_count": 47,
+      "current_reviewed_cluster_count": 48,
+      "retained_cluster_count": 47,
+      "added_cluster_count": 1,
+      "removed_cluster_count": 0,
+      "assignment_changed_cluster_count": 0
+    }
+  },
+  "gate_nodes": [
+    {
+      "gate_node_id": "gate:50580793bcff70e7ddf68734",
+      "fault_code": "F01001",
+      "sample_id": "SIEMENS_S210_2019_F01001",
+      "source_cluster_id": "source:4e5f121a75ed53f4eb913207950926bbb543c3337b76ea0c64a47bfa2f82d608",
+      "scope_type": "local_cause_expression",
+      "source_sha256": "4e5f121a75ed53f4eb913207950926bbb543c3337b76ea0c64a47bfa2f82d608",
+      "scope_anchor": {
+        "quote": "The error may be caused by the basic system or a technology function (e.g. FBLOCKS, DCC, TEC).",
+        "start": 151,
+        "end": 245
+      },
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F01001-cause-1",
+          "text": "basic system",
+          "evidence": [
+            {
+              "quote": "the basic system",
+              "start": 178,
+              "end": 194
+            }
+          ]
+        },
+        {
+          "child_id": "F01001-cause-2",
+          "text": "technology function",
+          "evidence": [
+            {
+              "quote": "a technology function (e.g. FBLOCKS, DCC, TEC)",
+              "start": 198,
+              "end": 244
+            }
+          ]
+        }
+      ],
+      "gate_evidence": [
+        {
+          "quote": "The error may be caused by the basic system or a technology function (e.g. FBLOCKS, DCC, TEC).",
+          "start": 151,
+          "end": 245
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_independent_gate_review_reconciled_v1",
+      "review_reason": "原文同一局部原因句明确写出 basic system 或 technology function；括号内 FBLOCKS/DCC/TEC 是示例，不另拆子节点。本标签只适用于该局部原因表达，不代表完整故障树顶层门。",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json",
+      "child_set_review_notes": [],
+      "scope_reconciliation": "independent_ai_review_reconciled_local_gate_scope",
+      "scope_explanatory_evidence": [],
+      "gate_label": "OR",
+      "independent_review_row_id": "S210-GATE-OR-F01001-01",
+      "independent_review_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_independent_ai_review_v1_2026-09-26.json",
+      "fta_tree_disposition": "local_gate_node_only_not_full_fault_tree",
+      "supersedes_gate_node_id": "gate:24918c7f6100e4e184585d1d"
+    },
+    {
+      "gate_node_id": "gate:2537317f98ddda5e0843aba0",
+      "fault_code": "F01041",
+      "sample_id": "SIEMENS_S210_2019_F01041",
+      "source_cluster_id": "source:64ebce1de0aa6f7d12c03be9a41df567e8363c1545ac594a3b6799fbaf74ec4d",
+      "scope_type": "event_state_expression",
+      "source_sha256": "64ebce1de0aa6f7d12c03be9a41df567e8363c1545ac594a3b6799fbaf74ec4d",
+      "scope_anchor": {
+        "quote": "Defective or missing files were detected on the memory card when booting.",
+        "start": 79,
+        "end": 152
+      },
+      "gate_label": "OR",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F01041-state-1",
+          "text": "defective files detected",
+          "evidence": [
+            {
+              "quote": "Defective",
+              "start": 79,
+              "end": 88
+            }
+          ]
+        },
+        {
+          "child_id": "F01041-state-2",
+          "text": "missing files detected",
+          "evidence": [
+            {
+              "quote": "missing files",
+              "start": 92,
+              "end": 105
+            }
+          ]
+        }
+      ],
+      "gate_evidence": [
+        {
+          "quote": "Defective or missing files were detected on the memory card when booting.",
+          "start": 79,
+          "end": 152
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "independent_ai_gate_node_review",
+      "review_reason": "defective 与 missing 是同一检测状态描述下的两种备选状态；不表示两种物理根因。; ['这是状态枚举式 OR，不应扩展成完整故障树原因集合。']",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:234599ca676d6de0ad1c0ff9",
+      "fault_code": "A01035",
+      "sample_id": "SIEMENS_S210_2019_A01035",
+      "source_cluster_id": "source:ae9bc0040a0a3e757bcf1da8214c8380bb6bd2c0e563f7a39c97c979b11a28d2",
+      "scope_type": "local_cause_expression",
+      "source_sha256": "ae9bc0040a0a3e757bcf1da8214c8380bb6bd2c0e563f7a39c97c979b11a28d2",
+      "scope_anchor": {
+        "quote": "It is possible that the backup was interrupted by switching off or withdrawing the memory card.",
+        "start": 269,
+        "end": 364
+      },
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "A01035-cause-1",
+          "text": "switching off interrupted the backup",
+          "evidence": [
+            {
+              "quote": "switching off",
+              "start": 319,
+              "end": 332
+            }
+          ]
+        },
+        {
+          "child_id": "A01035-cause-2",
+          "text": "withdrawing the memory card interrupted the backup",
+          "evidence": [
+            {
+              "quote": "withdrawing the memory card",
+              "start": 336,
+              "end": 363
+            }
+          ]
+        }
+      ],
+      "gate_evidence": [
+        {
+          "quote": "It is possible that the backup was interrupted by switching off or withdrawing the memory card.",
+          "start": 269,
+          "end": 364
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_independent_gate_review_reconciled_v1",
+      "review_reason": "原文将关机与拔出存储卡写为中断同一备份的两种替代情形。本标签只适用于该局部原因表达，不声称这是该故障的穷尽原因集合。",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json",
+      "child_set_review_notes": [],
+      "scope_reconciliation": "independent_ai_review_reconciled_local_gate_scope",
+      "scope_explanatory_evidence": [],
+      "gate_label": "OR",
+      "independent_review_row_id": "S210-GATE-OR-A01035-01",
+      "independent_review_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_independent_ai_review_v1_2026-09-26.json",
+      "fta_tree_disposition": "local_gate_node_only_not_full_fault_tree",
+      "supersedes_gate_node_id": "gate:bc7bf3e436cc7996e48015ee"
+    },
+    {
+      "gate_node_id": "gate:52b01742ae929811a220334d",
+      "fault_code": "F01680",
+      "sample_id": "SIEMENS_S210_2019_F01680",
+      "source_cluster_id": "source:a8491c51b773cce5b386edfde5ee0350dc3abba2c63e11f7445764e3c85ab259",
+      "scope_type": "local_cause_expression",
+      "source_sha256": "a8491c51b773cce5b386edfde5ee0350dc3abba2c63e11f7445764e3c85ab259",
+      "scope_anchor": {
+        "quote": "Safety-relevant parameters have been changed or a fault is present.",
+        "start": 254,
+        "end": 321
+      },
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F01680-cause-1",
+          "text": "safety-relevant parameters changed",
+          "evidence": [
+            {
+              "quote": "Safety-relevant parameters have been changed",
+              "start": 254,
+              "end": 298
+            }
+          ]
+        },
+        {
+          "child_id": "F01680-cause-2",
+          "text": "a fault is present",
+          "evidence": [
+            {
+              "quote": "a fault is present",
+              "start": 302,
+              "end": 320
+            }
+          ]
+        }
+      ],
+      "gate_evidence": [
+        {
+          "quote": "Safety-relevant parameters have been changed or a fault is present.",
+          "start": 254,
+          "end": 321
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_independent_gate_review_reconciled_v1",
+      "review_reason": "原文局部短句直接写出 OR，故保留文本门型标签；但 a fault is present 过于宽泛，不能据此自动生成具体 FTA 叶节点或可执行故障树。",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json",
+      "child_set_review_notes": [
+        "门类型可作文本分类标签；不得据此自动生成具体故障叶节点。"
+      ],
+      "scope_reconciliation": "independent_ai_review_reconciled_local_gate_scope",
+      "scope_explanatory_evidence": [],
+      "gate_label": "OR",
+      "independent_review_row_id": "S210-GATE-OR-F01680-01",
+      "independent_review_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_independent_ai_review_v1_2026-09-26.json",
+      "fta_tree_disposition": "blocked_generic_child_not_executable_tree_leaf",
+      "supersedes_gate_node_id": "gate:5bd9ad81672912c85674a43f"
+    },
+    {
+      "gate_node_id": "gate:ef46c52495caf5d91e58ff18",
+      "fault_code": "F01700",
+      "sample_id": "SIEMENS_S210_2019_F01701",
+      "source_cluster_id": "source:5b730b222b83b95e392a74e4c108e5b8d899be3cf1dd4eb79f39d3d0b99d537b",
+      "scope_type": "related_message_trigger",
+      "source_sha256": "5b730b222b83b95e392a74e4c108e5b8d899be3cf1dd4eb79f39d3d0b99d537b",
+      "scope_anchor": {
+        "quote": "As a result of this fault, after the time parameterized in p9556 has expired, or the speed threshold parameterized in p9560\nhas been fallen below, message F01700 \"STO initiated\" is output.",
+        "start": 114,
+        "end": 302
+      },
+      "gate_label": "OR",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F01700-trigger-1",
+          "text": "p9556 parameterized time expired",
+          "evidence": [
+            {
+              "quote": "the time parameterized in p9556 has expired",
+              "start": 147,
+              "end": 190
+            }
+          ]
+        },
+        {
+          "child_id": "F01700-trigger-2",
+          "text": "speed threshold parameterized in p9560 fallen below",
+          "evidence": [
+            {
+              "quote": "the speed threshold parameterized in p9560\nhas been fallen below",
+              "start": 195,
+              "end": 259
+            }
+          ]
+        }
+      ],
+      "gate_evidence": [
+        {
+          "quote": "As a result of this fault, after the time parameterized in p9556 has expired, or the speed threshold parameterized in p9560\nhas been fallen below, message F01700 \"STO initiated\" is output.",
+          "start": 114,
+          "end": 302
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "independent_ai_gate_node_review",
+      "review_reason": "OR 属于输出相关消息 F01700 的两个触发条件，不属于源故障 F01701 的顶层门。; ['target_fault_code 必须保持 F01700；禁止提升为 F01701 顶层门。']",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:8ec2a008289e4af989ab879c",
+      "fault_code": "F01911",
+      "sample_id": "SIEMENS_S210_2019_F01911",
+      "source_cluster_id": "source:7a85990a403e9efa5c6b6d11f7e64e89fc0e6460bb0e3c3a65cb313aff03bb8d",
+      "scope_type": "event_state_expression",
+      "source_sha256": "7a85990a403e9efa5c6b6d11f7e64e89fc0e6460bb0e3c3a65cb313aff03bb8d",
+      "scope_anchor": {
+        "quote": "The global control telegram to synchronize the clock cycles has failed - in cyclic operation - for several DP clock cycles or\nhas violated the time grid specified in the parameterizing telegram over several consecutive DP clock cycles (refer to the\nbus cycle time, Tdp and Tpllw).",
+        "start": 107,
+        "end": 387
+      },
+      "gate_label": "OR",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F01911-state-1",
+          "text": "synchronization telegram failed over several cycles",
+          "evidence": [
+            {
+              "quote": "has failed - in cyclic operation - for several DP clock cycles",
+              "start": 167,
+              "end": 229
+            }
+          ]
+        },
+        {
+          "child_id": "F01911-state-2",
+          "text": "synchronization telegram violated specified time grid",
+          "evidence": [
+            {
+              "quote": "has violated the time grid specified in the parameterizing telegram over several consecutive DP clock cycles",
+              "start": 233,
+              "end": 341
+            }
+          ]
+        }
+      ],
+      "gate_evidence": [
+        {
+          "quote": "The global control telegram to synchronize the clock cycles has failed - in cyclic operation - for several DP clock cycles or\nhas violated the time grid specified in the parameterizing telegram over several consecutive DP clock cycles (refer to the\nbus cycle time, Tdp and Tpllw).",
+          "start": 107,
+          "end": 387
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "independent_ai_gate_node_review",
+      "review_reason": "同一同步报文的两种失败状态由 or 连接，属于故障状态表达的替代项。; ['不是两个独立物理根因的完整集合。']",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:86591f13c4e1cc97c4fb93bc",
+      "fault_code": "F07097",
+      "sample_id": "SIEMENS_S210_2019_F07097",
+      "source_cluster_id": "source:e767d8ac24e4c601f297fa5ffa84c2e29b19fa9cbe05097b5521fabf5e765377",
+      "scope_type": "event_trigger_context",
+      "source_sha256": "e767d8ac24e4c601f297fa5ffa84c2e29b19fa9cbe05097b5521fabf5e765377",
+      "scope_anchor": {
+        "quote": "An error was identified when executing the \"Test signal\" function (p5307.1 = 1) or auto tuning was selected (p5300 = 1).",
+        "start": 97,
+        "end": 217
+      },
+      "gate_label": "OR",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F07097-trigger-1",
+          "text": "Test signal function executed",
+          "evidence": [
+            {
+              "quote": "executing the \"Test signal\" function (p5307.1 = 1)",
+              "start": 126,
+              "end": 176
+            }
+          ]
+        },
+        {
+          "child_id": "F07097-trigger-2",
+          "text": "auto tuning selected",
+          "evidence": [
+            {
+              "quote": "auto tuning was selected (p5300 = 1)",
+              "start": 180,
+              "end": 216
+            }
+          ]
+        }
+      ],
+      "gate_evidence": [
+        {
+          "quote": "An error was identified when executing the \"Test signal\" function (p5307.1 = 1) or auto tuning was selected (p5300 = 1).",
+          "start": 97,
+          "end": 217
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "independent_ai_gate_node_review",
+      "review_reason": "Cause 句将测试信号执行时出错与选择 auto tuning 并列为替代触发情境；共享“error identified”语义由父句限定。; ['仅对该触发情境短语判 OR，不代表整个 fault 的完整原因树。']",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:0e7e2501d36be8b4945ed43b",
+      "fault_code": "F07901",
+      "sample_id": "SIEMENS_S210_2019_F07901",
+      "source_cluster_id": "source:be4ffc00c3d003500bcd0c987b0452685253906db0e222cb449a2003c68da86a",
+      "scope_type": "event_state_expression",
+      "source_sha256": "be4ffc00c3d003500bcd0c987b0452685253906db0e222cb449a2003c68da86a",
+      "scope_anchor": {
+        "quote": "The maximum permissible speed was either positively or negatively exceeded (p1082).",
+        "start": 77,
+        "end": 160
+      },
+      "gate_label": "OR",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F07901-state-1",
+          "text": "maximum speed exceeded positively",
+          "evidence": [
+            {
+              "quote": "positively",
+              "start": 118,
+              "end": 128
+            }
+          ]
+        },
+        {
+          "child_id": "F07901-state-2",
+          "text": "maximum speed exceeded negatively",
+          "evidence": [
+            {
+              "quote": "negatively",
+              "start": 132,
+              "end": 142
+            }
+          ]
+        }
+      ],
+      "gate_evidence": [
+        {
+          "quote": "The maximum permissible speed was either positively or negatively exceeded (p1082).",
+          "start": 77,
+          "end": 160
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "independent_ai_gate_node_review",
+      "review_reason": "正向/负向是同一超速谓词的两种方向状态，either/or 明确支持 OR。; ['子节点是依赖父句的方向片段；建树时须继承“超过最大允许速度”谓词。']",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:c2be3e763b4879c0e4ef9ffc",
+      "fault_code": "A01780",
+      "sample_id": "SIEMENS_S210_2019_A01780",
+      "source_cluster_id": "source:c4024e4a94b1fd698599fab147a1a758976e15a550166ec1bc327a8d725c82b4",
+      "scope_type": "event_trigger_context",
+      "source_sha256": "c4024e4a94b1fd698599fab147a1a758976e15a550166ec1bc327a8d725c82b4",
+      "scope_anchor": {
+        "quote": "When selecting the brake test or starting the brake test, the brake was not open.",
+        "start": 86,
+        "end": 167
+      },
+      "gate_label": "OR",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "A01780-trigger-1",
+          "text": "brake not open when selecting the brake test",
+          "evidence": [
+            {
+              "quote": "selecting the brake test",
+              "start": 91,
+              "end": 115
+            }
+          ]
+        },
+        {
+          "child_id": "A01780-trigger-2",
+          "text": "brake not open when starting the brake test",
+          "evidence": [
+            {
+              "quote": "starting the brake test",
+              "start": 119,
+              "end": 142
+            }
+          ]
+        }
+      ],
+      "gate_evidence": [
+        {
+          "quote": "When selecting the brake test or starting the brake test, the brake was not open.",
+          "start": 86,
+          "end": 167
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "independent_ai_gate_node_review",
+      "review_reason": "选择测试或启动测试是两种同层操作阶段，共享“制动器未打开”状态。; ['不是两种独立根因。']",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:e729f414d9be1d2b25c50895",
+      "fault_code": "A30042",
+      "sample_id": "SIEMENS_S210_2019_A30042",
+      "source_cluster_id": "source:b1d0a43ed8aad6b028648d8a089f4ecd1c9b19993a5df597057457b48284ab37",
+      "scope_type": "event_state_expression",
+      "source_sha256": "b1d0a43ed8aad6b028648d8a089f4ecd1c9b19993a5df597057457b48284ab37",
+      "scope_anchor": {
+        "quote": "The maximum operating time of at least one fan will soon be reached, or has already been exceeded.",
+        "start": 103,
+        "end": 201
+      },
+      "gate_label": "OR",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "A30042-state-1",
+          "text": "maximum fan operating time nearly reached",
+          "evidence": [
+            {
+              "quote": "will soon be reached",
+              "start": 150,
+              "end": 170
+            }
+          ]
+        },
+        {
+          "child_id": "A30042-state-2",
+          "text": "maximum fan operating time exceeded",
+          "evidence": [
+            {
+              "quote": "has already been exceeded",
+              "start": 175,
+              "end": 200
+            }
+          ]
+        }
+      ],
+      "gate_evidence": [
+        {
+          "quote": "The maximum operating time of at least one fan will soon be reached, or has already been exceeded.",
+          "start": 103,
+          "end": 201
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "independent_ai_gate_node_review",
+      "review_reason": "即将达到或已经超过是运行时长阈值的两个替代状态。; ['状态演进枚举，不应解释为两个独立根因。']",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:c754e923c172bbd4fd25cea2",
+      "fault_code": "A30031",
+      "sample_id": "SIEMENS_S210_2019_A30031",
+      "source_cluster_id": "source:8fbbddc002b6dae87fc62780a31b22fc696b5c6795ba4099e81f301b7627a73d",
+      "scope_type": "local_cause_expression",
+      "source_sha256": "8fbbddc002b6dae87fc62780a31b22fc696b5c6795ba4099e81f301b7627a73d",
+      "scope_anchor": {
+        "quote": "fault in the motor or in the power cables.",
+        "start": 257,
+        "end": 299
+      },
+      "gate_label": "OR",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "A30031-local-1",
+          "text": "fault in the motor",
+          "evidence": [
+            {
+              "quote": "fault in the motor",
+              "start": 257,
+              "end": 275
+            }
+          ]
+        },
+        {
+          "child_id": "A30031-local-2",
+          "text": "fault in the power cables",
+          "evidence": [
+            {
+              "quote": "in the power cables",
+              "start": 279,
+              "end": 298
+            }
+          ]
+        }
+      ],
+      "gate_evidence": [
+        {
+          "quote": "fault in the motor or in the power cables.",
+          "start": 257,
+          "end": 299
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "independent_ai_gate_node_review",
+      "review_reason": "单个复合原因内部的 motor fault 与 power-cable fault 由 or 连接；不是完整 cause list 的门。; ['仅限局部原因短语。']",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:c35784bb37222711afb15d5e",
+      "fault_code": "F07801",
+      "sample_id": "SIEMENS_S210_2019_F07801",
+      "source_cluster_id": "source:ffce74e3af86807fc87030bc194ade023ff756df80dcb060388f90f46d841438",
+      "scope_type": "local_cause_expression",
+      "source_sha256": "ffce74e3af86807fc87030bc194ade023ff756df80dcb060388f90f46d841438",
+      "scope_anchor": {
+        "quote": "short-circuit in the motor cable or ground fault.",
+        "start": 223,
+        "end": 272
+      },
+      "gate_label": "OR",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F07801-local-1",
+          "text": "short circuit in motor cable",
+          "evidence": [
+            {
+              "quote": "short-circuit in the motor cable",
+              "start": 223,
+              "end": 255
+            }
+          ]
+        },
+        {
+          "child_id": "F07801-local-2",
+          "text": "ground fault",
+          "evidence": [
+            {
+              "quote": "ground fault",
+              "start": 259,
+              "end": 271
+            }
+          ]
+        }
+      ],
+      "gate_evidence": [
+        {
+          "quote": "short-circuit in the motor cable or ground fault.",
+          "start": 223,
+          "end": 272
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "independent_ai_gate_node_review",
+      "review_reason": "motor cable short-circuit 与 ground fault 是同层备选局部原因。; ['仅限局部原因短语。']",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:f05bb132cdcc9afcecfc2495",
+      "fault_code": "F30001",
+      "sample_id": "SIEMENS_S210_2019_F30001",
+      "source_cluster_id": "source:55a4ba493b8074d8fe7b8368e6c56aa2dfbb0b9811261a940fa7edf8257e1034",
+      "scope_type": "local_cause_expression",
+      "source_sha256": "55a4ba493b8074d8fe7b8368e6c56aa2dfbb0b9811261a940fa7edf8257e1034",
+      "scope_anchor": {
+        "quote": "motor has a short-circuit or fault to ground (frame).",
+        "start": 176,
+        "end": 229
+      },
+      "gate_label": "OR",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F30001-local-1",
+          "text": "motor short circuit",
+          "evidence": [
+            {
+              "quote": "motor has a short-circuit",
+              "start": 176,
+              "end": 201
+            }
+          ]
+        },
+        {
+          "child_id": "F30001-local-2",
+          "text": "fault to ground",
+          "evidence": [
+            {
+              "quote": "fault to ground (frame)",
+              "start": 205,
+              "end": 228
+            }
+          ]
+        }
+      ],
+      "gate_evidence": [
+        {
+          "quote": "motor has a short-circuit or fault to ground (frame).",
+          "start": 176,
+          "end": 229
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "independent_ai_gate_node_review",
+      "review_reason": "motor short-circuit 与 fault-to-ground 是同层备选局部原因。; ['其他 cause-list 项不属于该局部门。']",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:44fe7a448b009d89414e19c0",
+      "fault_code": "F30027",
+      "sample_id": "SIEMENS_S210_2019_F30027",
+      "source_cluster_id": "source:fc4d7593653aca73af9c1d8b57bd515b2ed8ff27d9295d1cd75b5232590a00c7",
+      "scope_type": "local_cause_expression",
+      "source_sha256": "fc4d7593653aca73af9c1d8b57bd515b2ed8ff27d9295d1cd75b5232590a00c7",
+      "scope_anchor": {
+        "quote": "The DC link has either a ground fault or a short-circuit.",
+        "start": 912,
+        "end": 969
+      },
+      "gate_label": "OR",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F30027-local-1",
+          "text": "DC link ground fault",
+          "evidence": [
+            {
+              "quote": "a ground fault",
+              "start": 935,
+              "end": 949
+            }
+          ]
+        },
+        {
+          "child_id": "F30027-local-2",
+          "text": "DC link short circuit",
+          "evidence": [
+            {
+              "quote": "a short-circuit",
+              "start": 953,
+              "end": 968
+            }
+          ]
+        }
+      ],
+      "gate_evidence": [
+        {
+          "quote": "The DC link has either a ground fault or a short-circuit.",
+          "start": 912,
+          "end": 969
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "independent_ai_gate_node_review",
+      "review_reason": "DC-link ground fault 与 short-circuit 是该编号原因中的两种备选项。; ['不能提升为 F30027 全部原因的顶层门。']",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:795f6a969526a0d19a20adfa",
+      "fault_code": "F31896",
+      "sample_id": "SIEMENS_S210_2019_F31896",
+      "source_cluster_id": "source:3902033eb2e02b884f7cf52b9b5e9b2fb23f3684ae75d0543b167ba824e5fb55",
+      "scope_type": "local_cause_expression",
+      "source_sha256": "3902033eb2e02b884f7cf52b9b5e9b2fb23f3684ae75d0543b167ba824e5fb55",
+      "scope_anchor": {
+        "quote": "One cause can be, e.g. that a DRIVE-CLiQ cable or\nDRIVE-CLiQ component has been replaced.",
+        "start": 303,
+        "end": 392
+      },
+      "gate_label": "OR",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F31896-local-1",
+          "text": "DRIVE-CLiQ cable replaced",
+          "evidence": [
+            {
+              "quote": "a DRIVE-CLiQ cable",
+              "start": 331,
+              "end": 349
+            }
+          ]
+        },
+        {
+          "child_id": "F31896-local-2",
+          "text": "DRIVE-CLiQ component replaced",
+          "evidence": [
+            {
+              "quote": "DRIVE-CLiQ component",
+              "start": 353,
+              "end": 373
+            }
+          ]
+        }
+      ],
+      "gate_evidence": [
+        {
+          "quote": "One cause can be, e.g. that a DRIVE-CLiQ cable or\nDRIVE-CLiQ component has been replaced.",
+          "start": 303,
+          "end": 392
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "independent_ai_gate_node_review",
+      "review_reason": "一个示例原因中列出电缆或 DRIVE-CLiQ 组件被更换。; ['原文含 e.g.，该局部 OR 不是完整原因集合。']",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:aecc36911a116817e51e40de",
+      "fault_code": "F30078",
+      "sample_id": "SIEMENS_S210_2019_F30078",
+      "source_cluster_id": "source:04e8a6f41ecc335bf017a72f0fabd055c777e4ad0a6153e7210496829cd34264",
+      "scope_type": "detection_source_or_location",
+      "source_sha256": "04e8a6f41ecc335bf017a72f0fabd055c777e4ad0a6153e7210496829cd34264",
+      "scope_anchor": {
+        "quote": "The temperature monitoring of the internal braking resistor or the line reactor has responded.",
+        "start": 111,
+        "end": 205
+      },
+      "gate_label": "OR",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F30078-detection-1",
+          "text": "temperature monitoring of internal braking resistor responded",
+          "evidence": [
+            {
+              "quote": "the internal braking resistor",
+              "start": 141,
+              "end": 170
+            }
+          ]
+        },
+        {
+          "child_id": "F30078-detection-2",
+          "text": "temperature monitoring of line reactor responded",
+          "evidence": [
+            {
+              "quote": "the line reactor",
+              "start": 174,
+              "end": 190
+            }
+          ]
+        }
+      ],
+      "gate_evidence": [
+        {
+          "quote": "The temperature monitoring of the internal braking resistor or the line reactor has responded.",
+          "start": 111,
+          "end": 205
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "independent_ai_gate_node_review",
+      "review_reason": "温度监控响应位置在内部制动电阻与线路电抗器之间择一；属于检测来源 OR。; ['不是两种物理根因已被独立确认。']",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:f867e033376d3689b66b7996",
+      "fault_code": "F31405",
+      "sample_id": "SIEMENS_S210_2019_F31405",
+      "source_cluster_id": "source:6f66069142c97765ef6ee8c09e34c4cb52e55a39e958d41322491ae67937ff84",
+      "scope_type": "detection_source_or_location",
+      "source_sha256": "6f66069142c97765ef6ee8c09e34c4cb52e55a39e958d41322491ae67937ff84",
+      "scope_anchor": {
+        "quote": "An inadmissibly high temperature was detected in the encoder electronics or the encoder evaluation.",
+        "start": 115,
+        "end": 214
+      },
+      "gate_label": "OR",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F31405-detection-1",
+          "text": "high temperature detected in encoder electronics",
+          "evidence": [
+            {
+              "quote": "in the encoder electronics",
+              "start": 161,
+              "end": 187
+            }
+          ]
+        },
+        {
+          "child_id": "F31405-detection-2",
+          "text": "high temperature detected in encoder evaluation",
+          "evidence": [
+            {
+              "quote": "the encoder evaluation",
+              "start": 191,
+              "end": 213
+            }
+          ]
+        }
+      ],
+      "gate_evidence": [
+        {
+          "quote": "An inadmissibly high temperature was detected in the encoder electronics or the encoder evaluation.",
+          "start": 115,
+          "end": 214
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "independent_ai_gate_node_review",
+      "review_reason": "高温检测位置在编码器电子部件与编码器评估单元之间择一；属于检测位置 OR。; ['不是物理根因确认。']",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:f4c49dd9b19be51a40ed45c3",
+      "fault_code": "A01631",
+      "sample_id": "SIEMENS_S210_2019_A01631",
+      "source_cluster_id": "source:87c7f8f4e3c14ec060a0ad0915f676e1490a73ff8c8f7db756f0241bb95c604a",
+      "scope_type": "configuration_condition_group",
+      "source_sha256": "87c7f8f4e3c14ec060a0ad0915f676e1490a73ff8c8f7db756f0241bb95c604a",
+      "scope_anchor": {
+        "quote": "The following configurations can result in this message:\n- \"No motor holding brake available\" (p1215 = 0) and \"SBC\" enabled (p9602 = 1).",
+        "start": 189,
+        "end": 325
+      },
+      "gate_label": "AND",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "A01631-condition-brake-absent",
+          "text": "No motor holding brake available (p1215 = 0)",
+          "evidence": [
+            {
+              "quote": "\"No motor holding brake available\" (p1215 = 0)",
+              "start": 248,
+              "end": 294
+            }
+          ]
+        },
+        {
+          "child_id": "A01631-condition-sbc-enabled",
+          "text": "SBC enabled (p9602 = 1)",
+          "evidence": [
+            {
+              "quote": "\"SBC\" enabled (p9602 = 1)",
+              "start": 299,
+              "end": 324
+            }
+          ]
+        }
+      ],
+      "gate_evidence": [
+        {
+          "quote": "The following configurations can result in this message:\n- \"No motor holding brake available\" (p1215 = 0) and \"SBC\" enabled (p9602 = 1).",
+          "start": 189,
+          "end": 325
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "independent_ai_gate_node_review",
+      "review_reason": "同一个会导致消息的配置项明确以 and 连接两个配置条件。; ['仅是局部配置组 AND，不是 A01631 完整 FTA 顶层门。']",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_and_ai_review_candidates_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:2773bc9ddc2ab82746c6d297",
+      "fault_code": "F07410",
+      "sample_id": "SIEMENS_S210_2019_F07410",
+      "source_cluster_id": "source:74f974173aa7287169f0aaf0835c57cc5c5b79da23304a6c25971cddd6d98d79",
+      "scope_type": "signal_condition_group",
+      "source_sha256": "74f974173aa7287169f0aaf0835c57cc5c5b79da23304a6c25971cddd6d98d79",
+      "scope_anchor": {
+        "quote": "The condition \"I_act = 0 and Uq_set_1 longer than 16 ms at its limit\" is present and can be caused by the following:",
+        "start": 95,
+        "end": 211
+      },
+      "gate_label": "AND",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F07410-signal-i-act-zero",
+          "text": "I_act = 0",
+          "evidence": [
+            {
+              "quote": "I_act = 0",
+              "start": 110,
+              "end": 119
+            }
+          ]
+        },
+        {
+          "child_id": "F07410-signal-uq-limit",
+          "text": "Uq_set_1 longer than 16 ms at its limit",
+          "evidence": [
+            {
+              "quote": "Uq_set_1 longer than 16 ms at its limit",
+              "start": 124,
+              "end": 163
+            }
+          ]
+        }
+      ],
+      "gate_evidence": [
+        {
+          "quote": "The condition \"I_act = 0 and Uq_set_1 longer than 16 ms at its limit\" is present and can be caused by the following:",
+          "start": 95,
+          "end": 211
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "independent_ai_gate_node_review",
+      "review_reason": "被引述的复合信号条件直接以 and 连接两个信号条件。; ['这是信号条件节点，不是 F07410 顶层门。']",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_and_ai_review_candidates_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:bb73f070d7fc767ef3823928",
+      "fault_code": "F07900",
+      "sample_id": "SIEMENS_S210_2019_F07900",
+      "source_cluster_id": "source:9007c0d7e1ac406b2c6e2032202c06ed3655c9b871232b806ecf59240f01585a",
+      "scope_type": "trigger_condition_group",
+      "source_sha256": "9007c0d7e1ac406b2c6e2032202c06ed3655c9b871232b806ecf59240f01585a",
+      "scope_anchor": {
+        "quote": "The motor operates longer than 0.2 seconds at the torque limit and below the speed threshold in p2175.",
+        "start": 105,
+        "end": 207
+      },
+      "gate_label": "AND",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F07900-trigger-torque-time",
+          "text": "motor operates longer than 0.2 seconds at torque limit",
+          "evidence": [
+            {
+              "quote": "The motor operates longer than 0.2 seconds at the torque limit",
+              "start": 105,
+              "end": 167
+            }
+          ]
+        },
+        {
+          "child_id": "F07900-trigger-speed-threshold",
+          "text": "motor is below p2175 speed threshold",
+          "evidence": [
+            {
+              "quote": "below the speed threshold in p2175",
+              "start": 172,
+              "end": 206
+            }
+          ]
+        }
+      ],
+      "gate_evidence": [
+        {
+          "quote": "The motor operates longer than 0.2 seconds at the torque limit and below the speed threshold in p2175.",
+          "start": 105,
+          "end": 207
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "independent_ai_gate_node_review",
+      "review_reason": "一个触发情境要求达到转矩限制并持续超过时间，同时速度低于阈值。; ['只表示第一触发组；不可与“also”之后的另一组混并。']",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_and_ai_review_candidates_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:297140614959bb47517dc582",
+      "fault_code": "F07900",
+      "sample_id": "SIEMENS_S210_2019_F07900",
+      "source_cluster_id": "source:9007c0d7e1ac406b2c6e2032202c06ed3655c9b871232b806ecf59240f01585a",
+      "scope_type": "trigger_condition_group",
+      "source_sha256": "9007c0d7e1ac406b2c6e2032202c06ed3655c9b871232b806ecf59240f01585a",
+      "scope_anchor": {
+        "quote": "This signal can also be initiated if the speed actual value is oscillating and the speed controller output repeatedly goes to\nits limit.",
+        "start": 208,
+        "end": 344
+      },
+      "gate_label": "AND",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F07900-trigger-speed-oscillating",
+          "text": "speed actual value is oscillating",
+          "evidence": [
+            {
+              "quote": "the speed actual value is oscillating",
+              "start": 245,
+              "end": 282
+            }
+          ]
+        },
+        {
+          "child_id": "F07900-trigger-controller-output-limit",
+          "text": "speed controller output repeatedly goes to its limit",
+          "evidence": [
+            {
+              "quote": "the speed controller output repeatedly goes to\nits limit",
+              "start": 287,
+              "end": 343
+            }
+          ]
+        }
+      ],
+      "gate_evidence": [
+        {
+          "quote": "This signal can also be initiated if the speed actual value is oscillating and the speed controller output repeatedly goes to\nits limit.",
+          "start": 208,
+          "end": 344
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "independent_ai_gate_node_review",
+      "review_reason": "also 引出的第二触发情境以 if...and 明确要求速度振荡与控制器输出反复到限。; ['只表示第二触发组；不推导触发组之间的顶层门。']",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_and_ai_review_candidates_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:bd98d6f3a75c724526272b05",
+      "fault_code": "F01675",
+      "sample_id": "SIEMENS_S210_2019_F01675",
+      "source_cluster_id": "source:bd4e57b3288219c01e853400c723180e39901d6ff820d15f2ab9bbac8adf60db",
+      "scope_type": "fault_value_configuration_group",
+      "source_sha256": "bd4e57b3288219c01e853400c723180e39901d6ff820d15f2ab9bbac8adf60db",
+      "scope_anchor": {
+        "quote": "1:\n\"Synchronous safe position via PROFIsafe\" is enabled (p9501.29 = 1) and is not set according to the rule Tdp = 2 x n x\np9500 (n = 1, 2, 3, ...).",
+        "start": 530,
+        "end": 677
+      },
+      "gate_label": "AND",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F01675-value1-function-enabled",
+          "text": "synchronous safe position via PROFIsafe is enabled",
+          "evidence": [
+            {
+              "quote": "\"Synchronous safe position via PROFIsafe\" is enabled (p9501.29 = 1)",
+              "start": 533,
+              "end": 600
+            }
+          ]
+        },
+        {
+          "child_id": "F01675-value1-cycle-rule-invalid",
+          "text": "synchronization cycle is not set according to the rule",
+          "evidence": [
+            {
+              "quote": "is not set according to the rule Tdp = 2 x n x\np9500 (n = 1, 2, 3, ...)",
+              "start": 605,
+              "end": 676
+            }
+          ]
+        }
+      ],
+      "gate_evidence": [
+        {
+          "quote": "1:\n\"Synchronous safe position via PROFIsafe\" is enabled (p9501.29 = 1) and is not set according to the rule Tdp = 2 x n x\np9500 (n = 1, 2, 3, ...).",
+          "start": 530,
+          "end": 677
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "independent_ai_gate_node_review",
+      "review_reason": "故障值 1 的描述以 and 连接功能已启用与同步周期规则不满足。; ['只适用于 fault value 1。']",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_and_ai_review_candidates_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:b0f8dd806a4f621f35314484",
+      "fault_code": "F01675",
+      "sample_id": "SIEMENS_S210_2019_F01675",
+      "source_cluster_id": "source:bd4e57b3288219c01e853400c723180e39901d6ff820d15f2ab9bbac8adf60db",
+      "scope_type": "fault_value_configuration_group",
+      "source_sha256": "bd4e57b3288219c01e853400c723180e39901d6ff820d15f2ab9bbac8adf60db",
+      "scope_anchor": {
+        "quote": "2:\n\"Synchronous safe position via PROFIsafe\" is enabled (p9501.29 = 1) and isochronous operation is not set.",
+        "start": 678,
+        "end": 786
+      },
+      "gate_label": "AND",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F01675-value2-function-enabled",
+          "text": "synchronous safe position via PROFIsafe is enabled",
+          "evidence": [
+            {
+              "quote": "\"Synchronous safe position via PROFIsafe\" is enabled (p9501.29 = 1)",
+              "start": 681,
+              "end": 748
+            }
+          ]
+        },
+        {
+          "child_id": "F01675-value2-isochronous-not-set",
+          "text": "isochronous operation is not set",
+          "evidence": [
+            {
+              "quote": "isochronous operation is not set",
+              "start": 753,
+              "end": 785
+            }
+          ]
+        }
+      ],
+      "gate_evidence": [
+        {
+          "quote": "2:\n\"Synchronous safe position via PROFIsafe\" is enabled (p9501.29 = 1) and isochronous operation is not set.",
+          "start": 678,
+          "end": 786
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "independent_ai_gate_node_review",
+      "review_reason": "故障值 2 的描述以 and 连接功能已启用与未设置等时运行。; ['只适用于 fault value 2。']",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_and_ai_review_candidates_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:c95c712bed1a23be58211b73",
+      "fault_code": "F01681",
+      "sample_id": "SIEMENS_S210_2019_F01681",
+      "source_cluster_id": "source:5517c4e678dfa57286a7ae5426e4d40ed7322a4c88241593b6a55d068f0e994b",
+      "scope_type": "configuration_condition_group",
+      "source_sha256": "5517c4e678dfa57286a7ae5426e4d40ed7322a4c88241593b6a55d068f0e994b",
+      "scope_anchor": {
+        "quote": "Referencing via SCC (p9501.27 = 1) and epos (r0108.4 = 1) are simultaneously enabled.",
+        "start": 540,
+        "end": 625
+      },
+      "gate_label": "AND",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F01681-scc-referencing-enabled",
+          "text": "referencing via SCC enabled",
+          "evidence": [
+            {
+              "quote": "Referencing via SCC (p9501.27 = 1)",
+              "start": 540,
+              "end": 574
+            }
+          ]
+        },
+        {
+          "child_id": "F01681-epos-enabled",
+          "text": "epos enabled",
+          "evidence": [
+            {
+              "quote": "epos (r0108.4 = 1)",
+              "start": 579,
+              "end": 597
+            }
+          ]
+        }
+      ],
+      "gate_evidence": [
+        {
+          "quote": "Referencing via SCC (p9501.27 = 1) and epos (r0108.4 = 1) are simultaneously enabled.",
+          "start": 540,
+          "end": 625
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "independent_ai_gate_node_review",
+      "review_reason": "特定 fault value 下，SCC referencing 与 EPOS 同时启用。; ['只适用于 xxxx=9501、yyyy=10。']",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_and_ai_review_candidates_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:00bc6c8fa660ea22f99f0dd7",
+      "fault_code": "F01681",
+      "sample_id": "SIEMENS_S210_2019_F01681",
+      "source_cluster_id": "source:5517c4e678dfa57286a7ae5426e4d40ed7322a4c88241593b6a55d068f0e994b",
+      "scope_type": "configuration_condition_group",
+      "source_sha256": "5517c4e678dfa57286a7ae5426e4d40ed7322a4c88241593b6a55d068f0e994b",
+      "scope_anchor": {
+        "quote": "If motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1)\nare enabled, then PROFIsafe (p9601.3 = 1) or onboard F-DI (p9601.4 = 1) is not possible.",
+        "start": 838,
+        "end": 1050
+      },
+      "gate_label": "AND",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F01681-integrated-motion-monitoring-enabled",
+          "text": "integrated motion-monitoring functions are enabled",
+          "evidence": [
+            {
+              "quote": "motion monitoring functions integrated in the drive (p9601.2 = 1)",
+              "start": 841,
+              "end": 906
+            }
+          ]
+        },
+        {
+          "child_id": "F01681-extended-functions-enabled",
+          "text": "extended functions without selection are enabled",
+          "evidence": [
+            {
+              "quote": "extended functions without selection (p9601.5 = 1)",
+              "start": 911,
+              "end": 961
+            }
+          ]
+        }
+      ],
+      "gate_evidence": [
+        {
+          "quote": "If motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1)\nare enabled, then PROFIsafe (p9601.3 = 1) or onboard F-DI (p9601.4 = 1) is not possible.",
+          "start": 838,
+          "end": 1050
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "independent_ai_gate_node_review",
+      "review_reason": "只标注 if 前件中的两个共同启用条件为 AND；后件另有 PROFIsafe or onboard F-DI。; ['不可把整条条件句或 F01681 故障顶层门标成纯 AND。']",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_and_ai_review_candidates_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:b5d9dfd37f7d8e2eefbd5dda",
+      "fault_code": "F01659",
+      "sample_id": "SIEMENS_S210_2019_F01659",
+      "source_cluster_id": "source:c6b7fe72ce6a1c4c28dda8aab4505d06a4a5db57002d1ecfbbaa5aafb9ae2b61",
+      "scope_type": "enable_attempt_group",
+      "source_sha256": "c6b7fe72ce6a1c4c28dda8aab4505d06a4a5db57002d1ecfbbaa5aafb9ae2b61",
+      "scope_anchor": {
+        "quote": "20: An attempt was made to enable the motion monitoring functions integrated in the drive and the STO function, both\ncontrolled via F-DI.",
+        "start": 506,
+        "end": 643
+      },
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F01659-enable-motion-monitoring",
+          "text": "attempt to enable integrated motion-monitoring functions (both controlled via F-DI)",
+          "evidence": [
+            {
+              "quote": "motion monitoring functions integrated in the drive",
+              "start": 544,
+              "end": 595
+            }
+          ]
+        },
+        {
+          "child_id": "F01659-enable-sto",
+          "text": "attempt to enable STO function (both controlled via F-DI)",
+          "evidence": [
+            {
+              "quote": "the STO function",
+              "start": 600,
+              "end": 616
+            }
+          ]
+        }
+      ],
+      "gate_evidence": [
+        {
+          "quote": "20: An attempt was made to enable the motion monitoring functions integrated in the drive and the STO function, both\ncontrolled via F-DI.",
+          "start": 506,
+          "end": 643
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_independent_gate_review_reconciled_v1",
+      "review_reason": "仅对 fault value 20 的 enable_attempt_group 标记局部 AND：一次启用尝试同时涉及两个功能；共享的 both controlled via F-DI 条件以作用域证据绑定。不得将该局部组提升为 F01659 故障顶层 AND。",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_and_ai_review_candidates_v1_2026-09-26.json",
+      "child_set_review_notes": [
+        "现有 child 文本未携带共同的 F-DI 控制限定；虽逻辑操作数同层且门证据完整，叶文本需补足共享限定后才适合生成树。"
+      ],
+      "scope_reconciliation": "independent_ai_review_reconciled_local_gate_scope",
+      "scope_explanatory_evidence": [
+        {
+          "quote": "both\ncontrolled via F-DI.",
+          "start": 618,
+          "end": 643,
+          "evidence_id": "F01659-shared-fdi-condition",
+          "applies_to_child_ids": [
+            "F01659-enable-motion-monitoring",
+            "F01659-enable-sto"
+          ]
+        }
+      ],
+      "gate_label": "AND",
+      "independent_review_row_id": "S210-GATE-AND-F01659-VALUE-20",
+      "independent_review_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_independent_ai_review_v1_2026-09-26.json",
+      "fta_tree_disposition": "local_enable_attempt_group_only_not_fault_root_gate"
+    },
+    {
+      "gate_node_id": "gate:2e9205f74d5939f2142d5619",
+      "fault_code": "A01785",
+      "sample_id": "SIEMENS_S210_2019_A01785",
+      "source_cluster_id": "source:9653e5dc46ae70c80855a7e7aff9cacf2266abe7ab818b84c133d7506d1c7bfc",
+      "scope_type": "configuration_condition_group",
+      "source_sha256": "9653e5dc46ae70c80855a7e7aff9cacf2266abe7ab818b84c133d7506d1c7bfc",
+      "scope_anchor": {
+        "quote": "16:\nThe safe brake test and safety without encoder are simultaneously enabled (p9506). This is not permissible.",
+        "start": 511,
+        "end": 622
+      },
+      "gate_label": "AND",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "A01785-safe-brake-test-enabled",
+          "text": "safe brake test enabled",
+          "evidence": [
+            {
+              "quote": "The safe brake test",
+              "start": 515,
+              "end": 534
+            }
+          ]
+        },
+        {
+          "child_id": "A01785-safety-without-encoder-enabled",
+          "text": "safety without encoder enabled",
+          "evidence": [
+            {
+              "quote": "safety without encoder",
+              "start": 539,
+              "end": 561
+            }
+          ]
+        }
+      ],
+      "gate_evidence": [
+        {
+          "quote": "16:\nThe safe brake test and safety without encoder are simultaneously enabled (p9506). This is not permissible.",
+          "start": 511,
+          "end": 622
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "independent_ai_gate_node_review",
+      "review_reason": "原文明确两个功能 simultaneously enabled，直接支持 AND。; ['只适用于 fault value 16。']",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_and_ai_review_candidates_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:3a9bff9d93c47d240ad73526",
+      "fault_code": "F01043",
+      "sample_id": "SIEMENS_S210_2019_F01043",
+      "source_cluster_id": "source:bd3947f1beeb2d78bd677ee9dfbc115088c382fa1b4a32344f66d633fbdee6e3",
+      "scope_type": "inconsistent_configuration_group",
+      "source_sha256": "bd3947f1beeb2d78bd677ee9dfbc115088c382fa1b4a32344f66d633fbdee6e3",
+      "scope_anchor": {
+        "quote": "20: The configuration is inconsistent (e.g. CAN for Control Unit, however no CAN configured for drive objects A_INF,\nSERVO or VECTOR).",
+        "start": 1504,
+        "end": 1638
+      },
+      "gate_label": "AND",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F01043-can-control-unit-configured",
+          "text": "CAN configured for Control Unit",
+          "evidence": [
+            {
+              "quote": "CAN for Control Unit",
+              "start": 1548,
+              "end": 1568
+            }
+          ]
+        },
+        {
+          "child_id": "F01043-can-drive-objects-not-configured",
+          "text": "CAN not configured for drive objects",
+          "evidence": [
+            {
+              "quote": "no CAN configured for drive objects A_INF,\nSERVO or VECTOR",
+              "start": 1578,
+              "end": 1636
+            }
+          ]
+        }
+      ],
+      "gate_evidence": [
+        {
+          "quote": "20: The configuration is inconsistent (e.g. CAN for Control Unit, however no CAN configured for drive objects A_INF,\nSERVO or VECTOR).",
+          "start": 1504,
+          "end": 1638
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "independent_ai_gate_node_review",
+      "review_reason": "CAN 已配置于 Control Unit、却未配置于 drive objects，形成同层不一致配置对。; ['原文为 e.g. 示例，不是 fault value 20 的完整枚举，也不是 F01043 顶层门。']",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_and_ai_review_candidates_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:6d033ee68fc54d50aa022c37",
+      "fault_code": "F30078",
+      "sample_id": "SIEMENS_S210_2019_F30078",
+      "source_cluster_id": "source:04e8a6f41ecc335bf017a72f0fabd055c777e4ad0a6153e7210496829cd34264",
+      "scope_type": "operating_condition_group",
+      "source_sha256": "04e8a6f41ecc335bf017a72f0fabd055c777e4ad0a6153e7210496829cd34264",
+      "scope_anchor": {
+        "quote": "- an overtemperature condition of the line reactor can occur when a DC link coupling is used – and if the power when\nmotoring, which is fed into the DC link - is not evenly distributed across the rectifiers of the power units.",
+        "start": 420,
+        "end": 646
+      },
+      "gate_label": "AND",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F30078-dc-link-coupling-used",
+          "text": "DC link coupling is used",
+          "evidence": [
+            {
+              "quote": "a DC link coupling is used",
+              "start": 486,
+              "end": 512
+            }
+          ]
+        },
+        {
+          "child_id": "F30078-motoring-power-not-evenly-distributed",
+          "text": "motoring power fed into DC link is not evenly distributed across power-unit rectifiers",
+          "evidence": [
+            {
+              "quote": "the power when\nmotoring, which is fed into the DC link - is not evenly distributed across the rectifiers of the power units",
+              "start": 522,
+              "end": 645
+            }
+          ]
+        }
+      ],
+      "gate_evidence": [
+        {
+          "quote": "- an overtemperature condition of the line reactor can occur when a DC link coupling is used – and if the power when\nmotoring, which is fed into the DC link - is not evenly distributed across the rectifiers of the power units.",
+          "start": 420,
+          "end": 646
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "independent_ai_gate_node_review",
+      "review_reason": "线路电抗器过温可在使用 DC-link coupling 且电动功率分配不均时发生；and/if 直接支持局部 AND。; ['仅是局部运行条件组，不是 F30078 顶层门。']",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_and_ai_review_candidates_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:863cd8f94874526bc847c0bf",
+      "fault_code": "A01940",
+      "sample_id": "SIEMENS_S210_2019_A01940",
+      "source_cluster_id": "source:f6a60a22976e11f746c14a9b117018a24e3e9877a93db52199c8bfff1107cc6c",
+      "scope_type": "event_cause_set",
+      "source_sha256": "f6a60a22976e11f746c14a9b117018a24e3e9877a93db52199c8bfff1107cc6c",
+      "scope_anchor": {
+        "quote": "the master does not send a clock synchronous global control telegram although clock synchronous operation was selected\nwhen configuring the bus.\n- the master is using an isochronous DP clock cycle that is different than was transferred to the slave in the parameterizing\ntelegram.\n- at least one drive object has a pulse enable (also not controlled from PROFINET).",
+        "start": 291,
+        "end": 655
+      },
+      "gate_label": "unknown",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "CR-CAND-V3-133",
+          "text": "the master does not send a clock synchronous global control telegram although clock synchronous operation was selected\nwhen configuring the bus.",
+          "evidence": [
+            {
+              "quote": "the master does not send a clock synchronous global control telegram although clock synchronous operation was selected\nwhen configuring the bus.",
+              "start": 291,
+              "end": 435
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        },
+        {
+          "child_id": "CR-CAND-V4-086",
+          "text": "the master is using an isochronous DP clock cycle that is different than was transferred to the slave in the parameterizing\ntelegram.",
+          "evidence": [
+            {
+              "quote": "the master is using an isochronous DP clock cycle that is different than was transferred to the slave in the parameterizing\ntelegram.",
+              "start": 438,
+              "end": 571
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        },
+        {
+          "child_id": "CR-CAND-V5-067",
+          "text": "at least one drive object has a pulse enable (also not controlled from PROFINET).",
+          "evidence": [
+            {
+              "quote": "at least one drive object has a pulse enable (also not controlled from PROFINET).",
+              "start": 574,
+              "end": 655
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        }
+      ],
+      "gate_evidence": [],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_consolidated_event_review",
+      "review_reason": "三条分别列在Cause段下，支持它们是不同的候选原因；但原文没有明确说明任一项单独足以触发顶事件，也没有直接给出OR或AND关系。保守保持unknown，不把列表格式本身当成逻辑门证据。; 完整覆盖本条Cause段明确列出的三条具体解释；仅表示该手册记录列举项已逐项映射，不声称覆盖手册之外所有物理根因。",
+      "source_artifact": "siemens_s210_causal_event_gate_review_consolidated_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:d4932af3eec201988ff10d1f",
+      "fault_code": "A30502",
+      "sample_id": "SIEMENS_S210_2019_A30502",
+      "source_cluster_id": "source:4579d69ffc3262e339835eb0c54984a3cc4152cf8e466f3684354af268e534a0",
+      "scope_type": "event_cause_set",
+      "source_sha256": "4579d69ffc3262e339835eb0c54984a3cc4152cf8e466f3684354af268e534a0",
+      "scope_anchor": {
+        "quote": "device supply voltage too high.\n- line reactor incorrectly dimensioned",
+        "start": 156,
+        "end": 226
+      },
+      "gate_label": "unknown",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "CR-CAND-V5-108",
+          "text": "device supply voltage too high",
+          "evidence": [
+            {
+              "quote": "device supply voltage too high",
+              "start": 156,
+              "end": 186
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        },
+        {
+          "child_id": "CR-CAND-V6-082",
+          "text": "line reactor incorrectly dimensioned",
+          "evidence": [
+            {
+              "quote": "line reactor incorrectly dimensioned",
+              "start": 190,
+              "end": 226
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        }
+      ],
+      "gate_evidence": [],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_consolidated_event_review",
+      "review_reason": "两项原因以项目符号列出，但原文没有直接说明二者是替代关系还是共同条件；不将列表排版本身当作OR或AND门证据。; 仅表示本条Cause明确列出的两项候选因素均已覆盖；不宣称其构成穷尽的物理根因全集。",
+      "source_artifact": "siemens_s210_causal_event_gate_review_consolidated_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:80056888dd3a1ecb0fbb7404",
+      "fault_code": "F01679",
+      "sample_id": "SIEMENS_S210_2019_F01679",
+      "source_cluster_id": "source:4aa69b39637aa3893174da32353788d9a8c78d62dfea25be22a6e1f5706964b9",
+      "scope_type": "event_cause_set",
+      "source_sha256": "4aa69b39637aa3893174da32353788d9a8c78d62dfea25be22a6e1f5706964b9",
+      "scope_anchor": {
+        "quote": "Safety parameters have been changed; these will only take effect following a warm restart or POWER ON (see alarm\nA01693).\nA partial power up (boot) with modified configuration was then performed",
+        "start": 137,
+        "end": 331
+      },
+      "gate_label": "unknown",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "CR-CAND-V7-305",
+          "text": "Safety parameters have been changed",
+          "evidence": [
+            {
+              "quote": "Safety parameters have been changed",
+              "start": 137,
+              "end": 172
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        },
+        {
+          "child_id": "CR-CAND-V8-261",
+          "text": "A partial power up (boot) with modified configuration was then performed",
+          "evidence": [
+            {
+              "quote": "A partial power up (boot) with modified configuration was then performed",
+              "start": 259,
+              "end": 331
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        }
+      ],
+      "gate_evidence": [],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_consolidated_event_review",
+      "review_reason": "The Cause describes a sequence, but it does not explicitly establish whether the two conditions form an AND gate; the warm restart or POWER ON phrase concerns activation/recovery and is not the candidate gate.; Complete only for the two textual Cause statements: safety parameters were changed, and a partial power-up was then performed with the modified configuration. The text does not explain why either occurred or establish a physical-root-cause set. The warm-restart-or-POWER-ON phrase describes when changes take effect, not a gate between the two candidates.",
+      "source_artifact": "siemens_s210_causal_event_gate_review_consolidated_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:bbf331fbd506bf87af4aa1c1",
+      "fault_code": "F01910",
+      "sample_id": "SIEMENS_S210_2019_F01910",
+      "source_cluster_id": "source:70d4e6637cbf80a233600b8acc9fa96300727396edcd3c59f96ff506b08b53f4",
+      "scope_type": "event_cause_set",
+      "source_sha256": "70d4e6637cbf80a233600b8acc9fa96300727396edcd3c59f96ff506b08b53f4",
+      "scope_anchor": {
+        "quote": "bus connection interrupted.\n- controller switched off.\n- controller set into the STOP state.",
+        "start": 246,
+        "end": 338
+      },
+      "gate_label": "unknown",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "CR-CAND-V9-259",
+          "text": "bus connection interrupted.",
+          "evidence": [
+            {
+              "quote": "bus connection interrupted.",
+              "start": 246,
+              "end": 273
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        },
+        {
+          "child_id": "CR-CAND-V10-226",
+          "text": "controller switched off.",
+          "evidence": [
+            {
+              "quote": "controller switched off.",
+              "start": 276,
+              "end": 300
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        },
+        {
+          "child_id": "CR-CAND-V11-202",
+          "text": "controller set into the STOP state.",
+          "evidence": [
+            {
+              "quote": "controller set into the STOP state.",
+              "start": 303,
+              "end": 338
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        }
+      ],
+      "gate_evidence": [],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_consolidated_event_review",
+      "review_reason": "The three direct conditions appear as parallel Cause bullets, but the source does not state whether the event requires OR, AND, or another relation; list formatting alone is not gate evidence.; Complete only for the four Cause statements explicitly listed in the manual: the interrupted setpoint reception summary and the three direct conditions (bus interruption, controller switched off, controller in STOP). This does not claim deeper physical causes are exhausted; the manual does not specify their combination gate.",
+      "source_artifact": "siemens_s210_causal_event_gate_review_consolidated_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:e324d2cd7b4650c7f995cab4",
+      "fault_code": "F07011",
+      "sample_id": "SIEMENS_S210_2019_F07011",
+      "source_cluster_id": "source:161442179ad1971ffde13e20ff61bacfdedb8c7aa3d588a7ebff304637884463",
+      "scope_type": "event_cause_set",
+      "source_sha256": "161442179ad1971ffde13e20ff61bacfdedb8c7aa3d588a7ebff304637884463",
+      "scope_anchor": {
+        "quote": "motor overloaded.\n- motor ambient temperature too high.\n- sensor wire breakage",
+        "start": 148,
+        "end": 226
+      },
+      "gate_label": "unknown",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "CR-CAND-V9-263",
+          "text": "motor overloaded.",
+          "evidence": [
+            {
+              "quote": "motor overloaded.",
+              "start": 148,
+              "end": 165
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        },
+        {
+          "child_id": "CR-CAND-V10-228",
+          "text": "motor ambient temperature too high.",
+          "evidence": [
+            {
+              "quote": "motor ambient temperature too high.",
+              "start": 168,
+              "end": 203
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        },
+        {
+          "child_id": "CR-CAND-V11-203",
+          "text": "sensor wire breakage",
+          "evidence": [
+            {
+              "quote": "sensor wire breakage",
+              "start": 206,
+              "end": 226
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        }
+      ],
+      "gate_evidence": [],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_consolidated_event_review",
+      "review_reason": "The three Possible causes bullets do not state their AND/OR relation. The word 'or' appears only inside the r0949=301 diagnostic mapping; without an observed r0949 value, it is local diagnostic logic, not the event-level cause gate.; Complete for the full Cause, Possible causes, and r0949 fault-value text: one alarm-state summary, three possible-cause statements, and four diagnostic value mappings. The record provides no actual r0949 value; the diagnostic mappings therefore do not identify which branch applies to a particular event instance.",
+      "source_artifact": "siemens_s210_causal_event_gate_review_consolidated_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:5b70c8f87bd9907b3cfd50f3",
+      "fault_code": "F07085",
+      "sample_id": "SIEMENS_S210_2019_F07085",
+      "source_cluster_id": "source:e047eaf3b21c24f2261786bead59ee42c3aae4ac90056887f8cf09b4de21f61e",
+      "scope_type": "event_cause_set",
+      "source_sha256": "e047eaf3b21c24f2261786bead59ee42c3aae4ac90056887f8cf09b4de21f61e",
+      "scope_anchor": {
+        "quote": "As a result of other parameters, they have exceeded the dynamic limits.\n2. They cannot be used due to the fact that the hardware detected not having certain features.\n3. The value is estimated as the thermal time constant is missing.\n4. Motor temperature model 1 is activated as thermal motor protection is missing.",
+        "start": 195,
+        "end": 510
+      },
+      "gate_label": "unknown",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "CR-CAND-V9-270",
+          "text": "As a result of other parameters, they have exceeded the dynamic limits.",
+          "evidence": [
+            {
+              "quote": "As a result of other parameters, they have exceeded the dynamic limits.",
+              "start": 195,
+              "end": 266
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        },
+        {
+          "child_id": "CR-CAND-V10-234",
+          "text": "They cannot be used due to the fact that the hardware detected not having certain features.",
+          "evidence": [
+            {
+              "quote": "They cannot be used due to the fact that the hardware detected not having certain features.",
+              "start": 270,
+              "end": 361
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        },
+        {
+          "child_id": "CR-CAND-V11-208",
+          "text": "The value is estimated as the thermal time constant is missing.",
+          "evidence": [
+            {
+              "quote": "The value is estimated as the thermal time constant is missing.",
+              "start": 365,
+              "end": 428
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        },
+        {
+          "child_id": "CR-CAND-V12-184",
+          "text": "Motor temperature model 1 is activated as thermal motor protection is missing.",
+          "evidence": [
+            {
+              "quote": "Motor temperature model 1 is activated as thermal motor protection is missing.",
+              "start": 432,
+              "end": 510
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        }
+      ],
+      "gate_evidence": [],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_consolidated_event_review",
+      "review_reason": "The four numbered Possible causes are separate candidates, but no explicit AND/OR operator or combination rule is stated. Numbered list structure alone is not sufficient event-gate evidence.; Complete for the Cause summary and all four numbered Possible causes statements. The manual explains why parameters may be limited/estimated/activated but does not explicitly declare the logical combination among those alternatives or deeper equipment-level causes.",
+      "source_artifact": "siemens_s210_causal_event_gate_review_consolidated_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:303378f6783694c039255490",
+      "fault_code": "F07801",
+      "sample_id": "SIEMENS_S210_2019_F07801",
+      "source_cluster_id": "source:ffce74e3af86807fc87030bc194ade023ff756df80dcb060388f90f46d841438",
+      "scope_type": "event_cause_set",
+      "source_sha256": "ffce74e3af86807fc87030bc194ade023ff756df80dcb060388f90f46d841438",
+      "scope_anchor": {
+        "quote": "active current limit too low.\n- current controller not correctly set.\n- load is too high.\n- short-circuit in the motor cable or ground fault.\n- motor current does not match the drive current.",
+        "start": 131,
+        "end": 322
+      },
+      "gate_label": "unknown",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "CR-CAND-V10-265",
+          "text": "active current limit too low.",
+          "evidence": [
+            {
+              "quote": "active current limit too low.",
+              "start": 131,
+              "end": 160
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        },
+        {
+          "child_id": "CR-CAND-V11-232",
+          "text": "current controller not correctly set.",
+          "evidence": [
+            {
+              "quote": "current controller not correctly set.",
+              "start": 163,
+              "end": 200
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        },
+        {
+          "child_id": "CR-CAND-V12-201",
+          "text": "load is too high.",
+          "evidence": [
+            {
+              "quote": "load is too high.",
+              "start": 203,
+              "end": 220
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        },
+        {
+          "child_id": "CR-CAND-V14-159",
+          "text": "motor current does not match the drive current.",
+          "evidence": [
+            {
+              "quote": "motor current does not match the drive current.",
+              "start": 275,
+              "end": 322
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        }
+      ],
+      "gate_evidence": [],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_consolidated_event_review",
+      "review_reason": "The five cause bullets are listed without an event-level AND/OR operator or combination statement. The explicit OR inside the short-circuit/ground-fault bullet is local to that compound candidate and cannot be promoted to the overall event gate.; Complete for the Cause sentence and all five immediately following cause bullets. This is the documented alarm-level cause set only; the manual does not establish exhaustive field root causes or the AND/OR relation among the five listed candidates.",
+      "source_artifact": "siemens_s210_causal_event_gate_review_consolidated_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:bea99b6e1c9499e5e53cdfc4",
+      "fault_code": "F07802",
+      "sample_id": "SIEMENS_S210_2019_F07802",
+      "source_cluster_id": "source:5825c04649414d1697a122b2458917e69f5de93185ab95a0cfe862a6f68c70e2",
+      "scope_type": "event_cause_set",
+      "source_sha256": "5825c04649414d1697a122b2458917e69f5de93185ab95a0cfe862a6f68c70e2",
+      "scope_anchor": {
+        "quote": "DC link voltage is not present.\n- defective drive.\n- supply voltage incorrectly set.",
+        "start": 157,
+        "end": 241
+      },
+      "gate_label": "unknown",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "CR-CAND-V10-270",
+          "text": "DC link voltage is not present.",
+          "evidence": [
+            {
+              "quote": "DC link voltage is not present.",
+              "start": 157,
+              "end": 188
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        },
+        {
+          "child_id": "CR-CAND-V11-236",
+          "text": "defective drive.",
+          "evidence": [
+            {
+              "quote": "defective drive.",
+              "start": 191,
+              "end": 207
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        },
+        {
+          "child_id": "CR-CAND-V12-204",
+          "text": "supply voltage incorrectly set.",
+          "evidence": [
+            {
+              "quote": "supply voltage incorrectly set.",
+              "start": 210,
+              "end": 241
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        }
+      ],
+      "gate_evidence": [],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_consolidated_event_review",
+      "review_reason": "The three Cause bullets are listed without an explicit AND/OR operator or combination rule. Their list order and the Remedy actions do not establish an event-level gate.; Complete for the target-state sentence and all three following Cause bullets. These are the immediate possibilities documented for the alarm; the source does not establish that they exhaust field root causes or state their event-level logical combination.",
+      "source_artifact": "siemens_s210_causal_event_gate_review_consolidated_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:b48133db15df9cb648871ac8",
+      "fault_code": "F07955",
+      "sample_id": "SIEMENS_S210_2019_F07955",
+      "source_cluster_id": "source:bf517284b7de75de6a1be15f44f5be14c7bf9f73aaa1c27b0345f3dd8fbdcb15",
+      "scope_type": "event_cause_set",
+      "source_sha256": "bf517284b7de75de6a1be15f44f5be14c7bf9f73aaa1c27b0345f3dd8fbdcb15",
+      "scope_anchor": {
+        "quote": "The code number of the actual motor with DRIVE-CLiQ does not match the saved number. If available: The code numbers\nof the bearings, gearbox or brake do not match the saved numbers.",
+        "start": 84,
+        "end": 265
+      },
+      "gate_label": "unknown",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "CR-CAND-021",
+          "text": "The code number of the actual motor with DRIVE-CLiQ does not match the saved number.",
+          "evidence": [
+            {
+              "quote": "The code number of the actual motor with DRIVE-CLiQ does not match the saved number.",
+              "start": 84,
+              "end": 168
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        },
+        {
+          "child_id": "CR-CAND-V2-051",
+          "text": "If available: The code numbers\nof the bearings, gearbox or brake do not match the saved numbers.",
+          "evidence": [
+            {
+              "quote": "If available: The code numbers\nof the bearings, gearbox or brake do not match the saved numbers.",
+              "start": 169,
+              "end": 265
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        }
+      ],
+      "gate_evidence": [],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_consolidated_event_review",
+      "review_reason": "原文未说明电机编码不匹配与可用轴承/齿轮箱/制动器编码不匹配之间是AND还是OR；部件列表内部的or仅修饰部件选项。; documented_cause_section_only_not_all_physical_root_causes",
+      "source_artifact": "siemens_s210_causal_event_gate_review_consolidated_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:4421b5671be7ea748ed54fd8",
+      "fault_code": "F08501",
+      "sample_id": "SIEMENS_S210_2019_F08501",
+      "source_cluster_id": "source:6ade35413871930f0b40c0dbbbbc6d0e97432b31b2dc2f0fe97560076c64f899",
+      "scope_type": "event_cause_set",
+      "source_sha256": "6ade35413871930f0b40c0dbbbbc6d0e97432b31b2dc2f0fe97560076c64f899",
+      "scope_anchor": {
+        "quote": "bus connection interrupted.\n- controller switched off.\n- controller set into the STOP state.\n- COMM BOARD defective.",
+        "start": 157,
+        "end": 273
+      },
+      "gate_label": "unknown",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "CR-CAND-V11-249",
+          "text": "bus connection interrupted.",
+          "evidence": [
+            {
+              "quote": "bus connection interrupted.",
+              "start": 157,
+              "end": 184
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        },
+        {
+          "child_id": "CR-CAND-V12-214",
+          "text": "controller switched off.",
+          "evidence": [
+            {
+              "quote": "controller switched off.",
+              "start": 187,
+              "end": 211
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        },
+        {
+          "child_id": "CR-CAND-V13-187",
+          "text": "controller set into the STOP state.",
+          "evidence": [
+            {
+              "quote": "controller set into the STOP state.",
+              "start": 214,
+              "end": 249
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        },
+        {
+          "child_id": "CR-CAND-V14-166",
+          "text": "COMM BOARD defective.",
+          "evidence": [
+            {
+              "quote": "COMM BOARD defective.",
+              "start": 252,
+              "end": 273
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        }
+      ],
+      "gate_evidence": [],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_consolidated_event_review",
+      "review_reason": "The four listed conditions are not connected by an explicit event-level AND/OR rule. Their bullet formatting alone does not prove a gate.; Complete for the Cause summary and all four following Cause bullets. This is the documented alarm-level cause set only; the source does not identify a particular field-instance cause or deeper physical mechanism.",
+      "source_artifact": "siemens_s210_causal_event_gate_review_consolidated_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:15e3b07183d8f4b9819c9a32",
+      "fault_code": "F13000",
+      "sample_id": "SIEMENS_S210_2019_F13000",
+      "source_cluster_id": "source:f4ecae35d21bc204d0197149ed555346de8120dfbf171209cc4e5b924767cef7",
+      "scope_type": "event_cause_set",
+      "source_sha256": "f4ecae35d21bc204d0197149ed555346de8120dfbf171209cc4e5b924767cef7",
+      "scope_anchor": {
+        "quote": "Cause: - for the drive unit, the options that require a license are being used but the licenses are not sufficient.\n- an error occurred when checking the existing licenses.",
+        "start": 68,
+        "end": 240
+      },
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F13000-C01",
+          "text": "for the drive unit, the options that require a license are being used but the licenses are not sufficient.",
+          "evidence": [
+            {
+              "quote": "- for the drive unit, the options that require a license are being used but the licenses are not sufficient.",
+              "start": 75,
+              "end": 183
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F13000-C02",
+          "text": "an error occurred when checking the existing licenses.",
+          "evidence": [
+            {
+              "quote": "- an error occurred when checking the existing licenses.",
+              "start": 184,
+              "end": 240
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        }
+      ],
+      "gate_evidence": [],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_event_scope_review_v8_reconciled",
+      "review_reason": "把作用域收窄到 Cause 段明确列出的两条同级原因。Fault value 0 对应许可证不足总述；1–4 是许可证检查/判定失败的诊断子型，不与两条 Cause 项扁平混列。原文未直接给出两条 Cause 之间的 AND/OR，故门型保持 unknown。",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_event_scope_gate_primary_ai_role_review_v8_2026-09-27.json",
+      "source_review_case_id": "ESG-0B7DDEDB739A",
+      "reconciliation_operation": "replace_children",
+      "reviewed_source_exclusions": [],
+      "scope_explanatory_evidence": [
+        {
+          "quote": "Fault value (r0949, decimal interpretation):\n0:\nThe existing license is not sufficient.\n1:\nAn adequate license was not able to be determined as the memory card with the required licensing data was withdrawn in\noperation.\n2:\nAn adequate license was not able to be determined as there is no licensing data available on the memory card.\n3:\nAn adequate license was not able to be determined as there is a checksum error in the license key.\n4:\nAn internal error occurred when checking the license.",
+          "start": 241,
+          "end": 733
+        }
+      ],
+      "gate_label": "unknown",
+      "supersedes_gate_node_id": "gate:addbd30a7cded270819fd363"
+    },
+    {
+      "gate_node_id": "gate:c24c9344ef24827afd081b8b",
+      "fault_code": "F13102",
+      "sample_id": "SIEMENS_S210_2019_F13102",
+      "source_cluster_id": "source:fc5a039ff8bcdeed9a7428ceb438523655ee55c973c332c4a404f7fff1850e84",
+      "scope_type": "event_cause_set",
+      "source_sha256": "fc5a039ff8bcdeed9a7428ceb438523655ee55c973c332c4a404f7fff1850e84",
+      "scope_anchor": {
+        "quote": "Fault value (r0949, interpret hexadecimal):\nyyyyxxxx hex: yyyy = object number, xxxx = fault cause\nxxxx = 1:\nA file has a checksum error.\nxxxx = 2:\nThe files are not consistent with one another.\nxxxx = 3:\nThe project files, which were loaded into the file system via load (download from the memory card), are inconsistent.",
+        "start": 310,
+        "end": 632
+      },
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F13102-C01",
+          "text": "A file has a checksum error.",
+          "evidence": [
+            {
+              "quote": "A file has a checksum error.",
+              "start": 419,
+              "end": 447
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F13102-C02",
+          "text": "The files are not consistent with one another.",
+          "evidence": [
+            {
+              "quote": "The files are not consistent with one another.",
+              "start": 458,
+              "end": 504
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F13102-C03",
+          "text": "The project files, which were loaded into the file system via load (download from the memory card), are inconsistent.",
+          "evidence": [
+            {
+              "quote": "The project files, which were loaded into the file system via load (download from the memory card), are inconsistent.",
+              "start": 515,
+              "end": 632
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        }
+      ],
+      "gate_evidence": [],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_event_scope_review_v8_reconciled",
+      "review_reason": "xxxx 明确表示 fault cause；值 1、2、3 分别给出校验和错误、文件不一致、加载项目文件不一致三种同级故障模式，候选 C01–C03 与三项逐一对应。原文没有直接说明这些模式之间的事件级 AND/OR，故门型保持 unknown。",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_event_scope_gate_primary_ai_role_review_v8_2026-09-27.json",
+      "source_review_case_id": "ESG-BFDD2CFA274A",
+      "reconciliation_operation": "review_existing_children",
+      "reviewed_source_exclusions": [],
+      "scope_explanatory_evidence": [],
+      "gate_label": "unknown",
+      "supersedes_gate_node_id": "gate:cfdbc47dfe67f5249c039fcc"
+    },
+    {
+      "gate_node_id": "gate:5bede53e786bea8153d07cb2",
+      "fault_code": "F30001",
+      "sample_id": "SIEMENS_S210_2019_F30001",
+      "source_cluster_id": "source:55a4ba493b8074d8fe7b8368e6c56aa2dfbb0b9811261a940fa7edf8257e1034",
+      "scope_type": "event_cause_set",
+      "source_sha256": "55a4ba493b8074d8fe7b8368e6c56aa2dfbb0b9811261a940fa7edf8257e1034",
+      "scope_anchor": {
+        "quote": "closed-loop control is incorrectly parameterized.\n- motor has a short-circuit or fault to ground (frame).\n- the rated motor current is significantly higher than that of the drive.\n- infeed: High discharge and post-charging currents for line voltage dip.\n- infeed: High post-charging currents for overload when motoring and DC link voltage dip.\n- infeed: Short-circuit currents at switch-on as there is no commutating reactor.\n- power cables are not correctly connected.\n- the power cables exceed the maximum permissible length.\n- defective drive.\n- line phase interrupted.",
+        "start": 124,
+        "end": 696
+      },
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F30001-C01",
+          "text": "closed-loop control is incorrectly parameterized",
+          "evidence": [
+            {
+              "quote": "closed-loop control is incorrectly parameterized.",
+              "start": 124,
+              "end": 173
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F30001-C02",
+          "text": "motor has a short-circuit or frame ground fault",
+          "evidence": [
+            {
+              "quote": "motor has a short-circuit or fault to ground (frame).",
+              "start": 176,
+              "end": 229
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F30001-C03",
+          "text": "rated motor current is significantly higher than the drive rating",
+          "evidence": [
+            {
+              "quote": "the rated motor current is significantly higher than that of the drive.",
+              "start": 232,
+              "end": 303
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F30001-C04",
+          "text": "infeed discharge and post-charging currents are high during a line-voltage dip",
+          "evidence": [
+            {
+              "quote": "infeed: High discharge and post-charging currents for line voltage dip.",
+              "start": 306,
+              "end": 377
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F30001-C05",
+          "text": "infeed post-charging current is high under motor overload and DC-link voltage dip",
+          "evidence": [
+            {
+              "quote": "infeed: High post-charging currents for overload when motoring and DC link voltage dip.",
+              "start": 380,
+              "end": 467
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F30001-C06",
+          "text": "infeed switch-on short-circuit currents occur because no commutating reactor is installed",
+          "evidence": [
+            {
+              "quote": "infeed: Short-circuit currents at switch-on as there is no commutating reactor.",
+              "start": 470,
+              "end": 549
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F30001-C07",
+          "text": "power cables are incorrectly connected",
+          "evidence": [
+            {
+              "quote": "power cables are not correctly connected.",
+              "start": 552,
+              "end": 593
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F30001-C08",
+          "text": "power cables exceed the maximum permissible length",
+          "evidence": [
+            {
+              "quote": "the power cables exceed the maximum permissible length.",
+              "start": 596,
+              "end": 651
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F30001-C09",
+          "text": "drive is defective",
+          "evidence": [
+            {
+              "quote": "defective drive.",
+              "start": 654,
+              "end": 670
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F30001-C10",
+          "text": "line phase is interrupted",
+          "evidence": [
+            {
+              "quote": "line phase interrupted.",
+              "start": 673,
+              "end": 696
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        }
+      ],
+      "gate_evidence": [],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_event_scope_review_v8_reconciled",
+      "review_reason": "Cause段落的完整故障原因列表为十项；其中infeed是原因描述的适用场景限定，不另建逻辑组。所有项目均作为原因候选保留，但来源仅列举原因，未直接陈述AND/OR关系，故记unknown。故障值位说明是故障部位诊断信息，不并入原因集合。",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_event_scope_gate_primary_ai_role_review_v8_2026-09-27.json",
+      "source_review_case_id": "ESG-7DFEC417046C",
+      "reconciliation_operation": "replace_children",
+      "reviewed_source_exclusions": [],
+      "scope_explanatory_evidence": [],
+      "gate_label": "unknown",
+      "supersedes_gate_node_id": "gate:5bede53e786bea8153d07cb2"
+    },
+    {
+      "gate_node_id": "gate:fd6f629cf87483376c494468",
+      "fault_code": "F30003",
+      "sample_id": "SIEMENS_S210_2019_F30003",
+      "source_cluster_id": "source:74c10ec65e82010d4b0b0176b3c91138b040348f73a8969f09aecbd96d9c0bc7",
+      "scope_type": "event_cause_set",
+      "source_sha256": "74c10ec65e82010d4b0b0176b3c91138b040348f73a8969f09aecbd96d9c0bc7",
+      "scope_anchor": {
+        "quote": "- line supply failure\n- line supply voltage below the permissible value.\n- line supply infeed failed or interrupted.\n- line phase interrupted.",
+        "start": 152,
+        "end": 294
+      },
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F30003-C01",
+          "text": "line supply failure",
+          "evidence": [
+            {
+              "quote": "line supply failure",
+              "start": 154,
+              "end": 173
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F30003-C02",
+          "text": "line supply voltage below the permissible value",
+          "evidence": [
+            {
+              "quote": "line supply voltage below the permissible value.",
+              "start": 176,
+              "end": 224
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F30003-C03",
+          "text": "line supply infeed failed or interrupted",
+          "evidence": [
+            {
+              "quote": "line supply infeed failed or interrupted.",
+              "start": 227,
+              "end": 268
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F30003-C04",
+          "text": "line phase interrupted",
+          "evidence": [
+            {
+              "quote": "line phase interrupted.",
+              "start": 271,
+              "end": 294
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        }
+      ],
+      "gate_evidence": [],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_event_scope_review_v8_reconciled",
+      "review_reason": "范围限定为F30003 Cause段同一层级列出的完整四项原因；上一版候选只包含后三项，遗漏line supply failure，现已补齐。四项按原文列表层级保留，不将列表格式推断为OR；原文没有直接AND/OR门语义，因此记unknown。此为AI角色审核，不是独立审核、真人专家签署或正式Gold。",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_event_scope_gate_primary_ai_role_review_v8_2026-09-27.json",
+      "source_review_case_id": "ESG-ACB38B98BFC1",
+      "reconciliation_operation": "replace_children",
+      "reviewed_source_exclusions": [],
+      "scope_explanatory_evidence": [],
+      "gate_label": "unknown",
+      "supersedes_gate_node_id": "gate:0eddb4d506743e410e0124c9"
+    },
+    {
+      "gate_node_id": "gate:de96e3ee272cf755124bf723",
+      "fault_code": "F30005",
+      "sample_id": "SIEMENS_S210_2019_F30005",
+      "source_cluster_id": "source:b34ab929e41435f08ab727196fb39f47533e55da7c1a3b70cda38e36f6352555",
+      "scope_type": "event_cause_set",
+      "source_sha256": "b34ab929e41435f08ab727196fb39f47533e55da7c1a3b70cda38e36f6352555",
+      "scope_anchor": {
+        "quote": "the permissible rated power unit current was exceeded for an inadmissibly long time.\n- the permissible load duty cycle was not maintained",
+        "start": 181,
+        "end": 318
+      },
+      "gate_label": "unknown",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "CR-CAND-V11-284",
+          "text": "the permissible rated power unit current was exceeded for an inadmissibly long time",
+          "evidence": [
+            {
+              "quote": "the permissible rated power unit current was exceeded for an inadmissibly long time",
+              "start": 181,
+              "end": 264
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        },
+        {
+          "child_id": "CR-CAND-V12-241",
+          "text": "the permissible load duty cycle was not maintained",
+          "evidence": [
+            {
+              "quote": "the permissible load duty cycle was not maintained",
+              "start": 268,
+              "end": 318
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        }
+      ],
+      "gate_evidence": [],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_consolidated_event_review",
+      "review_reason": "手册列出持续超额定电流过久与未遵守允许负载周期两条原因，但没有明确说明它们之间是 AND、OR 或其他关系；不可仅凭分项列表或 I2t 名称推导门型。; 完整覆盖 Cause 段的过载状态摘要和两条可能原因；r0036=100% 是状态/测量值，r0949 的 I2t 100%=16384 是故障值标度说明，Remedy 和 See also 参数不属于原因。",
+      "source_artifact": "siemens_s210_causal_event_gate_review_consolidated_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:c51cb6c1b06d68aaeead19e2",
+      "fault_code": "F30011",
+      "sample_id": "SIEMENS_S210_2019_F30011",
+      "source_cluster_id": "source:fd13612347e1a7f94f2dc62637fbdd155f6273bc4ca729bf936a7dcf161ad30c",
+      "scope_type": "event_cause_set",
+      "source_sha256": "fd13612347e1a7f94f2dc62637fbdd155f6273bc4ca729bf936a7dcf161ad30c",
+      "scope_anchor": {
+        "quote": "a line phase has failed.\n- the 3 line phases are inadmissibly asymmetrical.\n- the capacitance of the DC link capacitor forms a resonance frequency with the line inductance and the reactor integrated\nin the power unit.\n- the fuse of a phase of a main circuit has ruptured.\n- a motor phase has failed.\n- for power units operated on a single phase, the permissible active power was exceeded.",
+        "start": 208,
+        "end": 596
+      },
+      "gate_label": "unknown",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "CR-CAND-V11-286",
+          "text": "a line phase has failed.",
+          "evidence": [
+            {
+              "quote": "a line phase has failed.",
+              "start": 208,
+              "end": 232
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        },
+        {
+          "child_id": "CR-CAND-V12-242",
+          "text": "the 3 line phases are inadmissibly asymmetrical.",
+          "evidence": [
+            {
+              "quote": "the 3 line phases are inadmissibly asymmetrical.",
+              "start": 235,
+              "end": 283
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        },
+        {
+          "child_id": "CR-CAND-V14-180",
+          "text": "the fuse of a phase of a main circuit has ruptured.",
+          "evidence": [
+            {
+              "quote": "the fuse of a phase of a main circuit has ruptured.",
+              "start": 428,
+              "end": 479
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        },
+        {
+          "child_id": "CR-CAND-V15-156",
+          "text": "a motor phase has failed.",
+          "evidence": [
+            {
+              "quote": "a motor phase has failed.",
+              "start": 482,
+              "end": 507
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        },
+        {
+          "child_id": "CR-CAND-V16-139",
+          "text": "for power units operated on a single phase, the permissible active power was exceeded.",
+          "evidence": [
+            {
+              "quote": "for power units operated on a single phase, the permissible active power was exceeded.",
+              "start": 510,
+              "end": 596
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        }
+      ],
+      "gate_evidence": [],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_consolidated_event_review",
+      "review_reason": "手册将六条原因列于 Possible causes 下，但没有说明它们之间的整体 AND/OR 关系。标题下的列表语义不足以单独确定门型。; 完整覆盖故障状态摘要及 Possible causes 标题下六条可能原因。r0949 仅写明供 Siemens 内部排查，没有给出可用实例值；Reaction、Remedy 与完整现场原因不纳入候选原因全集。",
+      "source_artifact": "siemens_s210_causal_event_gate_review_consolidated_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:b4c9e453dedcca373f98090d",
+      "fault_code": "F30017",
+      "sample_id": "SIEMENS_S210_2019_F30017",
+      "source_cluster_id": "source:8adab06c77fe1caef49242bfd94f282ccaf9cf54b3c9f6ce475b8905ca649da6",
+      "scope_type": "event_cause_set",
+      "source_sha256": "8adab06c77fe1caef49242bfd94f282ccaf9cf54b3c9f6ce475b8905ca649da6",
+      "scope_anchor": {
+        "quote": "For infeed units, the following applies:\n- closed-loop control is incorrectly parameterized.\n- load on the infeed is too high.\n- line reactor missing or the incorrect type.\n- power unit defective.\nThe following applies to Motor Modules:\n- closed-loop control is incorrectly parameterized.\n- fault in the motor or in the power cables.\n- the power cables exceed the maximum permissible length.\n- motor load too high\n- power unit defective.",
+        "start": 315,
+        "end": 752
+      },
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F30017-C01",
+          "text": "Infeed units: closed-loop control is incorrectly parameterized",
+          "evidence": [
+            {
+              "quote": "For infeed units, the following applies:\n- closed-loop control is incorrectly parameterized.",
+              "start": 315,
+              "end": 407
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F30017-C02",
+          "text": "Infeed units: load on the infeed is too high",
+          "evidence": [
+            {
+              "quote": "- load on the infeed is too high.",
+              "start": 408,
+              "end": 441
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F30017-C03",
+          "text": "Infeed units: line reactor is missing or the incorrect type is installed",
+          "evidence": [
+            {
+              "quote": "- line reactor missing or the incorrect type.",
+              "start": 442,
+              "end": 487
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F30017-C04",
+          "text": "Infeed units: power unit is defective",
+          "evidence": [
+            {
+              "quote": "- power unit defective.",
+              "start": 488,
+              "end": 511
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F30017-C05",
+          "text": "Motor Modules: closed-loop control is incorrectly parameterized",
+          "evidence": [
+            {
+              "quote": "The following applies to Motor Modules:\n- closed-loop control is incorrectly parameterized.",
+              "start": 512,
+              "end": 603
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F30017-C06",
+          "text": "Motor Modules: fault in the motor or in the power cables",
+          "evidence": [
+            {
+              "quote": "- fault in the motor or in the power cables.",
+              "start": 604,
+              "end": 648
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F30017-C07",
+          "text": "Motor Modules: power cables exceed the maximum permissible length",
+          "evidence": [
+            {
+              "quote": "- the power cables exceed the maximum permissible length.",
+              "start": 649,
+              "end": 706
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F30017-C08",
+          "text": "Motor Modules: motor load is too high",
+          "evidence": [
+            {
+              "quote": "- motor load too high",
+              "start": 707,
+              "end": 728
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F30017-C09",
+          "text": "Motor Modules: power unit is defective",
+          "evidence": [
+            {
+              "quote": "- power unit defective.",
+              "start": 729,
+              "end": 752
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        }
+      ],
+      "gate_evidence": [],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_event_scope_review_v8_reconciled",
+      "review_reason": "Cause段在两个设备适用分支下共列九项，现全部纳入并逐项保留适用对象；相同措辞的控制器参数化错误和功率单元故障按各自分支分别引用，未合并成无条件节点。位值/内部故障值仅作诊断定位，已逐项记录为排除项。该完整性仅针对手册列出的条件化原因清单，不表示任一现场配置适用，也不声称物理原因穷尽。分支列表没有直接说明事件级AND/OR关系，故为unknown。",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_event_scope_gate_primary_ai_role_review_v8_2026-09-27.json",
+      "source_review_case_id": "ESG-30E57F6F356E",
+      "reconciliation_operation": "replace_children",
+      "reviewed_source_exclusions": [
+        {
+          "quote": "Cause: The hardware current limitation in the relevant phase (see A30031, A30032, A30033) has responded too often. The number\nof times the limit has been exceeded depends on the design and type of power unit.",
+          "start": 106,
+          "end": 314,
+          "reason": "这是事件/阈值摘要，不作为独立原因子项；具体原因按后续设备适用分支列出。"
+        },
+        {
+          "quote": "Bit 3: phase U",
+          "start": 792,
+          "end": 806,
+          "reason": "故障值位用于定位电流受限相位，不是上游原因。"
+        },
+        {
+          "quote": "Bit 4: phase V",
+          "start": 807,
+          "end": 821,
+          "reason": "故障值位用于定位电流受限相位，不是上游原因。"
+        },
+        {
+          "quote": "Bit 5: phase W",
+          "start": 822,
+          "end": 836,
+          "reason": "故障值位用于定位电流受限相位，不是上游原因。"
+        },
+        {
+          "quote": "Additional bits:\nOnly for internal Siemens troubleshooting.",
+          "start": 837,
+          "end": 896,
+          "reason": "内部诊断说明，不是原因子项。"
+        },
+        {
+          "quote": "Fault value = 0 means that the phase with current limiting is not recognized (e.g. for blocksize device).",
+          "start": 903,
+          "end": 1008,
+          "reason": "这是相位无法识别的诊断映射，不是导致硬件电流限制频繁响应的上游原因。"
+        }
+      ],
+      "scope_explanatory_evidence": [],
+      "gate_label": "unknown",
+      "evidence_refinements": [
+        {
+          "child_ref": "C04",
+          "parent_span": {
+            "quote": "- line reactor missing or the incorrect type.\n- power unit defective.",
+            "start": 442,
+            "end": 511
+          },
+          "refined_span": {
+            "quote": "- power unit defective.",
+            "start": 488,
+            "end": 511
+          },
+          "reason": "将 v8 审核选定的两行上下文跨度细化到该子项所在行；细化片段仍严格包含于已审核父跨度内。",
+          "semantic_label_changed": false,
+          "gate_decision_changed": false
+        },
+        {
+          "child_ref": "C08",
+          "parent_span": {
+            "quote": "- motor load too high\n- power unit defective.",
+            "start": 707,
+            "end": 752
+          },
+          "refined_span": {
+            "quote": "- motor load too high",
+            "start": 707,
+            "end": 728
+          },
+          "reason": "将 v8 审核选定的相邻两行上下文跨度细分到 Motor Modules 的电机负载子项。",
+          "semantic_label_changed": false,
+          "gate_decision_changed": false
+        },
+        {
+          "child_ref": "C09",
+          "parent_span": {
+            "quote": "- motor load too high\n- power unit defective.",
+            "start": 707,
+            "end": 752
+          },
+          "refined_span": {
+            "quote": "- power unit defective.",
+            "start": 729,
+            "end": 752
+          },
+          "reason": "在 v8 审核选定的 Motor Modules 上下文跨度内，绑定第二行功率单元子项，避免与 C08 共用同一证据跨度。",
+          "semantic_label_changed": false,
+          "gate_decision_changed": false
+        }
+      ],
+      "supersedes_gate_node_id": "gate:609a524f08680940c24f1415"
+    },
+    {
+      "gate_node_id": "gate:3135f7e5538b5a7a1e627681",
+      "fault_code": "F30021",
+      "sample_id": "SIEMENS_S210_2019_F30021",
+      "source_cluster_id": "source:f3178a6c9c46aa2109a44eb118c6a8730ebfdd6d9a6f5660147529f01ce41d31",
+      "scope_type": "event_cause_set",
+      "source_sha256": "f3178a6c9c46aa2109a44eb118c6a8730ebfdd6d9a6f5660147529f01ce41d31",
+      "scope_anchor": {
+        "quote": "Possible causes:\n- ground fault in the power cables.\n- ground fault at the motor.\n- when the brake closes, this causes the hardware DC current monitoring to respond.\n- short-circuit at the braking resistor.",
+        "start": 166,
+        "end": 372
+      },
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F30021-C01",
+          "text": "ground fault in the power cables",
+          "evidence": [
+            {
+              "quote": "ground fault in the power cables.",
+              "start": 185,
+              "end": 218
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F30021-C02",
+          "text": "ground fault at the motor",
+          "evidence": [
+            {
+              "quote": "ground fault at the motor.",
+              "start": 221,
+              "end": 247
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F30021-C03",
+          "text": "brake closing causes the hardware DC current monitoring to respond",
+          "evidence": [
+            {
+              "quote": "when the brake closes, this causes the hardware DC current monitoring to respond.",
+              "start": 250,
+              "end": 331
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F30021-C04",
+          "text": "short-circuit at the braking resistor",
+          "evidence": [
+            {
+              "quote": "- short-circuit at the braking resistor.",
+              "start": 332,
+              "end": 372
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        }
+      ],
+      "gate_evidence": [],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_event_scope_review_v8_reconciled",
+      "review_reason": "作用域限定为Possible causes标题下的四个同层原因，完整纳入该列表；重复出现的制动电阻短路引文使用完整列表跨度定位，避免自动选择故障值子节中的重复句。原文没有说明这些原因的布尔门关系，因此不推断OR。故障值0的说明属于诊断细分，不并入此cause集合。 精确子项在全文出现两次；依据唯一 Possible causes 作用域，仅该作用域内的[332,372)支持本原因节点，故障值段[468,508)不属于该原因集合。此定位审核不推断AND/OR，门型仍为unknown。",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_event_scope_gate_primary_ai_role_review_v8_2026-09-27.json",
+      "source_review_case_id": "ESG-343D289A4A32",
+      "reconciliation_operation": "replace_children",
+      "reviewed_source_exclusions": [],
+      "scope_explanatory_evidence": [],
+      "supersedes_gate_node_id": "gate:9317eec11224bfbee1f2cd5c",
+      "v8_reviewed_gate_label": "unknown",
+      "evidence_alignment_status": "resolved_by_scoped_ai_review",
+      "evidence_alignment_reason": "The exact child line occurs twice globally. The uniquely occurring Possible causes scope anchor contains the occurrence at [332,372); the other occurrence at [468,508) is in the later r0949 fault-value section, outside the reviewed cause-set scope. Selection is based on scope membership, not first-match order or a gate inference.",
+      "gate_label": "unknown",
+      "evidence_alignment_reviewer_provenance": "user_authorized_ai_subagent_review_with_main_agent_offset_verification",
+      "evidence_alignment_review_artifact": "evaluation/quality_eval/runs/siemens_s210_F30021_C04_locator_ai_review_v1_2026-09-27.json"
+    },
+    {
+      "gate_node_id": "gate:f7e126ece48ec73859a77002",
+      "fault_code": "F30024",
+      "sample_id": "SIEMENS_S210_2019_F30024",
+      "source_cluster_id": "source:f778bb9fde4b2842f808f48e2c1ab471b1c47fe3578f1f06a960d78692cf7bb2",
+      "scope_type": "event_cause_set",
+      "source_sha256": "f778bb9fde4b2842f808f48e2c1ab471b1c47fe3578f1f06a960d78692cf7bb2",
+      "scope_anchor": {
+        "quote": "the permissible load duty cycle was not maintained.\n- insufficient cooling, fan failure.\n- overload.\n- ambient temperature too high.\n- pulse frequency too high",
+        "start": 198,
+        "end": 357
+      },
+      "gate_label": "unknown",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "CR-CAND-V12-258",
+          "text": "the permissible load duty cycle was not maintained",
+          "evidence": [
+            {
+              "quote": "the permissible load duty cycle was not maintained",
+              "start": 198,
+              "end": 248
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        },
+        {
+          "child_id": "CR-CAND-V14-189",
+          "text": "overload",
+          "evidence": [
+            {
+              "quote": "overload",
+              "start": 289,
+              "end": 297
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        },
+        {
+          "child_id": "CR-CAND-V15-162",
+          "text": "ambient temperature too high",
+          "evidence": [
+            {
+              "quote": "ambient temperature too high",
+              "start": 301,
+              "end": 329
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        },
+        {
+          "child_id": "CR-CAND-V16-142",
+          "text": "pulse frequency too high",
+          "evidence": [
+            {
+              "quote": "pulse frequency too high",
+              "start": 333,
+              "end": 357
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        }
+      ],
+      "gate_evidence": [],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_consolidated_event_review",
+      "review_reason": "Cause 摘要后列出五条原因，但没有明确指定它们的整体 AND/OR 结构。V13 内部的 fan failure 与 insufficient cooling 以逗号/并列短语出现，不足以授权拆出逻辑门。; 完整覆盖 Cause 状态摘要及其后的五条列举可能原因。r0037 仅由 See also 引用；所有检查、调节和减载动作均属于 Remedy。",
+      "source_artifact": "siemens_s210_causal_event_gate_review_consolidated_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:7182803a86dfd5384b103824",
+      "fault_code": "F30027",
+      "sample_id": "SIEMENS_S210_2019_F30027",
+      "source_cluster_id": "source:fc4d7593653aca73af9c1d8b57bd515b2ed8ff27d9295d1cd75b5232590a00c7",
+      "scope_type": "event_cause_set",
+      "source_sha256": "fc4d7593653aca73af9c1d8b57bd515b2ed8ff27d9295d1cd75b5232590a00c7",
+      "scope_anchor": {
+        "quote": "There is no line supply voltage connected.\n2) The line contactor/line side switch has not been closed.\n3) The line supply voltage is too low.\n4) Line supply voltage incorrectly set (p0210).\n5) The precharging resistors are overheated as there were too many precharging operations per time unit.\n6) The precharging resistors are overheated as the DC link capacitance is too high.\n7) The precharging resistors are overheated because when there is no \"ready for operation\" (r0863.0) of the infeed unit,\npower is taken from the DC link.\n8) The precharging resistors are overheated as the line contactor was closed during the DC link fast discharge through the\nBraking Module.",
+        "start": 237,
+        "end": 908
+      },
+      "gate_label": "unknown",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "CR-CAND-V2-055",
+          "text": "There is no line supply voltage connected.",
+          "evidence": [
+            {
+              "quote": "There is no line supply voltage connected.",
+              "start": 237,
+              "end": 279
+            }
+          ],
+          "text_origin": "reviewed_candidate_text"
+        },
+        {
+          "child_id": "CR-CAND-V2-056",
+          "text": "The line contactor/line side switch has not been closed.",
+          "evidence": [
+            {
+              "quote": "The line contactor/line side switch has not been closed.",
+              "start": 283,
+              "end": 339
+            }
+          ],
+          "text_origin": "reviewed_candidate_text"
+        },
+        {
+          "child_id": "CR-CAND-V2-057",
+          "text": "The line supply voltage is too low.",
+          "evidence": [
+            {
+              "quote": "The line supply voltage is too low.",
+              "start": 343,
+              "end": 378
+            }
+          ],
+          "text_origin": "reviewed_candidate_text"
+        },
+        {
+          "child_id": "CR-CAND-V2-058",
+          "text": "Line supply voltage incorrectly set.",
+          "evidence": [
+            {
+              "quote": "4) Line supply voltage incorrectly set (p0210).",
+              "start": 379,
+              "end": 426
+            }
+          ],
+          "text_origin": "reviewed_candidate_text"
+        },
+        {
+          "child_id": "CR-CAND-V2-059",
+          "text": "The precharging resistors are overheated as there were too many precharging operations per time unit.",
+          "evidence": [
+            {
+              "quote": "The precharging resistors are overheated as there were too many precharging operations per time unit.",
+              "start": 430,
+              "end": 531
+            }
+          ],
+          "text_origin": "reviewed_candidate_text"
+        },
+        {
+          "child_id": "CR-CAND-V2-060",
+          "text": "The precharging resistors are overheated as the DC link capacitance is too high.",
+          "evidence": [
+            {
+              "quote": "The precharging resistors are overheated as the DC link capacitance is too high.",
+              "start": 535,
+              "end": 615
+            }
+          ],
+          "text_origin": "reviewed_candidate_text"
+        },
+        {
+          "child_id": "CR-CAND-V2-061",
+          "text": "The precharging resistors are overheated because when there is no 'ready for operation' of the infeed unit, power is taken from the DC link.",
+          "evidence": [
+            {
+              "quote": "7) The precharging resistors are overheated because when there is no \"ready for operation\" (r0863.0) of the infeed unit,\npower is taken from the DC link.",
+              "start": 616,
+              "end": 769
+            }
+          ],
+          "text_origin": "reviewed_candidate_text"
+        },
+        {
+          "child_id": "CR-CAND-V2-062",
+          "text": "The precharging resistors are overheated as the line contactor was closed during the DC link fast discharge through the Braking Module.",
+          "evidence": [
+            {
+              "quote": "The precharging resistors are overheated as the line contactor was closed during the DC link fast discharge through the\nBraking Module.",
+              "start": 773,
+              "end": 908
+            }
+          ],
+          "text_origin": "reviewed_candidate_text"
+        }
+      ],
+      "gate_evidence": [],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_consolidated_event_review",
+      "review_reason": "原文用编号列出原因，但没有明确说明这些项是互斥替代、同时必要条件或某一门型；项目既有规则不把编号本身当作 AND/OR 证据。第 7 项为复合状态链，第 9 项在单一候选内含 OR；不拆造叶节点，门型 unknown，不建树。; 完整 Cause 段的目标摘要和 1–9 号原因均已逐项复核。该完整性只表示覆盖手册列出的 Cause 项，不表示现场根因已穷尽或本设备实例的原因已观测。",
+      "source_artifact": "siemens_s210_causal_event_gate_review_consolidated_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:93d1c5eb83f870478f0f7bc0",
+      "fault_code": "F30036",
+      "sample_id": "SIEMENS_S210_2019_F30036",
+      "source_cluster_id": "source:9038a3d05a494ee96493204652739ffb1a289a8fd2c879cadec0f2dacd5d440d",
+      "scope_type": "event_cause_set",
+      "source_sha256": "9038a3d05a494ee96493204652739ffb1a289a8fd2c879cadec0f2dacd5d440d",
+      "scope_anchor": {
+        "quote": "insufficient cooling, fan failure.\n- overload.\n- ambient temperature too high",
+        "start": 172,
+        "end": 249
+      },
+      "gate_label": "unknown",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "CR-CAND-V13-227",
+          "text": "insufficient cooling",
+          "evidence": [
+            {
+              "quote": "insufficient cooling",
+              "start": 172,
+              "end": 192
+            }
+          ],
+          "text_origin": "reviewed_candidate_text"
+        },
+        {
+          "child_id": "CR-CAND-V14-195",
+          "text": "fan failure",
+          "evidence": [
+            {
+              "quote": "fan failure",
+              "start": 194,
+              "end": 205
+            }
+          ],
+          "text_origin": "reviewed_candidate_text"
+        },
+        {
+          "child_id": "CR-CAND-V15-166",
+          "text": "overload",
+          "evidence": [
+            {
+              "quote": "overload",
+              "start": 209,
+              "end": 217
+            }
+          ],
+          "text_origin": "reviewed_candidate_text"
+        },
+        {
+          "child_id": "CR-CAND-V16-144",
+          "text": "ambient temperature too high",
+          "evidence": [
+            {
+              "quote": "ambient temperature too high",
+              "start": 221,
+              "end": 249
+            }
+          ],
+          "text_origin": "reviewed_candidate_text"
+        }
+      ],
+      "gate_evidence": [],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_consolidated_event_review",
+      "review_reason": "The Cause list names possibilities but does not state their complete Boolean relationship; r0949 bit locations are diagnostic mappings and do not establish an event-level gate.; All Cause entries and all six Fault value (r0949) mappings in this input_text are reviewed; this is source-section coverage only, not an exhaustive real-world root-cause claim.",
+      "source_artifact": "siemens_s210_causal_event_gate_review_consolidated_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:9543a690dfaa1870e72b8ebe",
+      "fault_code": "F30600",
+      "sample_id": "SIEMENS_S210_2019_F30600",
+      "source_cluster_id": "source:a7200732bd01cf7616f3049a38e6daa17cfa1f51a47a8c44e52435844a840d68",
+      "scope_type": "event_cause_set",
+      "source_sha256": "a7200732bd01cf7616f3049a38e6daa17cfa1f51a47a8c44e52435844a840d68",
+      "scope_anchor": {
+        "quote": "Cause: The \"Safety Integrated\" function integrated in the drive has identified a fault in monitoring channel 2, and has initiated STO.\n- forced checking procedure (test stop) of the safety switch-off signal path of monitoring channel 2 unsuccessful.\n- subsequent response to fault F30611 (defect in a monitoring channel).\nFault value (r0949, decimal interpretation):\n0: Stop request from another monitoring channel.\n1005: STO active, although no STO is selected and no stop response with STO is active.\n1010: STO inactive, although STO is selected or a stop response with STO is active.\n1011: internal error for STO deselected in monitoring channel 2.\n9999: Subsequent response to fault F30611.",
+        "start": 68,
+        "end": 762
+      },
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F30600-C01",
+          "text": "forced checking procedure (test stop) of the safety switch-off signal path of monitoring channel 2 was unsuccessful",
+          "evidence": [
+            {
+              "quote": "- forced checking procedure (test stop) of the safety switch-off signal path of monitoring channel 2 unsuccessful.",
+              "start": 203,
+              "end": 317
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F30600-C02",
+          "text": "stop request from another monitoring channel (fault value 0)",
+          "evidence": [
+            {
+              "quote": "0: Stop request from another monitoring channel.",
+              "start": 435,
+              "end": 483
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        }
+      ],
+      "gate_evidence": [],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_event_scope_review_v8_reconciled",
+      "review_reason": "对照完整Cause及Fault value文本后，将明确列出的两种触发情形作为本作用域子项：测试停止检查失败、另一监控通道发出停止请求。事件摘要、F30611后续响应及1005/1010/1011诊断状态均逐项登记为排除项，避免与上游触发混层。此处完整性仅指本段列出的原因候选已逐项处置，不声称物理原因穷尽；原文未陈述AND/OR，故为unknown。",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_event_scope_gate_primary_ai_role_review_v8_2026-09-27.json",
+      "source_review_case_id": "ESG-A06020BA674F",
+      "reconciliation_operation": "replace_children",
+      "reviewed_source_exclusions": [
+        {
+          "quote": "Cause: The \"Safety Integrated\" function integrated in the drive has identified a fault in monitoring channel 2, and has initiated STO.",
+          "start": 68,
+          "end": 202,
+          "reason": "这是事件状态/保护响应摘要，不作为独立的上游原因子项。"
+        },
+        {
+          "quote": "- subsequent response to fault F30611 (defect in a monitoring channel).",
+          "start": 318,
+          "end": 389,
+          "reason": "原文将其描述为后续响应，不证明F30611由F30600导致，也不作为F30600的上游原因。"
+        },
+        {
+          "quote": "1005: STO active, although no STO is selected and no stop response with STO is active.",
+          "start": 484,
+          "end": 570,
+          "reason": "这是故障状态/诊断映射，不是原文确认的上游原因。"
+        },
+        {
+          "quote": "1010: STO inactive, although STO is selected or a stop response with STO is active.",
+          "start": 571,
+          "end": 654,
+          "reason": "这是故障状态/诊断映射，不是原文确认的上游原因。"
+        },
+        {
+          "quote": "1011: internal error for STO deselected in monitoring channel 2.",
+          "start": 655,
+          "end": 719,
+          "reason": "这是内部故障值状态说明；原文未给出其上游因果方向。"
+        },
+        {
+          "quote": "9999: Subsequent response to fault F30611.",
+          "start": 720,
+          "end": 762,
+          "reason": "这是对另一故障的后续响应映射，不是本事件的上游原因。"
+        }
+      ],
+      "scope_explanatory_evidence": [],
+      "gate_label": "unknown",
+      "supersedes_gate_node_id": "gate:a93602214fff7efe1979cbb5"
+    },
+    {
+      "gate_node_id": "gate:4acea4e6ddccf5d8c5775fba",
+      "fault_code": "F30625",
+      "sample_id": "SIEMENS_S210_2019_F30625",
+      "source_cluster_id": "source:142c30a5eb552f4822408b5cf39004089f2cfa9907e4b322de6f2c913dbc7d2e",
+      "scope_type": "event_cause_set",
+      "source_sha256": "142c30a5eb552f4822408b5cf39004089f2cfa9907e4b322de6f2c913dbc7d2e",
+      "scope_anchor": {
+        "quote": "a time slice overflow of the safety software has occurred.\n- the enable of the safety functions in both monitoring channels is inconsistent",
+        "start": 345,
+        "end": 484
+      },
+      "gate_label": "unknown",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "CR-CAND-V14-223",
+          "text": "a time slice overflow of the safety software has occurred",
+          "evidence": [
+            {
+              "quote": "a time slice overflow of the safety software has occurred",
+              "start": 345,
+              "end": 402
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        },
+        {
+          "child_id": "CR-CAND-V15-188",
+          "text": "the enable of the safety functions in both monitoring channels is inconsistent",
+          "evidence": [
+            {
+              "quote": "the enable of the safety functions in both monitoring channels is inconsistent",
+              "start": 406,
+              "end": 484
+            }
+          ],
+          "text_origin": "exact_source_evidence_quote"
+        }
+      ],
+      "gate_evidence": [],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_consolidated_event_review",
+      "review_reason": "三项以 Cause 子项列出，但未使用明确的完整 Possible causes 列表声明，也未直述三项之间是 OR、AND 或其他组合关系；第一项内部 either/or 不能用来决定三项之间的门。按当前保守规则整体门为 unknown。; 覆盖 Cause 段明列的三个原因候选；第一条本身包含 DRIVE-CLiQ 通信错误或通信失败的措辞。来源没有本次实例观测，也没有明确整体事件门，因此仅确认候选关系，不生成树。",
+      "source_artifact": "siemens_s210_causal_event_gate_review_consolidated_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:9bcb9264b6ab8777978a2fed",
+      "fault_code": "F30630",
+      "sample_id": "SIEMENS_S210_2019_F30630",
+      "source_cluster_id": "source:5cbc2bce35ba25818e3ed1cc66d1d713f93cdb6ca8a192832a4c1752512d2691",
+      "scope_type": "event_cause_set",
+      "source_sha256": "5cbc2bce35ba25818e3ed1cc66d1d713f93cdb6ca8a192832a4c1752512d2691",
+      "scope_anchor": {
+        "quote": "OCC cable shield is not correctly connected.\n- defect in the brake control circuit of the drive.",
+        "start": 278,
+        "end": 374
+      },
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F30630-C01",
+          "text": "OCC cable shield is not correctly connected.",
+          "evidence": [
+            {
+              "quote": "OCC cable shield is not correctly connected.",
+              "start": 278,
+              "end": 322
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F30630-C02",
+          "text": "defect in the brake control circuit of the drive.",
+          "evidence": [
+            {
+              "quote": "defect in the brake control circuit of the drive.",
+              "start": 325,
+              "end": 374
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        }
+      ],
+      "gate_evidence": [],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_event_scope_review_v8_reconciled",
+      "review_reason": "限定于Cause段列出的两项同层原因；后续故障值按打开/闭合制动等诊断子模式展开，不与这两项顶层Cause混为同层原因。原文没有AND/OR直接门语义，故记unknown。",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_event_scope_gate_primary_ai_role_review_v8_2026-09-27.json",
+      "source_review_case_id": "ESG-B29023430EC5",
+      "reconciliation_operation": "review_existing_children",
+      "reviewed_source_exclusions": [],
+      "scope_explanatory_evidence": [],
+      "gate_label": "unknown",
+      "supersedes_gate_node_id": "gate:9bcb9264b6ab8777978a2fed"
+    },
+    {
+      "gate_node_id": "gate:0a5fb1de1aa2bf9d9edbba96",
+      "fault_code": "F30681",
+      "sample_id": "SIEMENS_S210_2019_F30681",
+      "source_cluster_id": "source:285fa3b0048f12f08a51d15ffdb56f492d26bb5684271bcf74373bd3a84953c7",
+      "scope_type": "event_cause_set",
+      "source_sha256": "285fa3b0048f12f08a51d15ffdb56f492d26bb5684271bcf74373bd3a84953c7",
+      "scope_anchor": {
+        "quote": "xxxx = 9301:\nEnabling function \"SSM\" (p9501.16) is not permissible in combination with the \"Extended functions without selection\"\nfunction (p9601.5).\nxxxx = 9347:\nThe hysteresis tolerance is not permissible.\nxxxx = 9801 and yyyy = 1:\nIf motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1)\nare activated, then PROFIsafe (p9601.3 = 1) is not possible.\nxxxx = 9801 and yyyy = 2:\nExtended functions without selection (p9601.5 =1) are enabled without enabling motion monitoring functions integrated in\nthe drive (p9601.2).\nxxxx = 9801 and yyyy = 3:\nOnboard F-DI are enabled without enabling motion monitoring functions integrated in the drive (p9601.2).\nxxxx = 9801 and yyyy = 5:\nTransfer of the SLS limit value via PROFIsafe (p9501.24) has been enabled, without enabling PROFIsafe.\nxxxx = 9801 and yyyy = 11:\nSS2E (p9501.18 = 1) is enabled without PROFIsafe being enabled.\nxxxx = 9801 and yyyy = 12:\nSCA (p9501.28 = 1) is enabled without enabling PROFIsafe.",
+        "start": 416,
+        "end": 1438
+      },
+      "gate_label": "unknown",
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "CR-CAND-V14-245",
+          "text": "Enabling function 'SSM' is not permissible in combination with the 'Extended functions without selection' function.",
+          "evidence": [
+            {
+              "quote": "xxxx = 9301:\nEnabling function \"SSM\" (p9501.16) is not permissible in combination with the \"Extended functions without selection\"\nfunction (p9601.5).",
+              "start": 416,
+              "end": 565
+            }
+          ],
+          "text_origin": "reviewed_candidate_text"
+        },
+        {
+          "child_id": "CR-CAND-V15-204",
+          "text": "The hysteresis tolerance is not permissible.",
+          "evidence": [
+            {
+              "quote": "xxxx = 9347:\nThe hysteresis tolerance is not permissible.",
+              "start": 566,
+              "end": 623
+            }
+          ],
+          "text_origin": "reviewed_candidate_text"
+        },
+        {
+          "child_id": "CR-CAND-V17-148",
+          "text": "Extended functions without selection are enabled without enabling motion monitoring functions integrated in the drive.",
+          "evidence": [
+            {
+              "quote": "xxxx = 9801 and yyyy = 2:\nExtended functions without selection (p9601.5 =1) are enabled without enabling motion monitoring functions integrated in\nthe drive (p9601.2).",
+              "start": 835,
+              "end": 1002
+            }
+          ],
+          "text_origin": "reviewed_candidate_text"
+        },
+        {
+          "child_id": "CR-CAND-V18-119",
+          "text": "Onboard F-DI are enabled without enabling motion monitoring functions integrated in the drive.",
+          "evidence": [
+            {
+              "quote": "xxxx = 9801 and yyyy = 3:\nOnboard F-DI are enabled without enabling motion monitoring functions integrated in the drive (p9601.2).",
+              "start": 1003,
+              "end": 1133
+            }
+          ],
+          "text_origin": "reviewed_candidate_text"
+        },
+        {
+          "child_id": "CR-CAND-V18-120",
+          "text": "Transfer of the SLS limit value via PROFIsafe has been enabled, without enabling PROFIsafe.",
+          "evidence": [
+            {
+              "quote": "xxxx = 9801 and yyyy = 5:\nTransfer of the SLS limit value via PROFIsafe (p9501.24) has been enabled, without enabling PROFIsafe.",
+              "start": 1134,
+              "end": 1262
+            }
+          ],
+          "text_origin": "reviewed_candidate_text"
+        },
+        {
+          "child_id": "CR-CAND-V19-090",
+          "text": "SS2E is enabled without PROFIsafe being enabled.",
+          "evidence": [
+            {
+              "quote": "xxxx = 9801 and yyyy = 11:\nSS2E (p9501.18 = 1) is enabled without PROFIsafe being enabled.",
+              "start": 1263,
+              "end": 1353
+            }
+          ],
+          "text_origin": "reviewed_candidate_text"
+        },
+        {
+          "child_id": "CR-CAND-V19-091",
+          "text": "SCA is enabled without enabling PROFIsafe.",
+          "evidence": [
+            {
+              "quote": "xxxx = 9801 and yyyy = 12:\nSCA (p9501.28 = 1) is enabled without enabling PROFIsafe.",
+              "start": 1354,
+              "end": 1438
+            }
+          ],
+          "text_origin": "reviewed_candidate_text"
+        }
+      ],
+      "gate_evidence": [],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_consolidated_event_review",
+      "review_reason": "The manual enumerates diagnostic parameter/configuration scenarios but gives no complete Boolean equation for F30681. Do not infer top-level OR from enumeration or lift the local yyyy=1 condition to the event gate.; All nine manifest candidates, including the generic Cause line and visible r0949 configuration mappings, were reviewed. The Remedy reference to xxxx=9317 remains unresolved; this inventory is not proof of exhaustive physical causes.",
+      "source_artifact": "siemens_s210_causal_event_gate_review_consolidated_v1_2026-09-26.json"
+    },
+    {
+      "gate_node_id": "gate:431a28c3c8289e33e9614a06",
+      "fault_code": "F01700",
+      "sample_id": "SIEMENS_S210_2019_F01700",
+      "source_cluster_id": "source:f65286e18cee917f836961f9b54d2e0277eff234b8c4fe476b809bc94d927260",
+      "scope_type": "event_cause_set",
+      "source_sha256": "f65286e18cee917f836961f9b54d2e0277eff234b8c4fe476b809bc94d927260",
+      "scope_anchor": {
+        "quote": "Possible causes:\n- stop request from another monitoring channel.\n- STO not active after parameterized time (p9557) after test stop selection.\n- subsequent response, following messages: A01706, A01714, F01701, A01716",
+        "start": 114,
+        "end": 329
+      },
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F01700-C01",
+          "text": "stop request from another monitoring channel",
+          "evidence": [
+            {
+              "quote": "stop request from another monitoring channel.",
+              "start": 133,
+              "end": 178
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F01700-C02",
+          "text": "STO not active after the parameterized time following test-stop selection",
+          "evidence": [
+            {
+              "quote": "STO not active after parameterized time (p9557) after test stop selection.",
+              "start": 181,
+              "end": 255
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        },
+        {
+          "child_id": "F01700-C03",
+          "text": "subsequent response associated with messages A01706, A01714, F01701, and A01716",
+          "evidence": [
+            {
+              "quote": "subsequent response, following messages: A01706, A01714, F01701, A01716",
+              "start": 258,
+              "end": 329
+            }
+          ],
+          "text_origin": "v8_reviewed_candidate_text"
+        }
+      ],
+      "gate_evidence": [],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_event_scope_review_v8_reconciled",
+      "review_reason": "Possible causes标题明确界定完整范围，三项均保留，包括手册归入该列表的后续响应/相关消息项；不将消息编号另拆成原因。列表语义不足以证明AND或OR门，故记unknown。",
+      "source_artifact": "evaluation/quality_eval/runs/siemens_s210_event_scope_gate_primary_ai_role_review_v8_2026-09-27.json",
+      "source_review_case_id": "ESG-3999F873BD12",
+      "reconciliation_operation": "replace_children",
+      "reviewed_source_exclusions": [],
+      "scope_explanatory_evidence": [],
+      "gate_label": "unknown"
+    }
+  ],
+  "reconciled_from_v8_case_ids": [
+    "ESG-0B7DDEDB739A",
+    "ESG-BFDD2CFA274A",
+    "ESG-9000F13C0503",
+    "ESG-C8B3DE67590D",
+    "ESG-343D289A4A32",
+    "ESG-B29023430EC5",
+    "ESG-3999F873BD12",
+    "ESG-4FBAD5BD43C4",
+    "ESG-7DFEC417046C",
+    "ESG-5501BDD43EC5",
+    "ESG-ACB38B98BFC1",
+    "ESG-A06020BA674F",
+    "ESG-EC987BCC7B1D",
+    "ESG-30E57F6F356E"
+  ],
+  "non_gate_scope_review_artifact": "siemens_s210_non_gate_scope_review_dataset_v1_v8_reconciled.json",
+  "source_artifact_sha256": {
+    "v4_dataset": "8e59f8b84b2976c8a33cd5c71192d0a3f7772d3ae5d0e5e7e7d140588fd090c3",
+    "independent_review": "1a5d65b471f46ae17cd798fe4c73e4327a4e2135c37723925c9c7eb55652deff",
+    "public_fault_corpus": "b42535d37ae27b63ba0048c88e947916e846da53e1bf18b3e5825c1853c1f483",
+    "v4_source_cluster_splits": "52aeeab4859eae66ca2089658ce1e5151b7e2d2a06b6855e3747b29db73e0421",
+    "v1_source_cluster_splits": "e0926bcfd169dbf74307fc6fb883de7ff29845a5c7f9c3b85a7b1b8459f1975a",
+    "non_gate_scope_companion": "5cdebc7685d8af3050149c42d76dee7764fe2da973b2a0601fe8c45334abd464",
+    "v5_dataset": "a063b139a78bc617ccf7dc841389e1082492a08639c7ff96fd70ea692a59f85f",
+    "locator_review": "78668ecbdf47895e6b39cf02af4a3e065d0dd5d1d2d2a273412b95602a7197b9",
+    "v5_source_cluster_splits": "e5aa9488c428b5f10b8909552650c44afb755d33c874bc9bee38a8317e28ab00"
+  },
+  "independent_review": true,
+  "tree_generation_authorized": false,
+  "split_assignment_resolution": {
+    "source:4e5f121a75ed53f4eb913207950926bbb543c3337b76ea0c64a47bfa2f82d608": {
+      "split": "calibration",
+      "reason": "restored the pre-existing source-cluster assignment for a v4 pending node; v1 labels are not reused"
+    },
+    "source:ae9bc0040a0a3e757bcf1da8214c8380bb6bd2c0e563f7a39c97c979b11a28d2": {
+      "split": "calibration",
+      "reason": "restored the pre-existing source-cluster assignment for a v4 pending node; v1 labels are not reused"
+    },
+    "source:a8491c51b773cce5b386edfde5ee0350dc3abba2c63e11f7445764e3c85ab259": {
+      "split": "validation",
+      "reason": "restored the pre-existing source-cluster assignment for a v4 pending node; v1 labels are not reused"
+    },
+    "source:c6b7fe72ce6a1c4c28dda8aab4505d06a4a5db57002d1ecfbbaa5aafb9ae2b61": {
+      "split": "calibration",
+      "reason": "newly reviewed after v4; added to development calibration only, never to validation"
+    }
+  },
+  "independent_review_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_independent_ai_review_v1_2026-09-26.json",
+  "locator_review_artifact": "evaluation/quality_eval/runs/siemens_s210_F30021_C04_locator_ai_review_v1_2026-09-27.json",
+  "source_cluster_splits_artifact": "evaluation/quality_eval/datasets/siemens_s210_gate_node_source_cluster_splits_v6.json"
+}

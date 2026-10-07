@@ -1,0 +1,266 @@
+{
+  "artifact_type": "s210_gate_node_ai_review_candidate_bundle",
+  "artifact_version": "v1",
+  "created_at": "2026-09-26",
+  "source_dataset": "siemens_s210_public_fault_corpus_v1",
+  "source_sha256": "b42535d37ae27b63ba0048c88e947916e846da53e1bf18b3e5825c1853c1f483",
+  "reviewer_provenance": "user_authorized_ai_expert_role",
+  "review_scope": "candidate_logic_scope_review_not_formal_gold",
+  "formal_gold": false,
+  "database_written": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "offset_convention": "0-based, end-exclusive Unicode character offsets into input_text",
+  "source_alignment_verification": {
+    "candidate_count": 12,
+    "span_count": 36,
+    "exact_slice_count": 36,
+    "failed_slice_count": 0,
+    "verification_method": "Main-agent independently re-sliced each gate quote and both child quotes against the matched corpus input_text. The F30078 source contains U+2013 EN DASH (not the corrupted characters shown by the initial reviewer output); its actual phrase is 'used – and if'."
+  },
+  "summary": {
+    "proposed_gate_counts": {"AND": 12},
+    "scope_type_counts": {
+      "configuration_condition_group": 5,
+      "signal_condition_group": 1,
+      "trigger_condition_group": 2,
+      "enable_attempt_group": 1,
+      "inconsistent_configuration_group": 1,
+      "operating_condition_group": 1,
+      "fault_value_configuration_group": 1
+    },
+    "distinct_fault_code_count": 9,
+    "event_top_level_and_candidates": 0,
+    "pending_or_candidates": true,
+    "independent_calibration_validation_split": false,
+    "eligible_for_threshold_calibration": false
+  },
+  "review_candidates": [
+    {
+      "candidate_id": "S210-GATE-AND-A01631-CONFIG-01",
+      "fault_code": "A01631",
+      "sample_id": "SIEMENS_S210_2019_A01631",
+      "scope_type": "configuration_condition_group",
+      "scope_label": "specific configuration cited as able to result in this message",
+      "proposed_gate": "AND",
+      "review_status": "ai_role_reviewed_candidate",
+      "gate_evidence": {"quote": "The following configurations can result in this message:\n- \"No motor holding brake available\" (p1215 = 0) and \"SBC\" enabled (p9602 = 1).", "start": 189, "end": 325},
+      "children": [
+        {"node_id": "A01631-condition-brake-absent", "text": "No motor holding brake available (p1215 = 0)", "evidence": {"quote": "\"No motor holding brake available\" (p1215 = 0)", "start": 248, "end": 294}},
+        {"node_id": "A01631-condition-sbc-enabled", "text": "SBC enabled (p9602 = 1)", "evidence": {"quote": "\"SBC\" enabled (p9602 = 1)", "start": 299, "end": 324}}
+      ],
+      "review_reason": "The manual states this configuration can result in the message and joins both settings inside one configuration item. This is local configuration-group AND only; no direct event-level AND is inferred."
+    },
+    {
+      "candidate_id": "S210-GATE-AND-F07410-LOCAL-01",
+      "fault_code": "F07410",
+      "sample_id": "SIEMENS_S210_2019_F07410",
+      "scope_type": "signal_condition_group",
+      "proposed_gate": "AND",
+      "review_status": "ai_role_reviewed_candidate",
+      "gate_evidence": {"quote": "The condition \"I_act = 0 and Uq_set_1 longer than 16 ms at its limit\" is present and can be caused by the following:", "start": 95, "end": 211},
+      "children": [
+        {"node_id": "F07410-signal-i-act-zero", "text": "I_act = 0", "evidence": {"quote": "I_act = 0", "start": 110, "end": 119}},
+        {"node_id": "F07410-signal-uq-limit", "text": "Uq_set_1 longer than 16 ms at its limit", "evidence": {"quote": "Uq_set_1 longer than 16 ms at its limit", "start": 124, "end": 163}}
+      ],
+      "review_reason": "The source explicitly defines one present composite signal condition using 'and'."
+    },
+    {
+      "candidate_id": "S210-GATE-AND-F07900-TRIGGER-01",
+      "fault_code": "F07900",
+      "sample_id": "SIEMENS_S210_2019_F07900",
+      "scope_type": "trigger_condition_group",
+      "scope_label": "first separately described trigger condition",
+      "proposed_gate": "AND",
+      "review_status": "ai_role_reviewed_candidate",
+      "gate_evidence": {"quote": "The motor operates longer than 0.2 seconds at the torque limit and below the speed threshold in p2175.", "start": 105, "end": 207},
+      "children": [
+        {"node_id": "F07900-trigger-torque-time", "text": "motor operates longer than 0.2 seconds at torque limit", "evidence": {"quote": "The motor operates longer than 0.2 seconds at the torque limit", "start": 105, "end": 167}},
+        {"node_id": "F07900-trigger-speed-threshold", "text": "motor is below p2175 speed threshold", "evidence": {"quote": "below the speed threshold in p2175", "start": 172, "end": 206}}
+      ],
+      "review_reason": "The Cause describes both states in one trigger condition. Keep it separate from the following 'also' trigger group."
+    },
+    {
+      "candidate_id": "S210-GATE-AND-F07900-TRIGGER-02",
+      "fault_code": "F07900",
+      "sample_id": "SIEMENS_S210_2019_F07900",
+      "scope_type": "trigger_condition_group",
+      "scope_label": "additional independently worded trigger condition",
+      "proposed_gate": "AND",
+      "review_status": "ai_role_reviewed_candidate",
+      "gate_evidence": {"quote": "This signal can also be initiated if the speed actual value is oscillating and the speed controller output repeatedly goes to\nits limit.", "start": 208, "end": 344},
+      "children": [
+        {"node_id": "F07900-trigger-speed-oscillating", "text": "speed actual value is oscillating", "evidence": {"quote": "the speed actual value is oscillating", "start": 245, "end": 282}},
+        {"node_id": "F07900-trigger-controller-output-limit", "text": "speed controller output repeatedly goes to its limit", "evidence": {"quote": "the speed controller output repeatedly goes to\nits limit", "start": 287, "end": 343}}
+      ],
+      "review_reason": "The 'if' clause explicitly joins both states; 'also' starts another condition group and is not folded into this AND."
+    },
+    {
+      "candidate_id": "S210-GATE-AND-F01675-VALUE-1",
+      "fault_code": "F01675",
+      "sample_id": "SIEMENS_S210_2019_F01675",
+      "scope_type": "fault_value_configuration_group",
+      "scope_label": "fault value 1",
+      "proposed_gate": "AND",
+      "review_status": "ai_role_reviewed_candidate",
+      "gate_evidence": {"quote": "1:\n\"Synchronous safe position via PROFIsafe\" is enabled (p9501.29 = 1) and is not set according to the rule Tdp = 2 x n x\np9500 (n = 1, 2, 3, ...).", "start": 530, "end": 677},
+      "children": [
+        {"node_id": "F01675-value1-function-enabled", "text": "synchronous safe position via PROFIsafe is enabled", "evidence": {"quote": "\"Synchronous safe position via PROFIsafe\" is enabled (p9501.29 = 1)", "start": 533, "end": 600}},
+        {"node_id": "F01675-value1-cycle-rule-invalid", "text": "synchronization cycle is not set according to the rule", "evidence": {"quote": "is not set according to the rule Tdp = 2 x n x\np9500 (n = 1, 2, 3, ...)", "start": 605, "end": 676}}
+      ],
+      "review_reason": "Fault value 1 explicitly describes the two settings together as one error case."
+    },
+    {
+      "candidate_id": "S210-GATE-AND-F01675-VALUE-2",
+      "fault_code": "F01675",
+      "sample_id": "SIEMENS_S210_2019_F01675",
+      "scope_type": "fault_value_configuration_group",
+      "scope_label": "fault value 2",
+      "proposed_gate": "AND",
+      "review_status": "ai_role_reviewed_candidate",
+      "gate_evidence": {"quote": "2:\n\"Synchronous safe position via PROFIsafe\" is enabled (p9501.29 = 1) and isochronous operation is not set.", "start": 678, "end": 786},
+      "children": [
+        {"node_id": "F01675-value2-function-enabled", "text": "synchronous safe position via PROFIsafe is enabled", "evidence": {"quote": "\"Synchronous safe position via PROFIsafe\" is enabled (p9501.29 = 1)", "start": 681, "end": 748}},
+        {"node_id": "F01675-value2-isochronous-not-set", "text": "isochronous operation is not set", "evidence": {"quote": "isochronous operation is not set", "start": 753, "end": 785}}
+      ],
+      "review_reason": "Fault value 2 defines a separate two-condition configuration case."
+    },
+    {
+      "candidate_id": "S210-GATE-AND-F01681-VALUE-9501-10",
+      "fault_code": "F01681",
+      "sample_id": "SIEMENS_S210_2019_F01681",
+      "scope_type": "configuration_condition_group",
+      "scope_label": "fault value 9501 / supplemental value 10",
+      "proposed_gate": "AND",
+      "review_status": "ai_role_reviewed_candidate",
+      "gate_evidence": {"quote": "Referencing via SCC (p9501.27 = 1) and epos (r0108.4 = 1) are simultaneously enabled.", "start": 540, "end": 625},
+      "children": [
+        {"node_id": "F01681-scc-referencing-enabled", "text": "referencing via SCC enabled", "evidence": {"quote": "Referencing via SCC (p9501.27 = 1)", "start": 540, "end": 574}},
+        {"node_id": "F01681-epos-enabled", "text": "epos enabled", "evidence": {"quote": "epos (r0108.4 = 1)", "start": 579, "end": 597}}
+      ],
+      "review_reason": "The source explicitly says the two functions are simultaneously enabled in this fault-value case."
+    },
+    {
+      "candidate_id": "S210-GATE-AND-F01681-VALUE-9601-1",
+      "fault_code": "F01681",
+      "sample_id": "SIEMENS_S210_2019_F01681",
+      "scope_type": "configuration_condition_group",
+      "scope_label": "fault value 9601 / supplemental value 1 antecedent",
+      "proposed_gate": "AND",
+      "review_status": "ai_role_reviewed_candidate",
+      "gate_evidence": {"quote": "If motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1)\nare enabled, then PROFIsafe (p9601.3 = 1) or onboard F-DI (p9601.4 = 1) is not possible.", "start": 838, "end": 1050},
+      "children": [
+        {"node_id": "F01681-integrated-motion-monitoring-enabled", "text": "integrated motion-monitoring functions are enabled", "evidence": {"quote": "motion monitoring functions integrated in the drive (p9601.2 = 1)", "start": 841, "end": 906}},
+        {"node_id": "F01681-extended-functions-enabled", "text": "extended functions without selection are enabled", "evidence": {"quote": "extended functions without selection (p9601.5 = 1)", "start": 911, "end": 961}}
+      ],
+      "review_reason": "The 'if' antecedent explicitly requires both enabling conditions. The consequent alternatives remain a separate OR scope."
+    },
+    {
+      "candidate_id": "S210-GATE-AND-F01659-VALUE-20",
+      "fault_code": "F01659",
+      "sample_id": "SIEMENS_S210_2019_F01659",
+      "scope_type": "enable_attempt_group",
+      "scope_label": "fault value 20",
+      "proposed_gate": "AND",
+      "review_status": "ai_role_reviewed_candidate",
+      "gate_evidence": {"quote": "20: An attempt was made to enable the motion monitoring functions integrated in the drive and the STO function, both\ncontrolled via F-DI.", "start": 506, "end": 643},
+      "children": [
+        {"node_id": "F01659-enable-motion-monitoring", "text": "attempt to enable integrated motion-monitoring functions", "evidence": {"quote": "motion monitoring functions integrated in the drive", "start": 544, "end": 595}},
+        {"node_id": "F01659-enable-sto", "text": "attempt to enable STO function", "evidence": {"quote": "the STO function", "start": 600, "end": 616}}
+      ],
+      "review_reason": "One enable attempt explicitly includes both functions; this candidate concerns the compound attempt, not an event-level FTA root."
+    },
+    {
+      "candidate_id": "S210-GATE-AND-A01785-VALUE-16",
+      "fault_code": "A01785",
+      "sample_id": "SIEMENS_S210_2019_A01785",
+      "scope_type": "configuration_condition_group",
+      "scope_label": "alarm value 16",
+      "proposed_gate": "AND",
+      "review_status": "ai_role_reviewed_candidate",
+      "gate_evidence": {"quote": "16:\nThe safe brake test and safety without encoder are simultaneously enabled (p9506). This is not permissible.", "start": 511, "end": 622},
+      "children": [
+        {"node_id": "A01785-safe-brake-test-enabled", "text": "safe brake test enabled", "evidence": {"quote": "The safe brake test", "start": 515, "end": 534}},
+        {"node_id": "A01785-safety-without-encoder-enabled", "text": "safety without encoder enabled", "evidence": {"quote": "safety without encoder", "start": 539, "end": 561}}
+      ],
+      "review_reason": "The manual explicitly states both functions are simultaneously enabled and that the combination is impermissible."
+    },
+    {
+      "candidate_id": "S210-GATE-AND-F01043-VALUE-20",
+      "fault_code": "F01043",
+      "sample_id": "SIEMENS_S210_2019_F01043",
+      "scope_type": "inconsistent_configuration_group",
+      "scope_label": "fault value 20 example",
+      "proposed_gate": "AND",
+      "review_status": "ai_role_reviewed_candidate",
+      "gate_evidence": {"quote": "20: The configuration is inconsistent (e.g. CAN for Control Unit, however no CAN configured for drive objects A_INF,\nSERVO or VECTOR).", "start": 1504, "end": 1638},
+      "children": [
+        {"node_id": "F01043-can-control-unit-configured", "text": "CAN configured for Control Unit", "evidence": {"quote": "CAN for Control Unit", "start": 1548, "end": 1568}},
+        {"node_id": "F01043-can-drive-objects-not-configured", "text": "CAN not configured for drive objects", "evidence": {"quote": "no CAN configured for drive objects A_INF,\nSERVO or VECTOR", "start": 1578, "end": 1636}}
+      ],
+      "review_reason": "The example describes one inconsistent configuration with a configured Control Unit side and a missing drive-object side; this is a local mismatch group and should be reviewed before FTA use."
+    },
+    {
+      "candidate_id": "S210-GATE-AND-F30078-LOCAL-OVERHEAT-01",
+      "fault_code": "F30078",
+      "sample_id": "SIEMENS_S210_2019_F30078",
+      "scope_type": "operating_condition_group",
+      "scope_label": "line-reactor overtemperature condition",
+      "proposed_gate": "AND",
+      "review_status": "ai_role_reviewed_candidate",
+      "gate_evidence": {"quote": "- an overtemperature condition of the line reactor can occur when a DC link coupling is used – and if the power when\nmotoring, which is fed into the DC link - is not evenly distributed across the rectifiers of the power units.", "start": 420, "end": 646},
+      "children": [
+        {"node_id": "F30078-dc-link-coupling-used", "text": "DC link coupling is used", "evidence": {"quote": "a DC link coupling is used", "start": 486, "end": 512}},
+        {"node_id": "F30078-motoring-power-not-evenly-distributed", "text": "motoring power fed into DC link is not evenly distributed across power-unit rectifiers", "evidence": {"quote": "the power when\nmotoring, which is fed into the DC link - is not evenly distributed across the rectifiers of the power units", "start": 522, "end": 645}}
+      ],
+      "review_reason": "Main-agent source check found the original character is U+2013 EN DASH followed by 'and if'; both conditions jointly define when the line-reactor overtemperature condition can occur. The initial AI review's rendered '�C' was transcription corruption, not corpus content."
+    }
+  ],
+  "ambiguous_observations": [
+    {
+      "fault_code": "F01651",
+      "sample_id": "SIEMENS_S210_2019_F01651",
+      "scope_type": "synchronization_scope",
+      "reason": "The text says synchronization failed but does not say whether both required synchronization relationships failed or either one alone is sufficient.",
+      "quote": "The \"Safety Integrated\" function requires a synchronization of the safety time slices between the two monitoring channels\nand between the drive and the higher-level control. This synchronization routine was unsuccessful.",
+      "start": 109,
+      "end": 329
+    },
+    {
+      "fault_code": "F01682",
+      "sample_id": "SIEMENS_S210_2019_F01682",
+      "scope_type": "fault_value_compatibility_requirement",
+      "reason": "The sentence states a supported combination/requirement, but it does not directly identify which child conditions jointly occurred for this fault instance.",
+      "quote": "20: Motion monitoring functions integrated in the drive are only supported in conjunction with PROFIsafe (p9501 and\np9601.1 ... 2).",
+      "start": 311,
+      "end": 442
+    },
+    {
+      "fault_code": "A01940",
+      "sample_id": "SIEMENS_S210_2019_A01940",
+      "scope_type": "operating_context",
+      "reason": "The states appear in the Cause passage but may be contextual conditions rather than jointly sufficient event causes.",
+      "quote": "The bus is in the data exchange state and clock synchronous operation has been selected using the parameterizing\ntelegram. It was not possible to synchronize to the clock cycle specified by the master.",
+      "start": 87,
+      "end": 288
+    }
+  ],
+  "rejected_observations": [
+    {
+      "fault_code": "F01600",
+      "sample_id": "SIEMENS_S210_2019_F01600",
+      "reason": "The text describes a sequence (identify fault, then initiate STO), which is not two simultaneous inputs to an AND gate.",
+      "quote": "The \"Safety Integrated\" function integrated in the drive has identified a fault in monitoring channel 1, and has initiated STO.",
+      "start": 75,
+      "end": 202
+    },
+    {
+      "fault_code": "F01663",
+      "sample_id": "SIEMENS_S210_2019_F01663",
+      "reason": "The text only lists parameter values; parameter enumeration alone does not establish an AND gate.",
+      "quote": "However, no safety-relevant function has been selected in monitoring channel 1 (p9501 = 0, p9601\n= 0).",
+      "start": 331,
+      "end": 433
+    }
+  ]
+}

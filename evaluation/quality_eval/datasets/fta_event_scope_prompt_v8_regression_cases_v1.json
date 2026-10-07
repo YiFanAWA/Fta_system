@@ -1,0 +1,82 @@
+{
+  "artifact_type": "fta_event_scope_prompt_regression_cases",
+  "schema_version": "v1",
+  "prompt_version": "event-scope-text-only-tree-v8-semantic-gate-evidence",
+  "dataset_status": "offline_semantic_policy_regressions_not_gold",
+  "human_expert_gold": false,
+  "accuracy_claim_allowed": false,
+  "cases": [
+    {
+      "case_id": "SEMANTIC-OR-NO-OPERATOR",
+      "case_kind": "authored_policy_example",
+      "source_quote": "Pathway A can independently lead to top event T. A separate mechanism, pathway B, can also lead to T.",
+      "output_node_id": "T",
+      "child_node_ids": ["A", "B"],
+      "expected_candidate_gate": "OR",
+      "required_logic_evidence": "A continuous quote must support that each path independently reaches the same T; no literal OR token is required.",
+      "final_gate_approved": false
+    },
+    {
+      "case_id": "SEMANTIC-AND-NO-OPERATOR",
+      "case_kind": "authored_policy_example",
+      "source_quote": "Top event T occurs only under the simultaneous presence of condition A together with condition B.",
+      "output_node_id": "T",
+      "child_node_ids": ["A", "B"],
+      "expected_candidate_gate": "AND",
+      "required_logic_evidence": "The quote must semantically state that both conditions jointly apply to T; no literal AND token is required.",
+      "final_gate_approved": false
+    },
+    {
+      "case_id": "LEXICAL-OR-OUTSIDE-SCOPE",
+      "case_kind": "authored_policy_example",
+      "source_quote": "A or B may occur. Separately, condition C can lead to top event T.",
+      "output_node_id": "T",
+      "child_node_ids": ["A", "B"],
+      "expected_candidate_gate": "unknown",
+      "required_logic_evidence": "The word or does not connect these children to T.",
+      "final_gate_approved": false
+    },
+    {
+      "case_id": "CAUSE-LIST-DOES-NOT-PROVE-OR",
+      "case_kind": "authored_policy_example",
+      "source_quote": "Possible contributing factors include A and B. The report does not state whether either factor can cause T independently or whether they must act together.",
+      "output_node_id": "T",
+      "child_node_ids": ["A", "B"],
+      "expected_candidate_gate": "unknown",
+      "required_logic_evidence": "A list of possible factors without sufficiency or joint-condition semantics does not determine a gate.",
+      "final_gate_approved": false
+    },
+    {
+      "case_id": "COOCCURRENCE-DOES-NOT-PROVE-AND",
+      "case_kind": "authored_policy_example",
+      "source_quote": "Conditions A and B were observed during the same incident before T; the source does not state that both are required.",
+      "output_node_id": "T",
+      "child_node_ids": ["A", "B"],
+      "expected_candidate_gate": "unknown",
+      "required_logic_evidence": "Co-occurrence and temporal order do not establish a joint necessary condition.",
+      "final_gate_approved": false
+    },
+    {
+      "case_id": "FIG7-S1-EXPLICIT-OR-BINDING",
+      "case_kind": "observed_seen_development_gap",
+      "source_packet_path": "evaluation/quality_eval/datasets/fta_event_scope_nasa_battery_fig7_module_failure_dev_v1.json",
+      "source_segment_id": "source-pdf-p3-p4-section-5",
+      "output_node_id": "E1",
+      "child_node_ids": ["E6", "E7"],
+      "source_quote": "Figures 7 and 8 show that a single cell exploding and the failure of the module vents or a single cell exploding and the module operating nominally but with a sympathetic secondary explosion occurring can lead to the Top Event.",
+      "expected_candidate_gate": "OR",
+      "required_logic_evidence": "Quote must bind both complete branch descriptions to the same Top Event.",
+      "final_gate_approved": false,
+      "auto_repair_allowed": false
+    }
+  ],
+  "guardrails": {
+    "cases_are_model_predictions": false,
+    "gold_written": false,
+    "database_written": false,
+    "production_behavior_changed": false,
+    "model_request_performed": false,
+    "fta_ready": false,
+    "production_ready": false
+  }
+}

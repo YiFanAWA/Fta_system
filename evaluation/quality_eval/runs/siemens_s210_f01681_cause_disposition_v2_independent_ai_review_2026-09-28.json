@@ -1,0 +1,64 @@
+{
+  "artifact_type": "candidate_fta_independent_ai_role_semantic_review",
+  "artifact_version": "v1",
+  "reviewed_at": "2026-09-28",
+  "reviewer_provenance": "user_authorized_ai_expert_role",
+  "human_reviewed": false,
+  "formal_gold": false,
+  "database_written": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "review_scope": {
+    "sample_id": "SIEMENS_S210_2019_F01681",
+    "source_run": "evaluation/quality_eval/runs/siemens_s210_f01681_raw_candidate_fta_cause_disposition_v2_2026-09-28.json",
+    "provenance_audit": "evaluation/quality_eval/runs/siemens_s210_f01681_raw_candidate_fta_cause_disposition_v2_provenance_audit_2026-09-28.json",
+    "source_pdf": "S210_Manual_2019.pdf",
+    "pdf_pages": [455, 457],
+    "source_offset": [75195, 79293]
+  },
+  "overall_decision": "do_not_accept_current_cause_to_top_event_edges_as_established_causality",
+  "findings": [
+    {
+      "finding_id": "fault_value_mapping_is_not_direct_causality",
+      "severity": "blocking_semantic_risk",
+      "detail": "The 15 r0949 fault-value explanations are mixed: most describe configuration conflicts or conditions and may remain general possible-cause candidates, but the source does not individually state that each mode causes F01681. Their mapping to this fault record is diagnostic association, not proof of directed causal edges or actual occurrence on an instance.",
+      "affected_scope": "source cause indices 1-15; index 0 is the generic Cause summary"
+    },
+    {
+      "finding_id": "extraction_cause_index_1_missing_evidence_span",
+      "severity": "blocking_evidence_gap",
+      "detail": "The extraction evidence contains zero spans for source cause index 1. Later disposition/tree quotes can be exact, but do not retroactively fill the extraction-layer evidence coverage gap.",
+      "affected_scope": "source cause index 1"
+    },
+    {
+      "finding_id": "candidate_edges_conflict_with_mapping_policy",
+      "severity": "blocking_policy_conflict",
+      "detail": "The current preview attaches fault-value mapping candidates as children of the top event despite the policy that unobserved lookup mappings must not be connected as causal FTA children. Gate evidence and relations do not independently establish those causal links.",
+      "affected_scope": "top-level candidate cause set"
+    },
+    {
+      "finding_id": "top_level_scope_completeness_unresolved",
+      "severity": "blocking_completeness_check",
+      "detail": "The Remedy section references xxxx=9507, which has no corresponding cause candidate. This may be a separate remedy/configuration branch rather than a causal child, but its relation to the declared cause scope has not been reconciled; do not assert scope completeness until resolved.",
+      "affected_scope": "top-level cause-set completeness"
+    }
+  ],
+  "verified_facts": {
+    "source_pdf_sha256_matches_corpus_and_provenance_audit": true,
+    "raw_run_source_pdf_sha256_present": false,
+    "input_text_sha256_matches_raw_run_and_corpus": true,
+    "source_text_and_offsets_match_corpus": true,
+    "existing_citations_exactly_rebind": true,
+    "exact_offsets_prove_semantic_support": false,
+    "gate_scope_count": 12,
+    "all_gate_values_unknown": true,
+    "fta_ready": false,
+    "production_ready": false
+  },
+  "required_follow_up": [
+    "Separate fault-value diagnostic mappings from candidate causal conditions before allowing top-event edges.",
+    "Require and test extraction evidence coverage for every source cause index.",
+    "Reconcile the Remedy xxxx=9507 reference with the top-level cause scope before asserting completeness; do not automatically promote it to a causal child.",
+    "Keep all Boolean gates unknown and retain the preview-only boundary until source-backed causal links and complete scopes are reviewed."
+  ]
+}

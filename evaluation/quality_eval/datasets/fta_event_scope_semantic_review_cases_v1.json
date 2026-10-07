@@ -1,0 +1,78 @@
+{
+  "artifact_type": "fta_event_scope_semantic_review_regression_cases",
+  "schema_version": "v1",
+  "dataset_status": "development_policy_cases_not_gold",
+  "human_expert_gold": false,
+  "accuracy_claim_allowed": false,
+  "source_packet_path": "evaluation/quality_eval/datasets/fta_event_scope_nasa_battery_fig7_module_failure_dev_v1.json",
+  "observed_run_path": "evaluation/quality_eval/runs/fta_event_scope_nasa_battery_fig7_model_run_v6_2026-09-29.json",
+  "policy_path": "evaluation/quality_eval/fta_event_scope_semantic_review_policy_v1.md",
+  "cases": [
+    {
+      "case_id": "POLICY-OR-001",
+      "case_kind": "authored_policy_example",
+      "source_text": "The top event may result from pathway A or pathway B.",
+      "expected_review_disposition": "propose_or_with_direct_logic_evidence",
+      "expected_candidate_gate": "OR",
+      "logic_evidence_required": true,
+      "final_gate_approved": false
+    },
+    {
+      "case_id": "POLICY-AND-001",
+      "case_kind": "authored_policy_example",
+      "source_text": "The top event occurs only when both condition A and condition B are present.",
+      "expected_review_disposition": "propose_and_with_direct_logic_evidence",
+      "expected_candidate_gate": "AND",
+      "logic_evidence_required": true,
+      "final_gate_approved": false
+    },
+    {
+      "case_id": "POLICY-COOCCURRENCE-001",
+      "case_kind": "authored_policy_example",
+      "source_text": "Condition A and condition B were both recorded during the incident; the text does not say whether both are required for the top event.",
+      "expected_review_disposition": "retain_unknown_no_joint_logic_evidence",
+      "expected_candidate_gate": "unknown",
+      "logic_evidence_required": false,
+      "final_gate_approved": false
+    },
+    {
+      "case_id": "FIG7-V6-S1-OR-NOT-BOUND",
+      "case_kind": "observed_model_gap",
+      "source_packet_id": "NASA_GSFC_BATTERY_FIG7_MODULE_FAILURE_DEV_001",
+      "run_pointer": "model_output.parsed_json.gates[scope_id=S1]",
+      "source_evidence_pointer": "model_input.source_segments[segment_id=source-pdf-p3-p4-section-5]",
+      "observed_gate": "unknown",
+      "observed_logic_evidence": null,
+      "expected_review_disposition": "semantic_review_blocker_explicit_alternative_not_bound",
+      "automatic_repair": false,
+      "semantic_acceptance": false
+    },
+    {
+      "case_id": "FIG7-V6-SHARED-CELL-EVENT",
+      "case_kind": "observed_model_gap",
+      "source_packet_id": "NASA_GSFC_BATTERY_FIG7_MODULE_FAILURE_DEV_001",
+      "run_node_ids": ["E2", "E4"],
+      "expected_review_disposition": "manual_review_event_identity_no_auto_merge_or_split",
+      "automatic_repair": false,
+      "semantic_acceptance": false
+    },
+    {
+      "case_id": "FIG7-V6-COMPOSITE-EVENT-BOUNDARY",
+      "case_kind": "observed_model_gap",
+      "source_packet_id": "NASA_GSFC_BATTERY_FIG7_MODULE_FAILURE_DEV_001",
+      "run_node_ids": ["E5", "E7"],
+      "expected_review_disposition": "manual_review_event_granularity_no_invented_decomposition",
+      "automatic_repair": false,
+      "semantic_acceptance": false
+    }
+  ],
+  "guardrails": {
+    "source_cluster_exposure": "seen_development_only",
+    "policy_examples_are_model_predictions": false,
+    "gold_written": false,
+    "database_written": false,
+    "production_behavior_changed": false,
+    "fta_ready": false,
+    "production_ready": false
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "artifact_type": "external_text_evidence_gate_abstention_fixture",
+  "artifact_version": "v1",
+  "created_at": "2026-09-27",
+  "formal_gold": false,
+  "in_project_gold": false,
+  "database_written": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "label_provenance": {
+    "reviewer_role": "independent_ai_expert_role_review",
+    "reviewer_is_human_expert": false,
+    "review_scope": "whether the quoted source evidence directly supports AND/OR among the supplied same-scope candidate causes",
+    "rule": "A list of possible causes alone does not establish OR; a list conjunction alone does not establish AND; use unknown when the source excerpt does not state the combination relation.",
+    "review_note": "AI role review only; not human domain-expert sign-off or project Gold."
+  },
+  "source_document_count": 4,
+  "source_cluster_count": 4,
+  "inference_input_policy": "Model receives only parent event, direct child event texts, and the exact transcribed source scope evidence. Source identity, page/document metadata, expected labels, reviewer notes, and expected gate evidence are withheld.",
+  "scope_note": "Small external text-evidence abstention probe. It tests whether the model distinguishes an enumerated possible-cause set from explicit logical evidence and preserves unknown; it is not an end-to-end FTA test, calibration set, or production policy test.",
+  "sources": [
+    {
+      "source_id": "NASA_APOLLO15_PARACHUTE_REPORT",
+      "source_cluster_id": "NASA_APOLLO15_PARACHUTE_REPORT_document",
+      "document_title": "Apollo 15 main-parachute failure",
+      "authors_or_organization": "NASA Lyndon B. Johnson Space Center; D. D. Arabian and J. E. Mechelay",
+      "publication_date": "1972-11",
+      "record_url": "https://ntrs.nasa.gov/citations/19730010152",
+      "source_pdf_url": "https://ntrs.nasa.gov/api/citations/19730010152/downloads/19730010152.pdf",
+      "source_pdf_sha256": "5a33b82a1b3f05085640f24eea63923b4b05b26df41ed27bf57a01458af80945",
+      "source_location": "NTRS abstract; abstract excerpt has no printed page number",
+      "quote_verification": "Official NASA NTRS record text; downloaded source PDF SHA-256 recorded for provenance."
+    },
+    {
+      "source_id": "US_ARMY_TM_8_630",
+      "source_cluster_id": "US_ARMY_TM_8_630_document",
+      "document_title": "TM 8-630: X-ray field unit generator maintenance instructions",
+      "authors_or_organization": "U.S. War Department / U.S. Army; GovInfo public-domain scan",
+      "publication_date": "1944-11",
+      "source_url": "https://www.govinfo.gov/content/pkg/GOVPUB-W-2d0ab034c3b55aecb517846ed3680576/pdf/GOVPUB-W-2d0ab034c3b55aecb517846ed3680576.pdf",
+      "source_pdf_sha256": "8b016f35eb848a19e5f184fb0f9e70bf245ce9519a31f7e9e9170ec84f25fee4",
+      "printed_page": 23,
+      "quote_verification": "Official GovInfo OCR/index text and table heading; downloaded source PDF SHA-256 recorded for provenance."
+    },
+    {
+      "source_id": "US_ARMY_TM_9_803",
+      "source_cluster_id": "US_ARMY_TM_9_803_document",
+      "document_title": "TM 9-803: 1/4-ton 4x4 truck (Willys-Overland Model MB and Ford Model GPW)",
+      "authors_or_organization": "U.S. War Department / U.S. Army; GovInfo public-domain scan",
+      "publication_date": "1944",
+      "source_url": "https://www.govinfo.gov/content/pkg/GOVPUB-W-0a65af7e43e49e4126a777e69bc7fe4f/pdf/GOVPUB-W-0a65af7e43e49e4126a777e69bc7fe4f.pdf",
+      "source_pdf_sha256": "c776551ddecdfce5aa738791e7a88695144939bacc8090adc71ae42b7e374de9",
+      "printed_page": 86,
+      "quote_verification": "Official GovInfo OCR/index text and table heading; downloaded source PDF SHA-256 recorded for provenance."
+    },
+    {
+      "source_id": "FAA_AC_65_15A",
+      "source_cluster_id": "FAA_AC_65_15A_document",
+      "document_title": "AC 65-15A: Airframe & Powerplant Mechanics—Airframe Handbook",
+      "authors_or_organization": "U.S. Federal Aviation Administration",
+      "publication_date": "1976-01-01",
+      "document_status_note": "Cancelled 2025-03-21 and superseded; historical text-classification test only, not current maintenance guidance.",
+      "source_url": "https://www.faa.gov/documentlibrary/media/advisory_circular/ac_65-15a.pdf",
+      "catalog_url": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentid/23018",
+      "source_pdf_sha256": "db5dfc68045fa7f71ea5bc79a30439db2718ca5b1aa210194d9d4ab43b15a310",
+      "figure": "14-44",
+      "printed_page": 586,
+      "quote_verification": "Official FAA indexed PDF text and catalog status; downloaded source PDF SHA-256 recorded for provenance."
+    }
+  ],
+  "gate_nodes": [
+    {
+      "gate_node_id": "NASA-APOLLO15-ABSTRACT-CAUSESET-001",
+      "source_id": "NASA_APOLLO15_PARACHUTE_REPORT",
+      "source_cluster_id": "NASA_APOLLO15_PARACHUTE_REPORT_document",
+      "scope_type": "suspect_cause_set_in_abstract",
+      "parent_event": "One of the Apollo 15 main parachutes failed and collapsed during descent.",
+      "parent_evidence": "the failure of one of the three main parachutes of the Apollo 15 spacecraft, which collapsed at approximately 1825 meters",
+      "candidate_set_evidence": "three conditions considered to be possible causes of the failure were produced. The suspect conditions were the proximity of the forward heat shield that passed the spacecraft at approximately 1825 meters, the dumping of the reaction control system hypergolic propellants at approximately 1825 meters, and the failing of a riser link found on a recovered parachute.",
+      "children": [
+        "Forward heat shield passed in close proximity to the spacecraft.",
+        "Reaction-control-system hypergolic propellants were dumped.",
+        "A riser link found on a recovered parachute failed."
+      ],
+      "expected_gate": "unknown",
+      "expected_gate_evidence": null,
+      "label_rationale": "The abstract calls these suspect possible causes, but does not say whether any one alone is sufficient or whether multiple conditions must co-occur. The grammatical 'and' closing the list is not a logical-gate statement."
+    },
+    {
+      "gate_node_id": "TM8-630-P23-ENGINE-STOPS-001",
+      "source_id": "US_ARMY_TM_8_630",
+      "source_cluster_id": "US_ARMY_TM_8_630_document",
+      "scope_type": "possible_cause_table_rows",
+      "parent_event": "Engine starts but does not continue running.",
+      "parent_evidence": "Engine starts but does not continue running.",
+      "candidate_set_heading": "Possible cause",
+      "children": [
+        "Overheating.",
+        "Air lock in fuel supply system.",
+        "Screen in fuel pump clogged.",
+        "Fuel lines clogged.",
+        "Carburetor dirty.",
+        "Contaminated engine fuel.",
+        "Short circuit in conductor cable.",
+        "Short circuit in X-ray machine."
+      ],
+      "expected_gate": "unknown",
+      "expected_gate_evidence": null,
+      "label_rationale": "The manual places eight entries under a Possible cause column for this symptom, but the cited scope does not state their AND/OR combination. The table/list structure alone is insufficient."
+    },
+    {
+      "gate_node_id": "TM9-803-P86-FUEL-CAUSESET-001",
+      "source_id": "US_ARMY_TM_9_803",
+      "source_cluster_id": "US_ARMY_TM_9_803_document",
+      "scope_type": "possible_cause_table_rows",
+      "parent_event": "Fuel does not reach carburetor.",
+      "parent_evidence": "Fuel Does Not Reach Carburetor.",
+      "candidate_set_heading": "Possible Cause",
+      "children": [
+        "No fuel in tank.",
+        "Fuel filter clogged.",
+        "Fuel pump inoperative.",
+        "Fuel line air leak between tank and fuel pump.",
+        "Fuel line clogged.",
+        "Fuel tank cap not functioning."
+      ],
+      "expected_gate": "unknown",
+      "expected_gate_evidence": null,
+      "label_rationale": "The source lists six possible causes under one symptom, without a statement that any one is sufficient or that all/particular combinations are required."
+    },
+    {
+      "gate_node_id": "FAA-AC65-15A-F14-44-CAUSE-002",
+      "source_id": "FAA_AC_65_15A",
+      "source_cluster_id": "FAA_AC_65_15A_document",
+      "scope_type": "explicit_alternative_cause_pair",
+      "parent_event": "Cabin temperature does not respond to control during auto or manual operation.",
+      "parent_evidence": "Trouble: Cabin temperature too high or too low (will not respond to control during auto or manual operation).",
+      "candidate_set_heading": "Possible Cause",
+      "candidate_set_evidence": "Defective temperature control or refrigeration bypass valve inoperative.",
+      "children": [
+        "Defective temperature control.",
+        "Refrigeration bypass valve inoperative."
+      ],
+      "expected_gate": "OR",
+      "expected_gate_evidence": "Defective temperature control or refrigeration bypass valve inoperative.",
+      "label_rationale": "The word 'or' directly joins the two alternative causes in the Possible Cause cell. The separate 'or' in the parent symptom is not the gate evidence."
+    }
+  ],
+  "limitations": [
+    "Only four nodes from four source-document clusters; three unknown cases and one OR positive control are a small exploratory probe, not representative validation.",
+    "Three unknown labels mean the quoted excerpt does not explicitly support a gate; they do not prove the physical system has no Boolean relation.",
+    "The FAA handbook is cancelled/superseded and is included only as a historical explicit-OR text control, not as current maintenance advice.",
+    "Labels were reviewed by an AI role reviewer, not a human domain expert; this is not human-expert Gold.",
+    "Model self-reported scores are uncalibrated and cannot be interpreted as event probabilities or used as a production threshold.",
+    "This probe does not test source-document extraction, cause completeness, recursive tree construction, production gate policy, or runtime integration."
+  ]
+}

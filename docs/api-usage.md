@@ -29,6 +29,8 @@ Invoke-RestMethod http://127.0.0.1:8000/api/health
 - `GET /api/health`：健康检查。
 - `POST /api/fta/build_dot`：从结构化条目构建 DOT。
 - `POST /api/fta/extract`：抽取文本并创建待审核的结构化故障记录，不生成故障树。
+- `POST /api/fta/extract/causal-review`：抽取新原文、准备候选原因、执行 AI 因果审核并将校验通过的审核快照写入 SQLite。
+- `POST /api/fta/extractions/{result_id}/causal-review`：复用已保存的抽取结果重试因果审核，不重复抽取原文。
 - `GET /api/fta/reviews/pending`：按故障记录查询当前处于 `pending` 状态的审核项。
 - `POST /api/fta/reviews/approve`：记录人工批准决定。
 - `POST /api/fta/reviews/reject`：记录人工拒绝决定，必须提供原因。
@@ -49,8 +51,46 @@ Invoke-RestMethod http://127.0.0.1:8000/api/health
 抽取与审核工作流默认使用 SQLite 持久化，数据库文件默认位于
 `backend-python/outputs/extraction_workflow.sqlite3`。可以通过环境变量
 `EXTRACTION_DB_PATH` 指定其他路径；该配置只影响后端仓储，不改变 API 合同或前端界面。
-当前 SQLite schema 版本为 3；默认仓储按单机应用设计，SQLite 的备份由后端仓储提供，
+当前 SQLite schema 版本为 5；默认仓储按单机应用设计，SQLite 的备份由后端仓储提供，
 不建议把同一个数据库文件放在网络文件系统上供多个服务实例同时写入。
+
+### 原文抽取与 AI 因果审核
+
+`POST /api/fta/extract/causal-review` 使用与普通抽取相同的文本、分块和 Prompt 配置，并在一个请求中执行：
+
+```text
+原文 -> ExtractionResult 与初始审核状态持久化 -> 因果候选准备
+     -> AI 结构化审核与证据校验 -> SQLite 因果审核快照事务导入
+```
+
+请求示例：
+
+```json
+{
+  "text": "F01630: Brake control error. Possible cause: motor brake winding short circuit.",
+  "text_chunk_size_chars": 6000,
+  "text_chunk_overlap_chars": 300,
+  "prompt_profile": "strict"
+}
+```
+
+成功响应包含 `extraction`、逐条 `causal_review.decisions`、审核来源和数据库导入结果。
+审核来源是 `user_authorized_ai_expert_role`，`human_reviewed=false`；这是经用户授权的
+AI 专家角色审核，不能描述成人工专家签字。若没有原因候选，响应状态为 `no_candidates`，不会
+创建空审核 manifest。因果审核不会自行确定 AND/OR 逻辑门，响应中的 `fta_ready` 保持 `false`。
+
+原因证据会保留两个不同跨度：`cause` 是原因字段的精确原文匹配，`cause_context` 是同一故障记录内的
+有界原文句子（最多 1,200 个字符），供审核模型核实原文是否明确连接原因与目标故障。只有 `cause`
+精确匹配而缺少上下文时，不能据此自动批准 `causal`；如果模型仍返回该结论，后端会拒绝审核快照。
+
+抽取完成但 AI 审核或 manifest 导入失败时，抽取记录仍保留。错误详情带有 `extraction_result_id`
+和 `retry_endpoint`；调用该重试接口会从已保存的抽取及证据重新准备候选，不会重复抽取原文：
+
+```http
+POST /api/fta/extractions/{result_id}/causal-review
+```
+
+新原文请求最大为 100,000 个字符，自定义抽取指令最大为 5,000 个字符。
 
 ### S210 RAG 查询
 

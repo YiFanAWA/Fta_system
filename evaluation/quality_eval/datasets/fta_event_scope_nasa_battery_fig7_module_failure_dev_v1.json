@@ -1,0 +1,31 @@
+{
+  "packet_schema": "fta_event_scope_input_packet_v1",
+  "packet_id": "NASA_GSFC_BATTERY_FIG7_MODULE_FAILURE_DEV_001",
+  "source_provenance": {
+    "document_id": "NASA_NTRS_19880001643",
+    "source_cluster_id": "NASA_GSFC_LISOCL2_BATTERY_SAFETY_ANALYSIS_1987",
+    "official_record_url": "https://ntrs.nasa.gov/citations/19880001643",
+    "document_sha256": "15ed643797e80ddca990e4c74bc4767bb073898ff7d144e3bbadc7a76b993a29",
+    "page_count": 26,
+    "rights_status": "public_use_permitted",
+    "exposure_status": "seen_development_only"
+  },
+  "model_input": {
+    "event_scope_id": "scope-001",
+    "top_event": {
+      "text": "explosion or structural fragmentation of a battery module",
+      "evidence": {
+        "segment_id": "source-pdf-p3-p4-section-5",
+        "quote": "the explosion or structural fragmentation of a battery module"
+      }
+    },
+    "source_segments": [
+      {
+        "segment_id": "source-pdf-p3-p4-section-5",
+        "page_number": 3,
+        "section_locator": "Section 5.0; PDF pp. 3-4; printed pp. 96-97 (continuous passage across page break)",
+        "text": "5.0 DEVELOPMENT OF FAULT TREE ANALYSIS\n\nIn the fault tree the Top Event whose occurrence is potentially catastrophic leading to mission failure is the explosion or structural fragmentation of a battery module originated by the explosion of one or more cells in the battery pack. A single cell explosion may lead to the Top Event if the module container fails to operate as designed and relieve the overpressure condition; thus, a primary explosion may cause the Top Event. In addition, a single cell explosion may cause the Top Event to occur by creating overpressure and overtemperature conditions inside the battery pack which damage or make other neighboring batteries unstable leading to a second sympathetic explosion of such speed (less than 100 milliseconds) and force that not enough venting can occur soon enough even with the module vents functioning as designed (see Figures 7 and 8).\n\nBasic events which either initiate the Top Event or enable it to occur are shown as ovals in the fault tree diagrams. AND gates in the tree are marked with A; OR gates with O. Intermediate and Top Events are shown as rectangles. Due to the size of the fault tree, it has been split into two figures with the intermediate event, single cell explodes, common to each main branch in Figures 7 and 8 and shown in detail in Figure 9. Figures 7 and 8 show that a single cell exploding and the failure of the module vents or a single cell exploding and the module operating nominally but with a sympathetic secondary explosion occurring can lead to the Top Event."
+      }
+    ]
+  }
+}

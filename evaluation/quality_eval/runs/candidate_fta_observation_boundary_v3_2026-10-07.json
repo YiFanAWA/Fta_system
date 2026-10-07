@@ -1,0 +1,226 @@
+{
+  "artifact_type": "candidate_fta_observation_boundary_model_run",
+  "artifact_version": "v1",
+  "case_id": "OBSERVATION-COOCCURRENCE-001",
+  "run_status": "response_received",
+  "started_at_utc": "2026-10-07T05:38:34.984410+00:00",
+  "formal_gold": false,
+  "human_expert_gold": false,
+  "database_written": false,
+  "production_api_called": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "model": {
+    "model_id": "deepseek-flash",
+    "provider_host": "api.deepseek.com",
+    "temperature": 0,
+    "timeout_seconds": 120,
+    "sdk_max_retries": 0,
+    "outer_retries": 0,
+    "max_model_calls": 1
+  },
+  "request_attempt_count": 1,
+  "successful_response_count": 1,
+  "prompt_sha256_by_call": [
+    "032cc045af891f704828e0913f150a4f411910211205bcf820913ebb57343567"
+  ],
+  "model_stage_responses": [
+    {
+      "request_index": 1,
+      "stage": "cause_disposition",
+      "response": "{\"cause_dispositions\":[{\"source_cause_index\":0,\"semantic_role\":\"state\",\"fta_disposition\":\"detached_observation\",\"evidence_quote\":\"alarm A was logged\",\"reason_code\":\"descriptive_association\",\"rationale\":\"仅报告报警A被记录且发生在停泵前，未说明其导致停泵或为必要条件，属于共现/时序观察，不是上游树事件。\"},{\"source_cause_index\":1,\"semantic_role\":\"state\",\"fta_disposition\":\"detached_observation\",\"evidence_quote\":\"alarm B was logged\",\"reason_code\":\"descriptive_association\",\"rationale\":\"仅报告报警B被记录且发生在停泵前，未说明其导致停泵或为必要条件，属于共现/时序观察，不是上游树事件。\"}]}",
+      "response_sha256": "075767d8b219f7df7528988138f83c50f231fcf6d17f340e3978f2f59c35e52c"
+    }
+  ],
+  "synthetic_input": {
+    "source_id": "synthetic:fta-observation-cooccurrence-v1",
+    "source_text": "In incident 17, alarm A was logged and alarm B was logged before pump shutdown. The report does not state that either alarm caused the shutdown or that both were required. The panel indicator may show red or amber as a separate display choice.",
+    "source_text_sha256": "414f437539233bc55d13832ffe1c1fe927c5e8b80bc9a6480b7f294cdea39aad",
+    "record": {
+      "record_id": "1826ccba-98c7-4f9d-9a8e-de4fbf99a852",
+      "fault_code": null,
+      "description": "pump shutdown",
+      "causes": [
+        "alarm A was logged",
+        "alarm B was logged"
+      ]
+    },
+    "extraction_status": "success",
+    "evidence_spans": [
+      {
+        "record_id": "1826ccba-98c7-4f9d-9a8e-de4fbf99a852",
+        "field": "description",
+        "source_id": "synthetic:fta-observation-cooccurrence-v1",
+        "quote": "pump shutdown",
+        "start": 65,
+        "end": 78,
+        "value_index": null
+      },
+      {
+        "record_id": "1826ccba-98c7-4f9d-9a8e-de4fbf99a852",
+        "field": "cause",
+        "source_id": "synthetic:fta-observation-cooccurrence-v1",
+        "quote": "alarm A was logged",
+        "start": 16,
+        "end": 34,
+        "value_index": 0
+      },
+      {
+        "record_id": "1826ccba-98c7-4f9d-9a8e-de4fbf99a852",
+        "field": "cause",
+        "source_id": "synthetic:fta-observation-cooccurrence-v1",
+        "quote": "alarm B was logged",
+        "start": 39,
+        "end": 57,
+        "value_index": 1
+      }
+    ],
+    "reference_labels_loaded": false,
+    "gold_included_in_model_input": false
+  },
+  "tree_status": "blocked",
+  "tree": {
+    "artifact_type": "candidate_fta_tree",
+    "artifact_version": "v6",
+    "extraction_result_id": "89dec9e7-916a-47ba-a3f5-0d7cedb08417",
+    "record_id": "1826ccba-98c7-4f9d-9a8e-de4fbf99a852",
+    "fault_code": null,
+    "source_text_sha256": "414f437539233bc55d13832ffe1c1fe927c5e8b80bc9a6480b7f294cdea39aad",
+    "top_event_id": "event:1826ccba-98c7-4f9d-9a8e-de4fbf99a852",
+    "nodes": [
+      {
+        "node_id": "event:1826ccba-98c7-4f9d-9a8e-de4fbf99a852",
+        "node_type": "top_event_candidate",
+        "text": "pump shutdown",
+        "evidence": [
+          {
+            "citation_id": "1826ccba-98c7-4f9d-9a8e-de4fbf99a852:description:65-78",
+            "source_id": "synthetic:fta-observation-cooccurrence-v1",
+            "quote": "pump shutdown",
+            "start": 65,
+            "end": 78
+          }
+        ],
+        "source_cause_indices": []
+      },
+      {
+        "node_id": "observation:1826ccba-98c7-4f9d-9a8e-de4fbf99a852:0",
+        "node_type": "observation_candidate",
+        "text": "alarm A was logged",
+        "evidence": [
+          {
+            "citation_id": "input_text:cause_disposition:16-34",
+            "source_id": "input_text",
+            "quote": "alarm A was logged",
+            "start": 16,
+            "end": 34
+          }
+        ],
+        "source_cause_indices": [
+          0
+        ]
+      },
+      {
+        "node_id": "observation:1826ccba-98c7-4f9d-9a8e-de4fbf99a852:1",
+        "node_type": "observation_candidate",
+        "text": "alarm B was logged",
+        "evidence": [
+          {
+            "citation_id": "input_text:cause_disposition:39-57",
+            "source_id": "input_text",
+            "quote": "alarm B was logged",
+            "start": 39,
+            "end": 57
+          }
+        ],
+        "source_cause_indices": [
+          1
+        ]
+      }
+    ],
+    "cause_dispositions": [
+      {
+        "source_cause_index": 0,
+        "source_cause_text": "alarm A was logged",
+        "semantic_role": "state",
+        "proposed_disposition": "detached_observation",
+        "disposition": "detached_observation",
+        "reason_code": "descriptive_association",
+        "rationale": "仅报告报警A被记录且发生在停泵前，未说明其导致停泵或为必要条件，属于共现/时序观察，不是上游树事件。",
+        "evidence": [
+          {
+            "citation_id": "input_text:cause_disposition:16-34",
+            "source_id": "input_text",
+            "quote": "alarm A was logged",
+            "start": 16,
+            "end": 34
+          }
+        ],
+        "review_status": "ai_proposed",
+        "provenance": "fta_cause_disposition_model"
+      },
+      {
+        "source_cause_index": 1,
+        "source_cause_text": "alarm B was logged",
+        "semantic_role": "state",
+        "proposed_disposition": "detached_observation",
+        "disposition": "detached_observation",
+        "reason_code": "descriptive_association",
+        "rationale": "仅报告报警B被记录且发生在停泵前，未说明其导致停泵或为必要条件，属于共现/时序观察，不是上游树事件。",
+        "evidence": [
+          {
+            "citation_id": "input_text:cause_disposition:39-57",
+            "source_id": "input_text",
+            "quote": "alarm B was logged",
+            "start": 39,
+            "end": 57
+          }
+        ],
+        "review_status": "ai_proposed",
+        "provenance": "fta_cause_disposition_model"
+      }
+    ],
+    "gate_assessments": [],
+    "unknown_gate_reason_counts": {},
+    "relations": [],
+    "gate_confidence_semantics": "uncalibrated_model_estimate",
+    "status": "blocked",
+    "blockers": [
+      "no_fta_event_candidates",
+      "node_disconnected_from_top_event:observation:1826ccba-98c7-4f9d-9a8e-de4fbf99a852:0",
+      "node_disconnected_from_top_event:observation:1826ccba-98c7-4f9d-9a8e-de4fbf99a852:1"
+    ],
+    "decision_reason": "No source cause was admitted as a candidate tree event; detached observations remain separately evidenced and disconnected.",
+    "reviewer_provenance": "user_authorized_ai_expert_role",
+    "human_reviewed": false,
+    "fta_ready": false,
+    "production_ready": false
+  },
+  "policy_assessment": {
+    "expected_boundary": "retain alarm observations as separate disconnected candidates; block the whole tree; do not link observations into a gate or relation",
+    "tree_status": "blocked",
+    "blockers": [
+      "no_fta_event_candidates",
+      "node_disconnected_from_top_event:observation:1826ccba-98c7-4f9d-9a8e-de4fbf99a852:0",
+      "node_disconnected_from_top_event:observation:1826ccba-98c7-4f9d-9a8e-de4fbf99a852:1"
+    ],
+    "observation_candidate_node_ids": {
+      "alarm A was logged": [
+        "observation:1826ccba-98c7-4f9d-9a8e-de4fbf99a852:0"
+      ],
+      "alarm B was logged": [
+        "observation:1826ccba-98c7-4f9d-9a8e-de4fbf99a852:1"
+      ]
+    },
+    "disconnected_observation_node_ids": [
+      "observation:1826ccba-98c7-4f9d-9a8e-de4fbf99a852:0",
+      "observation:1826ccba-98c7-4f9d-9a8e-de4fbf99a852:1"
+    ],
+    "all_observations_retained_as_distinct_nodes": true,
+    "all_observation_nodes_disconnected": true,
+    "any_gate_scope_touches_observation_nodes": false,
+    "any_relation_touches_observation_nodes": false,
+    "policy_boundary_match": true
+  },
+  "failure": null
+}

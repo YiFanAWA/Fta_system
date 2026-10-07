@@ -1,0 +1,43 @@
+{
+  "artifact_type": "fta_event_scope_semantic_smoke_offline_comparison",
+  "artifact_version": "v2",
+  "comparator_policy": "gate_specific_evidence_contract_v1",
+  "recorded_at_utc": "2026-09-29T12:53:11+00:00",
+  "case_id": "SMOKE-004",
+  "status": "matched_authored_policy_expectation_not_expert_validation",
+  "comparison": {
+    "expected_gate": "unknown",
+    "observed_gate": "unknown",
+    "gate_matches_policy_expectation": true,
+    "known_gate_logic_evidence_matches_decisive_quote": null,
+    "unknown_gate_contract_valid": true,
+    "unknown_reason": "no_direct_logic_evidence",
+    "expected_quote_to_bind": false,
+    "decisive_source_quote_present_in_input": true,
+    "structure_contract_valid": true,
+    "evidence_locations_checked": 4,
+    "evidence_locations_valid": 4,
+    "qualitative_smoke_match": true
+  },
+  "provenance": {
+    "run_path": "evaluation/quality_eval/runs/fta_event_scope_semantic_smoke_smoke-004_v1_2026-09-29.json",
+    "run_sha256": "eb54445ca04ad97f4d99fb02a665c6b8e8ff6158ded3f21ab25e3000b35072ad",
+    "assessment_path": "evaluation/quality_eval/runs/fta_event_scope_semantic_smoke_smoke-004_v1_2026-09-29_assessment.json",
+    "assessment_sha256": "9ba5bf44d571319e3f8f0e0f2da1e5b24b06de8b96de2a5f4453274521bee444",
+    "reference_path": "evaluation/quality_eval/datasets/fta_event_scope_semantic_smoke_reference_v1.json",
+    "reference_sha256": "1b6008d8f834d8cfe249d90787e2a62b8b0826f9d7c3816cb17d3310cb784915",
+    "reference_status": "authored_policy_reference_not_expert_reviewed"
+  },
+  "claim_boundaries": {
+    "synthetic_behavioral_smoke_only": true,
+    "source_corpus_evaluation": false,
+    "human_expert_gold": false,
+    "semantic_correctness_expert_assessed": false,
+    "accuracy_or_calibration_claim_allowed": false,
+    "aggregate_metric_claim_allowed": false,
+    "gold_or_database_written": false,
+    "production_or_readiness_changed": false,
+    "fta_ready": false,
+    "production_ready": false
+  }
+}

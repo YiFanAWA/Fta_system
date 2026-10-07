@@ -1,0 +1,124 @@
+{
+  "artifact_type": "fta_event_scope_semantic_smoke_inputs",
+  "schema_version": "v1",
+  "dataset_status": "constructed_behavioral_smoke_inputs_not_source_corpus",
+  "human_expert_gold": false,
+  "accuracy_claim_allowed": false,
+  "cases": [
+    {
+      "case_id": "SMOKE-001",
+      "model_input": {
+        "event_scope_id": "scope-001",
+        "top_event": {
+          "text": "pump shutdown",
+          "evidence": {
+            "segment_id": "synthetic-source-001",
+            "quote": "which causes pump shutdown"
+          }
+        },
+        "source_segments": [
+          {
+            "segment_id": "synthetic-source-001",
+            "page_number": 1,
+            "section_locator": "Constructed semantic smoke passage 1 (not a manual excerpt)",
+            "text": "A coolant hose rupture can drain the loop, which causes pump shutdown. A separate circulation-motor failure can also produce pump shutdown."
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "SMOKE-002",
+      "model_input": {
+        "event_scope_id": "scope-002",
+        "top_event": {
+          "text": "Pressure vessel rupture",
+          "evidence": {
+            "segment_id": "synthetic-source-002",
+            "quote": "Pressure vessel rupture occurs"
+          }
+        },
+        "source_segments": [
+          {
+            "segment_id": "synthetic-source-002",
+            "page_number": 1,
+            "section_locator": "Constructed semantic smoke passage 2 (not a manual excerpt)",
+            "text": "Pressure vessel rupture occurs only when the wall has been weakened by corrosion together with internal pressure above the design limit. Neither a weakened wall by itself nor pressure above the limit by itself is sufficient."
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "SMOKE-003",
+      "model_input": {
+        "event_scope_id": "scope-003",
+        "top_event": {
+          "text": "pump shutdown",
+          "evidence": {
+            "segment_id": "synthetic-source-003",
+            "quote": "Possible contributors to pump shutdown"
+          }
+        },
+        "source_segments": [
+          {
+            "segment_id": "synthetic-source-003",
+            "page_number": 1,
+            "section_locator": "Constructed semantic smoke passage 3 (not a manual excerpt)",
+            "text": "Possible contributors to pump shutdown include thermal load, sensor drift, and poor ventilation. The source does not explain how these factors combine or state that any single factor can independently produce the shutdown."
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "SMOKE-004",
+      "model_input": {
+        "event_scope_id": "scope-004",
+        "top_event": {
+          "text": "tank rupture",
+          "evidence": {
+            "segment_id": "synthetic-source-004",
+            "quote": "before tank rupture"
+          }
+        },
+        "source_segments": [
+          {
+            "segment_id": "synthetic-source-004",
+            "page_number": 1,
+            "section_locator": "Constructed semantic smoke passage 4 (not a manual excerpt)",
+            "text": "During incident 17, a pressure increase and a temperature increase were observed before tank rupture. The report records both observations but does not conclude that both were required or that either one alone was sufficient."
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "SMOKE-005",
+      "model_input": {
+        "event_scope_id": "scope-005",
+        "top_event": {
+          "text": "pump shutdown",
+          "evidence": {
+            "segment_id": "synthetic-source-005",
+            "quote": "pump shutdown incident 17"
+          }
+        },
+        "source_segments": [
+          {
+            "segment_id": "synthetic-source-005",
+            "page_number": 1,
+            "section_locator": "Constructed semantic smoke passage 5 (not a manual excerpt)",
+            "text": "In pump shutdown incident 17, alarms A and B were both logged; the source does not say whether either caused the shutdown or whether both were required. The panel indicator may show red or amber, a separate display choice."
+          }
+        ]
+      }
+    }
+  ],
+  "guardrails": {
+    "reference_labels_included": false,
+    "official_source_claimed": false,
+    "model_predictions_included": false,
+    "database_written": false,
+    "production_behavior_changed": false,
+    "model_request_performed": false,
+    "fta_ready": false,
+    "production_ready": false
+  }
+}

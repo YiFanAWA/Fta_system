@@ -1,0 +1,30 @@
+{
+  "artifact_type": "fta_event_scope_semantic_smoke_attempt",
+  "artifact_version": "v1",
+  "status": "response_received",
+  "started_at_utc": "2026-09-29T12:52:59+00:00",
+  "case_id": "SMOKE-004",
+  "input_dataset_path": "evaluation/quality_eval/datasets/fta_event_scope_semantic_smoke_inputs_v1.json",
+  "input_dataset_sha256": "1cb2148df154112db4b6209b23f9144946b6aa5637c3fee809efcafcff32d044",
+  "model_input_sha256": "e8bfd7e10acd7eb416f65e6fee12ebcabca0bc6066e591f4e4cb079fa2bfa805",
+  "prompt_sha256": "bd386a8c257a55745971940a13eecd4c3900d7a5a6406ed681678144694975a9",
+  "provider_host": "api.deepseek.com",
+  "model": "deepseek-flash",
+  "explicit_single_request_authorization": true,
+  "authorized_max_request_count": 1,
+  "sdk_max_retries": 0,
+  "max_tokens": 8192,
+  "response_format": {
+    "type": "json_object"
+  },
+  "thinking_mode": {
+    "type": "disabled"
+  },
+  "reference_labels_loaded": false,
+  "completed_at_utc": "2026-09-29T12:53:03+00:00",
+  "request_count": 1,
+  "run_artifact": "evaluation/quality_eval/runs/fta_event_scope_semantic_smoke_smoke-004_v1_2026-09-29.json",
+  "run_sha256": "eb54445ca04ad97f4d99fb02a665c6b8e8ff6158ded3f21ab25e3000b35072ad",
+  "assessment_artifact": "evaluation/quality_eval/runs/fta_event_scope_semantic_smoke_smoke-004_v1_2026-09-29_assessment.json",
+  "assessment_sha256": "9ba5bf44d571319e3f8f0e0f2da1e5b24b06de8b96de2a5f4453274521bee444"
+}

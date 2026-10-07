@@ -1,0 +1,561 @@
+{
+  "manifest_schema": "fta_baseline_manifest_v1",
+  "manifest_id": "candidate_fta_research_baseline_v2",
+  "baseline_version": "v2",
+  "captured_at": "2026-09-28",
+  "lifecycle_status": "active_research_reference_baseline",
+  "scope": {
+    "includes": [
+      "candidate FTA tree output contract v4 and offline preview implementation",
+      "current event-scope and gate-node review artifacts",
+      "human logic Gold and explicitly non-Gold AI-role reviews",
+      "source-cluster split and S120/S150 near-transfer audit",
+      "selected probe inputs and candidate preview snapshots",
+      "cause semantic role/disposition contract and complete per-cause preview audit ledger"
+    ],
+    "excludes": [
+      "production FTA API or database writes",
+      "full S210 causal/gate Gold completion",
+      "calibrated gate thresholds",
+      "real device event probabilities",
+      "production readiness"
+    ]
+  },
+  "active_baseline": {
+    "candidate_contract": "candidate_fta_tree_v4",
+    "event_scope_review": "siemens_s210_event_scope_gate_primary_ai_role_review_v8_2026-09-27",
+    "gate_node_review_set": "siemens_s210_gate_node_review_dataset_v6_locator_reconciled_ai_role_review",
+    "gate_node_split": "siemens_s210_gate_node_source_cluster_splits_v6",
+    "named_human_logic_gold": "siemens_s210_and_or_logic_gold_v1",
+    "preview_schema_owner": "backend-python/contracts/candidate_fta_contract.py",
+    "preview_only": true,
+    "fta_ready": false,
+    "production_ready": false,
+    "cause_disposition_contract": "fta_cause_disposition_v1",
+    "cause_disposition_prompt": "fta-cause-disposition-v1",
+    "unresolved_cause_policy": "retain_in_audit_ledger_and_block_whole_candidate_tree"
+  },
+  "label_and_evaluation_scope": {
+    "human_logic_gold": {
+      "path": "evaluation/quality_eval/datasets/siemens_s210_and_or_logic_gold_v1.json",
+      "reviewer": "刘武",
+      "reviewed_at": "2026-09-22",
+      "events": 6,
+      "and": 0,
+      "or": 5,
+      "unknown": 1,
+      "calibration_status": "insufficient_evidence"
+    },
+    "event_scope_v8": {
+      "reviewed": 37,
+      "not_applicable": 2,
+      "pending": 0,
+      "and": 0,
+      "or": 1,
+      "unknown": 36,
+      "provenance": "user-authorized AI role review; not human expert Gold"
+    },
+    "gate_node_v6": {
+      "nodes": 55,
+      "reviewed": 55,
+      "pending": 0,
+      "and": 12,
+      "or": 17,
+      "unknown": 26,
+      "provenance": "AI role review; not human expert Gold or calibration truth"
+    },
+    "gate_node_split_v6": {
+      "source_clusters": 48,
+      "fault_source_groups": 47,
+      "same_fault_code_cross_calibration_validation": false,
+      "independent_source_validation": false
+    },
+    "model_probe_limits": [
+      "The named-human-Gold probe has only six events and no AND examples; it is descriptive, not a calibration set.",
+      "The 54-row exploratory probe matches the superseded v5 AI review snapshot and must not be reported as a v6 result.",
+      "S120/S150 is same-vendor near-transfer evidence, not independent cross-domain generalization."
+    ]
+  },
+  "s120_s150_overlap_audit": {
+    "audit_artifact": "evaluation/quality_eval/runs/siemens_s120_s150_s210_overlap_audit_v3_2026-09-27.json",
+    "s120_s150_records": 1532,
+    "s120_s150_unique_fault_codes": 1443,
+    "s210_records": 281,
+    "shared_fault_codes": 250,
+    "s120_s150_records_with_shared_fault_code": 290,
+    "s210_gate_nodes": 54,
+    "gate_nodes_with_same_code_in_s120_s150": 52,
+    "scope_quotes_exactly_repeated_among_same_code_nodes": 34,
+    "overall_exact_scope_quote_overlap_ratio": "34/54",
+    "conditional_exact_scope_quote_overlap_ratio": "34/52",
+    "classification": "same-vendor cross-manual/version near-transfer; not independent cross-domain holdout"
+  },
+  "artifacts": [
+    {
+      "artifact_id": "candidate-fta-design-truth",
+      "kind": "current_contract_document",
+      "lifecycle": "current",
+      "path": "docs/candidate-fta-generation-v1.md",
+      "sha256": "b128049f1dc96b1037513d9a2081549e65a9e88999a2d42ed1f82f6a52d2e969",
+      "note": "Current candidate FTA narrative; tree output contract v4 includes the complete cause-disposition audit ledger."
+    },
+    {
+      "artifact_id": "candidate-fta-output-contract",
+      "kind": "runtime_contract",
+      "lifecycle": "current",
+      "path": "backend-python/contracts/candidate_fta_contract.py",
+      "sha256": "97f50ce8a17088d018cd6cae16e1a7767f14b708810d45e4479ed0218363ebeb",
+      "note": "Owns candidate tree v4, cause disposition ledger, gate, relation, blocker, and non-production readiness projection."
+    },
+    {
+      "artifact_id": "candidate-fta-extraction-owner",
+      "kind": "runtime_implementation",
+      "lifecycle": "current",
+      "path": "backend-python/fta/candidate_fta_extraction_service.py",
+      "sha256": "da3f274ca1c18ca407ad4e6b2b71c5414cbde56c124ebbd86fb25dd69b1e084e",
+      "note": "Runs cause disposition before structure/gate stages; only eligible source causes enter the tree; unresolved blocks release."
+    },
+    {
+      "artifact_id": "candidate-fta-application-orchestration",
+      "kind": "runtime_implementation",
+      "lifecycle": "current",
+      "path": "backend-python/fta/candidate_fta_application_service.py",
+      "sha256": "976aade536f27f1286bba389e845b376deb1b376515b665545c29e4f2388553e",
+      "note": "Current per-record orchestration and retry boundary."
+    },
+    {
+      "artifact_id": "gate-confidence-policy",
+      "kind": "runtime_policy",
+      "lifecycle": "current",
+      "path": "backend-python/fta/gate_confidence_policy.py",
+      "sha256": "21c0d349c06d08aaf0817d3dbeda1d1f1df1bae5e4e58e796e3bd851eee4d490",
+      "note": "Current policy surface is provisional; no calibrated threshold is selected."
+    },
+    {
+      "artifact_id": "event-probability-consistency",
+      "kind": "runtime_calculation",
+      "lifecycle": "implemented_not_connected_to_real_data",
+      "path": "backend-python/fta/event_probability_consistency.py",
+      "sha256": "b6f05804fb9c0abd08471bfbc54f59450f9c31cfc695de00d543c6c4d7df5686",
+      "note": "Utility exists; real S210 event-probability observations are unavailable and the candidate application path is not fed them."
+    },
+    {
+      "artifact_id": "candidate-fta-extraction-tests",
+      "kind": "contract_regression_tests",
+      "lifecycle": "current",
+      "path": "backend-python/tests/test_candidate_fta_extraction_service.py",
+      "sha256": "258aa8bb2ac1dc6ace06acddd9d846c26f258fc4b1cd28a757848a65663a0d96"
+    },
+    {
+      "artifact_id": "recursive-candidate-fta-tests",
+      "kind": "contract_regression_tests",
+      "lifecycle": "current",
+      "path": "backend-python/tests/test_recursive_candidate_fta_extraction_service.py",
+      "sha256": "dde41ae33b6d3c232c780d28d657f1acde98ba4d6d1a5c3d7c21cb20acd93c0d"
+    },
+    {
+      "artifact_id": "candidate-fta-application-tests",
+      "kind": "application_regression_tests",
+      "lifecycle": "current",
+      "path": "backend-python/tests/test_candidate_fta_application_service.py",
+      "sha256": "00049dde24050e9e30c4bda2d0e3f9ac9a9f2a3278415082d1e0f5295949495d"
+    },
+    {
+      "artifact_id": "event-probability-consistency-tests",
+      "kind": "calculation_tests",
+      "lifecycle": "current",
+      "path": "backend-python/tests/test_event_probability_consistency.py",
+      "sha256": "fbd7c58b1a85205ab5ff42c369df60fa6a2717d23dc2b629f3bd52d2802f44ea"
+    },
+    {
+      "artifact_id": "recursive-preview-builder",
+      "kind": "evaluation_builder",
+      "lifecycle": "current",
+      "path": "evaluation/quality_eval/public_sources/build_siemens_s210_recursive_fta_preview_v2.py",
+      "sha256": "d9e62d09ec1e96a1250251fb4aa52cc05e52135466e1bd5efb3ce28ab1867d31"
+    },
+    {
+      "artifact_id": "recursive-preview-builder-tests",
+      "kind": "evaluation_builder_tests",
+      "lifecycle": "current",
+      "path": "evaluation/quality_eval/public_sources/test_build_siemens_s210_recursive_fta_preview_v2.py",
+      "sha256": "5673a90622a43174e345deecf63b2a192d42c05f2390b50674ee322e9e4dc0dc"
+    },
+    {
+      "artifact_id": "named-expert-logic-gold-v1",
+      "kind": "human_reviewed_gold",
+      "lifecycle": "current_small_descriptive_gold",
+      "path": "evaluation/quality_eval/datasets/siemens_s210_and_or_logic_gold_v1.json",
+      "sha256": "23235e6893b411cae298dfee5d28bcec4da324288b2fd490985926e0658c9c53",
+      "note": "Six events; reviewer 刘武; five OR, one unknown, zero AND. Not sufficient for three-class calibration."
+    },
+    {
+      "artifact_id": "named-expert-logic-gold-validation-v1",
+      "kind": "gold_structure_validation",
+      "lifecycle": "current_validation_record",
+      "path": "evaluation/quality_eval/runs/siemens_s210_and_or_logic_gold_v1_validation_2026-09-22.json",
+      "sha256": "8b0ad441a9252cd1c014829f54283d0d00d3ced6e14961828290c39cbd11bd6b"
+    },
+    {
+      "artifact_id": "event-scope-review-v8",
+      "kind": "ai_role_review",
+      "lifecycle": "current_non_gold_review",
+      "path": "evaluation/quality_eval/runs/siemens_s210_event_scope_gate_primary_ai_role_review_v8_2026-09-27.json",
+      "sha256": "d60d293af9651a243985d9bf5e2ea593de3327d5181e1704dd1a1974a8f712bd",
+      "note": "37 reviewed, two not_applicable, zero pending; AI-role provenance, not human expert Gold."
+    },
+    {
+      "artifact_id": "event-scope-blind-input-v2",
+      "kind": "review_input_bundle",
+      "lifecycle": "source_for_ai_review",
+      "path": "evaluation/quality_eval/runs/siemens_s210_event_scope_gate_blind_review_bundle_v2_2026-09-26.json",
+      "sha256": "a3ce21384ccb0ef8bb9154c5a82eeaa180c752d4b6731590dc925fa9e41c5f08"
+    },
+    {
+      "artifact_id": "gate-node-review-v6",
+      "kind": "ai_role_review_dataset",
+      "lifecycle": "current_non_gold_review",
+      "path": "evaluation/quality_eval/datasets/siemens_s210_gate_node_review_dataset_v6_locator_reconciled_ai_role_review.json",
+      "sha256": "aaebc7c22c8756d4e6daabc2678256faf9e6d9dde8fa8dd0ceff8fa7ce4c07ed",
+      "note": "55 reviewed nodes: 12 AND, 17 OR, 26 unknown; AI-role review, not human expert Gold."
+    },
+    {
+      "artifact_id": "gate-node-source-split-v6",
+      "kind": "source_cluster_split",
+      "lifecycle": "current_ai_review_split",
+      "path": "evaluation/quality_eval/datasets/siemens_s210_gate_node_source_cluster_splits_v6.json",
+      "sha256": "b38fd2be0e5f92e2657073da02964ffcab4623fd9d6270efed98c8c3ccac25fd",
+      "note": "48 source clusters, 47 fault/source groups; internal split safety does not create independent external evidence."
+    },
+    {
+      "artifact_id": "human-gold-probe-six-events",
+      "kind": "descriptive_model_probe",
+      "lifecycle": "historical_diagnostic_not_calibration",
+      "path": "evaluation/quality_eval/runs/siemens_s210_gate_confidence_probe_named_gold_v1_2026-09-26.json",
+      "sha256": "3e0dc64c3be21b095236e6dd270fa3a56c187b55fc46bbdaade5bce91cab25b6",
+      "note": "Six labels with no AND class; descriptive only, no threshold selection."
+    },
+    {
+      "artifact_id": "ai-review-probe-v5-54-nodes",
+      "kind": "exploratory_model_probe",
+      "lifecycle": "historical_not_comparable_to_gate-node-v6",
+      "path": "evaluation/quality_eval/runs/siemens_s210_gate_node_confidence_probe_v5_exploratory_2026-09-27.json",
+      "sha256": "cea64c7f10aa9f43a12ee6645f6908871af5addcb70da1566389de84ee59f28a",
+      "note": "Probe used the superseded 54-node v5 review snapshot; not a v6 result and not engineering-truth calibration."
+    },
+    {
+      "artifact_id": "s210-corpus-v1",
+      "kind": "source_corpus",
+      "lifecycle": "current_source_for_s210_examples",
+      "path": "evaluation/quality_eval/datasets/siemens_s210_public_fault_corpus_v1.jsonl",
+      "sha256": "b42535d37ae27b63ba0048c88e947916e846da53e1bf18b3e5825c1853c1f483"
+    },
+    {
+      "artifact_id": "s210-corpus-v1-manifest",
+      "kind": "source_corpus_manifest",
+      "lifecycle": "current_source_manifest",
+      "path": "evaluation/quality_eval/datasets/siemens_s210_public_fault_corpus_v1.manifest.json",
+      "sha256": "19778d337db1b9d4478940c2b3259b185cf1343f30cd3347d1bf2b3b5f64696c"
+    },
+    {
+      "artifact_id": "s120-s150-corpus-v2",
+      "kind": "external_same-vendor_near-transfer_corpus",
+      "lifecycle": "current_near_transfer_only",
+      "path": "evaluation/quality_eval/datasets/siemens_s120_s150_2023_public_fault_corpus_holdout_v2.jsonl",
+      "sha256": "3da11f44f35ab8286f509a57ae474fdefdb98b8313603b408974c5a082906232",
+      "note": "Same manufacturer/product family; not independent cross-domain validation."
+    },
+    {
+      "artifact_id": "s120-s150-corpus-v2-manifest",
+      "kind": "external_corpus_manifest",
+      "lifecycle": "current_near_transfer_only",
+      "path": "evaluation/quality_eval/datasets/siemens_s120_s150_2023_public_fault_corpus_holdout_v2.manifest.json",
+      "sha256": "22abb595869f7c6797d733ef983ea0101d940a9c8146a6026f15b3a0dbf48934"
+    },
+    {
+      "artifact_id": "s120-s150-s210-overlap-audit-v3-json",
+      "kind": "source_overlap_audit",
+      "lifecycle": "current_overlap_evidence",
+      "path": "evaluation/quality_eval/runs/siemens_s120_s150_s210_overlap_audit_v3_2026-09-27.json",
+      "sha256": "2899b86ef7dde2e88c007e4564f2e1630a8135bc8fa9929af233d4167779e206"
+    },
+    {
+      "artifact_id": "s120-s150-s210-overlap-audit-v3-report",
+      "kind": "source_overlap_audit_report",
+      "lifecycle": "current_overlap_evidence",
+      "path": "evaluation/quality_eval/runs/siemens_s120_s150_s210_overlap_audit_v3_2026-09-27.md",
+      "sha256": "58d28799f571ee581762fa245570fbe63539412476957d9c5da2a504943114b7",
+      "note": "Reports 34 exact scope quote repetitions among 54 S210 nodes overall; 52 had a same-code S120/S150 record."
+    },
+    {
+      "artifact_id": "s120-s150-overlap-audit-tool",
+      "kind": "audit_tool",
+      "lifecycle": "current_reproducibility_tool",
+      "path": "evaluation/quality_eval/public_sources/audit_siemens_s120_s150_holdout_overlap_v1.py",
+      "sha256": "d301b84e8ec2ff885912ba0b51e63b5d3bdff5e70ea42c5b2ef454699b84e18e"
+    },
+    {
+      "artifact_id": "s120-s150-overlap-audit-tests",
+      "kind": "audit_regression_tests",
+      "lifecycle": "current_reproducibility_tests",
+      "path": "evaluation/quality_eval/public_sources/test_audit_siemens_s120_s150_holdout_overlap_v1.py",
+      "sha256": "4204fb36bfde5ea3646cc8290ef772491719fa624d59d1382b59b316eb13716c"
+    },
+    {
+      "artifact_id": "s120-s150-ai-review-pilot",
+      "kind": "ai_role_pilot_review",
+      "lifecycle": "exploratory_not_gold",
+      "path": "evaluation/quality_eval/runs/siemens_s120_s150_gate_node_ai_role_review_pilot_v1_2026-09-27.json",
+      "sha256": "73fd9a0efc44efd29b3c5a9b8dc8a5a1a50995edbfbbafd407b129c2ad769781"
+    },
+    {
+      "artifact_id": "gate-node-confidence-audit-code",
+      "kind": "evaluation_method",
+      "lifecycle": "current_diagnostic_method",
+      "path": "evaluation/quality_eval/fta_gate_node_confidence_audit.py",
+      "sha256": "75d01b2232a7bdd048fa1f5eb4e388d92de8b4334df1fb616af866653d0ead42"
+    },
+    {
+      "artifact_id": "gate-confidence-calibration-code",
+      "kind": "evaluation_method",
+      "lifecycle": "current_not_authorized_without_sufficient_gold",
+      "path": "evaluation/quality_eval/fta_gate_confidence_calibration.py",
+      "sha256": "e20ab4c80626d5be320cd4d35a05d3dd91a18a202564c8617dabce093274612d"
+    },
+    {
+      "artifact_id": "human-gold-validator",
+      "kind": "gold_structure_validator",
+      "lifecycle": "current",
+      "path": "evaluation/quality_eval/public_sources/validate_siemens_s210_and_or_logic_gold.py",
+      "sha256": "9661822f5d5172f4c4482d79d6daa67b6beacefdc521ade9a65916a9f4e70972"
+    },
+    {
+      "artifact_id": "faa-ast-probe-input-v1",
+      "kind": "probe_input",
+      "lifecycle": "probe_not_final_validation",
+      "path": "evaluation/quality_eval/datasets/faa_ast_gate_diagram_external_test_v1.json",
+      "sha256": "3bf7bbcdab3dc019956fc0c787c38e094802c066e9ca18e7381dd54cf9940a55"
+    },
+    {
+      "artifact_id": "multisource-fta-probe-input-v1",
+      "kind": "probe_input",
+      "lifecycle": "probe_not_final_validation",
+      "path": "evaluation/quality_eval/datasets/fta_gate_multisource_diagram_external_test_v1.json",
+      "sha256": "5484f4760097ede28c5e4d52aa76e22b9b9fb8ea563984684c98342f7a755b55"
+    },
+    {
+      "artifact_id": "text-evidence-ablation-input-v1",
+      "kind": "ablation_probe_input",
+      "lifecycle": "probe_not_final_validation",
+      "path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_ablation_v1.json",
+      "sha256": "81412b07b09387b2824c0c5b4e3743ae68f5fcdd8c5ccbab0eb5944c20c906e7"
+    },
+    {
+      "artifact_id": "text-evidence-abstention-input-v1",
+      "kind": "abstention_probe_input",
+      "lifecycle": "probe_not_final_validation",
+      "path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_external_test_v1.json",
+      "sha256": "2e09ddaeaeb456ee7b8eb1556044710d553c73fb262b3fbe6542125ed689c076"
+    },
+    {
+      "artifact_id": "text-evidence-abstention-extension-v1",
+      "kind": "abstention_probe_extension",
+      "lifecycle": "probe_not_final_validation",
+      "path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v1.json",
+      "sha256": "cd23b9a388bc3f4f2cc7b77346113e39eb1e563d9008c9b97e0b71a03a75b95b"
+    },
+    {
+      "artifact_id": "text-evidence-abstention-extension-v2",
+      "kind": "abstention_probe_extension",
+      "lifecycle": "probe_not_final_validation",
+      "path": "evaluation/quality_eval/datasets/fta_gate_text_evidence_abstention_extension_v2.json",
+      "sha256": "7b8c4852b2e186128182aa2116fb8084db2ec9937d4c6d0e8f4fd9ad2d8be6e3"
+    },
+    {
+      "artifact_id": "recursive-preview-s210-snapshot-v2",
+      "kind": "candidate_preview_snapshot",
+      "lifecycle": "historical_development_snapshot",
+      "path": "evaluation/quality_eval/runs/siemens_s210_recursive_fta_preview_v2_2026-09-26.json",
+      "sha256": "a18fee6fcdcab26ef6311ab48885b512d36580c3fb93fb14476578bc18d7992f"
+    },
+    {
+      "artifact_id": "f01681-preview-polarity-guard-v5",
+      "kind": "candidate_preview_snapshot",
+      "lifecycle": "historical_regression_fixture_blocked",
+      "path": "evaluation/quality_eval/runs/siemens_s210_2019_f01681_candidate_fta_polarity_and_gate_disclaimer_v5_2026-09-27.json",
+      "sha256": "7e5c8b00d60dd9a15102a0bc317991863686fd598913b78de76902caba0857a1"
+    },
+    {
+      "artifact_id": "f30021-preview-polarity-guard-v5",
+      "kind": "candidate_preview_snapshot",
+      "lifecycle": "historical_regression_fixture_blocked",
+      "path": "evaluation/quality_eval/runs/siemens_s210_2019_f30021_candidate_fta_polarity_and_gate_disclaimer_v5_2026-09-27.json",
+      "sha256": "d0eff5e9198902bcfc974d1e3d44210030e3fd428d71b462272aa3e6f6e2688e"
+    },
+    {
+      "artifact_id": "f30027-preview-polarity-guard-v5",
+      "kind": "candidate_preview_snapshot",
+      "lifecycle": "historical_regression_fixture_reviewable_not_approved",
+      "path": "evaluation/quality_eval/runs/siemens_s210_2019_f30027_candidate_fta_polarity_and_gate_disclaimer_v5_2026-09-27.json",
+      "sha256": "8fa0aee4a5c9037b0cc4bd7a3d34145939057af86c44308f9d9c38b0c50eb5cf"
+    },
+    {
+      "artifact_id": "f06000-s120-s150-nested-preview-v3",
+      "kind": "candidate_preview_snapshot",
+      "lifecycle": "historical_near_transfer_development_snapshot_unknown_gates",
+      "path": "evaluation/quality_eval/runs/siemens_s120_s150_f06000_nested_scope_candidate_fta_v3_2026-09-27.json",
+      "sha256": "e1fdd964bac922b25e153756f6e6d9ef55a4e93053a4325c2e7916444129993e"
+    },
+    {
+      "artifact_id": "fta-baseline-manifest-validator",
+      "kind": "reproducibility_tool",
+      "lifecycle": "current",
+      "path": "evaluation/quality_eval/validate_fta_baseline_manifest.py",
+      "sha256": "6520f3ed324d28abc7c735b8005bf7b424cd9727b981df15ce77f1a6b770b945",
+      "note": "Validates repository-relative artifact paths and SHA-256 fingerprints; defaults to the active v2 snapshot."
+    },
+    {
+      "artifact_id": "cause-disposition-contract-v1",
+      "kind": "runtime_contract",
+      "lifecycle": "current_preview_only",
+      "path": "backend-python/contracts/fta_cause_disposition_contract.py",
+      "note": "Complete per-source-cause semantic role/disposition audit contract; unresolved entries are fail-closed.",
+      "sha256": "54af7c508a41ec8f813212154d427f56b26b181cae239c0f578df414884fc5c0"
+    },
+    {
+      "artifact_id": "cause-disposition-service-v1",
+      "kind": "runtime_implementation",
+      "lifecycle": "current_preview_only",
+      "path": "backend-python/fta/cause_disposition_service.py",
+      "note": "AI-proposed cause classification; unique exact source binding only; missing/ambiguous evidence remains unresolved.",
+      "sha256": "bba937aea2f82f0c3e3ae9d8c53d8d4c59eb00bf5186769714cb6b5a40706889"
+    },
+    {
+      "artifact_id": "cause-disposition-contract-tests-v1",
+      "kind": "contract_regression_tests",
+      "lifecycle": "current",
+      "path": "backend-python/tests/test_fta_cause_disposition.py",
+      "note": "Covers completeness, duplicate/missing classifications, evidence ambiguity, and role/disposition conflicts.",
+      "sha256": "93409669a317f2356891720e55764f3bfc7c033fa5a2532be21a294f5b79500f"
+    },
+    {
+      "artifact_id": "fta-reliability-plan-current",
+      "kind": "engineering_plan",
+      "lifecycle": "current_execution_plan",
+      "path": "docs/fta-validation-reliability-plan-v1.md",
+      "note": "Status ledger and ordered execution plan; work item 2 is implemented and verified.",
+      "sha256": "a592749332935853c905f84c42700be78b9f6e84cde7bf47501b20dc044f6a18"
+    },
+    {
+      "artifact_id": "fta-internal-doc-index-current",
+      "kind": "internal_document_index",
+      "lifecycle": "current",
+      "path": "docs/README.md",
+      "note": "Internal source-of-truth index points to the active FTA baseline manifest.",
+      "sha256": "89968b243b450fccaa9fdf7269281731b40593d26d8ee6c824ff810129fef236"
+    },
+    {
+      "artifact_id": "fta-baseline-manifest-v1-snapshot",
+      "kind": "baseline_manifest_snapshot",
+      "lifecycle": "immutable_superseded_snapshot",
+      "path": "evaluation/quality_eval/fta_baseline_manifest_v1.json",
+      "note": "Original v1 manifest retained byte-for-byte as the historical pre-disposition baseline.",
+      "sha256": "e79083b027a6f8a354fc0d008915dd77324fef8f66c92185f478de55921a2a00"
+    },
+    {
+      "artifact_id": "fta-baseline-manifest-v2-builder",
+      "kind": "reproducibility_tool",
+      "lifecycle": "current",
+      "path": "evaluation/quality_eval/build_fta_baseline_manifest_v2.py",
+      "note": "Rebuilds v2 by refreshing fingerprints for the inherited v1 artifact set and recording additive v2 artifacts.",
+      "sha256": "ea5d8c3c9cb4b1c523d33af4ad1b6aafa88262c81722470f461a65162e73da01"
+    },
+    {
+      "artifact_id": "fta-baseline-manifest-validation-tests",
+      "kind": "reproducibility_tests",
+      "lifecycle": "current",
+      "path": "evaluation/quality_eval/test_validate_fta_baseline_manifest.py",
+      "note": "Validates exact artifact fingerprints and the active repository manifest.",
+      "sha256": "ff5601efb5fc022796568ed788fbd9ee39ab2bea6967771b12f93ffeaebe68cf"
+    }
+  ],
+  "superseded": [
+    {
+      "artifact_family": "siemens_s210_event_scope_gate_primary_ai_role_review",
+      "superseded_versions": [
+        "v1",
+        "v2",
+        "v3",
+        "v4",
+        "v5",
+        "v6",
+        "v7"
+      ],
+      "current_version": "v8",
+      "reason": "append-only review/amendment chain; v8 closes the previous pending scope decisions"
+    },
+    {
+      "artifact_family": "siemens_s210_gate_node_review_dataset",
+      "superseded_versions": [
+        "v1",
+        "v2",
+        "v3",
+        "v4",
+        "v5"
+      ],
+      "current_version": "v6",
+      "reason": "scope/eligibility/locator reconciliation; historical sets are not current calibration labels"
+    },
+    {
+      "artifact_family": "siemens_s210_gate_node_source_cluster_splits",
+      "superseded_versions": [
+        "v1",
+        "v2",
+        "v3",
+        "v4",
+        "v5"
+      ],
+      "current_version": "v6",
+      "reason": "v6 follows the current gate-node v6 population and locator reconciliation"
+    },
+    {
+      "artifact_family": "siemens_s120_s150_public_fault_corpus_holdout",
+      "superseded_versions": [
+        "v1"
+      ],
+      "current_version": "v2",
+      "reason": "v2 preserves nested Fault value structure and is the only version allowed for later work"
+    },
+    {
+      "artifact_id": "ai-review-probe-v5-54-nodes",
+      "superseded_by": "gate-node-review-v6",
+      "reason": "probe population is the old 54-node v5 review set; no v6 paired prediction exists"
+    },
+    {
+      "artifact_family": "candidate_fta_tree_contract",
+      "superseded_versions": [
+        "v3"
+      ],
+      "current_version": "v4",
+      "reason": "v4 adds a complete auditable cause role/disposition ledger; non-tree and unresolved causes are no longer forced into nodes."
+    },
+    {
+      "artifact_family": "fta_baseline_manifest",
+      "superseded_versions": [
+        "v1"
+      ],
+      "current_version": "v2",
+      "reason": "v1 remains an immutable historical snapshot; v2 fingerprints the current cause-disposition contract and implementation."
+    }
+  ],
+  "baseline_change_policy": {
+    "immutable_snapshot": true,
+    "when_referenced_artifact_changes": "create a new manifest version; do not rewrite this v1 snapshot to match new code",
+    "required_review": "verify all paths, provenance labels, supersession links, and SHA-256 values before activating a new manifest version"
+  },
+  "supersedes_manifest": {
+    "manifest_id": "candidate_fta_research_baseline",
+    "path": "evaluation/quality_eval/fta_baseline_manifest_v1.json",
+    "reason": "Candidate tree v4 adds evidence-bound cause role/disposition and fail-closed unresolved handling."
+  }
+}

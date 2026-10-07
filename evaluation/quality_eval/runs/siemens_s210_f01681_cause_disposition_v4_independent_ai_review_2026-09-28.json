@@ -1,0 +1,61 @@
+{
+  "artifact_type": "candidate_fta_independent_ai_role_review",
+  "artifact_version": "v1",
+  "sample_id": "SIEMENS_S210_2019_F01681",
+  "reviewed_at": "2026-09-28",
+  "reviewer": {
+    "kind": "ai_subagent",
+    "nickname": "Hume the 2nd",
+    "human_expert": false,
+    "domain_expert_signature": false
+  },
+  "review_target": {
+    "run_artifact": "evaluation/quality_eval/runs/siemens_s210_f01681_raw_candidate_fta_cause_disposition_v4_2026-09-28.json",
+    "prompt_version": "fta-cause-disposition-v4",
+    "source_dataset": "evaluation/quality_eval/datasets/siemens_s210_public_fault_corpus_v1.jsonl",
+    "source_document_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+    "input_text_sha256": "5517c4e678dfa57286a7ae5426e4d40ed7322a4c88241593b6a55d068f0e994b"
+  },
+  "review_method": "read_only_independent_semantic_and_evidence_review",
+  "conclusion": "PASS",
+  "findings": {
+    "cause_disposition_count": 16,
+    "top_event_restatement": {
+      "source_cause_index": 0,
+      "semantic_role": "causal_summary",
+      "disposition": "relation_only",
+      "reason_code": "summary_not_independent_event",
+      "assessment": "Consistent with the text being a paraphrase of the top event rather than a distinct upstream mechanism."
+    },
+    "diagnostic_mapping_indexes": {
+      "from": 1,
+      "through": 15,
+      "count": 15,
+      "disposition": "relation_only",
+      "assessment": "Kept outside tree nodes and causal edges."
+    },
+    "candidate_tree": {
+      "status": "blocked",
+      "blocker": "no_fta_event_candidates",
+      "assessment": "Appropriate fail-closed result when no cause remains eligible as an independent tree event."
+    },
+    "evidence_integrity": {
+      "reference_count": 71,
+      "offsets_exact": true,
+      "failures": []
+    }
+  },
+  "limitations": [
+    "This is a single-sample development review, not an accuracy estimate or independent Final Test.",
+    "The reviewer is an AI subagent, not Liu Wu or another human domain expert.",
+    "The result does not establish FTA Gold, gate truth, or production readiness."
+  ],
+  "mutations": {
+    "files_changed_by_reviewer": false,
+    "online_model_calls": 0,
+    "formal_gold": false,
+    "database_written": false,
+    "fta_ready": false,
+    "production_ready": false
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "artifact_type": "siemens_s210_local_logic_source_audit",
+  "artifact_version": "v1",
+  "created_at": "2026-09-26",
+  "reviewer_provenance": "source_alignment_audit_of_ai_authorized_review; not_formal_gold",
+  "sources": {
+    "review_summary": {
+      "path": "evaluation/quality_eval/runs/siemens_s210_causal_event_gate_review_consolidated_v1_2026-09-26.json",
+      "sha256": "AAE7FC66CFB128147AE3402723E83846F333F6D317BBA0783DD48828F99184EE"
+    },
+    "raw_corpus": {
+      "path": "evaluation/quality_eval/datasets/siemens_s210_public_fault_corpus_v1.jsonl",
+      "sha256": "B42535D37AE27B63BA0048C88E947916E846DA53E1BF18B3E5825C1853C1F483"
+    }
+  },
+  "audit_method": {
+    "selection": "All non-empty local_logic_observations whose logic is AND, OR, unknown, or unresolved_and_or in the consolidated 281-event AI-authorized review.",
+    "source_join": "fault_code matched to weak_record.fault_code in the public corpus.",
+    "quote_check": "Count exact literal occurrences of the observation quote in that sample input_text.",
+    "offset_check": "When offsets exist, compare input_text[start:end] to quote; offsets use 0-based, end-exclusive positions.",
+    "scope_rule": "local_gate is not copied to event_gate; each observation retains both labels and its original review scope."
+  },
+  "summary": {
+    "event_count": 281,
+    "local_logic_observation_count": 15,
+    "local_gate_counts": {
+      "AND": 1,
+      "OR": 12,
+      "unknown": 1,
+      "unresolved_and_or": 1
+    },
+    "corpus_sample_found_count": 15,
+    "quote_unique_count": 14,
+    "offsets_exact_count": 13,
+    "explicit_and_or_count": 13,
+    "explicit_and_or_different_from_event_gate_count": 11,
+    "calibration_eligible": false,
+    "calibration_blockers": [
+      "review provenance is AI-authorized and is not the named-expert Gold",
+      "node-scope rubric and cause hierarchy are not yet frozen",
+      "only one AND observation is present",
+      "no independent calibration/validation split exists"
+    ]
+  },
+  "observations": [
+    {"fault_code":"A01631","sample_id":"SIEMENS_S210_2019_A01631","observation_index":1,"event_gate":"unknown","local_gate":"AND","kind":"and_inside_compound_configuration_candidate","quote":"\"No motor holding brake available\" (p1215 = 0) and \"SBC\" enabled (p9602 = 1).","start":248,"end":325,"quote_occurrences":1,"offset_status":"exact"},
+    {"fault_code":"A30031","sample_id":"SIEMENS_S210_2019_A30031","observation_index":1,"event_gate":"unknown","local_gate":"OR","kind":null,"quote":"fault in the motor or in the power cables.","start":257,"end":299,"quote_occurrences":1,"offset_status":"exact"},
+    {"fault_code":"A30031","sample_id":"SIEMENS_S210_2019_A30031","observation_index":2,"event_gate":"unknown","local_gate":"OR","kind":null,"quote":"phase U, V or W","start":497,"end":512,"quote_occurrences":1,"offset_status":"exact"},
+    {"fault_code":"F01672","sample_id":"SIEMENS_S210_2019_F01672","observation_index":1,"event_gate":"unknown","local_gate":"OR","kind":null,"quote":"or there is a communications error between the two monitoring channels.","start":251,"end":322,"quote_occurrences":1,"offset_status":"exact"},
+    {"fault_code":"F01673","sample_id":"SIEMENS_S210_2019_F01673","observation_index":1,"event_gate":"unknown","local_gate":"unresolved_and_or","kind":null,"quote":"and/or","start":146,"end":152,"quote_occurrences":1,"offset_status":"exact"},
+    {"fault_code":"F01911","sample_id":"SIEMENS_S210_2019_F01911","observation_index":1,"event_gate":"OR","local_gate":"OR","kind":"explicit_or_between_two_direct_clock_cycle_conditions","quote":"The global control telegram to synchronize the clock cycles has failed - in cyclic operation - for several DP clock cycles or\nhas violated the time grid specified in the parameterizing telegram over several consecutive DP clock cycles","start":107,"end":341,"quote_occurrences":1,"offset_status":"exact"},
+    {"fault_code":"F07011","sample_id":"SIEMENS_S210_2019_F07011","observation_index":1,"event_gate":"unknown","local_gate":"OR","kind":"or_inside_unobserved_fault_value_mapping","quote":"temperature is too high, or the model has not been parameterized.","start":488,"end":553,"quote_occurrences":1,"offset_status":"exact"},
+    {"fault_code":"F07801","sample_id":"SIEMENS_S210_2019_F07801","observation_index":1,"event_gate":"unknown","local_gate":"OR","kind":"explicit_or_within_compound_possible_cause","quote":"short-circuit in the motor cable or ground fault.","start":223,"end":272,"quote_occurrences":1,"offset_status":"exact"},
+    {"fault_code":"F30001","sample_id":"SIEMENS_S210_2019_F30001","observation_index":1,"event_gate":"unknown","local_gate":"OR","kind":"explicit_or_within_compound_possible_cause","quote":"motor has a short-circuit or fault to ground (frame).","start":null,"end":null,"quote_occurrences":1,"offset_status":"missing"},
+    {"fault_code":"F30611","sample_id":"SIEMENS_S210_2019_F30611","observation_index":1,"event_gate":"unknown","local_gate":"OR","kind":"explicit_local_alternative_not_event_gate","quote":"Within the time of approx. 5 x p9650, alternatively, the following was defined:","start":1018,"end":1097,"quote_occurrences":1,"offset_status":"exact"},
+    {"fault_code":"F30625","sample_id":"SIEMENS_S210_2019_F30625","observation_index":1,"event_gate":"unknown","local_gate":"OR","kind":"explicit_disjunction_inside_single_candidate","quote":"there is either a DRIVE-CLiQ communication error or communication has failed.","start":265,"end":342,"quote_occurrences":1,"offset_status":"exact"},
+    {"fault_code":"F30655","sample_id":"SIEMENS_S210_2019_F30655","observation_index":1,"event_gate":"OR","local_gate":"OR","kind":"explicit_event_or_with_combined_candidate","quote":"there is either a DRIVE-CLiQ communication error or communication has failed.","start":329,"end":406,"quote_occurrences":1,"offset_status":"exact"},
+    {"fault_code":"F30680","sample_id":"SIEMENS_S210_2019_F30680","observation_index":1,"event_gate":"unknown","local_gate":"OR","kind":"or_inside_compound_cause_summary","quote":"Safety-relevant parameters have been changed or a fault is present.","start":254,"end":321,"quote_occurrences":1,"offset_status":"exact"},
+    {"fault_code":"F30700","sample_id":"SIEMENS_S210_2019_F30700","observation_index":1,"event_gate":"unknown","local_gate":"unknown","kind":"possible_causes_sibling_list_gate_interpretation_disputed","quote":"Possible causes:\n- stop request from another monitoring channel.\n- STO not active after parameterized time after test stop selection.","start":167,"end":300,"quote_occurrences":1,"offset_status":"exact"},
+    {"fault_code":"F31405","sample_id":"SIEMENS_S210_2019_F31405","observation_index":1,"event_gate":"unknown","local_gate":"OR","kind":null,"quote":null,"start":null,"end":null,"quote_occurrences":0,"offset_status":"quote_missing"}
+  ],
+  "interpretation": "This is a source-location audit of existing AI review observations, not an adjudication that each operator is semantically correct. It does not mutate Gold or database and is not eligible as a calibration dataset until node scope is reviewed and independent splits exist."
+}

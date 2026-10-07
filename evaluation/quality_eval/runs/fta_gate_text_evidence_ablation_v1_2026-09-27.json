@@ -1,0 +1,161 @@
+{
+  "artifact_type": "external_text_evidence_gate_abstention_probe",
+  "artifact_version": "v1",
+  "created_at": "2026-09-27T10:14:49.457815+00:00",
+  "status": "completed",
+  "formal_gold": false,
+  "in_project_gold": false,
+  "database_written": false,
+  "gate_policy_applied": false,
+  "threshold_selected": false,
+  "probability_calibrated": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "evaluation_scope": "Paired evidence-ablation probe: six previously tested positive AND/OR examples are re-presented with their decisive gate wording and candidate-set heading removed. All exposed-scope labels are unknown. This tests dependence on provided evidence and abstention, not natural-distribution accuracy or source-level truth.",
+  "reviewer_provenance": "primary_ai_agent_pre_inference_evidence_review",
+  "reviewer_is_human_expert": false,
+  "confidence_semantics": "raw uncalibrated model self-assessment, not event probability",
+  "metadata": {
+    "model_id": "deepseek-flash",
+    "provider_host": "api.deepseek.com",
+    "temperature": 0,
+    "requests_planned": 6,
+    "requests_succeeded": 6,
+    "requests_failed": 0,
+    "source_document_count": 5,
+    "source_cluster_count": 5,
+    "fixture_sha256": "81412b07b09387b2824c0c5b4e3743ae68f5fcdd8c5ccbab0eb5944c20c906e7"
+  },
+  "summary": {
+    "sample_count": 6,
+    "top1_accuracy": 1.0,
+    "unknown_gold_count": 6,
+    "unknown_correct_count": 6,
+    "unknown_recall": 1.0,
+    "unknown_unsafe_accept_count": 0,
+    "known_gate_count": 0,
+    "known_gate_correct_count": 0,
+    "decisive_coverage": 0.0,
+    "decisive_quote_substring_match_count": 0,
+    "decisive_quote_count": 0,
+    "label_counts": {
+      "unknown": 6
+    },
+    "prediction_counts": {
+      "unknown": 6
+    }
+  },
+  "predictions": [
+    {
+      "gate_node_id": "FAA-AC65-15A-F14-44-CAUSE-002-ABLATION",
+      "expected_gate": "unknown",
+      "predicted_gate": "unknown",
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 0.0,
+        "unknown": 1.0
+      },
+      "top_probability": 1.0,
+      "top_margin": 1.0,
+      "gate_evidence_quote": null,
+      "quote_is_exact_substring_of_child_evidence": null,
+      "correct": true,
+      "prompt_sha256": "795bdab80359e34db81e90f2c1ebaa4529093ae52bcc63815e4e83b3344f3dc1",
+      "reason": "source_scope_evidence 仅描述父事件表现，未直接表达两个子事件之间的 AND/OR 组合逻辑。"
+    },
+    {
+      "gate_node_id": "NASA-TP2000-FIG28-CATASTROPHIC-AND-001-ABLATION",
+      "expected_gate": "unknown",
+      "predicted_gate": "unknown",
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 0.0,
+        "unknown": 1.0
+      },
+      "top_probability": 1.0,
+      "top_margin": 1.0,
+      "gate_evidence_quote": null,
+      "quote_is_exact_substring_of_child_evidence": null,
+      "correct": true,
+      "prompt_sha256": "89e2db25988ece88b10afc69df2ce38efd0a78d3c0da4f0ab30d6a5d0337cae8",
+      "reason": "The provided source scope only names the parent event 'Catastrophic Fire/Explosion' and does not state whether the two child events must occur together or can independently lead to the parent event."
+    },
+    {
+      "gate_node_id": "NASA-VESELY-RESISTOR-CRITICAL-PATH-AND-001-ABLATION",
+      "expected_gate": "unknown",
+      "predicted_gate": "unknown",
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 0.0,
+        "unknown": 1.0
+      },
+      "top_probability": 1.0,
+      "top_margin": 1.0,
+      "gate_evidence_quote": null,
+      "quote_is_exact_substring_of_child_evidence": null,
+      "correct": true,
+      "prompt_sha256": "277733a2e1a5d5aeaa673ef90977ad110b014edb85e2ff5a32e4f5982dbddb15",
+      "reason": "给定证据仅说明父事件是顶事件，未直接表达两个子事件之间的 AND 或 OR 组合逻辑，因此判为 unknown。"
+    },
+    {
+      "gate_node_id": "NASA-TM86404-CAREIII-ALL-EVENTS-AND-001-ABLATION",
+      "expected_gate": "unknown",
+      "predicted_gate": "unknown",
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 0.0,
+        "unknown": 1.0
+      },
+      "top_probability": 1.0,
+      "top_margin": 1.0,
+      "gate_evidence_quote": null,
+      "quote_is_exact_substring_of_child_evidence": null,
+      "correct": true,
+      "prompt_sha256": "b66c208098f77147bec069042387a666ba82241717af8c958cc7ce9c11859499",
+      "reason": "The provided source scope text only states that event k is the output of a fault-tree gate. It does not directly express whether the listed child events are combined by AND or OR logic."
+    },
+    {
+      "gate_node_id": "NASA-TM86404-CAREIII-ANY-INPUT-OR-001-ABLATION",
+      "expected_gate": "unknown",
+      "predicted_gate": "unknown",
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 0.0,
+        "unknown": 1.0
+      },
+      "top_probability": 1.0,
+      "top_margin": 1.0,
+      "gate_evidence_quote": null,
+      "quote_is_exact_substring_of_child_evidence": null,
+      "correct": true,
+      "prompt_sha256": "b66c208098f77147bec069042387a666ba82241717af8c958cc7ce9c11859499",
+      "reason": "The provided evidence only states that event k is the output of a fault-tree gate. It does not directly express whether any child events are combined by AND or OR, so the gate type is unknown."
+    },
+    {
+      "gate_node_id": "NASA-CR72723-HVSA-COEXISTENCE-AND-001-ABLATION",
+      "expected_gate": "unknown",
+      "predicted_gate": "unknown",
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 0.0,
+        "unknown": 1.0
+      },
+      "top_probability": 1.0,
+      "top_margin": 1.0,
+      "gate_evidence_quote": null,
+      "quote_is_exact_substring_of_child_evidence": null,
+      "correct": true,
+      "prompt_sha256": "e0da7d1bc7693ec9988af79ffdc092035deaae918055fb78f803f8227d1eb0c8",
+      "reason": "给定原文未直接说明 Input event A 与 Input event B 是需共同发生还是任一发生即可导致 output event，因此判为 unknown。"
+    }
+  ],
+  "failures": [],
+  "limitations": [
+    "All six rows are paired synthetic evidence-ablation controls derived from six previously tested positive cases, not six naturally sampled source passages.",
+    "Two CARE III controls share the same document cluster, so there are six nodes from five source clusters.",
+    "The FAA source is cancelled/superseded and is included only as a historical text-classification control, not current maintenance guidance.",
+    "The paired original decisive quote is withheld from model input but remains in the separate original fixture and source documents; model pretraining exposure cannot be ruled out.",
+    "Labels are AI-assigned from the evidence shown to the model before inference, not human expert Gold or independent second-agent review.",
+    "This probe tests abstention when gate wording is absent from the supplied scope; it does not estimate natural-distribution accuracy, calibrate confidence, or validate source extraction, cause completeness, recursive FTA generation, database integration, or production readiness."
+  ]
+}

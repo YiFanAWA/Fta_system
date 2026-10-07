@@ -1,0 +1,175 @@
+{
+  "artifact_type": "fta_event_scope_gate_pending_ai_role_review_amendment",
+  "artifact_version": "v3",
+  "created_at": "2026-09-27",
+  "reviewer_provenance": "primary_ai_role_review",
+  "reviewer_is_human_expert": false,
+  "independent_review": false,
+  "formal_gold": false,
+  "database_written": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "source_review": "evaluation/quality_eval/runs/siemens_s210_event_scope_gate_primary_ai_role_review_v7_2026-09-27.json",
+  "source_bundle": "evaluation/quality_eval/runs/siemens_s210_event_scope_gate_blind_review_bundle_v2_2026-09-26.json",
+  "policy": "只对完整、同层且唯一定位的原文范围给门型审查；AND/OR须有直接门语义证据。列表、故障值编码和参数值本身不推出门型；完整原因/模式集合但门型无文本依据记unknown。候选设备适用分支必须保留上下文，非原因的状态、后续响应和诊断信息必须显式排除并给精确引文。不得称AI角色审核为真人专家签署或正式Gold。",
+  "supersession_reason": "v8逐条关闭v7剩余三条pending：F30600重划为两个文本支持的触发情形并显式排除状态/后续响应项；F30650完整枚举六个顶层故障值模式，将1000的下级说明留在同一模式证据中；F30017补齐两个设备适用分支下的九项Cause候选并保留分支标签。三条均无直接门证据，故标unknown。仅为AI角色审核，不是正式Gold。",
+  "amendments": [
+    {
+      "case_id": "ESG-A06020BA674F",
+      "fault_code": "F30600",
+      "operation": "replace_children",
+      "scope_type": "event_cause_set",
+      "scope_anchor_quote": "Cause: The \"Safety Integrated\" function integrated in the drive has identified a fault in monitoring channel 2, and has initiated STO.\n- forced checking procedure (test stop) of the safety switch-off signal path of monitoring channel 2 unsuccessful.\n- subsequent response to fault F30611 (defect in a monitoring channel).\nFault value (r0949, decimal interpretation):\n0: Stop request from another monitoring channel.\n1005: STO active, although no STO is selected and no stop response with STO is active.\n1010: STO inactive, although STO is selected or a stop response with STO is active.\n1011: internal error for STO deselected in monitoring channel 2.\n9999: Subsequent response to fault F30611.",
+      "children": [
+        {
+          "candidate_text": "forced checking procedure (test stop) of the safety switch-off signal path of monitoring channel 2 was unsuccessful",
+          "quote": "- forced checking procedure (test stop) of the safety switch-off signal path of monitoring channel 2 unsuccessful."
+        },
+        {
+          "candidate_text": "stop request from another monitoring channel (fault value 0)",
+          "quote": "0: Stop request from another monitoring channel."
+        }
+      ],
+      "scope_exclusions": [
+        {
+          "quote": "Cause: The \"Safety Integrated\" function integrated in the drive has identified a fault in monitoring channel 2, and has initiated STO.",
+          "reason": "这是事件状态/保护响应摘要，不作为独立的上游原因子项。"
+        },
+        {
+          "quote": "- subsequent response to fault F30611 (defect in a monitoring channel).",
+          "reason": "原文将其描述为后续响应，不证明F30611由F30600导致，也不作为F30600的上游原因。"
+        },
+        {
+          "quote": "1005: STO active, although no STO is selected and no stop response with STO is active.",
+          "reason": "这是故障状态/诊断映射，不是原文确认的上游原因。"
+        },
+        {
+          "quote": "1010: STO inactive, although STO is selected or a stop response with STO is active.",
+          "reason": "这是故障状态/诊断映射，不是原文确认的上游原因。"
+        },
+        {
+          "quote": "1011: internal error for STO deselected in monitoring channel 2.",
+          "reason": "这是内部故障值状态说明；原文未给出其上游因果方向。"
+        },
+        {
+          "quote": "9999: Subsequent response to fault F30611.",
+          "reason": "这是对另一故障的后续响应映射，不是本事件的上游原因。"
+        }
+      ],
+      "decision": {
+        "review_status": "reviewed",
+        "scope_appropriate": true,
+        "child_set_complete": true,
+        "children_same_logical_level": true,
+        "gate_label": "unknown",
+        "gate_evidence": [],
+        "review_reason": "对照完整Cause及Fault value文本后，将明确列出的两种触发情形作为本作用域子项：测试停止检查失败、另一监控通道发出停止请求。事件摘要、F30611后续响应及1005/1010/1011诊断状态均逐项登记为排除项，避免与上游触发混层。此处完整性仅指本段列出的原因候选已逐项处置，不声称物理原因穷尽；原文未陈述AND/OR，故为unknown。"
+      }
+    },
+    {
+      "case_id": "ESG-EC987BCC7B1D",
+      "fault_code": "F30650",
+      "operation": "replace_children",
+      "scope_type": "fault_cause_mode_set",
+      "scope_anchor_quote": "Fault value (r0949, interpret decimal):\n130: Safety parameters for monitoring channel 2 not available.\nNote:\nThis fault value is always output when Safety Integrated is commissioned for the first time.\n1000: Reference and actual checksum in monitoring channel 2 are not identical (booting).\n- safety parameters set offline and loaded to the drive.\n- at least one checksum-checked piece of data is defective.\n2000: Reference and actual checksum in monitoring channel 2 are not identical (commissioning mode).\n2003: Acceptance test is required as a safety parameter has been changed.\n3003: Acceptance test is required as a hardware-related safety parameter has been changed.\n9999: Subsequent response of another safety-related fault that occurred when booting that requires an acceptance test.",
+      "children": [
+        {
+          "candidate_text": "Fault-value mode 130: safety parameters for monitoring channel 2 are unavailable; this value is output at first Safety Integrated commissioning",
+          "quote": "130: Safety parameters for monitoring channel 2 not available.\nNote:\nThis fault value is always output when Safety Integrated is commissioned for the first time."
+        },
+        {
+          "candidate_text": "Fault-value mode 1000: reference/actual checksum mismatch during booting, with its two listed configuration/data contexts retained under this mode",
+          "quote": "1000: Reference and actual checksum in monitoring channel 2 are not identical (booting).\n- safety parameters set offline and loaded to the drive.\n- at least one checksum-checked piece of data is defective."
+        },
+        {
+          "candidate_text": "Fault-value mode 2000: reference/actual checksum mismatch in commissioning mode",
+          "quote": "2000: Reference and actual checksum in monitoring channel 2 are not identical (commissioning mode)."
+        },
+        {
+          "candidate_text": "Fault-value mode 2003: a safety parameter has been changed and an acceptance test is required",
+          "quote": "2003: Acceptance test is required as a safety parameter has been changed."
+        },
+        {
+          "candidate_text": "Fault-value mode 3003: a hardware-related safety parameter has been changed and an acceptance test is required",
+          "quote": "3003: Acceptance test is required as a hardware-related safety parameter has been changed."
+        },
+        {
+          "candidate_text": "Fault-value mode 9999: subsequent response to another safety-related fault occurring during booting that requires an acceptance test",
+          "quote": "9999: Subsequent response of another safety-related fault that occurred when booting that requires an acceptance test."
+        }
+      ],
+      "scope_exclusions": [
+        {
+          "quote": "Cause: The \"Safety Integrated\" function on monitoring channel 2 requires an acceptance test.",
+          "reason": "这是故障/验收测试要求的摘要状态；本作用域改为完整故障值模式集合。"
+        },
+        {
+          "quote": "This fault results in an STO that can be acknowledged.",
+          "reason": "这是故障后果，不是故障值模式的上游原因。"
+        }
+      ],
+      "decision": {
+        "review_status": "reviewed",
+        "scope_appropriate": true,
+        "child_set_complete": true,
+        "children_same_logical_level": true,
+        "gate_label": "unknown",
+        "gate_evidence": [],
+        "review_reason": "作用域限定为Fault value下完整六个顶层数值模式。1000项下的两个说明保留在同一个1000模式证据中，不提升为与顶层数值模式并列的节点；9999后续响应也作为原文列出的模式保留，不擅自解释其未知上游故障。完整性仅覆盖手册列出的数值模式，不代表现场读数或物理原因穷尽。数值枚举不证明AND/OR，故为unknown。"
+      }
+    },
+    {
+      "case_id": "ESG-30E57F6F356E",
+      "fault_code": "F30017",
+      "operation": "replace_children",
+      "scope_type": "event_cause_set",
+      "scope_anchor_quote": "For infeed units, the following applies:\n- closed-loop control is incorrectly parameterized.\n- load on the infeed is too high.\n- line reactor missing or the incorrect type.\n- power unit defective.\nThe following applies to Motor Modules:\n- closed-loop control is incorrectly parameterized.\n- fault in the motor or in the power cables.\n- the power cables exceed the maximum permissible length.\n- motor load too high\n- power unit defective.",
+      "children": [
+        {"candidate_text": "Infeed units: closed-loop control is incorrectly parameterized", "quote": "For infeed units, the following applies:\n- closed-loop control is incorrectly parameterized."},
+        {"candidate_text": "Infeed units: load on the infeed is too high", "quote": "- load on the infeed is too high."},
+        {"candidate_text": "Infeed units: line reactor is missing or the incorrect type is installed", "quote": "- line reactor missing or the incorrect type."},
+        {"candidate_text": "Infeed units: power unit is defective", "quote": "- line reactor missing or the incorrect type.\n- power unit defective."},
+        {"candidate_text": "Motor Modules: closed-loop control is incorrectly parameterized", "quote": "The following applies to Motor Modules:\n- closed-loop control is incorrectly parameterized."},
+        {"candidate_text": "Motor Modules: fault in the motor or in the power cables", "quote": "- fault in the motor or in the power cables."},
+        {"candidate_text": "Motor Modules: power cables exceed the maximum permissible length", "quote": "- the power cables exceed the maximum permissible length."},
+        {"candidate_text": "Motor Modules: motor load is too high", "quote": "- motor load too high\n- power unit defective."},
+        {"candidate_text": "Motor Modules: power unit is defective", "quote": "- motor load too high\n- power unit defective."}
+      ],
+      "scope_exclusions": [
+        {
+          "quote": "Cause: The hardware current limitation in the relevant phase (see A30031, A30032, A30033) has responded too often. The number\nof times the limit has been exceeded depends on the design and type of power unit.",
+          "reason": "这是事件/阈值摘要，不作为独立原因子项；具体原因按后续设备适用分支列出。"
+        },
+        {
+          "quote": "Bit 3: phase U",
+          "reason": "故障值位用于定位电流受限相位，不是上游原因。"
+        },
+        {
+          "quote": "Bit 4: phase V",
+          "reason": "故障值位用于定位电流受限相位，不是上游原因。"
+        },
+        {
+          "quote": "Bit 5: phase W",
+          "reason": "故障值位用于定位电流受限相位，不是上游原因。"
+        },
+        {
+          "quote": "Additional bits:\nOnly for internal Siemens troubleshooting.",
+          "reason": "内部诊断说明，不是原因子项。"
+        },
+        {
+          "quote": "Fault value = 0 means that the phase with current limiting is not recognized (e.g. for blocksize device).",
+          "reason": "这是相位无法识别的诊断映射，不是导致硬件电流限制频繁响应的上游原因。"
+        }
+      ],
+      "decision": {
+        "review_status": "reviewed",
+        "scope_appropriate": true,
+        "child_set_complete": true,
+        "children_same_logical_level": true,
+        "gate_label": "unknown",
+        "gate_evidence": [],
+        "review_reason": "Cause段在两个设备适用分支下共列九项，现全部纳入并逐项保留适用对象；相同措辞的控制器参数化错误和功率单元故障按各自分支分别引用，未合并成无条件节点。位值/内部故障值仅作诊断定位，已逐项记录为排除项。该完整性仅针对手册列出的条件化原因清单，不表示任一现场配置适用，也不声称物理原因穷尽。分支列表没有直接说明事件级AND/OR关系，故为unknown。"
+      }
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "schema": "fta_external_source_suitability_audit_v1",
+  "audit_id": "fta_independent_final_source_screen_v1_2026-09-28",
+  "captured_at": "2026-09-28",
+  "purpose": "Screen public whole-document sources and document source-use boundaries; this is not a dataset, Gold, model run, or readiness result.",
+  "baseline": {
+    "manifest_path": "evaluation/quality_eval/fta_baseline_manifest_v16.json",
+    "manifest_sha256": "b3006b068c5670c4f2f1ad603656792cb041b35576aa4a5c76ecc561a37cf1b1",
+    "reviewed_source_clusters": 18,
+    "exact_document_id_and_title_scan": "No exact match for the screened document IDs/titles was found in the repository at capture time. This is not a semantic overlap proof."
+  },
+  "task_fit": {
+    "current_runtime_unit": "One extracted FaultRecord per candidate tree; top event is record.description and tree cause inputs are record.causes.",
+    "candidate_sources_unit": "System-level safety-analysis reports containing multiple top events and complete reference tree diagrams.",
+    "direct_use_allowed": false,
+    "reason": "Passing an entire system report to the current per-record application service would mix multiple systems/events and would not test the same task as a bounded single-record preview.",
+    "minimum_evaluation_adapter": [
+      "Create one bounded, page-addressed input packet per selected top event from eligible upstream prose/FHA/FMECA context; do not include reference tree diagrams, gate symbols, tree-result tables, or derived gate labels in model-visible input.",
+      "Retain the full source PDF and SHA-256 outside the model-visible packet; store exact page and quote provenance for every packet segment.",
+      "Create a reference graph for the corresponding diagram subgraph, preserving event identity, hierarchy, gates, and source-page locators.",
+      "Score two distinct labels: diagram_reference_gate (what the source tree depicts) and text_authorized_gate (AND/OR only when the allowed prose directly supports it; otherwise unknown under the current evidence policy).",
+      "Call the result source-held-out evaluation, not a pretraining-isolated or human-expert benchmark; all cases from one report remain one indivisible source cluster."
+    ],
+    "required_before_final_dataset": [
+      "Approve event-scope and input-packet rules before creating final labels.",
+      "Acquire new whole-document source clusters whose tree pages/labels have not been inspected; the two reviewed reports below are already seen and cannot serve as blind Final.",
+      "Freeze the current prompt/model/parser/configuration lock; any later tuning demotes any selected source to development.",
+      "Build and validate the evaluation-only adapter without changing production behavior.",
+      "Ensure model-visible inputs are disjoint from diagram labels and reference-tree output tables.",
+      "Record evidence sufficiency so safe unknown/abstention is not scored as an incorrect AND/OR guess."
+    ]
+  },
+  "independent_final_validation": {
+    "status": "not_created",
+    "sample_count": 0,
+    "source_cluster_count": 0,
+    "model_inference_run": false,
+    "reason": "No blind-eligible source remains from this screen: the two most suitable reports had representative tree pages inspected and are development-only; no bounded source-scope packet, reference graph dataset, or blind model evaluation has been assembled."
+  },
+  "review_provenance": {
+    "primary_review": "Repository/source-file inspection, official source metadata, PDF text inspection, and visual inspection of representative tree pages.",
+    "independent_contract_review": "AI subagent read-only review confirmed the system-report versus per-FaultRecord contract mismatch and the minimum scope-packet adapter requirement.",
+    "human_expert_reviewed": false,
+    "model_inference_run": false
+  },
+  "sources": [
+    {
+      "source_cluster_id": "NASA_CR_2019_220217_DOCUMENT",
+      "document_id": "NASA/CR-2019-220217",
+      "title": "Hazards Analysis and Failure Modes and Effects Criticality Analysis (FMECA) of Four Concept Vehicle Propulsion Systems",
+      "official_record_url": "https://ntrs.nasa.gov/citations/20190026443",
+      "official_pdf_url": "https://ntrs.nasa.gov/api/citations/20190026443/downloads/20190026443.pdf",
+      "downloaded_pdf_sha256": "e2dd128ecc554f168d77fabc1706b854636d6c454ca0529fdc5ca694cbcd4a83",
+      "page_count": 200,
+      "official_distribution": "Public; Public Use Permitted",
+      "source_claim": "NASA NTRS describes FHA/FMECA for each of four concept vehicles and says FTA connectivity was developed using FMECA and functional block diagram inputs; the report contains associated tree diagrams.",
+      "screening_role": "seen_development_candidate_only_not_blind_final",
+      "blind_final_eligible": false,
+      "source_cluster_policy": "All four vehicle analyses and diagrams stay within this single report/source cluster; do not split vehicles across Dev and Final. Representative diagram pages have already been inspected, so the entire report is seen-only.",
+      "limitations": [
+        "The diagrams are the reference graph; they do not automatically prove that the allowed prose directly authorizes each AND/OR gate.",
+        "Must select bounded top-event scopes and keep FTA diagrams/output labels out of the model-visible packet.",
+        "Concept-vehicle domain may require a scope mapping not present in FaultRecord."
+      ]
+    },
+    {
+      "source_cluster_id": "FAA_DOT_TC_15_62_DOCUMENT",
+      "document_id": "DOT/FAA/TC-15/62",
+      "title": "Single Event Effects Mitigation Techniques Report",
+      "official_record_url": "https://www.faa.gov/sites/faa.gov/files/aircraft/air_cert/design_approvals/air_software/TC-15-62.pdf",
+      "official_pdf_url": "https://www.faa.gov/sites/faa.gov/files/aircraft/air_cert/design_approvals/air_software/TC-15-62.pdf",
+      "downloaded_pdf_sha256": "853508c10b21f582964e0333d89976eb409e37b28d0fc5efc4a17e55826afc78",
+      "page_count": 296,
+      "screening_role": "seen_development_candidate_only_not_blind_final",
+      "blind_final_eligible": false,
+      "source_cluster_policy": "The entire FAA report is one source cluster; its tree diagrams and related FTA/result tables must not be split across partitions. Representative diagram pages have already been inspected, so the entire report is seen-only.",
+      "traceability_evidence": [
+        "Section 7.4.2 describes modeling applicable failure conditions in fault trees.",
+        "Section 7.5.2 and Tables 52-54 connect failure conditions, basic events, FTA results, and failure-rate justification.",
+        "Appendix D contains fault-tree diagrams."
+      ],
+      "limitations": [
+        "The report's fault-tree case is a bounded cockpit display system safety analysis inside a broader SEE report.",
+        "Exclude Appendix D and answer-revealing FTA synthesis/basic-event tables from model-visible text when testing text-to-tree generation.",
+        "Quantitative probability values are out of scope for a qualitative gate-structure benchmark and must not be used as gate labels."
+      ]
+    },
+    {
+      "source_cluster_id": "NASA_CR_108289_DOCUMENT",
+      "document_id": "NASA CR-108289",
+      "title": "Space station safety study - Fault tree analyses",
+      "official_record_url": "https://ntrs.nasa.gov/citations/19700011506",
+      "official_pdf_url": "https://ntrs.nasa.gov/api/citations/19700011506/downloads/19700011506.pdf",
+      "downloaded_pdf_sha256": "ecc16cdc5c525942c98c9d59782563a526149c719b51aba7c7f43cd4d2cd7d72",
+      "page_count": 68,
+      "screening_role": "secondary_diagram_or_graph_reconstruction_source_only",
+      "limitations": [
+        "The volume is primarily fault-tree analyses and does not itself contain all referenced companion system-description inputs.",
+        "The inspected scanned diagrams have limited legibility; event-label/OCR confidence needs separate validation.",
+        "Not suitable by itself for full original-system-text-to-FTA evaluation."
+      ]
+    },
+    {
+      "source_cluster_id": "NASA_TM_105505_DOCUMENT",
+      "document_id": "NASA-TM-105505 / NTRS R=19920008654",
+      "title": "Hubble Space Telescope: SRM/QA observations and lessons learned",
+      "official_record_url": "https://ntrs.nasa.gov/search.jsp?R=19920008654",
+      "downloaded_pdf_sha256": "77140d38cd112cd4d0ded076d3608152e928381b8a9b4f3faf4197e9a9021b10",
+      "downloaded_page_count": 27,
+      "screening_role": "excluded_artifact_does_not_contain_claimed_appendix_tree",
+      "reason": "Although the NTRS description mentions Appendix D fault-tree analysis, the retrieved 27-page PDF ends in references and contains no Appendix D or tree diagrams. Do not use this retrieved artifact unless the complete matching report is obtained and re-screened."
+    }
+  ],
+  "non_claims": [
+    "No independent Final dataset or labels have been created.",
+    "No current model was called; no model accuracy or calibration result is reported.",
+    "No source is allocated to Dev or Final by this screen; the NASA/FAA reports are eligible only for a future development/adapter-validation role, not blind Final.",
+    "This screen does not establish semantic non-overlap with existing cases or model pretraining data.",
+    "Global fta_ready and production_ready remain false."
+  ]
+}

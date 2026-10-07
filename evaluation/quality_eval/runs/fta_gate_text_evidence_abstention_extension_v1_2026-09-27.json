@@ -1,0 +1,95 @@
+{
+  "artifact_type": "external_text_evidence_gate_abstention_probe",
+  "artifact_version": "v1",
+  "created_at": "2026-09-27T09:01:43.334533+00:00",
+  "status": "completed",
+  "formal_gold": false,
+  "in_project_gold": false,
+  "database_written": false,
+  "gate_policy_applied": false,
+  "threshold_selected": false,
+  "probability_calibrated": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "evaluation_scope": "Incremental external text-evidence probe adding one direct textual AND positive and one independent possible-cause-list unknown case to the v1 baseline. Not an end-to-end FTA test, calibration set, or production policy test.",
+  "reviewer_provenance": "independent_ai_expert_role_review",
+  "reviewer_is_human_expert": false,
+  "confidence_semantics": "raw uncalibrated model self-assessment, not event probability",
+  "metadata": {
+    "model_id": "deepseek-flash",
+    "provider_host": "api.deepseek.com",
+    "temperature": 0,
+    "requests_planned": 2,
+    "requests_succeeded": 2,
+    "requests_failed": 0,
+    "source_document_count": 2,
+    "source_cluster_count": 2,
+    "fixture_sha256": "cd23b9a388bc3f4f2cc7b77346113e39eb1e563d9008c9b97e0b71a03a75b95b"
+  },
+  "summary": {
+    "sample_count": 2,
+    "top1_accuracy": 1.0,
+    "unknown_gold_count": 1,
+    "unknown_correct_count": 1,
+    "unknown_recall": 1.0,
+    "unknown_unsafe_accept_count": 0,
+    "known_gate_count": 1,
+    "known_gate_correct_count": 1,
+    "decisive_coverage": 0.5,
+    "decisive_quote_substring_match_count": 1,
+    "decisive_quote_count": 1,
+    "label_counts": {
+      "AND": 1,
+      "unknown": 1
+    },
+    "prediction_counts": {
+      "AND": 1,
+      "unknown": 1
+    }
+  },
+  "predictions": [
+    {
+      "gate_node_id": "NASA-TP2000-FIG28-CATASTROPHIC-AND-001",
+      "expected_gate": "AND",
+      "predicted_gate": "AND",
+      "gate_probabilities": {
+        "AND": 1.0,
+        "OR": 0.0,
+        "unknown": 0.0
+      },
+      "top_probability": 1.0,
+      "top_margin": 1.0,
+      "gate_evidence_quote": "both a critical pump failure and a safety system failure to mitigate the failure must occur",
+      "quote_is_exact_substring_of_child_evidence": true,
+      "correct": true,
+      "prompt_sha256": "b5f77686e4aed4ebc35356143ee2a61b22ad5841527c300d2ba021f6a65fbfc4",
+      "reason": "The source explicitly states both direct child events must occur for the parent event, indicating an AND gate."
+    },
+    {
+      "gate_node_id": "NASA-TM104382-NICKEL-CAPACITY-POSSIBLE-CAUSES-001",
+      "expected_gate": "unknown",
+      "predicted_gate": "unknown",
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 0.0,
+        "unknown": 1.0
+      },
+      "top_probability": 1.0,
+      "top_margin": 1.0,
+      "gate_evidence_quote": null,
+      "quote_is_exact_substring_of_child_evidence": null,
+      "correct": true,
+      "prompt_sha256": "8e45145a02717c13ec1ac9b21cfff13902727b5430ce2bd8fdb62d4f3e1d9b06",
+      "reason": "The source lists the events only as possible causes of capacity decrease; it does not state that any one alone can cause the parent or that multiple causes must jointly occur."
+    }
+  ],
+  "failures": [],
+  "limitations": [
+    "This extension contains only two nodes from two document clusters: one AND positive and one additional unknown case; class-specific performance remains statistically uninformative.",
+    "The NASA report is an explicit textual AND control, so this is a direct-evidence smoke test, not a test of broad paraphrase generalization.",
+    "The possible-cause-list sample tests abstention when the source uses grammatical 'and'; its label concerns only the quoted scope and does not assert that the physical system has no Boolean relation.",
+    "Labels were reviewed by an AI role reviewer, not a human domain expert; this is not human-expert Gold.",
+    "Model self-reported scores are uncalibrated and cannot be interpreted as event probabilities or used as a production threshold.",
+    "This extension does not test source-document extraction, cause completeness, recursive tree construction, production gate policy, or runtime integration."
+  ]
+}

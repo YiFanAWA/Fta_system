@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:fta-system:schemas:fta_event_scope_input_packet_v1",
+  "title": "FTA bounded single-event model input packet v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["packet_schema", "packet_id", "source_provenance", "model_input"],
+  "properties": {
+    "packet_schema": { "const": "fta_event_scope_input_packet_v1" },
+    "packet_id": { "$ref": "#/$defs/nonEmptyString" },
+    "source_provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["document_id", "source_cluster_id", "official_record_url", "document_sha256", "page_count", "rights_status", "exposure_status"],
+      "properties": {
+        "document_id": { "$ref": "#/$defs/nonEmptyString" },
+        "source_cluster_id": { "$ref": "#/$defs/nonEmptyString" },
+        "official_record_url": { "type": "string", "format": "uri" },
+        "document_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "page_count": { "type": "integer", "minimum": 1 },
+        "rights_status": { "enum": ["public_use_permitted", "public_distribution", "unknown", "restricted"] },
+        "exposure_status": { "enum": ["unseen_candidate", "seen_development_only", "final_locked"] }
+      }
+    },
+    "model_input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["event_scope_id", "top_event", "source_segments"],
+      "properties": {
+        "event_scope_id": { "$ref": "#/$defs/nonEmptyString" },
+        "top_event": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["text", "evidence"],
+          "properties": {
+            "text": { "$ref": "#/$defs/nonEmptyString" },
+            "evidence": { "$ref": "#/$defs/evidenceReference" }
+          }
+        },
+        "source_segments": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 30,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["segment_id", "page_number", "section_locator", "text"],
+            "properties": {
+              "segment_id": { "$ref": "#/$defs/nonEmptyString" },
+              "page_number": { "type": "integer", "minimum": 1 },
+              "section_locator": { "$ref": "#/$defs/nonEmptyString" },
+              "text": { "type": "string", "minLength": 1, "maxLength": 12000 }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "nonEmptyString": { "type": "string", "minLength": 1, "pattern": "\\S" },
+    "evidenceReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["segment_id", "quote"],
+      "properties": {
+        "segment_id": { "$ref": "#/$defs/nonEmptyString" },
+        "quote": { "$ref": "#/$defs/nonEmptyString" }
+      }
+    }
+  }
+}

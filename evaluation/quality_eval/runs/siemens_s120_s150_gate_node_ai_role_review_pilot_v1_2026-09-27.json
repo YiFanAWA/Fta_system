@@ -1,0 +1,243 @@
+{
+  "artifact_type": "external_holdout_fta_gate_node_ai_role_review",
+  "artifact_version": "1.0.0",
+  "reviewed_at": "2026-09-27",
+  "reviewer_provenance": "user_authorized_ai_expert_role",
+  "reviewer_is_human_expert": false,
+  "second_ai_review": "Confucius subagent read-only review; one case had prior context exposure, so this artifact does not claim a fully blind independent review",
+  "independent_review": false,
+  "formal_gold": false,
+  "database_written": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "model_inference_run": false,
+  "threshold_selected": false,
+  "probability_calibrated": false,
+  "review_scope": "Four S120/S150 local Cause scopes selected from the unseen-fault-code/no exact-or-partial causes_text overlap stratum. Decisions apply only to the cited local scope, not automatically to other levels of a complete fault tree.",
+  "decision_policy": "Assign AND/OR only when the exact local text directly defines the same-scope child relation and the child set is complete. Preserve nested relations. Lists, diagnostic values, ordinary conjunctions, effects, and remedies do not establish gates. This pilot does not infer event probabilities or calibration thresholds.",
+  "summary": {
+    "gate_node_count": 5,
+    "unique_fault_count": 4,
+    "independent_source_cluster_count": 1,
+    "reviewed_count": 5,
+    "pending_count": 0,
+    "gate_label_counts_reviewed_only": {
+      "AND": 1,
+      "OR": 4,
+      "unknown": 0
+    },
+    "nested_gate_count": 1,
+    "used_for_calibration": false
+  },
+  "input_artifacts": {
+    "candidate_bundle": "evaluation/quality_eval/runs/siemens_s120_s150_gate_review_candidate_bundle_v2_2026-09-27.json",
+    "candidate_bundle_sha256": "504d64cc525c56ff415db11eeb04fd85905855501dda36307ee9853788dfefb9",
+    "source_corpus": "evaluation/quality_eval/datasets/siemens_s120_s150_2023_public_fault_corpus_holdout_v2.jsonl",
+    "source_corpus_sha256": "3da11f44f35ab8286f509a57ae474fdefdb98b8313603b408974c5a082906232",
+    "source_pdf_sha256": "f7684038621ae9faaedbed1780e23c48775c19d76ae0fbd0adce268d69f489f4"
+  },
+  "gate_nodes": [
+    {
+      "gate_node_id": "gate:c33e67173197f37110ce8eb2",
+      "fault_code": "F35400",
+      "sample_id": "SIEMENS_S120_S150_2023_F35400_P3271_N001",
+      "source_cluster_id": "external_source:f7684038621ae9faaedbed1780e23c48775c19d76ae0fbd0adce268d69f489f4",
+      "source_sha256": "fb20a5d44918d08c1dc0d253dd1867a349008147c2311138416821c091b8a708",
+      "pdf_page_start": 3271,
+      "pdf_page_end": 3271,
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "For the temperature evaluation via the Terminal Module 150 (TM150), at least one of the following conditions to \ninitiate this fault is fulfilled:\n- alarm threshold has been exceeded longer than that set in the timer (p4102[8], p4103[4]).\nor\n- fault threshold exceeded (p4102[9]).",
+        "start": 523,
+        "end": 803
+      },
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {
+          "child_id": "F35400-cause-1",
+          "text": "- alarm threshold has been exceeded longer than that set in the timer (p4102[8], p4103[4]).",
+          "evidence": [
+            {
+              "source_id": "input_text",
+              "quote": "- alarm threshold has been exceeded longer than that set in the timer (p4102[8], p4103[4]).",
+              "start": 670,
+              "end": 761
+            }
+          ]
+        },
+        {
+          "child_id": "F35400-cause-2",
+          "text": "- fault threshold exceeded (p4102[9]).",
+          "evidence": [
+            {
+              "source_id": "input_text",
+              "quote": "- fault threshold exceeded (p4102[9]).",
+              "start": 765,
+              "end": 803
+            }
+          ]
+        }
+      ],
+      "gate_label": "OR",
+      "gate_evidence": [
+        {
+          "source_id": "input_text",
+          "quote": "For the temperature evaluation via the Terminal Module 150 (TM150), at least one of the following conditions to \ninitiate this fault is fulfilled:",
+          "start": 523,
+          "end": 669
+        },
+        {
+          "source_id": "input_text",
+          "quote": "\nor\n",
+          "start": 761,
+          "end": 765
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_expert_role",
+      "review_reason": "原文明确限定至少一个触发条件足以 initiate this fault，并用 or 分隔两个完整条件；OR 仅适用于本组两个温度阈值条件。"
+    },
+    {
+      "gate_node_id": "gate:d8b64082a03482aad0a66134",
+      "fault_code": "F06000",
+      "sample_id": "SIEMENS_S120_S150_2023_F06000_P2792_N001",
+      "source_cluster_id": "external_source:f7684038621ae9faaedbed1780e23c48775c19d76ae0fbd0adce268d69f489f4",
+      "source_sha256": "ef53729a1ccdcb79aa139bed95898f4e6f4a089d83ecadb30cd554d53dcdad1b",
+      "pdf_page_start": 2792,
+      "pdf_page_end": 2793,
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "The end of the DC link precharging was not able to be completed for one of the following reasons:\n1) There is no line voltage connected.\n2) The line contactor/line side switch has not been closed.\n3) The line voltage is too low.\n4) Line voltage incorrectly set (p0210).\n5) The precharging resistors are overheated as there were too many precharging operations per time unit.\n6) The precharging resistors are overheated as the DC link capacitance is too high.\n7) The precharging resistors are overheated because when there is no \"ready for operation\" (r0863.0) of the infeed \nunit, power is taken from the DC link.\n8) The precharging resistors are overheated as the line contactor was closed during the DC link fast discharge \nthrough the Braking Module.\n9) The DC link has either a ground fault or a short-circuit.\n10) The precharging circuit is possibly defective (only for chassis units).",
+        "start": 360,
+        "end": 1250
+      },
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {"child_id":"F06000-cause-1","text":"1) There is no line voltage connected.","evidence":[{"source_id":"input_text","quote":"1) There is no line voltage connected.","start":458,"end":496}]},
+        {"child_id":"F06000-cause-2","text":"2) The line contactor/line side switch has not been closed.","evidence":[{"source_id":"input_text","quote":"2) The line contactor/line side switch has not been closed.","start":497,"end":556}]},
+        {"child_id":"F06000-cause-3","text":"3) The line voltage is too low.","evidence":[{"source_id":"input_text","quote":"3) The line voltage is too low.","start":557,"end":588}]},
+        {"child_id":"F06000-cause-4","text":"4) Line voltage incorrectly set (p0210).","evidence":[{"source_id":"input_text","quote":"4) Line voltage incorrectly set (p0210).","start":589,"end":629}]},
+        {"child_id":"F06000-cause-5","text":"5) The precharging resistors are overheated as there were too many precharging operations per time unit.","evidence":[{"source_id":"input_text","quote":"5) The precharging resistors are overheated as there were too many precharging operations per time unit.","start":630,"end":734}]},
+        {"child_id":"F06000-cause-6","text":"6) The precharging resistors are overheated as the DC link capacitance is too high.","evidence":[{"source_id":"input_text","quote":"6) The precharging resistors are overheated as the DC link capacitance is too high.","start":735,"end":818}]},
+        {"child_id":"F06000-cause-7","text":"7) The precharging resistors are overheated because when there is no \"ready for operation\" (r0863.0) of the infeed \nunit, power is taken from the DC link.","evidence":[{"source_id":"input_text","quote":"7) The precharging resistors are overheated because when there is no \"ready for operation\" (r0863.0) of the infeed \nunit, power is taken from the DC link.","start":819,"end":973}]},
+        {"child_id":"F06000-cause-8","text":"8) The precharging resistors are overheated as the line contactor was closed during the DC link fast discharge \nthrough the Braking Module.","evidence":[{"source_id":"input_text","quote":"8) The precharging resistors are overheated as the line contactor was closed during the DC link fast discharge \nthrough the Braking Module.","start":974,"end":1113}]},
+        {"child_id":"F06000-cause-9","text":"9) The DC link has either a ground fault or a short-circuit.","evidence":[{"source_id":"input_text","quote":"9) The DC link has either a ground fault or a short-circuit.","start":1114,"end":1174}],"child_gate_node_id":"gate:a4ebaf031f7d2212862574a4"},
+        {"child_id":"F06000-cause-10","text":"10) The precharging circuit is possibly defective (only for chassis units).","evidence":[{"source_id":"input_text","quote":"10) The precharging circuit is possibly defective (only for chassis units).","start":1175,"end":1250}]}
+      ],
+      "gate_label": "OR",
+      "gate_evidence": [
+        {
+          "source_id": "input_text",
+          "quote": "The end of the DC link precharging was not able to be completed for one of the following reasons:",
+          "start": 360,
+          "end": 457
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_expert_role",
+      "review_reason": "原文明确写明预充电未能完成的原因是以下之一，并编号列出 1–10；第 9 项保留为内部复合条件，另设局部 OR 子节点，不拆平为额外同级项。此 OR 不证明各物理原因统计独立，也不扩展到手册未覆盖的原因。"
+    },
+    {
+      "gate_node_id": "gate:a4ebaf031f7d2212862574a4",
+      "fault_code": "F06000",
+      "sample_id": "SIEMENS_S120_S150_2023_F06000_P2792_N001",
+      "parent_gate_node_id": "gate:d8b64082a03482aad0a66134",
+      "source_cluster_id": "external_source:f7684038621ae9faaedbed1780e23c48775c19d76ae0fbd0adce268d69f489f4",
+      "source_sha256": "ef53729a1ccdcb79aa139bed95898f4e6f4a089d83ecadb30cd554d53dcdad1b",
+      "pdf_page_start": 2792,
+      "pdf_page_end": 2793,
+      "scope_type": "local_cause_expression",
+      "scope_anchor": {
+        "quote": "either a ground fault or a short-circuit.",
+        "start": 1133,
+        "end": 1174
+      },
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {"child_id":"F06000-cause-9a","text":"a ground fault","evidence":[{"source_id":"input_text","quote":"a ground fault","start":1140,"end":1154}]},
+        {"child_id":"F06000-cause-9b","text":"a short-circuit","evidence":[{"source_id":"input_text","quote":"a short-circuit","start":1158,"end":1173}]}
+      ],
+      "gate_label": "OR",
+      "gate_evidence": [
+        {
+          "source_id": "input_text",
+          "quote": "either a ground fault or a short-circuit.",
+          "start": 1133,
+          "end": 1174
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_expert_role",
+      "review_reason": "第 9 项内部明确写明 either/or，因此是根 OR 的嵌套局部 OR；只作为该复合原因的展开，不把它改写成根门的额外同级 child。"
+    },
+    {
+      "gate_node_id": "gate:4a3900d5ff85e756d7f2492b",
+      "fault_code": "A30079",
+      "sample_id": "SIEMENS_S120_S150_2023_A30079_P3008_N001",
+      "source_cluster_id": "external_source:f7684038621ae9faaedbed1780e23c48775c19d76ae0fbd0adce268d69f489f4",
+      "source_sha256": "b65d123954bd11b6a9beef8a62d0f6cae96ab78c09ef48ccd7c6d3b12adf1122",
+      "pdf_page_start": 3008,
+      "pdf_page_end": 3008,
+      "scope_type": "event_cause_set",
+      "scope_anchor": {
+        "quote": "The alarm is output if the following conditions are simultaneously satisfied:\n1. The device supply voltage (p0210) was reduced.\n2. A DC link voltage is present, which is too high when referred to the new supply voltage.",
+        "start": 268,
+        "end": 487
+      },
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {"child_id":"A30079-condition-1","text":"1. The device supply voltage (p0210) was reduced.","evidence":[{"source_id":"input_text","quote":"1. The device supply voltage (p0210) was reduced.","start":346,"end":395}]},
+        {"child_id":"A30079-condition-2","text":"2. A DC link voltage is present, which is too high when referred to the new supply voltage.","evidence":[{"source_id":"input_text","quote":"2. A DC link voltage is present, which is too high when referred to the new supply voltage.","start":396,"end":487}]}
+      ],
+      "gate_label": "AND",
+      "gate_evidence": [
+        {
+          "source_id": "input_text",
+          "quote": "The alarm is output if the following conditions are simultaneously satisfied:",
+          "start": 268,
+          "end": 345
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_expert_role",
+      "review_reason": "原文明确说只有同时满足下列两项条件时输出该报警；后续关于预充电无法完成及风险的句子是结果/说明，不作为第三个条件。"
+    },
+    {
+      "gate_node_id": "gate:07d95cade1922369843b14ca",
+      "fault_code": "F08702",
+      "sample_id": "SIEMENS_S120_S150_2023_F08702_P2967_N001",
+      "source_cluster_id": "external_source:f7684038621ae9faaedbed1780e23c48775c19d76ae0fbd0adce268d69f489f4",
+      "source_sha256": "ca8a81682b795377c7b93c8d3ffa424ec5bfc50612a9ff1954c9fdd5cd8f0c10",
+      "pdf_page_start": 2967,
+      "pdf_page_end": 2967,
+      "scope_type": "local_cause_expression",
+      "scope_anchor": {
+        "quote": "The monitoring time of the CANopen RPDO telegram has expired because the bus connection was either interrupted \nor the CANopen Master was switched-off.",
+        "start": 570,
+        "end": 721
+      },
+      "scope_appropriate": true,
+      "child_set_complete": true,
+      "children": [
+        {"child_id":"F08702-cause-1","text":"the bus connection was either interrupted","evidence":[{"source_id":"input_text","quote":"the bus connection was either interrupted","start":639,"end":680}]},
+        {"child_id":"F08702-cause-2","text":"the CANopen Master was switched-off","evidence":[{"source_id":"input_text","quote":"the CANopen Master was switched-off","start":685,"end":720}]}
+      ],
+      "gate_label": "OR",
+      "gate_evidence": [
+        {
+          "source_id": "input_text",
+          "quote": "The monitoring time of the CANopen RPDO telegram has expired because the bus connection was either interrupted \nor the CANopen Master was switched-off.",
+          "start": 570,
+          "end": 721
+        }
+      ],
+      "review_status": "reviewed",
+      "reviewer_provenance": "user_authorized_ai_expert_role",
+      "review_reason": "Cause 句明确表示监控超时是因为总线连接中断或 CANopen Master 关断；后续 See also 中的 or 是诊断状态说明，不是原因集合的一部分。"
+    }
+  ]
+}

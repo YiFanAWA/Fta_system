@@ -1,0 +1,77 @@
+{
+  "artifact_type": "fta_source_scope_reconciliation_review",
+  "artifact_version": "v1",
+  "review_id": "SIEMENS_S210_2019_F01681_REMEDY_9507_SCOPE_REVIEW_V1",
+  "created_at": "2026-09-28",
+  "source": {
+    "corpus_path": "evaluation/quality_eval/datasets/siemens_s210_public_fault_corpus_v1.jsonl",
+    "sample_id": "SIEMENS_S210_2019_F01681",
+    "fault_code": "F01681",
+    "input_text_sha256": "5517c4e678dfa57286a7ae5426e4d40ed7322a4c88241593b6a55d068f0e994b"
+  },
+  "question": "Does the Remedy branch for xxxx=9507 prove a missing cause event or close the top-level cause scope?",
+  "assessment": {
+    "directly_supported_fact": "When xxxx=9507, the manual instructs the reader to set synchronous motor.",
+    "semantic_role": "remedy",
+    "cause_disposition": "not_added_to_source_cause_ledger",
+    "candidate_event_added": false,
+    "causal_edge_supported": false,
+    "cause_set_completeness": "unresolved",
+    "reason_code": "remedy_branch_not_causal_scope_evidence",
+    "rationale": "The conditional imperative is a corrective instruction. It does not directly establish that the current motor type is wrong, that this state occurred on an instance, or that it is an upstream cause of Incorrect parameter value. The code occurs in Remedy but is absent from the preceding Cause/Fault value listing; this discrepancy prevents asserting that the listed cause/mapping scope is closed, but does not justify inventing a cause event from the remedy."
+  },
+  "evidence": [
+    {
+      "source_id": "input_text",
+      "section": "fault_value_mapping_header",
+      "quote": "Fault value (r0949, interpret decimal):",
+      "start": 211,
+      "end": 250,
+      "occurrence_count": 1
+    },
+    {
+      "source_id": "input_text",
+      "section": "remedy_header",
+      "quote": "Remedy: Correct parameters:",
+      "start": 2218,
+      "end": 2245,
+      "occurrence_count": 1
+    },
+    {
+      "source_id": "input_text",
+      "section": "remedy_branch",
+      "quote": "If xxxx = 9507:\nSet synchronous motor.",
+      "start": 2526,
+      "end": 2564,
+      "occurrence_count": 1
+    }
+  ],
+  "scope_audit": {
+    "search_expression": "xxxx = 9507:",
+    "total_source_occurrences": 1,
+    "occurrences_before_remedy_header": 0,
+    "occurrences_in_remedy_section": 1,
+    "cause_mapping_closed": false,
+    "cause_scope_status": "unresolved_pending_source_scope_adjudication"
+  },
+  "reviewer": {
+    "reviewer_type": "ai_subagent_read_only_role_review",
+    "reviewer_nickname": "Epicurus the 2nd",
+    "human_expert": false,
+    "human_signature": false,
+    "conclusion": "supports_remedy_only_no_causal_edge_scope_unresolved",
+    "notes": "The AI reviewer did not calculate offsets. The offsets in this artifact were independently checked against the pinned corpus text by the main agent. This is not a human-domain-expert signature."
+  },
+  "mutations": {
+    "online_generation_model_calls": 0,
+    "gold_changed": false,
+    "database_written": false,
+    "production_api_changed": false,
+    "fta_readiness_changed": false
+  },
+  "readiness": {
+    "fta_ready": false,
+    "production_ready": false,
+    "formal_gold": false
+  }
+}

@@ -1,0 +1,486 @@
+{
+  "artifact_type": "candidate_fta_raw_source_development_probe",
+  "artifact_version": "v1",
+  "reviewer_provenance": "live_model_development_probe_not_expert_review",
+  "formal_gold": false,
+  "database_written": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "evaluation_scope": "one public raw fault record through the current CandidateFtaApplicationService; development-path observation only, not a blind final test",
+  "source": {
+    "sample_id": "SIEMENS_S210_2019_F30021",
+    "dataset": "siemens_s210_public_fault_corpus_v1",
+    "source_document": "SINAMICS S210 servo drive system with SIMOTICS S-1FK2 and S-1FT2",
+    "edition": null,
+    "source_pdf": "S210_Manual_2019.pdf",
+    "source_document_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+    "source_section": "15.2 List of faults and alarms",
+    "source_url": "https://publikacje.siemens-info.com/pdf/681/S210%20Manual.pdf",
+    "official_reference_url": "https://support.industry.siemens.com/cs/attachments/109827474/S210_S-1FK2_S-1FT2_op_instr_0424_en-US.pdf",
+    "pdf_page_start": 498,
+    "pdf_page_end": 499,
+    "source_offset_start": 176418,
+    "source_offset_end": 177237,
+    "input_text_sha256": "f3178a6c9c46aa2109a44eb118c6a8730ebfdd6d9a6f5660147529f01ce41d31",
+    "input_text_char_count": 736
+  },
+  "model": {
+    "model_id": "deepseek-flash",
+    "provider_host": "api.deepseek.com",
+    "temperature": 0,
+    "request_attempt_count": 4,
+    "successful_response_count": 4,
+    "configured_max_retries": 0,
+    "configured_timeout_seconds": 120
+  },
+  "prompt_versions": {
+    "cause_disposition": "fta-cause-disposition-v2"
+  },
+  "model_stage_responses": [
+    {
+      "request_index": 1,
+      "stage": "fault_extraction",
+      "response": "{\n  \"items\": [\n    {\n      \"fault_code\": \"F30021\",\n      \"component\": \"Drive\",\n      \"related_components\": [],\n      \"description\": \"ground fault\",\n      \"causes\": [\n        \"ground fault in the power cables\",\n        \"ground fault at the motor\",\n        \"when the brake closes, this causes the hardware DC current monitoring to respond\",\n        \"short-circuit at the braking resistor\"\n      ],\n      \"parameters\": [\"r0949\"]\n    }\n  ]\n}",
+      "response_sha256": "49efbcea46719ec701afbbc5a45d5f2317a61a9c37f06bfc561b0a600dfff1a6"
+    },
+    {
+      "request_index": 2,
+      "stage": "cause_disposition",
+      "response": "{\"cause_dispositions\":[{\"source_cause_index\":0,\"semantic_role\":\"causal_condition\",\"fta_disposition\":\"fta_event_candidate\",\"evidence_quote\":\"ground fault in the power cables\",\"reason_code\":\"direct_causal_or_condition_statement\",\"rationale\":\"列为可能原因，表示可导致接地故障的电缆接地条件，可作为候选树事件。\"},{\"source_cause_index\":1,\"semantic_role\":\"causal_condition\",\"fta_disposition\":\"fta_event_candidate\",\"evidence_quote\":\"ground fault at the motor\",\"reason_code\":\"direct_causal_or_condition_statement\",\"rationale\":\"列为可能原因，表示电机侧接地故障条件，可作为候选树事件。\"},{\"source_cause_index\":2,\"semantic_role\":\"causal_condition\",\"fta_disposition\":\"fta_event_candidate\",\"evidence_quote\":\"when the brake closes, this causes the hardware DC current monitoring to respond\",\"reason_code\":\"direct_causal_or_condition_statement\",\"rationale\":\"完整因果句，说明制动器闭合引发硬件直流电流监控响应，属于原因范围内的条件候选。\"},{\"source_cause_index\":3,\"semantic_role\":\"causal_condition\",\"fta_disposition\":\"fta_event_candidate\",\"evidence_quote\":\"- when the brake closes, this causes the hardware DC current monitoring to respond.\\n- short-circuit at the braking resistor.\",\"reason_code\":\"direct_causal_or_condition_statement\",\"rationale\":\"该条在可能原因列表中表示制动电阻短路条件；使用唯一上下文引文定位，可作为候选树事件。\"}]}",
+      "response_sha256": "a2c1d9ba5c0c878ff4064dddde2aaa421ef0645f6fc8365a0f7098721c7fdd7a"
+    },
+    {
+      "request_index": 3,
+      "stage": "structure_decomposition",
+      "response": "{\n  \"structure_status\": \"complete\",\n  \"nodes\": [\n    {\n      \"node_id\": \"cause-0\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"ground fault in the power cables\",\n      \"source_cause_indices\": [0],\n      \"evidence_quote\": \"ground fault in the power cables\"\n    },\n    {\n      \"node_id\": \"cause-1\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"ground fault at the motor\",\n      \"source_cause_indices\": [1],\n      \"evidence_quote\": \"ground fault at the motor\"\n    },\n    {\n      \"node_id\": \"cause-2\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"when the brake closes, this causes the hardware DC current monitoring to respond\",\n      \"source_cause_indices\": [2],\n      \"evidence_quote\": \"when the brake closes, this causes the hardware DC current monitoring to respond\"\n    },\n    {\n      \"node_id\": \"cause-3\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"short-circuit at the braking resistor\",\n      \"source_cause_indices\": [3],\n      \"evidence_quote\": \"short-circuit at the braking resistor\"\n    }\n  ],\n  \"gate_scopes\": [\n    {\n      \"gate_id\": \"scope-top-possible-causes\",\n      \"output_node_id\": \"__top_event__\",\n      \"child_node_ids\": [\"cause-0\", \"cause-1\", \"cause-2\", \"cause-3\"],\n      \"scope_type\": \"possible_causes_enumeration\",\n      \"scope_quote\": \"F30021 Drive: ground fault\\nReaction: OFF2\\nAcknowledge: IMMEDIATELY\\n496 Operating Instructions, 01/2019, A5E41702836B AC\\nCause: The drive has detected a ground fault.\\nPossible causes:\\n- ground fault in the power cables.\\n- ground fault at the motor.\\n- when the brake closes, this causes the hardware DC current monitoring to respond.\\n- short-circuit at the braking resistor.\",\n      \"cause_set_complete\": true,\n      \"cause_set_leaf_normalized\": true,\n      \"reason\": \"The possible-causes list enumerates four directly listed candidate causes of the top event; all four are mapped as direct children and no nested boolean combination is stated within this scope.\"\n    }\n  ],\n  \"unresolved_cause_indices\": [],\n  \"reason\": \"All fta_event_candidate indices 0-3 are represented as candidate nodes and connected to the top event through the possible-causes scope. Cause index 2 is kept as a single causal clause because the original does not state an independent boolean sub-combination for it.\"\n}",
+      "response_sha256": "892ec5c6b0cc268669a15fc4c1b60642c5d3c33ba06f14fcc5271feb52f0be30"
+    },
+    {
+      "request_index": 4,
+      "stage": "gate_assessment",
+      "response": "{\n  \"gate_assessments\": [\n    {\n      \"gate_id\": \"scope-top-possible-causes\",\n      \"gate_probabilities\": {\n        \"AND\": 0.0,\n        \"OR\": 0.95,\n        \"unknown\": 0.05\n      },\n      \"gate_evidence_quote\": \"Possible causes:\\n- ground fault in the power cables.\\n- ground fault at the motor.\\n- when the brake closes, this causes the hardware DC current monitoring to respond.\\n- short-circuit at the braking resistor.\",\n      \"reason\": \"The scope is a complete, leaf-normalized possible-causes enumeration; the listed alternatives directly support an OR-type local gate, with no AND or nested boolean wording.\"\n    }\n  ],\n  \"relations\": [],\n  \"reason\": \"Only the top-event possible-causes gate is assessed. The four candidate causes are already represented as children of scope-top-possible-causes, so no additional non-duplicative causal relations can be bound to the existing nodes.\"\n}",
+      "response_sha256": "cafa1198ea4125b60e219a147c5adddc6a0b55a16d50aea93ec0e768cb2820a1"
+    }
+  ],
+  "cause_disposition_counts": {
+    "fta_event_candidate": 4
+  },
+  "evidence_integrity": {
+    "extraction": {
+      "reference_count": 12,
+      "all_offsets_exact": true,
+      "quote_uniqueness_required": false,
+      "all_quotes_unique": null,
+      "non_unique_source_quote_count": 3,
+      "failures": []
+    },
+    "candidate_tree_available": true,
+    "candidate_tree": {
+      "reference_count": 6,
+      "all_offsets_exact": true,
+      "quote_uniqueness_required": true,
+      "all_quotes_unique": false,
+      "non_unique_source_quote_count": 1,
+      "failures": [
+        {
+          "citation_id": "b928b201-0456-40d2-81e9-67284d99d3f8:description:14-26",
+          "reason": "quote_not_unique"
+        }
+      ]
+    }
+  },
+  "result": {
+    "artifact_type": "candidate_fta_generation_result",
+    "artifact_version": "v3",
+    "source_text_sha256": "f3178a6c9c46aa2109a44eb118c6a8730ebfdd6d9a6f5660147529f01ce41d31",
+    "extraction": {
+      "result_id": "3edc7459-cb00-46d6-8903-cae1992f4474",
+      "status": "success",
+      "records": [
+        {
+          "record_id": "b928b201-0456-40d2-81e9-67284d99d3f8",
+          "fault_code": "F30021",
+          "description": "ground fault",
+          "component": "Drive",
+          "related_components": [],
+          "causes": [
+            "ground fault in the power cables",
+            "ground fault at the motor",
+            "when the brake closes, this causes the hardware DC current monitoring to respond",
+            "short-circuit at the braking resistor"
+          ],
+          "parameters": [
+            "r0949"
+          ],
+          "confidence": null
+        }
+      ],
+      "evidence_spans": [
+        {
+          "record_id": "b928b201-0456-40d2-81e9-67284d99d3f8",
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "F30021",
+          "start": 0,
+          "end": 6,
+          "value_index": null
+        },
+        {
+          "record_id": "b928b201-0456-40d2-81e9-67284d99d3f8",
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "Drive",
+          "start": 7,
+          "end": 12,
+          "value_index": null
+        },
+        {
+          "record_id": "b928b201-0456-40d2-81e9-67284d99d3f8",
+          "field": "description",
+          "source_id": "input_text",
+          "quote": "ground fault",
+          "start": 14,
+          "end": 26,
+          "value_index": null
+        },
+        {
+          "record_id": "b928b201-0456-40d2-81e9-67284d99d3f8",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "ground fault in the power cables",
+          "start": 185,
+          "end": 217,
+          "value_index": 0
+        },
+        {
+          "record_id": "b928b201-0456-40d2-81e9-67284d99d3f8",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "Possible causes:\n- ground fault in the power cables.",
+          "start": 166,
+          "end": 218,
+          "value_index": 0
+        },
+        {
+          "record_id": "b928b201-0456-40d2-81e9-67284d99d3f8",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "ground fault at the motor",
+          "start": 221,
+          "end": 246,
+          "value_index": 1
+        },
+        {
+          "record_id": "b928b201-0456-40d2-81e9-67284d99d3f8",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "- ground fault at the motor.",
+          "start": 219,
+          "end": 247,
+          "value_index": 1
+        },
+        {
+          "record_id": "b928b201-0456-40d2-81e9-67284d99d3f8",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "when the brake closes, this causes the hardware DC current monitoring to respond",
+          "start": 250,
+          "end": 330,
+          "value_index": 2
+        },
+        {
+          "record_id": "b928b201-0456-40d2-81e9-67284d99d3f8",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "- when the brake closes, this causes the hardware DC current monitoring to respond.",
+          "start": 248,
+          "end": 331,
+          "value_index": 2
+        },
+        {
+          "record_id": "b928b201-0456-40d2-81e9-67284d99d3f8",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "short-circuit at the braking resistor",
+          "start": 334,
+          "end": 371,
+          "value_index": 3
+        },
+        {
+          "record_id": "b928b201-0456-40d2-81e9-67284d99d3f8",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "- short-circuit at the braking resistor.",
+          "start": 332,
+          "end": 372,
+          "value_index": 3
+        },
+        {
+          "record_id": "b928b201-0456-40d2-81e9-67284d99d3f8",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "r0949",
+          "start": 386,
+          "end": 391,
+          "value_index": 0
+        }
+      ],
+      "diagnostics": []
+    },
+    "outcomes": [
+      {
+        "record_id": "b928b201-0456-40d2-81e9-67284d99d3f8",
+        "fault_code": "F30021",
+        "status": "blocked",
+        "tree": {
+          "artifact_type": "candidate_fta_tree",
+          "artifact_version": "v5",
+          "extraction_result_id": "3edc7459-cb00-46d6-8903-cae1992f4474",
+          "record_id": "b928b201-0456-40d2-81e9-67284d99d3f8",
+          "fault_code": "F30021",
+          "source_text_sha256": "f3178a6c9c46aa2109a44eb118c6a8730ebfdd6d9a6f5660147529f01ce41d31",
+          "top_event_id": "event:b928b201-0456-40d2-81e9-67284d99d3f8",
+          "nodes": [
+            {
+              "node_id": "event:b928b201-0456-40d2-81e9-67284d99d3f8",
+              "node_type": "top_event_candidate",
+              "text": "ground fault",
+              "evidence": [
+                {
+                  "citation_id": "b928b201-0456-40d2-81e9-67284d99d3f8:description:14-26",
+                  "source_id": "input_text",
+                  "quote": "ground fault",
+                  "start": 14,
+                  "end": 26
+                }
+              ],
+              "source_cause_indices": []
+            },
+            {
+              "node_id": "cause:b928b201-0456-40d2-81e9-67284d99d3f8:cause-0",
+              "node_type": "cause_candidate",
+              "text": "ground fault in the power cables",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:185-217",
+                  "source_id": "input_text",
+                  "quote": "ground fault in the power cables",
+                  "start": 185,
+                  "end": 217
+                }
+              ],
+              "source_cause_indices": [
+                0
+              ]
+            },
+            {
+              "node_id": "cause:b928b201-0456-40d2-81e9-67284d99d3f8:cause-1",
+              "node_type": "cause_candidate",
+              "text": "ground fault at the motor",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:221-246",
+                  "source_id": "input_text",
+                  "quote": "ground fault at the motor",
+                  "start": 221,
+                  "end": 246
+                }
+              ],
+              "source_cause_indices": [
+                1
+              ]
+            },
+            {
+              "node_id": "cause:b928b201-0456-40d2-81e9-67284d99d3f8:cause-2",
+              "node_type": "cause_candidate",
+              "text": "when the brake closes, this causes the hardware DC current monitoring to respond",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:250-330",
+                  "source_id": "input_text",
+                  "quote": "when the brake closes, this causes the hardware DC current monitoring to respond",
+                  "start": 250,
+                  "end": 330
+                }
+              ],
+              "source_cause_indices": [
+                2
+              ]
+            },
+            {
+              "node_id": "cause:b928b201-0456-40d2-81e9-67284d99d3f8:cause-3",
+              "node_type": "cause_candidate",
+              "text": "short-circuit at the braking resistor",
+              "evidence": [],
+              "source_cause_indices": [
+                3
+              ]
+            }
+          ],
+          "cause_dispositions": [
+            {
+              "source_cause_index": 0,
+              "source_cause_text": "ground fault in the power cables",
+              "semantic_role": "causal_condition",
+              "proposed_disposition": "fta_event_candidate",
+              "disposition": "fta_event_candidate",
+              "reason_code": "direct_causal_or_condition_statement",
+              "rationale": "列为可能原因，表示可导致接地故障的电缆接地条件，可作为候选树事件。",
+              "evidence": [
+                {
+                  "citation_id": "input_text:cause_disposition:185-217",
+                  "source_id": "input_text",
+                  "quote": "ground fault in the power cables",
+                  "start": 185,
+                  "end": 217
+                }
+              ],
+              "review_status": "ai_proposed",
+              "provenance": "fta_cause_disposition_model"
+            },
+            {
+              "source_cause_index": 1,
+              "source_cause_text": "ground fault at the motor",
+              "semantic_role": "causal_condition",
+              "proposed_disposition": "fta_event_candidate",
+              "disposition": "fta_event_candidate",
+              "reason_code": "direct_causal_or_condition_statement",
+              "rationale": "列为可能原因，表示电机侧接地故障条件，可作为候选树事件。",
+              "evidence": [
+                {
+                  "citation_id": "input_text:cause_disposition:221-246",
+                  "source_id": "input_text",
+                  "quote": "ground fault at the motor",
+                  "start": 221,
+                  "end": 246
+                }
+              ],
+              "review_status": "ai_proposed",
+              "provenance": "fta_cause_disposition_model"
+            },
+            {
+              "source_cause_index": 2,
+              "source_cause_text": "when the brake closes, this causes the hardware DC current monitoring to respond",
+              "semantic_role": "causal_condition",
+              "proposed_disposition": "fta_event_candidate",
+              "disposition": "fta_event_candidate",
+              "reason_code": "direct_causal_or_condition_statement",
+              "rationale": "完整因果句，说明制动器闭合引发硬件直流电流监控响应，属于原因范围内的条件候选。",
+              "evidence": [
+                {
+                  "citation_id": "input_text:cause_disposition:250-330",
+                  "source_id": "input_text",
+                  "quote": "when the brake closes, this causes the hardware DC current monitoring to respond",
+                  "start": 250,
+                  "end": 330
+                }
+              ],
+              "review_status": "ai_proposed",
+              "provenance": "fta_cause_disposition_model"
+            },
+            {
+              "source_cause_index": 3,
+              "source_cause_text": "short-circuit at the braking resistor",
+              "semantic_role": "causal_condition",
+              "proposed_disposition": "fta_event_candidate",
+              "disposition": "fta_event_candidate",
+              "reason_code": "direct_causal_or_condition_statement",
+              "rationale": "该条在可能原因列表中表示制动电阻短路条件；使用唯一上下文引文定位，可作为候选树事件。",
+              "evidence": [
+                {
+                  "citation_id": "input_text:cause_disposition:248-372",
+                  "source_id": "input_text",
+                  "quote": "- when the brake closes, this causes the hardware DC current monitoring to respond.\n- short-circuit at the braking resistor.",
+                  "start": 248,
+                  "end": 372
+                }
+              ],
+              "review_status": "ai_proposed",
+              "provenance": "fta_cause_disposition_model"
+            }
+          ],
+          "gate_assessments": [
+            {
+              "gate_node_id": "gate:4f3c5c1b7cbd070a8d1be6ed",
+              "output_node_id": "event:b928b201-0456-40d2-81e9-67284d99d3f8",
+              "child_node_ids": [
+                "cause:b928b201-0456-40d2-81e9-67284d99d3f8:cause-0",
+                "cause:b928b201-0456-40d2-81e9-67284d99d3f8:cause-1",
+                "cause:b928b201-0456-40d2-81e9-67284d99d3f8:cause-2",
+                "cause:b928b201-0456-40d2-81e9-67284d99d3f8:cause-3"
+              ],
+              "scope_type": "possible_causes_enumeration",
+              "gate": "unknown",
+              "gate_probabilities": {
+                "AND": 0.0,
+                "OR": 0.95,
+                "unknown": 0.05
+              },
+              "scope_evidence": [
+                {
+                  "citation_id": "input_text:scope:0-372",
+                  "source_id": "input_text",
+                  "quote": "F30021 Drive: ground fault\nReaction: OFF2\nAcknowledge: IMMEDIATELY\n496 Operating Instructions, 01/2019, A5E41702836B AC\nCause: The drive has detected a ground fault.\nPossible causes:\n- ground fault in the power cables.\n- ground fault at the motor.\n- when the brake closes, this causes the hardware DC current monitoring to respond.\n- short-circuit at the braking resistor.",
+                  "start": 0,
+                  "end": 372
+                }
+              ],
+              "gate_evidence": [
+                {
+                  "citation_id": "input_text:gate:166-372",
+                  "source_id": "input_text",
+                  "quote": "Possible causes:\n- ground fault in the power cables.\n- ground fault at the motor.\n- when the brake closes, this causes the hardware DC current monitoring to respond.\n- short-circuit at the braking resistor.",
+                  "start": 166,
+                  "end": 372
+                }
+              ],
+              "cause_set_complete": true,
+              "cause_set_leaf_normalized": true,
+              "confidence_policy_id": null,
+              "confidence_policy_basis": null,
+              "minimum_gate_probability": null,
+              "minimum_gate_margin": null,
+              "decision_reason": "gate_confidence_policy_unavailable; model gate proposal is not accepted; model rationale: The scope is a complete, leaf-normalized possible-causes enumeration; the listed alternatives directly support an OR-type local gate, with no AND or nested boolean wording.",
+              "unknown_reason_code": "confidence_policy_unavailable",
+              "blockers": [
+                "gate_confidence_policy_unavailable"
+              ]
+            }
+          ],
+          "unknown_gate_reason_counts": {
+            "confidence_policy_unavailable": 1
+          },
+          "relations": [],
+          "gate_confidence_semantics": "uncalibrated_model_estimate",
+          "status": "blocked",
+          "blockers": [
+            "node_evidence_missing_or_ambiguous:cause-3"
+          ],
+          "decision_reason": "All fta_event_candidate indices 0-3 are represented as candidate nodes and connected to the top event through the possible-causes scope. Cause index 2 is kept as a single causal clause because the original does not state an independent boolean sub-combination for it.; Only the top-event possible-causes gate is assessed. The four candidate causes are already represented as children of scope-top-possible-causes, so no additional non-duplicative causal relations can be bound to the existing nodes.",
+          "reviewer_provenance": "user_authorized_ai_expert_role",
+          "human_reviewed": false,
+          "fta_ready": false,
+          "production_ready": false
+        },
+        "diagnostics": []
+      }
+    ]
+  },
+  "outcome_summary": {
+    "status": "blocked",
+    "fault_code": "F30021",
+    "tree_available": true,
+    "node_count": 5,
+    "gate_scopes": [
+      {
+        "scope_type": "possible_causes_enumeration",
+        "gate": "unknown",
+        "child_count": 4,
+        "blockers": [
+          "gate_confidence_policy_unavailable"
+        ]
+      }
+    ],
+    "diagnostics": []
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "artifact_type": "fta_event_scope_semantic_smoke_assessment",
+  "artifact_version": "v1",
+  "run_artifact": "evaluation/quality_eval/runs/fta_event_scope_semantic_smoke_smoke-003_v1_2026-09-29.json",
+  "attempt_receipt": "evaluation/quality_eval/runs/fta_event_scope_semantic_smoke_smoke-003_v1_2026-09-29.attempt.json",
+  "case_id": "SMOKE-003",
+  "output_assessment": {
+    "assessment_status": "structurally_and_locationally_valid_not_semantically_accepted",
+    "finish_reason": "stop",
+    "strict_json_parsed": true,
+    "structure_contract": {
+      "valid": true,
+      "blockers": [],
+      "root_node_id": "E1",
+      "derived_parent_ids": {
+        "E1": null,
+        "E2": "E1",
+        "E3": "E1",
+        "E4": "E1"
+      },
+      "hierarchy_owner": "gate_scopes",
+      "output_mutated": false
+    },
+    "evidence_location_check": {
+      "checked": 5,
+      "valid": 5,
+      "blockers": []
+    },
+    "combined_blockers": [],
+    "semantic_correctness": "not_assessed",
+    "gold_comparison": "not_performed",
+    "accuracy_or_calibration_claim_allowed": false,
+    "human_expert_gold": false,
+    "fta_ready": false,
+    "production_ready": false
+  },
+  "raw_model_output_preserved": true,
+  "automatic_repair_performed": false,
+  "automatic_retry_performed": false,
+  "reference_comparison_performed": false,
+  "claim_boundaries": {
+    "constructed_behavioral_smoke_only": true,
+    "source_corpus_evaluation": false,
+    "human_expert_gold": false,
+    "accuracy_or_calibration_claim_allowed": false,
+    "reference_comparison_performed": false,
+    "gold_or_database_written": false,
+    "automatic_repair_performed": false,
+    "automatic_retry_performed": false,
+    "production_or_database_write": false,
+    "fta_ready": false,
+    "production_ready": false
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "artifact_type": "fta_event_scope_qualitative_dev_comparison",
+  "artifact_version": "v2",
+  "comparison_date": "2026-09-29",
+  "review_method": "offline_post_run_qualitative_comparison",
+  "reviewer_role": "AI engineering review; not a human domain expert",
+  "case": {
+    "packet_id": "NASA_GSFC_BATTERY_FIG7_MODULE_FAILURE_DEV_001",
+    "source_cluster_id": "NASA_GSFC_LISOCL2_BATTERY_SAFETY_ANALYSIS_1987",
+    "exposure_status": "seen_development_only",
+    "model_input_sha256": "1e77b80a8f2a6ae62443468d21b075e4a213a3544cdc2b882a5d69b6ba6d4325"
+  },
+  "reference_provenance": {
+    "gold_path": "evaluation/quality_eval/datasets/fta_event_scope_nasa_battery_fig7_module_failure_reference_gold_v1.json",
+    "reviewer_role": "ai_role_review",
+    "formal_human_expert_gold": false,
+    "diagram_gate_labels_used_as_text_gold": false
+  },
+  "model_run": {
+    "run_path": "evaluation/quality_eval/runs/fta_event_scope_nasa_battery_fig7_model_run_v3_2026-09-29.json",
+    "assessment_path": "evaluation/quality_eval/runs/fta_event_scope_nasa_battery_fig7_model_run_assessment_v3_2026-09-29.json",
+    "requested_model": "deepseek-flash",
+    "prompt_version": "event-scope-text-only-tree-v2-compact-json",
+    "request_count": 1,
+    "retry_count": 0,
+    "machine_quote_check_count": 8,
+    "machine_invalid_quote_count": 0
+  },
+  "findings": [
+    {
+      "finding_id": "top_event_text",
+      "status": "aligned",
+      "observation": "The predicted top-event wording matches the packet top-event wording.",
+      "prediction": "explosion or structural fragmentation of a battery module",
+      "reference": "explosion or structural fragmentation of a battery module"
+    },
+    {
+      "finding_id": "top_level_branch_topology",
+      "status": "not_aligned",
+      "observation": "The OR label is present, but its predicted child set is not the two alternative compound branches described by the source. E3 is nested under E2 in parent_id while also listed as a direct child of the top OR gate.",
+      "prediction": {
+        "gate": "OR",
+        "child_node_ids": [
+          "E2",
+          "E3",
+          "E4"
+        ],
+        "child_texts": [
+          "single cell explodes",
+          "failure of the module vents",
+          "module operating nominally but with a sympathetic secondary explosion occurring"
+        ],
+        "parent_ids": {
+          "E2": "E1",
+          "E3": "E2",
+          "E4": "E2"
+        }
+      },
+      "reference": {
+        "text_authorized_gate": "OR",
+        "diagram_scope_children": [
+          "secondary-explosion",
+          "module-structural-failure"
+        ],
+        "source_expression": "(single cell exploding AND module vent failure) OR (single cell exploding AND module operates nominally AND sympathetic secondary explosion)"
+      }
+    },
+    {
+      "finding_id": "secondary_explosion_scope",
+      "status": "not_aligned",
+      "observation": "The text-authorized reference marks this scope AND. The model marks its corresponding compound event scope unknown and does not create a separate module-operates-nominally event; the emitted child list contains only sympathetic secondary explosion.",
+      "prediction": {
+        "output_node_id": "E4",
+        "output_text": "module operating nominally but with a sympathetic secondary explosion occurring",
+        "gate": "unknown",
+        "child_texts": [
+          "sympathetic secondary explosion"
+        ],
+        "has_separate_module_operates_nominally_node": false
+      },
+      "reference": {
+        "scope_id": "secondary-explosion-gate",
+        "text_authorized_gate": "AND",
+        "diagram_children": [
+          "module-operates-nominally",
+          "single-cell-explodes-secondary-branch"
+        ]
+      }
+    },
+    {
+      "finding_id": "structural_branch_scope",
+      "status": "scope_mismatch_unresolved",
+      "observation": "The reference deliberately leaves the exact text-authorized structural gate unknown because the diagram's specific leaf is not stated at that scope in prose. The model also says unknown, but attaches that decision to E2 (single cell explodes) with only E3 as a child; matching the label does not establish matching scope.",
+      "prediction": {
+        "output_node_id": "E2",
+        "output_text": "single cell explodes",
+        "gate": "unknown",
+        "child_texts": [
+          "failure of the module vents"
+        ]
+      },
+      "reference": {
+        "scope_id": "module-structural-failure-gate",
+        "text_authorized_gate": "unknown",
+        "unknown_reason": "scope_ambiguity",
+        "diagram_output_node": "module-structural-failure"
+      }
+    },
+    {
+      "finding_id": "tree_hierarchy_contract",
+      "status": "blocked",
+      "observation": "Gate scopes are the sole hierarchy source. Any legacy parent_id is checked against that projection and is never repaired; the original model output remains unchanged.",
+      "prediction": {
+        "hierarchy_owner": "gate_scopes",
+        "valid": false,
+        "blockers": [
+          {
+            "code": "unsupported_structure_status",
+            "structure_status": null
+          },
+          {
+            "code": "gate_scope_requires_at_least_two_children",
+            "scope_id": "S2",
+            "child_count": 1
+          },
+          {
+            "code": "gate_scope_requires_at_least_two_children",
+            "scope_id": "S3",
+            "child_count": 1
+          },
+          {
+            "code": "node_has_multiple_parent_scopes",
+            "node_id": "E3",
+            "parent_node_ids": [
+              "E1",
+              "E2"
+            ]
+          },
+          {
+            "code": "parent_id_conflicts_with_gate_scope",
+            "node_id": "E3",
+            "declared_parent_id": "E2",
+            "gate_scope_parent_node_ids": [
+              "E1",
+              "E2"
+            ]
+          },
+          {
+            "code": "parent_id_conflicts_with_gate_scope",
+            "node_id": "E4",
+            "declared_parent_id": "E2",
+            "gate_scope_parent_node_ids": [
+              "E1"
+            ]
+          }
+        ],
+        "output_mutated": false
+      },
+      "reference": {
+        "policy": "reject_conflict_preserve_raw_output"
+      }
+    },
+    {
+      "finding_id": "source_quote_matching",
+      "status": "passed_literal_matching_only",
+      "observation": "All eight emitted evidence quotes are literal substrings of the model-input source text. This verifies quote matching, not that a quote supports the full semantic claim or tree topology.",
+      "prediction": {
+        "quote_count": 8,
+        "literal_matches": 8
+      },
+      "reference": {
+        "source_segment_count": 1
+      }
+    }
+  ],
+  "summary": {
+    "semantic_tree_status": "not_accepted_for_fta_preview",
+    "tree_hierarchy_contract": {
+      "status": "blocked",
+      "hierarchy_owner": "gate_scopes",
+      "blocker_count": 6,
+      "output_mutated": false
+    },
+    "quantitative_score": null,
+    "accuracy_or_generalization_claim_allowed": false,
+    "gold_modified": false,
+    "database_or_production_written": false,
+    "fta_ready": false,
+    "production_ready": false,
+    "limitations": [
+      "One already-seen Development case only; qualitative error analysis, no accuracy/F1/calibration score.",
+      "Reference labels were AI-role-reviewed, not human-expert signed or formal Gold.",
+      "Literal quote matching does not establish semantic entailment or correct gate scope."
+    ]
+  }
+}

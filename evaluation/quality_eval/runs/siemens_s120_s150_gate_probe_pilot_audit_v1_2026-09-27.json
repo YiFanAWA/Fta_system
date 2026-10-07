@@ -1,0 +1,109 @@
+{
+  "report_type": "fta_external_gate_probe_pilot_comparison",
+  "report_version": "v1",
+  "created_at": "2026-09-27T04:45:29.384013+00:00",
+  "status": "completed",
+  "model_id": "deepseek-flash",
+  "provider_host": "api.deepseek.com",
+  "review_provenance": "user_authorized_ai_expert_role",
+  "human_expert_review_claimed": false,
+  "summary": {
+    "reviewed_node_count": 5,
+    "unique_fault_count": 4,
+    "source_cluster_count": 1,
+    "top_gate_agreement_count": 5,
+    "top_gate_agreement_ratio_descriptive_only": 1.0,
+    "direct_evidence_valid_count": 5,
+    "unsupported_model_gate_proposal_count": 0
+  },
+  "details": [
+    {
+      "gate_node_id": "gate:c33e67173197f37110ce8eb2",
+      "fault_code": "F35400",
+      "review_label_ai_role": "OR",
+      "model_top_gate": "OR",
+      "top_gate_agreement": true,
+      "raw_gate_probabilities": {
+        "AND": 0.0,
+        "OR": 1.0,
+        "unknown": 0.0
+      },
+      "direct_gate_evidence_valid": true,
+      "proposal_blockers": []
+    },
+    {
+      "gate_node_id": "gate:d8b64082a03482aad0a66134",
+      "fault_code": "F06000",
+      "review_label_ai_role": "OR",
+      "model_top_gate": "OR",
+      "top_gate_agreement": true,
+      "raw_gate_probabilities": {
+        "AND": 0.0,
+        "OR": 1.0,
+        "unknown": 0.0
+      },
+      "direct_gate_evidence_valid": true,
+      "proposal_blockers": []
+    },
+    {
+      "gate_node_id": "gate:a4ebaf031f7d2212862574a4",
+      "fault_code": "F06000",
+      "review_label_ai_role": "OR",
+      "model_top_gate": "OR",
+      "top_gate_agreement": true,
+      "raw_gate_probabilities": {
+        "AND": 0.0,
+        "OR": 0.95,
+        "unknown": 0.05
+      },
+      "direct_gate_evidence_valid": true,
+      "proposal_blockers": []
+    },
+    {
+      "gate_node_id": "gate:4a3900d5ff85e756d7f2492b",
+      "fault_code": "A30079",
+      "review_label_ai_role": "AND",
+      "model_top_gate": "AND",
+      "top_gate_agreement": true,
+      "raw_gate_probabilities": {
+        "AND": 1.0,
+        "OR": 0.0,
+        "unknown": 0.0
+      },
+      "direct_gate_evidence_valid": true,
+      "proposal_blockers": []
+    },
+    {
+      "gate_node_id": "gate:07d95cade1922369843b14ca",
+      "fault_code": "F08702",
+      "review_label_ai_role": "OR",
+      "model_top_gate": "OR",
+      "top_gate_agreement": true,
+      "raw_gate_probabilities": {
+        "AND": 0.0,
+        "OR": 1.0,
+        "unknown": 0.0
+      },
+      "direct_gate_evidence_valid": true,
+      "proposal_blockers": []
+    }
+  ],
+  "unsupported_model_gate_proposals": [],
+  "input_artifacts": {
+    "review_sha256": "73fd9a0efc44efd29b3c5a9b8dc8a5a1a50995edbfbbafd407b129c2ad769781",
+    "probe_sha256": "8045a0b7ecf7314b52815366825824a294dc4ad4c34b8b7804390fdc923c1202",
+    "source_corpus_sha256": "3da11f44f35ab8286f509a57ae474fdefdb98b8313603b408974c5a082906232"
+  },
+  "probability_calibrated": false,
+  "threshold_selected": false,
+  "used_for_calibration": false,
+  "formal_gold": false,
+  "database_written": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "limitations": [
+    "仅5个门节点、4个故障码、1个手册来源簇；一致率只是本次探索性描述，不是准确率或泛化成绩。",
+    "AI角色审核标签不是人类专家签署的 Gold；F35400 在此前过程材料中出现，因此候选集并非完全盲测。",
+    "模型概率是未校准自评，不是事件发生概率；不得据此选择阈值、改变门型或启用生产建树。"
+  ]
+}

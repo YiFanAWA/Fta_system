@@ -1,0 +1,272 @@
+{
+  "artifact_type": "external_diagram_gate_classification_fixture",
+  "artifact_version": "development-v1",
+  "created_at": "2026-09-28",
+  "dataset_role": "development_only",
+  "formal_gold": false,
+  "in_project_gold": false,
+  "database_written": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "label_provenance": "AI-transcribed from explicit public-source FTA diagram symbols or explicit explanatory text and visually cross-checked against the cited PDF pages; not human-expert Gold.",
+  "source_document_count": 3,
+  "source_cluster_count": 3,
+  "sources": [
+    {
+      "source_id": "DOE_HDBK_1100_2004_REAFF_2022",
+      "source_cluster_id": "DOE_HDBK_1100_2004_document",
+      "document_title": "Chemical Process Hazards Analysis (DOE-HDBK-1100-2004; Reaffirmed October 2022)",
+      "authors_or_organization": "U.S. Department of Energy",
+      "publication_date": "2004; reaffirmed October 2022",
+      "source_url": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1100-2004-ReaffOct2022.pdf",
+      "source_pdf_path": "evaluation/quality_eval/public_sources/source_pdfs/DOE-HDBK-1100-2004-ReaffOct2022.pdf",
+      "source_pdf_sha256": "176e0c7f7ce14630ded87afd4e8d864f4d20c3f99445265f9ff876d904e98630",
+      "source_pages_used": [61, 64],
+      "label_basis": "Figure 4.4 gate glyphs cross-checked against Table 4.24 explicit AND/OR symbol definitions.",
+      "independence_note": "One document/source cluster; both included nodes remain together in the development partition."
+    },
+    {
+      "source_id": "FAA_SRM_GUIDANCE_2024",
+      "source_cluster_id": "FAA_SRM_GUIDANCE_2024_document",
+      "document_title": "FAA Safety Risk Management Guidance",
+      "authors_or_organization": "U.S. Federal Aviation Administration",
+      "publication_date": "June 2024",
+      "source_url": "https://www.faa.gov/media/80661",
+      "source_pdf_path": "evaluation/quality_eval/public_sources/source_pdfs/FAA-SRM-Guidance-2024.pdf",
+      "source_pdf_sha256": "71c7632034a67e822ec270a16890c27454ab4f2611bec6fc0e9e0fbe05f62bf6",
+      "source_pages_used": [107, 108, 161],
+      "label_basis": "Figure C-8 gate IDs cross-checked against the guide's explicit A#/O# notation and explanatory prose; Figure D-1 cross-checked against its direct all-subsystems-must-fail explanation.",
+      "pdf_validation_note": "pypdf reports duplicate /Length dictionary entries while reading this PDF; Poppler successfully rendered the cited diagram and text pages, and the quoted lines were visually checked on printed page C-29. Keep this parser warning visible when changing PDF tooling.",
+      "independence_note": "One FAA guidance document/source cluster; all its nodes remain together in the development partition. It is not the previously seen FAA AST guide."
+    },
+    {
+      "source_id": "NASA_TM_103953_1993",
+      "source_cluster_id": "NASA_TM_103953_1993_document",
+      "document_title": "Fault Management for Data Systems",
+      "authors_or_organization": "Mark A. Boyd, David L. Iverson, and F. Ann Patterson-Hine; NASA Technical Memorandum 103953",
+      "publication_date": "September 1993",
+      "source_url": "https://ntrs.nasa.gov/api/citations/19940011075/downloads/19940011075.pdf",
+      "source_pdf_path": "evaluation/quality_eval/public_sources/source_pdfs/NASA-FDIR-Report-1994.pdf",
+      "source_pdf_sha256": "ae788e386d3217fa27a46b67a1a75d3ab60412cfc7bab3502ceab5c7d3f23a0d",
+      "source_pages_used": [8, 9],
+      "label_basis": "Figure 2 gate glyphs cross-checked against the adjacent prose that explicitly states either/or relationships and the both-transmitters requirement.",
+      "independence_note": "One NASA technical memorandum/source cluster; all four nodes from Figure 2 remain together in the development partition."
+    }
+  ],
+  "inference_input_policy": "The model receives only parent_event and direct_child_events. Source identity, source cluster, figure/page, diagram, gate glyph or gate ID, label evidence, and expected gate are withheld.",
+  "scope_note": "Descriptive development data for classifying gate labels in already-drawn public FTA diagrams. It does not test evidence-backed gate authorization from raw fault text, is not expert Gold, and supports no independent-generalization or production-accuracy claim. The unit for any future split is the entire source document/source cluster; these three documents are allocated wholly to development. Independent final validation remains uncreated and must use different documents.",
+  "partition_policy": {
+    "split_unit": "source_document_cluster",
+    "allocated_partition": "development",
+    "source_cluster_splitting_allowed": false,
+    "overlap_with_frozen_seen_regression_allowed": false,
+    "independent_final_validation_status": "not_created"
+  },
+  "excluded_examples": [],
+  "gate_nodes": [
+    {
+      "gate_node_id": "DOE-HDBK-1100-F4-4-G001",
+      "source_id": "DOE_HDBK_1100_2004_REAFF_2022",
+      "source_cluster_id": "DOE_HDBK_1100_2004_document",
+      "figure_id": "4.4",
+      "printed_page": 56,
+      "pdf_page": 64,
+      "parent_event": "Chlorine release to the environment",
+      "children": [
+        "Chlorine release at the chlorine drum",
+        "Chlorine release at the pressure reduction valve",
+        "Chlorine release at the pressure check valve",
+        "Chlorine release at the rotameter",
+        "Chlorine release at the hose to the chlorine drum",
+        "Chlorine release at piping between the PRV and PCV"
+      ],
+      "expected_gate": "OR",
+      "label_evidence": {
+        "kind": "figure_gate_glyph_cross_checked_against_symbol_table",
+        "figure_pdf_page": 64,
+        "symbol_table_figure_id": "Table 4.24",
+        "symbol_table_pdf_page": 61,
+        "quote": "The output event occurs if any of the input events occur.",
+        "quote_supports": "OR gate definition; the figure's gate glyph is visually matched to the OR symbol in Table 4.24."
+      }
+    },
+    {
+      "gate_node_id": "DOE-HDBK-1100-F4-4-G002",
+      "source_id": "DOE_HDBK_1100_2004_REAFF_2022",
+      "source_cluster_id": "DOE_HDBK_1100_2004_document",
+      "figure_id": "4.4",
+      "printed_page": 56,
+      "pdf_page": 64,
+      "parent_event": "Operator error causes chlorine hose rupture",
+      "children": [
+        "Operator moves the chlorine drum while the hose is connected",
+        "Operator moves the chlorine drum while closing the isolation valve"
+      ],
+      "expected_gate": "AND",
+      "label_evidence": {
+        "kind": "figure_gate_glyph_cross_checked_against_symbol_table",
+        "figure_pdf_page": 64,
+        "symbol_table_figure_id": "Table 4.24",
+        "symbol_table_pdf_page": 61,
+        "quote": "The output event occurs if and only if all input events occur.",
+        "quote_supports": "AND gate definition; the figure's gate glyph is visually matched to the AND symbol in Table 4.24."
+      }
+    },
+    {
+      "gate_node_id": "FAA-SRM-C8-O1-G001",
+      "source_id": "FAA_SRM_GUIDANCE_2024",
+      "source_cluster_id": "FAA_SRM_GUIDANCE_2024_document",
+      "figure_id": "C-8",
+      "printed_page": "C-28",
+      "pdf_page": 107,
+      "parent_event": "Engine Failure",
+      "children": ["Fuel 1", "Cooling 2", "Ignition 3"],
+      "expected_gate": "OR",
+      "label_evidence": {
+        "kind": "figure_gate_identifier_cross_checked_against_explanatory_text",
+        "figure_pdf_page": 107,
+        "supporting_text_pdf_page": 108,
+        "quote": "The “AND” and “OR” gates are numbered sequentially A# or O# respectively in the diagram.",
+        "quote_supports": "The gate is labelled O1 in Figure C-8; the adjacent text defines O# as an OR gate."
+      }
+    },
+    {
+      "gate_node_id": "FAA-SRM-C8-FUEL-OR-G001",
+      "source_id": "FAA_SRM_GUIDANCE_2024",
+      "source_cluster_id": "FAA_SRM_GUIDANCE_2024_document",
+      "figure_id": "C-8",
+      "printed_page": "C-28",
+      "pdf_page": 107,
+      "parent_event": "Fuel flow failure",
+      "children": ["Failed fuel pump", "Blocked fuel filter"],
+      "expected_gate": "OR",
+      "label_evidence": {
+        "kind": "figure_gate_identifier_and_explicit_explanatory_text",
+        "figure_pdf_page": 107,
+        "supporting_text_pdf_page": 108,
+        "quote": "fuel flow failures can be caused by either a failed fuel pump or a blocked fuel filter.",
+        "quote_supports": "The prose directly states the alternative causes; Figure C-8 marks this gate O2."
+      }
+    },
+    {
+      "gate_node_id": "FAA-SRM-C8-IGNITION-AND-G001",
+      "source_id": "FAA_SRM_GUIDANCE_2024",
+      "source_cluster_id": "FAA_SRM_GUIDANCE_2024_document",
+      "figure_id": "C-8",
+      "printed_page": "C-28",
+      "pdf_page": 107,
+      "parent_event": "Ignition failure",
+      "children": ["Ignition system #1 fails", "Ignition system #2 fails"],
+      "expected_gate": "AND",
+      "label_evidence": {
+        "kind": "figure_gate_identifier_and_explicit_explanatory_text",
+        "figure_pdf_page": 107,
+        "supporting_text_pdf_page": 108,
+        "quote": "An “AND” gate is used for the ignition failure, illustrating that the ignition systems are redundant. That is, both must fail for the engine to fail.",
+        "quote_supports": "The prose explicitly states that both input systems must fail; Figure C-8 labels the gate A4."
+      }
+    },
+    {
+      "gate_node_id": "FAA-SRM-D1-SYSTEM-AND-G001",
+      "source_id": "FAA_SRM_GUIDANCE_2024",
+      "source_cluster_id": "FAA_SRM_GUIDANCE_2024_document",
+      "figure_id": "D-1",
+      "printed_page": "D-3",
+      "pdf_page": 161,
+      "parent_event": "System failure",
+      "children": ["Sub-system 1 failure", "Sub-system 2 failure", "Sub-system 3 failure"],
+      "expected_gate": "AND",
+      "label_evidence": {
+        "kind": "figure_gate_cross_checked_against_explicit_explanatory_text",
+        "figure_pdf_page": 161,
+        "quote": "In this example, all sub-systems must fail in order for the system to fail.",
+        "quote_supports": "The source explicitly requires all three direct child failures."
+      }
+    },
+    {
+      "gate_node_id": "FAA-SRM-D1-SUBSYS3-AND-G001",
+      "source_id": "FAA_SRM_GUIDANCE_2024",
+      "source_cluster_id": "FAA_SRM_GUIDANCE_2024_document",
+      "figure_id": "D-1",
+      "printed_page": "D-3",
+      "pdf_page": 161,
+      "parent_event": "Sub-system 3 failure",
+      "children": ["Sub-system 4 failure", "Sub-system 5 failure"],
+      "expected_gate": "AND",
+      "label_evidence": {
+        "kind": "figure_gate_cross_checked_against_explicit_explanatory_text",
+        "figure_pdf_page": 161,
+        "quote": "Sub-system 3 failure, in turn, depends on the failure of sub-systems 4 and 5.",
+        "quote_supports": "The source describes the combined dependency of both direct child failures."
+      }
+    },
+    {
+      "gate_node_id": "NASA-TM103953-F2-RECEIVE-OR-G001",
+      "source_id": "NASA_TM_103953_1993",
+      "source_cluster_id": "NASA_TM_103953_1993_document",
+      "figure_id": "2",
+      "printed_page": 5,
+      "pdf_page": 9,
+      "parent_event": "Message receive failure",
+      "children": ["Spaceborne unit failure", "Ground receiver failed"],
+      "expected_gate": "OR",
+      "label_evidence": {
+        "kind": "figure_gate_cross_checked_against_adjacent_explanatory_text",
+        "figure_pdf_page": 9,
+        "quote": "failure to successfully receive the data might be due either to a failure of the spaceborne subsystem or to a failure of the ground-based subsystem (the receiver).",
+        "quote_supports": "The text explicitly identifies either direct subsystem failure as sufficient."
+      }
+    },
+    {
+      "gate_node_id": "NASA-TM103953-F2-SPACEBORNE-OR-G001",
+      "source_id": "NASA_TM_103953_1993",
+      "source_cluster_id": "NASA_TM_103953_1993_document",
+      "figure_id": "2",
+      "printed_page": 5,
+      "pdf_page": 9,
+      "parent_event": "Spaceborne unit failure",
+      "children": ["Processing system failure", "Transmitting system failure"],
+      "expected_gate": "OR",
+      "label_evidence": {
+        "kind": "figure_gate_cross_checked_against_adjacent_explanatory_text",
+        "figure_pdf_page": 9,
+        "quote": "A failure of the spaceborne subsystem could be due either to a failure of the transmitter subsystem or to a failure of the processing subsystem.",
+        "quote_supports": "The text explicitly states an either/or relationship between the direct children."
+      }
+    },
+    {
+      "gate_node_id": "NASA-TM103953-F2-TRANSMITTER-AND-G001",
+      "source_id": "NASA_TM_103953_1993",
+      "source_cluster_id": "NASA_TM_103953_1993_document",
+      "figure_id": "2",
+      "printed_page": 5,
+      "pdf_page": 9,
+      "parent_event": "Transmitting system failure",
+      "children": ["Primary transmitter failed", "Backup transmitter failed"],
+      "expected_gate": "AND",
+      "label_evidence": {
+        "kind": "figure_gate_cross_checked_against_adjacent_explanatory_text",
+        "figure_pdf_page": 9,
+        "quote": "A failure of the transmitter subsystem requires the failure of both transmitters.",
+        "quote_supports": "The text explicitly requires both direct child failures."
+      }
+    },
+    {
+      "gate_node_id": "NASA-TM103953-F2-PROCESSING-OR-G001",
+      "source_id": "NASA_TM_103953_1993",
+      "source_cluster_id": "NASA_TM_103953_1993_document",
+      "figure_id": "2",
+      "printed_page": 5,
+      "pdf_page": 9,
+      "parent_event": "Processing system failure",
+      "children": ["Processor failed", "Data bus failed"],
+      "expected_gate": "OR",
+      "label_evidence": {
+        "kind": "figure_gate_cross_checked_against_adjacent_explanatory_text",
+        "figure_pdf_page": 9,
+        "quote": "A failure of the processing subsystem could be due to a failure of either the processor or the bus.",
+        "quote_supports": "The text explicitly states that either direct child failure can cause the parent failure."
+      }
+    }
+  ]
+}

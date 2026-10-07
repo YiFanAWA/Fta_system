@@ -107,6 +107,7 @@ class EvidenceField(str, Enum):
     DRIVER_OBJECT_DECLARATION = "driver_object_declaration"
     DESCRIPTION = "description"
     CAUSE = "cause"
+    CAUSE_CONTEXT = "cause_context"
     PARAMETER = "parameter"
 
 

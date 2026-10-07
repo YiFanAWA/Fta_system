@@ -1,0 +1,113 @@
+{
+  "artifact_type": "fta_event_scope_qualitative_dev_comparison",
+  "artifact_version": "v1",
+  "comparison_date": "2026-09-29",
+  "review_method": "offline_non_scoring_comparison_after_single_v4_run",
+  "reviewer_role": "AI engineering review; not a human domain expert",
+  "case": {
+    "packet_id": "NASA_GSFC_BATTERY_FIG7_MODULE_FAILURE_DEV_001",
+    "source_cluster_id": "NASA_GSFC_LISOCL2_BATTERY_SAFETY_ANALYSIS_1987",
+    "exposure_status": "seen_development_only",
+    "model_input_sha256": "1e77b80a8f2a6ae62443468d21b075e4a213a3544cdc2b882a5d69b6ba6d4325"
+  },
+  "model_run": {
+    "run_path": "evaluation/quality_eval/runs/fta_event_scope_nasa_battery_fig7_model_run_v4_2026-09-29.json",
+    "assessment_path": "evaluation/quality_eval/runs/fta_event_scope_nasa_battery_fig7_model_run_assessment_v4_2026-09-29.json",
+    "requested_model": "deepseek-flash",
+    "prompt_version": "event-scope-text-only-tree-v4-located-evidence",
+    "prompt_sha256": "a1d532cd253c2ca4ab7deb4ba71740d76b862c369a8278d4c84573e762c4a3e2",
+    "request_count": 1,
+    "retry_count": 0,
+    "strict_json_parsed": true
+  },
+  "reference_provenance": {
+    "gold_path": "evaluation/quality_eval/datasets/fta_event_scope_nasa_battery_fig7_module_failure_reference_gold_v1.json",
+    "reviewer_role": "ai_role_review",
+    "formal_human_expert_gold": false,
+    "diagram_gate_labels_used_as_text_gold": false
+  },
+  "findings": [
+    {
+      "finding_id": "request_boundary",
+      "status": "passed",
+      "observation": "One v4 request completed with zero retries; thinking was disabled and Gold was excluded from model-visible input.",
+      "request_count": 1,
+      "retry_count": 0,
+      "finish_reason": "stop"
+    },
+    {
+      "finding_id": "tree_hierarchy_contract",
+      "status": "blocked",
+      "observation": "The non-mutating gate-scope hierarchy contract blocks invalid structures and never repairs the saved output.",
+      "hierarchy_owner": "gate_scopes",
+      "blockers": [
+        {
+          "code": "gate_scope_requires_at_least_two_children",
+          "scope_id": "S2",
+          "child_count": 1
+        }
+      ],
+      "output_mutated": false
+    },
+    {
+      "finding_id": "evidence_location",
+      "status": "passed_literal_unique_matching_only",
+      "observation": "Literal unique segment matching checks citation location only; it does not prove semantic entailment.",
+      "checked": 9,
+      "valid": 9,
+      "blockers": []
+    },
+    {
+      "finding_id": "root_gate_vs_ai_text_review",
+      "status": "label_disagreement",
+      "observation": "The model abstained with unknown on the root scope, while the AI-role-reviewed text reference labels the root scope OR. This is one seen-case qualitative disagreement, not a human-expert error score.",
+      "model": {
+        "scope_id": "S1",
+        "gate": "unknown",
+        "output_node_text": "explosion or structural fragmentation of a battery module"
+      },
+      "reference": {
+        "scope_id": "module-failure-gate",
+        "text_authorized_gate": "OR",
+        "reviewer_role": "ai_role_review",
+        "evidence_quote": "Figures 7 and 8 show that a single cell exploding and the failure of the module vents or a single cell exploding and the module operating nominally but with a sympathetic secondary explosion occurring can lead to the Top Event."
+      }
+    },
+    {
+      "finding_id": "remaining_gate_scope_coverage",
+      "status": "qualitative_scope_mismatch_not_scored",
+      "observation": "All emitted gate labels are unknown. The prediction does not emit the AI-role-reviewed secondary-explosion AND decision; internal scope IDs do not provide a validated one-to-one mapping to the reference scopes, so no gate accuracy is computed.",
+      "predicted_gate_counts": {
+        "AND": 0,
+        "OR": 0,
+        "unknown": 3
+      },
+      "reference_text_gate_counts": {
+        "AND": 1,
+        "OR": 1,
+        "unknown": 1
+      },
+      "scope_mapping": "not_established"
+    }
+  ],
+  "summary": {
+    "semantic_tree_status": "not_accepted_for_fta_preview",
+    "structure_status": "unresolved",
+    "structure_contract_status": "blocked",
+    "structure_blocker_count": 1,
+    "literal_evidence_location": "9/9",
+    "all_predicted_gate_labels_unknown": true,
+    "quantitative_score": null,
+    "accuracy_or_calibration_claim_allowed": false,
+    "gold_modified": false,
+    "database_or_production_written": false,
+    "fta_ready": false,
+    "production_ready": false,
+    "limitations": [
+      "One already-seen Development case only; qualitative error analysis, no accuracy/F1/calibration score.",
+      "Reference labels were AI-role-reviewed, not human-expert signed or formal Gold.",
+      "Literal quote matching checks citation location, not semantic entailment.",
+      "Model and reference gate scopes do not have a validated one-to-one mapping; do not compute gate accuracy."
+    ]
+  }
+}

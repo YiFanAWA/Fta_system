@@ -1,0 +1,138 @@
+{
+  "artifact_type": "fta_event_scope_semantic_smoke_run",
+  "artifact_version": "v1",
+  "status": "response_received",
+  "recorded_at_utc": "2026-09-29T11:19:06+00:00",
+  "case": {
+    "case_id": "SMOKE-002",
+    "dataset_status": "constructed_behavioral_smoke_inputs_not_source_corpus",
+    "input_dataset_path": "evaluation/quality_eval/datasets/fta_event_scope_semantic_smoke_inputs_v1.json",
+    "input_dataset_sha256": "1cb2148df154112db4b6209b23f9144946b6aa5637c3fee809efcafcff32d044",
+    "model_input_sha256": "d16d24fe523cb22629ae63a504ce44393da3eb8cca9ebb29bd00270c2b10ad1f",
+    "model_input": {
+      "event_scope_id": "scope-002",
+      "top_event": {
+        "text": "Pressure vessel rupture",
+        "evidence": {
+          "segment_id": "synthetic-source-002",
+          "quote": "Pressure vessel rupture occurs"
+        }
+      },
+      "source_segments": [
+        {
+          "segment_id": "synthetic-source-002",
+          "page_number": 1,
+          "section_locator": "Constructed semantic smoke passage 2 (not a manual excerpt)",
+          "text": "Pressure vessel rupture occurs only when the wall has been weakened by corrosion together with internal pressure above the design limit. Neither a weakened wall by itself nor pressure above the limit by itself is sufficient."
+        }
+      ]
+    }
+  },
+  "request": {
+    "request_count": 1,
+    "retry_count": 0,
+    "retry_policy": "disabled_one_attempt_only",
+    "provider_host": "api.deepseek.com",
+    "requested_model": "deepseek-flash",
+    "temperature": 0,
+    "max_tokens": 8192,
+    "response_format": {
+      "type": "json_object"
+    },
+    "thinking_mode": {
+      "type": "disabled"
+    },
+    "timeout_seconds": 120,
+    "sdk_max_retries": 0,
+    "prompt_version": "event-scope-text-only-tree-v8-semantic-gate-evidence",
+    "prompt_sha256": "e2900c28a2981e7ce152fe512b77d658f68fb887ed329f61e0a962cfc2b29f8b",
+    "reference_labels_loaded": false,
+    "gold_included_in_model_input": false,
+    "choice_count": 1,
+    "finish_reason": "stop",
+    "visible_content_character_count": 1187,
+    "reasoning_content_present": false,
+    "reasoning_content_character_count": 0,
+    "reasoning_text_persisted": false,
+    "reasoning_tokens": null,
+    "usage": {
+      "prompt_tokens": 1734,
+      "completion_tokens": 270,
+      "total_tokens": 2004
+    },
+    "returned_model": "deepseek-flash",
+    "provider_request_id": null,
+    "openai_package_version": "2.24.0"
+  },
+  "model_output": {
+    "raw_text": "{\"structure_status\":\"complete\",\"nodes\":[{\"id\":\"E1\",\"text\":\"Pressure vessel rupture\",\"type\":\"top_event\",\"evidence\":{\"segment_id\":\"synthetic-source-002\",\"quote\":\"Pressure vessel rupture occurs\"}},{\"id\":\"E2\",\"text\":\"wall has been weakened by corrosion\",\"type\":\"basic_event\",\"evidence\":{\"segment_id\":\"synthetic-source-002\",\"quote\":\"the wall has been weakened by corrosion\"}},{\"id\":\"E3\",\"text\":\"internal pressure above the design limit\",\"type\":\"basic_event\",\"evidence\":{\"segment_id\":\"synthetic-source-002\",\"quote\":\"internal pressure above the design limit\"}}],\"gates\":[{\"scope_id\":\"S1\",\"output_node_id\":\"E1\",\"child_node_ids\":[\"E2\",\"E3\"],\"gate\":\"AND\",\"scope_evidence\":{\"segment_id\":\"synthetic-source-002\",\"quote\":\"Pressure vessel rupture occurs only when the wall has been weakened by corrosion together with internal pressure above the design limit.\"},\"logic_evidence\":{\"segment_id\":\"synthetic-source-002\",\"quote\":\"Pressure vessel rupture occurs only when the wall has been weakened by corrosion together with internal pressure above the design limit. Neither a weakened wall by itself nor pressure above the limit by itself is sufficient.\"},\"unknown_reason\":null}],\"unresolved_questions\":[]}",
+    "parsed_json": {
+      "structure_status": "complete",
+      "nodes": [
+        {
+          "id": "E1",
+          "text": "Pressure vessel rupture",
+          "type": "top_event",
+          "evidence": {
+            "segment_id": "synthetic-source-002",
+            "quote": "Pressure vessel rupture occurs"
+          }
+        },
+        {
+          "id": "E2",
+          "text": "wall has been weakened by corrosion",
+          "type": "basic_event",
+          "evidence": {
+            "segment_id": "synthetic-source-002",
+            "quote": "the wall has been weakened by corrosion"
+          }
+        },
+        {
+          "id": "E3",
+          "text": "internal pressure above the design limit",
+          "type": "basic_event",
+          "evidence": {
+            "segment_id": "synthetic-source-002",
+            "quote": "internal pressure above the design limit"
+          }
+        }
+      ],
+      "gates": [
+        {
+          "scope_id": "S1",
+          "output_node_id": "E1",
+          "child_node_ids": [
+            "E2",
+            "E3"
+          ],
+          "gate": "AND",
+          "scope_evidence": {
+            "segment_id": "synthetic-source-002",
+            "quote": "Pressure vessel rupture occurs only when the wall has been weakened by corrosion together with internal pressure above the design limit."
+          },
+          "logic_evidence": {
+            "segment_id": "synthetic-source-002",
+            "quote": "Pressure vessel rupture occurs only when the wall has been weakened by corrosion together with internal pressure above the design limit. Neither a weakened wall by itself nor pressure above the limit by itself is sufficient."
+          },
+          "unknown_reason": null
+        }
+      ],
+      "unresolved_questions": []
+    },
+    "parse_error": null,
+    "raw_text_sha256": "628877cd65af688e06be8e8d9bc747e086873563bd37eb2fda59a3e4a3230f9b"
+  },
+  "claim_boundaries": {
+    "constructed_behavioral_smoke_only": true,
+    "source_corpus_evaluation": false,
+    "human_expert_gold": false,
+    "accuracy_or_calibration_claim_allowed": false,
+    "reference_comparison_performed": false,
+    "gold_or_database_written": false,
+    "automatic_repair_performed": false,
+    "automatic_retry_performed": false,
+    "production_or_database_write": false,
+    "fta_ready": false,
+    "production_ready": false
+  }
+}

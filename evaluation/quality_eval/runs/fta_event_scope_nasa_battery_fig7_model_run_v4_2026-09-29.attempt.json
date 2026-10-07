@@ -1,0 +1,28 @@
+{
+  "artifact_type": "fta_event_scope_model_inference_attempt",
+  "artifact_version": "v4",
+  "status": "response_received",
+  "started_at_utc": "2026-09-29T06:50:24+00:00",
+  "packet_id": "NASA_GSFC_BATTERY_FIG7_MODULE_FAILURE_DEV_001",
+  "packet_path": "evaluation/quality_eval/datasets/fta_event_scope_nasa_battery_fig7_module_failure_dev_v1.json",
+  "model_input_sha256": "1e77b80a8f2a6ae62443468d21b075e4a213a3544cdc2b882a5d69b6ba6d4325",
+  "prompt_sha256": "a1d532cd253c2ca4ab7deb4ba71740d76b862c369a8278d4c84573e762c4a3e2",
+  "provider_host": "api.deepseek.com",
+  "model": "deepseek-flash",
+  "explicit_single_request_authorization": true,
+  "authorized_max_request_count": 1,
+  "sdk_max_retries": 0,
+  "max_tokens": 8192,
+  "response_format": {
+    "type": "json_object"
+  },
+  "thinking_mode": {
+    "type": "disabled"
+  },
+  "completed_at_utc": "2026-09-29T06:50:29+00:00",
+  "request_count": 1,
+  "run_artifact": "evaluation/quality_eval/runs/fta_event_scope_nasa_battery_fig7_model_run_v4_2026-09-29.json",
+  "run_sha256": "5472dd8be3154570d1aca77a951e7fd3c34b8bb6d858cd1fd619881d3bd9f156",
+  "assessment_artifact": "evaluation/quality_eval/runs/fta_event_scope_nasa_battery_fig7_model_run_assessment_v4_2026-09-29.json",
+  "assessment_sha256": "103b9b6403ec54534c40869f8c937903dec3728dd37dd8d483bd0d58df8a2438"
+}

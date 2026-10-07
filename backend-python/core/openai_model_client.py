@@ -17,6 +17,7 @@ class OpenAICompatibleModelClient:
         model: str,
         timeout_seconds: float,
         base_url: str | None = None,
+        sdk_max_retries: int = 2,
     ) -> None:
         if not isinstance(api_key, str):
             raise TypeError("api_key must be a string")
@@ -30,15 +31,23 @@ class OpenAICompatibleModelClient:
             raise ValueError("timeout_seconds must be greater than zero")
         if base_url is not None and not isinstance(base_url, str):
             raise TypeError("base_url must be a string or None")
+        if isinstance(sdk_max_retries, bool) or not isinstance(sdk_max_retries, int):
+            raise TypeError("sdk_max_retries must be an integer")
+        if sdk_max_retries < 0:
+            raise ValueError("sdk_max_retries cannot be negative")
 
         self._api_key = api_key.strip()
         self._model = model.strip()
         self._timeout_seconds = float(timeout_seconds)
         self._base_url = base_url.strip() if base_url else None
+        self._sdk_max_retries = sdk_max_retries
         self._client: Any | None = None
 
         if self._api_key and hasattr(openai, "OpenAI"):
-            client_kwargs: dict[str, Any] = {"api_key": self._api_key}
+            client_kwargs: dict[str, Any] = {
+                "api_key": self._api_key,
+                "max_retries": self._sdk_max_retries,
+            }
             if self._base_url:
                 client_kwargs["base_url"] = self._base_url
             self._client = openai.OpenAI(**client_kwargs)

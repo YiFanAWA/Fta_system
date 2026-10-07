@@ -1,0 +1,645 @@
+{
+  "artifact_type": "candidate_fta_nested_scope_real_source_probe",
+  "artifact_version": "v3",
+  "reviewer_provenance": "live_model_development_probe_not_expert_review",
+  "formal_gold": false,
+  "database_written": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "evaluation_scope": "single public S120/S150 F06000 gate-assessment rerun reusing the exact prior extraction and structure response",
+  "source": {
+    "sample_id": "SIEMENS_S120_S150_2023_F06000_P2792_N001",
+    "dataset": "siemens_s120_s150_2023_public_fault_corpus_holdout_v2",
+    "source_document_sha256": "f7684038621ae9faaedbed1780e23c48775c19d76ae0fbd0adce268d69f489f4",
+    "input_text_sha256": "ef53729a1ccdcb79aa139bed95898f4e6f4a089d83ecadb30cd554d53dcdad1b"
+  },
+  "model": {
+    "model_id": "deepseek-flash",
+    "provider_host": "api.deepseek.com",
+    "temperature": 0,
+    "request_attempt_count": 1,
+    "note": "Extraction, structure decomposition, and gate assessment share the configured client; retries count as extra attempts."
+  },
+  "model_stage_responses": [
+    {
+      "stage": "fault_extraction",
+      "source": "evaluation\\quality_eval\\runs\\siemens_s120_s150_f06000_nested_scope_candidate_fta_v2_2026-09-27.json",
+      "response": "{\n  \"items\": [\n    {\n      \"fault_code\": \"F06000\",\n      \"component\": \"Power Module\",\n      \"related_components\": [],\n      \"description\": \"Infeed: Precharging monitoring time expired\",\n      \"causes\": [\n        \"There is no line voltage connected\",\n        \"The line contactor/line side switch has not been closed\",\n        \"The line voltage is too low\",\n        \"Line voltage incorrectly set\",\n        \"The precharging resistors are overheated as there were too many precharging operations per time unit\",\n        \"The precharging resistors are overheated as the DC link capacitance is too high\",\n        \"The precharging resistors are overheated because when there is no 'ready for operation' of the infeed unit, power is taken from the DC link\",\n        \"The precharging resistors are overheated as the line contactor was closed during the DC link fast discharge through the Braking Module\",\n        \"The DC link has either a ground fault or a short-circuit\",\n        \"The precharging circuit is possibly defective (only for chassis units)\"\n      ],\n      \"parameters\": [\"p0857\", \"p0210\", \"r0863.0\"]\n    }\n  ]\n}"
+    },
+    {
+      "stage": "structure_decomposition",
+      "source": "evaluation\\quality_eval\\runs\\siemens_s120_s150_f06000_nested_scope_candidate_fta_v2_2026-09-27.json",
+      "response": "{\n  \"structure_status\": \"complete\",\n  \"nodes\": [\n    {\n      \"node_id\": \"c0\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"There is no line voltage connected\",\n      \"source_cause_indices\": [0],\n      \"evidence_quote\": \"There is no line voltage connected\"\n    },\n    {\n      \"node_id\": \"c1\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"The line contactor/line side switch has not been closed\",\n      \"source_cause_indices\": [1],\n      \"evidence_quote\": \"The line contactor/line side switch has not been closed\"\n    },\n    {\n      \"node_id\": \"c2\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"The line voltage is too low\",\n      \"source_cause_indices\": [2],\n      \"evidence_quote\": \"The line voltage is too low\"\n    },\n    {\n      \"node_id\": \"c3\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"Line voltage incorrectly set\",\n      \"source_cause_indices\": [3],\n      \"evidence_quote\": \"Line voltage incorrectly set\"\n    },\n    {\n      \"node_id\": \"c4\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"The precharging resistors are overheated as there were too many precharging operations per time unit\",\n      \"source_cause_indices\": [4],\n      \"evidence_quote\": \"The precharging resistors are overheated as there were too many precharging operations per time unit\"\n    },\n    {\n      \"node_id\": \"c5\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"The precharging resistors are overheated as the DC link capacitance is too high\",\n      \"source_cause_indices\": [5],\n      \"evidence_quote\": \"The precharging resistors are overheated as the DC link capacitance is too high\"\n    },\n    {\n      \"node_id\": \"c6\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"The precharging resistors are overheated because when there is no 'ready for operation' of the infeed unit, power is taken from the DC link\",\n      \"source_cause_indices\": [6],\n      \"evidence_quote\": \"The precharging resistors are overheated because when there is no \\\"ready for operation\\\" (r0863.0) of the infeed \\nunit, power is taken from the DC link\"\n    },\n    {\n      \"node_id\": \"c7\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"The precharging resistors are overheated as the line contactor was closed during the DC link fast discharge through the Braking Module\",\n      \"source_cause_indices\": [7],\n      \"evidence_quote\": \"The precharging resistors are overheated as the line contactor was closed during the DC link fast discharge \\nthrough the Braking Module\"\n    },\n    {\n      \"node_id\": \"c8_group\",\n      \"node_type\": \"intermediate_event_candidate\",\n      \"text\": \"The DC link has either a ground fault or a short-circuit\",\n      \"source_cause_indices\": [8],\n      \"evidence_quote\": \"The DC link has either a ground fault or a short-circuit\"\n    },\n    {\n      \"node_id\": \"c8_ground\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"ground fault\",\n      \"source_cause_indices\": [8],\n      \"evidence_quote\": \"a ground fault\"\n    },\n    {\n      \"node_id\": \"c8_short\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"short-circuit\",\n      \"source_cause_indices\": [8],\n      \"evidence_quote\": \"a short-circuit\"\n    },\n    {\n      \"node_id\": \"c9\",\n      \"node_type\": \"cause_candidate\",\n      \"text\": \"The precharging circuit is possibly defective (only for chassis units)\",\n      \"source_cause_indices\": [9],\n      \"evidence_quote\": \"The precharging circuit is possibly defective (only for chassis units)\"\n    }\n  ],\n  \"gate_scopes\": [\n    {\n      \"gate_id\": \"scope_top\",\n      \"output_node_id\": \"__top_event__\",\n      \"child_node_ids\": [\"c0\", \"c1\", \"c2\", \"c3\", \"c4\", \"c5\", \"c6\", \"c7\", \"c8_group\", \"c9\"],\n      \"scope_type\": \"one_of_following_reasons\",\n      \"scope_quote\": \"Precharging monitoring time expired\\nMessage value: -\\nMessage class: Infeed faulted (13)\\nDrive object: A_INF, B_INF, R_INF, S_INF\\nComponent: Power Module Propagation: GLOBAL\\nResponse: OFF2 (OFF1)\\nAcknowledgment: IMMEDIATELY\\nCause: After the line contactor closes the power unit does not signal the READY state within the monitoring time (p0857).\\nThe end of the DC link precharging was not able to be completed for one of the following reasons:\\n1) There is no line voltage connected.\\n2) The line contactor/line side switch has not been closed.\\n3) The line voltage is too low.\\n4) Line voltage incorrectly set (p0210).\\n5) The precharging resistors are overheated as there were too many precharging operations per time unit.\\n6) The precharging resistors are overheated as the DC link capacitance is too high.\\n7) The precharging resistors are overheated because when there is no \\\"ready for operation\\\" (r0863.0) of the infeed \\nunit, power is taken from the DC link.\\n8) The precharging resistors are overheated as the line contactor was closed during the DC link fast discharge \\nthrough the Braking Module.\\n9) The DC link has either a ground fault or a short-circuit.\\n10) The precharging circuit is possibly defective (only for chassis units).\",\n      \"cause_set_complete\": true,\n      \"cause_set_leaf_normalized\": true,\n      \"reason\": \"The source's Cause section lists these extracted reasons under 'for one of the following reasons' for the precharging monitoring time expiry. Direct children are atomic except cause_index 8, which is represented by a nested either/or group.\"\n    },\n    {\n      \"gate_id\": \"scope_c8\",\n      \"output_node_id\": \"c8_group\",\n      \"child_node_ids\": [\"c8_ground\", \"c8_short\"],\n      \"scope_type\": \"either_or\",\n      \"scope_quote\": \"The DC link has either a ground fault or a short-circuit\",\n      \"cause_set_complete\": true,\n      \"cause_set_leaf_normalized\": true,\n      \"reason\": \"Cause index 8 explicitly states an either/or alternative between a ground fault and a short-circuit; these are local children and are not promoted to the outer scope.\"\n    }\n  ],\n  \"unresolved_cause_indices\": [],\n  \"reason\": \"All extracted cause indices 0-9 are mapped to evidence-backed nodes. The only nested boolean combination found is cause_index 8, represented by a local either_or scope. Other 'as/because/when/during' clauses are causal or temporal explanations and are not split into gates.\"\n}"
+    },
+    {
+      "stage": "gate_assessment",
+      "source": "current_run",
+      "response": "{\"gate_assessments\":[{\"gate_id\":\"scope_top\",\"gate_probabilities\":{\"AND\":0.01,\"OR\":0.98,\"unknown\":0.01},\"gate_evidence_quote\":\"The end of the DC link precharging was not able to be completed for one of the following reasons:\",\"reason\":\"The scope explicitly presents the listed children as alternative reasons ('one of the following reasons'), directly supporting an OR gate over the complete, leaf-normalized child set.\"},{\"gate_id\":\"scope_c8\",\"gate_probabilities\":{\"AND\":0.01,\"OR\":0.99,\"unknown\":0.0},\"gate_evidence_quote\":\"The DC link has either a ground fault or a short-circuit\",\"reason\":\"The scope explicitly states an either/or alternative between the two complete children, directly supporting an OR gate rather than AND.\"}],\"relations\":[],\"reason\":\"Both gate scopes have direct textual support for OR-type local gates. No independent causal relations are added because the available causal/alternative statements are already represented by the gate_scope parent-child structure, and no separate explicit directed relation between existing nodes is uniquely supported.\"}"
+    }
+  ],
+  "evidence_check": {
+    "tree_available": true,
+    "reference_count": 17,
+    "all_offsets_exact": true,
+    "all_quotes_unique": true,
+    "failures": []
+  },
+  "result": {
+    "artifact_type": "candidate_fta_generation_result",
+    "artifact_version": "v3",
+    "source_text_sha256": "ef53729a1ccdcb79aa139bed95898f4e6f4a089d83ecadb30cd554d53dcdad1b",
+    "extraction": {
+      "result_id": "b5d5252e-6582-4aae-ab7c-7cede18a0b09",
+      "status": "success",
+      "records": [
+        {
+          "record_id": "6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+          "fault_code": "F06000",
+          "description": "Precharging monitoring time expired",
+          "component": "Power Module",
+          "related_components": [],
+          "causes": [
+            "There is no line voltage connected",
+            "The line contactor/line side switch has not been closed",
+            "The line voltage is too low",
+            "Line voltage incorrectly set",
+            "The precharging resistors are overheated as there were too many precharging operations per time unit",
+            "The precharging resistors are overheated as the DC link capacitance is too high",
+            "The precharging resistors are overheated because when there is no 'ready for operation' of the infeed unit, power is taken from the DC link",
+            "The precharging resistors are overheated as the line contactor was closed during the DC link fast discharge through the Braking Module",
+            "The DC link has either a ground fault or a short-circuit",
+            "The precharging circuit is possibly defective (only for chassis units)"
+          ],
+          "parameters": [
+            "p0857",
+            "p0210",
+            "r0863.0"
+          ],
+          "confidence": null
+        }
+      ],
+      "evidence_spans": [
+        {
+          "record_id": "6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+          "field": "fault_code",
+          "source_id": "input_text",
+          "quote": "F06000",
+          "start": 0,
+          "end": 6,
+          "value_index": null
+        },
+        {
+          "record_id": "6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+          "field": "primary_component",
+          "source_id": "input_text",
+          "quote": "Power Module",
+          "start": 155,
+          "end": 167,
+          "value_index": null
+        },
+        {
+          "record_id": "6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+          "field": "description",
+          "source_id": "input_text",
+          "quote": "Precharging monitoring time expired",
+          "start": 15,
+          "end": 50,
+          "value_index": null
+        },
+        {
+          "record_id": "6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "There is no line voltage connected",
+          "start": 461,
+          "end": 495,
+          "value_index": 0
+        },
+        {
+          "record_id": "6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "The end of the DC link precharging was not able to be completed for one of the following reasons:\n1) There is no line voltage connected.",
+          "start": 360,
+          "end": 496,
+          "value_index": 0
+        },
+        {
+          "record_id": "6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "The line contactor/line side switch has not been closed",
+          "start": 500,
+          "end": 555,
+          "value_index": 1
+        },
+        {
+          "record_id": "6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "2) The line contactor/line side switch has not been closed.",
+          "start": 497,
+          "end": 556,
+          "value_index": 1
+        },
+        {
+          "record_id": "6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "The line voltage is too low",
+          "start": 560,
+          "end": 587,
+          "value_index": 2
+        },
+        {
+          "record_id": "6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "3) The line voltage is too low.",
+          "start": 557,
+          "end": 588,
+          "value_index": 2
+        },
+        {
+          "record_id": "6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "Line voltage incorrectly set",
+          "start": 592,
+          "end": 620,
+          "value_index": 3
+        },
+        {
+          "record_id": "6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "4) Line voltage incorrectly set (p0210).",
+          "start": 589,
+          "end": 629,
+          "value_index": 3
+        },
+        {
+          "record_id": "6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "The precharging resistors are overheated as there were too many precharging operations per time unit",
+          "start": 633,
+          "end": 733,
+          "value_index": 4
+        },
+        {
+          "record_id": "6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "5) The precharging resistors are overheated as there were too many precharging operations per time unit.",
+          "start": 630,
+          "end": 734,
+          "value_index": 4
+        },
+        {
+          "record_id": "6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "The precharging resistors are overheated as the DC link capacitance is too high",
+          "start": 738,
+          "end": 817,
+          "value_index": 5
+        },
+        {
+          "record_id": "6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "6) The precharging resistors are overheated as the DC link capacitance is too high.",
+          "start": 735,
+          "end": 818,
+          "value_index": 5
+        },
+        {
+          "record_id": "6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "The precharging resistors are overheated as the line contactor was closed during the DC link fast discharge \nthrough the Braking Module",
+          "start": 977,
+          "end": 1112,
+          "value_index": 7
+        },
+        {
+          "record_id": "6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "8) The precharging resistors are overheated as the line contactor was closed during the DC link fast discharge \nthrough the Braking Module.",
+          "start": 974,
+          "end": 1113,
+          "value_index": 7
+        },
+        {
+          "record_id": "6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "The DC link has either a ground fault or a short-circuit",
+          "start": 1117,
+          "end": 1173,
+          "value_index": 8
+        },
+        {
+          "record_id": "6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "9) The DC link has either a ground fault or a short-circuit.",
+          "start": 1114,
+          "end": 1174,
+          "value_index": 8
+        },
+        {
+          "record_id": "6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+          "field": "cause",
+          "source_id": "input_text",
+          "quote": "The precharging circuit is possibly defective (only for chassis units)",
+          "start": 1179,
+          "end": 1249,
+          "value_index": 9
+        },
+        {
+          "record_id": "6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+          "field": "cause_context",
+          "source_id": "input_text",
+          "quote": "10) The precharging circuit is possibly defective (only for chassis units).",
+          "start": 1175,
+          "end": 1250,
+          "value_index": 9
+        },
+        {
+          "record_id": "6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "p0857",
+          "start": 352,
+          "end": 357,
+          "value_index": 0
+        },
+        {
+          "record_id": "6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "p0210",
+          "start": 622,
+          "end": 627,
+          "value_index": 1
+        },
+        {
+          "record_id": "6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+          "field": "parameter",
+          "source_id": "input_text",
+          "quote": "r0863.0",
+          "start": 911,
+          "end": 918,
+          "value_index": 2
+        }
+      ],
+      "diagnostics": []
+    },
+    "outcomes": [
+      {
+        "record_id": "6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+        "fault_code": "F06000",
+        "status": "proposed",
+        "tree": {
+          "artifact_type": "candidate_fta_tree",
+          "artifact_version": "v3",
+          "extraction_result_id": "b5d5252e-6582-4aae-ab7c-7cede18a0b09",
+          "record_id": "6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+          "fault_code": "F06000",
+          "source_text_sha256": "ef53729a1ccdcb79aa139bed95898f4e6f4a089d83ecadb30cd554d53dcdad1b",
+          "top_event_id": "event:6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+          "nodes": [
+            {
+              "node_id": "event:6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+              "node_type": "top_event_candidate",
+              "text": "Precharging monitoring time expired",
+              "evidence": [
+                {
+                  "citation_id": "6cbaea19-8e7f-4373-aeac-77c9dd38dd3e:description:15-50",
+                  "source_id": "input_text",
+                  "quote": "Precharging monitoring time expired",
+                  "start": 15,
+                  "end": 50
+                }
+              ],
+              "source_cause_indices": []
+            },
+            {
+              "node_id": "cause:6cbaea19-8e7f-4373-aeac-77c9dd38dd3e:c0",
+              "node_type": "cause_candidate",
+              "text": "There is no line voltage connected",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:461-495",
+                  "source_id": "input_text",
+                  "quote": "There is no line voltage connected",
+                  "start": 461,
+                  "end": 495
+                }
+              ],
+              "source_cause_indices": [
+                0
+              ]
+            },
+            {
+              "node_id": "cause:6cbaea19-8e7f-4373-aeac-77c9dd38dd3e:c1",
+              "node_type": "cause_candidate",
+              "text": "The line contactor/line side switch has not been closed",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:500-555",
+                  "source_id": "input_text",
+                  "quote": "The line contactor/line side switch has not been closed",
+                  "start": 500,
+                  "end": 555
+                }
+              ],
+              "source_cause_indices": [
+                1
+              ]
+            },
+            {
+              "node_id": "cause:6cbaea19-8e7f-4373-aeac-77c9dd38dd3e:c2",
+              "node_type": "cause_candidate",
+              "text": "The line voltage is too low",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:560-587",
+                  "source_id": "input_text",
+                  "quote": "The line voltage is too low",
+                  "start": 560,
+                  "end": 587
+                }
+              ],
+              "source_cause_indices": [
+                2
+              ]
+            },
+            {
+              "node_id": "cause:6cbaea19-8e7f-4373-aeac-77c9dd38dd3e:c3",
+              "node_type": "cause_candidate",
+              "text": "Line voltage incorrectly set",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:592-620",
+                  "source_id": "input_text",
+                  "quote": "Line voltage incorrectly set",
+                  "start": 592,
+                  "end": 620
+                }
+              ],
+              "source_cause_indices": [
+                3
+              ]
+            },
+            {
+              "node_id": "cause:6cbaea19-8e7f-4373-aeac-77c9dd38dd3e:c4",
+              "node_type": "cause_candidate",
+              "text": "The precharging resistors are overheated as there were too many precharging operations per time unit",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:633-733",
+                  "source_id": "input_text",
+                  "quote": "The precharging resistors are overheated as there were too many precharging operations per time unit",
+                  "start": 633,
+                  "end": 733
+                }
+              ],
+              "source_cause_indices": [
+                4
+              ]
+            },
+            {
+              "node_id": "cause:6cbaea19-8e7f-4373-aeac-77c9dd38dd3e:c5",
+              "node_type": "cause_candidate",
+              "text": "The precharging resistors are overheated as the DC link capacitance is too high",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:738-817",
+                  "source_id": "input_text",
+                  "quote": "The precharging resistors are overheated as the DC link capacitance is too high",
+                  "start": 738,
+                  "end": 817
+                }
+              ],
+              "source_cause_indices": [
+                5
+              ]
+            },
+            {
+              "node_id": "cause:6cbaea19-8e7f-4373-aeac-77c9dd38dd3e:c6",
+              "node_type": "cause_candidate",
+              "text": "The precharging resistors are overheated because when there is no 'ready for operation' of the infeed unit, power is taken from the DC link",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:822-972",
+                  "source_id": "input_text",
+                  "quote": "The precharging resistors are overheated because when there is no \"ready for operation\" (r0863.0) of the infeed \nunit, power is taken from the DC link",
+                  "start": 822,
+                  "end": 972
+                }
+              ],
+              "source_cause_indices": [
+                6
+              ]
+            },
+            {
+              "node_id": "cause:6cbaea19-8e7f-4373-aeac-77c9dd38dd3e:c7",
+              "node_type": "cause_candidate",
+              "text": "The precharging resistors are overheated as the line contactor was closed during the DC link fast discharge through the Braking Module",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:977-1112",
+                  "source_id": "input_text",
+                  "quote": "The precharging resistors are overheated as the line contactor was closed during the DC link fast discharge \nthrough the Braking Module",
+                  "start": 977,
+                  "end": 1112
+                }
+              ],
+              "source_cause_indices": [
+                7
+              ]
+            },
+            {
+              "node_id": "intermediate_event:6cbaea19-8e7f-4373-aeac-77c9dd38dd3e:c8_group",
+              "node_type": "intermediate_event_candidate",
+              "text": "The DC link has either a ground fault or a short-circuit",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:1117-1173",
+                  "source_id": "input_text",
+                  "quote": "The DC link has either a ground fault or a short-circuit",
+                  "start": 1117,
+                  "end": 1173
+                }
+              ],
+              "source_cause_indices": [
+                8
+              ]
+            },
+            {
+              "node_id": "cause:6cbaea19-8e7f-4373-aeac-77c9dd38dd3e:c8_ground",
+              "node_type": "cause_candidate",
+              "text": "ground fault",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:1140-1154",
+                  "source_id": "input_text",
+                  "quote": "a ground fault",
+                  "start": 1140,
+                  "end": 1154
+                }
+              ],
+              "source_cause_indices": [
+                8
+              ]
+            },
+            {
+              "node_id": "cause:6cbaea19-8e7f-4373-aeac-77c9dd38dd3e:c8_short",
+              "node_type": "cause_candidate",
+              "text": "short-circuit",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:1158-1173",
+                  "source_id": "input_text",
+                  "quote": "a short-circuit",
+                  "start": 1158,
+                  "end": 1173
+                }
+              ],
+              "source_cause_indices": [
+                8
+              ]
+            },
+            {
+              "node_id": "cause:6cbaea19-8e7f-4373-aeac-77c9dd38dd3e:c9",
+              "node_type": "cause_candidate",
+              "text": "The precharging circuit is possibly defective (only for chassis units)",
+              "evidence": [
+                {
+                  "citation_id": "input_text:node:1179-1249",
+                  "source_id": "input_text",
+                  "quote": "The precharging circuit is possibly defective (only for chassis units)",
+                  "start": 1179,
+                  "end": 1249
+                }
+              ],
+              "source_cause_indices": [
+                9
+              ]
+            }
+          ],
+          "gate_assessments": [
+            {
+              "gate_node_id": "gate:6d427335b0a017c8ed8bc2e4",
+              "output_node_id": "event:6cbaea19-8e7f-4373-aeac-77c9dd38dd3e",
+              "child_node_ids": [
+                "cause:6cbaea19-8e7f-4373-aeac-77c9dd38dd3e:c0",
+                "cause:6cbaea19-8e7f-4373-aeac-77c9dd38dd3e:c1",
+                "cause:6cbaea19-8e7f-4373-aeac-77c9dd38dd3e:c2",
+                "cause:6cbaea19-8e7f-4373-aeac-77c9dd38dd3e:c3",
+                "cause:6cbaea19-8e7f-4373-aeac-77c9dd38dd3e:c4",
+                "cause:6cbaea19-8e7f-4373-aeac-77c9dd38dd3e:c5",
+                "cause:6cbaea19-8e7f-4373-aeac-77c9dd38dd3e:c6",
+                "cause:6cbaea19-8e7f-4373-aeac-77c9dd38dd3e:c7",
+                "intermediate_event:6cbaea19-8e7f-4373-aeac-77c9dd38dd3e:c8_group",
+                "cause:6cbaea19-8e7f-4373-aeac-77c9dd38dd3e:c9"
+              ],
+              "scope_type": "one_of_following_reasons",
+              "gate": "unknown",
+              "gate_probabilities": {
+                "AND": 0.01,
+                "OR": 0.98,
+                "unknown": 0.01
+              },
+              "scope_evidence": [
+                {
+                  "citation_id": "input_text:scope:15-1250",
+                  "source_id": "input_text",
+                  "quote": "Precharging monitoring time expired\nMessage value: -\nMessage class: Infeed faulted (13)\nDrive object: A_INF, B_INF, R_INF, S_INF\nComponent: Power Module Propagation: GLOBAL\nResponse: OFF2 (OFF1)\nAcknowledgment: IMMEDIATELY\nCause: After the line contactor closes the power unit does not signal the READY state within the monitoring time (p0857).\nThe end of the DC link precharging was not able to be completed for one of the following reasons:\n1) There is no line voltage connected.\n2) The line contactor/line side switch has not been closed.\n3) The line voltage is too low.\n4) Line voltage incorrectly set (p0210).\n5) The precharging resistors are overheated as there were too many precharging operations per time unit.\n6) The precharging resistors are overheated as the DC link capacitance is too high.\n7) The precharging resistors are overheated because when there is no \"ready for operation\" (r0863.0) of the infeed \nunit, power is taken from the DC link.\n8) The precharging resistors are overheated as the line contactor was closed during the DC link fast discharge \nthrough the Braking Module.\n9) The DC link has either a ground fault or a short-circuit.\n10) The precharging circuit is possibly defective (only for chassis units).",
+                  "start": 15,
+                  "end": 1250
+                }
+              ],
+              "gate_evidence": [
+                {
+                  "citation_id": "input_text:gate:360-457",
+                  "source_id": "input_text",
+                  "quote": "The end of the DC link precharging was not able to be completed for one of the following reasons:",
+                  "start": 360,
+                  "end": 457
+                }
+              ],
+              "cause_set_complete": true,
+              "cause_set_leaf_normalized": true,
+              "confidence_policy_id": null,
+              "confidence_policy_basis": null,
+              "minimum_gate_probability": null,
+              "minimum_gate_margin": null,
+              "decision_reason": "gate_confidence_policy_unavailable; The scope explicitly presents the listed children as alternative reasons ('one of the following reasons'), directly supporting an OR gate over the complete, leaf-normalized child set.",
+              "blockers": [
+                "gate_confidence_policy_unavailable"
+              ]
+            },
+            {
+              "gate_node_id": "gate:66a55d144311b2348696e13b",
+              "output_node_id": "intermediate_event:6cbaea19-8e7f-4373-aeac-77c9dd38dd3e:c8_group",
+              "child_node_ids": [
+                "cause:6cbaea19-8e7f-4373-aeac-77c9dd38dd3e:c8_ground",
+                "cause:6cbaea19-8e7f-4373-aeac-77c9dd38dd3e:c8_short"
+              ],
+              "scope_type": "either_or",
+              "gate": "unknown",
+              "gate_probabilities": {
+                "AND": 0.01,
+                "OR": 0.99,
+                "unknown": 0.0
+              },
+              "scope_evidence": [
+                {
+                  "citation_id": "input_text:scope:1117-1173",
+                  "source_id": "input_text",
+                  "quote": "The DC link has either a ground fault or a short-circuit",
+                  "start": 1117,
+                  "end": 1173
+                }
+              ],
+              "gate_evidence": [
+                {
+                  "citation_id": "input_text:gate:1117-1173",
+                  "source_id": "input_text",
+                  "quote": "The DC link has either a ground fault or a short-circuit",
+                  "start": 1117,
+                  "end": 1173
+                }
+              ],
+              "cause_set_complete": true,
+              "cause_set_leaf_normalized": true,
+              "confidence_policy_id": null,
+              "confidence_policy_basis": null,
+              "minimum_gate_probability": null,
+              "minimum_gate_margin": null,
+              "decision_reason": "gate_confidence_policy_unavailable; The scope explicitly states an either/or alternative between the two complete children, directly supporting an OR gate rather than AND.",
+              "blockers": [
+                "gate_confidence_policy_unavailable"
+              ]
+            }
+          ],
+          "relations": [],
+          "gate_confidence_semantics": "uncalibrated_model_estimate",
+          "status": "candidate_ready_for_review",
+          "blockers": [],
+          "decision_reason": "All extracted cause indices 0-9 are mapped to evidence-backed nodes. The only nested boolean combination found is cause_index 8, represented by a local either_or scope. Other 'as/because/when/during' clauses are causal or temporal explanations and are not split into gates.; Both gate scopes have direct textual support for OR-type local gates. No independent causal relations are added because the available causal/alternative statements are already represented by the gate_scope parent-child structure, and no separate explicit directed relation between existing nodes is uniquely supported.",
+          "reviewer_provenance": "user_authorized_ai_expert_role",
+          "human_reviewed": false,
+          "fta_ready": false,
+          "production_ready": false
+        },
+        "diagnostics": []
+      }
+    ]
+  }
+}

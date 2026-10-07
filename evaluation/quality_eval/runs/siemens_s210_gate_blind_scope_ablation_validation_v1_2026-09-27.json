@@ -1,0 +1,83 @@
+{
+  "artifact_type": "fta_gate_node_blind_scope_ablation",
+  "artifact_version": "v1",
+  "created_at": "2026-09-27T08:07:56+00:00",
+  "status": "completed",
+  "reviewer_provenance": "model_inference_blind_ablation_not_review",
+  "reviewer_is_human_expert": false,
+  "formal_gold": false,
+  "database_written": false,
+  "gate_policy_applied": false,
+  "threshold_selected": false,
+  "probability_calibrated": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "experiment": {
+    "name": "validation_blind_scope_type_fault_code_child_id_ablation",
+    "split": "validation",
+    "model_id": "deepseek-flash",
+    "provider_host": "api.deepseek.com",
+    "sample_count": 11,
+    "source_cluster_count": 9,
+    "prompt_builder": "fta_gate_node_confidence_probe_v1._build_prompt",
+    "ablation": {
+      "fault_code_in_prompt": false,
+      "scope_type_in_prompt": false,
+      "original_child_ids_in_prompt": false,
+      "child_ids_replaced_with": "candidate_<index>",
+      "review_labels_in_prompt": false,
+      "retained_input": "fixed source scope quote, fixed child text, exact child evidence spans, and the existing evidence-first gate instructions"
+    },
+    "generation_note": "One request per node using the configured OpenAI-compatible client defaults; provider randomness was not independently seeded, so the run is not guaranteed reproducible."
+  },
+  "input_artifacts": {
+    "review_dataset": {
+      "path": "evaluation/quality_eval/datasets/siemens_s210_gate_node_review_dataset_v5_independent_ai_role_review.json",
+      "sha256": "a063b139a78bc617ccf7dc841389e1082492a08639c7ff96fd70ea692a59f85f"
+    },
+    "split_assignments": {
+      "path": "evaluation/quality_eval/datasets/siemens_s210_gate_node_source_cluster_splits_v5.json",
+      "sha256": "e5aa9488c428b5f10b8909552650c44afb755d33c874bc9bee38a8317e28ab00"
+    },
+    "source_corpus": {
+      "path": "evaluation/quality_eval/datasets/siemens_s210_public_fault_corpus_v1.jsonl",
+      "sha256": "b42535d37ae27b63ba0048c88e947916e846da53e1bf18b3e5825c1853c1f483"
+    },
+    "baseline_probe": {
+      "path": "evaluation/quality_eval/runs/siemens_s210_gate_node_confidence_probe_v5_exploratory_2026-09-27.json",
+      "sha256": "cea64c7f10aa9f43a12ee6645f6908871af5addcb70da1566389de84ee59f28a"
+    }
+  },
+  "gold_provenance": {
+    "reviewer_provenance": "user_authorized_ai_independent_gate_review_reconciled_v1",
+    "reviewer_is_human_expert": false,
+    "label_source": "AI-role reviewed v5 node labels; not human domain-expert Gold"
+  },
+  "summary": {
+    "top1_accuracy": 1.0,
+    "unknown_gold_count": 4,
+    "unknown_recall": 1.0,
+    "unknown_gold_mean_unknown_probability": 1.0,
+    "decisive_gate_quote_valid_count": 7,
+    "unknown_predictions_without_gate_quote_count": 4,
+    "confusion_gold_by_prediction": {
+      "AND": {"AND": 4, "OR": 0, "unknown": 0},
+      "OR": {"AND": 0, "OR": 3, "unknown": 0},
+      "unknown": {"AND": 0, "OR": 0, "unknown": 4}
+    }
+  },
+  "predictions": [
+    {"gate_node_id": "gate:52b01742ae929811a220334d", "fault_code": "F01680", "scope_type": "local_cause_expression", "gold_label": "OR", "predicted_label": "OR", "probabilities": {"AND": 0.0, "OR": 1.0, "unknown": 0.0}, "baseline_label": "OR", "gate_quote_valid_in_scope": true},
+    {"gate_node_id": "gate:e729f414d9be1d2b25c50895", "fault_code": "A30042", "scope_type": "event_state_expression", "gold_label": "OR", "predicted_label": "OR", "probabilities": {"AND": 0.0, "OR": 1.0, "unknown": 0.0}, "baseline_label": "OR", "gate_quote_valid_in_scope": true},
+    {"gate_node_id": "gate:f05bb132cdcc9afcecfc2495", "fault_code": "F30001", "scope_type": "local_cause_expression", "gold_label": "OR", "predicted_label": "OR", "probabilities": {"AND": 0.0, "OR": 1.0, "unknown": 0.0}, "baseline_label": "OR", "gate_quote_valid_in_scope": true},
+    {"gate_node_id": "gate:f4c49dd9b19be51a40ed45c3", "fault_code": "A01631", "scope_type": "configuration_condition_group", "gold_label": "AND", "predicted_label": "AND", "probabilities": {"AND": 0.98, "OR": 0.01, "unknown": 0.01}, "baseline_label": "AND", "gate_quote_valid_in_scope": true},
+    {"gate_node_id": "gate:2773bc9ddc2ab82746c6d297", "fault_code": "F07410", "scope_type": "signal_condition_group", "gold_label": "AND", "predicted_label": "AND", "probabilities": {"AND": 0.95, "OR": 0.0, "unknown": 0.05}, "baseline_label": "AND", "gate_quote_valid_in_scope": true},
+    {"gate_node_id": "gate:c95c712bed1a23be58211b73", "fault_code": "F01681", "scope_type": "configuration_condition_group", "gold_label": "AND", "predicted_label": "AND", "probabilities": {"AND": 0.95, "OR": 0.05, "unknown": 0.0}, "baseline_label": "AND", "gate_quote_valid_in_scope": true},
+    {"gate_node_id": "gate:00bc6c8fa660ea22f99f0dd7", "fault_code": "F01681", "scope_type": "configuration_condition_group", "gold_label": "AND", "predicted_label": "AND", "probabilities": {"AND": 1.0, "OR": 0.0, "unknown": 0.0}, "baseline_label": "AND", "gate_quote_valid_in_scope": true},
+    {"gate_node_id": "gate:bbf331fbd506bf87af4aa1c1", "fault_code": "F01910", "scope_type": "event_cause_set", "gold_label": "unknown", "predicted_label": "unknown", "probabilities": {"AND": 0.0, "OR": 0.0, "unknown": 1.0}, "baseline_label": "unknown", "gate_quote_valid_in_scope": null},
+    {"gate_node_id": "gate:5bede53e786bea8153d07cb2", "fault_code": "F30001", "scope_type": "event_cause_set", "gold_label": "unknown", "predicted_label": "unknown", "probabilities": {"AND": 0.0, "OR": 0.0, "unknown": 1.0}, "baseline_label": "unknown", "gate_quote_valid_in_scope": null},
+    {"gate_node_id": "gate:de96e3ee272cf755124bf723", "fault_code": "F30005", "scope_type": "event_cause_set", "gold_label": "unknown", "predicted_label": "unknown", "probabilities": {"AND": 0.0, "OR": 0.0, "unknown": 1.0}, "baseline_label": "unknown", "gate_quote_valid_in_scope": null},
+    {"gate_node_id": "gate:0a5fb1de1aa2bf9d9edbba96", "fault_code": "F30681", "scope_type": "event_cause_set", "gold_label": "unknown", "predicted_label": "unknown", "probabilities": {"AND": 0.0, "OR": 0.0, "unknown": 1.0}, "baseline_label": "unknown", "gate_quote_valid_in_scope": null}
+  ],
+  "interpretation": "The blind held-out prompt ablation preserved all 11 labels, including all four reviewed unknown nodes, without passing scope_type, fault_code, original child IDs, or review labels to the model. This reduces concern that the observed agreement came only from scope-type metadata. It remains a small single-run comparison against AI-role reviewed labels; it does not establish human-expert accuracy, calibrated confidence, a decision threshold, production authorization, or FTA readiness."
+}

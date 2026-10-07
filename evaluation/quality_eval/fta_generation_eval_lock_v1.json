@@ -1,0 +1,110 @@
+{
+  "schema": "fta_generation_eval_lock_v1",
+  "lock_id": "fta_generation_eval_lock_v1",
+  "captured_at": "2026-09-28",
+  "configuration_status": "pinned_candidate_eval_configuration",
+  "model_inference_status": "not_run",
+  "evaluation_runner": "evaluation/quality_eval/public_sources/probe_candidate_fta_raw_source_v1.py",
+  "model": {
+    "model_id": "deepseek-flash",
+    "endpoint": {
+      "scheme": "https",
+      "host": "api.deepseek.com",
+      "port": null,
+      "path": ""
+    },
+    "temperature": 0,
+    "timeout_seconds": 120,
+    "max_retries": 2,
+    "retry_delay_seconds": 2.0,
+    "credential_configured": true,
+    "credential_value_recorded": false,
+    "provider_revision": "not_exposed_by_configured_model_alias"
+  },
+  "runtime": {
+    "python_version": "3.11.15",
+    "openai_package_version": "2.24.0"
+  },
+  "prompt_parser_and_contract_sources": [
+    {
+      "path": "evaluation/quality_eval/public_sources/probe_candidate_fta_raw_source_v1.py",
+      "role": "evaluation_runner",
+      "sha256": "c71ba619a666e9e82215c480893c638f66b342b5ac92fc1f2e2696f7ad1922b7"
+    },
+    {
+      "path": "backend-python/core/config.py",
+      "role": "runtime_configuration_resolution",
+      "sha256": "9c72f45e7c40daf9a596e26b0bcc33b31539320878e9d9c455bb787e9155e0d4"
+    },
+    {
+      "path": "backend-python/core/model_client.py",
+      "role": "retry_policy",
+      "sha256": "5172bd6a1962043739c19e04c77519d8ef18b326f6d3a2c1a15d0a68dec96fb1"
+    },
+    {
+      "path": "backend-python/core/openai_model_client.py",
+      "role": "provider_adapter_and_request_parameters",
+      "sha256": "3b44cb63205209133b1e37f623e6a41b2a01bf106c80a59c4e7f835a23c1cb61"
+    },
+    {
+      "path": "backend-python/core/prompt_templates.py",
+      "role": "fault_extraction_prompt_templates",
+      "sha256": "abe3ef9c8b38b12d52ef9be2136fd1d51d4b068c5e1de085133d818308787348"
+    },
+    {
+      "path": "backend-python/extraction/fault_extractor.py",
+      "role": "fault_extraction_and_response_parsing",
+      "sha256": "affa5a58965c0979516e13df21e2ee56f0fecac8a050fd1fda21e3cef9104e89"
+    },
+    {
+      "path": "backend-python/workflows/ai_module.py",
+      "role": "fault_extraction_adapter_wiring",
+      "sha256": "91dfe363fa48e7f07bfa77c869698994e0b83984f996077b6e7e02612cfb67ef"
+    },
+    {
+      "path": "backend-python/fta/cause_disposition_service.py",
+      "role": "cause_disposition_prompt_v4_and_parser",
+      "sha256": "e3fcfa7c931b3de37f6e18a6c1fc96700ee75f39f3410372e2c791ceba4df5a4"
+    },
+    {
+      "path": "backend-python/fta/candidate_fta_application_service.py",
+      "role": "raw_text_pipeline_orchestration",
+      "sha256": "976aade536f27f1286bba389e845b376deb1b376515b665545c29e4f2388553e"
+    },
+    {
+      "path": "backend-python/fta/candidate_fta_extraction_service.py",
+      "role": "structure_gate_prompts_and_response_parsing",
+      "sha256": "7e725799d1212a5f374e1ac5ad605aa8342b5516a9144ce3620a906f10c9c819"
+    },
+    {
+      "path": "backend-python/fta/gate_confidence_policy.py",
+      "role": "gate_acceptance_policy",
+      "sha256": "21c0d349c06d08aaf0817d3dbeda1d1f1df1bae5e4e58e796e3bd851eee4d490"
+    },
+    {
+      "path": "backend-python/fta/unknown_gate_reason_policy.py",
+      "role": "unknown_gate_reason_policy",
+      "sha256": "33c9360197357d729672aa21ab900ecf3da6433b9597b7c3f03b802d829712b0"
+    },
+    {
+      "path": "backend-python/contracts/candidate_fta_contract.py",
+      "role": "candidate_tree_contract",
+      "sha256": "da71c2d8acde99544c7a27f10c756c793c46d13afe3d82757c7eabac952e1ca5"
+    },
+    {
+      "path": "backend-python/contracts/fta_cause_disposition_contract.py",
+      "role": "cause_disposition_contract",
+      "sha256": "54af7c508a41ec8f813212154d427f56b26b181cae239c0f578df414884fc5c0"
+    }
+  ],
+  "known_limits": [
+    "The provider model identifier is an alias; this lock cannot prove the provider served immutable weights.",
+    "A pinned source/runtime configuration is not an evaluation result or a semantic accuracy claim.",
+    "Independent complete raw-text-to-tree Final data and labels do not yet exist; no model request was made while creating this lock."
+  ],
+  "independent_final_validation": {
+    "status": "not_created",
+    "sample_count": 0,
+    "source_cluster_count": 0
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "gold_schema": "fta_event_scope_reference_gold_v1",
+  "packet_id": "NASA_GSFC_BATTERY_FIG7_MODULE_FAILURE_DEV_001",
+  "model_input_sha256": "1e77b80a8f2a6ae62443468d21b075e4a213a3544cdc2b882a5d69b6ba6d4325",
+  "source_cluster_id": "NASA_GSFC_LISOCL2_BATTERY_SAFETY_ANALYSIS_1987",
+  "source_document_id": "NASA_NTRS_19880001643",
+  "source_document_sha256": "15ed643797e80ddca990e4c74bc4767bb073898ff7d144e3bbadc7a76b993a29",
+  "root_node_id": "module-failure",
+  "nodes": [
+    {
+      "node_id": "module-failure",
+      "text": "Module failure",
+      "node_type": "top_event",
+      "page_number": 20,
+      "figure_id": "Figure 7"
+    },
+    {
+      "node_id": "secondary-explosion",
+      "text": "Secondary explosion",
+      "node_type": "intermediate_event",
+      "page_number": 20,
+      "figure_id": "Figure 7"
+    },
+    {
+      "node_id": "module-structural-failure",
+      "text": "Module structural failure",
+      "node_type": "intermediate_event",
+      "page_number": 20,
+      "figure_id": "Figure 7"
+    },
+    {
+      "node_id": "module-operates-nominally",
+      "text": "Module operates nominally",
+      "node_type": "basic_event",
+      "page_number": 20,
+      "figure_id": "Figure 7"
+    },
+    {
+      "node_id": "single-cell-explodes-secondary-branch",
+      "text": "Single cell explodes",
+      "node_type": "intermediate_event",
+      "page_number": 20,
+      "figure_id": "Figure 7"
+    },
+    {
+      "node_id": "two-module-vents-clog",
+      "text": "Two module vents clog",
+      "node_type": "basic_event",
+      "page_number": 20,
+      "figure_id": "Figure 7"
+    },
+    {
+      "node_id": "single-cell-explodes-structural-branch",
+      "text": "Single cell explodes",
+      "node_type": "intermediate_event",
+      "page_number": 20,
+      "figure_id": "Figure 7"
+    }
+  ],
+  "diagram_gates": [
+    {
+      "scope_id": "module-failure-gate",
+      "output_node_id": "module-failure",
+      "child_node_ids": [
+        "secondary-explosion",
+        "module-structural-failure"
+      ],
+      "diagram_reference_gate": "OR",
+      "page_number": 20,
+      "figure_id": "Figure 7"
+    },
+    {
+      "scope_id": "secondary-explosion-gate",
+      "output_node_id": "secondary-explosion",
+      "child_node_ids": [
+        "module-operates-nominally",
+        "single-cell-explodes-secondary-branch"
+      ],
+      "diagram_reference_gate": "AND",
+      "page_number": 20,
+      "figure_id": "Figure 7"
+    },
+    {
+      "scope_id": "module-structural-failure-gate",
+      "output_node_id": "module-structural-failure",
+      "child_node_ids": [
+        "two-module-vents-clog",
+        "single-cell-explodes-structural-branch"
+      ],
+      "diagram_reference_gate": "AND",
+      "page_number": 20,
+      "figure_id": "Figure 7"
+    }
+  ],
+  "text_gate_reviews": [
+    {
+      "scope_id": "module-failure-gate",
+      "text_authorized_gate": "OR",
+      "unknown_reason": null,
+      "evidence": {
+        "segment_id": "source-pdf-p3-p4-section-5",
+        "quote": "Figures 7 and 8 show that a single cell exploding and the failure of the module vents or a single cell exploding and the module operating nominally but with a sympathetic secondary explosion occurring can lead to the Top Event."
+      },
+      "review_provenance": {
+        "reviewer_role": "ai_role_review",
+        "reviewer_id": "Tesla the 2nd (AI role reviewer)",
+        "review_status": "reviewed",
+        "reviewed_at": "2026-09-29"
+      }
+    },
+    {
+      "scope_id": "secondary-explosion-gate",
+      "text_authorized_gate": "AND",
+      "unknown_reason": null,
+      "evidence": {
+        "segment_id": "source-pdf-p3-p4-section-5",
+        "quote": "a single cell exploding and the module operating nominally but with a sympathetic secondary explosion occurring"
+      },
+      "review_provenance": {
+        "reviewer_role": "ai_role_review",
+        "reviewer_id": "Tesla the 2nd (AI role reviewer)",
+        "review_status": "reviewed",
+        "reviewed_at": "2026-09-29"
+      }
+    },
+    {
+      "scope_id": "module-structural-failure-gate",
+      "text_authorized_gate": "unknown",
+      "unknown_reason": "scope_ambiguity",
+      "evidence": null,
+      "review_provenance": {
+        "reviewer_role": "ai_role_review",
+        "reviewer_id": "Tesla the 2nd (AI role reviewer)",
+        "review_status": "reviewed",
+        "reviewed_at": "2026-09-29"
+      }
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "artifact_type": "fta_event_scope_semantic_smoke_run",
+  "artifact_version": "v1",
+  "status": "response_received",
+  "recorded_at_utc": "2026-09-29T10:54:05+00:00",
+  "case": {
+    "case_id": "SMOKE-001",
+    "dataset_status": "constructed_behavioral_smoke_inputs_not_source_corpus",
+    "input_dataset_path": "evaluation/quality_eval/datasets/fta_event_scope_semantic_smoke_inputs_v1.json",
+    "input_dataset_sha256": "1cb2148df154112db4b6209b23f9144946b6aa5637c3fee809efcafcff32d044",
+    "model_input_sha256": "7bcfaf83f52699cb76b5d4efda2d8738c877bc7bbb2c1d92adc8d00da645b235",
+    "model_input": {
+      "event_scope_id": "scope-001",
+      "top_event": {
+        "text": "pump shutdown",
+        "evidence": {
+          "segment_id": "synthetic-source-001",
+          "quote": "which causes pump shutdown"
+        }
+      },
+      "source_segments": [
+        {
+          "segment_id": "synthetic-source-001",
+          "page_number": 1,
+          "section_locator": "Constructed semantic smoke passage 1 (not a manual excerpt)",
+          "text": "A coolant hose rupture can drain the loop, which causes pump shutdown. A separate circulation-motor failure can also produce pump shutdown."
+        }
+      ]
+    }
+  },
+  "request": {
+    "request_count": 1,
+    "retry_count": 0,
+    "retry_policy": "disabled_one_attempt_only",
+    "provider_host": "api.deepseek.com",
+    "requested_model": "deepseek-flash",
+    "temperature": 0,
+    "max_tokens": 8192,
+    "response_format": {
+      "type": "json_object"
+    },
+    "thinking_mode": {
+      "type": "disabled"
+    },
+    "timeout_seconds": 120,
+    "sdk_max_retries": 0,
+    "prompt_version": "event-scope-text-only-tree-v8-semantic-gate-evidence",
+    "prompt_sha256": "4460d5a1682fbeb0d8622d5307ab23eb09e4754607cd6ea6a5081013f076c9eb",
+    "reference_labels_loaded": false,
+    "gold_included_in_model_input": false,
+    "choice_count": 1,
+    "finish_reason": "stop",
+    "visible_content_character_count": 1108,
+    "reasoning_content_present": false,
+    "reasoning_content_character_count": 0,
+    "reasoning_text_persisted": false,
+    "reasoning_tokens": null,
+    "usage": {
+      "prompt_tokens": 1722,
+      "completion_tokens": 269,
+      "total_tokens": 1991
+    },
+    "returned_model": "deepseek-flash",
+    "provider_request_id": null,
+    "openai_package_version": "2.24.0"
+  },
+  "model_output": {
+    "raw_text": "{\"structure_status\":\"complete\",\"nodes\":[{\"id\":\"E1\",\"text\":\"pump shutdown\",\"type\":\"top_event\",\"evidence\":{\"segment_id\":\"synthetic-source-001\",\"quote\":\"which causes pump shutdown\"}},{\"id\":\"E2\",\"text\":\"coolant hose rupture can drain the loop\",\"type\":\"basic_event\",\"evidence\":{\"segment_id\":\"synthetic-source-001\",\"quote\":\"A coolant hose rupture can drain the loop\"}},{\"id\":\"E3\",\"text\":\"circulation-motor failure\",\"type\":\"basic_event\",\"evidence\":{\"segment_id\":\"synthetic-source-001\",\"quote\":\"A separate circulation-motor failure can also produce pump shutdown\"}}],\"gates\":[{\"scope_id\":\"S1\",\"output_node_id\":\"E1\",\"child_node_ids\":[\"E2\",\"E3\"],\"gate\":\"OR\",\"scope_evidence\":{\"segment_id\":\"synthetic-source-001\",\"quote\":\"A coolant hose rupture can drain the loop, which causes pump shutdown. A separate circulation-motor failure can also produce pump shutdown.\"},\"logic_evidence\":{\"segment_id\":\"synthetic-source-001\",\"quote\":\"A coolant hose rupture can drain the loop, which causes pump shutdown. A separate circulation-motor failure can also produce pump shutdown.\"},\"unknown_reason\":null}],\"unresolved_questions\":[]}",
+    "parsed_json": {
+      "structure_status": "complete",
+      "nodes": [
+        {
+          "id": "E1",
+          "text": "pump shutdown",
+          "type": "top_event",
+          "evidence": {
+            "segment_id": "synthetic-source-001",
+            "quote": "which causes pump shutdown"
+          }
+        },
+        {
+          "id": "E2",
+          "text": "coolant hose rupture can drain the loop",
+          "type": "basic_event",
+          "evidence": {
+            "segment_id": "synthetic-source-001",
+            "quote": "A coolant hose rupture can drain the loop"
+          }
+        },
+        {
+          "id": "E3",
+          "text": "circulation-motor failure",
+          "type": "basic_event",
+          "evidence": {
+            "segment_id": "synthetic-source-001",
+            "quote": "A separate circulation-motor failure can also produce pump shutdown"
+          }
+        }
+      ],
+      "gates": [
+        {
+          "scope_id": "S1",
+          "output_node_id": "E1",
+          "child_node_ids": [
+            "E2",
+            "E3"
+          ],
+          "gate": "OR",
+          "scope_evidence": {
+            "segment_id": "synthetic-source-001",
+            "quote": "A coolant hose rupture can drain the loop, which causes pump shutdown. A separate circulation-motor failure can also produce pump shutdown."
+          },
+          "logic_evidence": {
+            "segment_id": "synthetic-source-001",
+            "quote": "A coolant hose rupture can drain the loop, which causes pump shutdown. A separate circulation-motor failure can also produce pump shutdown."
+          },
+          "unknown_reason": null
+        }
+      ],
+      "unresolved_questions": []
+    },
+    "parse_error": null,
+    "raw_text_sha256": "903a39e29af8921abbc76ad1ae0c7750f41df8e5b3f27e08f779443f11a9b45a"
+  },
+  "claim_boundaries": {
+    "constructed_behavioral_smoke_only": true,
+    "source_corpus_evaluation": false,
+    "human_expert_gold": false,
+    "accuracy_or_calibration_claim_allowed": false,
+    "reference_comparison_performed": false,
+    "gold_or_database_written": false,
+    "automatic_repair_performed": false,
+    "automatic_retry_performed": false,
+    "production_or_database_write": false,
+    "fta_ready": false,
+    "production_ready": false
+  }
+}

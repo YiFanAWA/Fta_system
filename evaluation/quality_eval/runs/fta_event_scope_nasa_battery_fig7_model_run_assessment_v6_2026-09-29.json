@@ -1,0 +1,94 @@
+{
+  "artifact_type": "fta_event_scope_model_run_assessment",
+  "artifact_version": "v6",
+  "run_artifact": "evaluation/quality_eval/runs/fta_event_scope_nasa_battery_fig7_model_run_v6_2026-09-29.json",
+  "attempt_receipt": "evaluation/quality_eval/runs/fta_event_scope_nasa_battery_fig7_model_run_v6_2026-09-29.attempt.json",
+  "case": {
+    "packet_id": "NASA_GSFC_BATTERY_FIG7_MODULE_FAILURE_DEV_001",
+    "source_cluster_id": "NASA_GSFC_LISOCL2_BATTERY_SAFETY_ANALYSIS_1987",
+    "exposure_status": "seen_development_only",
+    "packet_path": "evaluation/quality_eval/datasets/fta_event_scope_nasa_battery_fig7_module_failure_dev_v1.json",
+    "model_input_sha256": "1e77b80a8f2a6ae62443468d21b075e4a213a3544cdc2b882a5d69b6ba6d4325"
+  },
+  "request_observation": {
+    "request_count": 1,
+    "retry_count": 0,
+    "retry_policy": "disabled_one_attempt_only",
+    "provider_host": "api.deepseek.com",
+    "requested_model": "deepseek-flash",
+    "temperature": 0,
+    "max_tokens": 8192,
+    "response_format": {
+      "type": "json_object"
+    },
+    "thinking_mode": {
+      "type": "disabled"
+    },
+    "timeout_seconds": 120,
+    "sdk_max_retries": 0,
+    "prompt_version": "event-scope-text-only-tree-v6-single-hierarchy",
+    "prompt_sha256": "6905f835a0998a92ef4ee6de3ebb0ef8a0735e1818ecd0522cf40173c961c14c",
+    "gold_included_in_model_input": false,
+    "choice_count": 1,
+    "finish_reason": "stop",
+    "visible_content_character_count": 4923,
+    "reasoning_content_present": false,
+    "reasoning_content_character_count": 0,
+    "reasoning_text_persisted": false,
+    "reasoning_tokens": null,
+    "usage": {
+      "prompt_tokens": 1359,
+      "completion_tokens": 1177,
+      "total_tokens": 2536
+    },
+    "returned_model": "deepseek-flash",
+    "provider_request_id": null,
+    "openai_package_version": "2.24.0"
+  },
+  "output_assessment": {
+    "assessment_status": "structurally_and_locationally_valid_not_semantically_accepted",
+    "finish_reason": "stop",
+    "strict_json_parsed": true,
+    "structure_contract": {
+      "valid": true,
+      "blockers": [],
+      "root_node_id": "E1",
+      "derived_parent_ids": {
+        "E1": null,
+        "E2": "E6",
+        "E3": "E6",
+        "E4": "E7",
+        "E5": "E7",
+        "E6": "E1",
+        "E7": "E1"
+      },
+      "hierarchy_owner": "gate_scopes",
+      "output_mutated": false
+    },
+    "evidence_location_check": {
+      "checked": 10,
+      "valid": 10,
+      "blockers": []
+    },
+    "combined_blockers": [],
+    "semantic_correctness": "not_assessed",
+    "gold_comparison": "not_performed",
+    "accuracy_or_calibration_claim_allowed": false,
+    "human_expert_gold": false,
+    "fta_ready": false,
+    "production_ready": false
+  },
+  "raw_model_output_preserved": true,
+  "automatic_repair_performed": false,
+  "automatic_retry_performed": false,
+  "claim_boundaries": {
+    "development_only": true,
+    "human_expert_gold": false,
+    "independent_final_validation": false,
+    "accuracy_or_calibration_claim_allowed": false,
+    "gold_or_database_written": false,
+    "production_or_database_write": false,
+    "fta_ready": false,
+    "production_ready": false
+  }
+}

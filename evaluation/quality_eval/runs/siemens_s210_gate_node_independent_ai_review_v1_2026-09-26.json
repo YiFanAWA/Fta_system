@@ -1,0 +1,1802 @@
+{
+  "artifact_type": "fta_gate_node_independent_ai_review",
+  "artifact_version": "1.0",
+  "review_date": "2026-09-26",
+  "reviewer_provenance": "user_authorized_ai_role_independent_review",
+  "reviewer_is_human_expert": false,
+  "review_method": "独立回到当前公开故障语料核验各 scope 的逻辑关系；不将候选生成者 review_reason 当作证据。结论是 AI 独立复核标签，不是人类专家签署。",
+  "source_repository_root": "C:/Users/爹/Documents/Codex/2026-09-11/ni/work/Fta_system",
+  "source_paths": {
+    "corpus": "evaluation/quality_eval/datasets/siemens_s210_public_fault_corpus_v1.jsonl",
+    "or_candidates": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json",
+    "and_candidates": "evaluation/quality_eval/runs/siemens_s210_gate_node_and_ai_review_candidates_v1_2026-09-26.json"
+  },
+  "source_sha256": "b42535d37ae27b63ba0048c88e947916e846da53e1bf18b3e5825c1853c1f483",
+  "offset_convention": "Python Unicode string character offsets, zero-based, half-open [start,end). Each quote is copied from the candidate artifact and verified against corpus sample input_text.",
+  "formal_gold": false,
+  "database_written": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "review_scope": "29 review_candidates plus all 5 ambiguous_observations from the specified OR/AND artifacts; raw corpus is the evidence authority.",
+  "review_candidates": [
+    {
+      "review_row_id": "S210-GATE-OR-F01001-01",
+      "candidate_id": "S210-GATE-OR-F01001-01",
+      "fault_code": "F01001",
+      "target_fault_code": "F01001",
+      "source_fault_code": "F01001",
+      "sample_id": "SIEMENS_S210_2019_F01001",
+      "source_candidate_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type": "event_cause_set",
+      "input_proposed_gate": "OR",
+      "independent_gate": "OR",
+      "scope_review": {
+        "scope_appropriate": true,
+        "scope_level": "event-level cause-set",
+        "notes": "两个备选原因直接支持 OR；technology function 后括号是示例，不新增子节点。"
+      },
+      "children_review": {
+        "complete": true,
+        "same_logical_level": true,
+        "notes": []
+      },
+      "structural_limitations": [],
+      "gate_evidence": {
+        "quote": "The error may be caused by the basic system or a technology function (e.g. FBLOCKS, DCC, TEC).",
+        "start": 151,
+        "end": 245
+      },
+      "children": [
+        {
+          "node_id": "F01001-cause-1",
+          "text": "basic system",
+          "evidence": {
+            "quote": "the basic system",
+            "start": 178,
+            "end": 194
+          }
+        },
+        {
+          "node_id": "F01001-cause-2",
+          "text": "technology function",
+          "evidence": {
+            "quote": "a technology function (e.g. FBLOCKS, DCC, TEC)",
+            "start": 198,
+            "end": 244
+          }
+        }
+      ],
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "Independent gate label is recorded, but no paired node-level model probability exists for this row and no independent calibration split has been created."
+    },
+    {
+      "review_row_id": "S210-GATE-OR-F01041-01",
+      "candidate_id": "S210-GATE-OR-F01041-01",
+      "fault_code": "F01041",
+      "target_fault_code": "F01041",
+      "source_fault_code": "F01041",
+      "sample_id": "SIEMENS_S210_2019_F01041",
+      "source_candidate_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type": "event_state_expression",
+      "input_proposed_gate": "OR",
+      "independent_gate": "OR",
+      "scope_review": {
+        "scope_appropriate": true,
+        "scope_level": "event-state expression",
+        "notes": "defective 与 missing 是同一检测状态描述下的两种备选状态；不表示两种物理根因。"
+      },
+      "children_review": {
+        "complete": true,
+        "same_logical_level": true,
+        "notes": [
+          "这是状态枚举式 OR，不应扩展成完整故障树原因集合。"
+        ]
+      },
+      "structural_limitations": [
+        "这是状态枚举式 OR，不应扩展成完整故障树原因集合。"
+      ],
+      "gate_evidence": {
+        "quote": "Defective or missing files were detected on the memory card when booting.",
+        "start": 79,
+        "end": 152
+      },
+      "children": [
+        {
+          "node_id": "F01041-state-1",
+          "text": "defective files detected",
+          "evidence": {
+            "quote": "Defective",
+            "start": 79,
+            "end": 88
+          }
+        },
+        {
+          "node_id": "F01041-state-2",
+          "text": "missing files detected",
+          "evidence": {
+            "quote": "missing files",
+            "start": 92,
+            "end": 105
+          }
+        }
+      ],
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "Independent gate label is recorded, but no paired node-level model probability exists for this row and no independent calibration split has been created."
+    },
+    {
+      "review_row_id": "S210-GATE-OR-A01035-01",
+      "candidate_id": "S210-GATE-OR-A01035-01",
+      "fault_code": "A01035",
+      "target_fault_code": "A01035",
+      "source_fault_code": "A01035",
+      "sample_id": "SIEMENS_S210_2019_A01035",
+      "source_candidate_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type": "event_cause_set",
+      "input_proposed_gate": "OR",
+      "independent_gate": "OR",
+      "scope_review": {
+        "scope_appropriate": true,
+        "scope_level": "event-level cause-set",
+        "notes": "两种行为均直接写为可能中断同一备份的替代情形。"
+      },
+      "children_review": {
+        "complete": true,
+        "same_logical_level": true,
+        "notes": []
+      },
+      "structural_limitations": [],
+      "gate_evidence": {
+        "quote": "It is possible that the backup was interrupted by switching off or withdrawing the memory card.",
+        "start": 269,
+        "end": 364
+      },
+      "children": [
+        {
+          "node_id": "A01035-cause-1",
+          "text": "switching off interrupted the backup",
+          "evidence": {
+            "quote": "switching off",
+            "start": 319,
+            "end": 332
+          }
+        },
+        {
+          "node_id": "A01035-cause-2",
+          "text": "withdrawing the memory card interrupted the backup",
+          "evidence": {
+            "quote": "withdrawing the memory card",
+            "start": 336,
+            "end": 363
+          }
+        }
+      ],
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "Independent gate label is recorded, but no paired node-level model probability exists for this row and no independent calibration split has been created."
+    },
+    {
+      "review_row_id": "S210-GATE-OR-F01680-01",
+      "candidate_id": "S210-GATE-OR-F01680-01",
+      "fault_code": "F01680",
+      "target_fault_code": "F01680",
+      "source_fault_code": "F01680",
+      "sample_id": "SIEMENS_S210_2019_F01680",
+      "source_candidate_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type": "event_cause_set",
+      "input_proposed_gate": "OR",
+      "independent_gate": "OR",
+      "scope_review": {
+        "scope_appropriate": true,
+        "scope_level": "event-level cause-set",
+        "notes": "原文明确 OR；两个短语在同一层，但“a fault is present”过于宽泛，无法直接作为可执行 FTA 基本事件。"
+      },
+      "children_review": {
+        "complete": true,
+        "same_logical_level": true,
+        "notes": [
+          "门类型可作文本分类标签；不得据此自动生成具体故障叶节点。"
+        ]
+      },
+      "structural_limitations": [
+        "门类型可作文本分类标签；不得据此自动生成具体故障叶节点。"
+      ],
+      "gate_evidence": {
+        "quote": "Safety-relevant parameters have been changed or a fault is present.",
+        "start": 254,
+        "end": 321
+      },
+      "children": [
+        {
+          "node_id": "F01680-cause-1",
+          "text": "safety-relevant parameters changed",
+          "evidence": {
+            "quote": "Safety-relevant parameters have been changed",
+            "start": 254,
+            "end": 298
+          }
+        },
+        {
+          "node_id": "F01680-cause-2",
+          "text": "a fault is present",
+          "evidence": {
+            "quote": "a fault is present",
+            "start": 302,
+            "end": 320
+          }
+        }
+      ],
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "Independent gate label is recorded, but no paired node-level model probability exists for this row and no independent calibration split has been created."
+    },
+    {
+      "review_row_id": "S210-GATE-OR-F01701-RELATED-F01700-01",
+      "candidate_id": "S210-GATE-OR-F01701-RELATED-F01700-01",
+      "fault_code": "F01701",
+      "target_fault_code": "F01700",
+      "source_fault_code": "F01701",
+      "sample_id": "SIEMENS_S210_2019_F01701",
+      "source_candidate_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type": "related_message_trigger",
+      "input_proposed_gate": "OR",
+      "independent_gate": "OR",
+      "scope_review": {
+        "scope_appropriate": true,
+        "scope_level": "related-message trigger",
+        "notes": "OR 属于输出相关消息 F01700 的两个触发条件，不属于源故障 F01701 的顶层门。"
+      },
+      "children_review": {
+        "complete": true,
+        "same_logical_level": true,
+        "notes": [
+          "target_fault_code 必须保持 F01700；禁止提升为 F01701 顶层门。"
+        ]
+      },
+      "structural_limitations": [
+        "target_fault_code 必须保持 F01700；禁止提升为 F01701 顶层门。"
+      ],
+      "gate_evidence": {
+        "quote": "As a result of this fault, after the time parameterized in p9556 has expired, or the speed threshold parameterized in p9560\nhas been fallen below, message F01700 \"STO initiated\" is output.",
+        "start": 114,
+        "end": 302
+      },
+      "children": [
+        {
+          "node_id": "F01700-trigger-1",
+          "text": "p9556 parameterized time expired",
+          "evidence": {
+            "quote": "the time parameterized in p9556 has expired",
+            "start": 147,
+            "end": 190
+          }
+        },
+        {
+          "node_id": "F01700-trigger-2",
+          "text": "speed threshold parameterized in p9560 fallen below",
+          "evidence": {
+            "quote": "the speed threshold parameterized in p9560\nhas been fallen below",
+            "start": 195,
+            "end": 259
+          }
+        }
+      ],
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "Independent gate label is recorded, but no paired node-level model probability exists for this row and no independent calibration split has been created."
+    },
+    {
+      "review_row_id": "S210-GATE-OR-F01911-01",
+      "candidate_id": "S210-GATE-OR-F01911-01",
+      "fault_code": "F01911",
+      "target_fault_code": "F01911",
+      "source_fault_code": "F01911",
+      "sample_id": "SIEMENS_S210_2019_F01911",
+      "source_candidate_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type": "event_state_expression",
+      "input_proposed_gate": "OR",
+      "independent_gate": "OR",
+      "scope_review": {
+        "scope_appropriate": true,
+        "scope_level": "event-state expression",
+        "notes": "同一同步报文的两种失败状态由 or 连接，属于故障状态表达的替代项。"
+      },
+      "children_review": {
+        "complete": true,
+        "same_logical_level": true,
+        "notes": [
+          "不是两个独立物理根因的完整集合。"
+        ]
+      },
+      "structural_limitations": [
+        "不是两个独立物理根因的完整集合。"
+      ],
+      "gate_evidence": {
+        "quote": "The global control telegram to synchronize the clock cycles has failed - in cyclic operation - for several DP clock cycles or\nhas violated the time grid specified in the parameterizing telegram over several consecutive DP clock cycles (refer to the\nbus cycle time, Tdp and Tpllw).",
+        "start": 107,
+        "end": 387
+      },
+      "children": [
+        {
+          "node_id": "F01911-state-1",
+          "text": "synchronization telegram failed over several cycles",
+          "evidence": {
+            "quote": "has failed - in cyclic operation - for several DP clock cycles",
+            "start": 167,
+            "end": 229
+          }
+        },
+        {
+          "node_id": "F01911-state-2",
+          "text": "synchronization telegram violated specified time grid",
+          "evidence": {
+            "quote": "has violated the time grid specified in the parameterizing telegram over several consecutive DP clock cycles",
+            "start": 233,
+            "end": 341
+          }
+        }
+      ],
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "Independent gate label is recorded, but no paired node-level model probability exists for this row and no independent calibration split has been created."
+    },
+    {
+      "review_row_id": "S210-GATE-OR-F07097-01",
+      "candidate_id": "S210-GATE-OR-F07097-01",
+      "fault_code": "F07097",
+      "target_fault_code": "F07097",
+      "source_fault_code": "F07097",
+      "sample_id": "SIEMENS_S210_2019_F07097",
+      "source_candidate_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type": "event_trigger_context",
+      "input_proposed_gate": "OR",
+      "independent_gate": "OR",
+      "scope_review": {
+        "scope_appropriate": true,
+        "scope_level": "event-trigger context",
+        "notes": "Cause 句将测试信号执行时出错与选择 auto tuning 并列为替代触发情境；共享“error identified”语义由父句限定。"
+      },
+      "children_review": {
+        "complete": true,
+        "same_logical_level": true,
+        "notes": [
+          "仅对该触发情境短语判 OR，不代表整个 fault 的完整原因树。"
+        ]
+      },
+      "structural_limitations": [
+        "仅对该触发情境短语判 OR，不代表整个 fault 的完整原因树。"
+      ],
+      "gate_evidence": {
+        "quote": "An error was identified when executing the \"Test signal\" function (p5307.1 = 1) or auto tuning was selected (p5300 = 1).",
+        "start": 97,
+        "end": 217
+      },
+      "children": [
+        {
+          "node_id": "F07097-trigger-1",
+          "text": "Test signal function executed",
+          "evidence": {
+            "quote": "executing the \"Test signal\" function (p5307.1 = 1)",
+            "start": 126,
+            "end": 176
+          }
+        },
+        {
+          "node_id": "F07097-trigger-2",
+          "text": "auto tuning selected",
+          "evidence": {
+            "quote": "auto tuning was selected (p5300 = 1)",
+            "start": 180,
+            "end": 216
+          }
+        }
+      ],
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "Independent gate label is recorded, but no paired node-level model probability exists for this row and no independent calibration split has been created."
+    },
+    {
+      "review_row_id": "S210-GATE-OR-F07901-01",
+      "candidate_id": "S210-GATE-OR-F07901-01",
+      "fault_code": "F07901",
+      "target_fault_code": "F07901",
+      "source_fault_code": "F07901",
+      "sample_id": "SIEMENS_S210_2019_F07901",
+      "source_candidate_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type": "event_state_expression",
+      "input_proposed_gate": "OR",
+      "independent_gate": "OR",
+      "scope_review": {
+        "scope_appropriate": true,
+        "scope_level": "event-state expression",
+        "notes": "正向/负向是同一超速谓词的两种方向状态，either/or 明确支持 OR。"
+      },
+      "children_review": {
+        "complete": true,
+        "same_logical_level": true,
+        "notes": [
+          "子节点是依赖父句的方向片段；建树时须继承“超过最大允许速度”谓词。"
+        ]
+      },
+      "structural_limitations": [
+        "子节点是依赖父句的方向片段；建树时须继承“超过最大允许速度”谓词。"
+      ],
+      "gate_evidence": {
+        "quote": "The maximum permissible speed was either positively or negatively exceeded (p1082).",
+        "start": 77,
+        "end": 160
+      },
+      "children": [
+        {
+          "node_id": "F07901-state-1",
+          "text": "maximum speed exceeded positively",
+          "evidence": {
+            "quote": "positively",
+            "start": 118,
+            "end": 128
+          }
+        },
+        {
+          "node_id": "F07901-state-2",
+          "text": "maximum speed exceeded negatively",
+          "evidence": {
+            "quote": "negatively",
+            "start": 132,
+            "end": 142
+          }
+        }
+      ],
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "Independent gate label is recorded, but no paired node-level model probability exists for this row and no independent calibration split has been created."
+    },
+    {
+      "review_row_id": "S210-GATE-OR-A01780-01",
+      "candidate_id": "S210-GATE-OR-A01780-01",
+      "fault_code": "A01780",
+      "target_fault_code": "A01780",
+      "source_fault_code": "A01780",
+      "sample_id": "SIEMENS_S210_2019_A01780",
+      "source_candidate_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type": "event_trigger_context",
+      "input_proposed_gate": "OR",
+      "independent_gate": "OR",
+      "scope_review": {
+        "scope_appropriate": true,
+        "scope_level": "event-trigger context",
+        "notes": "选择测试或启动测试是两种同层操作阶段，共享“制动器未打开”状态。"
+      },
+      "children_review": {
+        "complete": true,
+        "same_logical_level": true,
+        "notes": [
+          "不是两种独立根因。"
+        ]
+      },
+      "structural_limitations": [
+        "不是两种独立根因。"
+      ],
+      "gate_evidence": {
+        "quote": "When selecting the brake test or starting the brake test, the brake was not open.",
+        "start": 86,
+        "end": 167
+      },
+      "children": [
+        {
+          "node_id": "A01780-trigger-1",
+          "text": "brake not open when selecting the brake test",
+          "evidence": {
+            "quote": "selecting the brake test",
+            "start": 91,
+            "end": 115
+          }
+        },
+        {
+          "node_id": "A01780-trigger-2",
+          "text": "brake not open when starting the brake test",
+          "evidence": {
+            "quote": "starting the brake test",
+            "start": 119,
+            "end": 142
+          }
+        }
+      ],
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "Independent gate label is recorded, but no paired node-level model probability exists for this row and no independent calibration split has been created."
+    },
+    {
+      "review_row_id": "S210-GATE-OR-A30042-01",
+      "candidate_id": "S210-GATE-OR-A30042-01",
+      "fault_code": "A30042",
+      "target_fault_code": "A30042",
+      "source_fault_code": "A30042",
+      "sample_id": "SIEMENS_S210_2019_A30042",
+      "source_candidate_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type": "event_state_expression",
+      "input_proposed_gate": "OR",
+      "independent_gate": "OR",
+      "scope_review": {
+        "scope_appropriate": true,
+        "scope_level": "event-state expression",
+        "notes": "即将达到或已经超过是运行时长阈值的两个替代状态。"
+      },
+      "children_review": {
+        "complete": true,
+        "same_logical_level": true,
+        "notes": [
+          "状态演进枚举，不应解释为两个独立根因。"
+        ]
+      },
+      "structural_limitations": [
+        "状态演进枚举，不应解释为两个独立根因。"
+      ],
+      "gate_evidence": {
+        "quote": "The maximum operating time of at least one fan will soon be reached, or has already been exceeded.",
+        "start": 103,
+        "end": 201
+      },
+      "children": [
+        {
+          "node_id": "A30042-state-1",
+          "text": "maximum fan operating time nearly reached",
+          "evidence": {
+            "quote": "will soon be reached",
+            "start": 150,
+            "end": 170
+          }
+        },
+        {
+          "node_id": "A30042-state-2",
+          "text": "maximum fan operating time exceeded",
+          "evidence": {
+            "quote": "has already been exceeded",
+            "start": 175,
+            "end": 200
+          }
+        }
+      ],
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "Independent gate label is recorded, but no paired node-level model probability exists for this row and no independent calibration split has been created."
+    },
+    {
+      "review_row_id": "S210-GATE-OR-A30031-LOCAL-01",
+      "candidate_id": "S210-GATE-OR-A30031-LOCAL-01",
+      "fault_code": "A30031",
+      "target_fault_code": "A30031",
+      "source_fault_code": "A30031",
+      "sample_id": "SIEMENS_S210_2019_A30031",
+      "source_candidate_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type": "local_cause_expression",
+      "input_proposed_gate": "OR",
+      "independent_gate": "OR",
+      "scope_review": {
+        "scope_appropriate": true,
+        "scope_level": "local cause phrase",
+        "notes": "单个复合原因内部的 motor fault 与 power-cable fault 由 or 连接；不是完整 cause list 的门。"
+      },
+      "children_review": {
+        "complete": true,
+        "same_logical_level": true,
+        "notes": [
+          "仅限局部原因短语。"
+        ]
+      },
+      "structural_limitations": [
+        "仅限局部原因短语。"
+      ],
+      "gate_evidence": {
+        "quote": "fault in the motor or in the power cables.",
+        "start": 257,
+        "end": 299
+      },
+      "children": [
+        {
+          "node_id": "A30031-local-1",
+          "text": "fault in the motor",
+          "evidence": {
+            "quote": "fault in the motor",
+            "start": 257,
+            "end": 275
+          }
+        },
+        {
+          "node_id": "A30031-local-2",
+          "text": "fault in the power cables",
+          "evidence": {
+            "quote": "in the power cables",
+            "start": 279,
+            "end": 298
+          }
+        }
+      ],
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "Independent gate label is recorded, but no paired node-level model probability exists for this row and no independent calibration split has been created."
+    },
+    {
+      "review_row_id": "S210-GATE-OR-F07801-LOCAL-01",
+      "candidate_id": "S210-GATE-OR-F07801-LOCAL-01",
+      "fault_code": "F07801",
+      "target_fault_code": "F07801",
+      "source_fault_code": "F07801",
+      "sample_id": "SIEMENS_S210_2019_F07801",
+      "source_candidate_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type": "local_cause_expression",
+      "input_proposed_gate": "OR",
+      "independent_gate": "OR",
+      "scope_review": {
+        "scope_appropriate": true,
+        "scope_level": "local cause phrase",
+        "notes": "motor cable short-circuit 与 ground fault 是同层备选局部原因。"
+      },
+      "children_review": {
+        "complete": true,
+        "same_logical_level": true,
+        "notes": [
+          "仅限局部原因短语。"
+        ]
+      },
+      "structural_limitations": [
+        "仅限局部原因短语。"
+      ],
+      "gate_evidence": {
+        "quote": "short-circuit in the motor cable or ground fault.",
+        "start": 223,
+        "end": 272
+      },
+      "children": [
+        {
+          "node_id": "F07801-local-1",
+          "text": "short circuit in motor cable",
+          "evidence": {
+            "quote": "short-circuit in the motor cable",
+            "start": 223,
+            "end": 255
+          }
+        },
+        {
+          "node_id": "F07801-local-2",
+          "text": "ground fault",
+          "evidence": {
+            "quote": "ground fault",
+            "start": 259,
+            "end": 271
+          }
+        }
+      ],
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "Independent gate label is recorded, but no paired node-level model probability exists for this row and no independent calibration split has been created."
+    },
+    {
+      "review_row_id": "S210-GATE-OR-F30001-LOCAL-01",
+      "candidate_id": "S210-GATE-OR-F30001-LOCAL-01",
+      "fault_code": "F30001",
+      "target_fault_code": "F30001",
+      "source_fault_code": "F30001",
+      "sample_id": "SIEMENS_S210_2019_F30001",
+      "source_candidate_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type": "local_cause_expression",
+      "input_proposed_gate": "OR",
+      "independent_gate": "OR",
+      "scope_review": {
+        "scope_appropriate": true,
+        "scope_level": "local cause phrase",
+        "notes": "motor short-circuit 与 fault-to-ground 是同层备选局部原因。"
+      },
+      "children_review": {
+        "complete": true,
+        "same_logical_level": true,
+        "notes": [
+          "其他 cause-list 项不属于该局部门。"
+        ]
+      },
+      "structural_limitations": [
+        "其他 cause-list 项不属于该局部门。"
+      ],
+      "gate_evidence": {
+        "quote": "motor has a short-circuit or fault to ground (frame).",
+        "start": 176,
+        "end": 229
+      },
+      "children": [
+        {
+          "node_id": "F30001-local-1",
+          "text": "motor short circuit",
+          "evidence": {
+            "quote": "motor has a short-circuit",
+            "start": 176,
+            "end": 201
+          }
+        },
+        {
+          "node_id": "F30001-local-2",
+          "text": "fault to ground",
+          "evidence": {
+            "quote": "fault to ground (frame)",
+            "start": 205,
+            "end": 228
+          }
+        }
+      ],
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "Independent gate label is recorded, but no paired node-level model probability exists for this row and no independent calibration split has been created."
+    },
+    {
+      "review_row_id": "S210-GATE-OR-F30027-LOCAL-01",
+      "candidate_id": "S210-GATE-OR-F30027-LOCAL-01",
+      "fault_code": "F30027",
+      "target_fault_code": "F30027",
+      "source_fault_code": "F30027",
+      "sample_id": "SIEMENS_S210_2019_F30027",
+      "source_candidate_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type": "local_cause_expression",
+      "input_proposed_gate": "OR",
+      "independent_gate": "OR",
+      "scope_review": {
+        "scope_appropriate": true,
+        "scope_level": "local cause phrase",
+        "notes": "DC-link ground fault 与 short-circuit 是该编号原因中的两种备选项。"
+      },
+      "children_review": {
+        "complete": true,
+        "same_logical_level": true,
+        "notes": [
+          "不能提升为 F30027 全部原因的顶层门。"
+        ]
+      },
+      "structural_limitations": [
+        "不能提升为 F30027 全部原因的顶层门。"
+      ],
+      "gate_evidence": {
+        "quote": "The DC link has either a ground fault or a short-circuit.",
+        "start": 912,
+        "end": 969
+      },
+      "children": [
+        {
+          "node_id": "F30027-local-1",
+          "text": "DC link ground fault",
+          "evidence": {
+            "quote": "a ground fault",
+            "start": 935,
+            "end": 949
+          }
+        },
+        {
+          "node_id": "F30027-local-2",
+          "text": "DC link short circuit",
+          "evidence": {
+            "quote": "a short-circuit",
+            "start": 953,
+            "end": 968
+          }
+        }
+      ],
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "Independent gate label is recorded, but no paired node-level model probability exists for this row and no independent calibration split has been created."
+    },
+    {
+      "review_row_id": "S210-GATE-OR-F31896-LOCAL-01",
+      "candidate_id": "S210-GATE-OR-F31896-LOCAL-01",
+      "fault_code": "F31896",
+      "target_fault_code": "F31896",
+      "source_fault_code": "F31896",
+      "sample_id": "SIEMENS_S210_2019_F31896",
+      "source_candidate_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type": "local_cause_expression",
+      "input_proposed_gate": "OR",
+      "independent_gate": "OR",
+      "scope_review": {
+        "scope_appropriate": true,
+        "scope_level": "local example cause",
+        "notes": "一个示例原因中列出电缆或 DRIVE-CLiQ 组件被更换。"
+      },
+      "children_review": {
+        "complete": true,
+        "same_logical_level": true,
+        "notes": [
+          "原文含 e.g.，该局部 OR 不是完整原因集合。"
+        ]
+      },
+      "structural_limitations": [
+        "原文含 e.g.，该局部 OR 不是完整原因集合。"
+      ],
+      "gate_evidence": {
+        "quote": "One cause can be, e.g. that a DRIVE-CLiQ cable or\nDRIVE-CLiQ component has been replaced.",
+        "start": 303,
+        "end": 392
+      },
+      "children": [
+        {
+          "node_id": "F31896-local-1",
+          "text": "DRIVE-CLiQ cable replaced",
+          "evidence": {
+            "quote": "a DRIVE-CLiQ cable",
+            "start": 331,
+            "end": 349
+          }
+        },
+        {
+          "node_id": "F31896-local-2",
+          "text": "DRIVE-CLiQ component replaced",
+          "evidence": {
+            "quote": "DRIVE-CLiQ component",
+            "start": 353,
+            "end": 373
+          }
+        }
+      ],
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "Independent gate label is recorded, but no paired node-level model probability exists for this row and no independent calibration split has been created."
+    },
+    {
+      "review_row_id": "S210-GATE-OR-F30078-01",
+      "candidate_id": "S210-GATE-OR-F30078-01",
+      "fault_code": "F30078",
+      "target_fault_code": "F30078",
+      "source_fault_code": "F30078",
+      "sample_id": "SIEMENS_S210_2019_F30078",
+      "source_candidate_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type": "detection_source_or_location",
+      "input_proposed_gate": "OR",
+      "independent_gate": "OR",
+      "scope_review": {
+        "scope_appropriate": true,
+        "scope_level": "detection-source/location",
+        "notes": "温度监控响应位置在内部制动电阻与线路电抗器之间择一；属于检测来源 OR。"
+      },
+      "children_review": {
+        "complete": true,
+        "same_logical_level": true,
+        "notes": [
+          "不是两种物理根因已被独立确认。"
+        ]
+      },
+      "structural_limitations": [
+        "不是两种物理根因已被独立确认。"
+      ],
+      "gate_evidence": {
+        "quote": "The temperature monitoring of the internal braking resistor or the line reactor has responded.",
+        "start": 111,
+        "end": 205
+      },
+      "children": [
+        {
+          "node_id": "F30078-detection-1",
+          "text": "temperature monitoring of internal braking resistor responded",
+          "evidence": {
+            "quote": "the internal braking resistor",
+            "start": 141,
+            "end": 170
+          }
+        },
+        {
+          "node_id": "F30078-detection-2",
+          "text": "temperature monitoring of line reactor responded",
+          "evidence": {
+            "quote": "the line reactor",
+            "start": 174,
+            "end": 190
+          }
+        }
+      ],
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "Independent gate label is recorded, but no paired node-level model probability exists for this row and no independent calibration split has been created."
+    },
+    {
+      "review_row_id": "S210-GATE-OR-F31405-01",
+      "candidate_id": "S210-GATE-OR-F31405-01",
+      "fault_code": "F31405",
+      "target_fault_code": "F31405",
+      "source_fault_code": "F31405",
+      "sample_id": "SIEMENS_S210_2019_F31405",
+      "source_candidate_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type": "detection_source_or_location",
+      "input_proposed_gate": "OR",
+      "independent_gate": "OR",
+      "scope_review": {
+        "scope_appropriate": true,
+        "scope_level": "detection-source/location",
+        "notes": "高温检测位置在编码器电子部件与编码器评估单元之间择一；属于检测位置 OR。"
+      },
+      "children_review": {
+        "complete": true,
+        "same_logical_level": true,
+        "notes": [
+          "不是物理根因确认。"
+        ]
+      },
+      "structural_limitations": [
+        "不是物理根因确认。"
+      ],
+      "gate_evidence": {
+        "quote": "An inadmissibly high temperature was detected in the encoder electronics or the encoder evaluation.",
+        "start": 115,
+        "end": 214
+      },
+      "children": [
+        {
+          "node_id": "F31405-detection-1",
+          "text": "high temperature detected in encoder electronics",
+          "evidence": {
+            "quote": "in the encoder electronics",
+            "start": 161,
+            "end": 187
+          }
+        },
+        {
+          "node_id": "F31405-detection-2",
+          "text": "high temperature detected in encoder evaluation",
+          "evidence": {
+            "quote": "the encoder evaluation",
+            "start": 191,
+            "end": 213
+          }
+        }
+      ],
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "Independent gate label is recorded, but no paired node-level model probability exists for this row and no independent calibration split has been created."
+    },
+    {
+      "review_row_id": "S210-GATE-AND-A01631-CONFIG-01",
+      "candidate_id": "S210-GATE-AND-A01631-CONFIG-01",
+      "fault_code": "A01631",
+      "target_fault_code": null,
+      "source_fault_code": "A01631",
+      "sample_id": "SIEMENS_S210_2019_A01631",
+      "source_candidate_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_and_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type": "configuration_condition_group",
+      "input_proposed_gate": "AND",
+      "independent_gate": "AND",
+      "scope_review": {
+        "scope_appropriate": true,
+        "scope_level": "local configuration-condition group",
+        "notes": "同一个会导致消息的配置项明确以 and 连接两个配置条件。"
+      },
+      "children_review": {
+        "complete": true,
+        "same_logical_level": true,
+        "notes": [
+          "仅是局部配置组 AND，不是 A01631 完整 FTA 顶层门。"
+        ]
+      },
+      "structural_limitations": [
+        "仅是局部配置组 AND，不是 A01631 完整 FTA 顶层门。"
+      ],
+      "gate_evidence": {
+        "quote": "The following configurations can result in this message:\n- \"No motor holding brake available\" (p1215 = 0) and \"SBC\" enabled (p9602 = 1).",
+        "start": 189,
+        "end": 325
+      },
+      "children": [
+        {
+          "node_id": "A01631-condition-brake-absent",
+          "text": "No motor holding brake available (p1215 = 0)",
+          "evidence": {
+            "quote": "\"No motor holding brake available\" (p1215 = 0)",
+            "start": 248,
+            "end": 294
+          }
+        },
+        {
+          "node_id": "A01631-condition-sbc-enabled",
+          "text": "SBC enabled (p9602 = 1)",
+          "evidence": {
+            "quote": "\"SBC\" enabled (p9602 = 1)",
+            "start": 299,
+            "end": 324
+          }
+        }
+      ],
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "Independent gate label is recorded, but no paired node-level model probability exists for this row and no independent calibration split has been created."
+    },
+    {
+      "review_row_id": "S210-GATE-AND-F07410-LOCAL-01",
+      "candidate_id": "S210-GATE-AND-F07410-LOCAL-01",
+      "fault_code": "F07410",
+      "target_fault_code": null,
+      "source_fault_code": "F07410",
+      "sample_id": "SIEMENS_S210_2019_F07410",
+      "source_candidate_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_and_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type": "signal_condition_group",
+      "input_proposed_gate": "AND",
+      "independent_gate": "AND",
+      "scope_review": {
+        "scope_appropriate": true,
+        "scope_level": "local composite signal condition",
+        "notes": "被引述的复合信号条件直接以 and 连接两个信号条件。"
+      },
+      "children_review": {
+        "complete": true,
+        "same_logical_level": true,
+        "notes": [
+          "这是信号条件节点，不是 F07410 顶层门。"
+        ]
+      },
+      "structural_limitations": [
+        "这是信号条件节点，不是 F07410 顶层门。"
+      ],
+      "gate_evidence": {
+        "quote": "The condition \"I_act = 0 and Uq_set_1 longer than 16 ms at its limit\" is present and can be caused by the following:",
+        "start": 95,
+        "end": 211
+      },
+      "children": [
+        {
+          "node_id": "F07410-signal-i-act-zero",
+          "text": "I_act = 0",
+          "evidence": {
+            "quote": "I_act = 0",
+            "start": 110,
+            "end": 119
+          }
+        },
+        {
+          "node_id": "F07410-signal-uq-limit",
+          "text": "Uq_set_1 longer than 16 ms at its limit",
+          "evidence": {
+            "quote": "Uq_set_1 longer than 16 ms at its limit",
+            "start": 124,
+            "end": 163
+          }
+        }
+      ],
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "Independent gate label is recorded, but no paired node-level model probability exists for this row and no independent calibration split has been created."
+    },
+    {
+      "review_row_id": "S210-GATE-AND-F07900-TRIGGER-01",
+      "candidate_id": "S210-GATE-AND-F07900-TRIGGER-01",
+      "fault_code": "F07900",
+      "target_fault_code": null,
+      "source_fault_code": "F07900",
+      "sample_id": "SIEMENS_S210_2019_F07900",
+      "source_candidate_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_and_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type": "trigger_condition_group",
+      "input_proposed_gate": "AND",
+      "independent_gate": "AND",
+      "scope_review": {
+        "scope_appropriate": true,
+        "scope_level": "local trigger-condition group",
+        "notes": "一个触发情境要求达到转矩限制并持续超过时间，同时速度低于阈值。"
+      },
+      "children_review": {
+        "complete": true,
+        "same_logical_level": true,
+        "notes": [
+          "只表示第一触发组；不可与“also”之后的另一组混并。"
+        ]
+      },
+      "structural_limitations": [
+        "只表示第一触发组；不可与“also”之后的另一组混并。"
+      ],
+      "gate_evidence": {
+        "quote": "The motor operates longer than 0.2 seconds at the torque limit and below the speed threshold in p2175.",
+        "start": 105,
+        "end": 207
+      },
+      "children": [
+        {
+          "node_id": "F07900-trigger-torque-time",
+          "text": "motor operates longer than 0.2 seconds at torque limit",
+          "evidence": {
+            "quote": "The motor operates longer than 0.2 seconds at the torque limit",
+            "start": 105,
+            "end": 167
+          }
+        },
+        {
+          "node_id": "F07900-trigger-speed-threshold",
+          "text": "motor is below p2175 speed threshold",
+          "evidence": {
+            "quote": "below the speed threshold in p2175",
+            "start": 172,
+            "end": 206
+          }
+        }
+      ],
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "Independent gate label is recorded, but no paired node-level model probability exists for this row and no independent calibration split has been created."
+    },
+    {
+      "review_row_id": "S210-GATE-AND-F07900-TRIGGER-02",
+      "candidate_id": "S210-GATE-AND-F07900-TRIGGER-02",
+      "fault_code": "F07900",
+      "target_fault_code": null,
+      "source_fault_code": "F07900",
+      "sample_id": "SIEMENS_S210_2019_F07900",
+      "source_candidate_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_and_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type": "trigger_condition_group",
+      "input_proposed_gate": "AND",
+      "independent_gate": "AND",
+      "scope_review": {
+        "scope_appropriate": true,
+        "scope_level": "local trigger-condition group",
+        "notes": "also 引出的第二触发情境以 if...and 明确要求速度振荡与控制器输出反复到限。"
+      },
+      "children_review": {
+        "complete": true,
+        "same_logical_level": true,
+        "notes": [
+          "只表示第二触发组；不推导触发组之间的顶层门。"
+        ]
+      },
+      "structural_limitations": [
+        "只表示第二触发组；不推导触发组之间的顶层门。"
+      ],
+      "gate_evidence": {
+        "quote": "This signal can also be initiated if the speed actual value is oscillating and the speed controller output repeatedly goes to\nits limit.",
+        "start": 208,
+        "end": 344
+      },
+      "children": [
+        {
+          "node_id": "F07900-trigger-speed-oscillating",
+          "text": "speed actual value is oscillating",
+          "evidence": {
+            "quote": "the speed actual value is oscillating",
+            "start": 245,
+            "end": 282
+          }
+        },
+        {
+          "node_id": "F07900-trigger-controller-output-limit",
+          "text": "speed controller output repeatedly goes to its limit",
+          "evidence": {
+            "quote": "the speed controller output repeatedly goes to\nits limit",
+            "start": 287,
+            "end": 343
+          }
+        }
+      ],
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "Independent gate label is recorded, but no paired node-level model probability exists for this row and no independent calibration split has been created."
+    },
+    {
+      "review_row_id": "S210-GATE-AND-F01675-VALUE-1",
+      "candidate_id": "S210-GATE-AND-F01675-VALUE-1",
+      "fault_code": "F01675",
+      "target_fault_code": null,
+      "source_fault_code": "F01675",
+      "sample_id": "SIEMENS_S210_2019_F01675",
+      "source_candidate_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_and_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type": "fault_value_configuration_group",
+      "input_proposed_gate": "AND",
+      "independent_gate": "AND",
+      "scope_review": {
+        "scope_appropriate": true,
+        "scope_level": "fault-value-1 configuration group",
+        "notes": "故障值 1 的描述以 and 连接功能已启用与同步周期规则不满足。"
+      },
+      "children_review": {
+        "complete": true,
+        "same_logical_level": true,
+        "notes": [
+          "只适用于 fault value 1。"
+        ]
+      },
+      "structural_limitations": [
+        "只适用于 fault value 1。"
+      ],
+      "gate_evidence": {
+        "quote": "1:\n\"Synchronous safe position via PROFIsafe\" is enabled (p9501.29 = 1) and is not set according to the rule Tdp = 2 x n x\np9500 (n = 1, 2, 3, ...).",
+        "start": 530,
+        "end": 677
+      },
+      "children": [
+        {
+          "node_id": "F01675-value1-function-enabled",
+          "text": "synchronous safe position via PROFIsafe is enabled",
+          "evidence": {
+            "quote": "\"Synchronous safe position via PROFIsafe\" is enabled (p9501.29 = 1)",
+            "start": 533,
+            "end": 600
+          }
+        },
+        {
+          "node_id": "F01675-value1-cycle-rule-invalid",
+          "text": "synchronization cycle is not set according to the rule",
+          "evidence": {
+            "quote": "is not set according to the rule Tdp = 2 x n x\np9500 (n = 1, 2, 3, ...)",
+            "start": 605,
+            "end": 676
+          }
+        }
+      ],
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "Independent gate label is recorded, but no paired node-level model probability exists for this row and no independent calibration split has been created."
+    },
+    {
+      "review_row_id": "S210-GATE-AND-F01675-VALUE-2",
+      "candidate_id": "S210-GATE-AND-F01675-VALUE-2",
+      "fault_code": "F01675",
+      "target_fault_code": null,
+      "source_fault_code": "F01675",
+      "sample_id": "SIEMENS_S210_2019_F01675",
+      "source_candidate_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_and_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type": "fault_value_configuration_group",
+      "input_proposed_gate": "AND",
+      "independent_gate": "AND",
+      "scope_review": {
+        "scope_appropriate": true,
+        "scope_level": "fault-value-2 configuration group",
+        "notes": "故障值 2 的描述以 and 连接功能已启用与未设置等时运行。"
+      },
+      "children_review": {
+        "complete": true,
+        "same_logical_level": true,
+        "notes": [
+          "只适用于 fault value 2。"
+        ]
+      },
+      "structural_limitations": [
+        "只适用于 fault value 2。"
+      ],
+      "gate_evidence": {
+        "quote": "2:\n\"Synchronous safe position via PROFIsafe\" is enabled (p9501.29 = 1) and isochronous operation is not set.",
+        "start": 678,
+        "end": 786
+      },
+      "children": [
+        {
+          "node_id": "F01675-value2-function-enabled",
+          "text": "synchronous safe position via PROFIsafe is enabled",
+          "evidence": {
+            "quote": "\"Synchronous safe position via PROFIsafe\" is enabled (p9501.29 = 1)",
+            "start": 681,
+            "end": 748
+          }
+        },
+        {
+          "node_id": "F01675-value2-isochronous-not-set",
+          "text": "isochronous operation is not set",
+          "evidence": {
+            "quote": "isochronous operation is not set",
+            "start": 753,
+            "end": 785
+          }
+        }
+      ],
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "Independent gate label is recorded, but no paired node-level model probability exists for this row and no independent calibration split has been created."
+    },
+    {
+      "review_row_id": "S210-GATE-AND-F01681-VALUE-9501-10",
+      "candidate_id": "S210-GATE-AND-F01681-VALUE-9501-10",
+      "fault_code": "F01681",
+      "target_fault_code": null,
+      "source_fault_code": "F01681",
+      "sample_id": "SIEMENS_S210_2019_F01681",
+      "source_candidate_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_and_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type": "configuration_condition_group",
+      "input_proposed_gate": "AND",
+      "independent_gate": "AND",
+      "scope_review": {
+        "scope_appropriate": true,
+        "scope_level": "fault-value-specific configuration group",
+        "notes": "特定 fault value 下，SCC referencing 与 EPOS 同时启用。"
+      },
+      "children_review": {
+        "complete": true,
+        "same_logical_level": true,
+        "notes": [
+          "只适用于 xxxx=9501、yyyy=10。"
+        ]
+      },
+      "structural_limitations": [
+        "只适用于 xxxx=9501、yyyy=10。"
+      ],
+      "gate_evidence": {
+        "quote": "Referencing via SCC (p9501.27 = 1) and epos (r0108.4 = 1) are simultaneously enabled.",
+        "start": 540,
+        "end": 625
+      },
+      "children": [
+        {
+          "node_id": "F01681-scc-referencing-enabled",
+          "text": "referencing via SCC enabled",
+          "evidence": {
+            "quote": "Referencing via SCC (p9501.27 = 1)",
+            "start": 540,
+            "end": 574
+          }
+        },
+        {
+          "node_id": "F01681-epos-enabled",
+          "text": "epos enabled",
+          "evidence": {
+            "quote": "epos (r0108.4 = 1)",
+            "start": 579,
+            "end": 597
+          }
+        }
+      ],
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "Independent gate label is recorded, but no paired node-level model probability exists for this row and no independent calibration split has been created."
+    },
+    {
+      "review_row_id": "S210-GATE-AND-F01681-VALUE-9601-1",
+      "candidate_id": "S210-GATE-AND-F01681-VALUE-9601-1",
+      "fault_code": "F01681",
+      "target_fault_code": null,
+      "source_fault_code": "F01681",
+      "sample_id": "SIEMENS_S210_2019_F01681",
+      "source_candidate_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_and_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type": "configuration_condition_group",
+      "input_proposed_gate": "AND",
+      "independent_gate": "AND",
+      "scope_review": {
+        "scope_appropriate": true,
+        "scope_level": "conditional antecedent",
+        "notes": "只标注 if 前件中的两个共同启用条件为 AND；后件另有 PROFIsafe or onboard F-DI。"
+      },
+      "children_review": {
+        "complete": true,
+        "same_logical_level": true,
+        "notes": [
+          "不可把整条条件句或 F01681 故障顶层门标成纯 AND。"
+        ]
+      },
+      "structural_limitations": [
+        "不可把整条条件句或 F01681 故障顶层门标成纯 AND。"
+      ],
+      "gate_evidence": {
+        "quote": "If motion monitoring functions integrated in the drive (p9601.2 = 1) and extended functions without selection (p9601.5 = 1)\nare enabled, then PROFIsafe (p9601.3 = 1) or onboard F-DI (p9601.4 = 1) is not possible.",
+        "start": 838,
+        "end": 1050
+      },
+      "children": [
+        {
+          "node_id": "F01681-integrated-motion-monitoring-enabled",
+          "text": "integrated motion-monitoring functions are enabled",
+          "evidence": {
+            "quote": "motion monitoring functions integrated in the drive (p9601.2 = 1)",
+            "start": 841,
+            "end": 906
+          }
+        },
+        {
+          "node_id": "F01681-extended-functions-enabled",
+          "text": "extended functions without selection are enabled",
+          "evidence": {
+            "quote": "extended functions without selection (p9601.5 = 1)",
+            "start": 911,
+            "end": 961
+          }
+        }
+      ],
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "Independent gate label is recorded, but no paired node-level model probability exists for this row and no independent calibration split has been created."
+    },
+    {
+      "review_row_id": "S210-GATE-AND-F01659-VALUE-20",
+      "candidate_id": "S210-GATE-AND-F01659-VALUE-20",
+      "fault_code": "F01659",
+      "target_fault_code": null,
+      "source_fault_code": "F01659",
+      "sample_id": "SIEMENS_S210_2019_F01659",
+      "source_candidate_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_and_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type": "enable_attempt_group",
+      "input_proposed_gate": "AND",
+      "independent_gate": "AND",
+      "scope_review": {
+        "scope_appropriate": true,
+        "scope_level": "fault-value-20 enable-attempt group",
+        "notes": "一次启用尝试包含两个功能，and 直接连接二者；二者另共享 both controlled via F-DI 限定。"
+      },
+      "children_review": {
+        "complete": false,
+        "same_logical_level": true,
+        "notes": [
+          "现有 child 文本未携带共同的 F-DI 控制限定；虽逻辑操作数同层且门证据完整，叶文本需补足共享限定后才适合生成树。"
+        ]
+      },
+      "structural_limitations": [
+        "现有 child 文本未携带共同的 F-DI 控制限定；虽逻辑操作数同层且门证据完整，叶文本需补足共享限定后才适合生成树。"
+      ],
+      "gate_evidence": {
+        "quote": "20: An attempt was made to enable the motion monitoring functions integrated in the drive and the STO function, both\ncontrolled via F-DI.",
+        "start": 506,
+        "end": 643
+      },
+      "children": [
+        {
+          "node_id": "F01659-enable-motion-monitoring",
+          "text": "attempt to enable integrated motion-monitoring functions",
+          "evidence": {
+            "quote": "motion monitoring functions integrated in the drive",
+            "start": 544,
+            "end": 595
+          }
+        },
+        {
+          "node_id": "F01659-enable-sto",
+          "text": "attempt to enable STO function",
+          "evidence": {
+            "quote": "the STO function",
+            "start": 600,
+            "end": 616
+          }
+        }
+      ],
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "Independent gate label is recorded, but no paired node-level model probability exists for this row and no independent calibration split has been created."
+    },
+    {
+      "review_row_id": "S210-GATE-AND-A01785-VALUE-16",
+      "candidate_id": "S210-GATE-AND-A01785-VALUE-16",
+      "fault_code": "A01785",
+      "target_fault_code": null,
+      "source_fault_code": "A01785",
+      "sample_id": "SIEMENS_S210_2019_A01785",
+      "source_candidate_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_and_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type": "configuration_condition_group",
+      "input_proposed_gate": "AND",
+      "independent_gate": "AND",
+      "scope_review": {
+        "scope_appropriate": true,
+        "scope_level": "fault-value-16 configuration group",
+        "notes": "原文明确两个功能 simultaneously enabled，直接支持 AND。"
+      },
+      "children_review": {
+        "complete": true,
+        "same_logical_level": true,
+        "notes": [
+          "只适用于 fault value 16。"
+        ]
+      },
+      "structural_limitations": [
+        "只适用于 fault value 16。"
+      ],
+      "gate_evidence": {
+        "quote": "16:\nThe safe brake test and safety without encoder are simultaneously enabled (p9506). This is not permissible.",
+        "start": 511,
+        "end": 622
+      },
+      "children": [
+        {
+          "node_id": "A01785-safe-brake-test-enabled",
+          "text": "safe brake test enabled",
+          "evidence": {
+            "quote": "The safe brake test",
+            "start": 515,
+            "end": 534
+          }
+        },
+        {
+          "node_id": "A01785-safety-without-encoder-enabled",
+          "text": "safety without encoder enabled",
+          "evidence": {
+            "quote": "safety without encoder",
+            "start": 539,
+            "end": 561
+          }
+        }
+      ],
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "Independent gate label is recorded, but no paired node-level model probability exists for this row and no independent calibration split has been created."
+    },
+    {
+      "review_row_id": "S210-GATE-AND-F01043-VALUE-20",
+      "candidate_id": "S210-GATE-AND-F01043-VALUE-20",
+      "fault_code": "F01043",
+      "target_fault_code": null,
+      "source_fault_code": "F01043",
+      "sample_id": "SIEMENS_S210_2019_F01043",
+      "source_candidate_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_and_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type": "inconsistent_configuration_group",
+      "input_proposed_gate": "AND",
+      "independent_gate": "AND",
+      "scope_review": {
+        "scope_appropriate": true,
+        "scope_level": "fault-value-20 example mismatch group",
+        "notes": "CAN 已配置于 Control Unit、却未配置于 drive objects，形成同层不一致配置对。"
+      },
+      "children_review": {
+        "complete": true,
+        "same_logical_level": true,
+        "notes": [
+          "原文为 e.g. 示例，不是 fault value 20 的完整枚举，也不是 F01043 顶层门。"
+        ]
+      },
+      "structural_limitations": [
+        "原文为 e.g. 示例，不是 fault value 20 的完整枚举，也不是 F01043 顶层门。"
+      ],
+      "gate_evidence": {
+        "quote": "20: The configuration is inconsistent (e.g. CAN for Control Unit, however no CAN configured for drive objects A_INF,\nSERVO or VECTOR).",
+        "start": 1504,
+        "end": 1638
+      },
+      "children": [
+        {
+          "node_id": "F01043-can-control-unit-configured",
+          "text": "CAN configured for Control Unit",
+          "evidence": {
+            "quote": "CAN for Control Unit",
+            "start": 1548,
+            "end": 1568
+          }
+        },
+        {
+          "node_id": "F01043-can-drive-objects-not-configured",
+          "text": "CAN not configured for drive objects",
+          "evidence": {
+            "quote": "no CAN configured for drive objects A_INF,\nSERVO or VECTOR",
+            "start": 1578,
+            "end": 1636
+          }
+        }
+      ],
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "Independent gate label is recorded, but no paired node-level model probability exists for this row and no independent calibration split has been created."
+    },
+    {
+      "review_row_id": "S210-GATE-AND-F30078-LOCAL-OVERHEAT-01",
+      "candidate_id": "S210-GATE-AND-F30078-LOCAL-OVERHEAT-01",
+      "fault_code": "F30078",
+      "target_fault_code": null,
+      "source_fault_code": "F30078",
+      "sample_id": "SIEMENS_S210_2019_F30078",
+      "source_candidate_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_and_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type": "operating_condition_group",
+      "input_proposed_gate": "AND",
+      "independent_gate": "AND",
+      "scope_review": {
+        "scope_appropriate": true,
+        "scope_level": "local line-reactor operating-condition group",
+        "notes": "线路电抗器过温可在使用 DC-link coupling 且电动功率分配不均时发生；and/if 直接支持局部 AND。"
+      },
+      "children_review": {
+        "complete": true,
+        "same_logical_level": true,
+        "notes": [
+          "仅是局部运行条件组，不是 F30078 顶层门。"
+        ]
+      },
+      "structural_limitations": [
+        "仅是局部运行条件组，不是 F30078 顶层门。"
+      ],
+      "gate_evidence": {
+        "quote": "- an overtemperature condition of the line reactor can occur when a DC link coupling is used – and if the power when\nmotoring, which is fed into the DC link - is not evenly distributed across the rectifiers of the power units.",
+        "start": 420,
+        "end": 646
+      },
+      "children": [
+        {
+          "node_id": "F30078-dc-link-coupling-used",
+          "text": "DC link coupling is used",
+          "evidence": {
+            "quote": "a DC link coupling is used",
+            "start": 486,
+            "end": 512
+          }
+        },
+        {
+          "node_id": "F30078-motoring-power-not-evenly-distributed",
+          "text": "motoring power fed into DC link is not evenly distributed across power-unit rectifiers",
+          "evidence": {
+            "quote": "the power when\nmotoring, which is fed into the DC link - is not evenly distributed across the rectifiers of the power units",
+            "start": 522,
+            "end": 645
+          }
+        }
+      ],
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "Independent gate label is recorded, but no paired node-level model probability exists for this row and no independent calibration split has been created."
+    }
+  ],
+  "ambiguous_review": [
+    {
+      "review_row_id": "AMBIG-F01672",
+      "candidate_id": null,
+      "fault_code": "F01672",
+      "target_fault_code": null,
+      "sample_id": "SIEMENS_S210_2019_F01672",
+      "source_ambiguous_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type_present": false,
+      "input_scope_type": null,
+      "review_scope_type": "event_cause_set",
+      "final_gate": "OR",
+      "scope_review": {
+        "scope_appropriate": true,
+        "notes": "Cause 句中的 or 明确连接一个复合软件支持/兼容性问题与通道间通信错误。逗号前两个谓词不拆成两个门子项；复合为一个软件问题分支。"
+      },
+      "children_present_in_input": false,
+      "children_review": {
+        "complete": false,
+        "same_logical_level": null,
+        "notes": "复核时可定义两个同层分支：通道 2 软件支持/兼容性问题；两监控通道间通信错误。原 ambiguous observation 未提供 children，因此必须显式补充该分支定义，不能按三子项 OR 处理。"
+      },
+      "unknown_negative_eligible": false,
+      "source_evidence": {
+        "quote": "The software for monitoring channel 2 does not support safe motion monitoring, is not compatible to the software for\nmonitoring channel 1 - or there is a communications error between the two monitoring channels.",
+        "start": 111,
+        "end": 322
+      },
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "输入 observation 未定义 scope_type/children；虽可在明确的 event_cause_set 下判 OR，当前 observation 结构不可直接作校准行。"
+    },
+    {
+      "review_row_id": "AMBIG-F01673",
+      "candidate_id": null,
+      "fault_code": "F01673",
+      "target_fault_code": null,
+      "sample_id": "SIEMENS_S210_2019_F01673",
+      "source_ambiguous_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_or_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type_present": false,
+      "input_scope_type": null,
+      "review_scope_type": "sensor_module_unsupported_cause",
+      "final_gate": "OR",
+      "scope_review": {
+        "scope_appropriate": true,
+        "notes": "and/or 表示软件不支持、硬件不支持、或两者同时不支持；对标准 inclusive OR 门，任一输入成立即可，故此处不是 unknown。"
+      },
+      "children_present_in_input": false,
+      "children_review": {
+        "complete": false,
+        "same_logical_level": null,
+        "notes": "两个同层候选分支为 Sensor Module 软件不支持该功能、Sensor Module 硬件不支持该功能；“不支持该功能”是共享谓词。原 observation 未提供 children，落库前需物化这两个分支。"
+      },
+      "unknown_negative_eligible": false,
+      "source_evidence": {
+        "quote": "The existing Sensor Module software and/or hardware does not support the safe motion monitoring function with the higher-\nlevel control.",
+        "start": 110,
+        "end": 246
+      },
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "输入 observation 未定义 scope_type/children；and/or 可在明确原因 scope 下归为 OR，但当前记录不可直接用作校准行。"
+    },
+    {
+      "review_row_id": "AMBIG-F01651",
+      "candidate_id": null,
+      "fault_code": "F01651",
+      "target_fault_code": null,
+      "sample_id": "SIEMENS_S210_2019_F01651",
+      "source_ambiguous_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_and_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type_present": true,
+      "input_scope_type": "synchronization_scope",
+      "review_scope_type": "fault_event_gate_over_failures_of_the_two_required_synchronization_relations",
+      "final_gate": "unknown",
+      "scope_review": {
+        "scope_appropriate": true,
+        "notes": "原文 and 连接两种同步要求/同步范围，不是两个同步失败事件的 AND 门证据。随后只说整体同步例程失败，未说明任一链路失败是否足够，或是否必须都失败。"
+      },
+      "children_present_in_input": false,
+      "children_review": {
+        "complete": false,
+        "same_logical_level": null,
+        "notes": "需显式定义两个候选子事件：监控通道间同步失败；驱动与上位控制器间同步失败。原 observation 没有子事件节点及其逐项故障证据，故 unknown 仅针对上述明确的故障门 scope。"
+      },
+      "unknown_negative_eligible": true,
+      "source_evidence": {
+        "quote": "The \"Safety Integrated\" function requires a synchronization of the safety time slices between the two monitoring channels\nand between the drive and the higher-level control. This synchronization routine was unsuccessful.",
+        "start": 109,
+        "end": 329
+      },
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "可作为潜在 unknown/abstention 标签样例，但当前 children/逐项事件证据不完整，且没有配对模型概率和独立 split；不能作为 AND/OR 的简单二元负例。"
+    },
+    {
+      "review_row_id": "AMBIG-F01682",
+      "candidate_id": null,
+      "fault_code": "F01682",
+      "target_fault_code": null,
+      "sample_id": "SIEMENS_S210_2019_F01682",
+      "source_ambiguous_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_and_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type_present": true,
+      "input_scope_type": "fault_value_compatibility_requirement",
+      "review_scope_type": "fault_value_compatibility_requirement",
+      "final_gate": "AND",
+      "scope_review": {
+        "scope_appropriate": true,
+        "notes": "only supported in conjunction with 明确表达兼容性/支持要求中的合取：驱动集成运动监控与 PROFIsafe 必须配合。它不是已观察到的两项故障状态，也不直接证明 F01682 发生门是 AND。"
+      },
+      "children_present_in_input": false,
+      "children_review": {
+        "complete": false,
+        "same_logical_level": null,
+        "notes": "在 requirement scope 下可表示“运动监控支持”与“PROFIsafe 配套支持”两个同层要求；输入 observation 未提供 children。若目标改为 F01682 故障发生门，现有原文不足以判 AND/OR，应重新定义事件 scope，而不能复用该 AND。"
+      },
+      "unknown_negative_eligible": false,
+      "source_evidence": {
+        "quote": "20: Motion monitoring functions integrated in the drive are only supported in conjunction with PROFIsafe (p9501 and\np9601.1 ... 2).",
+        "start": 311,
+        "end": 442
+      },
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "AND 标签仅适用于兼容性 requirement 节点，不适用于 fault-event gate；输入未提供 children，且无模型概率/独立 split。"
+    },
+    {
+      "review_row_id": "AMBIG-A01940",
+      "candidate_id": null,
+      "fault_code": "A01940",
+      "target_fault_code": null,
+      "sample_id": "SIEMENS_S210_2019_A01940",
+      "source_ambiguous_artifact": "evaluation/quality_eval/runs/siemens_s210_gate_node_and_ai_review_candidates_v1_2026-09-26.json",
+      "input_scope_type_present": true,
+      "input_scope_type": "operating_context",
+      "review_scope_type": "operating_context",
+      "final_gate": "exclude",
+      "scope_review": {
+        "scope_appropriate": true,
+        "notes": "and 在句法上连接总线数据交换状态与已选择时钟同步运行；这是故障描述中的运行背景/上下文合取。随后报告同步未成功，但原文未把两个上下文状态明示为共同原因或 FTA 输入事件。"
+      },
+      "children_present_in_input": false,
+      "children_review": {
+        "complete": false,
+        "same_logical_level": null,
+        "notes": "两项上下文状态可提取为事实，但没有证据将它们建模为故障原因门的 children。按 operating_context scope，它们不是当前 FTA causal gate 样例。"
+      },
+      "unknown_negative_eligible": false,
+      "source_evidence": {
+        "quote": "The bus is in the data exchange state and clock synchronous operation has been selected using the parameterizing\ntelegram. It was not possible to synchronize to the clock cycle specified by the master.",
+        "start": 87,
+        "end": 288
+      },
+      "source_span_verified": true,
+      "calibration_eligible": false,
+      "calibration_exclusion_reason": "排除项：这是背景上下文而非待判 AND/OR/unknown 的因果门；排除不能改标成 unknown。"
+    }
+  ],
+  "summary": {
+    "review_row_count": 34,
+    "unique_review_row_count": 34,
+    "candidate_count": 29,
+    "candidate_gate_counts": {
+      "OR": 17,
+      "AND": 12,
+      "unknown": 0,
+      "exclude": 0
+    },
+    "ambiguous_count": 5,
+    "ambiguous_final_gate_counts": {
+      "OR": 2,
+      "AND": 1,
+      "unknown": 1,
+      "exclude": 1
+    },
+    "candidate_gate_and_child_quote_span_count": 87,
+    "ambiguous_quote_span_count": 5,
+    "total_verified_quote_span_count": 92,
+    "unknown_abstention_examples": 1,
+    "calibration_eligible_rows": 0,
+    "calibration_reason": "No rows have paired node-level model probabilities and no independent calibration split exists; the 5 ambiguous observations also include missing scopes/children or non-causal requirements/context."
+  },
+  "verification": {
+    "corpus_record_count": 281,
+    "corpus_sha256": "b42535d37ae27b63ba0048c88e947916e846da53e1bf18b3e5825c1853c1f483",
+    "input_artifact_sha256_matches_corpus": true,
+    "candidate_review_row_ids_unique": true,
+    "all_29_candidate_gate_and_child_spans_exact": true,
+    "all_5_ambiguous_spans_exact": true,
+    "all_quotes_preserved_from_input_artifacts": true,
+    "model_probabilities_included": false,
+    "validation_or_calibration_split_created": false
+  }
+}

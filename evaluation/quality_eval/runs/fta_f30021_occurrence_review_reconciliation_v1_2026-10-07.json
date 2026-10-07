@@ -1,0 +1,120 @@
+{
+  "artifact_type": "fta_f30021_occurrence_review_reconciliation",
+  "artifact_version": "v1",
+  "created_on": "2026-10-07",
+  "reviewer_provenance": "offline_engineering_reconciliation_of_user_authorized_ai_locator_review_not_human_expert_signoff",
+  "formal_gold": false,
+  "database_written": false,
+  "fta_ready": false,
+  "production_ready": false,
+  "model_requests_performed": 0,
+  "source": {
+    "sample_id": "SIEMENS_S210_2019_F30021",
+    "fault_code": "F30021",
+    "source_sha256": "f3178a6c9c46aa2109a44eb118c6a8730ebfdd6d9a6f5660147529f01ce41d31",
+    "source_pdf_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd",
+    "section": "15.2 List of faults and alarms",
+    "pdf_page_start": 498,
+    "pdf_page_end": 499,
+    "offset_unit": "Unicode code point",
+    "offset_convention": "zero-based half-open [start,end)"
+  },
+  "locator_review": {
+    "review_id": "S210-F30021-C04-LOCATOR-2026-09-27-01",
+    "reviewer_provenance": "user_authorized_ai_subagent_review_with_main_agent_offset_verification",
+    "reviewer_is_human_expert": false,
+    "formal_gold": false,
+    "decision": "resolved_by_scoped_occurrence",
+    "scope_anchor": {
+      "start": 166,
+      "end": 372,
+      "quote": "Possible causes:\n- ground fault in the power cables.\n- ground fault at the motor.\n- when the brake closes, this causes the hardware DC current monitoring to respond.\n- short-circuit at the braking resistor."
+    },
+    "all_exact_occurrences": [
+      {
+        "start": 332,
+        "end": 372,
+        "quote": "- short-circuit at the braking resistor.",
+        "inside_reviewed_scope": true
+      },
+      {
+        "start": 468,
+        "end": 508,
+        "quote": "- short-circuit at the braking resistor.",
+        "inside_reviewed_scope": false
+      }
+    ],
+    "selected_occurrence": {
+      "start": 332,
+      "end": 372,
+      "quote": "- short-circuit at the braking resistor."
+    },
+    "scope_consistency": "passed_unique_possible_causes_occurrence",
+    "gate_label_before": "unknown",
+    "gate_label_after": "unknown",
+    "gate_evidence_added": false
+  },
+  "latest_raw_run": {
+    "path": "evaluation/quality_eval/runs/siemens_s210_f30021_raw_candidate_fta_current_prompt_v5_2026-10-07.json",
+    "cause_disposition_prompt": "fta-cause-disposition-v5",
+    "cause_index": 3,
+    "cause_text": "short-circuit at the braking resistor",
+    "cause_value_spans": [
+      {
+        "start": 334,
+        "end": 371
+      },
+      {
+        "start": 470,
+        "end": 507
+      }
+    ],
+    "cause_context_spans": [
+      {
+        "start": 332,
+        "end": 372
+      },
+      {
+        "start": 468,
+        "end": 508
+      }
+    ],
+    "current_disposition": "unresolved",
+    "current_disposition_reason": "evidence_missing_or_ambiguous",
+    "current_disposition_evidence": [],
+    "prior_locator_decision_applied": false,
+    "tree_status": "blocked",
+    "top_event_phrase": "ground fault",
+    "top_event_occurrence_count": 4,
+    "gate": "unknown",
+    "gate_evidence": [],
+    "cause_set_complete": false,
+    "blockers": [
+      "cause_disposition_unresolved:3",
+      "top_event_evidence_ambiguous"
+    ]
+  },
+  "reconciliation_result": {
+    "scope_and_offsets_consistent": true,
+    "prior_locator_selection_valid_within_reviewed_scope": true,
+    "prior_locator_decision_applied_to_latest_run": false,
+    "latest_raw_run_remains_blocked": true,
+    "semantic_defects_closed": 0,
+    "shared_contract_changed": false,
+    "gold_changed": false,
+    "readiness_changed": false
+  },
+  "limitations": [
+    "The saved locator decision is an authorized AI subagent review, not human expert signoff or formal Gold.",
+    "This offline reconciliation validates source identity, exact offsets, and scope membership only; it does not revise the immutable v5 run.",
+    "The current runtime does not consume the historical locator decision, so C04 remains unresolved in the latest run.",
+    "The top-event phrase remains ambiguous, the child set remains incomplete, and gate confidence policy remains unavailable; the tree stays blocked."
+  ],
+  "input_artifacts": {
+    "source_corpus_path": "evaluation/quality_eval/datasets/siemens_s210_public_fault_corpus_v1.jsonl",
+    "raw_run_path": "evaluation/quality_eval/runs/siemens_s210_f30021_raw_candidate_fta_current_prompt_v5_2026-10-07.json",
+    "raw_run_sha256": "2f562c5443d3ce3b79a7eab0de267ff29fcd76a7aa04ca7399a6052fe19f62b9",
+    "locator_review_path": "evaluation/quality_eval/runs/siemens_s210_F30021_C04_locator_ai_review_v1_2026-09-27.json",
+    "locator_review_sha256": "78668ecbdf47895e6b39cf02af4a3e065d0dd5d1d2d2a273412b95602a7197b9"
+  }
+}

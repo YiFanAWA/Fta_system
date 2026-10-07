@@ -1,0 +1,35 @@
+{
+  "audit_id": "fta_event_scope_source_leads_v1_2026-09-29",
+  "captured_at": "2026-09-29",
+  "purpose": "Metadata-only lead register for future whole-document source screening; not a dataset, Gold, or source allocation.",
+  "search_policy": {
+    "source_domain": "official NASA Technical Reports Server",
+    "page_level_tree_content_opened": false,
+    "pdf_downloaded_or_hashed": false,
+    "source_overlap_audit_complete": false,
+    "eligible_for_final": false
+  },
+  "leads": [
+    {
+      "lead_id": "nasa-xvs-no-droop-hazard-analysis-1999",
+      "official_record_url": "https://ntrs.nasa.gov/citations/20250005835",
+      "official_download_url": "https://ntrs.nasa.gov/api/citations/20250005835/downloads/XVS%20No%20Droop%20Haz%20Analysisde_LERD.pdf",
+      "title": "Updated External Vision System (XVS) ‘No Droop’ Hazard Analysis Study",
+      "report_number": "CR #29-A19",
+      "author": "R. D. Dangaran",
+      "publication_date": "1999-09-30",
+      "ntrs_acquired_date": "2025-06-04",
+      "distribution_note": "NTRS metadata says Public Use Permitted; verify notices against the downloaded artifact before any redistribution.",
+      "metadata_claim": "NTRS abstract states that the update considers Honeywell’s latest fault tree analysis, the XVS display-system functional hazard assessment, and applicable reliability and maintainability data.",
+      "exposure_status": "metadata_only_unseen_pages",
+      "provisional_source_cluster": "xvs_no_droop_report_family_pending_overlap_audit",
+      "screening_status": "lead_only_not_screened",
+      "final_use": "not_eligible_until_complete_pdf_hash_rights_page_scope_and_source_overlap_are_audited",
+      "limitations": [
+        "No PDF pages or tree diagrams were opened during this metadata search.",
+        "Related XVS/HSR reports may share source material; keep the document family grouped until an overlap audit establishes safe cluster boundaries.",
+        "This lead does not count as a blind Final source or prove that the report contains extractable complete tree figures."
+      ]
+    }
+  ]
+}

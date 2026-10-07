@@ -1,0 +1,161 @@
+{
+  "run_type": "s210_gate_confidence_probe_named_gold_v1",
+  "created_at": "2026-09-26T07:40:54.496317+00:00",
+  "status": "completed",
+  "reviewer_provenance": "model_inference_probe_not_expert_review",
+  "confidence_semantics": "uncalibrated_model_estimate",
+  "gate_policy_applied": false,
+  "gold_reference": "siemens_s210_and_or_logic_gold_v1",
+  "case_count": 6,
+  "prediction_count": 6,
+  "metadata": {
+    "model_id": "deepseek-flash",
+    "provider_host": "api.deepseek.com",
+    "temperature": 0,
+    "prompt_builder": "candidate_fta_extraction_service_v1"
+  },
+  "predictions": [
+    {
+      "fault_code": "A01069",
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 0.0,
+        "unknown": 1.0
+      },
+      "model_top_gate_unaccepted": "unknown",
+      "top_probability": 1.0,
+      "top_margin": 1.0,
+      "cause_set_complete": true,
+      "cause_set_leaf_normalized": false,
+      "active_cause_ids_match": true,
+      "gate_evidence_quote": "",
+      "gate_evidence_offsets": null,
+      "proposal_blockers": [
+        "cause_set_not_leaf_normalized"
+      ],
+      "model_reason_summary": "原文未提供原因之间的显式 OR/AND 逻辑关系；cause 1 是 Example，且内部含有“and”组合，不能作为与 cause 0 同级叶项来支持单层 OR 或 AND。因此门型无法确定，unknown 最高，且 gate_evidence_quote 置空。",
+      "prompt_sha256": "89e296e1e54616c55f11caaf9279cf954a343115b735bc3b3106a9635afa9494",
+      "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd"
+    },
+    {
+      "fault_code": "A01631",
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 0.0,
+        "unknown": 1.0
+      },
+      "model_top_gate_unaccepted": "unknown",
+      "top_probability": 1.0,
+      "top_margin": 1.0,
+      "cause_set_complete": false,
+      "cause_set_leaf_normalized": false,
+      "active_cause_ids_match": true,
+      "gate_evidence_quote": "",
+      "gate_evidence_offsets": null,
+      "proposal_blockers": [
+        "cause_set_not_confirmed_complete",
+        "cause_set_not_leaf_normalized"
+      ],
+      "model_reason_summary": "原文中 cause 0 基本是顶事件的概括/重述，cause 1 是更具体配置且内部包含“No motor holding brake available ... and SBC enabled”的 AND 组合；没有直接连续引文支持 cause 0 与 cause 1 之间形成同级 AND 或 OR。单层结构无法表达该层级及内部 AND，因此门类型判断以 unknown 为主。",
+      "prompt_sha256": "27b59e57501d36cfb0154c7ff9fdfacb7c4c3e4fe7c13a1f451489d2758afa7d",
+      "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd"
+    },
+    {
+      "fault_code": "A01981",
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 0.2,
+        "unknown": 0.8
+      },
+      "model_top_gate_unaccepted": "unknown",
+      "top_probability": 0.8,
+      "top_margin": 0.6000000000000001,
+      "cause_set_complete": true,
+      "cause_set_leaf_normalized": false,
+      "active_cause_ids_match": true,
+      "gate_evidence_quote": "",
+      "gate_evidence_offsets": null,
+      "proposal_blockers": [
+        "cause_set_not_leaf_normalized"
+      ],
+      "model_reason_summary": "原文没有可直接支持“所有原因同时成立”或“任一原因可单独导致顶事件”的连续逻辑引文；Info 1 仅按取值区分 RT/IRT 连接超限，且 cause:0 为概括性原因而 cause:1/2 更接近诊断/子类信息，不能安全压平成同层叶节点，因此门类型判断以 unknown 为主。",
+      "prompt_sha256": "2f6cb9b00a52f37a2fd34cab4e68267c27be3ecaecdd939effa76d1579a274a1",
+      "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd"
+    },
+    {
+      "fault_code": "A07094",
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 0.1,
+        "unknown": 0.9
+      },
+      "model_top_gate_unaccepted": "unknown",
+      "top_probability": 0.9,
+      "top_margin": 0.8,
+      "cause_set_complete": true,
+      "cause_set_leaf_normalized": false,
+      "active_cause_ids_match": true,
+      "gate_evidence_quote": "",
+      "gate_evidence_offsets": null,
+      "proposal_blockers": [
+        "cause_set_not_leaf_normalized"
+      ],
+      "model_reason_summary": "原文分别列出参数限值违反、最小限值违反和最大限值违反，但没有给出明确支持“任一子事件即可导致顶事件”的连续引文，也没有给出“所有子事件同时成立”的逻辑连接词，因此门类型以 unknown 为主。cause:0 是对顶事件的概括/复述，cause:1 和 cause:2 是其具体子类，不能作为同一层级的叶项并列。",
+      "prompt_sha256": "cc42b172c5698b57770b9e9b5c383dbbcf26939214594ccc4c117d27984b10d9",
+      "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd"
+    },
+    {
+      "fault_code": "A30714",
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 0.0,
+        "unknown": 1.0
+      },
+      "model_top_gate_unaccepted": "unknown",
+      "top_probability": 1.0,
+      "top_margin": 1.0,
+      "cause_set_complete": true,
+      "cause_set_leaf_normalized": false,
+      "active_cause_ids_match": true,
+      "gate_evidence_quote": "",
+      "gate_evidence_offsets": null,
+      "proposal_blockers": [
+        "cause_set_not_leaf_normalized"
+      ],
+      "model_reason_summary": "原文仅列出一般原因和消息值/诊断代码，未出现明确表明所有条件同时成立或任一原因即可导致顶事件的连续逻辑表述；SLS1-SLS4 及编码器限频条目属于消息值/诊断索引，不能压平成同级叶项。",
+      "prompt_sha256": "3bbbbcedd856c45a668628e6d5f2d45a873d523c9731db1c67dae7327975c7a0",
+      "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd"
+    },
+    {
+      "fault_code": "F01611",
+      "gate_probabilities": {
+        "AND": 0.0,
+        "OR": 0.0,
+        "unknown": 1.0
+      },
+      "model_top_gate_unaccepted": "unknown",
+      "top_probability": 1.0,
+      "top_margin": 1.0,
+      "cause_set_complete": false,
+      "cause_set_leaf_normalized": false,
+      "active_cause_ids_match": true,
+      "gate_evidence_quote": "",
+      "gate_evidence_offsets": null,
+      "proposal_blockers": [
+        "cause_set_not_confirmed_complete",
+        "cause_set_not_leaf_normalized"
+      ],
+      "model_reason_summary": "原文仅按故障值/诊断值列出多个原因，并说明故障值 1000 下另有替代条件；没有连续原文直接支持这四个原因对顶事件构成 AND 或 OR。完整原文还包含大量未抽取的故障值相关原因，且 1000 下的两个条件与 Watchdog timer has expired 疑似不同层级，不能规范化为同级叶项。因此门类型无法确定。",
+      "prompt_sha256": "02d51e4993acafeff6f80aa4daa59d3f622022c0f4b53f032d0595fe438789a6",
+      "source_sha256": "4e32930c2c86300b3699ce9ef321948bf7d40065775944e90d6ed19b11c588cd"
+    }
+  ],
+  "failures": [],
+  "interpretation_note": "Predicted probabilities are probe outputs, not calibrated confidence or event probabilities. This artifact cannot select a gate policy; six reviewed cases with no AND examples are insufficient.",
+  "input_artifacts": {
+    "gold_sha256": "23235e6893b411cae298dfee5d28bcec4da324288b2fd490985926e0658c9c53",
+    "corpus_sha256": "b42535d37ae27b63ba0048c88e947916e846da53e1bf18b3e5825c1853c1f483",
+    "gold_path": "evaluation\\quality_eval\\datasets\\siemens_s210_and_or_logic_gold_v1.json",
+    "corpus_path": "evaluation\\quality_eval\\datasets\\siemens_s210_public_fault_corpus_v1.jsonl"
+  }
+}
